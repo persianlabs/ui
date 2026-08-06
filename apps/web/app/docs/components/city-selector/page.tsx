@@ -121,6 +121,10 @@ const citySelectorMarkdown = [
 export default function CitySelectorDocPage() {
   const lastEdited = getLastEditedDate(SOURCE_PATH)
 
+  const provincesSource = getLibSource("persian-provinces")
+  const provincesLines = provincesSource.split("\n")
+  const provincesHead = provincesLines.slice(0, 100).join("\n")
+
   return (
     <div className="flex gap-10">
       <article className="min-w-0 max-w-3xl flex-1">
@@ -360,9 +364,15 @@ export default function CitySelectorDocPage() {
               </p>
               <div className="mt-2">
                 <CodeBlock
-                  code={getLibSource("persian-provinces")}
+                  code={provincesHead}
+                  copyText={provincesSource}
                   lang="tsx"
                 />
+                <p className="text-muted-foreground mt-1.5 text-xs leading-relaxed">
+                  Showing the first 100 of {provincesLines.length} lines —
+                  truncated for performance. Use the copy button above to get
+                  the full file.
+                </p>
               </div>
             </div>
             <div>

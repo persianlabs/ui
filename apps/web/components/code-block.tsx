@@ -5,10 +5,12 @@ export async function CodeBlock({
   code,
   lang = "tsx",
   className,
+  copyText,
 }: {
   code: string
   lang?: string
   className?: string
+  copyText?: string
 }) {
   const html = await highlightCode(code, lang)
 
@@ -21,7 +23,7 @@ export async function CodeBlock({
     >
       <div className="absolute top-2 right-2 z-10 opacity-0 transition-opacity group-hover/code:opacity-100">
         <CopyButton
-          text={code}
+          text={copyText ?? code}
           label="Copy code"
           className="bg-background/80 border-border rounded-md border p-1.5 backdrop-blur-sm"
         />
