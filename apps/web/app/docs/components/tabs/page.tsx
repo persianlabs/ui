@@ -6,6 +6,7 @@ import { CodeBlock } from "@/components/code-block"
 import { ComponentPreview } from "@/components/component-preview"
 import { CopyCommand } from "@/components/copy-command"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
+import { InstallCommand } from "@/components/install-command"
 import { DocsPageFooter } from "@/components/docs-page-footer"
 import { LastUpdated } from "@/components/last-updated"
 import { TableOfContents } from "@/components/table-of-contents"
@@ -303,7 +304,7 @@ export default function TabsDocPage() {
                 1. Install the dependencies
               </p>
               <div className="mt-2">
-                <CopyCommand command="npm install @base-ui/react motion" />
+                <InstallCommand packages="@base-ui/react motion" />
               </div>
             </div>
             <div>

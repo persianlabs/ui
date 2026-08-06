@@ -11,6 +11,7 @@ import { CitySelectorFormExample } from "@/components/examples/city-selector-for
 import { CitySelectorLocaleExample } from "@/components/examples/city-selector-locale"
 import { ComponentPreview } from "@/components/component-preview"
 import { CopyCommand } from "@/components/copy-command"
+import { InstallCommand } from "@/components/install-command"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
 import { DocsPageFooter } from "@/components/docs-page-footer"
 import { LastUpdated } from "@/components/last-updated"
@@ -348,7 +349,7 @@ export default function CitySelectorDocPage() {
                 1. Install the dependencies
               </p>
               <div className="mt-2">
-                <CopyCommand command="npm install @base-ui/react" />
+                <InstallCommand packages="@base-ui/react" />
               </div>
             </div>
             <div>
