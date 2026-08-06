@@ -38,8 +38,10 @@ const introMarkdown = [
 export default function DocsIntroductionPage() {
   return (
     <article className="max-w-2xl">
-      <div className="flex items-start justify-between gap-4">
-        <h1 className="text-3xl font-semibold tracking-tight">Introduction</h1>
+      <div className="flex flex-col items-end justify-between gap-3 sm:flex-row sm:items-center">
+        <h1 className="text-3xl font-semibold tracking-tight self-start sm:self-auto">
+          Introduction
+        </h1>
         <CopyMarkdownButton markdown={introMarkdown} />
       </div>
       <p className="text-muted-foreground mt-4 leading-relaxed">

@@ -124,27 +124,25 @@ export default function CitySelectorDocPage() {
   return (
     <div className="flex gap-10">
       <article className="min-w-0 max-w-3xl flex-1">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <h1 className="text-3xl font-semibold tracking-tight">
-              City Selector
-            </h1>
-            <p className="text-muted-foreground mt-3 max-w-2xl leading-relaxed">
-              A ready-made province and city picker for Iran. Built on{" "}
-              <a
-                href="/docs/components/combobox"
-                className="text-foreground underline underline-offset-4"
-              >
-                Combobox
-              </a>
-              , and bundled with all 31 provinces and 1,119 cities — the city
-              field stays disabled until a province is chosen, and both are
-              searchable.
-            </p>
-            <LastUpdated date={lastEdited} />
-          </div>
+        <div className="flex flex-col items-end justify-between gap-3 sm:flex-row sm:items-center">
+          <h1 className="text-3xl font-semibold tracking-tight self-start sm:self-auto">
+            City Selector
+          </h1>
           <CopyMarkdownButton markdown={citySelectorMarkdown} />
         </div>
+        <p className="text-muted-foreground mt-3 max-w-2xl leading-relaxed">
+          A ready-made province and city picker for Iran. Built on{" "}
+          <a
+            href="/docs/components/combobox"
+            className="text-foreground underline underline-offset-4"
+          >
+            Combobox
+          </a>
+          , and bundled with all 31 provinces and 1,119 cities — the city
+          field stays disabled until a province is chosen, and both are
+          searchable.
+        </p>
+        <LastUpdated date={lastEdited} />
 
         <h2
           id="overview"

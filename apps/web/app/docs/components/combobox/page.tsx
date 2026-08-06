@@ -123,28 +123,26 @@ export default function ComboboxDocPage() {
   return (
     <div className="flex gap-10">
       <article className="min-w-0 max-w-3xl flex-1">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <h1 className="text-3xl font-semibold tracking-tight">
-              Combobox
-            </h1>
-            <p className="text-muted-foreground mt-3 max-w-2xl leading-relaxed">
-              An input that filters a list of options as you type. Built on
-              Base UI&apos;s combobox primitive, so filtering, keyboard
-              navigation, and ARIA wiring come for free. Looking for a
-              ready-made province & city picker? See{" "}
-              <a
-                href="/docs/components/city-selector"
-                className="text-foreground underline underline-offset-4"
-              >
-                City Selector
-              </a>
-              .
-            </p>
-            <LastUpdated date={lastEdited} />
-          </div>
+        <div className="flex flex-col items-end justify-between gap-3 sm:flex-row sm:items-center">
+          <h1 className="text-3xl font-semibold tracking-tight self-start sm:self-auto">
+            Combobox
+          </h1>
           <CopyMarkdownButton markdown={comboboxMarkdown} />
         </div>
+        <p className="text-muted-foreground mt-3 max-w-2xl leading-relaxed">
+          An input that filters a list of options as you type. Built on Base
+          UI&apos;s combobox primitive, so filtering, keyboard navigation, and
+          ARIA wiring come for free. Looking for a ready-made province & city
+          picker? See{" "}
+          <a
+            href="/docs/components/city-selector"
+            className="text-foreground underline underline-offset-4"
+          >
+            City Selector
+          </a>
+          .
+        </p>
+        <LastUpdated date={lastEdited} />
 
         <h2
           id="overview"

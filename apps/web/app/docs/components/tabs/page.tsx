@@ -116,20 +116,19 @@ export default function TabsDocPage() {
   return (
     <div className="flex gap-10">
       <article className="min-w-0 max-w-3xl flex-1">
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <h1 className="text-3xl font-semibold tracking-tight">Tabs</h1>
-            <p className="text-muted-foreground mt-3 max-w-2xl leading-relaxed">
-              A set of layered panels, one visible at a time, with an
-              active-tab indicator that slides to match the current selection
-              using a spring animation. Built on Base UI&apos;s tabs
-              primitive, so focus management, keyboard navigation, and ARIA
-              wiring come for free.
-            </p>
-            <LastUpdated date={lastEdited} />
-          </div>
+        <div className="flex flex-col items-end justify-between gap-3 sm:flex-row sm:items-center">
+          <h1 className="text-3xl font-semibold tracking-tight self-start sm:self-auto">
+            Tabs
+          </h1>
           <CopyMarkdownButton markdown={tabsMarkdown} />
         </div>
+        <p className="text-muted-foreground mt-3 max-w-2xl leading-relaxed">
+          A set of layered panels, one visible at a time, with an active-tab
+          indicator that slides to match the current selection using a spring
+          animation. Built on Base UI&apos;s tabs primitive, so focus
+          management, keyboard navigation, and ARIA wiring come for free.
+        </p>
+        <LastUpdated date={lastEdited} />
 
         <h2
           id="overview"

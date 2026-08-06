@@ -8,6 +8,7 @@ import {
   CitySelector,
   type CitySelectorValue,
 } from "@workspace/ui/components/city-selector"
+import { Input } from "@workspace/ui/components/input"
 import { Label } from "@workspace/ui/components/label"
 
 const formSchema = z.object({
@@ -52,12 +53,11 @@ export function CitySelectorFormExample() {
     <form onSubmit={handleSubmit} className="flex w-full max-w-sm flex-col gap-4">
       <div className="flex flex-col gap-1.5">
         <Label htmlFor="city-selector-form-name">Full name</Label>
-        <input
+        <Input
           id="city-selector-form-name"
           value={fullName}
           onChange={(event) => setFullName(event.target.value)}
           placeholder="Jane Doe"
-          className="border-border bg-background focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 h-8 w-full rounded-lg border px-2.5 text-sm outline-none"
         />
         {errors.fullName && (
           <p className="text-destructive text-xs">{errors.fullName}</p>

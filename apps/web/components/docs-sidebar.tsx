@@ -8,7 +8,7 @@ import { Badge } from "@/components/badge"
 import { docsNav } from "@/lib/docs-nav"
 import { cn } from "@workspace/ui/lib/utils"
 
-export function DocsSidebar() {
+export function DocsSidebar({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname()
 
   return (
@@ -37,6 +37,7 @@ export function DocsSidebar() {
                 <li key={item.href}>
                   <Link
                     href={item.href as Route}
+                    onClick={onNavigate}
                     className={cn(
                       "flex items-center justify-between gap-2 rounded-md px-2.5 py-1.5 transition-colors",
                       active

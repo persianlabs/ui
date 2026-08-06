@@ -48,18 +48,21 @@ export default function ThemingPage() {
 
   return (
     <article className="max-w-2xl">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <h1 className="text-3xl font-semibold tracking-tight">Theming</h1>
-          <p className="text-muted-foreground mt-3 leading-relaxed">
-            Every color in PersianLabs/ui is a CSS variable. Copy the blocks
-            below into your own <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm">globals.css</code>{" "}
-            and adjust the values — every component reads from these tokens,
-            nothing is hard-coded.
-          </p>
-        </div>
+      <div className="flex flex-col items-end justify-between gap-3 sm:flex-row sm:items-center">
+        <h1 className="text-3xl font-semibold tracking-tight self-start sm:self-auto">
+          Theming
+        </h1>
         <CopyMarkdownButton markdown={themingMarkdown} />
       </div>
+      <p className="text-muted-foreground mt-3 leading-relaxed">
+        Every color in PersianLabs/ui is a CSS variable. Copy the blocks below
+        into your own{" "}
+        <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm">
+          globals.css
+        </code>{" "}
+        and adjust the values — every component reads from these tokens,
+        nothing is hard-coded.
+      </p>
 
       <h2 className="mt-10 text-xl font-semibold tracking-tight">Preview</h2>
       <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">

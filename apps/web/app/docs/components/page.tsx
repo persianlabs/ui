@@ -74,8 +74,10 @@ const componentsMarkdown = [
 export default function DocsComponentsPage() {
   return (
     <div className="max-w-5xl">
-      <div className="flex items-start justify-between gap-4">
-        <h1 className="text-3xl font-semibold tracking-tight">Components</h1>
+      <div className="flex flex-col items-end justify-between gap-3 sm:flex-row sm:items-center">
+        <h1 className="text-3xl font-semibold tracking-tight self-start sm:self-auto">
+          Components
+        </h1>
         <CopyMarkdownButton markdown={componentsMarkdown} />
       </div>
       <p className="text-muted-foreground mt-4 max-w-2xl leading-relaxed">

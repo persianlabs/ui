@@ -36,9 +36,7 @@ export default function Page() {
             </h1>
 
             <p className="text-muted-foreground mt-5 max-w-xl text-balance">
-              A copy-paste component library built RTL-first for Persian
-              interfaces — distributed through a shadcn-compatible registry,
-              so you install exactly what you need.
+              A copy-paste component library, RTL-first for Persian interfaces.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
@@ -60,7 +58,7 @@ export default function Page() {
               </a>
             </div>
 
-            <div className="mt-10 w-full">
+            <div className="mt-10 w-full min-w-0 max-w-md">
               <CopyCommand command="npx shadcn@latest add @persianlabsui/city-selector" />
             </div>
           </div>

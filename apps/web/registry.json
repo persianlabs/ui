@@ -12,8 +12,7 @@
       "dependencies": ["@base-ui/react", "class-variance-authority"],
       "files": [
         {
-          "path": "packages/ui/src/components/button.tsx",
-          "target": "@ui/button.tsx",
+          "path": "registry/base/ui/button.tsx",
           "type": "registry:ui"
         }
       ]
@@ -27,8 +26,21 @@
       "dependencies": ["@base-ui/react", "motion"],
       "files": [
         {
-          "path": "packages/ui/src/components/tabs.tsx",
-          "target": "@ui/tabs.tsx",
+          "path": "registry/base/ui/tabs.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "A styled text input built on Base UI.",
+      "registryDependencies": ["utils"],
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "registry/base/ui/input.tsx",
           "type": "registry:ui"
         }
       ]
@@ -41,8 +53,7 @@
       "registryDependencies": ["utils"],
       "files": [
         {
-          "path": "packages/ui/src/components/label.tsx",
-          "target": "@ui/label.tsx",
+          "path": "registry/base/ui/label.tsx",
           "type": "registry:ui"
         }
       ]
@@ -56,8 +67,7 @@
       "dependencies": ["@base-ui/react"],
       "files": [
         {
-          "path": "packages/ui/src/components/scroll-area.tsx",
-          "target": "@ui/scroll-area.tsx",
+          "path": "registry/base/ui/scroll-area.tsx",
           "type": "registry:ui"
         }
       ]
@@ -67,12 +77,11 @@
       "type": "registry:ui",
       "title": "Combobox",
       "description": "A searchable, accessible combobox built on Base UI.",
-      "registryDependencies": ["utils", "scroll-area"],
+      "registryDependencies": ["utils", "@persianlabsui/scroll-area"],
       "dependencies": ["@base-ui/react"],
       "files": [
         {
-          "path": "packages/ui/src/components/combobox.tsx",
-          "target": "@ui/combobox.tsx",
+          "path": "registry/base/ui/combobox.tsx",
           "type": "registry:ui"
         }
       ]
@@ -82,17 +91,15 @@
       "type": "registry:ui",
       "title": "City Selector",
       "description": "A province and city picker for Iran, built on Combobox and bundled with a full dataset of all 31 provinces and 1,119 cities.",
-      "registryDependencies": ["utils", "combobox"],
+      "registryDependencies": ["utils", "@persianlabsui/combobox"],
       "dependencies": ["@base-ui/react"],
       "files": [
         {
-          "path": "packages/ui/src/components/city-selector.tsx",
-          "target": "@ui/city-selector.tsx",
+          "path": "registry/base/ui/city-selector.tsx",
           "type": "registry:ui"
         },
         {
-          "path": "packages/ui/src/lib/persian-provinces.ts",
-          "target": "@lib/persian-provinces.ts",
+          "path": "registry/base/lib/persian-provinces.ts",
           "type": "registry:lib"
         }
       ]
