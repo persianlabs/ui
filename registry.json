@@ -13,6 +13,7 @@
       "files": [
         {
           "path": "packages/ui/src/components/button.tsx",
+          "target": "@ui/button.tsx",
           "type": "registry:ui"
         }
       ]
@@ -27,6 +28,7 @@
       "files": [
         {
           "path": "packages/ui/src/components/tabs.tsx",
+          "target": "@ui/tabs.tsx",
           "type": "registry:ui"
         }
       ]
@@ -40,6 +42,7 @@
       "files": [
         {
           "path": "packages/ui/src/components/label.tsx",
+          "target": "@ui/label.tsx",
           "type": "registry:ui"
         }
       ]
@@ -54,6 +57,7 @@
       "files": [
         {
           "path": "packages/ui/src/components/scroll-area.tsx",
+          "target": "@ui/scroll-area.tsx",
           "type": "registry:ui"
         }
       ]
@@ -68,6 +72,7 @@
       "files": [
         {
           "path": "packages/ui/src/components/combobox.tsx",
+          "target": "@ui/combobox.tsx",
           "type": "registry:ui"
         }
       ]
@@ -82,10 +87,12 @@
       "files": [
         {
           "path": "packages/ui/src/components/city-selector.tsx",
+          "target": "@ui/city-selector.tsx",
           "type": "registry:ui"
         },
         {
           "path": "packages/ui/src/lib/persian-provinces.ts",
+          "target": "@lib/persian-provinces.ts",
           "type": "registry:lib"
         }
       ]
