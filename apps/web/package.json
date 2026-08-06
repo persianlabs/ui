@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "prebuild": "shadcn build",
+    "prebuild": "cd ../.. && shadcn build --output apps/web/public/r",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
