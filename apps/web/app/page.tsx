@@ -58,7 +58,7 @@ export default function Page() {
               </a>
             </div>
 
-            <div className="mt-10 w-full min-w-0 max-w-md">
+            <div className="mt-10 w-full min-w-0 max-w-fit">
               <CopyCommand command="npx shadcn@latest add @persianlabsui/city-selector" />
             </div>
           </div>
