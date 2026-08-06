@@ -11,8 +11,8 @@ export default function Page() {
     <div className="flex min-h-svh flex-col">
       <SiteHeader />
 
-      <main className="flex-1">
-        <section className="relative overflow-hidden px-6 pt-24 pb-20">
+      <main className="flex flex-1 items-center">
+        <section className="relative w-full overflow-hidden px-6 py-20">
           <div
             aria-hidden
             className="absolute inset-0 -z-10 [background-image:radial-gradient(var(--color-line)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black,transparent)]"
@@ -60,7 +60,7 @@ export default function Page() {
               </a>
             </div>
 
-            <div className="mt-10">
+            <div className="mt-10 w-full">
               <CopyCommand command="npx shadcn@latest add @persianlabsui/city-selector" />
             </div>
           </div>

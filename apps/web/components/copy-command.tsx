@@ -3,7 +3,7 @@ import { CopyButton } from "@/components/copy-button"
 export function CopyCommand({ command }: { command: string }) {
   return (
     <div className="border-border bg-card/60 group flex w-full items-center justify-between gap-3 rounded-lg border px-4 py-3 font-mono text-sm">
-      <code className="text-foreground min-w-0 overflow-x-auto whitespace-nowrap">
+      <code className="text-foreground scrollbar-hide min-w-0 overflow-x-auto whitespace-nowrap">
         <span className="text-muted-foreground select-none">$ </span>
         {command}
       </code>

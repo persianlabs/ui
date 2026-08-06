@@ -29,7 +29,7 @@
 
 ## What is PersianLabs/ui?
 
-PersianLabs/ui is a small component library built RTL-first for Persian interfaces — logical properties, mirrored icons, and Vazirmatn-aware typography, with full LTR support too.
+PersianLabs/ui is a small component library built RTL-first for Persian interfaces — logical properties, mirrored icons, and a Vazirmatn font fallback for Persian text in this project's docs site, with full LTR support too.
 
 Every component ships as plain React and Tailwind, distributed through a [shadcn-compatible registry](https://ui.shadcn.com/docs/registry). There's no package to install and no version to chase — components land straight in your codebase, so you can read, extend, and refactor every line.
 

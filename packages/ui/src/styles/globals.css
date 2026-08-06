@@ -217,6 +217,15 @@
   display: none;
 }
 
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
 .code-block-content code {
   display: grid;
   font-size: 0.8125rem;
