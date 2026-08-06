@@ -1,0 +1,16 @@
+export function AppLogo(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 1024 1024" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M210 842V330C210 286 226 251 258 219L382 95V842H210Z"
+        fill="currentColor"
+      />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M382 95H608C754 95 848 187 848 326C848 465 754 557 608 557H382V405H594C661 405 696 375 696 326C696 277 661 247 594 247H382V95Z"
+        fill="currentColor"
+      />
+    </svg>
+  )
+}

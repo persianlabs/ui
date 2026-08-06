@@ -19,5 +19,8 @@
   },
   "rtl": true,
   "menuColor": "default",
-  "menuAccent": "subtle"
+  "menuAccent": "subtle",
+  "registries": {
+    "@persianlabsui": "https://ui.persian-labs.ir/r/{name}.json"
+  }
 }

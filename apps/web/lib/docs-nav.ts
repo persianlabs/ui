@@ -1,0 +1,60 @@
+export interface DocsNavItem {
+  title: string
+  href: string
+  badge?: string
+  disabled?: boolean
+}
+
+export interface DocsNavGroup {
+  title: string
+  items: DocsNavItem[]
+}
+
+export const docsNav: DocsNavGroup[] = [
+  {
+    title: "Getting Started",
+    items: [
+      { title: "Introduction", href: "/docs" },
+      { title: "Theming", href: "/docs/theming" },
+      { title: "Skills", href: "/docs/skills", badge: "Coming soon", disabled: true },
+    ],
+  },
+  {
+    title: "Components",
+    items: [
+      { title: "Overview", href: "/docs/components" },
+      { title: "Tabs", href: "/docs/components/tabs" },
+      { title: "Combobox", href: "/docs/components/combobox" },
+      { title: "City Selector", href: "/docs/components/city-selector", badge: "New" },
+    ],
+  },
+  {
+    title: "Resources",
+    items: [
+      { title: "Blocks", href: "/docs/blocks", badge: "Coming soon", disabled: true },
+      { title: "Templates", href: "/docs/templates", badge: "Coming soon", disabled: true },
+    ],
+  },
+]
+
+/** Every enabled doc page, in sidebar order — the source of truth for prev/next navigation. */
+export function getFlatDocsNav(): DocsNavItem[] {
+  return docsNav.flatMap((group) => group.items).filter((item) => !item.disabled)
+}
+
+export function getAdjacentDocsPages(href: string): {
+  prev: DocsNavItem | null
+  next: DocsNavItem | null
+} {
+  const flat = getFlatDocsNav()
+  const index = flat.findIndex((item) => item.href === href)
+
+  if (index === -1) {
+    return { prev: null, next: null }
+  }
+
+  return {
+    prev: flat[index - 1] ?? null,
+    next: flat[index + 1] ?? null,
+  }
+}

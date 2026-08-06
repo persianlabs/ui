@@ -5,19 +5,32 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "shadcn build",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "registry:build": "shadcn build"
   },
   "dependencies": {
+    "@base-ui/react": "^1.7.0",
     "@workspace/ui": "workspace:*",
+    "lucide": "^1.28.0",
     "lucide-react": "^1.28.0",
-    "next": "16.2.6",
+    "morphicons": "^1.4.1",
+    "motion": "^13.0.0",
+    "next": "16.3.0",
     "next-themes": "^0.4.6",
-    "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "rehype-pretty-code": "^0.14.5",
+    "rehype-stringify": "^10.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "shiki": "^4.4.2",
+    "unified": "^11.0.5",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -27,6 +40,7 @@
     "@workspace/eslint-config": "workspace:^",
     "@workspace/typescript-config": "workspace:*",
     "eslint": "^9",
+    "shadcn": "^4.16.1",
     "typescript": "^5"
   }
 }

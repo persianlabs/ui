@@ -1,0 +1,329 @@
+import type { Metadata } from "next"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
+
+import { ApiReference } from "@/components/api-reference"
+import { CodeBlock } from "@/components/code-block"
+import { ComboboxBasicExample } from "@/components/examples/combobox-basic"
+import { ComboboxClearExample } from "@/components/examples/combobox-clear"
+import { ComboboxDisabledExample } from "@/components/examples/combobox-disabled"
+import { ComboboxGroupsExample } from "@/components/examples/combobox-groups"
+import { ComboboxMultipleExample } from "@/components/examples/combobox-multiple"
+import { ComponentPreview } from "@/components/component-preview"
+import { CopyCommand } from "@/components/copy-command"
+import { CopyMarkdownButton } from "@/components/copy-markdown-button"
+import { DocsPageFooter } from "@/components/docs-page-footer"
+import { LastUpdated } from "@/components/last-updated"
+import { TableOfContents } from "@/components/table-of-contents"
+import { getComponentSource } from "@/lib/component-source"
+import { getExampleSource } from "@/lib/example-source"
+import { getLastEditedDate } from "@/lib/last-edited"
+import { CODE_FENCE, apiRowsToMarkdownTable } from "@/lib/markdown"
+
+const SOURCE_PATH = "apps/web/app/docs/components/combobox/page.tsx"
+
+import {
+  comboboxContentApi,
+  comboboxInputApi,
+  comboboxItemApi,
+  comboboxRootApi,
+} from "./api-data"
+
+export const metadata: Metadata = {
+  title: "Combobox",
+  description:
+    "A searchable, accessible combobox built on Base UI.",
+}
+
+const tocItems = [
+  { id: "overview", title: "Overview" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "example-multiple", title: "Multiple selection" },
+      { id: "example-groups", title: "Groups" },
+      { id: "example-clear", title: "Clear button" },
+      { id: "example-disabled", title: "Disabled" },
+    ],
+  },
+  { id: "installation", title: "Installation" },
+  { id: "usage", title: "Usage" },
+  { id: "api-reference", title: "API Reference" },
+]
+
+const usageSnippet = `import {
+  Combobox,
+  ComboboxContent,
+  ComboboxEmpty,
+  ComboboxIcon,
+  ComboboxInput,
+  ComboboxInputGroup,
+  ComboboxItem,
+  ComboboxList,
+} from "@/components/ui/combobox"
+
+const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"]
+
+export function Example() {
+  return (
+    <Combobox items={frameworks}>
+      <ComboboxInputGroup>
+        <ComboboxInput placeholder="Select a framework" />
+        <ComboboxIcon />
+      </ComboboxInputGroup>
+      <ComboboxContent>
+        <ComboboxEmpty>No frameworks found.</ComboboxEmpty>
+        <ComboboxList>
+          {(item) => <ComboboxItem key={item} value={item}>{item}</ComboboxItem>}
+        </ComboboxList>
+      </ComboboxContent>
+    </Combobox>
+  )
+}`
+
+const comboboxMarkdown = [
+  "# Combobox",
+  "",
+  "A searchable, accessible combobox built on Base UI.",
+  "",
+  "## Installation",
+  "",
+  `${CODE_FENCE}bash`,
+  "npx shadcn@latest add @persianlabsui/combobox",
+  CODE_FENCE,
+  "",
+  "## Usage",
+  "",
+  `${CODE_FENCE}tsx`,
+  usageSnippet,
+  CODE_FENCE,
+  "",
+  "## API Reference",
+  "",
+  "### Combobox",
+  "",
+  apiRowsToMarkdownTable(comboboxRootApi),
+  "",
+  "### ComboboxInput",
+  "",
+  apiRowsToMarkdownTable(comboboxInputApi),
+  "",
+  "### ComboboxItem",
+  "",
+  apiRowsToMarkdownTable(comboboxItemApi),
+  "",
+  "### ComboboxContent",
+  "",
+  apiRowsToMarkdownTable(comboboxContentApi),
+].join("\n")
+
+export default function ComboboxDocPage() {
+  const lastEdited = getLastEditedDate(SOURCE_PATH)
+
+  return (
+    <div className="flex gap-10">
+      <article className="min-w-0 max-w-3xl flex-1">
+        <div className="flex items-start justify-between gap-4">
+          <div>
+            <h1 className="text-3xl font-semibold tracking-tight">
+              Combobox
+            </h1>
+            <p className="text-muted-foreground mt-3 max-w-2xl leading-relaxed">
+              An input that filters a list of options as you type. Built on
+              Base UI&apos;s combobox primitive, so filtering, keyboard
+              navigation, and ARIA wiring come for free. Looking for a
+              ready-made province & city picker? See{" "}
+              <a
+                href="/docs/components/city-selector"
+                className="text-foreground underline underline-offset-4"
+              >
+                City Selector
+              </a>
+              .
+            </p>
+            <LastUpdated date={lastEdited} />
+          </div>
+          <CopyMarkdownButton markdown={comboboxMarkdown} />
+        </div>
+
+        <h2
+          id="overview"
+          className="mt-10 text-xl font-semibold tracking-tight"
+        >
+          Overview
+        </h2>
+        <div className="mt-4">
+          <ComponentPreview
+            preview={<ComboboxBasicExample />}
+            code={
+              <CodeBlock
+                code={getExampleSource("combobox-basic")}
+                lang="tsx"
+              />
+            }
+          />
+        </div>
+
+        <h2
+          id="examples"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Examples
+        </h2>
+
+        <div className="mt-4">
+          <h3
+            id="example-multiple"
+            className="text-muted-foreground text-sm font-medium"
+          >
+            Multiple selection
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ComboboxMultipleExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("combobox-multiple")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3
+            id="example-groups"
+            className="text-muted-foreground text-sm font-medium"
+          >
+            Groups
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ComboboxGroupsExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("combobox-groups")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3
+            id="example-clear"
+            className="text-muted-foreground text-sm font-medium"
+          >
+            Clear button
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ComboboxClearExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("combobox-clear")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3
+            id="example-disabled"
+            className="text-muted-foreground text-sm font-medium"
+          >
+            Disabled
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ComboboxDisabledExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("combobox-disabled")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <h2
+          id="installation"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Installation
+        </h2>
+
+        <Tabs defaultValue="cli" className="mt-4">
+          <TabsList>
+            <TabsTrigger value="cli">CLI</TabsTrigger>
+            <TabsTrigger value="manual">Manual</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="cli" className="mt-4">
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/combobox" />
+          </TabsContent>
+
+          <TabsContent value="manual" className="mt-4 space-y-6">
+            <div>
+              <p className="text-sm font-medium">
+                1. Install the dependencies
+              </p>
+              <div className="mt-2">
+                <CopyCommand command="npm install @base-ui/react" />
+              </div>
+            </div>
+            <div>
+              <p className="text-sm font-medium">
+                2. Copy the component source
+              </p>
+              <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
+                Create{" "}
+                <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm">
+                  components/ui/combobox.tsx
+                </code>{" "}
+                and paste this in.
+              </p>
+              <div className="mt-2">
+                <CodeBlock code={getComponentSource("combobox")} lang="tsx" />
+              </div>
+            </div>
+          </TabsContent>
+        </Tabs>
+
+        <h2 id="usage" className="mt-12 text-xl font-semibold tracking-tight">
+          Usage
+        </h2>
+        <div className="mt-4">
+          <CodeBlock code={usageSnippet} lang="tsx" />
+        </div>
+
+        <h2
+          id="api-reference"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          API Reference
+        </h2>
+        <ApiReference title="Combobox" rows={comboboxRootApi} />
+        <ApiReference title="ComboboxInput" rows={comboboxInputApi} />
+        <ApiReference title="ComboboxItem" rows={comboboxItemApi} />
+        <ApiReference title="ComboboxContent" rows={comboboxContentApi} />
+
+        <DocsPageFooter
+          href="/docs/components/combobox"
+          sourcePath={SOURCE_PATH}
+        />
+      </article>
+
+      <aside className="hidden w-44 shrink-0 xl:block">
+        <div className="sticky top-24">
+          <TableOfContents items={tocItems} />
+        </div>
+      </aside>
+    </div>
+  )
+}
