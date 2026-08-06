@@ -12,7 +12,7 @@
       "dependencies": ["@base-ui/react", "class-variance-authority"],
       "files": [
         {
-          "path": "../../packages/ui/src/components/button.tsx",
+          "path": "packages/ui/src/components/button.tsx",
           "type": "registry:ui"
         }
       ]
@@ -26,7 +26,7 @@
       "dependencies": ["@base-ui/react", "motion"],
       "files": [
         {
-          "path": "../../packages/ui/src/components/tabs.tsx",
+          "path": "packages/ui/src/components/tabs.tsx",
           "type": "registry:ui"
         }
       ]
@@ -39,7 +39,7 @@
       "registryDependencies": ["utils"],
       "files": [
         {
-          "path": "../../packages/ui/src/components/label.tsx",
+          "path": "packages/ui/src/components/label.tsx",
           "type": "registry:ui"
         }
       ]
@@ -53,7 +53,7 @@
       "dependencies": ["@base-ui/react"],
       "files": [
         {
-          "path": "../../packages/ui/src/components/scroll-area.tsx",
+          "path": "packages/ui/src/components/scroll-area.tsx",
           "type": "registry:ui"
         }
       ]
@@ -67,7 +67,7 @@
       "dependencies": ["@base-ui/react"],
       "files": [
         {
-          "path": "../../packages/ui/src/components/combobox.tsx",
+          "path": "packages/ui/src/components/combobox.tsx",
           "type": "registry:ui"
         }
       ]
@@ -81,11 +81,11 @@
       "dependencies": ["@base-ui/react"],
       "files": [
         {
-          "path": "../../packages/ui/src/components/city-selector.tsx",
+          "path": "packages/ui/src/components/city-selector.tsx",
           "type": "registry:ui"
         },
         {
-          "path": "../../packages/ui/src/lib/persian-provinces.ts",
+          "path": "packages/ui/src/lib/persian-provinces.ts",
           "type": "registry:lib"
         }
       ]
