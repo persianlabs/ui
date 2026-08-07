@@ -43,6 +43,8 @@ export const metadata: Metadata = {
 
 const tocItems = [
   { id: "overview", title: "Overview" },
+  { id: "installation", title: "Installation" },
+  { id: "usage", title: "Usage" },
   {
     id: "examples",
     title: "Examples",
@@ -54,8 +56,6 @@ const tocItems = [
       { id: "example-form", title: "Form" },
     ],
   },
-  { id: "installation", title: "Installation" },
-  { id: "usage", title: "Usage" },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -183,6 +183,113 @@ export default function CitySelectorDocPage() {
               />
             }
           />
+        </div>
+
+        <h2
+          id="installation"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Installation
+        </h2>
+
+        <Tabs defaultValue="cli" className="mt-4">
+          <TabsList>
+            <TabsTrigger value="cli">CLI</TabsTrigger>
+            <TabsTrigger value="manual">Manual</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="cli" className="mt-4">
+            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/city-selector.json" />
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              This also installs{" "}
+              <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+                components/ui/combobox.tsx
+              </code>{" "}
+              and{" "}
+              <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+                lib/persian-provinces.ts
+              </code>
+              , the bundled provinces and cities dataset.
+            </p>
+          </TabsContent>
+
+          <TabsContent value="manual" className="mt-4 space-y-6">
+            <div>
+              <p className="text-sm font-medium">1. Install the dependencies</p>
+              <div className="mt-2">
+                <InstallCommand packages="@base-ui/react" />
+              </div>
+            </div>
+            <div>
+              <p className="text-sm font-medium">
+                2. Add the provinces & cities data
+              </p>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                Create{" "}
+                <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+                  lib/persian-provinces.ts
+                </code>{" "}
+                and paste this in.
+              </p>
+              <div className="mt-2">
+                <CodeBlock
+                  code={provincesHead}
+                  copyText={provincesSource}
+                  lang="tsx"
+                />
+                <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
+                  Showing the first 100 of {provincesLines.length} lines —
+                  truncated for performance. Use the copy button above to get
+                  the full file.
+                </p>
+              </div>
+            </div>
+            <div>
+              <p className="text-sm font-medium">3. Copy the Combobox source</p>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                Create{" "}
+                <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+                  components/ui/combobox.tsx
+                </code>{" "}
+                and paste this in.
+              </p>
+              <div className="mt-2">
+                <CodeBlock code={getComponentSource("combobox")} lang="tsx" />
+              </div>
+            </div>
+            <div>
+              <p className="text-sm font-medium">
+                4. Copy the City Selector source
+              </p>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                Create{" "}
+                <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+                  components/ui/city-selector.tsx
+                </code>{" "}
+                and paste this in.
+              </p>
+              <div className="mt-2">
+                <CodeBlock
+                  code={getComponentSource("city-selector")}
+                  lang="tsx"
+                />
+              </div>
+            </div>
+          </TabsContent>
+        </Tabs>
+
+        <h2 id="usage" className="mt-12 text-xl font-semibold tracking-tight">
+          Usage
+        </h2>
+        <div className="mt-4">
+          <CodeBlock code={usageSnippet} lang="tsx" />
+        </div>
+        <p className="mt-4 leading-relaxed text-muted-foreground">
+          Or compose the parts yourself for full control over layout, labels,
+          and placeholders:
+        </p>
+        <div className="mt-4">
+          <CodeBlock code={composedUsageSnippet} lang="tsx" />
         </div>
 
         <h2
@@ -330,113 +437,6 @@ export default function CitySelectorDocPage() {
               }
             />
           </div>
-        </div>
-
-        <h2
-          id="installation"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Installation
-        </h2>
-
-        <Tabs defaultValue="cli" className="mt-4">
-          <TabsList>
-            <TabsTrigger value="cli">CLI</TabsTrigger>
-            <TabsTrigger value="manual">Manual</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/city-selector.json" />
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              This also installs{" "}
-              <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-                components/ui/combobox.tsx
-              </code>{" "}
-              and{" "}
-              <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-                lib/persian-provinces.ts
-              </code>
-              , the bundled provinces and cities dataset.
-            </p>
-          </TabsContent>
-
-          <TabsContent value="manual" className="mt-4 space-y-6">
-            <div>
-              <p className="text-sm font-medium">1. Install the dependencies</p>
-              <div className="mt-2">
-                <InstallCommand packages="@base-ui/react" />
-              </div>
-            </div>
-            <div>
-              <p className="text-sm font-medium">
-                2. Add the provinces & cities data
-              </p>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                Create{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-                  lib/persian-provinces.ts
-                </code>{" "}
-                and paste this in.
-              </p>
-              <div className="mt-2">
-                <CodeBlock
-                  code={provincesHead}
-                  copyText={provincesSource}
-                  lang="tsx"
-                />
-                <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
-                  Showing the first 100 of {provincesLines.length} lines —
-                  truncated for performance. Use the copy button above to get
-                  the full file.
-                </p>
-              </div>
-            </div>
-            <div>
-              <p className="text-sm font-medium">3. Copy the Combobox source</p>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                Create{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-                  components/ui/combobox.tsx
-                </code>{" "}
-                and paste this in.
-              </p>
-              <div className="mt-2">
-                <CodeBlock code={getComponentSource("combobox")} lang="tsx" />
-              </div>
-            </div>
-            <div>
-              <p className="text-sm font-medium">
-                4. Copy the City Selector source
-              </p>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                Create{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-                  components/ui/city-selector.tsx
-                </code>{" "}
-                and paste this in.
-              </p>
-              <div className="mt-2">
-                <CodeBlock
-                  code={getComponentSource("city-selector")}
-                  lang="tsx"
-                />
-              </div>
-            </div>
-          </TabsContent>
-        </Tabs>
-
-        <h2 id="usage" className="mt-12 text-xl font-semibold tracking-tight">
-          Usage
-        </h2>
-        <div className="mt-4">
-          <CodeBlock code={usageSnippet} lang="tsx" />
-        </div>
-        <p className="mt-4 leading-relaxed text-muted-foreground">
-          Or compose the parts yourself for full control over layout, labels,
-          and placeholders:
-        </p>
-        <div className="mt-4">
-          <CodeBlock code={composedUsageSnippet} lang="tsx" />
         </div>
 
         <h2

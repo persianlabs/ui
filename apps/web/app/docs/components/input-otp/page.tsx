@@ -44,6 +44,8 @@ export const metadata: Metadata = {
 
 const tocItems = [
   { id: "overview", title: "Overview" },
+  { id: "installation", title: "Installation" },
+  { id: "usage", title: "Usage" },
   { id: "pattern", title: "Pattern" },
   { id: "separator", title: "Separator" },
   { id: "disabled", title: "Disabled" },
@@ -52,8 +54,6 @@ const tocItems = [
   { id: "four-digits", title: "Four digits" },
   { id: "alphanumeric", title: "Alphanumeric" },
   { id: "form", title: "Form" },
-  { id: "installation", title: "Installation" },
-  { id: "usage", title: "Usage" },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -157,6 +157,55 @@ export default function InputOTPDocPage() {
               <CodeBlock code={getExampleSource("input-otp-demo")} lang="tsx" />
             }
           />
+        </div>
+
+        <h2
+          id="installation"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Installation
+        </h2>
+
+        <Tabs defaultValue="cli" className="mt-4">
+          <TabsList>
+            <TabsTrigger value="cli">CLI</TabsTrigger>
+            <TabsTrigger value="manual">Manual</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="cli" className="mt-4">
+            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/input-otp.json" />
+          </TabsContent>
+
+          <TabsContent value="manual" className="mt-4 space-y-6">
+            <div>
+              <p className="text-sm font-medium">1. Install the dependencies</p>
+              <div className="mt-2">
+                <InstallCommand packages="input-otp" />
+              </div>
+            </div>
+            <div>
+              <p className="text-sm font-medium">
+                2. Copy the component source
+              </p>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                Create{" "}
+                <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+                  components/ui/input-otp.tsx
+                </code>{" "}
+                and paste this in.
+              </p>
+              <div className="mt-2">
+                <CodeBlock code={getComponentSource("input-otp")} lang="tsx" />
+              </div>
+            </div>
+          </TabsContent>
+        </Tabs>
+
+        <h2 id="usage" className="mt-12 text-xl font-semibold tracking-tight">
+          Usage
+        </h2>
+        <div className="mt-4">
+          <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
         <h2 id="pattern" className="mt-12 text-xl font-semibold tracking-tight">
@@ -350,55 +399,6 @@ export default function InputOTPDocPage() {
               <CodeBlock code={getExampleSource("input-otp-form")} lang="tsx" />
             }
           />
-        </div>
-
-        <h2
-          id="installation"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Installation
-        </h2>
-
-        <Tabs defaultValue="cli" className="mt-4">
-          <TabsList>
-            <TabsTrigger value="cli">CLI</TabsTrigger>
-            <TabsTrigger value="manual">Manual</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/input-otp.json" />
-          </TabsContent>
-
-          <TabsContent value="manual" className="mt-4 space-y-6">
-            <div>
-              <p className="text-sm font-medium">1. Install the dependencies</p>
-              <div className="mt-2">
-                <InstallCommand packages="input-otp" />
-              </div>
-            </div>
-            <div>
-              <p className="text-sm font-medium">
-                2. Copy the component source
-              </p>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                Create{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-                  components/ui/input-otp.tsx
-                </code>{" "}
-                and paste this in.
-              </p>
-              <div className="mt-2">
-                <CodeBlock code={getComponentSource("input-otp")} lang="tsx" />
-              </div>
-            </div>
-          </TabsContent>
-        </Tabs>
-
-        <h2 id="usage" className="mt-12 text-xl font-semibold tracking-tight">
-          Usage
-        </h2>
-        <div className="mt-4">
-          <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
         <h2

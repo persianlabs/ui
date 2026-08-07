@@ -50,6 +50,8 @@ export const metadata: Metadata = {
 
 const tocItems = [
   { id: "overview", title: "Overview" },
+  { id: "installation", title: "Installation" },
+  { id: "usage", title: "Usage" },
   { id: "sizes", title: "Sizes" },
   {
     id: "variants",
@@ -70,8 +72,6 @@ const tocItems = [
   { id: "as-link", title: "As link" },
   { id: "button-group", title: "Button Group" },
   { id: "rtl", title: "RTL" },
-  { id: "installation", title: "Installation" },
-  { id: "usage", title: "Usage" },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -153,6 +153,55 @@ export default function ButtonDocPage() {
               <CodeBlock code={getExampleSource("button-default")} lang="tsx" />
             }
           />
+        </div>
+
+        <h2
+          id="installation"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Installation
+        </h2>
+
+        <Tabs defaultValue="cli" className="mt-4">
+          <TabsList>
+            <TabsTrigger value="cli">CLI</TabsTrigger>
+            <TabsTrigger value="manual">Manual</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="cli" className="mt-4">
+            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/button.json" />
+          </TabsContent>
+
+          <TabsContent value="manual" className="mt-4 space-y-6">
+            <div>
+              <p className="text-sm font-medium">1. Install the dependencies</p>
+              <div className="mt-2">
+                <InstallCommand packages="@base-ui/react class-variance-authority" />
+              </div>
+            </div>
+            <div>
+              <p className="text-sm font-medium">
+                2. Copy the component source
+              </p>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+                Create{" "}
+                <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+                  components/ui/button.tsx
+                </code>{" "}
+                and paste this in.
+              </p>
+              <div className="mt-2">
+                <CodeBlock code={getComponentSource("button")} lang="tsx" />
+              </div>
+            </div>
+          </TabsContent>
+        </Tabs>
+
+        <h2 id="usage" className="mt-12 text-xl font-semibold tracking-tight">
+          Usage
+        </h2>
+        <div className="mt-4">
+          <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
         <h2 id="sizes" className="mt-12 text-xl font-semibold tracking-tight">
@@ -473,55 +522,6 @@ export default function ButtonDocPage() {
               <CodeBlock code={getExampleSource("button-rtl")} lang="tsx" />
             }
           />
-        </div>
-
-        <h2
-          id="installation"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Installation
-        </h2>
-
-        <Tabs defaultValue="cli" className="mt-4">
-          <TabsList>
-            <TabsTrigger value="cli">CLI</TabsTrigger>
-            <TabsTrigger value="manual">Manual</TabsTrigger>
-          </TabsList>
-
-          <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/button.json" />
-          </TabsContent>
-
-          <TabsContent value="manual" className="mt-4 space-y-6">
-            <div>
-              <p className="text-sm font-medium">1. Install the dependencies</p>
-              <div className="mt-2">
-                <InstallCommand packages="@base-ui/react class-variance-authority" />
-              </div>
-            </div>
-            <div>
-              <p className="text-sm font-medium">
-                2. Copy the component source
-              </p>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                Create{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-                  components/ui/button.tsx
-                </code>{" "}
-                and paste this in.
-              </p>
-              <div className="mt-2">
-                <CodeBlock code={getComponentSource("button")} lang="tsx" />
-              </div>
-            </div>
-          </TabsContent>
-        </Tabs>
-
-        <h2 id="usage" className="mt-12 text-xl font-semibold tracking-tight">
-          Usage
-        </h2>
-        <div className="mt-4">
-          <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
         <h2
