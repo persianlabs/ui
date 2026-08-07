@@ -8,16 +8,25 @@ import {
   ButtonGroupPreview,
   ButtonPreview,
   CardPreview,
+  CheckboxPreview,
   CitySelectorPreview,
+  CollapsiblePreview,
   ComboboxPreview,
+  ElasticSliderPreview,
   EmptyPreview,
   InputGroupPreview,
   InputOTPPreview,
   InputPreview,
+  NativeSelectPreview,
+  ProgressPreview,
+  RadioGroupPreview,
   SelectPreview,
   SeparatorPreview,
+  SwitchPreview,
   TabsPreview,
   TextareaPreview,
+  ToggleGroupPreview,
+  TogglePreview,
 } from "@/lib/component-previews"
 
 export const metadata: Metadata = {
@@ -38,7 +47,6 @@ const components = [
     title: "Button",
     href: "/docs/components/button" as const,
     description: "A button built on Base UI with variant and size support.",
-    badge: "New",
     createdAt: "2026-08-07",
     thumbnail: (
       <ThumbnailFrame>
@@ -51,7 +59,6 @@ const components = [
     href: "/docs/components/button-group" as const,
     description:
       "A container that groups related buttons together with consistent styling.",
-    badge: "New",
     createdAt: "2026-08-07",
     thumbnail: (
       <ThumbnailFrame>
@@ -63,7 +70,6 @@ const components = [
     title: "Input",
     href: "/docs/components/input" as const,
     description: "A styled text input built on Base UI.",
-    badge: "New",
     createdAt: "2026-08-07",
     thumbnail: (
       <ThumbnailFrame>
@@ -76,7 +82,6 @@ const components = [
     href: "/docs/components/input-otp" as const,
     description:
       "Accessible one-time password component with copy-paste functionality.",
-    badge: "New",
     createdAt: "2026-08-07",
     thumbnail: (
       <ThumbnailFrame>
@@ -88,7 +93,6 @@ const components = [
     title: "Input Group",
     href: "/docs/components/input-group" as const,
     description: "Add addons, buttons, and helper content to inputs.",
-    badge: "New",
     createdAt: "2026-08-07",
     thumbnail: (
       <ThumbnailFrame>
@@ -101,7 +105,6 @@ const components = [
     href: "/docs/components/textarea" as const,
     description:
       "Displays a form textarea, or a component that looks like a textarea.",
-    badge: "New",
     createdAt: "2026-08-07",
     thumbnail: (
       <ThumbnailFrame>
@@ -114,7 +117,6 @@ const components = [
     href: "/docs/components/tabs" as const,
     description:
       "Layered panels with a sliding active-tab indicator, built on Base UI.",
-    badge: "New",
     createdAt: "2026-08-01",
     thumbnail: (
       <ThumbnailFrame>
@@ -126,7 +128,6 @@ const components = [
     title: "Combobox",
     href: "/docs/components/combobox" as const,
     description: "A searchable, accessible combobox built on Base UI.",
-    badge: "New",
     createdAt: "2026-08-06",
     thumbnail: (
       <ThumbnailFrame>
@@ -138,7 +139,6 @@ const components = [
     title: "Select",
     href: "/docs/components/select" as const,
     description: "A listbox for choosing a single value, built on Base UI.",
-    badge: "New",
     createdAt: "2026-08-07",
     thumbnail: (
       <ThumbnailFrame>
@@ -164,7 +164,6 @@ const components = [
     href: "/docs/components/separator" as const,
     description:
       "Visually or semantically separates content, built on Base UI.",
-    badge: "New",
     createdAt: "2026-08-07",
     thumbnail: (
       <ThumbnailFrame>
@@ -176,7 +175,6 @@ const components = [
     title: "Card",
     href: "/docs/components/card" as const,
     description: "Displays a card with header, content, and footer.",
-    badge: "New",
     createdAt: "2026-08-07",
     thumbnail: (
       <ThumbnailFrame>
@@ -189,7 +187,6 @@ const components = [
     href: "/docs/components/breadcrumb" as const,
     description:
       "Displays the path to the current resource using a hierarchy of links.",
-    badge: "New",
     createdAt: "2026-08-07",
     thumbnail: (
       <ThumbnailFrame>
@@ -202,11 +199,117 @@ const components = [
     href: "/docs/components/empty" as const,
     description:
       "Displays an empty state with a title, description, and optional actions.",
-    badge: "New",
     createdAt: "2026-08-07",
     thumbnail: (
       <ThumbnailFrame>
         <EmptyPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Switch",
+    href: "/docs/components/switch" as const,
+    description:
+      "A control that toggles between checked and unchecked, built on Base UI.",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <SwitchPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Checkbox",
+    href: "/docs/components/checkbox" as const,
+    description:
+      "A control for selecting one or more options, built on Base UI.",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <CheckboxPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Radio Group",
+    href: "/docs/components/radio-group" as const,
+    description: "A set of mutually exclusive radio buttons, built on Base UI.",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <RadioGroupPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Progress",
+    href: "/docs/components/progress" as const,
+    description:
+      "Displays an indicator showing the completion progress of a task, built on Base UI.",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <ProgressPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Collapsible",
+    href: "/docs/components/collapsible" as const,
+    description:
+      "An interactive component which expands/collapses a panel, built on Base UI.",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <CollapsiblePreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Toggle",
+    href: "/docs/components/toggle" as const,
+    description:
+      "A two-state button that can be either on or off, built on Base UI.",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <TogglePreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Toggle Group",
+    href: "/docs/components/toggle-group" as const,
+    description:
+      "A set of two-state buttons that can be toggled on or off, built on Base UI.",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <ToggleGroupPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Native Select",
+    href: "/docs/components/native-select" as const,
+    description:
+      "A styled native <select> element for choosing a single value.",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <NativeSelectPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Elastic Slider",
+    href: "/docs/components/elastic-slider" as const,
+    description:
+      "Slider with elastic rubber-band drag and magnetic snap feedback.",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <ElasticSliderPreview />
       </ThumbnailFrame>
     ),
   },
@@ -248,7 +351,9 @@ export default function DocsComponentsPage() {
             <div className="p-5">
               <div className="flex items-center gap-2">
                 <h2 className="text-sm font-medium">{component.title}</h2>
-                {component.badge && <Badge>{component.badge}</Badge>}
+                {"badge" in component && component.badge && (
+                  <Badge>{component.badge}</Badge>
+                )}
               </div>
               <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                 {component.description}

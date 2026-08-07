@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "progress",
+  "title": "Progress",
+  "description": "Displays an indicator showing the completion progress of a task, built on Base UI.",
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/base/ui/progress.tsx",
+      "content": "\"use client\"\n\nimport { Progress as ProgressPrimitive } from \"@base-ui/react/progress\"\n\nimport { cn } from \"@/lib/utils\"\n\nfunction Progress({\n  className,\n  value,\n  ...props\n}: ProgressPrimitive.Root.Props) {\n  return (\n    <ProgressPrimitive.Root\n      value={value}\n      data-slot=\"progress\"\n      className={cn(\"w-full\", className)}\n      {...props}\n    >\n      <ProgressPrimitive.Track\n        data-slot=\"progress-track\"\n        className=\"relative h-2 w-full overflow-hidden rounded-full bg-primary/20\"\n      >\n        <ProgressPrimitive.Indicator\n          data-slot=\"progress-indicator\"\n          className=\"h-full w-full flex-1 bg-primary transition-all\"\n        />\n      </ProgressPrimitive.Track>\n    </ProgressPrimitive.Root>\n  )\n}\n\nexport { Progress }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
