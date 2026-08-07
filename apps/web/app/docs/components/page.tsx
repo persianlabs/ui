@@ -29,7 +29,7 @@ const components = [
     title: "Button",
     href: "/docs/components/button" as const,
     description: "A button built on Base UI with variant and size support.",
-    badge: undefined,
+    badge: "New",
     createdAt: "2026-08-07",
     thumbnail: (
       <ThumbnailFrame>
@@ -55,7 +55,7 @@ const components = [
     href: "/docs/components/tabs" as const,
     description:
       "Layered panels with a sliding active-tab indicator, built on Base UI.",
-    badge: undefined,
+    badge: "New",
     createdAt: "2026-08-01",
     thumbnail: (
       <ThumbnailFrame>
@@ -67,7 +67,7 @@ const components = [
     title: "Combobox",
     href: "/docs/components/combobox" as const,
     description: "A searchable, accessible combobox built on Base UI.",
-    badge: undefined,
+    badge: "New",
     createdAt: "2026-08-06",
     thumbnail: (
       <ThumbnailFrame>
@@ -80,7 +80,7 @@ const components = [
     href: "/docs/components/city-selector" as const,
     description:
       "A province & city picker for Iran, built on Combobox and bundled with all 31 provinces and 1,119 cities.",
-    badge: "New",
+    badge: "Special",
     createdAt: "2026-08-06",
     thumbnail: (
       <ThumbnailFrame>
