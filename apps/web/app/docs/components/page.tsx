@@ -11,6 +11,7 @@ import {
   InputGroupPreview,
   InputOTPPreview,
   InputPreview,
+  SelectPreview,
   TabsPreview,
   TextareaPreview,
 } from "@/lib/component-previews"
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
 
 function ThumbnailFrame({ children }: { children: React.ReactNode }) {
   return (
-    <div className="bg-muted flex h-44 w-full items-center justify-center overflow-hidden rounded-t-xl p-6">
+    <div className="flex h-44 w-full items-center justify-center overflow-hidden rounded-t-xl bg-muted p-6">
       {children}
     </div>
   )
@@ -130,6 +131,18 @@ const components = [
     ),
   },
   {
+    title: "Select",
+    href: "/docs/components/select" as const,
+    description: "A listbox for choosing a single value, built on Base UI.",
+    badge: "New",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <SelectPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
     title: "City Selector",
     href: "/docs/components/city-selector" as const,
     description:
@@ -156,14 +169,14 @@ export default function DocsComponentsPage() {
   return (
     <div className="max-w-5xl">
       <div className="flex flex-col items-end justify-between gap-3 sm:flex-row sm:items-center">
-        <h1 className="text-3xl font-semibold tracking-tight self-start sm:self-auto">
+        <h1 className="self-start text-3xl font-semibold tracking-tight sm:self-auto">
           Components
         </h1>
         <CopyMarkdownButton markdown={componentsMarkdown} />
       </div>
-      <p className="text-muted-foreground mt-4 max-w-2xl leading-relaxed">
+      <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
         Every component below ships as source through the{" "}
-        <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm">
+        <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
           @persianlabsui
         </code>{" "}
         registry. More are on the way.
@@ -174,7 +187,7 @@ export default function DocsComponentsPage() {
           <Link
             key={component.href}
             href={component.href}
-            className="border-border bg-card/40 hover:bg-card/70 overflow-hidden rounded-xl border transition-colors"
+            className="overflow-hidden rounded-xl border border-border bg-card/40 transition-colors hover:bg-card/70"
           >
             {component.thumbnail}
             <div className="p-5">
@@ -182,7 +195,7 @@ export default function DocsComponentsPage() {
                 <h2 className="text-sm font-medium">{component.title}</h2>
                 {component.badge && <Badge>{component.badge}</Badge>}
               </div>
-              <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                 {component.description}
               </p>
             </div>

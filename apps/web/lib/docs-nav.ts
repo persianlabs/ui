@@ -16,7 +16,12 @@ export const docsNav: DocsNavGroup[] = [
     items: [
       { title: "Introduction", href: "/docs" },
       { title: "Theming", href: "/docs/theming" },
-      { title: "Skills", href: "/docs/skills", badge: "Coming soon", disabled: true },
+      {
+        title: "Skills",
+        href: "/docs/skills",
+        badge: "Coming soon",
+        disabled: true,
+      },
     ],
   },
   {
@@ -43,6 +48,7 @@ export const docsNav: DocsNavGroup[] = [
       { title: "Textarea", href: "/docs/components/textarea", badge: "New" },
       { title: "Tabs", href: "/docs/components/tabs", badge: "New" },
       { title: "Combobox", href: "/docs/components/combobox", badge: "New" },
+      { title: "Select", href: "/docs/components/select", badge: "New" },
       {
         title: "City Selector",
         href: "/docs/components/city-selector",
@@ -53,15 +59,27 @@ export const docsNav: DocsNavGroup[] = [
   {
     title: "Resources",
     items: [
-      { title: "Blocks", href: "/docs/blocks", badge: "Coming soon", disabled: true },
-      { title: "Templates", href: "/docs/templates", badge: "Coming soon", disabled: true },
+      {
+        title: "Blocks",
+        href: "/docs/blocks",
+        badge: "Coming soon",
+        disabled: true,
+      },
+      {
+        title: "Templates",
+        href: "/docs/templates",
+        badge: "Coming soon",
+        disabled: true,
+      },
     ],
   },
 ]
 
 /** Every enabled doc page, in sidebar order — the source of truth for prev/next navigation. */
 export function getFlatDocsNav(): DocsNavItem[] {
-  return docsNav.flatMap((group) => group.items).filter((item) => !item.disabled)
+  return docsNav
+    .flatMap((group) => group.items)
+    .filter((item) => !item.disabled)
 }
 
 export function getAdjacentDocsPages(href: string): {
