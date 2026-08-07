@@ -269,6 +269,62 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Visually or semantically separates content, built on Base UI.",
+      "registryDependencies": ["utils"],
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "registry/base/ui/separator.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Displays a card with header, content, and footer.",
+      "registryDependencies": ["utils"],
+      "dependencies": [],
+      "files": [
+        {
+          "path": "registry/base/ui/card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "Displays the path to the current resource using a hierarchy of links.",
+      "registryDependencies": ["utils"],
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/base/ui/breadcrumb.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "Displays an empty state with a title, description, and optional actions.",
+      "registryDependencies": ["utils"],
+      "dependencies": ["class-variance-authority"],
+      "files": [
+        {
+          "path": "registry/base/ui/empty.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

@@ -4,14 +4,18 @@ import Link from "next/link"
 import { Badge } from "@/components/badge"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
 import {
+  BreadcrumbPreview,
   ButtonGroupPreview,
   ButtonPreview,
+  CardPreview,
   CitySelectorPreview,
   ComboboxPreview,
+  EmptyPreview,
   InputGroupPreview,
   InputOTPPreview,
   InputPreview,
   SelectPreview,
+  SeparatorPreview,
   TabsPreview,
   TextareaPreview,
 } from "@/lib/component-previews"
@@ -152,6 +156,57 @@ const components = [
     thumbnail: (
       <ThumbnailFrame>
         <CitySelectorPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Separator",
+    href: "/docs/components/separator" as const,
+    description:
+      "Visually or semantically separates content, built on Base UI.",
+    badge: "New",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <SeparatorPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Card",
+    href: "/docs/components/card" as const,
+    description: "Displays a card with header, content, and footer.",
+    badge: "New",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <CardPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Breadcrumb",
+    href: "/docs/components/breadcrumb" as const,
+    description:
+      "Displays the path to the current resource using a hierarchy of links.",
+    badge: "New",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <BreadcrumbPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Empty",
+    href: "/docs/components/empty" as const,
+    description:
+      "Displays an empty state with a title, description, and optional actions.",
+    badge: "New",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <EmptyPreview />
       </ThumbnailFrame>
     ),
   },

@@ -15,6 +15,7 @@ export const docsNav: DocsNavGroup[] = [
     title: "Getting Started",
     items: [
       { title: "Introduction", href: "/docs" },
+      { title: "Components", href: "/docs/components" },
       { title: "Theming", href: "/docs/theming" },
       {
         title: "Skills",
@@ -27,33 +28,44 @@ export const docsNav: DocsNavGroup[] = [
   {
     title: "Components",
     items: [
-      { title: "Overview", href: "/docs/components" },
+      {
+        title: "Breadcrumb",
+        href: "/docs/components/breadcrumb",
+        badge: "New",
+      },
       { title: "Button", href: "/docs/components/button", badge: "New" },
       {
         title: "Button Group",
         href: "/docs/components/button-group",
         badge: "New",
       },
-      { title: "Input", href: "/docs/components/input", badge: "New" },
-      {
-        title: "Input OTP",
-        href: "/docs/components/input-otp",
-        badge: "New",
-      },
-      {
-        title: "Input Group",
-        href: "/docs/components/input-group",
-        badge: "New",
-      },
-      { title: "Textarea", href: "/docs/components/textarea", badge: "New" },
-      { title: "Tabs", href: "/docs/components/tabs", badge: "New" },
-      { title: "Combobox", href: "/docs/components/combobox", badge: "New" },
-      { title: "Select", href: "/docs/components/select", badge: "New" },
+      { title: "Card", href: "/docs/components/card", badge: "New" },
       {
         title: "City Selector",
         href: "/docs/components/city-selector",
         badge: "Special",
       },
+      { title: "Combobox", href: "/docs/components/combobox", badge: "New" },
+      { title: "Empty", href: "/docs/components/empty", badge: "New" },
+      { title: "Input", href: "/docs/components/input", badge: "New" },
+      {
+        title: "Input Group",
+        href: "/docs/components/input-group",
+        badge: "New",
+      },
+      {
+        title: "Input OTP",
+        href: "/docs/components/input-otp",
+        badge: "New",
+      },
+      { title: "Select", href: "/docs/components/select", badge: "New" },
+      {
+        title: "Separator",
+        href: "/docs/components/separator",
+        badge: "New",
+      },
+      { title: "Tabs", href: "/docs/components/tabs", badge: "New" },
+      { title: "Textarea", href: "/docs/components/textarea", badge: "New" },
     ],
   },
   {
