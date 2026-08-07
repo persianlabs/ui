@@ -1,10 +1,11 @@
 "use client"
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
 import { cn } from "@workspace/ui/lib/utils"
 import { TextAlignEnd, TextAlignStart } from "lucide"
 import { MorphIcon } from "morphicons/react"
 import * as React from "react"
+
+const COLLAPSED_CODE_HEIGHT = "5.5rem"
 
 export function ComponentPreview({
   preview,
@@ -20,21 +21,19 @@ export function ComponentPreview({
 }) {
   const [dir, setDir] = React.useState<"ltr" | "rtl">(forcedDir ?? "ltr")
   const resolvedDir = forcedDir ?? dir
+  const [expanded, setExpanded] = React.useState(false)
 
   return (
-    <Tabs defaultValue="preview" className={cn("w-full", className)}>
-      <div className="flex items-center justify-between gap-3">
-        <TabsList>
-          <TabsTrigger value="preview">Preview</TabsTrigger>
-          <TabsTrigger value="code">Code</TabsTrigger>
-        </TabsList>
-
+    <div className={cn("w-full", className)}>
+      <div className="relative flex min-h-56 items-center justify-center rounded-xl border border-border bg-background p-8">
         {!forcedDir && (
           <button
             type="button"
-            onClick={() => setDir((current) => (current === "ltr" ? "rtl" : "ltr"))}
+            onClick={() =>
+              setDir((current) => (current === "ltr" ? "rtl" : "ltr"))
+            }
             aria-label="Toggle preview direction"
-            className="border-border text-muted-foreground hover:text-foreground hover:bg-muted inline-flex h-7 w-18 shrink-0 items-center justify-center gap-1.5 rounded-md border text-xs font-medium transition-colors"
+            className="absolute end-3 top-3 inline-flex h-7 w-18 shrink-0 items-center justify-center gap-1.5 rounded-md border border-border bg-background text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
           >
             <MorphIcon
               icon={resolvedDir === "ltr" ? TextAlignStart : TextAlignEnd}
@@ -44,21 +43,34 @@ export function ComponentPreview({
             {resolvedDir.toUpperCase()}
           </button>
         )}
-      </div>
-
-      <TabsContent value="preview" className="mt-3">
         <div
           key={resolvedDir}
           dir={resolvedDir}
-          className="border-border bg-background flex min-h-56 items-center justify-center rounded-xl border p-8"
+          className="flex w-full items-center justify-center"
         >
           {preview}
         </div>
-      </TabsContent>
+      </div>
 
-      <TabsContent value="code" className="mt-3">
-        {code}
-      </TabsContent>
-    </Tabs>
+      <div className="relative mt-4">
+        <div
+          style={!expanded ? { maxHeight: COLLAPSED_CODE_HEIGHT } : undefined}
+          className={cn(!expanded && "overflow-hidden")}
+        >
+          {code}
+        </div>
+        {!expanded && (
+          <div className="absolute inset-x-0 bottom-0 flex items-end justify-center rounded-b-2xl bg-gradient-to-t from-card to-transparent pt-10 pb-3">
+            <button
+              type="button"
+              onClick={() => setExpanded(true)}
+              className="relative z-10 rounded-lg border border-border bg-background px-3 py-1.5 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-muted"
+            >
+              View Code
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
   )
 }
