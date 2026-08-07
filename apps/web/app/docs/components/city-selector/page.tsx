@@ -89,7 +89,7 @@ const citySelectorMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add @persianlabsui/city-selector",
+  "npx shadcn@latest add https://ui.persian-labs.ir/r/city-selector.json",
   CODE_FENCE,
   "",
   "## Usage",
@@ -329,7 +329,7 @@ export default function CitySelectorDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add @persianlabsui/city-selector" />
+            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/city-selector.json" />
             <p className="text-muted-foreground mt-3 text-sm leading-relaxed">
               This also installs{" "}
               <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm">

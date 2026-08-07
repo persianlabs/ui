@@ -59,7 +59,7 @@ export default function Page() {
             </div>
 
             <div className="mt-10 w-full min-w-0 max-w-fit">
-              <CopyCommand command="npx shadcn@latest add @persianlabsui/city-selector" />
+              <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/city-selector.json" />
             </div>
           </div>
         </section>

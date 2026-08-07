@@ -18,7 +18,7 @@ export function GET() {
 
 ## Registry
 
-- Add a component: \`npx shadcn@latest add @persianlabsui/<component>\`
+- Add a component: \`npx shadcn@latest add ${SITE_URL}/r/<component>.json\`
 - Source: ${GITHUB_URL}
 `
 

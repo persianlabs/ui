@@ -8,7 +8,7 @@
   ],
   "registryDependencies": [
     "utils",
-    "@persianlabsui/scroll-area"
+    "https://ui.persian-labs.ir/r/scroll-area.json"
   ],
   "files": [
     {

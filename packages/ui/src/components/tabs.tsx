@@ -46,6 +46,16 @@ const indicatorStylesByVariant = {
   ghost: { className: "bg-muted", radius: 8 },
 } as const
 
+// Mirrors indicatorStylesByVariant's fill so the active trigger reads correctly
+// before the sliding indicator has measured (e.g. on mount), instead of only
+// getting its active text color with no background underneath.
+const staticActiveStylesByVariant: Record<TabsVariant, string> = {
+  default: "data-[active]:bg-primary data-[active]:shadow-sm",
+  rounded: "data-[active]:bg-primary data-[active]:shadow-sm",
+  line: "",
+  ghost: "data-[active]:bg-muted",
+}
+
 type TabsVariant = keyof typeof indicatorStylesByVariant
 
 interface TabsContextValue {
@@ -54,6 +64,7 @@ interface TabsContextValue {
 }
 
 const TabsContext = React.createContext<TabsContextValue | null>(null)
+const TabsIndicatorMeasuredContext = React.createContext(false)
 
 function useTabsContext(component: string) {
   const context = React.useContext(TabsContext)
@@ -163,29 +174,36 @@ function TabsList({ className, children, ...props }: TabsPrimitive.List.Props) {
       className={cn(tabsListVariants({ variant }), className)}
       {...props}
     >
-      {rect && (
-        <motion.span
-          data-slot="tabs-indicator"
-          className={cn("absolute top-0 left-0", indicatorStyle.className)}
-          style={{ borderRadius: indicatorStyle.radius }}
-          initial={false}
-          animate={{ x: rect.x, y: rect.y, width: rect.width, height: rect.height }}
-          transition={{ type: "spring", bounce: 0.15, duration: 0.3 }}
-        />
-      )}
-      {children}
+      <TabsIndicatorMeasuredContext.Provider value={rect !== null}>
+        {rect && (
+          <motion.span
+            data-slot="tabs-indicator"
+            className={cn("absolute top-0 left-0", indicatorStyle.className)}
+            style={{ borderRadius: indicatorStyle.radius }}
+            initial={false}
+            animate={{ x: rect.x, y: rect.y, width: rect.width, height: rect.height }}
+            transition={{ type: "spring", bounce: 0.15, duration: 0.3 }}
+          />
+        )}
+        {children}
+      </TabsIndicatorMeasuredContext.Provider>
     </TabsPrimitive.List>
   )
 }
 
 function TabsTrigger({ className, value, ...props }: TabsPrimitive.Tab.Props) {
   const { variant } = useTabsContext("TabsTrigger")
+  const measured = React.useContext(TabsIndicatorMeasuredContext)
 
   return (
     <TabsPrimitive.Tab
       data-slot="tabs-trigger"
       value={value}
-      className={cn(tabsTriggerVariants({ variant }), className)}
+      className={cn(
+        tabsTriggerVariants({ variant }),
+        !measured && staticActiveStylesByVariant[variant],
+        className
+      )}
       {...props}
     />
   )
@@ -204,7 +222,7 @@ function TabsContent({
     >
       <motion.div
         className={className}
-        initial={{ opacity: 0, scale: 0.99 }}
+        initial={false}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.15, ease: "easeOut" }}
       >
