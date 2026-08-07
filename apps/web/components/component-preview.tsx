@@ -24,43 +24,50 @@ export function ComponentPreview({
   const [expanded, setExpanded] = React.useState(false)
 
   return (
-    <div className={cn("w-full", className)}>
-      <div className="relative flex min-h-56 items-center justify-center rounded-xl border border-border bg-background p-8">
-        {!forcedDir && (
-          <button
-            type="button"
-            onClick={() =>
-              setDir((current) => (current === "ltr" ? "rtl" : "ltr"))
-            }
-            aria-label="Toggle preview direction"
-            className="absolute end-3 top-3 inline-flex h-7 w-18 shrink-0 items-center justify-center gap-1.5 rounded-md border border-border bg-background text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-          >
-            <MorphIcon
-              icon={resolvedDir === "ltr" ? TextAlignStart : TextAlignEnd}
-              spring="snappy"
-              className="size-3.5"
-            />
-            {resolvedDir.toUpperCase()}
-          </button>
-        )}
-        <div
-          key={resolvedDir}
-          dir={resolvedDir}
-          className="flex w-full items-center justify-center"
+    <div
+      className={cn(
+        "relative flex w-full flex-col overflow-hidden rounded-2xl border border-border",
+        className
+      )}
+    >
+      {!forcedDir && (
+        <button
+          type="button"
+          onClick={() =>
+            setDir((current) => (current === "ltr" ? "rtl" : "ltr"))
+          }
+          aria-label="Toggle preview direction"
+          className="absolute end-3 top-3 z-10 inline-flex h-7 w-18 shrink-0 items-center justify-center gap-1.5 rounded-md border border-border bg-background text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
         >
-          {preview}
-        </div>
+          <MorphIcon
+            icon={resolvedDir === "ltr" ? TextAlignStart : TextAlignEnd}
+            spring="snappy"
+            className="size-3.5"
+          />
+          {resolvedDir.toUpperCase()}
+        </button>
+      )}
+
+      <div
+        key={resolvedDir}
+        dir={resolvedDir}
+        className="flex min-h-56 items-center justify-center bg-background p-8"
+      >
+        {preview}
       </div>
 
-      <div className="relative mt-4">
+      <div className="relative border-t border-border">
         <div
           style={!expanded ? { maxHeight: COLLAPSED_CODE_HEIGHT } : undefined}
-          className={cn(!expanded && "overflow-hidden")}
+          className={cn(
+            "[&_[data-slot=code-block]]:m-0 [&_[data-slot=code-block]]:rounded-none [&_[data-slot=code-block]]:border-0",
+            !expanded && "overflow-hidden"
+          )}
         >
           {code}
         </div>
         {!expanded && (
-          <div className="absolute inset-x-0 bottom-0 flex items-end justify-center rounded-b-2xl bg-gradient-to-t from-card to-transparent pt-10 pb-3">
+          <div className="absolute inset-x-0 bottom-0 flex items-end justify-center bg-gradient-to-t from-card to-transparent pt-10 pb-3">
             <button
               type="button"
               onClick={() => setExpanded(true)}

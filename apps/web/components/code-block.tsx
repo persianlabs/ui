@@ -19,6 +19,7 @@ export async function CodeBlock({
 
   return (
     <div
+      data-slot="code-block"
       className={
         "group/code relative overflow-hidden rounded-2xl border border-border bg-card " +
         (className ?? "")
