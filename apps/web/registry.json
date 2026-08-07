@@ -77,7 +77,10 @@
       "type": "registry:ui",
       "title": "Combobox",
       "description": "A searchable, accessible combobox built on Base UI.",
-      "registryDependencies": ["utils", "@persianlabsui/scroll-area"],
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/scroll-area.json"
+      ],
       "dependencies": ["@base-ui/react"],
       "files": [
         {
@@ -91,7 +94,10 @@
       "type": "registry:ui",
       "title": "City Selector",
       "description": "A province and city picker for Iran, built on Combobox and bundled with a full dataset of all 31 provinces and 1,119 cities.",
-      "registryDependencies": ["utils", "@persianlabsui/combobox"],
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/combobox.json"
+      ],
       "dependencies": ["@base-ui/react"],
       "files": [
         {

@@ -83,7 +83,7 @@ const tabsMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add @persianlabsui/tabs",
+  "npx shadcn@latest add https://ui.persian-labs.ir/r/tabs.json",
   CODE_FENCE,
   "",
   "## Usage",
@@ -295,7 +295,7 @@ export default function TabsDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add @persianlabsui/tabs" />
+            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/tabs.json" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4 space-y-6">

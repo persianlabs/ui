@@ -24,10 +24,10 @@ const introMarkdown = [
   "npx shadcn@latest init",
   CODE_FENCE,
   "",
-  "From there, add any component by name. The CLI resolves it from the @persianlabsui registry, copies the source straight into your project, and wires up its dependencies automatically.",
+  "From there, add any component by its registry URL. The CLI fetches it from the @persianlabsui registry, copies the source straight into your project, and wires up its dependencies automatically.",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add @persianlabsui/tabs",
+  "npx shadcn@latest add https://ui.persian-labs.ir/r/tabs.json",
   CODE_FENCE,
   "",
   "## Why copy-paste",
@@ -101,7 +101,8 @@ export default function DocsIntroductionPage() {
       </div>
 
       <p className="text-muted-foreground mt-6 leading-relaxed">
-        From there, add any component by name. The CLI resolves it from the{" "}
+        From there, add any component by its registry URL. The CLI fetches it
+        from the{" "}
         <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm">
           @persianlabsui
         </code>{" "}
@@ -110,7 +111,7 @@ export default function DocsIntroductionPage() {
       </p>
 
       <div className="mt-6">
-        <CopyCommand command="npx shadcn@latest add @persianlabsui/tabs" />
+        <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/tabs.json" />
       </div>
 
       <h2 className="mt-10 text-xl font-semibold tracking-tight">

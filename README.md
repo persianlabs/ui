@@ -38,13 +38,13 @@ Every component ships as plain React and Tailwind, distributed through a [shadcn
 Open any component page and copy the install command.
 
 ```bash
-npx shadcn@latest add @persianlabsui/city-selector
+npx shadcn@latest add https://ui.persian-labs.ir/r/city-selector.json
 ```
 
-Direct URLs also work:
+Once the `@persianlabsui` namespace is accepted into shadcn's registry directory, the shorter form will also work:
 
 ```bash
-npx shadcn@latest add https://ui.persian-labs.ir/r/city-selector.json
+npx shadcn@latest add @persianlabsui/city-selector
 ```
 
 You can also copy the source directly from the component page.
