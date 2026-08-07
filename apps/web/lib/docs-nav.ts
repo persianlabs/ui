@@ -40,6 +40,11 @@ export const docsNav: DocsNavGroup[] = [
       },
       { title: "Collapsible", href: "/docs/components/collapsible" },
       { title: "Combobox", href: "/docs/components/combobox" },
+      {
+        title: "Elastic Range Slider",
+        href: "/docs/components/elastic-range-slider",
+        badge: "New",
+      },
       { title: "Elastic Slider", href: "/docs/components/elastic-slider" },
       { title: "Empty", href: "/docs/components/empty" },
       { title: "Input", href: "/docs/components/input" },

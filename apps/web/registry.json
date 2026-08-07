@@ -455,6 +455,24 @@
           "type": "registry:hook"
         }
       ]
+    },
+    {
+      "name": "elastic-range-slider",
+      "type": "registry:ui",
+      "title": "Elastic Range Slider",
+      "description": "A single-track, dual-thumb range slider in the same visual language as Elastic Slider.",
+      "registryDependencies": ["utils"],
+      "dependencies": ["motion"],
+      "files": [
+        {
+          "path": "registry/base/ui/elastic-range-slider.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base/hooks/use-controllable-state.ts",
+          "type": "registry:hook"
+        }
+      ]
     }
   ]
 }

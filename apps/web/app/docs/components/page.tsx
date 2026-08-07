@@ -12,6 +12,7 @@ import {
   CitySelectorPreview,
   CollapsiblePreview,
   ComboboxPreview,
+  ElasticRangeSliderPreview,
   ElasticSliderPreview,
   EmptyPreview,
   InputGroupPreview,
@@ -310,6 +311,19 @@ const components = [
     thumbnail: (
       <ThumbnailFrame>
         <ElasticSliderPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Elastic Range Slider",
+    href: "/docs/components/elastic-range-slider" as const,
+    description:
+      "A single-track, dual-thumb range slider in the same visual language as Elastic Slider.",
+    badge: "New",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <ElasticRangeSliderPreview />
       </ThumbnailFrame>
     ),
   },
