@@ -308,3 +308,150 @@ export function CitySelectorPreview() {
     </div>
   )
 }
+
+export function SeparatorPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "14px",
+        width: "220px",
+      }}
+    >
+      <div style={{ display: "flex", fontSize: "16px", color: "#f2f0ee" }}>
+        PersianLabs/ui
+      </div>
+      <div
+        style={{
+          display: "flex",
+          height: "1px",
+          width: "100%",
+          backgroundColor: "rgba(242,240,238,0.16)",
+        }}
+      />
+      <div
+        style={{
+          display: "flex",
+          fontSize: "13px",
+          color: "rgba(242,240,238,0.5)",
+        }}
+      >
+        Design system foundation
+      </div>
+    </div>
+  )
+}
+
+export function CardPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "220px",
+        borderRadius: "14px",
+        backgroundColor: "#191817",
+        border: "1px solid rgba(242,240,238,0.16)",
+        overflow: "hidden",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "6px",
+          padding: "16px 18px",
+        }}
+      >
+        <div style={{ display: "flex", fontSize: "17px", color: "#f2f0ee" }}>
+          Card Title
+        </div>
+        <div
+          style={{
+            display: "flex",
+            fontSize: "13px",
+            color: "rgba(242,240,238,0.5)",
+          }}
+        >
+          Card description text
+        </div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          borderTop: "1px solid rgba(242,240,238,0.12)",
+          padding: "12px 18px",
+          fontSize: "13px",
+          color: "rgba(242,240,238,0.5)",
+        }}
+      >
+        Card footer
+      </div>
+    </div>
+  )
+}
+
+export function BreadcrumbPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "8px",
+        fontSize: "16px",
+      }}
+    >
+      <div style={{ display: "flex", color: "rgba(242,240,238,0.5)" }}>
+        Home
+      </div>
+      <div style={{ display: "flex", color: "rgba(242,240,238,0.3)" }}>/</div>
+      <div style={{ display: "flex", color: "rgba(242,240,238,0.5)" }}>
+        Components
+      </div>
+      <div style={{ display: "flex", color: "rgba(242,240,238,0.3)" }}>/</div>
+      <div style={{ display: "flex", color: "#f2f0ee" }}>Breadcrumb</div>
+    </div>
+  )
+}
+
+export function EmptyPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "10px",
+        width: "220px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "44px",
+          height: "44px",
+          borderRadius: "12px",
+          backgroundColor: "rgba(242,240,238,0.08)",
+        }}
+      >
+        <ChevronDownGlyph size={20} />
+      </div>
+      <div style={{ display: "flex", fontSize: "16px", color: "#f2f0ee" }}>
+        No results
+      </div>
+      <div
+        style={{
+          display: "flex",
+          fontSize: "12px",
+          color: "rgba(242,240,238,0.5)",
+          textAlign: "center",
+        }}
+      >
+        Nothing to show yet
+      </div>
+    </div>
+  )
+}
