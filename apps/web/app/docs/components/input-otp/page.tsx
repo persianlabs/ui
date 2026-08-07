@@ -1,13 +1,19 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@workspace/ui/components/tabs"
 
 import { ApiReference } from "@/components/api-reference"
 import { CodeBlock } from "@/components/code-block"
 import { ComponentPreview } from "@/components/component-preview"
 import { CopyCommand } from "@/components/copy-command"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
+import { Credits } from "@/components/credits"
 import { DocsPageFooter } from "@/components/docs-page-footer"
 import { InputOTPAlphanumericExample } from "@/components/examples/input-otp-alphanumeric"
 import { InputOTPControlledExample } from "@/components/examples/input-otp-controlled"
@@ -32,7 +38,8 @@ const SOURCE_PATH = "apps/web/app/docs/components/input-otp/page.tsx"
 
 export const metadata: Metadata = {
   title: "Input OTP",
-  description: "Accessible one-time password component with copy-paste functionality.",
+  description:
+    "Accessible one-time password component with copy-paste functionality.",
 }
 
 const tocItems = [
@@ -116,8 +123,8 @@ export default function InputOTPDocPage() {
           <CopyMarkdownButton markdown={inputOTPMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          Accessible one-time password component with copy-paste
-          functionality, built on{" "}
+          Accessible one-time password component with copy-paste functionality,
+          built on{" "}
           <Link
             href="https://github.com/guilhermerodz/input-otp"
             target="_blank"
@@ -130,6 +137,11 @@ export default function InputOTPDocPage() {
           one-time codes are digits.
         </p>
         <LastUpdated date={lastEdited} />
+        <Credits
+          sources={[{ label: "shadcn/ui", href: "https://ui.shadcn.com" }]}
+          changed
+          changes={["Forced LTR direction for the input"]}
+        />
 
         <h2
           id="overview"
@@ -359,9 +371,7 @@ export default function InputOTPDocPage() {
 
           <TabsContent value="manual" className="mt-4 space-y-6">
             <div>
-              <p className="text-sm font-medium">
-                1. Install the dependencies
-              </p>
+              <p className="text-sm font-medium">1. Install the dependencies</p>
               <div className="mt-2">
                 <InstallCommand packages="input-otp" />
               </div>

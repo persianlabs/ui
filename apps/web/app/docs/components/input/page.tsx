@@ -1,12 +1,18 @@
 import type { Metadata } from "next"
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@workspace/ui/components/tabs"
 
 import { ApiReference } from "@/components/api-reference"
 import { CodeBlock } from "@/components/code-block"
 import { ComponentPreview } from "@/components/component-preview"
 import { CopyCommand } from "@/components/copy-command"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
+import { Credits } from "@/components/credits"
 import { DocsPageFooter } from "@/components/docs-page-footer"
 import { InputBadgeExample } from "@/components/examples/input-badge"
 import { InputBasicExample } from "@/components/examples/input-basic"
@@ -112,14 +118,18 @@ export default function InputDocPage() {
           <CopyMarkdownButton markdown={inputMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          A text input for forms and user data entry, built on Base UI. Pair
-          it with{" "}
+          A text input for forms and user data entry, built on Base UI. Pair it
+          with{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
             Field
           </code>{" "}
           for a labeled, accessible form control.
         </p>
         <LastUpdated date={lastEdited} />
+        <Credits
+          sources={[{ label: "shadcn/ui", href: "https://ui.shadcn.com" }]}
+          changed={false}
+        />
 
         <h2
           id="overview"
@@ -130,7 +140,9 @@ export default function InputDocPage() {
         <div className="mt-4">
           <ComponentPreview
             preview={<InputDemoExample />}
-            code={<CodeBlock code={getExampleSource("input-demo")} lang="tsx" />}
+            code={
+              <CodeBlock code={getExampleSource("input-demo")} lang="tsx" />
+            }
           />
         </div>
 
@@ -272,7 +284,9 @@ export default function InputDocPage() {
         <div className="mt-4">
           <ComponentPreview
             preview={<InputFileExample />}
-            code={<CodeBlock code={getExampleSource("input-file")} lang="tsx" />}
+            code={
+              <CodeBlock code={getExampleSource("input-file")} lang="tsx" />
+            }
           />
         </div>
 
@@ -312,7 +326,9 @@ export default function InputDocPage() {
         <div className="mt-4">
           <ComponentPreview
             preview={<InputGridExample />}
-            code={<CodeBlock code={getExampleSource("input-grid")} lang="tsx" />}
+            code={
+              <CodeBlock code={getExampleSource("input-grid")} lang="tsx" />
+            }
           />
         </div>
 
@@ -351,7 +367,9 @@ export default function InputDocPage() {
         <div className="mt-4">
           <ComponentPreview
             preview={<InputBadgeExample />}
-            code={<CodeBlock code={getExampleSource("input-badge")} lang="tsx" />}
+            code={
+              <CodeBlock code={getExampleSource("input-badge")} lang="tsx" />
+            }
           />
         </div>
 
@@ -420,7 +438,9 @@ export default function InputDocPage() {
         <div className="mt-4">
           <ComponentPreview
             preview={<InputFormExample />}
-            code={<CodeBlock code={getExampleSource("input-form")} lang="tsx" />}
+            code={
+              <CodeBlock code={getExampleSource("input-form")} lang="tsx" />
+            }
           />
         </div>
 
@@ -454,9 +474,7 @@ export default function InputDocPage() {
 
           <TabsContent value="manual" className="mt-4 space-y-6">
             <div>
-              <p className="text-sm font-medium">
-                1. Install the dependencies
-              </p>
+              <p className="text-sm font-medium">1. Install the dependencies</p>
               <div className="mt-2">
                 <InstallCommand packages="@base-ui/react" />
               </div>
@@ -496,7 +514,10 @@ export default function InputDocPage() {
         <ApiReference title="Field" rows={fieldRootApi} />
         <ApiReference title="FieldLabel" rows={fieldLabelApi} />
 
-        <DocsPageFooter href="/docs/components/input" sourcePath={SOURCE_PATH} />
+        <DocsPageFooter
+          href="/docs/components/input"
+          sourcePath={SOURCE_PATH}
+        />
       </article>
 
       <aside className="hidden w-44 shrink-0 xl:block">

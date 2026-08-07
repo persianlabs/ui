@@ -13,6 +13,7 @@ import { CodeBlock } from "@/components/code-block"
 import { ComponentPreview } from "@/components/component-preview"
 import { CopyCommand } from "@/components/copy-command"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
+import { Credits } from "@/components/credits"
 import { DocsPageFooter } from "@/components/docs-page-footer"
 import { ButtonBlueExample } from "@/components/examples/button-blue"
 import { ButtonDefaultExample } from "@/components/examples/button-default"
@@ -133,6 +134,11 @@ export default function ButtonDocPage() {
           Base UI&apos;s button primitive.
         </p>
         <LastUpdated date={lastEdited} />
+        <Credits
+          sources={[{ label: "shadcn/ui", href: "https://ui.shadcn.com" }]}
+          changed
+          changes={["Added the `loading` prop", "Added the `blue` variant"]}
+        />
 
         <h2
           id="overview"

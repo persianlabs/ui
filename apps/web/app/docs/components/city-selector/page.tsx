@@ -1,5 +1,10 @@
 import type { Metadata } from "next"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@workspace/ui/components/tabs"
 
 import { ApiReference } from "@/components/api-reference"
 import { CodeBlock } from "@/components/code-block"
@@ -13,6 +18,7 @@ import { ComponentPreview } from "@/components/component-preview"
 import { CopyCommand } from "@/components/copy-command"
 import { InstallCommand } from "@/components/install-command"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
+import { Credits } from "@/components/credits"
 import { DocsPageFooter } from "@/components/docs-page-footer"
 import { LastUpdated } from "@/components/last-updated"
 import { TableOfContents } from "@/components/table-of-contents"
@@ -128,14 +134,14 @@ export default function CitySelectorDocPage() {
 
   return (
     <div className="flex gap-10">
-      <article className="min-w-0 max-w-3xl flex-1">
+      <article className="max-w-3xl min-w-0 flex-1">
         <div className="flex flex-col items-end justify-between gap-3 sm:flex-row sm:items-center">
-          <h1 className="text-3xl font-semibold tracking-tight self-start sm:self-auto">
+          <h1 className="self-start text-3xl font-semibold tracking-tight sm:self-auto">
             City Selector
           </h1>
           <CopyMarkdownButton markdown={citySelectorMarkdown} />
         </div>
-        <p className="text-muted-foreground mt-3 max-w-2xl leading-relaxed">
+        <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
           A ready-made province and city picker for Iran. Built on{" "}
           <a
             href="/docs/components/combobox"
@@ -143,11 +149,23 @@ export default function CitySelectorDocPage() {
           >
             Combobox
           </a>
-          , and bundled with all 31 provinces and 1,119 cities — the city
-          field stays disabled until a province is chosen, and both are
-          searchable.
+          , and bundled with all 31 provinces and 1,119 cities — the city field
+          stays disabled until a province is chosen, and both are searchable.
         </p>
         <LastUpdated date={lastEdited} />
+        <Credits
+          sources={[
+            { label: "shadcn/ui", href: "https://ui.shadcn.com" },
+            {
+              label: "mahdi-eth/Iran-Cities-Data",
+              href: "https://github.com/mahdi-eth/Iran-Cities-Data/blob/main/JSON/cities.json",
+            },
+          ]}
+          changed
+          changes={[
+            "Combined shadcn's Combobox with Persian/English city data from Iran-Cities-Data",
+          ]}
+        />
 
         <h2
           id="overview"
@@ -177,7 +195,7 @@ export default function CitySelectorDocPage() {
         <div className="mt-4">
           <h3
             id="example-controlled"
-            className="text-muted-foreground text-sm font-medium"
+            className="text-sm font-medium text-muted-foreground"
           >
             Controlled (English)
           </h3>
@@ -198,7 +216,7 @@ export default function CitySelectorDocPage() {
         <div className="mt-8">
           <h3
             id="example-controlled-fa"
-            className="text-muted-foreground text-sm font-medium"
+            className="text-sm font-medium text-muted-foreground"
           >
             Controlled (Persian)
           </h3>
@@ -219,18 +237,18 @@ export default function CitySelectorDocPage() {
         <div className="mt-8">
           <h3
             id="example-locale"
-            className="text-muted-foreground text-sm font-medium"
+            className="text-sm font-medium text-muted-foreground"
           >
             Locale
           </h3>
-          <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
+          <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
             By default, labels follow the document&apos;s text direction —
             Persian in RTL, English in LTR. Pass{" "}
-            <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm">
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
               locale
             </code>{" "}
-            to force one regardless of direction — it flips the text
-            direction of the picker too.
+            to force one regardless of direction — it flips the text direction
+            of the picker too.
           </p>
           <div className="mt-3">
             <ComponentPreview
@@ -248,21 +266,21 @@ export default function CitySelectorDocPage() {
         <div className="mt-8">
           <h3
             id="example-custom"
-            className="text-muted-foreground text-sm font-medium"
+            className="text-sm font-medium text-muted-foreground"
           >
             Custom layout
           </h3>
-          <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
+          <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
             Compose{" "}
-            <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm">
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
               CitySelectorProvince
             </code>{" "}
             and{" "}
-            <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm">
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
               CitySelectorCity
             </code>{" "}
             yourself as children of{" "}
-            <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm">
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
               CitySelector
             </code>{" "}
             for full control over layout, labels, and placeholders.
@@ -284,22 +302,21 @@ export default function CitySelectorDocPage() {
         <div className="mt-8">
           <h3
             id="example-form"
-            className="text-muted-foreground text-sm font-medium"
+            className="text-sm font-medium text-muted-foreground"
           >
             Form
           </h3>
-          <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
+          <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
             CitySelector is a plain controlled component — its{" "}
-            <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm">
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
               value
             </code>{" "}
             /{" "}
-            <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm">
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
               onValueChange
             </code>{" "}
-            pair binds directly into any state or validator, no adapter
-            needed. Here it&apos;s validated with Zod alongside a plain text
-            field.
+            pair binds directly into any state or validator, no adapter needed.
+            Here it&apos;s validated with Zod alongside a plain text field.
           </p>
           <div className="mt-3">
             <ComponentPreview
@@ -330,13 +347,13 @@ export default function CitySelectorDocPage() {
 
           <TabsContent value="cli" className="mt-4">
             <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/city-selector.json" />
-            <p className="text-muted-foreground mt-3 text-sm leading-relaxed">
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               This also installs{" "}
-              <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm">
+              <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
                 components/ui/combobox.tsx
               </code>{" "}
               and{" "}
-              <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm">
+              <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
                 lib/persian-provinces.ts
               </code>
               , the bundled provinces and cities dataset.
@@ -345,9 +362,7 @@ export default function CitySelectorDocPage() {
 
           <TabsContent value="manual" className="mt-4 space-y-6">
             <div>
-              <p className="text-sm font-medium">
-                1. Install the dependencies
-              </p>
+              <p className="text-sm font-medium">1. Install the dependencies</p>
               <div className="mt-2">
                 <InstallCommand packages="@base-ui/react" />
               </div>
@@ -356,9 +371,9 @@ export default function CitySelectorDocPage() {
               <p className="text-sm font-medium">
                 2. Add the provinces & cities data
               </p>
-              <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                 Create{" "}
-                <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm">
+                <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
                   lib/persian-provinces.ts
                 </code>{" "}
                 and paste this in.
@@ -369,7 +384,7 @@ export default function CitySelectorDocPage() {
                   copyText={provincesSource}
                   lang="tsx"
                 />
-                <p className="text-muted-foreground mt-1.5 text-xs leading-relaxed">
+                <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
                   Showing the first 100 of {provincesLines.length} lines —
                   truncated for performance. Use the copy button above to get
                   the full file.
@@ -377,12 +392,10 @@ export default function CitySelectorDocPage() {
               </div>
             </div>
             <div>
-              <p className="text-sm font-medium">
-                3. Copy the Combobox source
-              </p>
-              <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
+              <p className="text-sm font-medium">3. Copy the Combobox source</p>
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                 Create{" "}
-                <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm">
+                <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
                   components/ui/combobox.tsx
                 </code>{" "}
                 and paste this in.
@@ -395,9 +408,9 @@ export default function CitySelectorDocPage() {
               <p className="text-sm font-medium">
                 4. Copy the City Selector source
               </p>
-              <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                 Create{" "}
-                <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm">
+                <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
                   components/ui/city-selector.tsx
                 </code>{" "}
                 and paste this in.
@@ -418,7 +431,7 @@ export default function CitySelectorDocPage() {
         <div className="mt-4">
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
-        <p className="text-muted-foreground mt-4 leading-relaxed">
+        <p className="mt-4 leading-relaxed text-muted-foreground">
           Or compose the parts yourself for full control over layout, labels,
           and placeholders:
         </p>

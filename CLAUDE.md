@@ -39,6 +39,7 @@ To register a new component end-to-end:
 2. Add the consumer copy to `apps/web/registry/base/ui/<name>.tsx` (`@/...` alias imports), plus any shared lib files under `registry/base/lib/`.
 3. Add an entry to `apps/web/registry.json` (name, type, title, description, `registryDependencies`, `dependencies`, `files`).
 4. Wire it into the docs: `apps/web/lib/docs-nav.ts` (sidebar entry) and a page under `apps/web/app/docs/components/`, using `apps/web/lib/component-source.ts` / `component-previews.tsx` to pull the source and render a live preview.
+5. Add a `Credits` section (`apps/web/components/credits.tsx`) to the doc page, directly under `LastUpdated`. If it's not clear where the component/data was copied from, what (if anything) was changed versus the source, or whether it's published, **ask the user** rather than guessing — don't invent attribution.
 
 ## Key structure
 
@@ -56,3 +57,4 @@ To register a new component end-to-end:
 - RTL-first: logical CSS properties and mirrored icons are the default; components must also work LTR.
 - Prettier: no semicolons, double quotes, `trailingComma: es5`, `printWidth: 80`, with `prettier-plugin-tailwindcss` sorting classes against `packages/ui/src/styles/globals.css` (functions `cn`, `cva` are class-sorted too).
 - ESLint: flat config per workspace (`apps/web/eslint.config.js`, `packages/ui/eslint.config.js`) extending `@workspace/eslint-config`; `eslint-plugin-only-warn` means lint issues surface as warnings, not hard failures.
+- Every component doc page must credit where it came from via `<Credits>` (`apps/web/components/credits.tsx`), placed right under `<LastUpdated>`. Never fabricate a source, a "what changed" list, or publish status — if it isn't already known from context, ask the user for it first.

@@ -12,6 +12,7 @@ import { CodeBlock } from "@/components/code-block"
 import { ComponentPreview } from "@/components/component-preview"
 import { CopyCommand } from "@/components/copy-command"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
+import { Credits } from "@/components/credits"
 import { DocsPageFooter } from "@/components/docs-page-footer"
 import { ButtonGroupDemoExample } from "@/components/examples/button-group-demo"
 import { ButtonGroupDropdownExample } from "@/components/examples/button-group-dropdown"
@@ -134,6 +135,10 @@ export default function ButtonGroupDocPage() {
           — for buttons that toggle a state, reach for a toggle group instead.
         </p>
         <LastUpdated date={lastEdited} />
+        <Credits
+          sources={[{ label: "shadcn/ui", href: "https://ui.shadcn.com" }]}
+          changed={false}
+        />
 
         <h2
           id="overview"
