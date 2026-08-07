@@ -455,3 +455,338 @@ export function EmptyPreview() {
     </div>
   )
 }
+
+export function SwitchPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "10px",
+        fontSize: "16px",
+        color: "#f2f0ee",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          width: "32px",
+          height: "18px",
+          borderRadius: "999px",
+          backgroundColor: "#f2f0ee",
+          padding: "2px",
+          justifyContent: "flex-end",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            width: "14px",
+            height: "14px",
+            borderRadius: "999px",
+            backgroundColor: "#191817",
+          }}
+        />
+      </div>
+      Airplane Mode
+    </div>
+  )
+}
+
+export function CheckboxPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "10px",
+        fontSize: "16px",
+        color: "#f2f0ee",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "16px",
+          height: "16px",
+          borderRadius: "4px",
+          backgroundColor: "#f2f0ee",
+          color: "#191817",
+          fontSize: "12px",
+        }}
+      >
+        ✓
+      </div>
+      Accept terms
+    </div>
+  )
+}
+
+export function RadioGroupPreview() {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+      {["Default", "Comfortable"].map((label, i) => (
+        <div
+          key={label}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            fontSize: "16px",
+            color: "#f2f0ee",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "16px",
+              height: "16px",
+              borderRadius: "999px",
+              border: "1px solid rgba(242,240,238,0.4)",
+              backgroundColor: i === 1 ? "#f2f0ee" : "transparent",
+            }}
+          >
+            {i === 1 && (
+              <div
+                style={{
+                  display: "flex",
+                  width: "6px",
+                  height: "6px",
+                  borderRadius: "999px",
+                  backgroundColor: "#191817",
+                }}
+              />
+            )}
+          </div>
+          {label}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export function ProgressPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        width: "220px",
+        height: "8px",
+        borderRadius: "999px",
+        backgroundColor: "rgba(242,240,238,0.16)",
+        overflow: "hidden",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          width: "66%",
+          height: "100%",
+          backgroundColor: "#f2f0ee",
+          borderRadius: "999px",
+        }}
+      />
+    </div>
+  )
+}
+
+export function CollapsiblePreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "8px",
+        width: "220px",
+        fontSize: "14px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          color: "#f2f0ee",
+        }}
+      >
+        <span>3 starred repos</span>
+        <ChevronDownGlyph size={14} />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          padding: "8px 12px",
+          borderRadius: "8px",
+          border: "1px solid rgba(242,240,238,0.16)",
+          color: "rgba(242,240,238,0.6)",
+        }}
+      >
+        @base_ui/react
+      </div>
+    </div>
+  )
+}
+
+export function TogglePreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "36px",
+        height: "36px",
+        borderRadius: "8px",
+        backgroundColor: "rgba(242,240,238,0.14)",
+        color: "#f2f0ee",
+        fontSize: "16px",
+        fontWeight: 700,
+      }}
+    >
+      B
+    </div>
+  )
+}
+
+export function ToggleGroupPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        borderRadius: "8px",
+        overflow: "hidden",
+        border: "1px solid rgba(242,240,238,0.16)",
+      }}
+    >
+      {["B", "I", "U"].map((letter, i) => (
+        <div
+          key={letter}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "36px",
+            height: "36px",
+            backgroundColor: i === 0 ? "rgba(242,240,238,0.14)" : "transparent",
+            color: "#f2f0ee",
+            fontSize: "16px",
+            fontWeight: 700,
+            borderInlineStart:
+              i > 0 ? "1px solid rgba(242,240,238,0.16)" : undefined,
+          }}
+        >
+          {letter}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export function NativeSelectPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        width: "180px",
+        padding: "10px 14px",
+        borderRadius: "8px",
+        backgroundColor: "#191817",
+        border: "1px solid rgba(242,240,238,0.16)",
+        fontSize: "16px",
+        color: "#f2f0ee",
+      }}
+    >
+      Next.js
+      <ChevronDownGlyph size={14} />
+    </div>
+  )
+}
+
+export function ElasticSliderPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        width: "200px",
+        height: "36px",
+        borderRadius: "10px",
+        backgroundColor: "rgba(242,240,238,0.1)",
+        padding: "0 12px",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          insetInlineStart: 0,
+          top: 0,
+          bottom: 0,
+          width: "55%",
+          backgroundColor: "rgba(242,240,238,0.14)",
+        }}
+      />
+      <div style={{ display: "flex", fontSize: "13px", color: "#f2f0ee" }}>
+        Opacity
+      </div>
+      <div
+        style={{
+          display: "flex",
+          fontSize: "13px",
+          color: "rgba(242,240,238,0.6)",
+        }}
+      >
+        0.55
+      </div>
+    </div>
+  )
+}
+
+export function ElasticRangeSliderPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        width: "200px",
+        height: "36px",
+        borderRadius: "10px",
+        backgroundColor: "rgba(242,240,238,0.1)",
+        padding: "0 12px",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          insetInlineStart: "25%",
+          insetInlineEnd: "20%",
+          top: 0,
+          bottom: 0,
+          backgroundColor: "rgba(242,240,238,0.14)",
+        }}
+      />
+      <div style={{ display: "flex", fontSize: "13px", color: "#f2f0ee" }}>
+        Price
+      </div>
+      <div
+        style={{
+          display: "flex",
+          fontSize: "13px",
+          color: "rgba(242,240,238,0.6)",
+        }}
+      >
+        $200 – $700
+      </div>
+    </div>
+  )
+}
