@@ -108,6 +108,94 @@ export function ButtonGroupPreview() {
   )
 }
 
+export function InputPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        width: "220px",
+        padding: "10px 14px",
+        borderRadius: "10px",
+        backgroundColor: "#191817",
+        border: "1px solid rgba(242,240,238,0.16)",
+        fontSize: "16px",
+        color: "rgba(242,240,238,0.5)",
+      }}
+    >
+      you@example.com
+    </div>
+  )
+}
+
+export function InputOTPPreview() {
+  return (
+    <div style={{ display: "flex", gap: "6px" }}>
+      {["1", "2", "3", "4"].map((digit, index) => (
+        <div
+          key={index}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "36px",
+            height: "44px",
+            borderRadius: "8px",
+            backgroundColor: index === 1 ? "#f2f0ee" : "rgba(242,240,238,0.06)",
+            border: "1px solid rgba(242,240,238,0.16)",
+            color: index === 1 ? "#191817" : "#f2f0ee",
+            fontSize: "18px",
+            fontWeight: 600,
+          }}
+        >
+          {digit}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export function InputGroupPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "8px",
+        width: "240px",
+        padding: "10px 14px",
+        borderRadius: "10px",
+        backgroundColor: "#191817",
+        border: "1px solid rgba(242,240,238,0.16)",
+        fontSize: "16px",
+        color: "rgba(242,240,238,0.5)",
+      }}
+    >
+      Search...
+    </div>
+  )
+}
+
+export function TextareaPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        width: "220px",
+        minHeight: "64px",
+        padding: "10px 14px",
+        borderRadius: "10px",
+        backgroundColor: "#191817",
+        border: "1px solid rgba(242,240,238,0.16)",
+        fontSize: "16px",
+        color: "rgba(242,240,238,0.5)",
+      }}
+    >
+      Type your message here.
+    </div>
+  )
+}
+
 export function ComboboxPreview() {
   return (
     <div

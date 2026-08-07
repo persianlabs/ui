@@ -29,6 +29,18 @@ export const docsNav: DocsNavGroup[] = [
         href: "/docs/components/button-group",
         badge: "New",
       },
+      { title: "Input", href: "/docs/components/input", badge: "New" },
+      {
+        title: "Input OTP",
+        href: "/docs/components/input-otp",
+        badge: "New",
+      },
+      {
+        title: "Input Group",
+        href: "/docs/components/input-group",
+        badge: "New",
+      },
+      { title: "Textarea", href: "/docs/components/textarea", badge: "New" },
       { title: "Tabs", href: "/docs/components/tabs", badge: "New" },
       { title: "Combobox", href: "/docs/components/combobox", badge: "New" },
       {

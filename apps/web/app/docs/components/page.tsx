@@ -8,7 +8,11 @@ import {
   ButtonPreview,
   CitySelectorPreview,
   ComboboxPreview,
+  InputGroupPreview,
+  InputOTPPreview,
+  InputPreview,
   TabsPreview,
+  TextareaPreview,
 } from "@/lib/component-previews"
 
 export const metadata: Metadata = {
@@ -47,6 +51,56 @@ const components = [
     thumbnail: (
       <ThumbnailFrame>
         <ButtonGroupPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Input",
+    href: "/docs/components/input" as const,
+    description: "A styled text input built on Base UI.",
+    badge: "New",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <InputPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Input OTP",
+    href: "/docs/components/input-otp" as const,
+    description:
+      "Accessible one-time password component with copy-paste functionality.",
+    badge: "New",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <InputOTPPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Input Group",
+    href: "/docs/components/input-group" as const,
+    description: "Add addons, buttons, and helper content to inputs.",
+    badge: "New",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <InputGroupPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Textarea",
+    href: "/docs/components/textarea" as const,
+    description:
+      "Displays a form textarea, or a component that looks like a textarea.",
+    badge: "New",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <TextareaPreview />
       </ThumbnailFrame>
     ),
   },
