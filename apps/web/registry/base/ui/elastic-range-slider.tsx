@@ -287,24 +287,31 @@ export function ElasticRangeSlider({
         }
       }
 
-      const value = roundValue(positionToValue(e.clientX), step)
+      const rawValue = roundValue(positionToValue(e.clientX), step)
+
+      // Clamp one step short of the other thumb, not flush against it, so
+      // min and max can never meet or cross. Applied before the motion value
+      // jumps, so the thumb itself (not just the reported value) is bounded.
+      const value =
+        thumb === "min"
+          ? clamp(rawValue, absoluteMin, max - step)
+          : clamp(rawValue, min + step, absoluteMax)
+
       const motionValue = thumb === "min" ? minPercent : maxPercent
       const animRef = thumb === "min" ? minAnimRef : maxAnimRef
       animRef.current?.stop()
       animRef.current = null
       motionValue.jump(percentFromValue(value))
 
-      setRange(([currentMin, currentMax]) =>
-        thumb === "min"
-          ? [clamp(value, absoluteMin, currentMax), currentMax]
-          : [currentMin, clamp(value, currentMin, absoluteMax)]
-      )
+      setRange(thumb === "min" ? [value, max] : [min, value])
     },
     [
       positionToValue,
       percentFromValue,
       setRange,
       step,
+      min,
+      max,
       absoluteMin,
       absoluteMax,
       minPercent,
@@ -324,8 +331,8 @@ export function ElasticRangeSlider({
         const rawValue = positionToValue(e.clientX)
         const snapped =
           thumb === "min"
-            ? clamp(roundValue(rawValue, step), absoluteMin, max)
-            : clamp(roundValue(rawValue, step), min, absoluteMax)
+            ? clamp(roundValue(rawValue, step), absoluteMin, max - step)
+            : clamp(roundValue(rawValue, step), min + step, absoluteMax)
 
         animateThumbTo(thumb, percentFromValue(snapped))
         setRange(([currentMin, currentMax]) =>
@@ -409,7 +416,7 @@ export function ElasticRangeSlider({
       setKeyboardFocusThumb(thumb)
 
       const bounds: [number, number] =
-        thumb === "min" ? [absoluteMin, max] : [min, absoluteMax]
+        thumb === "min" ? [absoluteMin, max - step] : [min + step, absoluteMax]
       const snapped = clamp(roundValue(next, step), bounds[0], bounds[1])
 
       animateThumbTo(thumb, percentFromValue(snapped))
@@ -495,7 +502,7 @@ export function ElasticRangeSlider({
           data-focus-visible={keyboardFocusThumb === "min"}
           aria-label={minThumbLabel}
           aria-valuemin={absoluteMin}
-          aria-valuemax={max}
+          aria-valuemax={max - step}
           aria-valuenow={min}
           aria-valuetext={displayMin}
           onPointerDown={handlePointerDown("min")}
@@ -511,7 +518,7 @@ export function ElasticRangeSlider({
           data-slot="elastic-slider-handle"
           data-focus-visible={keyboardFocusThumb === "max"}
           aria-label={maxThumbLabel}
-          aria-valuemin={min}
+          aria-valuemin={min + step}
           aria-valuemax={absoluteMax}
           aria-valuenow={max}
           aria-valuetext={displayMax}

@@ -125,7 +125,7 @@ export default function ElasticRangeSliderDocPage() {
           changes={[
             "New component, not part of the original Elastic Slider — extracted from a single-value slider into its own dual-thumb primitive, with the same spring-animated drag, rubber-band overshoot, and step-snap on release",
             "Positioning stays physically left-to-right in both LTR and RTL — the left handle always controls the left edge and the right handle always controls the right edge, so drag direction never flips under RTL",
-            "Each thumb clamps against the other's current value, so min can never be dragged past max or vice versa",
+            "Each thumb clamps a step short of the other's current value, so min and max can never meet, cross, or collapse to a single point",
             "Same hover/active decile hash marks as Elastic Slider, positioned physically so they line up with the track regardless of direction",
           ]}
         />
