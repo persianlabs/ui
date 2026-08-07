@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-PersianLabs/ui — an RTL-first, copy-paste component library for Persian interfaces, distributed as a [shadcn-compatible registry](https://ui.shadcn.com/docs/registry) (not an npm package). Users run `npx shadcn add @persianlabsui/<name>` and the component source lands directly in their codebase.
+PersianLabs/ui — an RTL-first, copy-paste component library for Persian interfaces, distributed as a [shadcn-compatible registry](https://ui.shadcn.com/docs/registry) (not an npm package). Users run `npx shadcn add https://ui.persian-labs.ir/r/<name>.json` and the component source lands directly in their codebase. The shorter `@persianlabsui/<name>` form will work once the namespace is accepted into shadcn's registry directory — until then, install commands shown in the docs use the direct URL.
 
 Turborepo monorepo, bun package manager (`bun@1.4.0`, workspaces: `apps/*`, `packages/*`).
 
