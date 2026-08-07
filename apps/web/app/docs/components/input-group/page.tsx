@@ -47,6 +47,7 @@ export const metadata: Metadata = {
 
 const tocItems = [
   { id: "overview", title: "Overview" },
+  { id: "composition", title: "Composition" },
   {
     id: "align",
     title: "Align",
@@ -91,10 +92,22 @@ export function Example() {
   )
 }`
 
+const compositionSnippet = `InputGroup
+├── InputGroupInput or InputGroupTextarea
+├── InputGroupAddon
+├── InputGroupButton
+└── InputGroupText`
+
 const inputGroupMarkdown = [
   "# Input Group",
   "",
   "Add addons, buttons, and helper content to inputs.",
+  "",
+  "## Composition",
+  "",
+  `${CODE_FENCE}text`,
+  compositionSnippet,
+  CODE_FENCE,
   "",
   "## Align",
   "",
@@ -168,11 +181,40 @@ export default function InputGroupDocPage() {
           />
         </div>
 
+        <h2
+          id="composition"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Composition
+        </h2>
+        <p className="mt-3 leading-relaxed text-muted-foreground">
+          Use the following composition to build an{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+            InputGroup
+          </code>
+          :
+        </p>
+        <div className="mt-4">
+          <CodeBlock code={compositionSnippet} lang="text" />
+        </div>
+
         <h2 id="align" className="mt-12 text-xl font-semibold tracking-tight">
           Align
         </h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use the{" "}
+          For proper focus management,{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+            InputGroupAddon
+          </code>{" "}
+          should always be placed after{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+            InputGroupInput
+          </code>{" "}
+          or{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+            InputGroupTextarea
+          </code>{" "}
+          in the DOM. Use the{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
             align
           </code>{" "}

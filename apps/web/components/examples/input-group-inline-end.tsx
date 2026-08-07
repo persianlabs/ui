@@ -1,5 +1,6 @@
-import { CheckIcon } from "lucide-react"
+import { EyeOffIcon } from "lucide-react"
 
+import { Field, FieldDescription, FieldLabel } from "@workspace/ui/components/field"
 import {
   InputGroup,
   InputGroupAddon,
@@ -8,11 +9,19 @@ import {
 
 export function InputGroupInlineEndExample() {
   return (
-    <InputGroup className="max-w-xs">
-      <InputGroupInput defaultValue="jane_doe" />
-      <InputGroupAddon align="inline-end">
-        <CheckIcon className="text-primary" />
-      </InputGroupAddon>
-    </InputGroup>
+    <Field className="max-w-sm">
+      <FieldLabel htmlFor="inline-end-input">Input</FieldLabel>
+      <InputGroup>
+        <InputGroupInput
+          id="inline-end-input"
+          type="password"
+          placeholder="Enter password"
+        />
+        <InputGroupAddon align="inline-end">
+          <EyeOffIcon />
+        </InputGroupAddon>
+      </InputGroup>
+      <FieldDescription>Icon positioned at the end.</FieldDescription>
+    </Field>
   )
 }

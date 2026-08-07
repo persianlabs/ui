@@ -1,5 +1,6 @@
-import { MailIcon } from "lucide-react"
+import { SearchIcon } from "lucide-react"
 
+import { Field, FieldDescription, FieldLabel } from "@workspace/ui/components/field"
 import {
   InputGroup,
   InputGroupAddon,
@@ -8,11 +9,15 @@ import {
 
 export function InputGroupInlineStartExample() {
   return (
-    <InputGroup className="max-w-xs">
-      <InputGroupInput type="email" placeholder="you@example.com" />
-      <InputGroupAddon align="inline-start">
-        <MailIcon />
-      </InputGroupAddon>
-    </InputGroup>
+    <Field className="max-w-sm">
+      <FieldLabel htmlFor="inline-start-input">Input</FieldLabel>
+      <InputGroup>
+        <InputGroupInput id="inline-start-input" placeholder="Search..." />
+        <InputGroupAddon align="inline-start">
+          <SearchIcon className="text-muted-foreground" />
+        </InputGroupAddon>
+      </InputGroup>
+      <FieldDescription>Icon positioned at the start.</FieldDescription>
+    </Field>
   )
 }

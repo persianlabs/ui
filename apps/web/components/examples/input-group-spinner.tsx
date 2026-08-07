@@ -1,17 +1,46 @@
+import { LoaderIcon } from "lucide-react"
+
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
+  InputGroupText,
 } from "@workspace/ui/components/input-group"
 import { Spinner } from "@workspace/ui/components/spinner"
 
 export function InputGroupSpinnerExample() {
   return (
-    <InputGroup className="max-w-xs">
-      <InputGroupInput placeholder="Searching..." readOnly />
-      <InputGroupAddon align="inline-end">
-        <Spinner />
-      </InputGroupAddon>
-    </InputGroup>
+    <div className="grid w-full max-w-sm gap-4">
+      <InputGroup>
+        <InputGroupInput placeholder="Searching..." />
+        <InputGroupAddon align="inline-end">
+          <Spinner />
+        </InputGroupAddon>
+      </InputGroup>
+      <InputGroup>
+        <InputGroupInput placeholder="Processing..." />
+        <InputGroupAddon>
+          <Spinner />
+        </InputGroupAddon>
+      </InputGroup>
+      <InputGroup>
+        <InputGroupInput placeholder="Saving changes..." />
+        <InputGroupAddon align="inline-end">
+          <InputGroupText>Saving...</InputGroupText>
+          <Spinner />
+        </InputGroupAddon>
+      </InputGroup>
+      <InputGroup>
+        <InputGroupInput placeholder="Refreshing data..." />
+        <InputGroupAddon>
+          <LoaderIcon className="animate-spin" />
+        </InputGroupAddon>
+        <InputGroupAddon align="inline-end">
+          <InputGroupText className="text-muted-foreground">
+            Please wait...
+          </InputGroupText>
+        </InputGroupAddon>
+      </InputGroup>
+    </div>
   )
 }

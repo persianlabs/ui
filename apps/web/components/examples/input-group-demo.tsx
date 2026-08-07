@@ -13,6 +13,7 @@ export function InputGroupDemoExample() {
       <InputGroupAddon>
         <SearchIcon />
       </InputGroupAddon>
+      <InputGroupAddon align="inline-end">12 results</InputGroupAddon>
     </InputGroup>
   )
 }

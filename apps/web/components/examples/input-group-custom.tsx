@@ -10,17 +10,19 @@ import {
 
 export function InputGroupCustomExample() {
   return (
-    <InputGroup className="max-w-xs">
-      <TextareaAutosize
-        data-slot="input-group-control"
-        placeholder="Write a message..."
-        minRows={2}
-        maxRows={6}
-        className="flex-1 resize-none bg-transparent py-2.5 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed"
-      />
-      <InputGroupAddon align="block-end">
-        <InputGroupButton>Send</InputGroupButton>
-      </InputGroupAddon>
-    </InputGroup>
+    <div className="grid w-full max-w-sm gap-6">
+      <InputGroup>
+        <TextareaAutosize
+          data-slot="input-group-control"
+          className="field-sizing-content flex min-h-16 w-full resize-none rounded-md bg-transparent px-3 py-2.5 text-base outline-none transition-[color,box-shadow] md:text-sm"
+          placeholder="Autoresize textarea..."
+        />
+        <InputGroupAddon align="block-end">
+          <InputGroupButton className="ms-auto" size="sm" variant="default">
+            Submit
+          </InputGroupButton>
+        </InputGroupAddon>
+      </InputGroup>
+    </div>
   )
 }

@@ -22,7 +22,7 @@ export const inputGroupButtonApi: ApiReferenceRow[] = [
   {
     prop: "size",
     type: '"xs" | "icon-xs" | "sm" | "icon-sm"',
-    default: '"icon-xs"',
+    default: '"xs"',
     description: "The size of the button.",
   },
   {
