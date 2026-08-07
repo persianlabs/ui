@@ -6,11 +6,15 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { Radio as RadioPrimitive } from "@base-ui/react/radio"
 import { RadioGroup as RadioGroupPrimitive } from "@base-ui/react/radio-group"
 import { useRender } from "@base-ui/react/use-render"
-import { CheckIcon, ChevronRightIcon } from "lucide-react"
+import { CheckIcon, ChevronRightIcon, XIcon } from "lucide-react"
 import * as React from "react"
 
+import { Button } from "@workspace/ui/components/button"
 import { ScrollArea } from "@workspace/ui/components/scroll-area"
 import { cn } from "@workspace/ui/lib/utils"
+
+const DrawerCreateHandle: typeof DrawerPrimitive.createHandle =
+  DrawerPrimitive.createHandle
 
 type DrawerPosition = "right" | "left" | "top" | "bottom" | "start" | "end"
 type PhysicalDrawerPosition = "right" | "left" | "top" | "bottom"
@@ -219,11 +223,14 @@ function DrawerViewport({
         position === "top" && "grid grid-rows-[auto_1fr] pb-12",
         // justify-start/justify-end (flex-start/flex-end) are direction-
         // sensitive and reverse once `dir="rtl"` is set below, undoing the
-        // physical position this branch already resolved to. justify-[left]/
-        // [right] are the CSS keywords that stay physical regardless of
-        // writing direction.
-        position === "left" && "justify-[left] flex",
-        position === "right" && "justify-[right] flex",
+        // physical position this branch already resolved to. The CSS
+        // `justify-content: left`/`right` keywords stay physical regardless
+        // of writing direction — but they aren't part of Tailwind's
+        // justify-content value scale, so the value-only `justify-[right]`
+        // shorthand silently fails to generate a rule. The full arbitrary
+        // property syntax below works.
+        position === "left" && "flex [justify-content:left]",
+        position === "right" && "flex [justify-content:right]",
         variant === "inset" && "px-(--inset) sm:[--inset:--spacing(4)]",
         variant === "inset" && position !== "bottom" && "pt-(--inset)",
         variant === "inset" && position !== "top" && "pb-(--inset)",
@@ -239,12 +246,14 @@ function DrawerPopup({
   children,
   position: positionProp,
   variant = "default",
+  showCloseButton = false,
   showBar = false,
   portalProps,
   ...props
 }: DrawerPrimitive.Popup.Props & {
   position?: DrawerPosition
   variant?: "default" | "straight" | "inset"
+  showCloseButton?: boolean
   showBar?: boolean
   portalProps?: DrawerPrimitive.Portal.Props
 }) {
@@ -306,6 +315,15 @@ function DrawerPopup({
           {...props}
         >
           {children}
+          {showCloseButton && (
+            <DrawerPrimitive.Close
+              aria-label="Close"
+              className="absolute end-2 top-2"
+              render={<Button size="icon-sm" variant="ghost" />}
+            >
+              <XIcon />
+            </DrawerPrimitive.Close>
+          )}
           {showBar && <DrawerBar />}
         </DrawerPrimitive.Popup>
       </DrawerViewport>
@@ -341,20 +359,44 @@ function DrawerFooter({
   className,
   variant = "default",
   allowSelection = true,
+  position: positionProp,
   render,
   ...props
 }: useRender.ComponentProps<"div"> & {
   variant?: "default" | "bare"
   allowSelection?: boolean
+  position?: DrawerPosition
 }) {
+  const position = useResolvedDrawerPosition(positionProp)
+
   const defaultProps = {
     className: cn(
-      "flex flex-col-reverse gap-2 px-6 pb-(--safe-area-inset-bottom,0px) sm:flex-row sm:justify-end",
+      "relative flex flex-col-reverse gap-2 px-6 pb-(--safe-area-inset-bottom,0px) sm:flex-row sm:justify-end",
       !allowSelection && "cursor-default",
       variant === "default" &&
         "border-t border-border bg-muted/72 pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+--spacing(4))]",
       variant === "bare" &&
         "pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+--spacing(6))] in-[[data-slot=drawer-popup]:has([data-slot=drawer-panel])]:pt-3",
+      // DrawerPopup reserves space for the drag bar via padding on itself
+      // (e.g. pr-2 for a left drawer), which insets every child equally —
+      // including the footer's own background. Cancel that inset here with
+      // a matching negative margin, only when a bar sibling is actually
+      // present, so the footer's background still reaches the handle edge.
+      position === "left" && "has-[~[data-slot=drawer-bar]]:-mr-2",
+      position === "right" && "has-[~[data-slot=drawer-bar]]:-ml-2",
+      position === "top" && "has-[~[data-slot=drawer-bar]]:-mb-2",
+      // Belt-and-suspenders bleed for the live drag/swipe animation: the
+      // popup's border-radius clips nothing (it isn't overflow-hidden while
+      // dragging, so height/width can shift a frame ahead of layout), so
+      // extend the footer's own background a few pixels past its box on the
+      // handle-adjacent edge to guarantee no gap ever shows mid-swipe.
+      variant === "default" &&
+        cn(
+          "after:pointer-events-none after:absolute after:bg-muted/72",
+          position === "left" && "after:inset-y-0 after:-right-2 after:w-2",
+          position === "right" && "after:inset-y-0 after:-left-2 after:w-2",
+          position === "top" && "after:inset-x-0 after:-bottom-2 after:h-2"
+        ),
       className
     ),
     "data-slot": "drawer-footer",
@@ -682,6 +724,7 @@ export {
   DrawerBar,
   DrawerClose,
   DrawerContent,
+  DrawerCreateHandle,
   DrawerDescription,
   DrawerFooter,
   DrawerHeader,

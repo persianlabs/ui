@@ -42,9 +42,21 @@ export const drawerPopupApi: ApiReferenceRow[] = [
     description: "Controls the drawer's corner rounding and edge inset.",
   },
   {
+    prop: "showCloseButton",
+    type: "boolean",
+    default: "false",
+    description: "Whether to render the built-in close button.",
+  },
+  {
     prop: "showBar",
     type: "boolean",
     default: "false",
     description: "Whether to render the drag handle bar.",
+  },
+  {
+    prop: "portalProps",
+    type: "Drawer.Portal.Props",
+    default: "—",
+    description: "Props forwarded to the underlying portal.",
   },
 ]
