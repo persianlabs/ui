@@ -68,11 +68,12 @@ function DropdownMenuContent({
   className,
   sideOffset = 6,
   align,
+  alignOffset,
   side,
   children,
   ...props
 }: MenuPrimitive.Popup.Props &
-  Pick<MenuPrimitive.Positioner.Props, "align" | "side"> & {
+  Pick<MenuPrimitive.Positioner.Props, "align" | "alignOffset" | "side"> & {
     sideOffset?: number
   }) {
   const { dir } = React.useContext(DropdownMenuDirContext)
@@ -84,6 +85,7 @@ function DropdownMenuContent({
         data-slot="dropdown-menu-positioner"
         sideOffset={sideOffset}
         align={align}
+        alignOffset={alignOffset}
         side={side}
         className="z-50 outline-none"
       >
