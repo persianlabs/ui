@@ -28,6 +28,7 @@ export const docsNav: DocsNavGroup[] = [
   {
     title: "Components",
     items: [
+      { title: "Accordion", href: "/docs/components/accordion" },
       { title: "Breadcrumb", href: "/docs/components/breadcrumb" },
       { title: "Button", href: "/docs/components/button" },
       { title: "Button Group", href: "/docs/components/button-group" },
@@ -40,6 +41,7 @@ export const docsNav: DocsNavGroup[] = [
       },
       { title: "Collapsible", href: "/docs/components/collapsible" },
       { title: "Combobox", href: "/docs/components/combobox" },
+      { title: "Context Menu", href: "/docs/components/context-menu" },
       {
         title: "Elastic Range Slider",
         href: "/docs/components/elastic-range-slider",
@@ -50,16 +52,19 @@ export const docsNav: DocsNavGroup[] = [
       { title: "Input", href: "/docs/components/input" },
       { title: "Input Group", href: "/docs/components/input-group" },
       { title: "Input OTP", href: "/docs/components/input-otp" },
+      { title: "Menubar", href: "/docs/components/menubar" },
       { title: "Native Select", href: "/docs/components/native-select" },
       { title: "Progress", href: "/docs/components/progress" },
       { title: "Radio Group", href: "/docs/components/radio-group" },
       { title: "Select", href: "/docs/components/select" },
       { title: "Separator", href: "/docs/components/separator" },
+      { title: "Sheet", href: "/docs/components/sheet" },
       { title: "Switch", href: "/docs/components/switch" },
       { title: "Tabs", href: "/docs/components/tabs" },
       { title: "Textarea", href: "/docs/components/textarea" },
       { title: "Toggle", href: "/docs/components/toggle" },
       { title: "Toggle Group", href: "/docs/components/toggle-group" },
+      { title: "Tooltip", href: "/docs/components/tooltip" },
     ],
   },
   {

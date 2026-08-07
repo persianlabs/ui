@@ -790,3 +790,195 @@ export function ElasticRangeSliderPreview() {
     </div>
   )
 }
+
+export function TooltipPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "6px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          borderRadius: "6px",
+          backgroundColor: "#f2f0ee",
+          color: "#1a1a1a",
+          fontSize: "12px",
+          padding: "6px 10px",
+        }}
+      >
+        Add to library
+      </div>
+      <div
+        style={{
+          display: "flex",
+          width: "8px",
+          height: "8px",
+          backgroundColor: "#f2f0ee",
+          transform: "rotate(45deg)",
+        }}
+      />
+      <div
+        style={{
+          display: "flex",
+          marginTop: "8px",
+          borderRadius: "8px",
+          border: "1px solid rgba(242,240,238,0.2)",
+          fontSize: "13px",
+          color: "#f2f0ee",
+          padding: "6px 16px",
+        }}
+      >
+        Hover
+      </div>
+    </div>
+  )
+}
+
+export function AccordionPreview() {
+  const rows = ["Is it accessible?", "Is it styled?", "Is it animated?"]
+  return (
+    <div style={{ display: "flex", flexDirection: "column", width: "220px" }}>
+      {rows.map((row, i) => (
+        <div
+          key={row}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "10px 2px",
+            borderBottom:
+              i < rows.length - 1 ? "1px solid rgba(242,240,238,0.12)" : "none",
+            fontSize: "13px",
+            color: i === 0 ? "#f2f0ee" : "rgba(242,240,238,0.6)",
+          }}
+        >
+          <span>{row}</span>
+          <ChevronDownGlyph size={14} />
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export function SheetPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        width: "220px",
+        height: "140px",
+        borderRadius: "10px",
+        backgroundColor: "rgba(242,240,238,0.06)",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "8px",
+          position: "absolute",
+          insetInlineEnd: 0,
+          top: 0,
+          bottom: 0,
+          width: "40%",
+          backgroundColor: "#1a1a1a",
+          borderInlineStart: "1px solid rgba(242,240,238,0.16)",
+          padding: "12px",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            width: "60%",
+            height: "8px",
+            borderRadius: "999px",
+            backgroundColor: "rgba(242,240,238,0.5)",
+          }}
+        />
+        <div
+          style={{
+            display: "flex",
+            width: "80%",
+            height: "6px",
+            borderRadius: "999px",
+            backgroundColor: "rgba(242,240,238,0.2)",
+          }}
+        />
+      </div>
+    </div>
+  )
+}
+
+export function ContextMenuPreview() {
+  const rows = ["Back", "Forward", "Reload"]
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "150px",
+        borderRadius: "10px",
+        backgroundColor: "#1a1a1a",
+        border: "1px solid rgba(242,240,238,0.14)",
+        padding: "6px",
+        gap: "2px",
+      }}
+    >
+      {rows.map((row, i) => (
+        <div
+          key={row}
+          style={{
+            display: "flex",
+            borderRadius: "6px",
+            padding: "6px 8px",
+            fontSize: "12px",
+            backgroundColor: i === 1 ? "rgba(242,240,238,0.12)" : "transparent",
+            color: "#f2f0ee",
+          }}
+        >
+          {row}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export function MenubarPreview() {
+  const items = ["File", "Edit", "View"]
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "4px",
+        borderRadius: "10px",
+        border: "1px solid rgba(242,240,238,0.16)",
+        backgroundColor: "rgba(242,240,238,0.04)",
+        padding: "6px",
+      }}
+    >
+      {items.map((item, i) => (
+        <div
+          key={item}
+          style={{
+            display: "flex",
+            borderRadius: "6px",
+            padding: "6px 10px",
+            fontSize: "13px",
+            backgroundColor: i === 0 ? "rgba(242,240,238,0.14)" : "transparent",
+            color: "#f2f0ee",
+          }}
+        >
+          {item}
+        </div>
+      ))}
+    </div>
+  )
+}

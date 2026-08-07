@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Badge } from "@/components/badge"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
 import {
+  AccordionPreview,
   BreadcrumbPreview,
   ButtonGroupPreview,
   ButtonPreview,
@@ -12,22 +13,26 @@ import {
   CitySelectorPreview,
   CollapsiblePreview,
   ComboboxPreview,
+  ContextMenuPreview,
   ElasticRangeSliderPreview,
   ElasticSliderPreview,
   EmptyPreview,
   InputGroupPreview,
   InputOTPPreview,
   InputPreview,
+  MenubarPreview,
   NativeSelectPreview,
   ProgressPreview,
   RadioGroupPreview,
   SelectPreview,
   SeparatorPreview,
+  SheetPreview,
   SwitchPreview,
   TabsPreview,
   TextareaPreview,
   ToggleGroupPreview,
   TogglePreview,
+  TooltipPreview,
 } from "@/lib/component-previews"
 
 export const metadata: Metadata = {
@@ -324,6 +329,66 @@ const components = [
     thumbnail: (
       <ThumbnailFrame>
         <ElasticRangeSliderPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Tooltip",
+    href: "/docs/components/tooltip" as const,
+    description:
+      "Displays contextual information when hovering or focusing an element, built on Base UI.",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <TooltipPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Accordion",
+    href: "/docs/components/accordion" as const,
+    description:
+      "A vertically stacked set of interactive headings that each reveal a section of content, built on Base UI.",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <AccordionPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Sheet",
+    href: "/docs/components/sheet" as const,
+    description:
+      "A panel that slides in from an edge of the screen to complement the main content, built on Base UI.",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <SheetPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Context Menu",
+    href: "/docs/components/context-menu" as const,
+    description:
+      "A menu of actions triggered by a right click, built on Base UI.",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <ContextMenuPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Menubar",
+    href: "/docs/components/menubar" as const,
+    description:
+      "A persistent horizontal menu bar for application-style commands, built on Base UI.",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <MenubarPreview />
       </ThumbnailFrame>
     ),
   },
