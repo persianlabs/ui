@@ -371,7 +371,7 @@ function DrawerFooter({
 
   const defaultProps = {
     className: cn(
-      "relative flex flex-col-reverse gap-2 px-6 pb-(--safe-area-inset-bottom,0px) sm:flex-row sm:justify-end",
+      "flex flex-col-reverse gap-2 px-6 pb-(--safe-area-inset-bottom,0px) sm:flex-row sm:justify-end",
       !allowSelection && "cursor-default",
       variant === "default" &&
         "border-t border-border bg-muted/72 pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+--spacing(4))]",
@@ -385,18 +385,6 @@ function DrawerFooter({
       position === "left" && "has-[~[data-slot=drawer-bar]]:-mr-2",
       position === "right" && "has-[~[data-slot=drawer-bar]]:-ml-2",
       position === "top" && "has-[~[data-slot=drawer-bar]]:-mb-2",
-      // Belt-and-suspenders bleed for the live drag/swipe animation: the
-      // popup's border-radius clips nothing (it isn't overflow-hidden while
-      // dragging, so height/width can shift a frame ahead of layout), so
-      // extend the footer's own background a few pixels past its box on the
-      // handle-adjacent edge to guarantee no gap ever shows mid-swipe.
-      variant === "default" &&
-        cn(
-          "after:pointer-events-none after:absolute after:bg-muted/72",
-          position === "left" && "after:inset-y-0 after:-right-2 after:w-2",
-          position === "right" && "after:inset-y-0 after:-left-2 after:w-2",
-          position === "top" && "after:inset-x-0 after:-bottom-2 after:h-2"
-        ),
       className
     ),
     "data-slot": "drawer-footer",
