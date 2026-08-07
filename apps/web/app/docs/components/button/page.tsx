@@ -14,19 +14,21 @@ import { ComponentPreview } from "@/components/component-preview"
 import { CopyCommand } from "@/components/copy-command"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
 import { DocsPageFooter } from "@/components/docs-page-footer"
+import { ButtonBlueExample } from "@/components/examples/button-blue"
 import { ButtonDefaultExample } from "@/components/examples/button-default"
 import { ButtonDestructiveExample } from "@/components/examples/button-destructive"
 import { ButtonGhostExample } from "@/components/examples/button-ghost"
 import { ButtonGroupDemoExample } from "@/components/examples/button-group-demo"
 import { ButtonIconExample } from "@/components/examples/button-icon"
 import { ButtonLinkExample } from "@/components/examples/button-link"
+import { ButtonLoadingExample } from "@/components/examples/button-loading"
+import { ButtonLoadingHideContentExample } from "@/components/examples/button-loading-hide-content"
 import { ButtonOutlineExample } from "@/components/examples/button-outline"
 import { ButtonRenderExample } from "@/components/examples/button-render"
 import { ButtonRoundedExample } from "@/components/examples/button-rounded"
 import { ButtonRtlExample } from "@/components/examples/button-rtl"
 import { ButtonSecondaryExample } from "@/components/examples/button-secondary"
 import { ButtonSizeExample } from "@/components/examples/button-size"
-import { ButtonSpinnerExample } from "@/components/examples/button-spinner"
 import { ButtonWithIconExample } from "@/components/examples/button-with-icon"
 import { InstallCommand } from "@/components/install-command"
 import { LastUpdated } from "@/components/last-updated"
@@ -57,12 +59,13 @@ const tocItems = [
       { id: "variant-ghost", title: "Ghost" },
       { id: "variant-destructive", title: "Destructive" },
       { id: "variant-link", title: "Link" },
+      { id: "variant-blue", title: "Blue" },
     ],
   },
   { id: "icon", title: "Icon" },
   { id: "with-icon", title: "With icon" },
   { id: "rounded", title: "Rounded" },
-  { id: "spinner", title: "Spinner" },
+  { id: "loading", title: "Loading" },
   { id: "as-link", title: "As link" },
   { id: "button-group", title: "Button Group" },
   { id: "rtl", title: "RTL" },
@@ -88,7 +91,11 @@ const buttonMarkdown = [
   "",
   "## Variants",
   "",
-  "Pass `variant` to switch between `default`, `outline`, `secondary`, `ghost`, `destructive`, and `link`.",
+  "Pass `variant` to switch between `default`, `outline`, `secondary`, `ghost`, `destructive`, `link`, `blue`, and `blue-subtle`.",
+  "",
+  "## Loading",
+  "",
+  "Pass `loading` to show a spinner alongside the button's content and disable interaction. Pass `hideContentOnLoading` too to hide the content and show only a centered spinner instead.",
   "",
   "## Installation",
   "",
@@ -262,6 +269,23 @@ export default function ButtonDocPage() {
           </div>
         </div>
 
+        <div className="mt-8">
+          <h3
+            id="variant-blue"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Blue
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ButtonBlueExample />}
+              code={
+                <CodeBlock code={getExampleSource("button-blue")} lang="tsx" />
+              }
+            />
+          </div>
+        </div>
+
         <h2 id="icon" className="mt-12 text-xl font-semibold tracking-tight">
           Icon
         </h2>
@@ -322,21 +346,45 @@ export default function ButtonDocPage() {
           />
         </div>
 
-        <h2 id="spinner" className="mt-12 text-xl font-semibold tracking-tight">
-          Spinner
+        <h2 id="loading" className="mt-12 text-xl font-semibold tracking-tight">
+          Loading
         </h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
-          Render a{" "}
+          Pass{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            {"<Spinner />"}
+            loading
           </code>{" "}
-          component inside the button to show a loading state.
+          to show a spinner alongside the button&apos;s content and disable
+          interaction. The spinner scales with the button&apos;s{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+            size
+          </code>
+          .
         </p>
         <div className="mt-4">
           <ComponentPreview
-            preview={<ButtonSpinnerExample />}
+            preview={<ButtonLoadingExample />}
             code={
-              <CodeBlock code={getExampleSource("button-spinner")} lang="tsx" />
+              <CodeBlock code={getExampleSource("button-loading")} lang="tsx" />
+            }
+          />
+        </div>
+
+        <p className="mt-6 leading-relaxed text-muted-foreground">
+          Add{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+            hideContentOnLoading
+          </code>{" "}
+          to hide the content instead and show only a centered spinner.
+        </p>
+        <div className="mt-4">
+          <ComponentPreview
+            preview={<ButtonLoadingHideContentExample />}
+            code={
+              <CodeBlock
+                code={getExampleSource("button-loading-hide-content")}
+                lang="tsx"
+              />
             }
           />
         </div>

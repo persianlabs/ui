@@ -8,7 +8,10 @@
       "type": "registry:ui",
       "title": "Button",
       "description": "A button built on Base UI with variant and size support.",
-      "registryDependencies": ["utils"],
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/spinner.json"
+      ],
       "dependencies": ["@base-ui/react", "class-variance-authority"],
       "files": [
         {
