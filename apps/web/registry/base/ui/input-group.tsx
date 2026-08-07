@@ -11,7 +11,7 @@ function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
       role="group"
       data-slot="input-group"
       className={cn(
-        "group/input-group relative flex h-8 w-full items-center gap-1.5 rounded-lg border border-border bg-background px-1 focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 has-[[data-disabled]]:pointer-events-none has-[[data-disabled]]:opacity-50 has-[textarea]:h-auto has-[textarea]:items-start",
+        "group/input-group relative flex h-8 w-full flex-wrap items-center gap-1.5 rounded-lg border border-border bg-background px-1 focus-within:border-ring focus-within:ring-3 focus-within:ring-ring/50 has-[[data-disabled]]:pointer-events-none has-[[data-disabled]]:opacity-50 has-[textarea]:h-auto has-[textarea]:items-start",
         className
       )}
       {...props}
@@ -26,6 +26,10 @@ const inputGroupAddonVariants = cva(
       align: {
         "inline-start": "order-first pe-1",
         "inline-end": "order-last ps-1",
+        "block-start":
+          "order-first w-full justify-start pb-1 group-has-[>textarea]/input-group:pt-2.5",
+        "block-end":
+          "order-last w-full justify-start pt-1 group-has-[>textarea]/input-group:pb-2.5",
       },
     },
     defaultVariants: {
@@ -94,11 +98,28 @@ function InputGroupInput({
   )
 }
 
+function InputGroupTextarea({
+  className,
+  ...props
+}: React.ComponentProps<"textarea">) {
+  return (
+    <textarea
+      data-slot="input-group-textarea"
+      className={cn(
+        "flex-1 resize-none bg-transparent py-2.5 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
 export {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
   InputGroupText,
+  InputGroupTextarea,
   inputGroupAddonVariants,
 }
