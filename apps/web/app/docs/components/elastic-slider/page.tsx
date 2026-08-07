@@ -118,6 +118,10 @@ export default function ElasticSliderDocPage() {
               label: "Josh Puckett — Interface Craft",
               href: "https://www.interfacecraft.dev",
             },
+            {
+              label: "Chánh Đại — Elastic Slider",
+              href: "https://chanhdai.com/components/elastic-slider",
+            },
           ]}
           changed
           changes={[

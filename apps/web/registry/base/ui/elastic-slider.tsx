@@ -169,12 +169,14 @@ export function ElasticSlider({
   )
 
   // Rubber band: widens the track and pulls it toward the overshot edge.
+  // This is a physical screen-space effect (always the physical left/right
+  // edge), independent of the logical start/end used for value positioning.
   const rubberStretch = useMotionValue(0)
   const rubberWidth = useTransform(
     rubberStretch,
     (s) => `calc(100% + ${Math.abs(s)}px)`
   )
-  const rubberInsetStart = useTransform(rubberStretch, (s) => (s < 0 ? s : 0))
+  const rubberX = useTransform(rubberStretch, (s) => (s < 0 ? s : 0))
 
   // Sync from props when not interacting and no spring is in flight.
   useEffect(() => {
@@ -507,10 +509,10 @@ export function ElasticSlider({
         aria-valuenow={value}
         aria-valuetext={displayValue}
         className={cn(
-          "group/elastic-slider absolute inset-0 cursor-pointer touch-none overflow-hidden rounded-(--elastic-slider-radius) bg-(--elastic-slider-bg) outline-none select-none",
+          "group/elastic-slider absolute inset-y-0 left-0 cursor-pointer touch-none overflow-hidden rounded-(--elastic-slider-radius) bg-(--elastic-slider-bg) outline-none select-none",
           "data-[focus-visible=true]:ring-2 data-[focus-visible=true]:ring-ring/50 data-[focus-visible=true]:ring-offset-1 data-[focus-visible=true]:ring-offset-background"
         )}
-        style={{ width: rubberWidth, insetInlineStart: rubberInsetStart }}
+        style={{ width: rubberWidth, x: rubberX }}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}

@@ -4,12 +4,6 @@ import { useState } from "react"
 
 import { ElasticSlider } from "@workspace/ui/components/elastic-slider"
 
-const persianDigits = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"]
-
-function toPersianDigits(value: number) {
-  return String(value).replace(/\d/g, (d) => persianDigits[Number(d)] ?? d)
-}
-
 export function ElasticSliderRtlExample() {
   const [price, setPrice] = useState(50)
 
@@ -22,7 +16,7 @@ export function ElasticSliderRtlExample() {
         step={1}
         value={price}
         onValueChange={setPrice}
-        formatValue={(v) => `${toPersianDigits(v)} هزار تومان`}
+        formatValue={(v) => `${v} هزار تومان`}
       />
     </div>
   )

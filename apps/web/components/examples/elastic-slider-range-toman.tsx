@@ -4,13 +4,8 @@ import { useState } from "react"
 
 import { ElasticRangeSlider } from "@workspace/ui/components/elastic-range-slider"
 
-const persianDigits = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"]
-
-function toPersianDigits(value: number) {
-  return value
-    .toLocaleString("en-US")
-    .replaceAll(",", "٬")
-    .replace(/\d/g, (d) => persianDigits[Number(d)] ?? d)
+function formatToman(value: number) {
+  return value.toLocaleString("en-US").replaceAll(",", "٬")
 }
 
 export function ElasticSliderRangeTomanExample() {
@@ -26,13 +21,13 @@ export function ElasticSliderRangeTomanExample() {
         step={100_000}
         value={range}
         onValueChange={setRange}
-        formatValue={(v) => toPersianDigits(v)}
+        formatValue={(v) => formatToman(v)}
         minThumbLabel="حداقل قیمت"
         maxThumbLabel="حداکثر قیمت"
       />
       <div className="mt-3 flex flex-col gap-1 text-sm text-muted-foreground">
-        <span>از {toPersianDigits(min)} تومان</span>
-        <span>تا {toPersianDigits(max)} تومان</span>
+        <span>از {formatToman(min)} تومان</span>
+        <span>تا {formatToman(max)} تومان</span>
       </div>
     </div>
   )

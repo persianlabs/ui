@@ -370,6 +370,15 @@ export function ElasticRangeSlider({
     ]
   )
 
+  const discreteSteps = (absoluteMax - absoluteMin) / step
+  const hashMarkCount = discreteSteps <= 10 ? discreteSteps - 1 : 9
+
+  const hashMarkPct = (i: number) => {
+    return discreteSteps <= 10
+      ? (((i + 1) * step) / (absoluteMax - absoluteMin)) * 100
+      : (i + 1) * 10
+  }
+
   const handleKeyDown = useCallback(
     (thumb: Thumb) => (e: React.KeyboardEvent) => {
       const arrowStep = e.shiftKey ? step * 10 : step
@@ -429,6 +438,7 @@ export function ElasticRangeSlider({
         "[--elastic-slider-bg:var(--muted)]",
         "[--elastic-slider-fill:var(--muted-foreground)]/10",
         "[--elastic-slider-fill-active:var(--muted-foreground)]/20",
+        "[--elastic-slider-hash:var(--muted-foreground)]/30",
         "[--elastic-slider-handle:var(--foreground)]",
         "[--elastic-slider-label:var(--muted-foreground)]",
         "[--elastic-slider-focus:var(--foreground)]",
@@ -440,7 +450,7 @@ export function ElasticRangeSlider({
         ref={trackRef}
         data-slot="elastic-slider-track"
         data-active={isActive}
-        className="group/elastic-slider absolute inset-0 touch-none overflow-hidden rounded-(--elastic-slider-radius) bg-(--elastic-slider-bg) select-none"
+        className="group/elastic-slider absolute inset-y-0 left-0 touch-none overflow-hidden rounded-(--elastic-slider-radius) bg-(--elastic-slider-bg) select-none"
         style={{ width: rubberWidth, x: rubberX }}
         onPointerDown={handleTrackPointerDown}
         onPointerMove={handlePointerMove}
@@ -448,6 +458,26 @@ export function ElasticRangeSlider({
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
+        <div
+          data-slot="elastic-slider-hash-marks"
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+        >
+          {Array.from({ length: hashMarkCount }, (_, i) => (
+            <div
+              key={i}
+              className={cn(
+                "absolute top-1/2 h-2 w-px -translate-y-1/2 rounded-full transition-colors duration-200",
+                "bg-transparent group-data-[active=true]/elastic-slider:bg-(--elastic-slider-hash)"
+              )}
+              style={{
+                left: `${hashMarkPct(i)}%`,
+                transform: "translateX(-50%) translateY(-50%)",
+              }}
+            />
+          ))}
+        </div>
+
         <motion.div
           data-slot="elastic-slider-fill"
           aria-hidden="true"
