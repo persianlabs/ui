@@ -4,6 +4,8 @@ import Link from "next/link"
 import { Badge } from "@/components/badge"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
 import {
+  ButtonGroupPreview,
+  ButtonPreview,
   CitySelectorPreview,
   ComboboxPreview,
   TabsPreview,
@@ -23,6 +25,31 @@ function ThumbnailFrame({ children }: { children: React.ReactNode }) {
 }
 
 const components = [
+  {
+    title: "Button",
+    href: "/docs/components/button" as const,
+    description: "A button built on Base UI with variant and size support.",
+    badge: undefined,
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <ButtonPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Button Group",
+    href: "/docs/components/button-group" as const,
+    description:
+      "A container that groups related buttons together with consistent styling.",
+    badge: "New",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <ButtonGroupPreview />
+      </ThumbnailFrame>
+    ),
+  },
   {
     title: "Tabs",
     href: "/docs/components/tabs" as const,

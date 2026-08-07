@@ -61,6 +61,53 @@ export function TabsPreview() {
   )
 }
 
+export function ButtonPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        padding: "12px 24px",
+        borderRadius: "10px",
+        backgroundColor: "#f2f0ee",
+        color: "#191817",
+        fontSize: "18px",
+        fontWeight: 600,
+      }}
+    >
+      Button
+    </div>
+  )
+}
+
+export function ButtonGroupPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        borderRadius: "10px",
+        overflow: "hidden",
+        border: "1px solid rgba(242,240,238,0.16)",
+      }}
+    >
+      {["Button 1", "Button 2"].map((label, index) => (
+        <div
+          key={label}
+          style={{
+            display: "flex",
+            padding: "12px 20px",
+            fontSize: "17px",
+            color: "#f2f0ee",
+            borderLeft:
+              index > 0 ? "1px solid rgba(242,240,238,0.16)" : undefined,
+          }}
+        >
+          {label}
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export function ComboboxPreview() {
   return (
     <div

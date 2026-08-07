@@ -23,9 +23,15 @@ export const docsNav: DocsNavGroup[] = [
     title: "Components",
     items: [
       { title: "Overview", href: "/docs/components" },
+      { title: "Button", href: "/docs/components/button" },
+      {
+        title: "Button Group",
+        href: "/docs/components/button-group",
+        badge: "New",
+      },
       { title: "Tabs", href: "/docs/components/tabs" },
       { title: "Combobox", href: "/docs/components/combobox" },
-      { title: "City Selector", href: "/docs/components/city-selector", badge: "New" },
+      { title: "City Selector", href: "/docs/components/city-selector" },
     ],
   },
   {
