@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "field",
+  "title": "Field",
+  "description": "Groups a label, control, and description into an accessible form field, built on Base UI.",
+  "dependencies": [
+    "@base-ui/react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/base/ui/field.tsx",
+      "content": "import { Field as FieldPrimitive } from \"@base-ui/react/field\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport type * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst fieldVariants = cva(\"group/field flex flex-col gap-2\", {\n  variants: {\n    orientation: {\n      vertical: \"\",\n      horizontal: \"flex-row items-center justify-between gap-4\",\n    },\n  },\n  defaultVariants: {\n    orientation: \"vertical\",\n  },\n})\n\nfunction Field({\n  className,\n  orientation,\n  ...props\n}: FieldPrimitive.Root.Props & VariantProps<typeof fieldVariants>) {\n  return (\n    <FieldPrimitive.Root\n      data-slot=\"field\"\n      data-orientation={orientation}\n      className={cn(fieldVariants({ orientation }), className)}\n      {...props}\n    />\n  )\n}\n\nfunction FieldGroup({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"field-group\"\n      className={cn(\"flex flex-col gap-6\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction FieldLabel({ className, ...props }: FieldPrimitive.Label.Props) {\n  return (\n    <FieldPrimitive.Label\n      data-slot=\"field-label\"\n      className={cn(\n        \"flex items-center gap-2 text-sm leading-none font-medium select-none group-data-[disabled]/field:opacity-50 group-data-[invalid]/field:text-destructive\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction FieldDescription({\n  className,\n  ...props\n}: FieldPrimitive.Description.Props) {\n  return (\n    <FieldPrimitive.Description\n      data-slot=\"field-description\"\n      className={cn(\n        \"text-muted-foreground text-sm leading-normal group-data-[disabled]/field:opacity-50\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction FieldError({ className, ...props }: FieldPrimitive.Error.Props) {\n  return (\n    <FieldPrimitive.Error\n      data-slot=\"field-error\"\n      className={cn(\"text-destructive text-sm leading-normal\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { Field, FieldDescription, FieldError, FieldGroup, FieldLabel }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

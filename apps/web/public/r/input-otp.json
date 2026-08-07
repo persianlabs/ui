@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input-otp",
+  "title": "Input OTP",
+  "description": "An accessible one-time password input, built on input-otp.",
+  "dependencies": [
+    "input-otp",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/base/ui/input-otp.tsx",
+      "content": "\"use client\"\n\nimport {\n  OTPInput,\n  OTPInputContext,\n  REGEXP_ONLY_CHARS,\n  REGEXP_ONLY_DIGITS,\n  REGEXP_ONLY_DIGITS_AND_CHARS,\n} from \"input-otp\"\nimport { MinusIcon } from \"lucide-react\"\nimport * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/**\n * OTP values are always digits, so the slots must read left-to-right even\n * inside an RTL page. `dir` on OTPInput itself only reaches the (invisible)\n * native input, not the visible slots it renders as children — so it's set\n * on this wrapper instead, which the slots actually inherit direction from.\n */\nfunction InputOTP({\n  className,\n  containerClassName,\n  ...props\n}: React.ComponentProps<typeof OTPInput>) {\n  return (\n    <div data-slot=\"input-otp\" dir=\"ltr\" className=\"contents\">\n      <OTPInput\n        containerClassName={cn(\n          \"flex items-center gap-2 has-[[data-disabled]]:opacity-50\",\n          containerClassName\n        )}\n        className={cn(\"disabled:cursor-not-allowed\", className)}\n        {...props}\n      />\n    </div>\n  )\n}\n\nfunction InputOTPGroup({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"input-otp-group\"\n      className={cn(\"flex items-center\", className)}\n      {...props}\n    />\n  )\n}\n\nfunction InputOTPSlot({\n  index,\n  className,\n  ...props\n}: React.ComponentProps<\"div\"> & { index: number }) {\n  const inputOTPContext = React.useContext(OTPInputContext)\n  const { char, hasFakeCaret, isActive } = inputOTPContext?.slots[index] ?? {}\n\n  return (\n    <div\n      data-slot=\"input-otp-slot\"\n      data-active={isActive || undefined}\n      className={cn(\n        \"border-input relative flex h-9 w-9 items-center justify-center border-y border-e text-sm outline-none first:rounded-s-lg first:border-s last:rounded-e-lg data-[active]:z-10 data-[active]:border-ring data-[active]:ring-3 data-[active]:ring-ring/50 aria-invalid:border-destructive dark:bg-input/30\",\n        className\n      )}\n      {...props}\n    >\n      {char}\n      {hasFakeCaret && (\n        <div className=\"pointer-events-none absolute inset-0 flex items-center justify-center\">\n          <div className=\"bg-foreground h-4 w-px animate-pulse duration-1000\" />\n        </div>\n      )}\n    </div>\n  )\n}\n\nfunction InputOTPSeparator({ ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div data-slot=\"input-otp-separator\" role=\"separator\" {...props}>\n      <MinusIcon className=\"text-muted-foreground size-4\" />\n    </div>\n  )\n}\n\nexport {\n  InputOTP,\n  InputOTPGroup,\n  InputOTPSeparator,\n  InputOTPSlot,\n  REGEXP_ONLY_CHARS,\n  REGEXP_ONLY_DIGITS,\n  REGEXP_ONLY_DIGITS_AND_CHARS,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}
