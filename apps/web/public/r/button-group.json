@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button-group",
+  "title": "Button Group",
+  "description": "A container that groups related buttons together with consistent styling.",
+  "dependencies": [
+    "@base-ui/react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/base/ui/button-group.tsx",
+      "content": "import { Separator as SeparatorPrimitive } from \"@base-ui/react/separator\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst buttonGroupVariants = cva(\n  \"flex w-fit items-stretch has-[>[data-slot=button-group]]:gap-2 [&>*]:focus-visible:relative [&>*]:focus-visible:z-10\",\n  {\n    variants: {\n      orientation: {\n        horizontal:\n          \"[&>*:not(:first-child)]:rounded-s-none [&>*:not(:first-child)]:border-s-0 [&>*:not(:last-child)]:rounded-e-none\",\n        vertical:\n          \"flex-col [&>*:not(:first-child)]:rounded-t-none [&>*:not(:first-child)]:border-t-0 [&>*:not(:last-child)]:rounded-b-none\",\n      },\n    },\n    defaultVariants: {\n      orientation: \"horizontal\",\n    },\n  }\n)\n\nfunction ButtonGroup({\n  className,\n  orientation,\n  ...props\n}: React.ComponentProps<\"div\"> & VariantProps<typeof buttonGroupVariants>) {\n  return (\n    <div\n      role=\"group\"\n      data-slot=\"button-group\"\n      data-orientation={orientation}\n      className={cn(buttonGroupVariants({ orientation }), className)}\n      {...props}\n    />\n  )\n}\n\nfunction ButtonGroupSeparator({\n  className,\n  orientation = \"vertical\",\n  ...props\n}: React.ComponentProps<typeof SeparatorPrimitive>) {\n  return (\n    <SeparatorPrimitive\n      data-slot=\"button-group-separator\"\n      orientation={orientation}\n      className={cn(\n        \"relative !m-0 self-stretch bg-input data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-auto\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction ButtonGroupText({\n  className,\n  asChild = false,\n  children,\n  ...props\n}: React.ComponentProps<\"div\"> & { asChild?: boolean }) {\n  const textClassName = cn(\n    \"flex items-center gap-2 rounded-md bg-muted px-3 text-sm font-medium shadow-none\",\n    className\n  )\n\n  if (asChild && React.isValidElement<{ className?: string }>(children)) {\n    return React.cloneElement(children, {\n      className: cn(textClassName, children.props.className),\n      ...props,\n    })\n  }\n\n  return (\n    <div data-slot=\"button-group-text\" className={textClassName} {...props}>\n      {children}\n    </div>\n  )\n}\n\nexport {\n  ButtonGroup,\n  ButtonGroupSeparator,\n  ButtonGroupText,\n  buttonGroupVariants,\n}\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

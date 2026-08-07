@@ -50,7 +50,7 @@ export function ComponentPreview({
         <div
           key={resolvedDir}
           dir={resolvedDir}
-          className="border-border bg-card flex min-h-56 items-center justify-center rounded-xl border p-8"
+          className="border-border bg-background flex min-h-56 items-center justify-center rounded-xl border p-8"
         >
           {preview}
         </div>

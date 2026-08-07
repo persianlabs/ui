@@ -25,7 +25,9 @@ export function ApiReference({
               <th className="text-muted-foreground px-4 py-2 font-medium">Prop</th>
               <th className="text-muted-foreground px-4 py-2 font-medium">Type</th>
               <th className="text-muted-foreground px-4 py-2 font-medium">Default</th>
-              <th className="text-muted-foreground px-4 py-2 font-medium">Description</th>
+              <th className="text-muted-foreground min-w-64 px-4 py-2 font-medium">
+                Description
+              </th>
             </tr>
           </thead>
           <tbody className="divide-border/60 divide-y">
@@ -44,7 +46,7 @@ export function ApiReference({
                 <td className="text-muted-foreground px-4 py-2.5 font-mono whitespace-nowrap">
                   {row.default ?? "—"}
                 </td>
-                <td className="text-muted-foreground px-4 py-2.5 leading-relaxed">
+                <td className="text-muted-foreground min-w-64 px-4 py-2.5 leading-relaxed">
                   {row.description}
                 </td>
               </tr>

@@ -4,6 +4,8 @@ import Link from "next/link"
 import { Badge } from "@/components/badge"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
 import {
+  ButtonGroupPreview,
+  ButtonPreview,
   CitySelectorPreview,
   ComboboxPreview,
   TabsPreview,
@@ -24,11 +26,36 @@ function ThumbnailFrame({ children }: { children: React.ReactNode }) {
 
 const components = [
   {
+    title: "Button",
+    href: "/docs/components/button" as const,
+    description: "A button built on Base UI with variant and size support.",
+    badge: "New",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <ButtonPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Button Group",
+    href: "/docs/components/button-group" as const,
+    description:
+      "A container that groups related buttons together with consistent styling.",
+    badge: "New",
+    createdAt: "2026-08-07",
+    thumbnail: (
+      <ThumbnailFrame>
+        <ButtonGroupPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
     title: "Tabs",
     href: "/docs/components/tabs" as const,
     description:
       "Layered panels with a sliding active-tab indicator, built on Base UI.",
-    badge: undefined,
+    badge: "New",
     createdAt: "2026-08-01",
     thumbnail: (
       <ThumbnailFrame>
@@ -40,7 +67,7 @@ const components = [
     title: "Combobox",
     href: "/docs/components/combobox" as const,
     description: "A searchable, accessible combobox built on Base UI.",
-    badge: undefined,
+    badge: "New",
     createdAt: "2026-08-06",
     thumbnail: (
       <ThumbnailFrame>
@@ -53,7 +80,7 @@ const components = [
     href: "/docs/components/city-selector" as const,
     description:
       "A province & city picker for Iran, built on Combobox and bundled with all 31 provinces and 1,119 cities.",
-    badge: "New",
+    badge: "Special",
     createdAt: "2026-08-06",
     thumbnail: (
       <ThumbnailFrame>
