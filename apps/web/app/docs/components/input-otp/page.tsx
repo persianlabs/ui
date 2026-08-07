@@ -26,6 +26,7 @@ import { InputOTPPatternExample } from "@/components/examples/input-otp-pattern"
 import { InputOTPSeparatorExample } from "@/components/examples/input-otp-separator"
 import { InstallCommand } from "@/components/install-command"
 import { LastUpdated } from "@/components/last-updated"
+import { Step, Steps } from "@/components/steps"
 import { TableOfContents } from "@/components/table-of-contents"
 import { getComponentSource } from "@/lib/component-source"
 import { getExampleSource } from "@/lib/example-source"
@@ -176,28 +177,21 @@ export default function InputOTPDocPage() {
             <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/input-otp.json" />
           </TabsContent>
 
-          <TabsContent value="manual" className="mt-4 space-y-6">
-            <div>
-              <p className="text-sm font-medium">1. Install the dependencies</p>
+          <TabsContent value="manual" className="mt-4">
+            <Steps>
+              <Step>Install the dependencies</Step>
               <div className="mt-2">
                 <InstallCommand packages="input-otp" />
               </div>
-            </div>
-            <div>
-              <p className="text-sm font-medium">
-                2. Copy the component source
-              </p>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                Create{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-                  components/ui/input-otp.tsx
-                </code>{" "}
-                and paste this in.
-              </p>
+              <Step>Copy the component source</Step>
               <div className="mt-2">
-                <CodeBlock code={getComponentSource("input-otp")} lang="tsx" />
+                <CodeBlock
+                  code={getComponentSource("input-otp")}
+                  lang="tsx"
+                  title="components/ui/input-otp.tsx"
+                />
               </div>
-            </div>
+            </Steps>
           </TabsContent>
         </Tabs>
 

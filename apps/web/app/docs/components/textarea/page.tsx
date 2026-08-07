@@ -21,6 +21,7 @@ import { TextareaFieldExample } from "@/components/examples/textarea-field"
 import { TextareaInvalidExample } from "@/components/examples/textarea-invalid"
 import { TextareaRtlExample } from "@/components/examples/textarea-rtl"
 import { LastUpdated } from "@/components/last-updated"
+import { Step, Steps } from "@/components/steps"
 import { TableOfContents } from "@/components/table-of-contents"
 import { getComponentSource } from "@/lib/component-source"
 import { getExampleSource } from "@/lib/example-source"
@@ -132,22 +133,17 @@ export default function TextareaDocPage() {
             <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/textarea.json" />
           </TabsContent>
 
-          <TabsContent value="manual" className="mt-4 space-y-6">
-            <div>
-              <p className="text-sm font-medium">
-                1. Copy the component source
-              </p>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                Create{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-                  components/ui/textarea.tsx
-                </code>{" "}
-                and paste this in.
-              </p>
+          <TabsContent value="manual" className="mt-4">
+            <Steps>
+              <Step>Copy the component source</Step>
               <div className="mt-2">
-                <CodeBlock code={getComponentSource("textarea")} lang="tsx" />
+                <CodeBlock
+                  code={getComponentSource("textarea")}
+                  lang="tsx"
+                  title="components/ui/textarea.tsx"
+                />
               </div>
-            </div>
+            </Steps>
           </TabsContent>
         </Tabs>
 

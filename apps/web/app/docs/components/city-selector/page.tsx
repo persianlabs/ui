@@ -21,6 +21,7 @@ import { CopyMarkdownButton } from "@/components/copy-markdown-button"
 import { Credits } from "@/components/credits"
 import { DocsPageFooter } from "@/components/docs-page-footer"
 import { LastUpdated } from "@/components/last-updated"
+import { Step, Steps } from "@/components/steps"
 import { TableOfContents } from "@/components/table-of-contents"
 import { getComponentSource, getLibSource } from "@/lib/component-source"
 import { getExampleSource } from "@/lib/example-source"
@@ -213,29 +214,19 @@ export default function CitySelectorDocPage() {
             </p>
           </TabsContent>
 
-          <TabsContent value="manual" className="mt-4 space-y-6">
-            <div>
-              <p className="text-sm font-medium">1. Install the dependencies</p>
+          <TabsContent value="manual" className="mt-4">
+            <Steps>
+              <Step>Install the dependencies</Step>
               <div className="mt-2">
                 <InstallCommand packages="@base-ui/react" />
               </div>
-            </div>
-            <div>
-              <p className="text-sm font-medium">
-                2. Add the provinces & cities data
-              </p>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                Create{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-                  lib/persian-provinces.ts
-                </code>{" "}
-                and paste this in.
-              </p>
+              <Step>Add the provinces &amp; cities data</Step>
               <div className="mt-2">
                 <CodeBlock
                   code={provincesHead}
                   copyText={provincesSource}
                   lang="tsx"
+                  title="lib/persian-provinces.ts"
                 />
                 <p className="mt-1.5 text-xs leading-relaxed text-muted-foreground">
                   Showing the first 100 of {provincesLines.length} lines —
@@ -243,38 +234,23 @@ export default function CitySelectorDocPage() {
                   the full file.
                 </p>
               </div>
-            </div>
-            <div>
-              <p className="text-sm font-medium">3. Copy the Combobox source</p>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                Create{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-                  components/ui/combobox.tsx
-                </code>{" "}
-                and paste this in.
-              </p>
+              <Step>Copy the Combobox source</Step>
               <div className="mt-2">
-                <CodeBlock code={getComponentSource("combobox")} lang="tsx" />
+                <CodeBlock
+                  code={getComponentSource("combobox")}
+                  lang="tsx"
+                  title="components/ui/combobox.tsx"
+                />
               </div>
-            </div>
-            <div>
-              <p className="text-sm font-medium">
-                4. Copy the City Selector source
-              </p>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                Create{" "}
-                <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-                  components/ui/city-selector.tsx
-                </code>{" "}
-                and paste this in.
-              </p>
+              <Step>Copy the City Selector source</Step>
               <div className="mt-2">
                 <CodeBlock
                   code={getComponentSource("city-selector")}
                   lang="tsx"
+                  title="components/ui/city-selector.tsx"
                 />
               </div>
-            </div>
+            </Steps>
           </TabsContent>
         </Tabs>
 

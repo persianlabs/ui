@@ -6,26 +6,39 @@ export async function CodeBlock({
   lang = "tsx",
   className,
   copyText,
+  title,
 }: {
   code: string
   lang?: string
   className?: string
   copyText?: string
+  /** Filename shown in a header bar above the code, e.g. "components/ui/button.tsx". */
+  title?: string
 }) {
   const html = await highlightCode(code, lang)
 
   return (
     <div
       className={
-        "border-border bg-card group/code relative overflow-hidden rounded-lg border " +
+        "group/code relative overflow-hidden rounded-lg border border-border bg-card " +
         (className ?? "")
       }
     >
-      <div className="absolute top-2 right-2 z-10 opacity-0 transition-opacity group-hover/code:opacity-100">
+      {title && (
+        <div className="border-b border-border px-4 py-2.5 font-mono text-xs text-muted-foreground">
+          {title}
+        </div>
+      )}
+      <div
+        className={
+          "absolute right-2 z-10 opacity-0 transition-opacity group-hover/code:opacity-100 " +
+          (title ? "top-1.5" : "top-2")
+        }
+      >
         <CopyButton
           text={copyText ?? code}
           label="Copy code"
-          className="bg-background/80 border-border rounded-md border p-1.5 backdrop-blur-sm"
+          className="rounded-md border border-border bg-background/80 p-1.5 backdrop-blur-sm"
         />
       </div>
       <div

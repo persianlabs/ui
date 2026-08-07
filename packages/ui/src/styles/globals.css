@@ -181,19 +181,26 @@
     @apply border-border outline-ring/50;
   }
   body {
-      font-family:
+    font-family:
       var(--font-sans),
-    @apply bg-background text-foreground;
+      @apply bg-background text-foreground;
   }
   ::selection {
     @apply bg-foreground text-background;
   }
-
-
 }
 
 @utility link-underline {
   @apply underline decoration-current/30 decoration-1 underline-offset-3 transition-colors hover:decoration-current;
+}
+
+@utility step {
+  counter-increment: step;
+
+  &:before {
+    @apply me-2 inline-flex size-6 items-center justify-center rounded-full border-background bg-muted text-center -indent-px font-mono text-sm font-medium md:absolute md:ms-[-50px] md:mt-[-4px] md:size-9 md:border-4;
+    content: counter(step);
+  }
 }
 
 .code-block-content code span {
