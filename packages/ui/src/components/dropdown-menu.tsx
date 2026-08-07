@@ -104,12 +104,19 @@ function DropdownMenuContent({
   )
 }
 
-function DropdownMenuItem({ className, ...props }: MenuPrimitive.Item.Props) {
+function DropdownMenuItem({
+  className,
+  variant = "default",
+  ...props
+}: MenuPrimitive.Item.Props & {
+  variant?: "default" | "destructive"
+}) {
   return (
     <MenuPrimitive.Item
       data-slot="dropdown-menu-item"
+      data-variant={variant}
       className={cn(
-        "relative flex cursor-default items-center gap-2 rounded-md px-2 py-1.5 text-sm text-foreground outline-none select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[highlighted]:bg-muted data-[highlighted]:text-foreground",
+        "relative flex cursor-default items-center gap-2 rounded-md px-2 py-1.5 text-sm text-foreground outline-none select-none data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[highlighted]:bg-muted data-[highlighted]:text-foreground data-[variant=destructive]:text-destructive data-[variant=destructive]:data-[highlighted]:bg-destructive/10 dark:data-[variant=destructive]:data-[highlighted]:bg-destructive/20 data-[variant=destructive]:*:[svg]:text-destructive",
         className
       )}
       {...props}

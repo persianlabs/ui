@@ -29,6 +29,7 @@ export const docsNav: DocsNavGroup[] = [
     title: "Components",
     items: [
       { title: "Accordion", href: "/docs/components/accordion" },
+      { title: "Alert Dialog", href: "/docs/components/alert-dialog" },
       { title: "Breadcrumb", href: "/docs/components/breadcrumb" },
       { title: "Button", href: "/docs/components/button" },
       { title: "Button Group", href: "/docs/components/button-group" },
@@ -42,6 +43,8 @@ export const docsNav: DocsNavGroup[] = [
       { title: "Collapsible", href: "/docs/components/collapsible" },
       { title: "Combobox", href: "/docs/components/combobox" },
       { title: "Context Menu", href: "/docs/components/context-menu" },
+      { title: "Dialog", href: "/docs/components/dialog" },
+      { title: "Drawer", href: "/docs/components/drawer" },
       {
         title: "Elastic Range Slider",
         href: "/docs/components/elastic-range-slider",
@@ -56,6 +59,16 @@ export const docsNav: DocsNavGroup[] = [
       { title: "Native Select", href: "/docs/components/native-select" },
       { title: "Progress", href: "/docs/components/progress" },
       { title: "Radio Group", href: "/docs/components/radio-group" },
+      {
+        title: "Responsive Dialog",
+        href: "/docs/components/responsive-dialog",
+        badge: "New",
+      },
+      {
+        title: "Responsive Menu",
+        href: "/docs/components/responsive-menu",
+        badge: "New",
+      },
       { title: "Select", href: "/docs/components/select" },
       { title: "Separator", href: "/docs/components/separator" },
       { title: "Sheet", href: "/docs/components/sheet" },

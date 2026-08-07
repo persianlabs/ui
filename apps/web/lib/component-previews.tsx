@@ -982,3 +982,182 @@ export function MenubarPreview() {
     </div>
   )
 }
+
+export function DialogPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "10px",
+        width: "220px",
+        borderRadius: "14px",
+        border: "1px solid rgba(242,240,238,0.16)",
+        backgroundColor: "rgba(242,240,238,0.04)",
+        padding: "16px",
+      }}
+    >
+      <div style={{ display: "flex", fontSize: "14px", color: "#f2f0ee" }}>
+        Edit profile
+      </div>
+      <div
+        style={{
+          display: "flex",
+          fontSize: "12px",
+          color: "rgba(242,240,238,0.6)",
+        }}
+      >
+        Make changes to your profile here.
+      </div>
+      <div
+        style={{
+          display: "flex",
+          height: "24px",
+          borderRadius: "6px",
+          border: "1px solid rgba(242,240,238,0.16)",
+        }}
+      />
+    </div>
+  )
+}
+
+export function AlertDialogPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        gap: "8px",
+        width: "200px",
+        borderRadius: "14px",
+        border: "1px solid rgba(242,240,238,0.16)",
+        backgroundColor: "rgba(242,240,238,0.04)",
+        padding: "16px",
+        textAlign: "center",
+      }}
+    >
+      <div style={{ display: "flex", fontSize: "13px", color: "#f2f0ee" }}>
+        Are you absolutely sure?
+      </div>
+      <div
+        style={{
+          display: "flex",
+          fontSize: "11px",
+          color: "rgba(242,240,238,0.6)",
+        }}
+      >
+        This action cannot be undone.
+      </div>
+      <div style={{ display: "flex", gap: "8px", marginTop: "6px" }}>
+        <div
+          style={{
+            display: "flex",
+            borderRadius: "6px",
+            border: "1px solid rgba(242,240,238,0.2)",
+            padding: "6px 14px",
+            fontSize: "12px",
+            color: "#f2f0ee",
+          }}
+        >
+          Cancel
+        </div>
+        <div
+          style={{
+            display: "flex",
+            borderRadius: "6px",
+            backgroundColor: "#f2f0ee",
+            padding: "6px 14px",
+            fontSize: "12px",
+            color: "#1a1a1a",
+          }}
+        >
+          Continue
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export function DrawerPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "200px",
+        height: "140px",
+        borderRadius: "10px",
+        backgroundColor: "rgba(242,240,238,0.06)",
+        position: "relative",
+        overflow: "hidden",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "8px",
+          position: "absolute",
+          insetInlineStart: 0,
+          insetInlineEnd: 0,
+          bottom: 0,
+          height: "55%",
+          backgroundColor: "#1a1a1a",
+          borderTop: "1px solid rgba(242,240,238,0.16)",
+          borderTopLeftRadius: "14px",
+          borderTopRightRadius: "14px",
+          padding: "10px 12px",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            width: "36px",
+            height: "4px",
+            borderRadius: "999px",
+            backgroundColor: "rgba(242,240,238,0.3)",
+          }}
+        />
+        <div
+          style={{
+            display: "flex",
+            width: "60%",
+            height: "8px",
+            borderRadius: "999px",
+            backgroundColor: "rgba(242,240,238,0.5)",
+          }}
+        />
+      </div>
+    </div>
+  )
+}
+
+export function ResponsiveDialogPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "10px",
+      }}
+    >
+      <DialogPreview />
+    </div>
+  )
+}
+
+export function ResponsiveMenuPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "10px",
+      }}
+    >
+      <ContextMenuPreview />
+    </div>
+  )
+}

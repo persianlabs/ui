@@ -546,6 +546,102 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "A modal window layered over the page for focused tasks or confirmations, built on Base UI.",
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/button.json",
+        "https://ui.persian-labs.ir/r/scroll-area.json"
+      ],
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/base/ui/dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "description": "A modal dialog that interrupts the user with important content and expects a response, built on Base UI.",
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/button.json"
+      ],
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "registry/base/ui/alert-dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "A swipeable panel that slides in from an edge of the screen, built on Base UI.",
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/scroll-area.json"
+      ],
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/base/ui/drawer.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "responsive-dialog",
+      "type": "registry:ui",
+      "title": "Responsive Dialog",
+      "description": "Renders a Dialog on desktop and a bottom Drawer on mobile from one shared set of components.",
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/dialog.json",
+        "https://ui.persian-labs.ir/r/drawer.json"
+      ],
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/base/ui/responsive-dialog.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base/hooks/use-media-query.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "responsive-menu",
+      "type": "registry:ui",
+      "title": "Responsive Menu",
+      "description": "Renders a Dropdown Menu on desktop and a bottom Drawer menu on mobile from one shared set of components.",
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/dropdown-menu.json",
+        "https://ui.persian-labs.ir/r/drawer.json"
+      ],
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/base/ui/responsive-menu.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base/hooks/use-media-query.ts",
+          "type": "registry:hook"
+        }
+      ]
     }
   ]
 }

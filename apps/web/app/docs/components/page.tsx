@@ -5,6 +5,7 @@ import { Badge } from "@/components/badge"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
 import {
   AccordionPreview,
+  AlertDialogPreview,
   BreadcrumbPreview,
   ButtonGroupPreview,
   ButtonPreview,
@@ -14,6 +15,8 @@ import {
   CollapsiblePreview,
   ComboboxPreview,
   ContextMenuPreview,
+  DialogPreview,
+  DrawerPreview,
   ElasticRangeSliderPreview,
   ElasticSliderPreview,
   EmptyPreview,
@@ -24,6 +27,8 @@ import {
   NativeSelectPreview,
   ProgressPreview,
   RadioGroupPreview,
+  ResponsiveDialogPreview,
+  ResponsiveMenuPreview,
   SelectPreview,
   SeparatorPreview,
   SheetPreview,
@@ -389,6 +394,68 @@ const components = [
     thumbnail: (
       <ThumbnailFrame>
         <MenubarPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Dialog",
+    href: "/docs/components/dialog" as const,
+    description:
+      "A modal window layered over the page for focused tasks or confirmations, built on Base UI.",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <DialogPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Alert Dialog",
+    href: "/docs/components/alert-dialog" as const,
+    description:
+      "A modal dialog that interrupts the user with important content and expects a response, built on Base UI.",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <AlertDialogPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Drawer",
+    href: "/docs/components/drawer" as const,
+    description:
+      "A swipeable panel that slides in from an edge of the screen, built on Base UI.",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <DrawerPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Responsive Dialog",
+    href: "/docs/components/responsive-dialog" as const,
+    description:
+      "Renders a Dialog on desktop and a bottom Drawer on mobile from one shared set of components.",
+    badge: "New",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <ResponsiveDialogPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Responsive Menu",
+    href: "/docs/components/responsive-menu" as const,
+    description:
+      "Renders a Dropdown Menu on desktop and a bottom Drawer menu on mobile from one shared set of components.",
+    badge: "New",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <ResponsiveMenuPreview />
       </ThumbnailFrame>
     ),
   },
