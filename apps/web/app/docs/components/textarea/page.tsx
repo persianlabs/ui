@@ -1,12 +1,18 @@
 import type { Metadata } from "next"
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@workspace/ui/components/tabs"
 
 import { ApiReference } from "@/components/api-reference"
 import { CodeBlock } from "@/components/code-block"
 import { ComponentPreview } from "@/components/component-preview"
 import { CopyCommand } from "@/components/copy-command"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
+import { Credits } from "@/components/credits"
 import { DocsPageFooter } from "@/components/docs-page-footer"
 import { TextareaButtonExample } from "@/components/examples/textarea-button"
 import { TextareaDemoExample } from "@/components/examples/textarea-demo"
@@ -86,10 +92,13 @@ export default function TextareaDocPage() {
           <CopyMarkdownButton markdown={textareaMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          Displays a form textarea, or a component that looks like a
-          textarea.
+          Displays a form textarea, or a component that looks like a textarea.
         </p>
         <LastUpdated date={lastEdited} />
+        <Credits
+          sources={[{ label: "shadcn/ui", href: "https://ui.shadcn.com" }]}
+          changed={false}
+        />
 
         <h2
           id="overview"
@@ -210,7 +219,10 @@ export default function TextareaDocPage() {
           <ComponentPreview
             preview={<TextareaButtonExample />}
             code={
-              <CodeBlock code={getExampleSource("textarea-button")} lang="tsx" />
+              <CodeBlock
+                code={getExampleSource("textarea-button")}
+                lang="tsx"
+              />
             }
           />
         </div>

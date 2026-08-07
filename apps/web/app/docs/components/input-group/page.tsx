@@ -1,12 +1,18 @@
 import type { Metadata } from "next"
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@workspace/ui/components/tabs"
 
 import { ApiReference } from "@/components/api-reference"
 import { CodeBlock } from "@/components/code-block"
 import { ComponentPreview } from "@/components/component-preview"
 import { CopyCommand } from "@/components/copy-command"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
+import { Credits } from "@/components/credits"
 import { DocsPageFooter } from "@/components/docs-page-footer"
 import { InputGroupBlockEndExample } from "@/components/examples/input-group-block-end"
 import { InputGroupBlockStartExample } from "@/components/examples/input-group-block-start"
@@ -161,10 +167,13 @@ export default function InputGroupDocPage() {
           <CopyMarkdownButton markdown={inputGroupMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          Add addons, buttons, or helper content alongside an input or
-          textarea.
+          Add addons, buttons, or helper content alongside an input or textarea.
         </p>
         <LastUpdated date={lastEdited} />
+        <Credits
+          sources={[{ label: "shadcn/ui", href: "https://ui.shadcn.com" }]}
+          changed={false}
+        />
 
         <h2
           id="overview"
@@ -176,7 +185,10 @@ export default function InputGroupDocPage() {
           <ComponentPreview
             preview={<InputGroupDemoExample />}
             code={
-              <CodeBlock code={getExampleSource("input-group-demo")} lang="tsx" />
+              <CodeBlock
+                code={getExampleSource("input-group-demo")}
+                lang="tsx"
+              />
             }
           />
         </div>
@@ -312,7 +324,10 @@ export default function InputGroupDocPage() {
           <ComponentPreview
             preview={<InputGroupIconExample />}
             code={
-              <CodeBlock code={getExampleSource("input-group-icon")} lang="tsx" />
+              <CodeBlock
+                code={getExampleSource("input-group-icon")}
+                lang="tsx"
+              />
             }
           />
         </div>
@@ -324,7 +339,10 @@ export default function InputGroupDocPage() {
           <ComponentPreview
             preview={<InputGroupTextExample />}
             code={
-              <CodeBlock code={getExampleSource("input-group-text")} lang="tsx" />
+              <CodeBlock
+                code={getExampleSource("input-group-text")}
+                lang="tsx"
+              />
             }
           />
         </div>
@@ -351,7 +369,10 @@ export default function InputGroupDocPage() {
           <ComponentPreview
             preview={<InputGroupKbdExample />}
             code={
-              <CodeBlock code={getExampleSource("input-group-kbd")} lang="tsx" />
+              <CodeBlock
+                code={getExampleSource("input-group-kbd")}
+                lang="tsx"
+              />
             }
           />
         </div>
@@ -442,7 +463,10 @@ export default function InputGroupDocPage() {
             dir="rtl"
             preview={<InputGroupRtlExample />}
             code={
-              <CodeBlock code={getExampleSource("input-group-rtl")} lang="tsx" />
+              <CodeBlock
+                code={getExampleSource("input-group-rtl")}
+                lang="tsx"
+              />
             }
           />
         </div>
@@ -466,9 +490,7 @@ export default function InputGroupDocPage() {
 
           <TabsContent value="manual" className="mt-4 space-y-6">
             <div>
-              <p className="text-sm font-medium">
-                1. Install the dependencies
-              </p>
+              <p className="text-sm font-medium">1. Install the dependencies</p>
               <div className="mt-2">
                 <InstallCommand packages="@base-ui/react class-variance-authority" />
               </div>
@@ -511,10 +533,7 @@ export default function InputGroupDocPage() {
         <ApiReference title="InputGroupAddon" rows={inputGroupAddonApi} />
         <ApiReference title="InputGroupButton" rows={inputGroupButtonApi} />
         <ApiReference title="InputGroupInput" rows={inputGroupInputApi} />
-        <ApiReference
-          title="InputGroupTextarea"
-          rows={inputGroupTextareaApi}
-        />
+        <ApiReference title="InputGroupTextarea" rows={inputGroupTextareaApi} />
 
         <DocsPageFooter
           href="/docs/components/input-group"

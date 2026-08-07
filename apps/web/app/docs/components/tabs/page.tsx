@@ -1,11 +1,17 @@
 import type { Metadata } from "next"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@workspace/ui/components/tabs"
 
 import { ApiReference } from "@/components/api-reference"
 import { CodeBlock } from "@/components/code-block"
 import { ComponentPreview } from "@/components/component-preview"
 import { CopyCommand } from "@/components/copy-command"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
+import { Credits } from "@/components/credits"
 import { InstallCommand } from "@/components/install-command"
 import { DocsPageFooter } from "@/components/docs-page-footer"
 import { LastUpdated } from "@/components/last-updated"
@@ -116,20 +122,27 @@ export default function TabsDocPage() {
 
   return (
     <div className="flex gap-10">
-      <article className="min-w-0 max-w-3xl flex-1">
+      <article className="max-w-3xl min-w-0 flex-1">
         <div className="flex flex-col items-end justify-between gap-3 sm:flex-row sm:items-center">
-          <h1 className="text-3xl font-semibold tracking-tight self-start sm:self-auto">
+          <h1 className="self-start text-3xl font-semibold tracking-tight sm:self-auto">
             Tabs
           </h1>
           <CopyMarkdownButton markdown={tabsMarkdown} />
         </div>
-        <p className="text-muted-foreground mt-3 max-w-2xl leading-relaxed">
+        <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
           A set of layered panels, one visible at a time, with an active-tab
           indicator that slides to match the current selection using a spring
           animation. Built on Base UI&apos;s tabs primitive, so focus
           management, keyboard navigation, and ARIA wiring come for free.
         </p>
         <LastUpdated date={lastEdited} />
+        <Credits
+          sources={[{ label: "shadcn/ui", href: "https://ui.shadcn.com" }]}
+          changed
+          changes={[
+            "Added enter/exit animations powered by Motion (motion.dev)",
+          ]}
+        />
 
         <h2
           id="overview"
@@ -152,13 +165,13 @@ export default function TabsDocPage() {
         >
           Variants
         </h2>
-        <p className="text-muted-foreground mt-3 leading-relaxed">
+        <p className="mt-3 leading-relaxed text-muted-foreground">
           Pass{" "}
-          <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm">
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
             variant
           </code>{" "}
           to{" "}
-          <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm">
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
             Tabs
           </code>{" "}
           to switch the tab list&apos;s visual style.
@@ -182,7 +195,7 @@ export default function TabsDocPage() {
         <div className="mt-4">
           <h3
             id="example-icons"
-            className="text-muted-foreground text-sm font-medium"
+            className="text-sm font-medium text-muted-foreground"
           >
             With icons
           </h3>
@@ -199,7 +212,7 @@ export default function TabsDocPage() {
         <div className="mt-8">
           <h3
             id="example-disabled"
-            className="text-muted-foreground text-sm font-medium"
+            className="text-sm font-medium text-muted-foreground"
           >
             Disabled tab
           </h3>
@@ -219,7 +232,7 @@ export default function TabsDocPage() {
         <div className="mt-8">
           <h3
             id="example-controlled"
-            className="text-muted-foreground text-sm font-medium"
+            className="text-sm font-medium text-muted-foreground"
           >
             Controlled
           </h3>
@@ -239,7 +252,7 @@ export default function TabsDocPage() {
         <div className="mt-8">
           <h3
             id="example-vertical"
-            className="text-muted-foreground text-sm font-medium"
+            className="text-sm font-medium text-muted-foreground"
           >
             Vertical
           </h3>
@@ -259,14 +272,14 @@ export default function TabsDocPage() {
         <div className="mt-8">
           <h3
             id="example-scrollable"
-            className="text-muted-foreground text-sm font-medium"
+            className="text-sm font-medium text-muted-foreground"
           >
             Scrollable
           </h3>
-          <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
-            When the tab list overflows, edges fade to hint at more content
-            and sharpen once you&apos;ve scrolled all the way — direction
-            aware, so it mirrors correctly in RTL.
+          <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
+            When the tab list overflows, edges fade to hint at more content and
+            sharpen once you&apos;ve scrolled all the way — direction aware, so
+            it mirrors correctly in RTL.
           </p>
           <div className="mt-3">
             <ComponentPreview
@@ -300,9 +313,7 @@ export default function TabsDocPage() {
 
           <TabsContent value="manual" className="mt-4 space-y-6">
             <div>
-              <p className="text-sm font-medium">
-                1. Install the dependencies
-              </p>
+              <p className="text-sm font-medium">1. Install the dependencies</p>
               <div className="mt-2">
                 <InstallCommand packages="@base-ui/react motion" />
               </div>
@@ -311,9 +322,9 @@ export default function TabsDocPage() {
               <p className="text-sm font-medium">
                 2. Copy the component source
               </p>
-              <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
+              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
                 Create{" "}
-                <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm">
+                <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
                   components/ui/tabs.tsx
                 </code>{" "}
                 and paste this in.
