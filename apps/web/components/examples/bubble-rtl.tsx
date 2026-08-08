@@ -2,6 +2,7 @@ import {
   Bubble,
   BubbleContent,
   BubbleGroup,
+  BubbleReactions,
 } from "@workspace/ui/components/bubble"
 
 export function BubbleRtlExample() {
@@ -12,6 +13,9 @@ export function BubbleRtlExample() {
       </Bubble>
       <Bubble align="end">
         <BubbleContent>البته، چی شده؟</BubbleContent>
+        <BubbleReactions role="img" aria-label="واکنش: پسندیدن">
+          <span>👍</span>
+        </BubbleReactions>
       </Bubble>
     </BubbleGroup>
   )
