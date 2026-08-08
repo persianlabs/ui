@@ -6,22 +6,16 @@ import * as React from "react"
 
 export function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme()
-  const [mounted, setMounted] = React.useState(false)
-
-  React.useEffect(() => setMounted(true), [])
 
   return (
     <button
       type="button"
       aria-label="Toggle theme"
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-      className="text-muted-foreground hover:text-foreground hover:bg-muted inline-flex size-7 shrink-0 items-center justify-center rounded-md transition-colors"
+      className="inline-flex size-7 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
     >
-      {mounted && resolvedTheme === "dark" ? (
-        <SunIcon className="size-4" />
-      ) : (
-        <MoonIcon className="size-4" />
-      )}
+      <SunIcon className="block size-4 dark:hidden" />
+      <MoonIcon className="hidden size-4 dark:block" />
     </button>
   )
 }

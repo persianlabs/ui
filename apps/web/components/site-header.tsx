@@ -9,35 +9,47 @@ import { ThemeToggle } from "@/components/theme-toggle"
 import { GITHUB_URL } from "@/lib/github"
 
 const navLinks = [
-  { href: "/docs/components", label: "Components" },
   { href: "/docs", label: "Docs" },
+  { href: "/docs/components", label: "Components" },
+  { href: "#", label: "Blocks", disabled: true },
+  { href: "#", label: "Templates", disabled: true },
 ]
 
-export function SiteHeader({ showMobileNav = false }: { showMobileNav?: boolean }) {
+export function SiteHeader({
+  showMobileNav = false,
+}: {
+  showMobileNav?: boolean
+}) {
   return (
-    <header className="border-border/60 bg-background/80 sticky top-0 z-50 w-full border-b backdrop-blur-md">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between px-6">
+    <header className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-md">
+      <div className="flex h-14 w-full items-center justify-between px-6">
         <div className="flex items-center gap-3">
           {showMobileNav && <MobileNav />}
-          <Link href="/" className="flex items-center gap-2">
-            <AppLogo className="text-foreground size-5" />
-            <span className="text-sm font-semibold tracking-tight">
-              PersianLabs/ui
-            </span>
+          <Link href="/" aria-label="PersianLabs/ui">
+            <AppLogo className="size-5 text-foreground" />
           </Link>
+          <nav className="hidden items-center gap-5 md:flex">
+            {navLinks.map((link) =>
+              link.disabled ? (
+                <span
+                  key={link.label}
+                  aria-disabled="true"
+                  className="cursor-not-allowed text-sm text-muted-foreground/50"
+                >
+                  {link.label}
+                </span>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {link.label}
+                </a>
+              )
+            )}
+          </nav>
         </div>
-
-        <nav className="hidden items-center gap-6 md:flex">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-muted-foreground hover:text-foreground text-sm transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
 
         <div className="flex items-center gap-3">
           <a
@@ -45,7 +57,7 @@ export function SiteHeader({ showMobileNav = false }: { showMobileNav?: boolean 
             target="_blank"
             rel="noreferrer"
             aria-label="View PersianLabs/ui on GitHub"
-            className="border-border hover:bg-muted flex h-7 items-center gap-2 rounded-md border px-2.5 transition-colors"
+            className="flex h-7 items-center gap-2 rounded-md border border-border px-2.5 transition-colors hover:bg-muted"
           >
             <GithubIcon className="size-4" />
             <Suspense fallback={<GithubStarsFallback />}>
