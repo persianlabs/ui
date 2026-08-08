@@ -7,6 +7,7 @@ import {
 } from "@workspace/ui/components/tabs"
 
 import { ApiReference } from "@/components/api-reference"
+import { BaseUiReference } from "@/components/base-ui-reference"
 import { CodeBlock } from "@/components/code-block"
 import { ComponentPreview } from "@/components/component-preview"
 import { CopyCommand } from "@/components/copy-command"
@@ -14,6 +15,7 @@ import { CopyMarkdownButton } from "@/components/copy-markdown-button"
 import { Credits } from "@/components/credits"
 import { DocsPageFooter } from "@/components/docs-page-footer"
 import { ResponsiveDialogDemoExample } from "@/components/examples/responsive-dialog-demo"
+import { ResponsiveDialogDesktopOnlyExample } from "@/components/examples/responsive-dialog-desktop-only"
 import { ResponsiveDialogNoFooterExample } from "@/components/examples/responsive-dialog-no-footer"
 import { ResponsiveDialogRtlExample } from "@/components/examples/responsive-dialog-rtl"
 import { InstallCommand } from "@/components/install-command"
@@ -37,6 +39,7 @@ export const metadata: Metadata = {
 
 const tocItems = [
   { id: "overview", title: "Overview" },
+  { id: "desktop-only-actions", title: "Desktop-only actions" },
   { id: "no-footer", title: "No footer" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
@@ -117,6 +120,7 @@ export default function ResponsiveDialogDocPage() {
           </h1>
           <CopyMarkdownButton markdown={responsiveDialogMarkdown} />
         </div>
+
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
           A modal that adapts to the viewport — a centered{" "}
           <a
@@ -164,6 +168,21 @@ export default function ResponsiveDialogDocPage() {
                 lang="tsx"
               />
             }
+          />
+        </div>
+
+        <h2 id="desktop-only-actions" className="mt-12 text-xl font-semibold tracking-tight">
+          Desktop-only actions
+        </h2>
+        <p className="mt-3 leading-relaxed text-muted-foreground">
+          Wrap a secondary cancel action with{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">ResponsiveDialogDesktopOnly</code>.
+          The primary action remains available everywhere, while mobile users dismiss the drawer by swiping down.
+        </p>
+        <div className="mt-4">
+          <ComponentPreview
+            preview={<ResponsiveDialogDesktopOnlyExample />}
+            code={<CodeBlock code={getExampleSource("responsive-dialog-desktop-only")} lang="tsx" />}
           />
         </div>
 
@@ -277,6 +296,8 @@ export default function ResponsiveDialogDocPage() {
           API Reference
         </h2>
         <ApiReference title="ResponsiveDialog" rows={responsiveDialogRootApi} />
+        <BaseUiReference href="https://base-ui.com/react/components/dialog" label="Dialog API" />
+        <BaseUiReference href="https://base-ui.com/react/components/drawer" label="Drawer API" />
 
         <DocsPageFooter
           href="/docs/components/responsive-dialog"
