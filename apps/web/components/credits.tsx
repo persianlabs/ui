@@ -109,10 +109,10 @@ export function Credits({
       </p>
 
       {changed && changes && changes.length > 0 && (
-        // -mx-4 breaks the fade out of the card's own px-4 so it reaches the
-        // card's actual edges instead of stopping at the padding boundary;
-        // the list gets that px-4 back directly so its text stays aligned.
-        <div className="relative -mx-4">
+        // Cancel the card's horizontal and bottom padding only for this
+        // overflow region. That lets the absolute fade reach the true card
+        // edges while the list itself keeps the normal text alignment.
+        <div className={cn("relative -mx-4", collapsed && "-mb-3.5")}>
           <ul
             ref={listRef}
             style={collapsed ? { maxHeight: COLLAPSED_HEIGHT } : undefined}
@@ -131,11 +131,7 @@ export function Credits({
             ))}
           </ul>
           {collapsed && (
-            // -bottom-3.5 + rounded-b-lg extend the same distance past the
-            // list that -mx-4 does horizontally, reaching the card's actual
-            // bottom edge (matching its own py-3.5/rounded-lg) instead of
-            // fading out mid-padding.
-            <div className="absolute inset-x-0 -bottom-3.5 flex items-end justify-center rounded-b-lg bg-gradient-to-t from-muted/95 via-muted/70 to-transparent pt-10 pb-3.5">
+            <div className="absolute inset-x-0 bottom-0 flex items-end justify-center rounded-b-lg bg-gradient-to-t from-card via-card/90 to-transparent pt-14 pb-3.5">
               <button
                 type="button"
                 onClick={() => setExpanded(true)}

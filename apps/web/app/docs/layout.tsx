@@ -20,8 +20,12 @@ export default function DocsLayout({
               whichever Tailwind happens to define later in its generated
               stylesheet wins the cascade — which was "relative", silently
               downgrading this to non-sticky. */}
-          <div className="sticky top-14 h-[calc(100vh-3.5rem)]">
-            <ScrollArea className="h-full">
+          <div className="relative sticky top-14 h-[calc(100vh-3.5rem)]">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute top-1/2 right-0 h-4/5 w-px -translate-y-1/2 rounded-full bg-gradient-to-b from-border/20 via-border to-border/20"
+            />
+            <ScrollArea className="h-full [&_[data-slot=scroll-area-scrollbar]]:hidden">
               <div className="px-6 pt-6 pb-10">
                 <DocsSidebar />
               </div>
