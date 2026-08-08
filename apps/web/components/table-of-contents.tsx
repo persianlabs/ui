@@ -38,8 +38,11 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
   const flatItems = React.useMemo(() => flatten(items), [items])
   const [activeId, setActiveId] = React.useState<string | null>(null)
   const [canAnimate, setCanAnimate] = React.useState(false)
+  const [navigationComplete, setNavigationComplete] = React.useState(0)
   const listRef = React.useRef<HTMLUListElement>(null)
   const scrollAreaRef = React.useRef<HTMLDivElement>(null)
+  const isNavigatingRef = React.useRef(false)
+  const navigationCleanupRef = React.useRef<(() => void) | null>(null)
   const [linePath, setLinePath] = React.useState<string | null>(null)
   const [track, setTrack] = React.useState<{
     top: number
@@ -178,7 +181,7 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
     const viewport = scrollAreaRef.current?.querySelector<HTMLElement>(
       '[data-slot="scroll-area-viewport"]'
     )
-    if (!viewport) return
+    if (!viewport || isNavigatingRef.current) return
 
     const rowTop = row.offsetTop
     const targetScrollTop = Math.max(
@@ -195,7 +198,11 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
         behavior: canAnimate ? "smooth" : "auto",
       })
     }
-  }, [activeId])
+  }, [activeId, canAnimate, navigationComplete])
+
+  React.useEffect(() => {
+    return () => navigationCleanupRef.current?.()
+  }, [])
 
   function onLinkClick(event: React.MouseEvent<HTMLAnchorElement>, id: string) {
     event.preventDefault()
@@ -209,6 +216,25 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
     const offset = headerHeight + 24
     const top = target.getBoundingClientRect().top + window.scrollY - offset
 
+    navigationCleanupRef.current?.()
+    isNavigatingRef.current = true
+
+    let timeoutId: number | null = null
+    const finishNavigation = () => {
+      if (timeoutId !== null) window.clearTimeout(timeoutId)
+      window.removeEventListener("scroll", handleScroll)
+      isNavigatingRef.current = false
+      navigationCleanupRef.current = null
+      setNavigationComplete((version) => version + 1)
+    }
+    const handleScroll = () => {
+      if (timeoutId !== null) window.clearTimeout(timeoutId)
+      timeoutId = window.setTimeout(finishNavigation, 150)
+    }
+
+    navigationCleanupRef.current = finishNavigation
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    handleScroll()
     window.scrollTo({ top, behavior: "smooth" })
   }
 
