@@ -4,6 +4,7 @@ import Link from "next/link"
 import { CopyCommand } from "@/components/copy-command"
 import { GithubIcon } from "@/components/icons"
 import { SiteHeader } from "@/components/site-header"
+import { SiteFooter } from "@/components/site-footer"
 import { GITHUB_URL } from "@/lib/github"
 
 export default function Page() {
@@ -15,7 +16,7 @@ export default function Page() {
         <section className="relative w-full overflow-hidden px-6 py-20">
           <div
             aria-hidden
-            className="absolute inset-0 -z-10 [background-image:radial-gradient(var(--color-line)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black,transparent)]"
+            className="absolute inset-0 -z-10 [background-image:radial-gradient(var(--color-line)_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,black,transparent)] [background-size:24px_24px]"
           />
 
           <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
@@ -23,7 +24,7 @@ export default function Page() {
               href={GITHUB_URL}
               target="_blank"
               rel="noreferrer"
-              className="border-border bg-card text-muted-foreground hover:text-foreground mb-6 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs transition-colors"
+              className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
             >
               <GithubIcon className="size-3.5" />
               Open source and free forever
@@ -35,14 +36,14 @@ export default function Page() {
               Copy, paste, own.
             </h1>
 
-            <p className="text-muted-foreground mt-5 max-w-xl text-balance">
+            <p className="mt-5 max-w-xl text-balance text-muted-foreground">
               A copy-paste component library, RTL-first for Persian interfaces.
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link
                 href="/docs/components"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex h-9 items-center gap-1.5 rounded-lg px-4 text-sm font-medium transition-colors"
+                className="inline-flex h-9 items-center gap-1.5 rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
               >
                 Browse components
                 <ArrowRightIcon className="size-4" />
@@ -51,19 +52,20 @@ export default function Page() {
                 href={GITHUB_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="border-border hover:bg-muted inline-flex h-9 items-center gap-2 rounded-lg border px-4 text-sm font-medium transition-colors"
+                className="inline-flex h-9 items-center gap-2 rounded-lg border border-border px-4 text-sm font-medium transition-colors hover:bg-muted"
               >
                 <GithubIcon className="size-4" />
                 Star on GitHub
               </a>
             </div>
 
-            <div className="mt-10 w-full min-w-0 max-w-fit">
+            <div className="mt-10 w-full max-w-fit min-w-0">
               <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/city-selector.json" />
             </div>
           </div>
         </section>
       </main>
+      <SiteFooter />
     </div>
   )
 }

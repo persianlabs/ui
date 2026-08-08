@@ -1,38 +1,38 @@
-import Link from "next/link"
-
-import { AppLogo } from "@/components/app-logo"
-import { GithubIcon } from "@/components/icons"
 import { GITHUB_URL } from "@/lib/github"
 
 export function SiteFooter() {
   return (
-    <footer className="border-border/60 border-t">
-      <div className="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-10 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-2">
-          <span className="border-border bg-foreground text-background flex size-6 items-center justify-center rounded-md">
-            <AppLogo className="size-3.5" />
-          </span>
-          <p className="text-muted-foreground text-sm">
-            PersianLabs/ui — MIT Licensed.
-          </p>
-        </div>
-        <div className="flex items-center gap-5">
-          <Link
-            href="/docs"
-            className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+    <footer className="border-t border-border/60">
+      <div className="flex min-h-14 items-center justify-center px-6 text-sm text-muted-foreground">
+        <p>
+          Built on top of{" "}
+          <a
+            href="https://ui.shadcn.com/"
+            target="_blank"
+            rel="noreferrer"
+            className="transition-colors hover:text-foreground"
           >
-            Docs
-          </Link>
+            shadcn/ui
+          </a>{" "}
+          by{" "}
+          <a
+            href="https://github.com/taymakz"
+            target="_blank"
+            rel="noreferrer"
+            className="transition-colors hover:text-foreground"
+          >
+            taymakz
+          </a>
+          <span className="px-2">·</span>
           <a
             href={GITHUB_URL}
             target="_blank"
             rel="noreferrer"
-            className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-sm"
+            className="transition-colors hover:text-foreground"
           >
-            <GithubIcon className="size-4" />
-            GitHub
+            Open source
           </a>
-        </div>
+        </p>
       </div>
     </footer>
   )
