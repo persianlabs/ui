@@ -642,6 +642,28 @@
           "type": "registry:hook"
         }
       ]
+    },
+    {
+      "name": "responsive-alert-dialog",
+      "type": "registry:ui",
+      "title": "Responsive Alert Dialog",
+      "description": "Renders an Alert Dialog on desktop and a bottom Drawer on mobile from one shared set of components.",
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/alert-dialog.json",
+        "https://ui.persian-labs.ir/r/drawer.json"
+      ],
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/base/ui/responsive-alert-dialog.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base/hooks/use-media-query.ts",
+          "type": "registry:hook"
+        }
+      ]
     }
   ]
 }

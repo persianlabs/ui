@@ -13,6 +13,7 @@ import { CopyCommand } from "@/components/copy-command"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
 import { Credits } from "@/components/credits"
 import { DialogDemoExample } from "@/components/examples/dialog-demo"
+import { DialogNoFooterExample } from "@/components/examples/dialog-no-footer"
 import { DialogRtlExample } from "@/components/examples/dialog-rtl"
 import { DocsPageFooter } from "@/components/docs-page-footer"
 import { InstallCommand } from "@/components/install-command"
@@ -36,6 +37,7 @@ export const metadata: Metadata = {
 
 const tocItems = [
   { id: "overview", title: "Overview" },
+  { id: "no-footer", title: "No footer" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
   { id: "rtl", title: "RTL" },
@@ -141,6 +143,31 @@ export default function DialogDocPage() {
             preview={<DialogDemoExample />}
             code={
               <CodeBlock code={getExampleSource("dialog-demo")} lang="tsx" />
+            }
+          />
+        </div>
+
+        <h2
+          id="no-footer"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          No footer
+        </h2>
+        <p className="mt-3 leading-relaxed text-muted-foreground">
+          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+            DialogFooter
+          </code>{" "}
+          is just another child — skip it for purely informational dialogs that
+          don&apos;t need a confirm/cancel pair.
+        </p>
+        <div className="mt-4">
+          <ComponentPreview
+            preview={<DialogNoFooterExample />}
+            code={
+              <CodeBlock
+                code={getExampleSource("dialog-no-footer")}
+                lang="tsx"
+              />
             }
           />
         </div>

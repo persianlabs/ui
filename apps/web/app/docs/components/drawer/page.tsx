@@ -15,6 +15,7 @@ import { Credits } from "@/components/credits"
 import { DocsPageFooter } from "@/components/docs-page-footer"
 import { DrawerDemoExample } from "@/components/examples/drawer-demo"
 import { DrawerNestedExample } from "@/components/examples/drawer-nested"
+import { DrawerNoFooterExample } from "@/components/examples/drawer-no-footer"
 import { DrawerPositionsExample } from "@/components/examples/drawer-positions"
 import { DrawerRtlExample } from "@/components/examples/drawer-rtl"
 import { DrawerScrollableExample } from "@/components/examples/drawer-scrollable"
@@ -41,6 +42,7 @@ export const metadata: Metadata = {
 
 const tocItems = [
   { id: "overview", title: "Overview" },
+  { id: "no-footer", title: "No footer" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
   { id: "positions", title: "Positions" },
@@ -159,6 +161,31 @@ export default function DrawerDocPage() {
             preview={<DrawerDemoExample />}
             code={
               <CodeBlock code={getExampleSource("drawer-demo")} lang="tsx" />
+            }
+          />
+        </div>
+
+        <h2
+          id="no-footer"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          No footer
+        </h2>
+        <p className="mt-3 leading-relaxed text-muted-foreground">
+          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+            DrawerFooter
+          </code>{" "}
+          is optional — skip it for a purely informational sheet that only needs
+          to be swiped away.
+        </p>
+        <div className="mt-4">
+          <ComponentPreview
+            preview={<DrawerNoFooterExample />}
+            code={
+              <CodeBlock
+                code={getExampleSource("drawer-no-footer")}
+                lang="tsx"
+              />
             }
           />
         </div>

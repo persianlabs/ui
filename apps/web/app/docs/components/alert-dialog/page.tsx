@@ -7,6 +7,7 @@ import {
 } from "@workspace/ui/components/tabs"
 
 import { AlertDialogDemoExample } from "@/components/examples/alert-dialog-demo"
+import { AlertDialogNoFooterExample } from "@/components/examples/alert-dialog-no-footer"
 import { AlertDialogRtlExample } from "@/components/examples/alert-dialog-rtl"
 import { ApiReference } from "@/components/api-reference"
 import { CodeBlock } from "@/components/code-block"
@@ -36,6 +37,7 @@ export const metadata: Metadata = {
 
 const tocItems = [
   { id: "overview", title: "Overview" },
+  { id: "no-footer", title: "No footer" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
   { id: "rtl", title: "RTL" },
@@ -142,6 +144,36 @@ export default function AlertDialogDocPage() {
             code={
               <CodeBlock
                 code={getExampleSource("alert-dialog-demo")}
+                lang="tsx"
+              />
+            }
+          />
+        </div>
+
+        <h2
+          id="no-footer"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          No footer
+        </h2>
+        <p className="mt-3 leading-relaxed text-muted-foreground">
+          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+            AlertDialogFooter
+          </code>{" "}
+          is optional — for a single-action alert,{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+            AlertDialogCancel
+          </code>{" "}
+          can sit directly in the content without the muted footer bar. It still
+          has to be an actual action, though: Alert Dialog can&apos;t be
+          dismissed by pressing Escape or clicking outside.
+        </p>
+        <div className="mt-4">
+          <ComponentPreview
+            preview={<AlertDialogNoFooterExample />}
+            code={
+              <CodeBlock
+                code={getExampleSource("alert-dialog-no-footer")}
                 lang="tsx"
               />
             }

@@ -27,6 +27,7 @@ import {
   NativeSelectPreview,
   ProgressPreview,
   RadioGroupPreview,
+  ResponsiveAlertDialogPreview,
   ResponsiveDialogPreview,
   ResponsiveMenuPreview,
   SelectPreview,
@@ -456,6 +457,19 @@ const components = [
     thumbnail: (
       <ThumbnailFrame>
         <ResponsiveMenuPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Responsive Alert Dialog",
+    href: "/docs/components/responsive-alert-dialog" as const,
+    description:
+      "Renders an Alert Dialog on desktop and a bottom Drawer on mobile from one shared set of components.",
+    badge: "New",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <ResponsiveAlertDialogPreview />
       </ThumbnailFrame>
     ),
   },

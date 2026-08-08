@@ -60,6 +60,11 @@ export const docsNav: DocsNavGroup[] = [
       { title: "Progress", href: "/docs/components/progress" },
       { title: "Radio Group", href: "/docs/components/radio-group" },
       {
+        title: "Responsive Alert Dialog",
+        href: "/docs/components/responsive-alert-dialog",
+        badge: "New",
+      },
+      {
         title: "Responsive Dialog",
         href: "/docs/components/responsive-dialog",
         badge: "New",

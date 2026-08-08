@@ -13,9 +13,8 @@ import { CopyCommand } from "@/components/copy-command"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
 import { Credits } from "@/components/credits"
 import { DocsPageFooter } from "@/components/docs-page-footer"
-import { ResponsiveDialogDemoExample } from "@/components/examples/responsive-dialog-demo"
-import { ResponsiveDialogNoFooterExample } from "@/components/examples/responsive-dialog-no-footer"
-import { ResponsiveDialogRtlExample } from "@/components/examples/responsive-dialog-rtl"
+import { ResponsiveAlertDialogDemoExample } from "@/components/examples/responsive-alert-dialog-demo"
+import { ResponsiveAlertDialogRtlExample } from "@/components/examples/responsive-alert-dialog-rtl"
 import { InstallCommand } from "@/components/install-command"
 import { LastUpdated } from "@/components/last-updated"
 import { Step, Steps } from "@/components/steps"
@@ -25,19 +24,19 @@ import { getExampleSource } from "@/lib/example-source"
 import { getLastEditedDate } from "@/lib/last-edited"
 import { CODE_FENCE, apiRowsToMarkdownTable } from "@/lib/markdown"
 
-const SOURCE_PATH = "apps/web/app/docs/components/responsive-dialog/page.tsx"
+const SOURCE_PATH =
+  "apps/web/app/docs/components/responsive-alert-dialog/page.tsx"
 
-import { responsiveDialogRootApi } from "./api-data"
+import { responsiveAlertDialogRootApi } from "./api-data"
 
 export const metadata: Metadata = {
-  title: "Responsive Dialog",
+  title: "Responsive Alert Dialog",
   description:
-    "Renders a Dialog on desktop and a bottom Drawer on mobile from one shared set of components.",
+    "Renders an Alert Dialog on desktop and a bottom Drawer on mobile from one shared set of components.",
 }
 
 const tocItems = [
   { id: "overview", title: "Overview" },
-  { id: "no-footer", title: "No footer" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
   { id: "rtl", title: "RTL" },
@@ -45,51 +44,48 @@ const tocItems = [
 ]
 
 const usageSnippet = `import {
-  ResponsiveDialog,
-  ResponsiveDialogClose,
-  ResponsiveDialogDescription,
-  ResponsiveDialogDesktopOnly,
-  ResponsiveDialogFooter,
-  ResponsiveDialogHeader,
-  ResponsiveDialogPanel,
-  ResponsiveDialogPopup,
-  ResponsiveDialogTitle,
-  ResponsiveDialogTrigger,
-} from "@/components/ui/responsive-dialog"
+  ResponsiveAlertDialog,
+  ResponsiveAlertDialogAction,
+  ResponsiveAlertDialogCancel,
+  ResponsiveAlertDialogContent,
+  ResponsiveAlertDialogDescription,
+  ResponsiveAlertDialogFooter,
+  ResponsiveAlertDialogHeader,
+  ResponsiveAlertDialogTitle,
+  ResponsiveAlertDialogTrigger,
+} from "@/components/ui/responsive-alert-dialog"
 
 export function Example() {
   return (
-    <ResponsiveDialog>
-      <ResponsiveDialogTrigger render={<Button variant="outline">Open</Button>} />
-      <ResponsiveDialogPopup>
-        <ResponsiveDialogHeader>
-          <ResponsiveDialogTitle>Edit profile</ResponsiveDialogTitle>
-          <ResponsiveDialogDescription>
-            A Dialog on desktop, a Drawer on mobile.
-          </ResponsiveDialogDescription>
-        </ResponsiveDialogHeader>
-        <ResponsiveDialogPanel>{/* form fields */}</ResponsiveDialogPanel>
-        <ResponsiveDialogFooter>
-          <Button type="submit">Save changes</Button>
-          {/* Skipped on mobile — the drawer is dismissed by swiping. */}
-          <ResponsiveDialogDesktopOnly>
-            <ResponsiveDialogClose render={<Button variant="outline">Cancel</Button>} />
-          </ResponsiveDialogDesktopOnly>
-        </ResponsiveDialogFooter>
-      </ResponsiveDialogPopup>
-    </ResponsiveDialog>
+    <ResponsiveAlertDialog>
+      <ResponsiveAlertDialogTrigger render={<Button variant="outline">Delete</Button>} />
+      <ResponsiveAlertDialogContent>
+        <ResponsiveAlertDialogHeader>
+          <ResponsiveAlertDialogTitle>Are you absolutely sure?</ResponsiveAlertDialogTitle>
+          <ResponsiveAlertDialogDescription>
+            This action cannot be undone.
+          </ResponsiveAlertDialogDescription>
+        </ResponsiveAlertDialogHeader>
+        <ResponsiveAlertDialogFooter>
+          <ResponsiveAlertDialogCancel>Cancel</ResponsiveAlertDialogCancel>
+          <ResponsiveAlertDialogAction>Continue</ResponsiveAlertDialogAction>
+        </ResponsiveAlertDialogFooter>
+      </ResponsiveAlertDialogContent>
+    </ResponsiveAlertDialog>
   )
 }`
 
-const responsiveDialogMarkdown = [
-  "# Responsive Dialog",
+const responsiveAlertDialogMarkdown = [
+  "# Responsive Alert Dialog",
   "",
-  "Renders a Dialog on desktop and a bottom Drawer on mobile from one shared set of components.",
+  "Renders an Alert Dialog on desktop and a bottom Drawer on mobile from one shared set of components.",
+  "",
+  "Like Alert Dialog, it can only be closed via `ResponsiveAlertDialogAction` or `ResponsiveAlertDialogCancel` — not by pressing Escape, clicking outside, or (on the mobile drawer) tapping the backdrop. Swiping the drawer down still works.",
   "",
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/responsive-dialog.json",
+  "npx shadcn@latest add https://ui.persian-labs.ir/r/responsive-alert-dialog.json",
   CODE_FENCE,
   "",
   "## Usage",
@@ -100,12 +96,12 @@ const responsiveDialogMarkdown = [
   "",
   "## API Reference",
   "",
-  "### ResponsiveDialog",
+  "### ResponsiveAlertDialog",
   "",
-  apiRowsToMarkdownTable(responsiveDialogRootApi),
+  apiRowsToMarkdownTable(responsiveAlertDialogRootApi),
 ].join("\n")
 
-export default function ResponsiveDialogDocPage() {
+export default function ResponsiveAlertDialogDocPage() {
   const lastEdited = getLastEditedDate(SOURCE_PATH)
 
   return (
@@ -113,17 +109,17 @@ export default function ResponsiveDialogDocPage() {
       <article className="max-w-3xl min-w-0 flex-1">
         <div className="flex flex-col items-end justify-between gap-3 sm:flex-row sm:items-center">
           <h1 className="self-start text-3xl font-semibold tracking-tight sm:self-auto">
-            Responsive Dialog
+            Responsive Alert Dialog
           </h1>
-          <CopyMarkdownButton markdown={responsiveDialogMarkdown} />
+          <CopyMarkdownButton markdown={responsiveAlertDialogMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          A modal that adapts to the viewport — a centered{" "}
+          A confirmation that adapts to the viewport — a centered{" "}
           <a
-            href="/docs/components/dialog"
+            href="/docs/components/alert-dialog"
             className="text-foreground underline underline-offset-4"
           >
-            Dialog
+            Alert Dialog
           </a>{" "}
           on desktop, a bottom{" "}
           <a
@@ -132,16 +128,17 @@ export default function ResponsiveDialogDocPage() {
           >
             Drawer
           </a>{" "}
-          on mobile, from one shared set of components so you don&apos;t
-          maintain two versions of the same form.
+          on mobile, from one shared set of components. Neither can be dismissed
+          by clicking outside — an explicit action is always required.
         </p>
         <LastUpdated date={lastEdited} />
         <Credits
           sources={[{ label: "shadcn/ui", href: "https://ui.shadcn.com" }]}
           changed
           changes={[
-            "Not a shadcn/ui component — this composition (switch between Dialog and Drawer by viewport width, behind one shared API) is original to this registry, built on top of this registry's own Dialog and Drawer",
-            "ResponsiveDialogDesktopOnly hides Cancel/انصراف-style actions on mobile, where the drawer is already dismissed by swiping down, so a redundant Cancel button never has to be built twice",
+            "Not a shadcn/ui component — this composition (switch between Alert Dialog and Drawer by viewport width, behind one shared API) is original to this registry, built on top of this registry's own Alert Dialog and Drawer",
+            "The mobile Drawer is opened with disablePointerDismissal so an outside tap can't close it either, carrying over Alert Dialog's \"must pick an action\" behavior — swiping it down still dismisses it, same as a native action sheet",
+            "ResponsiveAlertDialogMedia re-implements AlertDialogMedia's icon-badge styling directly instead of reusing it, since the original leans on CSS selectors scoped to AlertDialogContent's DOM structure that the drawer doesn't have",
           ]}
         />
 
@@ -152,40 +149,15 @@ export default function ResponsiveDialogDocPage() {
           Overview
         </h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
-          Resize the browser window to see the preview switch between a Dialog
-          and a Drawer.
+          Resize the browser window to see the preview switch between an Alert
+          Dialog and a Drawer.
         </p>
         <div className="mt-4">
           <ComponentPreview
-            preview={<ResponsiveDialogDemoExample />}
+            preview={<ResponsiveAlertDialogDemoExample />}
             code={
               <CodeBlock
-                code={getExampleSource("responsive-dialog-demo")}
-                lang="tsx"
-              />
-            }
-          />
-        </div>
-
-        <h2
-          id="no-footer"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          No footer
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            ResponsiveDialogFooter
-          </code>{" "}
-          is optional here too — for a purely informational modal, skip it on
-          both the Dialog and Drawer side.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ResponsiveDialogNoFooterExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("responsive-dialog-no-footer")}
+                code={getExampleSource("responsive-alert-dialog-demo")}
                 lang="tsx"
               />
             }
@@ -206,7 +178,7 @@ export default function ResponsiveDialogDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/responsive-dialog.json" />
+            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/responsive-alert-dialog.json" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">
@@ -216,15 +188,15 @@ export default function ResponsiveDialogDocPage() {
                 <InstallCommand packages="@base-ui/react" />
               </div>
               <Step>
-                Copy the Dialog, Drawer, and use-media-query hook first
+                Copy the Alert Dialog, Drawer, and use-media-query hook first
               </Step>
               <p className="mt-2 text-sm text-muted-foreground">
-                Responsive Dialog composes{" "}
+                Responsive Alert Dialog composes{" "}
                 <a
-                  href="/docs/components/dialog"
+                  href="/docs/components/alert-dialog"
                   className="text-foreground underline underline-offset-4"
                 >
-                  Dialog
+                  Alert Dialog
                 </a>{" "}
                 and{" "}
                 <a
@@ -238,9 +210,9 @@ export default function ResponsiveDialogDocPage() {
               <Step>Copy the component source</Step>
               <div className="mt-2">
                 <CodeBlock
-                  code={getComponentSource("responsive-dialog")}
+                  code={getComponentSource("responsive-alert-dialog")}
                   lang="tsx"
-                  title="components/ui/responsive-dialog.tsx"
+                  title="components/ui/responsive-alert-dialog.tsx"
                 />
               </div>
             </Steps>
@@ -260,10 +232,10 @@ export default function ResponsiveDialogDocPage() {
         <div className="mt-4">
           <ComponentPreview
             dir="rtl"
-            preview={<ResponsiveDialogRtlExample />}
+            preview={<ResponsiveAlertDialogRtlExample />}
             code={
               <CodeBlock
-                code={getExampleSource("responsive-dialog-rtl")}
+                code={getExampleSource("responsive-alert-dialog-rtl")}
                 lang="tsx"
               />
             }
@@ -276,10 +248,13 @@ export default function ResponsiveDialogDocPage() {
         >
           API Reference
         </h2>
-        <ApiReference title="ResponsiveDialog" rows={responsiveDialogRootApi} />
+        <ApiReference
+          title="ResponsiveAlertDialog"
+          rows={responsiveAlertDialogRootApi}
+        />
 
         <DocsPageFooter
-          href="/docs/components/responsive-dialog"
+          href="/docs/components/responsive-alert-dialog"
           sourcePath={SOURCE_PATH}
         />
       </article>

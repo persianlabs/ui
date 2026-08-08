@@ -1148,6 +1148,20 @@ export function ResponsiveDialogPreview() {
   )
 }
 
+export function ResponsiveAlertDialogPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "10px",
+      }}
+    >
+      <AlertDialogPreview />
+    </div>
+  )
+}
+
 export function ResponsiveMenuPreview() {
   return (
     <div
