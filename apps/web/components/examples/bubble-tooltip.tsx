@@ -25,10 +25,12 @@ export function BubbleTooltipExample() {
           <BubbleReactions>
             <Tooltip>
               <TooltipTrigger
-                render={<Button variant="ghost" size="icon-xs" />}
-              >
-                <CheckIcon />
-              </TooltipTrigger>
+                render={
+                  <Button variant="ghost" size="icon-xs">
+                    <CheckIcon />
+                  </Button>
+                }
+              />
               <TooltipContent>Read on Jan 5, 2026 at 4:32 PM</TooltipContent>
             </Tooltip>
           </BubbleReactions>

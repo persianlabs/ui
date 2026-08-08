@@ -29,11 +29,11 @@ export function BubblePopoverExample() {
                   size="icon-xs"
                   aria-label="Show error details"
                   className="aria-expanded:text-destructive"
-                />
+                >
+                  <InfoIcon />
+                </Button>
               }
-            >
-              <InfoIcon />
-            </PopoverTrigger>
+            />
             <PopoverContent>
               <p className="text-sm font-medium">
                 Command failed with exit code 1
