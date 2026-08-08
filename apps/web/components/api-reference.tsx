@@ -1,4 +1,5 @@
 import { HoverDetail } from "@/components/hover-detail"
+import { ScrollArea } from "@workspace/ui/components/scroll-area"
 
 export interface ApiReferenceRow {
   prop: string
@@ -18,8 +19,11 @@ export function ApiReference({
   return (
     <div className="mt-6">
       <h3 className="text-foreground font-mono text-sm font-medium">{title}</h3>
-      <div className="border-border mt-3 overflow-x-auto rounded-lg border">
-        <table className="w-full text-left text-sm">
+      <ScrollArea
+        scrollbarOrientation="horizontal"
+        className="border-border mt-3 rounded-lg border"
+      >
+        <table className="min-w-[48rem] w-full text-left text-sm">
           <thead>
             <tr className="border-border bg-muted/40 border-b">
               <th className="text-muted-foreground px-4 py-2 font-medium">Prop</th>
@@ -53,7 +57,7 @@ export function ApiReference({
             ))}
           </tbody>
         </table>
-      </div>
+      </ScrollArea>
     </div>
   )
 }
