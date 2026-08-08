@@ -50,7 +50,7 @@ export function Example() {
   return <Toggle aria-label="Toggle bold">B</Toggle>
 }`
 
-const toggleMarkdown = [
+export const toggleMarkdown = [
   "# Toggle",
   "",
   "A two-state button that can be either on or off, built on Base UI.",

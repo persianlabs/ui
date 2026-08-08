@@ -75,7 +75,7 @@ export function Example() {
   )
 }`
 
-const emptyMarkdown = [
+export const emptyMarkdown = [
   "# Empty",
   "",
   "Displays an empty state with a title, description, and optional actions.",

@@ -88,7 +88,7 @@ export function Example() {
   )
 }`
 
-const comboboxMarkdown = [
+export const comboboxMarkdown = [
   "# Combobox",
   "",
   "A searchable, accessible combobox built on Base UI.",

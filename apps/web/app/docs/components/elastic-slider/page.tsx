@@ -59,7 +59,7 @@ const [opacity, setOpacity] = useState(0.5)
 
 const uncontrolledSnippet = `<ElasticSlider label="Opacity" min={0} max={1} defaultValue={0.5} />`
 
-const elasticSliderMarkdown = [
+export const elasticSliderMarkdown = [
   "# Elastic Slider",
   "",
   "Slider with elastic rubber-band drag and magnetic snap feedback.",

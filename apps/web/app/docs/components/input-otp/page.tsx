@@ -83,7 +83,7 @@ export function Example() {
   )
 }`
 
-const inputOTPMarkdown = [
+export const inputOTPMarkdown = [
   "# Input OTP",
   "",
   "Accessible one-time password component with copy-paste functionality, built on [input-otp](https://github.com/guilhermerodz/input-otp). Its slots always read left-to-right, even on RTL pages, since one-time codes are digits.",

@@ -88,7 +88,7 @@ export function Example() {
   )
 }`
 
-const citySelectorMarkdown = [
+export const citySelectorMarkdown = [
   "# City Selector",
   "",
   "A province and city picker for Iran, built on Combobox and bundled with a full dataset of all 31 provinces and 1,119 cities.",

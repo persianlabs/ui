@@ -59,7 +59,7 @@ export function Example() {
   )
 }`
 
-const collapsibleMarkdown = [
+export const collapsibleMarkdown = [
   "# Collapsible",
   "",
   "An interactive component which expands/collapses a panel, built on Base UI.",

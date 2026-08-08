@@ -55,7 +55,7 @@ export function Example() {
   return <Separator />
 }`
 
-const separatorMarkdown = [
+export const separatorMarkdown = [
   "# Separator",
   "",
   "Visually or semantically separates content, built on Base UI.",

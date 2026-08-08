@@ -59,7 +59,7 @@ export function Example() {
   )
 }`
 
-const toggleGroupMarkdown = [
+export const toggleGroupMarkdown = [
   "# Toggle Group",
   "",
   "A set of two-state buttons that can be toggled on or off, built on Base UI.",

@@ -96,7 +96,7 @@ export function Example() {
   )
 }`
 
-const selectMarkdown = [
+export const selectMarkdown = [
   "# Select",
   "",
   "A listbox for choosing a single value, built on Base UI.",

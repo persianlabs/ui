@@ -50,7 +50,7 @@ export function Example() {
   return <Switch />
 }`
 
-const switchMarkdown = [
+export const switchMarkdown = [
   "# Switch",
   "",
   "A control that toggles between checked and unchecked, built on Base UI.",

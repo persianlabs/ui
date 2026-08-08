@@ -70,7 +70,7 @@ export function Example() {
   )
 }`
 
-const menubarMarkdown = [
+export const menubarMarkdown = [
   "# Menubar",
   "",
   "A persistent horizontal menu bar for application-style commands, built on Base UI.",

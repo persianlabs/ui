@@ -25,10 +25,10 @@ const statusColors = ["destructive", "info", "success", "warning"]
 
 const outlineTokens = ["border", "input", "ring"]
 
-export default function ThemingPage() {
+export function getThemingMarkdown() {
   const { light, dark } = getThemeVariables()
 
-  const themingMarkdown = [
+  return [
     "# Theming",
     "",
     "The CSS color variables PersianLabs/ui ships with, ready to copy into your own globals.css.",
@@ -45,6 +45,11 @@ export default function ThemingPage() {
     dark,
     CODE_FENCE,
   ].join("\n")
+}
+
+export default function ThemingPage() {
+  const { light, dark } = getThemeVariables()
+  const themingMarkdown = getThemingMarkdown()
 
   return (
     <article className="max-w-2xl">

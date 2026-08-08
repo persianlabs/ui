@@ -69,7 +69,7 @@ export function Example() {
   )
 }`
 
-const sheetMarkdown = [
+export const sheetMarkdown = [
   "# Sheet",
   "",
   "A panel that slides in from an edge of the screen to complement the main content, built on Base UI.",

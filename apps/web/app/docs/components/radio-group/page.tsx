@@ -55,7 +55,7 @@ export function Example() {
   )
 }`
 
-const radioGroupMarkdown = [
+export const radioGroupMarkdown = [
   "# Radio Group",
   "",
   "A set of mutually exclusive radio buttons, built on Base UI.",

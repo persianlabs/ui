@@ -49,7 +49,7 @@ export function Example() {
   return <Checkbox />
 }`
 
-const checkboxMarkdown = [
+export const checkboxMarkdown = [
   "# Checkbox",
   "",
   "A control for selecting one or more options, built on Base UI.",

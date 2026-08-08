@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "PersianLabs/ui is a copy-paste, RTL-first component library distributed as a shadcn registry.",
 }
 
-const introMarkdown = [
+export const introMarkdown = [
   "# Introduction",
   "",
   "PersianLabs/ui is a copy-paste component library built RTL-first for Persian interfaces, on top of shadcn/ui (https://ui.shadcn.com) and Base UI (https://base-ui.com). There's no package to install and no runtime to depend on — every component is distributed as source through a shadcn registry (https://ui.shadcn.com/docs/registry), and lands directly in your codebase when you run the CLI.",

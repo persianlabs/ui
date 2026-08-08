@@ -81,7 +81,7 @@ export function Example() {
   )
 }`
 
-const responsiveDialogMarkdown = [
+export const responsiveDialogMarkdown = [
   "# Responsive Dialog",
   "",
   "Renders a Dialog on desktop and a bottom Drawer on mobile from one shared set of components.",

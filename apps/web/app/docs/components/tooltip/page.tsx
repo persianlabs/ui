@@ -64,7 +64,7 @@ export function Example() {
   )
 }`
 
-const tooltipMarkdown = [
+export const tooltipMarkdown = [
   "# Tooltip",
   "",
   "Displays contextual information when hovering or focusing an element, built on Base UI.",

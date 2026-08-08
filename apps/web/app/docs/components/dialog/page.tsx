@@ -77,7 +77,7 @@ export function Example() {
   )
 }`
 
-const dialogMarkdown = [
+export const dialogMarkdown = [
   "# Dialog",
   "",
   "A modal window layered over the page for focused tasks or confirmations, built on Base UI.",

@@ -74,7 +74,7 @@ export function Example() {
   return <Input placeholder="Enter your name" />
 }`
 
-const inputMarkdown = [
+export const inputMarkdown = [
   "# Input",
   "",
   "A styled text input built on Base UI.",

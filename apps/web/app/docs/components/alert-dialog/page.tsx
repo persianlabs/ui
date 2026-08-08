@@ -76,7 +76,7 @@ export function Example() {
   )
 }`
 
-const alertDialogMarkdown = [
+export const alertDialogMarkdown = [
   "# Alert Dialog",
   "",
   "A modal dialog that interrupts the user with important content and expects a response, built on Base UI.",

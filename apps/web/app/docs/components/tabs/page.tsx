@@ -78,7 +78,7 @@ export function Example() {
   )
 }`
 
-const tabsMarkdown = [
+export const tabsMarkdown = [
   "# Tabs",
   "",
   "An accessible, animated tabs component with a spring-driven sliding indicator, built on Base UI and Motion.",

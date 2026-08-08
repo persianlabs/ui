@@ -82,7 +82,7 @@ export function Example() {
   )
 }`
 
-const buttonGroupMarkdown = [
+export const buttonGroupMarkdown = [
   "# Button Group",
   "",
   "A container that groups related buttons together with consistent styling.",

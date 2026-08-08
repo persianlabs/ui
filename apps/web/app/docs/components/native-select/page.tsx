@@ -56,7 +56,7 @@ export function Example() {
   )
 }`
 
-const nativeSelectMarkdown = [
+export const nativeSelectMarkdown = [
   "# Native Select",
   "",
   "A styled native <select> element for choosing a single value.",

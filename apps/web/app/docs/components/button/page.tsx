@@ -82,7 +82,7 @@ export function Example() {
   return <Button variant="outline">Button</Button>
 }`
 
-const buttonMarkdown = [
+export const buttonMarkdown = [
   "# Button",
   "",
   "A button built on Base UI with variant and size support.",

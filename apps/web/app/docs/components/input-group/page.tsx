@@ -105,7 +105,7 @@ const compositionSnippet = `InputGroup
 ├── InputGroupButton
 └── InputGroupText`
 
-const inputGroupMarkdown = [
+export const inputGroupMarkdown = [
   "# Input Group",
   "",
   "Add addons, buttons, and helper content to inputs.",

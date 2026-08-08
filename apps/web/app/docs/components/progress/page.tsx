@@ -50,7 +50,7 @@ export function Example() {
   return <Progress value={66} />
 }`
 
-const progressMarkdown = [
+export const progressMarkdown = [
   "# Progress",
   "",
   "Displays an indicator showing the completion progress of a task, built on Base UI.",

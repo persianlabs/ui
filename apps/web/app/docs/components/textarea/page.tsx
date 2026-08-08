@@ -56,7 +56,7 @@ export function Example() {
   return <Textarea placeholder="Type your message here." />
 }`
 
-const textareaMarkdown = [
+export const textareaMarkdown = [
   "# Textarea",
   "",
   "Displays a form textarea or a component that looks like a textarea.",

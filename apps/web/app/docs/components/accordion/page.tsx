@@ -62,7 +62,7 @@ export function Example() {
   )
 }`
 
-const accordionMarkdown = [
+export const accordionMarkdown = [
   "# Accordion",
   "",
   "A vertically stacked set of interactive headings that each reveal a section of content, built on Base UI.",

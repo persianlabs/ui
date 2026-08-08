@@ -79,7 +79,7 @@ export function Example() {
   )
 }`
 
-const cardMarkdown = [
+export const cardMarkdown = [
   "# Card",
   "",
   "Displays a card with header, content, and footer.",

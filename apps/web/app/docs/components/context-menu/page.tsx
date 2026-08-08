@@ -66,7 +66,7 @@ export function Example() {
   )
 }`
 
-const contextMenuMarkdown = [
+export const contextMenuMarkdown = [
   "# Context Menu",
   "",
   "A menu of actions triggered by a right click, built on Base UI.",

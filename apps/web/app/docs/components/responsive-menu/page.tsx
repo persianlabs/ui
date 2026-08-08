@@ -66,7 +66,7 @@ export function Example() {
   )
 }`
 
-const responsiveMenuMarkdown = [
+export const responsiveMenuMarkdown = [
   "# Responsive Menu",
   "",
   "Renders a Dropdown Menu on desktop and a bottom Drawer menu on mobile from one shared set of components.",

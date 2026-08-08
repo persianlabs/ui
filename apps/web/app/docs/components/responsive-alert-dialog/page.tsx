@@ -75,7 +75,7 @@ export function Example() {
   )
 }`
 
-const responsiveAlertDialogMarkdown = [
+export const responsiveAlertDialogMarkdown = [
   "# Responsive Alert Dialog",
   "",
   "Renders an Alert Dialog on desktop and a bottom Drawer on mobile from one shared set of components.",

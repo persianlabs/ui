@@ -59,7 +59,7 @@ const [range, setRange] = useState<[number, number]>([200, 700])
   formatValue={(v) => \`$\${v}\`}
 />`
 
-const elasticRangeSliderMarkdown = [
+export const elasticRangeSliderMarkdown = [
   "# Elastic Range Slider",
   "",
   "A single-track, dual-thumb range slider in the same visual language as Elastic Slider.",

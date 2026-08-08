@@ -475,7 +475,7 @@ const components = [
   },
 ].sort((a, b) => b.createdAt.localeCompare(a.createdAt))
 
-const componentsMarkdown = [
+export const componentsMarkdown = [
   "# Components",
   "",
   "Every component ships as source through the @persianlabsui registry. More are on the way.",

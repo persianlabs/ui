@@ -87,7 +87,7 @@ export function Example() {
   )
 }`
 
-const drawerMarkdown = [
+export const drawerMarkdown = [
   "# Drawer",
   "",
   "A swipeable panel that slides in from an edge of the screen, built on Base UI.",
