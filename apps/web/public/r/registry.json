@@ -869,6 +869,20 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "A responsive table component, with an optional card-row variant.",
+      "registryDependencies": ["utils"],
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "registry/base/ui/table.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

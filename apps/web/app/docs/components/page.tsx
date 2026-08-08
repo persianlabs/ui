@@ -47,6 +47,7 @@ import {
   SheetPreview,
   SkeletonPreview,
   SwitchPreview,
+  TablePreview,
   TabsPreview,
   TextareaPreview,
   ToggleGroupPreview,
@@ -647,6 +648,18 @@ const components = [
     thumbnail: (
       <ThumbnailFrame>
         <ResizablePreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Table",
+    href: "/docs/components/table" as const,
+    description:
+      "A responsive table component, with an optional card-row variant.",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <TablePreview />
       </ThumbnailFrame>
     ),
   },
