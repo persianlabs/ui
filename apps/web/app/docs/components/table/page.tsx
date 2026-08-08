@@ -17,7 +17,6 @@ import { TableActionsExample } from "@/components/examples/table-actions"
 import { TableCardExample } from "@/components/examples/table-card"
 import { TableDemoExample } from "@/components/examples/table-demo"
 import { TableRtlExample } from "@/components/examples/table-rtl"
-import { TableTanstackExample } from "@/components/examples/table-tanstack"
 import { TableTeamExample } from "@/components/examples/table-team"
 import { InstallCommand } from "@/components/install-command"
 import { LastUpdated } from "@/components/last-updated"
@@ -44,7 +43,6 @@ const tocItems = [
   { id: "card", title: "Card Variant" },
   { id: "actions", title: "Actions" },
   { id: "selection", title: "Selection" },
-  { id: "tanstack", title: "TanStack Table" },
   { id: "rtl", title: "RTL" },
   { id: "api-reference", title: "API Reference" },
 ]
@@ -134,7 +132,6 @@ export default function TableDocPage() {
           changes={[
             "Replaced text-left with text-start, and pr-0 with pe-0 on the checkbox column, for RTL",
             "Added an optional card variant (Table variant=\"card\") that separates each row into its own bordered, elevated surface — inspired by cossui's Table",
-            "Added a TanStack Table example combining the card variant with column definitions, checkbox selection, and flexRender — inspired by cossui's data table example",
           ]}
         />
 
@@ -280,42 +277,6 @@ export default function TableDocPage() {
             preview={<TableTeamExample />}
             code={
               <CodeBlock code={getExampleSource("table-team")} lang="tsx" />
-            }
-          />
-        </div>
-
-        <h2
-          id="tanstack"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          TanStack Table
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          For column definitions, sorting, and headless row selection state,
-          pair the card variant with{" "}
-          <a
-            href="https://tanstack.com/table"
-            target="_blank"
-            rel="noreferrer"
-            className="text-foreground underline underline-offset-4"
-          >
-            TanStack Table
-          </a>{" "}
-          and drive the same primitives with <code>flexRender</code>. This
-          requires installing{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            @tanstack/react-table
-          </code>{" "}
-          in your own project.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<TableTanstackExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("table-tanstack")}
-                lang="tsx"
-              />
             }
           />
         </div>
