@@ -90,9 +90,9 @@ export function CommandBasicExample() {
       <CommandDialogPopup>
         <Command items={groups}>
           <CommandInput placeholder="Type a command or search..." />
+          <CommandEmpty>No results found.</CommandEmpty>
           <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
-            {groups.map((group, index) => (
+            {(group: (typeof groups)[number], index: number) => (
               <React.Fragment key={group.value}>
                 <CommandGroup items={group.items}>
                   <CommandGroupLabel>{group.value}</CommandGroupLabel>
@@ -110,7 +110,7 @@ export function CommandBasicExample() {
                 </CommandGroup>
                 {index < groups.length - 1 && <CommandSeparator />}
               </React.Fragment>
-            ))}
+            )}
           </CommandList>
           <CommandFooter>
             <div className="flex items-center gap-3">

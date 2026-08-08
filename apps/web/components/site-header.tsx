@@ -5,6 +5,7 @@ import { AppLogo } from "@/components/app-logo"
 import { GithubStars, GithubStarsFallback } from "@/components/github-stars"
 import { GithubIcon } from "@/components/icons"
 import { MobileNav } from "@/components/mobile-nav"
+import { SiteSearch } from "@/components/site-search"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { GITHUB_URL } from "@/lib/github"
 
@@ -13,6 +14,7 @@ const navLinks = [
   { href: "/docs/components", label: "Components" },
   { href: "#", label: "Blocks", disabled: true },
   { href: "#", label: "Templates", disabled: true },
+  { href: "https://icons.persian-labs.ir/", label: "Icons", external: true },
 ]
 
 export function SiteHeader({
@@ -42,6 +44,8 @@ export function SiteHeader({
                 <a
                   key={link.label}
                   href={link.href}
+                  target={link.external ? "_blank" : undefined}
+                  rel={link.external ? "noreferrer" : undefined}
                   className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {link.label}
@@ -52,6 +56,7 @@ export function SiteHeader({
         </div>
 
         <div className="flex items-center gap-3">
+          <SiteSearch />
           <a
             href={GITHUB_URL}
             target="_blank"

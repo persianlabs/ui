@@ -38,7 +38,7 @@ To register a new component end-to-end:
 1. Add the implementation to `packages/ui/src/components/<name>.tsx` (internal alias imports).
 2. Add the consumer copy to `apps/web/registry/base/ui/<name>.tsx` (`@/...` alias imports), plus any shared lib files under `registry/base/lib/`.
 3. Add an entry to `apps/web/registry.json` (name, type, title, description, `registryDependencies`, `dependencies`, `files`).
-4. Wire it into the docs: `apps/web/lib/docs-nav.ts` (sidebar entry) and a page under `apps/web/app/docs/components/`, using `apps/web/lib/component-source.ts` / `component-previews.tsx` to pull the source and render a live preview.
+4. Wire it into the docs: `apps/web/lib/docs-nav.ts` (sidebar entry) and a page under `apps/web/app/docs/components/`, using `apps/web/lib/component-source.ts` / `component-previews.tsx` to pull the source and render a live preview. **`docs-nav.ts` is also the site search index** (`apps/web/components/site-search.tsx`, the ⌘K command palette in the header) — any enabled entry there is automatically searchable, so adding the sidebar entry is the only step needed for a new page to appear in search. Never add a page without a `docs-nav.ts` entry, and never hardcode a separate search index.
 5. Add a `Credits` section (`apps/web/components/credits.tsx`) to the doc page, directly under `LastUpdated`. If it's not clear where the component/data was copied from, what (if anything) was changed versus the source, or whether it's published, **ask the user** rather than guessing — don't invent attribution.
 
 ## Key structure
@@ -48,6 +48,7 @@ To register a new component end-to-end:
   - `apps/web/registry.json` — the registry manifest (source of truth for what's installable and its dependency graph).
   - `apps/web/components.json` — shadcn CLI config for this repo; `rtl: true`, base color `neutral`, style `base-nova`, icon library `lucide`.
   - `apps/web/lib/site.ts` / `apps/web/lib/github.ts` — canonical site URL (`SITE_URL`) and GitHub repo slug (`GITHUB_REPO`); update both if the domain or repo location changes.
+  - `apps/web/components/site-search.tsx` — the header's ⌘K command palette, built on the `Command` component. Its index is generated from `apps/web/lib/docs-nav.ts`, not maintained separately.
 - `packages/ui` — the `@workspace/ui` internal package (components, hooks, lib, Tailwind globals) consumed only by `apps/web`.
 - `packages/eslint-config`, `packages/typescript-config` — shared lint/tsconfig bases (`base`, `next`, `react-internal` / `base`, `nextjs`, `react-library`) extended by each workspace.
 
