@@ -34,6 +34,9 @@ const DrawerDirContext = React.createContext<{
 const DrawerPositionContext = React.createContext<{ position: DrawerPosition }>(
   { position: "bottom" }
 )
+const DrawerPopupVariantContext = React.createContext<
+  "default" | "straight" | "inset"
+>("default")
 
 function resolvePosition(
   position: DrawerPosition,
@@ -271,7 +274,8 @@ function DrawerPopup({
     <DrawerPortal {...portalProps}>
       <DrawerBackdrop />
       <DrawerViewport position={position} variant={variant}>
-        <DrawerPrimitive.Popup
+        <DrawerPopupVariantContext.Provider value={variant}>
+          <DrawerPrimitive.Popup
           data-slot="drawer-popup"
           className={cn(
             "relative flex max-h-full min-h-0 w-full min-w-0 flex-col bg-popover text-popover-foreground shadow-lg/5 transition-[transform,box-shadow,height,background-color] duration-450 ease-[cubic-bezier(0.32,0.72,0,1)] will-change-transform outline-none [--peek:calc(--spacing(6)-1px)] [--scale-base:calc(max(0,1-(var(--nested-drawers)*var(--stack-step))))] [--scale:clamp(0,calc(var(--scale-base)+(var(--stack-step)*var(--stack-progress))),1)] [--shrink:calc(1-var(--scale))] [--stack-peek-offset:max(0px,calc((var(--nested-drawers)-var(--stack-progress))*var(--peek)))] [--stack-progress:clamp(0,var(--drawer-swipe-progress),1)] [--stack-step:0.05] not-dark:bg-clip-padding before:pointer-events-none before:absolute before:inset-0 before:shadow-[0_1px_--theme(--color-black/4%)] after:pointer-events-none after:absolute after:bg-popover data-nested-drawer-open:overflow-hidden data-nested-drawer-open:bg-[color-mix(in_srgb,var(--popover),var(--color-black)_calc(2%*(var(--nested-drawers)-var(--stack-progress))))] data-swiping:select-none data-[ending-style]:shadow-transparent data-[ending-style]:duration-[calc(var(--drawer-swipe-strength)*400ms)] data-[starting-style]:shadow-transparent dark:before:shadow-[0_-1px_--theme(--color-white/6%)] dark:data-nested-drawer-open:bg-[color-mix(in_srgb,var(--popover),var(--color-black)_calc(6%*(var(--nested-drawers)-var(--stack-progress))))]",
@@ -351,7 +355,8 @@ function DrawerPopup({
             </DrawerPrimitive.Close>
           )}
           {showBar && <DrawerBar position={position} />}
-        </DrawerPrimitive.Popup>
+          </DrawerPrimitive.Popup>
+        </DrawerPopupVariantContext.Provider>
       </DrawerViewport>
     </DrawerPortal>
   )
@@ -394,6 +399,7 @@ function DrawerFooter({
   position?: DrawerPosition
 }) {
   const position = useResolvedDrawerPosition(positionProp)
+  const popupVariant = React.useContext(DrawerPopupVariantContext)
 
   const defaultProps = {
     className: cn(
@@ -416,16 +422,26 @@ function DrawerFooter({
         // this is declared later in the DOM. Without an explicit z-index
         // this fix is invisible: the popup's own solid bleed just paints
         // over it.
-        "relative border-t border-border bg-muted/72 pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+--spacing(4))] after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:z-10 after:h-[200px] after:bg-muted/72",
-      // The bleed's own top edge sits flush against the footer's bottom
-      // edge for a bottom drawer (translate is purely vertical, so there's
-      // never a visible seam to bridge there), but right/left/top drawers
-      // translate sideways — dragging can reveal a sliver where the bleed's
-      // top edge doesn't quite meet the footer's own border-t, and a
-      // matching border there hides it.
+        "relative border-t border-border bg-muted/72 pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+--spacing(4))] after:pointer-events-none after:absolute after:z-10 after:bg-muted/72",
+      // Bottom and top drawers leave space below the footer, so their bleed
+      // continues downward.
       variant === "default" &&
-        position !== "bottom" &&
-        "after:border-t after:border-border",
+        position !== "right" &&
+        position !== "left" &&
+        "after:inset-x-0 after:top-full after:h-[200px]",
+      // Side drawers stretch sideways. Continue the footer into the gap on
+      // the outer edge, including its top border, so the muted footer color
+      // does not cut back to the popup color while dragging. Offset by the
+      // footer border so the bleed's border-box matches its rendered height
+      // as the footer content changes.
+      variant === "default" &&
+        position === "right" &&
+        popupVariant === "default" &&
+        "after:-top-px after:bottom-0 after:left-full after:w-[200px] after:border-t after:border-border",
+      variant === "default" &&
+        position === "left" &&
+        popupVariant === "default" &&
+        "after:-top-px after:bottom-0 after:right-full after:w-[200px] after:border-t after:border-border",
       variant === "bare" &&
         "pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+--spacing(6))] in-[[data-slot=drawer-popup]:has([data-slot=drawer-panel])]:pt-3",
       // DrawerPopup reserves space for the drag bar via padding on itself
