@@ -13,7 +13,7 @@ export function MobileNav() {
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Trigger
         aria-label="Toggle navigation menu"
-        className="border-border hover:bg-muted flex size-8 shrink-0 items-center justify-center rounded-md border transition-colors md:hidden"
+        className="border-border hover:bg-muted flex size-8 shrink-0 items-center justify-center rounded-md border transition-colors lg:hidden"
       >
         <MenuIcon className="size-4" />
       </Dialog.Trigger>
