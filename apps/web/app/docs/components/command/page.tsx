@@ -97,13 +97,13 @@ export function Example() {
       <CommandDialogPopup>
         <Command items={items}>
           <CommandInput placeholder="Search..." />
+          <CommandEmpty>No results found.</CommandEmpty>
           <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
-            {items.map((item) => (
+            {(item) => (
               <CommandItem key={item.value} value={item.value}>
                 {item.label}
               </CommandItem>
-            ))}
+            )}
           </CommandList>
           <CommandFooter>Use arrow keys to navigate, Enter to select</CommandFooter>
         </Command>

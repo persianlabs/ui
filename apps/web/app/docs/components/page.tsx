@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
-import Link from "next/link"
 
-import { Badge } from "@/components/badge"
+import { ComponentsGrid } from "@/components/components-grid"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
 import {
   AccordionPreview,
@@ -486,7 +485,10 @@ const components = [
       </ThumbnailFrame>
     ),
   },
-].sort((a, b) => b.createdAt.localeCompare(a.createdAt))
+].sort((a, b) => a.title.localeCompare(b.title))
+
+const featuredComponents = components.filter((c) => "badge" in c && c.badge)
+const restComponents = components.filter((c) => !("badge" in c && c.badge))
 
 export const componentsMarkdown = [
   "# Components",
@@ -515,28 +517,7 @@ export default function DocsComponentsPage() {
         registry. More are on the way.
       </p>
 
-      <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-        {components.map((component) => (
-          <Link
-            key={component.href}
-            href={component.href}
-            className="overflow-hidden rounded-xl border border-border bg-card/40 transition-colors hover:bg-card/70"
-          >
-            {component.thumbnail}
-            <div className="p-5">
-              <div className="flex items-center gap-2">
-                <h2 className="text-sm font-medium">{component.title}</h2>
-                {"badge" in component && component.badge && (
-                  <Badge>{component.badge}</Badge>
-                )}
-              </div>
-              <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-                {component.description}
-              </p>
-            </div>
-          </Link>
-        ))}
-      </div>
+      <ComponentsGrid featured={featuredComponents} rest={restComponents} />
     </div>
   )
 }

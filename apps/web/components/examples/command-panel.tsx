@@ -22,14 +22,14 @@ export function CommandPanelExample() {
     <CommandPanel className="w-72">
       <Command items={items}>
         <CommandInput placeholder="Type a command or search..." />
+        <CommandEmpty>No results found.</CommandEmpty>
         <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          {items.map((item) => (
+          {(item: (typeof items)[number]) => (
             <CommandItem key={item.value} value={item.value}>
               <item.icon />
               {item.label}
             </CommandItem>
-          ))}
+          )}
         </CommandList>
       </Command>
     </CommandPanel>

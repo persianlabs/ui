@@ -37,9 +37,9 @@ export function CommandRtlExample() {
       <CommandPanel className="w-72">
         <Command items={groups}>
           <CommandInput placeholder="جستجوی دستور..." />
+          <CommandEmpty>موردی یافت نشد.</CommandEmpty>
           <CommandList>
-            <CommandEmpty>موردی یافت نشد.</CommandEmpty>
-            {groups.map((group, index) => (
+            {(group: (typeof groups)[number], index: number) => (
               <React.Fragment key={group.value}>
                 <CommandGroup items={group.items}>
                   <CommandGroupLabel>{group.value}</CommandGroupLabel>
@@ -54,7 +54,7 @@ export function CommandRtlExample() {
                 </CommandGroup>
                 {index < groups.length - 1 && <CommandSeparator />}
               </React.Fragment>
-            ))}
+            )}
           </CommandList>
         </Command>
       </CommandPanel>
