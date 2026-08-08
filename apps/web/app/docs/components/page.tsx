@@ -502,7 +502,6 @@ const components = [
     title: "Alert",
     href: "/docs/components/alert" as const,
     description: "Displays a callout for important, contextual messages.",
-    badge: "New",
     createdAt: "2026-08-08",
     thumbnail: (
       <ThumbnailFrame>
@@ -526,7 +525,6 @@ const components = [
     href: "/docs/components/avatar" as const,
     description:
       "An image element with a fallback, for representing a user or entity, built on Base UI.",
-    badge: "New",
     createdAt: "2026-08-08",
     thumbnail: (
       <ThumbnailFrame>
@@ -574,7 +572,6 @@ const components = [
     href: "/docs/components/item" as const,
     description:
       "A flexible layout for a piece of content, media, or action, often used in lists.",
-    badge: "New",
     createdAt: "2026-08-08",
     thumbnail: (
       <ThumbnailFrame>
@@ -587,7 +584,6 @@ const components = [
     href: "/docs/components/marker" as const,
     description:
       "A small label for annotating content, such as a section divider or inline note.",
-    badge: "New",
     createdAt: "2026-08-08",
     thumbnail: (
       <ThumbnailFrame>
@@ -600,7 +596,6 @@ const components = [
     href: "/docs/components/bubble" as const,
     description:
       "A chat message bubble with variants, reactions, and start/end alignment.",
-    badge: "New",
     createdAt: "2026-08-08",
     thumbnail: (
       <ThumbnailFrame>
@@ -625,7 +620,6 @@ const components = [
     href: "/docs/components/message-scroller" as const,
     description:
       "An auto-scrolling viewport for chat messages, with scroll-to-start/end buttons, built on @shadcn/react.",
-    badge: "New",
     createdAt: "2026-08-08",
     thumbnail: (
       <ThumbnailFrame>
@@ -637,7 +631,6 @@ const components = [
     title: "Pagination",
     href: "/docs/components/pagination" as const,
     description: "Navigation for paginated content, built on Button.",
-    badge: "New",
     createdAt: "2026-08-08",
     thumbnail: (
       <ThumbnailFrame>
