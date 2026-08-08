@@ -31,7 +31,17 @@ export function Credits({
 }) {
   const listRef = React.useRef<HTMLUListElement>(null)
   const [expanded, setExpanded] = React.useState(false)
-  const [overflowing, setOverflowing] = React.useState(false)
+  // These pages are statically rendered, so the server has no DOM to
+  // measure against — it ships whatever this starts as, the browser paints
+  // that before any client JS runs, and only then does useLayoutEffect
+  // correct it. Defaulting to false meant "briefly show the full list, then
+  // collapse it" on every page load. Guessing true from the item count
+  // instead gets the common case (3+ bullets almost always overflows
+  // 6.5rem) right on the first paint; a short list still self-corrects via
+  // the effect below, just in the (rarer, less jarring) other direction.
+  const [overflowing, setOverflowing] = React.useState(
+    () => (changes?.length ?? 0) > 2
+  )
 
   React.useLayoutEffect(() => {
     const list = listRef.current
