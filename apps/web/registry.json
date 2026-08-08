@@ -67,7 +67,7 @@
       "title": "Scroll Area",
       "description": "Cross-browser custom scrollbars, built on Base UI.",
       "registryDependencies": ["utils"],
-      "dependencies": ["@base-ui/react"],
+      "dependencies": ["@base-ui/react", "shadcn"],
       "files": [
         {
           "path": "registry/base/ui/scroll-area.tsx",

@@ -17,7 +17,10 @@ function ScrollArea({
     >
       <ScrollAreaPrimitive.Viewport
         data-slot="scroll-area-viewport"
-        className="min-h-0 flex-1 rounded-[inherit] outline-none"
+        // Safe to apply unconditionally: scroll-fade shows nothing when the
+        // content doesn't overflow, so every ScrollArea gets the effect for
+        // free without needing to check per-usage whether it scrolls.
+        className="min-h-0 flex-1 scroll-fade-y rounded-[inherit] outline-none"
       >
         <ScrollAreaPrimitive.Content data-slot="scroll-area-content">
           {children}
@@ -50,7 +53,7 @@ function ScrollBar({
     >
       <ScrollAreaPrimitive.Thumb
         data-slot="scroll-area-thumb"
-        className="bg-border relative flex-1 rounded-full"
+        className="relative flex-1 rounded-full bg-border"
       />
     </ScrollAreaPrimitive.Scrollbar>
   )

@@ -1066,13 +1066,13 @@ export function AlertDialogPreview() {
           style={{
             display: "flex",
             borderRadius: "6px",
-            backgroundColor: "#f2f0ee",
+            backgroundColor: "#ef4444",
             padding: "6px 14px",
             fontSize: "12px",
-            color: "#1a1a1a",
+            color: "#fff",
           }}
         >
-          Continue
+          Confirm
         </div>
       </div>
     </div>
