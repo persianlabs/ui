@@ -16,6 +16,7 @@ import {
 } from "@workspace/ui/components/drawer"
 
 const snapPoints = [0.3, 0.6, 1]
+const cards = Array.from({ length: 20 }, (_, i) => i + 1)
 
 export function DrawerSnapPointsExample() {
   const [snapPoint, setSnapPoint] = React.useState<number | string | null>(
@@ -36,13 +37,21 @@ export function DrawerSnapPointsExample() {
           <DrawerTitle>Snap points</DrawerTitle>
           <DrawerDescription>
             Drag the handle — it snaps to 30%, 60%, or full height instead of
-            following your finger freely.
+            following your finger freely. Current snap point:{" "}
+            {String(snapPoint)}
           </DrawerDescription>
         </DrawerHeader>
         <DrawerPanel>
-          <p className="text-sm text-muted-foreground">
-            Current snap point: {String(snapPoint)}
-          </p>
+          <div className="grid gap-3">
+            {cards.map((card) => (
+              <div
+                key={card}
+                className="flex h-12 items-center rounded-md bg-muted px-4 text-sm text-muted-foreground"
+              >
+                Card {card}
+              </div>
+            ))}
+          </div>
         </DrawerPanel>
         <DrawerFooter>
           <DrawerClose render={<Button variant="outline">Close</Button>} />

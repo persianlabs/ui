@@ -15,9 +15,9 @@ const terms = Array.from({ length: 40 }, (_, i) => `Section ${i + 1}`)
 
 export function DrawerScrollableExample() {
   return (
-    <Drawer>
+    <Drawer position="right">
       <DrawerTrigger render={<Button variant="outline">View terms</Button>} />
-      <DrawerPopup showBar position="right">
+      <DrawerPopup showBar>
         <DrawerHeader>
           <DrawerTitle>Terms of Service</DrawerTitle>
           <DrawerDescription>

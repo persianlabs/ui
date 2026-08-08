@@ -187,7 +187,7 @@ function DrawerBackdrop({
     <DrawerPrimitive.Backdrop
       data-slot="drawer-backdrop"
       className={cn(
-        "fixed inset-0 z-50 bg-black/32 opacity-[calc(1-var(--drawer-swipe-progress))] backdrop-blur-sm transition-opacity duration-450 ease-[cubic-bezier(0.32,0.72,0,1)] data-swiping:duration-0 data-[ending-style]:opacity-0 data-[ending-style]:duration-[calc(var(--drawer-swipe-strength)*400ms)] data-[starting-style]:opacity-0 supports-[-webkit-touch-callout:none]:absolute",
+        "fixed inset-0 z-50 bg-black/45 opacity-[calc(1-var(--drawer-swipe-progress))] backdrop-blur-md transition-opacity duration-450 ease-[cubic-bezier(0.32,0.72,0,1)] data-swiping:duration-0 data-[ending-style]:opacity-0 data-[ending-style]:duration-[calc(var(--drawer-swipe-strength)*400ms)] data-[starting-style]:opacity-0 supports-[-webkit-touch-callout:none]:absolute",
         className
       )}
       {...props}
@@ -219,8 +219,16 @@ function DrawerViewport({
         // resolves to `none` and the drawer stops animating. Use `0px`.
         "fixed inset-0 z-50 [--bleed:--spacing(12)] [--inset:0px]",
         "touch-none",
-        position === "bottom" && "grid grid-rows-[1fr_auto] pt-12",
-        position === "top" && "grid grid-rows-[auto_1fr] pb-12",
+        // flex + align to an edge, not CSS grid: with snapPoints, the popup's
+        // own max-height (see DrawerPopup) clamps its border-box, and
+        // padding-bottom eats into that clamped box to leave only the
+        // snapped-to amount of content visible before translateY pushes the
+        // rest off-screen. That box-model interaction needs the popup to
+        // just be a normal flex item pinned to an edge — a grid "auto" row
+        // sizes itself from the popup's un-padded content instead, which
+        // left snap points with nothing to shrink against.
+        position === "bottom" && "flex items-end justify-center pt-12",
+        position === "top" && "flex items-start justify-center pb-12",
         // justify-start/justify-end (flex-start/flex-end) are direction-
         // sensitive and reverse once `dir="rtl"` is set below, undoing the
         // physical position this branch already resolved to. The CSS
@@ -269,7 +277,7 @@ function DrawerPopup({
             "relative flex max-h-full min-h-0 w-full min-w-0 flex-col bg-popover text-popover-foreground shadow-lg/5 transition-[transform,box-shadow,height,background-color] duration-450 ease-[cubic-bezier(0.32,0.72,0,1)] will-change-transform outline-none [--peek:calc(--spacing(6)-1px)] [--scale-base:calc(max(0,1-(var(--nested-drawers)*var(--stack-step))))] [--scale:clamp(0,calc(var(--scale-base)+(var(--stack-step)*var(--stack-progress))),1)] [--shrink:calc(1-var(--scale))] [--stack-peek-offset:max(0px,calc((var(--nested-drawers)-var(--stack-progress))*var(--peek)))] [--stack-progress:clamp(0,var(--drawer-swipe-progress),1)] [--stack-step:0.05] not-dark:bg-clip-padding before:pointer-events-none before:absolute before:inset-0 before:shadow-[0_1px_--theme(--color-black/4%)] after:pointer-events-none after:absolute after:bg-popover data-nested-drawer-open:overflow-hidden data-nested-drawer-open:bg-[color-mix(in_srgb,var(--popover),var(--color-black)_calc(2%*(var(--nested-drawers)-var(--stack-progress))))] data-swiping:select-none data-[ending-style]:shadow-transparent data-[ending-style]:duration-[calc(var(--drawer-swipe-strength)*400ms)] data-[starting-style]:shadow-transparent dark:before:shadow-[0_-1px_--theme(--color-white/6%)] dark:data-nested-drawer-open:bg-[color-mix(in_srgb,var(--popover),var(--color-black)_calc(6%*(var(--nested-drawers)-var(--stack-progress))))]",
             "touch-none",
             position === "bottom" &&
-              "row-start-2 mx-auto -mb-[max(0px,calc(var(--drawer-snap-point-offset,0px)+clamp(0,1,var(--drawer-snap-point-offset,0px)/1px)*var(--drawer-swipe-movement-y,0px)))] transform-[translateY(calc(var(--drawer-snap-point-offset)+var(--drawer-swipe-movement-y)))] border-t border-border pb-[max(0px,calc(env(safe-area-inset-bottom,0px)+var(--drawer-snap-point-offset,0px)+clamp(0,1,var(--drawer-snap-point-offset,0px)/1px)*var(--drawer-swipe-movement-y,0px)))] not-data-[starting-style]:not-data-[ending-style]:transition-[transform,box-shadow,height,background-color,margin,padding] after:inset-x-0 after:top-full after:h-(--bleed) has-data-[slot=drawer-bar]:pt-2 data-[ending-style]:mb-0 data-[ending-style]:transform-[translateY(calc(100%+env(safe-area-inset-bottom,0px)+var(--inset)))] data-[ending-style]:pb-0 data-[starting-style]:mb-0 data-[starting-style]:transform-[translateY(calc(100%+env(safe-area-inset-bottom,0px)+var(--inset)))] data-[starting-style]:pb-0",
+              "max-w-[400px] transform-[translateY(calc(var(--drawer-snap-point-offset)+var(--drawer-swipe-movement-y)))] border-t border-border pb-[max(0px,calc(env(safe-area-inset-bottom,0px)+var(--drawer-snap-point-offset,0px)+clamp(0,1,var(--drawer-snap-point-offset,0px)/1px)*var(--drawer-swipe-movement-y,0px)))] not-data-[starting-style]:not-data-[ending-style]:transition-[transform,box-shadow,height,background-color,padding] after:inset-x-0 after:top-full after:h-(--bleed) has-data-[slot=drawer-bar]:pt-2 data-[ending-style]:transform-[translateY(calc(100%+env(safe-area-inset-bottom,0px)+var(--inset)))] data-[ending-style]:pb-0 data-[starting-style]:transform-[translateY(calc(100%+env(safe-area-inset-bottom,0px)+var(--inset)))] data-[starting-style]:pb-0",
             position === "top" &&
               "transform-[translateY(var(--drawer-swipe-movement-y))] border-b border-border after:inset-x-0 after:bottom-full after:h-(--bleed) has-data-[slot=drawer-bar]:pb-2 data-[ending-style]:transform-[translateY(calc(-100%-var(--inset)))] data-[starting-style]:transform-[translateY(calc(-100%-var(--inset)))]",
             position === "left" &&
@@ -298,10 +306,28 @@ function DrawerPopup({
                   "before:rounded-l-[calc(var(--radius-2xl)-1px)]"
               ),
             variant === "inset" &&
-              "before:hidden sm:rounded-2xl sm:border sm:border-border sm:before:rounded-[calc(var(--radius-2xl)-1px)] sm:after:bg-transparent sm:**:data-[slot=drawer-footer]:rounded-b-[calc(var(--radius-2xl)-1px)]",
+              // The footer paints its own bleed rectangle below itself (see
+              // DrawerFooter) to cover DrawerPopup's own bleed color during
+              // drag/overscroll. The inset variant floats as a fully
+              // rounded, bordered card instead — nothing sits behind it to
+              // cover, so that rectangle just pokes out past the rounded
+              // bottom corner as a stray patch of color. Kill it here the
+              // same way the popup's own bleed is killed below.
+              "before:hidden sm:rounded-2xl sm:border sm:border-border sm:before:rounded-[calc(var(--radius-2xl)-1px)] sm:after:bg-transparent sm:**:data-[slot=drawer-footer]:rounded-b-[calc(var(--radius-2xl)-1px)] sm:**:data-[slot=drawer-footer]:after:border-transparent sm:**:data-[slot=drawer-footer]:after:bg-transparent",
             variant === "straight" && "[--stack-step:0]",
             (position === "bottom" || position === "top") &&
-              "h-(--drawer-height,auto) [--height:max(0px,calc(var(--drawer-frontmost-height,var(--drawer-height))))] data-nested-drawer-open:h-(--height)",
+              // max-h-full is a no-op here: the viewport lays these two
+              // positions out with CSS grid (row 2 is auto-sized to fit the
+              // popup itself), so percentage heights have nothing definite
+              // to resolve against and the popup can grow past the viewport
+              // with tall content. Cap it against the viewport directly —
+              // this is also what lets snapPoints do anything: Base UI
+              // derives --drawer-snap-point-offset from how much taller the
+              // popup's *actual* rendered height is than each snap target,
+              // so a popup that's never allowed to grow past its content
+              // always measures the same height as every snap point and the
+              // offset comes out to 0.
+              "h-(--drawer-height,auto) max-h-[calc(100dvh-(--spacing(12)))] [--height:max(0px,calc(var(--drawer-frontmost-height,var(--drawer-height))))] data-nested-drawer-open:h-(--height)",
             position === "bottom" &&
               "origin-[50%_calc(100%-var(--inset))] data-nested-drawer-open:transform-[translateY(calc(var(--drawer-swipe-movement-y)-var(--stack-peek-offset)-(var(--shrink)*var(--height))))_scale(var(--scale))]",
             position === "top" &&
@@ -324,7 +350,7 @@ function DrawerPopup({
               <XIcon />
             </DrawerPrimitive.Close>
           )}
-          {showBar && <DrawerBar />}
+          {showBar && <DrawerBar position={position} />}
         </DrawerPrimitive.Popup>
       </DrawerViewport>
     </DrawerPortal>
@@ -374,7 +400,13 @@ function DrawerFooter({
       "flex flex-col-reverse gap-2 px-6 pb-(--safe-area-inset-bottom,0px) sm:flex-row sm:justify-end",
       !allowSelection && "cursor-default",
       variant === "default" &&
-        "border-t border-border bg-muted/72 pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+--spacing(4))]",
+        // The footer is always the last item in the popup's column, so
+        // dragging/overscrolling exposes the area past its bottom edge.
+        // That area is otherwise filled by DrawerPopup's own bleed
+        // (bg-popover), which doesn't match the footer's muted background —
+        // paint a matching bleed here so the footer's color and border
+        // appear to continue instead of cutting to a different shade.
+        "relative border-t border-border bg-muted/72 pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+--spacing(4))] after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-[200px] after:border-t after:border-border after:bg-muted/72",
       variant === "bare" &&
         "pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+--spacing(6))] in-[[data-slot=drawer-popup]:has([data-slot=drawer-panel])]:pt-3",
       // DrawerPopup reserves space for the drag bar via padding on itself
@@ -449,7 +481,14 @@ function DrawerPanel({
   })
 
   if (scrollable) {
-    return <ScrollArea className="flex-1 touch-auto">{content}</ScrollArea>
+    // ScrollArea's own root has no intrinsic height — as a flex item inside
+    // DrawerPopup's column it needs min-h-0 too, not just flex-1, or it
+    // refuses to shrink below its content's natural height (the default
+    // `min-height: auto` on flex items) and the popup grows to fit
+    // everything instead of scrolling internally.
+    return (
+      <ScrollArea className="min-h-0 flex-1 touch-auto">{content}</ScrollArea>
+    )
   }
 
   return content
