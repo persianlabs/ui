@@ -8,6 +8,7 @@ import { checkboxMarkdown as markdown_checkbox } from "../../checkbox/page"
 import { citySelectorMarkdown as markdown_city_selector } from "../../city-selector/page"
 import { collapsibleMarkdown as markdown_collapsible } from "../../collapsible/page"
 import { comboboxMarkdown as markdown_combobox } from "../../combobox/page"
+import { commandMarkdown as markdown_command } from "../../command/page"
 import { contextMenuMarkdown as markdown_context_menu } from "../../context-menu/page"
 import { dialogMarkdown as markdown_dialog } from "../../dialog/page"
 import { drawerMarkdown as markdown_drawer } from "../../drawer/page"
@@ -45,6 +46,7 @@ const markdownBySlug: Record<string, string> = {
   "city-selector": markdown_city_selector,
   "collapsible": markdown_collapsible,
   "combobox": markdown_combobox,
+  "command": markdown_command,
   "context-menu": markdown_context_menu,
   "dialog": markdown_dialog,
   "drawer": markdown_drawer,

@@ -22,6 +22,24 @@ function ChevronDownGlyph({ size = 16 }: { size?: number }) {
   )
 }
 
+function SearchGlyph({ size = 16 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="rgba(242,240,238,0.5)"
+      strokeWidth={2.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="11" cy="11" r="7" />
+      <path d="m21 21-4.3-4.3" />
+    </svg>
+  )
+}
+
 export function TabsPreview() {
   return (
     <div
@@ -235,6 +253,60 @@ export function ComboboxPreview() {
         }}
       >
         SvelteKit
+      </div>
+    </div>
+  )
+}
+
+export function CommandPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "260px",
+        borderRadius: "14px",
+        backgroundColor: "#191817",
+        border: "1px solid rgba(242,240,238,0.16)",
+        overflow: "hidden",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
+          padding: "12px 18px",
+          borderBottom: "1px solid rgba(242,240,238,0.12)",
+        }}
+      >
+        <div style={{ display: "flex" }}>
+          <SearchGlyph size={16} />
+        </div>
+        <div style={{ display: "flex", fontSize: "16px", color: "rgba(242,240,238,0.5)" }}>
+          Search commands...
+        </div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          padding: "10px 18px",
+          fontSize: "16px",
+          color: "#f2f0ee",
+          backgroundColor: "rgba(242,240,238,0.06)",
+        }}
+      >
+        Calendar
+      </div>
+      <div
+        style={{
+          display: "flex",
+          padding: "10px 18px",
+          fontSize: "16px",
+          color: "rgba(242,240,238,0.6)",
+        }}
+      >
+        Calculator
       </div>
     </div>
   )
