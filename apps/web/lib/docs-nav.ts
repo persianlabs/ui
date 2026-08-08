@@ -95,6 +95,7 @@ export const docsNav: DocsNavGroup[] = [
       { title: "Sheet", href: "/docs/components/sheet" },
       { title: "Skeleton", href: "/docs/components/skeleton" },
       { title: "Switch", href: "/docs/components/switch" },
+      { title: "Table", href: "/docs/components/table" },
       { title: "Tabs", href: "/docs/components/tabs" },
       { title: "Textarea", href: "/docs/components/textarea" },
       { title: "Toggle", href: "/docs/components/toggle" },
