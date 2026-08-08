@@ -93,6 +93,23 @@
       ]
     },
     {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "A command palette component built with Dialog and Autocomplete for searching and executing commands.",
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/scroll-area.json"
+      ],
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "registry/base/ui/command.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "city-selector",
       "type": "registry:ui",
       "title": "City Selector",

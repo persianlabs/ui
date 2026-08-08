@@ -42,6 +42,7 @@ export const docsNav: DocsNavGroup[] = [
       },
       { title: "Collapsible", href: "/docs/components/collapsible" },
       { title: "Combobox", href: "/docs/components/combobox" },
+      { title: "Command", href: "/docs/components/command" },
       { title: "Context Menu", href: "/docs/components/context-menu" },
       { title: "Dialog", href: "/docs/components/dialog" },
       { title: "Drawer", href: "/docs/components/drawer" },

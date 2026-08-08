@@ -14,6 +14,7 @@ import {
   CitySelectorPreview,
   CollapsiblePreview,
   ComboboxPreview,
+  CommandPreview,
   ContextMenuPreview,
   DialogPreview,
   DrawerPreview,
@@ -144,6 +145,18 @@ const components = [
     thumbnail: (
       <ThumbnailFrame>
         <ComboboxPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Command",
+    href: "/docs/components/command" as const,
+    description:
+      "A command palette component built with Dialog and Autocomplete for searching and executing commands.",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <CommandPreview />
       </ThumbnailFrame>
     ),
   },
