@@ -19,6 +19,7 @@ import { TableDemoExample } from "@/components/examples/table-demo"
 import { TableRtlExample } from "@/components/examples/table-rtl"
 import { TableTanstackExample } from "@/components/examples/table-tanstack"
 import { TableTeamExample } from "@/components/examples/table-team"
+import { InstallCommand } from "@/components/install-command"
 import { LastUpdated } from "@/components/last-updated"
 import { Step, Steps } from "@/components/steps"
 import { TableOfContents } from "@/components/table-of-contents"
@@ -127,7 +128,7 @@ export default function TableDocPage() {
         <Credits
           sources={[
             { label: "shadcn/ui", href: "https://ui.shadcn.com" },
-            { label: "cossui", href: "https://coss.dev" },
+            { label: "cossui", href: "https://coss.com" },
           ]}
           changed={true}
           changes={[
@@ -171,6 +172,10 @@ export default function TableDocPage() {
 
           <TabsContent value="manual" className="mt-4">
             <Steps>
+              <Step>Install the dependencies</Step>
+              <div className="mt-2">
+                <InstallCommand packages="@base-ui/react" />
+              </div>
               <Step>Copy the component source</Step>
               <div className="mt-2">
                 <CodeBlock
