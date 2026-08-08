@@ -480,7 +480,9 @@ export const componentsMarkdown = [
   "",
   "Every component ships as source through the @persianlabsui registry. More are on the way.",
   "",
-  ...components.map((c) => `- ${c.title}: ${c.description}`),
+  ...components.map(
+    (c) => `- [${c.title}](${c.href}.md): ${c.description}`
+  ),
 ].join("\n")
 
 export default function DocsComponentsPage() {
