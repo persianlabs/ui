@@ -3,8 +3,13 @@
   "name": "accordion",
   "title": "Accordion",
   "description": "A vertically stacked set of interactive headings that each reveal a section of content, built on Base UI.",
-  "dependencies": ["@base-ui/react", "lucide-react"],
-  "registryDependencies": ["utils"],
+  "dependencies": [
+    "@base-ui/react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
   "files": [
     {
       "path": "registry/base/ui/accordion.tsx",

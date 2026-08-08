@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "registry/base/ui/kbd.tsx",
-      "content": "import type * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\n/** Keyboard shortcuts are always Latin characters, so they read left-to-right in Geist Mono even inside an RTL page. */\nfunction Kbd({ className, ...props }: React.ComponentProps<\"kbd\">) {\n  return (\n    <kbd\n      data-slot=\"kbd\"\n      dir=\"ltr\"\n      className={cn(\n        \"bg-muted text-muted-foreground pointer-events-none inline-flex h-5 w-fit min-w-5 items-center justify-center gap-1 rounded-sm px-1 font-[family-name:var(--font-geist-mono)] text-[0.7rem] font-medium select-none\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Kbd }\n",
+      "content": "import type * as React from \"react\"\r\n\r\nimport { cn } from \"@/lib/utils\"\r\n\r\n/** Keyboard shortcuts are always Latin characters, so they read left-to-right in Geist Mono even inside an RTL page. */\r\nfunction Kbd({ className, ...props }: React.ComponentProps<\"kbd\">) {\r\n  return (\r\n    <kbd\r\n      data-slot=\"kbd\"\r\n      dir=\"ltr\"\r\n      className={cn(\r\n        \"bg-muted text-muted-foreground pointer-events-none inline-flex h-5 w-fit min-w-5 items-center justify-center gap-1 rounded-sm px-1 font-[family-name:var(--font-geist-mono)] text-[0.7rem] font-medium select-none\",\r\n        className\r\n      )}\r\n      {...props}\r\n    />\r\n  )\r\n}\r\n\r\nexport { Kbd }\r\n",
       "type": "registry:ui"
     }
   ],
