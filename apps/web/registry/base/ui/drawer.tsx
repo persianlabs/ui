@@ -406,7 +406,26 @@ function DrawerFooter({
         // (bg-popover), which doesn't match the footer's muted background —
         // paint a matching bleed here so the footer's color and border
         // appear to continue instead of cutting to a different shade.
-        "relative border-t border-border bg-muted/72 pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+--spacing(4))] after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:h-[200px] after:border-t after:border-border after:bg-muted/72",
+        //
+        // after:z-10 is load-bearing: DrawerPopup has its own after: bleed
+        // (bg-popover) covering the same region, and since that bleed is
+        // *generated content of the popup itself* — which has a transform
+        // and so establishes its own stacking context — it paints as if it
+        // were the popup's last child, i.e. after and on top of this
+        // footer (an earlier child) and this pseudo-element, even though
+        // this is declared later in the DOM. Without an explicit z-index
+        // this fix is invisible: the popup's own solid bleed just paints
+        // over it.
+        "relative border-t border-border bg-muted/72 pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+--spacing(4))] after:pointer-events-none after:absolute after:inset-x-0 after:top-full after:z-10 after:h-[200px] after:bg-muted/72",
+      // The bleed's own top edge sits flush against the footer's bottom
+      // edge for a bottom drawer (translate is purely vertical, so there's
+      // never a visible seam to bridge there), but right/left/top drawers
+      // translate sideways — dragging can reveal a sliver where the bleed's
+      // top edge doesn't quite meet the footer's own border-t, and a
+      // matching border there hides it.
+      variant === "default" &&
+        position !== "bottom" &&
+        "after:border-t after:border-border",
       variant === "bare" &&
         "pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+--spacing(6))] in-[[data-slot=drawer-popup]:has([data-slot=drawer-panel])]:pt-3",
       // DrawerPopup reserves space for the drag bar via padding on itself
