@@ -67,7 +67,7 @@
       "title": "Scroll Area",
       "description": "Cross-browser custom scrollbars, built on Base UI.",
       "registryDependencies": ["utils"],
-      "dependencies": ["@base-ui/react"],
+      "dependencies": ["@base-ui/react", "shadcn"],
       "files": [
         {
           "path": "registry/base/ui/scroll-area.tsx",
@@ -657,6 +657,216 @@
         {
           "path": "registry/base/hooks/use-media-query.ts",
           "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "responsive-alert-dialog",
+      "type": "registry:ui",
+      "title": "Responsive Alert Dialog",
+      "description": "Renders an Alert Dialog on desktop and a bottom Drawer on mobile from one shared set of components.",
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/alert-dialog.json",
+        "https://ui.persian-labs.ir/r/drawer.json"
+      ],
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/base/ui/responsive-alert-dialog.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base/hooks/use-media-query.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "Displays a callout for important, contextual messages.",
+      "registryDependencies": ["utils"],
+      "dependencies": ["class-variance-authority"],
+      "files": [
+        {
+          "path": "registry/base/ui/alert.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "title": "Aspect Ratio",
+      "description": "Displays content within a desired ratio.",
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/base/ui/aspect-ratio.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "An image element with a fallback, for representing a user or entity, built on Base UI.",
+      "registryDependencies": ["utils"],
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "registry/base/ui/avatar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Used to show a placeholder while content is loading.",
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/base/ui/skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "direction",
+      "type": "registry:ui",
+      "title": "Direction",
+      "description": "A provider for setting the reading direction (LTR or RTL) of your app, built on Base UI.",
+      "registryDependencies": ["utils"],
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "registry/base/ui/direction.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "title": "Hover Card",
+      "description": "For sighted users to preview content available behind a link, built on Base UI.",
+      "registryDependencies": ["utils"],
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "registry/base/ui/hover-card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "item",
+      "type": "registry:ui",
+      "title": "Item",
+      "description": "A flexible layout for a piece of content, media, or action, often used in lists.",
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/separator.json"
+      ],
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "files": [
+        {
+          "path": "registry/base/ui/item.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "marker",
+      "type": "registry:ui",
+      "title": "Marker",
+      "description": "A small label for annotating content, such as a section divider or inline note.",
+      "registryDependencies": ["utils"],
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "files": [
+        {
+          "path": "registry/base/ui/marker.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "bubble",
+      "type": "registry:ui",
+      "title": "Bubble",
+      "description": "A chat message bubble with variants, reactions, and start/end alignment.",
+      "registryDependencies": ["utils"],
+      "dependencies": ["@base-ui/react", "class-variance-authority"],
+      "files": [
+        {
+          "path": "registry/base/ui/bubble.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "message",
+      "type": "registry:ui",
+      "title": "Message",
+      "description": "Composable layout for a chat message with an avatar, header, content, and footer.",
+      "registryDependencies": ["utils"],
+      "files": [
+        {
+          "path": "registry/base/ui/message.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "message-scroller",
+      "type": "registry:ui",
+      "title": "Message Scroller",
+      "description": "An auto-scrolling viewport for chat messages, with scroll-to-start/end buttons, built on @shadcn/react.",
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/button.json"
+      ],
+      "dependencies": ["@shadcn/react", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/base/ui/message-scroller.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "Navigation for paginated content, built on Button.",
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/button.json"
+      ],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "registry/base/ui/pagination.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "title": "Resizable",
+      "description": "Accessible resizable panel groups and layouts, built on react-resizable-panels.",
+      "registryDependencies": ["utils"],
+      "dependencies": ["react-resizable-panels"],
+      "files": [
+        {
+          "path": "registry/base/ui/resizable.tsx",
+          "type": "registry:ui"
         }
       ]
     }

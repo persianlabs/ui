@@ -5,7 +5,11 @@ import { CopyMarkdownButton } from "@/components/copy-markdown-button"
 import {
   AccordionPreview,
   AlertDialogPreview,
+  AlertPreview,
+  AspectRatioPreview,
+  AvatarPreview,
   BreadcrumbPreview,
+  BubblePreview,
   ButtonGroupPreview,
   ButtonPreview,
   CardPreview,
@@ -16,23 +20,32 @@ import {
   CommandPreview,
   ContextMenuPreview,
   DialogPreview,
+  DirectionPreview,
   DrawerPreview,
   ElasticRangeSliderPreview,
   ElasticSliderPreview,
   EmptyPreview,
+  HoverCardPreview,
   InputGroupPreview,
   InputOTPPreview,
   InputPreview,
+  ItemPreview,
+  MarkerPreview,
   MenubarPreview,
+  MessagePreview,
+  MessageScrollerPreview,
   NativeSelectPreview,
+  PaginationPreview,
   ProgressPreview,
   RadioGroupPreview,
+  ResizablePreview,
   ResponsiveAlertDialogPreview,
   ResponsiveDialogPreview,
   ResponsiveMenuPreview,
   SelectPreview,
   SeparatorPreview,
   SheetPreview,
+  SkeletonPreview,
   SwitchPreview,
   TabsPreview,
   TextareaPreview,
@@ -482,6 +495,165 @@ const components = [
     thumbnail: (
       <ThumbnailFrame>
         <ResponsiveAlertDialogPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Alert",
+    href: "/docs/components/alert" as const,
+    description: "Displays a callout for important, contextual messages.",
+    badge: "New",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <AlertPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Aspect Ratio",
+    href: "/docs/components/aspect-ratio" as const,
+    description: "Displays content within a desired ratio.",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <AspectRatioPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Avatar",
+    href: "/docs/components/avatar" as const,
+    description:
+      "An image element with a fallback, for representing a user or entity, built on Base UI.",
+    badge: "New",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <AvatarPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Skeleton",
+    href: "/docs/components/skeleton" as const,
+    description: "Used to show a placeholder while content is loading.",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <SkeletonPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Direction",
+    href: "/docs/components/direction" as const,
+    description:
+      "A provider for setting the reading direction (LTR or RTL) of your app, built on Base UI.",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <DirectionPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Hover Card",
+    href: "/docs/components/hover-card" as const,
+    description:
+      "For sighted users to preview content available behind a link, built on Base UI.",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <HoverCardPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Item",
+    href: "/docs/components/item" as const,
+    description:
+      "A flexible layout for a piece of content, media, or action, often used in lists.",
+    badge: "New",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <ItemPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Marker",
+    href: "/docs/components/marker" as const,
+    description:
+      "A small label for annotating content, such as a section divider or inline note.",
+    badge: "New",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <MarkerPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Bubble",
+    href: "/docs/components/bubble" as const,
+    description:
+      "A chat message bubble with variants, reactions, and start/end alignment.",
+    badge: "New",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <BubblePreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Message",
+    href: "/docs/components/message" as const,
+    description:
+      "Composable layout for a chat message with an avatar, header, content, and footer.",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <MessagePreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Message Scroller",
+    href: "/docs/components/message-scroller" as const,
+    description:
+      "An auto-scrolling viewport for chat messages, with scroll-to-start/end buttons, built on @shadcn/react.",
+    badge: "New",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <MessageScrollerPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Pagination",
+    href: "/docs/components/pagination" as const,
+    description: "Navigation for paginated content, built on Button.",
+    badge: "New",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <PaginationPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Resizable",
+    href: "/docs/components/resizable" as const,
+    description:
+      "Accessible resizable panel groups and layouts, built on react-resizable-panels.",
+    createdAt: "2026-08-08",
+    thumbnail: (
+      <ThumbnailFrame>
+        <ResizablePreview />
       </ThumbnailFrame>
     ),
   },

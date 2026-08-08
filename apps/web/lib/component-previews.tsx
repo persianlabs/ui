@@ -1247,3 +1247,403 @@ export function ResponsiveMenuPreview() {
     </div>
   )
 }
+
+export function AlertPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "4px",
+        width: "220px",
+        borderRadius: "12px",
+        border: "1px solid rgba(242,240,238,0.16)",
+        backgroundColor: "#191817",
+        padding: "12px 14px",
+      }}
+    >
+      <div style={{ display: "flex", fontSize: "14px", color: "#f2f0ee" }}>
+        Heads up
+      </div>
+      <div
+        style={{
+          display: "flex",
+          fontSize: "12px",
+          color: "rgba(242,240,238,0.5)",
+        }}
+      >
+        You can add components to your app
+      </div>
+    </div>
+  )
+}
+
+export function AspectRatioPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "220px",
+        height: "124px",
+        borderRadius: "12px",
+        backgroundColor: "rgba(242,240,238,0.08)",
+        border: "1px solid rgba(242,240,238,0.16)",
+        fontSize: "12px",
+        color: "rgba(242,240,238,0.5)",
+      }}
+    >
+      16 : 9
+    </div>
+  )
+}
+
+export function AvatarPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "48px",
+        height: "48px",
+        borderRadius: "9999px",
+        backgroundColor: "rgba(242,240,238,0.14)",
+        color: "#f2f0ee",
+        fontSize: "16px",
+        fontWeight: 700,
+      }}
+    >
+      CN
+    </div>
+  )
+}
+
+export function DirectionPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "8px",
+        fontSize: "14px",
+        color: "#f2f0ee",
+      }}
+    >
+      <div style={{ display: "flex" }}>LTR</div>
+      <div style={{ display: "flex", color: "rgba(242,240,238,0.3)" }}>
+        {"<->"}
+      </div>
+      <div style={{ display: "flex" }}>RTL</div>
+    </div>
+  )
+}
+
+export function HoverCardPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "6px",
+        width: "200px",
+        borderRadius: "12px",
+        border: "1px solid rgba(242,240,238,0.16)",
+        backgroundColor: "#191817",
+        padding: "12px 14px",
+      }}
+    >
+      <div style={{ display: "flex", fontSize: "14px", color: "#f2f0ee" }}>
+        @shadcn
+      </div>
+      <div
+        style={{
+          display: "flex",
+          fontSize: "12px",
+          color: "rgba(242,240,238,0.5)",
+        }}
+      >
+        The React Framework for design engineers
+      </div>
+    </div>
+  )
+}
+
+export function ItemPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "10px",
+        width: "220px",
+        borderRadius: "12px",
+        border: "1px solid rgba(242,240,238,0.16)",
+        padding: "10px 14px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          width: "28px",
+          height: "28px",
+          borderRadius: "8px",
+          backgroundColor: "rgba(242,240,238,0.14)",
+        }}
+      />
+      <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+        <div style={{ display: "flex", fontSize: "13px", color: "#f2f0ee" }}>
+          Item title
+        </div>
+        <div
+          style={{
+            display: "flex",
+            fontSize: "11px",
+            color: "rgba(242,240,238,0.5)",
+          }}
+        >
+          Item description
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export function MarkerPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "8px",
+        width: "200px",
+        fontSize: "12px",
+        color: "rgba(242,240,238,0.5)",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          height: "1px",
+          flex: 1,
+          backgroundColor: "rgba(242,240,238,0.16)",
+        }}
+      />
+      <div style={{ display: "flex" }}>OR</div>
+      <div
+        style={{
+          display: "flex",
+          height: "1px",
+          flex: 1,
+          backgroundColor: "rgba(242,240,238,0.16)",
+        }}
+      />
+    </div>
+  )
+}
+
+export function BubblePreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "8px",
+        width: "200px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          alignSelf: "flex-start",
+          borderRadius: "12px",
+          backgroundColor: "rgba(242,240,238,0.1)",
+          color: "#f2f0ee",
+          fontSize: "12px",
+          padding: "8px 12px",
+        }}
+      >
+        Hey there!
+      </div>
+      <div
+        style={{
+          display: "flex",
+          alignSelf: "flex-end",
+          borderRadius: "12px",
+          backgroundColor: "#f2f0ee",
+          color: "#191817",
+          fontSize: "12px",
+          padding: "8px 12px",
+        }}
+      >
+        How can I help?
+      </div>
+    </div>
+  )
+}
+
+export function MessagePreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "flex-end",
+        gap: "8px",
+        width: "200px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          width: "28px",
+          height: "28px",
+          borderRadius: "9999px",
+          backgroundColor: "rgba(242,240,238,0.14)",
+        }}
+      />
+      <div
+        style={{
+          display: "flex",
+          borderRadius: "12px",
+          backgroundColor: "rgba(242,240,238,0.1)",
+          color: "#f2f0ee",
+          fontSize: "12px",
+          padding: "8px 12px",
+        }}
+      >
+        Got it, thanks!
+      </div>
+    </div>
+  )
+}
+
+export function MessageScrollerPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "36px",
+        height: "36px",
+        borderRadius: "9999px",
+        backgroundColor: "rgba(242,240,238,0.14)",
+        color: "#f2f0ee",
+      }}
+    >
+      ↓
+    </div>
+  )
+}
+
+export function PaginationPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "6px",
+        fontSize: "13px",
+        color: "rgba(242,240,238,0.5)",
+      }}
+    >
+      <div style={{ display: "flex" }}>‹</div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "26px",
+          height: "26px",
+          borderRadius: "8px",
+          border: "1px solid rgba(242,240,238,0.16)",
+          color: "#f2f0ee",
+        }}
+      >
+        1
+      </div>
+      <div style={{ display: "flex" }}>2</div>
+      <div style={{ display: "flex" }}>3</div>
+      <div style={{ display: "flex" }}>›</div>
+    </div>
+  )
+}
+
+export function ResizablePreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "stretch",
+        width: "180px",
+        height: "80px",
+        borderRadius: "10px",
+        border: "1px solid rgba(242,240,238,0.16)",
+        overflow: "hidden",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flex: 1,
+          backgroundColor: "rgba(242,240,238,0.08)",
+        }}
+      />
+      <div
+        style={{
+          display: "flex",
+          width: "2px",
+          backgroundColor: "rgba(242,240,238,0.24)",
+        }}
+      />
+      <div
+        style={{
+          display: "flex",
+          flex: 1,
+        }}
+      />
+    </div>
+  )
+}
+
+export function SkeletonPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "8px",
+        width: "200px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          width: "44px",
+          height: "44px",
+          borderRadius: "9999px",
+          backgroundColor: "rgba(242,240,238,0.1)",
+        }}
+      />
+      <div
+        style={{
+          display: "flex",
+          width: "140px",
+          height: "10px",
+          borderRadius: "6px",
+          backgroundColor: "rgba(242,240,238,0.1)",
+        }}
+      />
+      <div
+        style={{
+          display: "flex",
+          width: "100px",
+          height: "10px",
+          borderRadius: "6px",
+          backgroundColor: "rgba(242,240,238,0.1)",
+        }}
+      />
+    </div>
+  )
+}

@@ -12,7 +12,7 @@
   "files": [
     {
       "path": "registry/base/ui/spinner.tsx",
-      "content": "import { Loader2Icon } from \"lucide-react\"\nimport type * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nfunction Spinner({\n  className,\n  ...props\n}: React.ComponentProps<typeof Loader2Icon>) {\n  return (\n    <Loader2Icon\n      role=\"status\"\n      aria-label=\"Loading\"\n      data-slot=\"spinner\"\n      className={cn(\"size-4 animate-spin\", className)}\n      {...props}\n    />\n  )\n}\n\nexport { Spinner }\n",
+      "content": "import { Loader2Icon } from \"lucide-react\"\r\nimport type * as React from \"react\"\r\n\r\nimport { cn } from \"@/lib/utils\"\r\n\r\nfunction Spinner({\r\n  className,\r\n  ...props\r\n}: React.ComponentProps<typeof Loader2Icon>) {\r\n  return (\r\n    <Loader2Icon\r\n      role=\"status\"\r\n      aria-label=\"Loading\"\r\n      data-slot=\"spinner\"\r\n      className={cn(\"size-4 animate-spin\", className)}\r\n      {...props}\r\n    />\r\n  )\r\n}\r\n\r\nexport { Spinner }\r\n",
       "type": "registry:ui"
     }
   ],
