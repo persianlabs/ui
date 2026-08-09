@@ -1702,3 +1702,253 @@ export function TablePreview() {
     </div>
   )
 }
+
+export function BadgePreview() {
+  return (
+    <div style={{ display: "flex", gap: "8px" }}>
+      <div
+        style={{
+          display: "flex",
+          borderRadius: "9999px",
+          backgroundColor: "#f2f0ee",
+          color: "#191817",
+          fontSize: "12px",
+          fontWeight: 600,
+          padding: "3px 10px",
+        }}
+      >
+        Default
+      </div>
+      <div
+        style={{
+          display: "flex",
+          borderRadius: "9999px",
+          border: "1px solid rgba(242,240,238,0.24)",
+          color: "#f2f0ee",
+          fontSize: "12px",
+          fontWeight: 600,
+          padding: "3px 10px",
+        }}
+      >
+        Outline
+      </div>
+    </div>
+  )
+}
+
+export function DropdownMenuPreview() {
+  const rows = ["Profile", "Billing", "Settings"]
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        width: "160px",
+        borderRadius: "10px",
+        backgroundColor: "#1a1a1a",
+        border: "1px solid rgba(242,240,238,0.14)",
+        padding: "6px",
+        gap: "2px",
+      }}
+    >
+      {rows.map((row, i) => (
+        <div
+          key={row}
+          style={{
+            display: "flex",
+            borderRadius: "6px",
+            padding: "6px 8px",
+            fontSize: "12px",
+            backgroundColor: i === 0 ? "rgba(242,240,238,0.12)" : "transparent",
+            color: "#f2f0ee",
+          }}
+        >
+          {row}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export function FieldPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "6px",
+        width: "200px",
+      }}
+    >
+      <div style={{ display: "flex", fontSize: "13px", color: "#f2f0ee" }}>
+        Email
+      </div>
+      <div
+        style={{
+          display: "flex",
+          padding: "9px 12px",
+          borderRadius: "8px",
+          backgroundColor: "#191817",
+          border: "1px solid rgba(242,240,238,0.16)",
+          fontSize: "13px",
+          color: "rgba(242,240,238,0.5)",
+        }}
+      >
+        you@example.com
+      </div>
+      <div
+        style={{
+          display: "flex",
+          fontSize: "11px",
+          color: "rgba(242,240,238,0.5)",
+        }}
+      >
+        We&apos;ll never share your email.
+      </div>
+    </div>
+  )
+}
+
+export function KbdPreview() {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
+      {["⌘", "K"].map((key) => (
+        <div
+          key={key}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            minWidth: "22px",
+            height: "22px",
+            borderRadius: "5px",
+            backgroundColor: "rgba(242,240,238,0.1)",
+            color: "rgba(242,240,238,0.7)",
+            fontSize: "12px",
+            padding: "0 5px",
+          }}
+        >
+          {key}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export function LabelPreview() {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "16px",
+          height: "16px",
+          borderRadius: "4px",
+          backgroundColor: "#f2f0ee",
+          color: "#191817",
+          fontSize: "11px",
+        }}
+      >
+        ✓
+      </div>
+      <div style={{ display: "flex", fontSize: "14px", color: "#f2f0ee" }}>
+        Accept terms and conditions
+      </div>
+    </div>
+  )
+}
+
+export function PopoverPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "4px",
+        width: "200px",
+        borderRadius: "12px",
+        border: "1px solid rgba(242,240,238,0.16)",
+        backgroundColor: "#191817",
+        padding: "14px 16px",
+      }}
+    >
+      <div style={{ display: "flex", fontSize: "13px", color: "#f2f0ee" }}>
+        Dimensions
+      </div>
+      <div
+        style={{
+          display: "flex",
+          fontSize: "11px",
+          color: "rgba(242,240,238,0.5)",
+        }}
+      >
+        Set the dimensions for the layer.
+      </div>
+    </div>
+  )
+}
+
+export function ScrollAreaPreview() {
+  const rows = ["Tag 1", "Tag 2", "Tag 3", "Tag 4"]
+  return (
+    <div
+      style={{
+        display: "flex",
+        width: "140px",
+        height: "110px",
+        borderRadius: "10px",
+        border: "1px solid rgba(242,240,238,0.16)",
+        overflow: "hidden",
+        position: "relative",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px",
+          padding: "12px",
+        }}
+      >
+        {rows.map((row) => (
+          <div
+            key={row}
+            style={{ display: "flex", fontSize: "12px", color: "#f2f0ee" }}
+          >
+            {row}
+          </div>
+        ))}
+      </div>
+      <div
+        style={{
+          position: "absolute",
+          insetInlineEnd: "3px",
+          top: "8px",
+          bottom: "8px",
+          width: "4px",
+          borderRadius: "999px",
+          backgroundColor: "rgba(242,240,238,0.24)",
+        }}
+      />
+    </div>
+  )
+}
+
+export function SpinnerPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "36px",
+        height: "36px",
+        borderRadius: "9999px",
+        border: "2px solid rgba(242,240,238,0.16)",
+        borderTopColor: "#f2f0ee",
+      }}
+    />
+  )
+}
