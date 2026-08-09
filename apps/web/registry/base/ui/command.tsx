@@ -244,7 +244,7 @@ function CommandDialogPopup({
     <DialogPrimitive.Portal {...portalProps}>
       <DialogPrimitive.Backdrop
         data-slot="command-dialog-backdrop"
-        className="fixed inset-0 z-50 bg-black/45 backdrop-blur-md transition-opacity duration-200 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0"
+        className="fixed inset-0 z-50 bg-black/45 backdrop-blur-md duration-200 data-open:animate-in data-open:fade-in-0 data-closed:animate-out data-closed:fade-out-0"
       />
       <div
         dir={dir}
@@ -266,7 +266,7 @@ function CommandDialogPopup({
         <DialogPrimitive.Popup
           data-slot="command-dialog-popup"
           className={cn(
-            "row-start-2 flex max-h-[calc(100dvh-2rem)] w-full max-w-lg min-w-0 flex-col overflow-hidden rounded-2xl border border-border bg-popover text-popover-foreground shadow-lg outline-none transition-[opacity,transform] duration-150 data-[ending-style]:scale-95 data-[ending-style]:opacity-0 data-[starting-style]:scale-95 data-[starting-style]:opacity-0",
+            "row-start-2 flex max-h-[calc(100dvh-2rem)] w-full max-w-lg min-w-0 flex-col overflow-hidden rounded-2xl border border-border bg-popover text-popover-foreground shadow-lg outline-none duration-150 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
             className
           )}
           {...props}
