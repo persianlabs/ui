@@ -29,7 +29,7 @@ type SwipeDirection = "up" | "down" | "left" | "right"
 type ToastVariant = "default" | "x"
 
 interface ToastData {
-  /** Visual style of the toast. Set per-toast via `toast.add({ data: { variant: "x" } })`. */
+  /** Visual style of the toast. Set per-toast via `toastManager.add({ data: { variant: "x" } })`. */
   variant?: ToastVariant
   /** Avatar/icon rendered in the `x` variant instead of the status icon. */
   avatar?: React.ReactNode
@@ -87,7 +87,8 @@ function resolveToastPosition(
   }
 
   const isStart = horizontal === "start"
-  const isPhysicalRight = (isStart && dir === "rtl") || (!isStart && dir === "ltr")
+  const isPhysicalRight =
+    (isStart && dir === "rtl") || (!isStart && dir === "ltr")
 
   return `${vertical}-${isPhysicalRight ? "right" : "left"}`
 }
@@ -125,7 +126,7 @@ function toastAppearance(variant: ToastVariant) {
 }
 
 const TOAST_ROOT_BASE = cn(
-  "absolute z-[calc(9999-var(--toast-index))] h-(--toast-calc-height) w-full origin-[50%_0%] select-none outline-none [transition:transform_.5s_cubic-bezier(.22,1,.36,1),opacity_.5s,height_.15s,background-color_.5s]",
+  "absolute z-[calc(9999-var(--toast-index))] h-(--toast-calc-height) w-full origin-[50%_0%] outline-none select-none [transition:transform_.5s_cubic-bezier(.22,1,.36,1),opacity_.5s,height_.15s,background-color_.5s]",
   "before:pointer-events-none before:absolute before:inset-0",
   // Horizontal positioning
   "data-[position*=right]:right-0 data-[position*=right]:left-auto",
@@ -136,7 +137,7 @@ const TOAST_ROOT_BASE = cn(
   "data-[position*=bottom]:top-auto data-[position*=bottom]:bottom-0 data-[position*=bottom]:origin-[50%_calc(50%+50%*min(var(--toast-index,0),1))]",
   // Gap fill so hovering the space between stacked toasts still counts as "hovering"
   "after:pointer-events-none after:absolute after:inset-x-0 after:h-[calc(var(--toast-gap)+1px)]",
-  "data-[position*=top]:after:top-full data-[position*=bottom]:after:bottom-full",
+  "data-[position*=bottom]:after:bottom-full data-[position*=top]:after:top-full",
   // Stack variables
   "[--toast-calc-height:var(--toast-frontmost-height,var(--toast-height))] [--toast-gap:--spacing(3)] [--toast-peek:--spacing(3)] [--toast-scale:calc(max(0,1-(var(--toast-index)*.1)))] [--toast-shrink:calc(1-var(--toast-scale))]",
   "data-[position*=top]:[--toast-calc-offset-y:calc(var(--toast-offset-y)+var(--toast-index)*var(--toast-gap)+var(--toast-swipe-movement-y))]",
@@ -145,7 +146,7 @@ const TOAST_ROOT_BASE = cn(
   "data-[position*=top]:transform-[translateX(var(--toast-swipe-movement-x))_translateY(calc(var(--toast-swipe-movement-y)+(var(--toast-index)*var(--toast-peek))+(var(--toast-shrink)*var(--toast-calc-height))))_scale(var(--toast-scale))]",
   "data-[position*=bottom]:transform-[translateX(var(--toast-swipe-movement-x))_translateY(calc(var(--toast-swipe-movement-y)-(var(--toast-index)*var(--toast-peek))-(var(--toast-shrink)*var(--toast-calc-height))))_scale(var(--toast-scale))]",
   // Limited / expanded
-  "data-limited:opacity-0 data-expanded:h-(--toast-height)",
+  "data-expanded:h-(--toast-height) data-limited:opacity-0",
   "data-position:data-expanded:transform-[translateX(var(--toast-swipe-movement-x))_translateY(var(--toast-calc-offset-y))]",
   // Starting / ending animations
   "data-[position*=top]:data-starting-style:transform-[translateY(calc(-100%-var(--toast-inset)))]",
@@ -216,9 +217,9 @@ function ToastBody({
     return (
       <ToastPrimitive.Content
         data-slot="toast-content"
-        className="pointer-events-auto flex items-start gap-2.5 overflow-hidden py-2.5 pe-3 ps-2.5 text-sm transition-opacity duration-250 data-behind:opacity-0 data-expanded:opacity-100"
+        className="pointer-events-auto flex items-start gap-2.5 overflow-hidden py-2.5 ps-2.5 pe-3 text-sm transition-opacity duration-250 data-behind:opacity-0 data-expanded:opacity-100"
       >
-        <span className="flex size-9 shrink-0 items-center justify-center self-center overflow-hidden rounded-full bg-white/10 [&>svg]:pointer-events-none [&>svg:not([class*='size-'])]:size-4 dark:bg-neutral-900/10">
+        <span className="flex size-9 shrink-0 items-center justify-center self-center overflow-hidden rounded-full bg-white/10 dark:bg-neutral-900/10 [&>svg]:pointer-events-none [&>svg:not([class*='size-'])]:size-4">
           {data?.avatar ??
             (Icon && (
               <Icon
@@ -329,7 +330,7 @@ function AnchoredToastBody({
         data-slot="toast-content"
         className="pointer-events-auto flex items-center gap-1.5 overflow-hidden px-2 py-1.5 text-xs transition-opacity duration-250 data-behind:opacity-0 data-expanded:opacity-100"
       >
-        <span className="flex size-5 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/10 [&>svg]:pointer-events-none [&>svg:not([class*='size-'])]:size-3 dark:bg-neutral-900/10">
+        <span className="flex size-5 shrink-0 items-center justify-center overflow-hidden rounded-full bg-white/10 dark:bg-neutral-900/10 [&>svg]:pointer-events-none [&>svg:not([class*='size-'])]:size-3">
           {data?.avatar ??
             (Icon && (
               <Icon
@@ -496,10 +497,11 @@ function AnchoredToasts({
   )
 }
 
-export const toast: ReturnType<typeof ToastPrimitive.createToastManager> =
-  ToastPrimitive.createToastManager()
+export const toastManager: ReturnType<
+  typeof ToastPrimitive.createToastManager
+> = ToastPrimitive.createToastManager()
 
-export const anchoredToast: ReturnType<
+export const anchoredToastManager: ReturnType<
   typeof ToastPrimitive.createToastManager
 > = ToastPrimitive.createToastManager()
 
@@ -513,13 +515,13 @@ function ToastProvider({
   children,
   position = "bottom-end",
   portalProps,
-  toastManager = toast,
+  toastManager: manager = toastManager,
   ...props
 }: ToastProviderProps) {
   const { dir, anchorRef } = useAmbientDir()
 
   return (
-    <ToastPrimitive.Provider toastManager={toastManager} {...props}>
+    <ToastPrimitive.Provider toastManager={manager} {...props}>
       <span
         ref={anchorRef}
         data-slot="toast-dir-anchor"
@@ -540,13 +542,13 @@ export interface AnchoredToastProviderProps
 function AnchoredToastProvider({
   children,
   portalProps,
-  toastManager = anchoredToast,
+  toastManager: manager = anchoredToastManager,
   ...props
 }: AnchoredToastProviderProps) {
   const { dir, anchorRef } = useAmbientDir()
 
   return (
-    <ToastPrimitive.Provider toastManager={toastManager} {...props}>
+    <ToastPrimitive.Provider toastManager={manager} {...props}>
       <span
         ref={anchorRef}
         data-slot="toast-dir-anchor"

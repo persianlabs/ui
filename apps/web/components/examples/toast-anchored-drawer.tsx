@@ -15,52 +15,41 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "@workspace/ui/components/drawer"
-import {
-  AnchoredToastProvider,
-  ToastPrimitive,
-} from "@workspace/ui/components/toast"
+import { anchoredToastManager } from "@workspace/ui/components/toast"
 
 export function ToastAnchoredDrawerExample() {
-  const manager = React.useMemo(() => ToastPrimitive.createToastManager(), [])
-
   return (
-    <AnchoredToastProvider toastManager={manager}>
-      <Drawer>
-        <DrawerTrigger render={<Button variant="outline">Open drawer</Button>} />
-        <DrawerPopup showBar>
-          <DrawerHeader>
-            <DrawerTitle>Notification settings</DrawerTitle>
-            <DrawerDescription>
-              Choose what you want to be notified about.
-            </DrawerDescription>
-          </DrawerHeader>
-          <DrawerPanel>
-            <div className="flex items-center gap-2 rounded-lg border bg-muted/50 px-3 py-2 text-sm">
-              <span className="min-w-0 flex-1 truncate text-muted-foreground">
-                webhook_2f8a1c9e4b7d
-              </span>
-              <CopyButton
-                text="webhook_2f8a1c9e4b7d"
-                variant="ghost"
-                size="icon-sm"
-              />
-            </div>
-          </DrawerPanel>
-          <DrawerFooter>
-            <SaveButton manager={manager} />
-            <DrawerClose render={<Button variant="outline">Cancel</Button>} />
-          </DrawerFooter>
-        </DrawerPopup>
-      </Drawer>
-    </AnchoredToastProvider>
+    <Drawer>
+      <DrawerTrigger render={<Button variant="outline">Open drawer</Button>} />
+      <DrawerPopup showBar>
+        <DrawerHeader>
+          <DrawerTitle>Notification settings</DrawerTitle>
+          <DrawerDescription>
+            Choose what you want to be notified about.
+          </DrawerDescription>
+        </DrawerHeader>
+        <DrawerPanel>
+          <div className="flex items-center gap-2 rounded-lg border bg-muted/50 px-3 py-2 text-sm">
+            <span className="min-w-0 flex-1 truncate text-muted-foreground">
+              webhook_2f8a1c9e4b7d
+            </span>
+            <CopyButton
+              text="webhook_2f8a1c9e4b7d"
+              variant="ghost"
+              size="icon-sm"
+            />
+          </div>
+        </DrawerPanel>
+        <DrawerFooter>
+          <SaveButton />
+          <DrawerClose render={<Button variant="outline">Cancel</Button>} />
+        </DrawerFooter>
+      </DrawerPopup>
+    </Drawer>
   )
 }
 
-function SaveButton({
-  manager,
-}: {
-  manager: ReturnType<typeof ToastPrimitive.createToastManager>
-}) {
+function SaveButton() {
   const ref = React.useRef<HTMLButtonElement>(null)
 
   return (
@@ -68,7 +57,7 @@ function SaveButton({
       ref={ref}
       type="submit"
       onClick={() =>
-        manager.add({
+        anchoredToastManager.add({
           type: "success",
           title: "Preferences saved",
           positionerProps: {

@@ -6,6 +6,10 @@ import "@workspace/ui/globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { SITE_URL } from "@/lib/site"
 import { cn } from "@workspace/ui/lib/utils"
+import {
+  AnchoredToastProvider,
+  ToastProvider,
+} from "@workspace/ui/components/toast"
 
 const geist = Geist({
   subsets: ["latin"],
@@ -72,7 +76,11 @@ export default function RootLayout({
       )}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <ToastProvider>
+            <AnchoredToastProvider>{children}</AnchoredToastProvider>
+          </ToastProvider>
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

@@ -66,23 +66,35 @@ const tocItems = [
 ]
 
 const usageSnippet = `import { Button } from "@/components/ui/button"
-import { toast, ToastProvider } from "@/components/ui/toast"
+import { toastManager } from "@/components/ui/toast"
 
 export function Example() {
   return (
-    <ToastProvider>
-      <Button
-        variant="outline"
-        onClick={() =>
-          toast.add({
-            title: "Event created",
-            description: "Sunday, December 3 at 9:00 AM",
-          })
-        }
-      >
-        Show toast
-      </Button>
-    </ToastProvider>
+    <Button
+      variant="outline"
+      onClick={() =>
+        toastManager.add({
+          title: "Event created",
+          description: "Sunday, December 3 at 9:00 AM",
+        })
+      }
+    >
+      Show toast
+    </Button>
+  )
+}`
+
+const providerSnippet = `import { AnchoredToastProvider, ToastProvider } from "@/components/ui/toast"
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        <ToastProvider>
+          <AnchoredToastProvider>{children}</AnchoredToastProvider>
+        </ToastProvider>
+      </body>
+    </html>
   )
 }`
 
@@ -97,12 +109,18 @@ export const toastMarkdown = [
   "",
   "A temporary notification that stacks in a corner of the screen or anchors to an element, built on Base UI.",
   "",
-  "`ToastProvider` renders a stacked, swipeable notification list in a corner of the screen — call `toast.add()` anywhere inside it. `AnchoredToastProvider` instead positions each toast against a specific element (a button, a form field) using `anchoredToast.add({ positionerProps: { anchor } })`.",
+  "`ToastProvider` renders a stacked, swipeable notification list in a corner of the screen — call `toastManager.add()` anywhere in the app after adding the provider to your root layout. `AnchoredToastProvider` instead positions each toast against a specific element (a button, a form field) using `anchoredToastManager.add({ positionerProps: { anchor } })`.",
   "",
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
   "npx shadcn@latest add https://ui.persian-labs.ir/r/toast.json",
+  CODE_FENCE,
+  "",
+  "Add the providers to your root layout:",
+  "",
+  `${CODE_FENCE}tsx`,
+  providerSnippet,
   CODE_FENCE,
   "",
   "## Usage",
@@ -121,11 +139,11 @@ export const toastMarkdown = [
   "",
   apiRowsToMarkdownTable(anchoredToastProviderApi),
   "",
-  "### toast.add(options)",
+  "### toastManager.add(options)",
   "",
   apiRowsToMarkdownTable(toastAddOptionsApi),
   "",
-  "### anchoredToast.add(options)",
+  "### anchoredToastManager.add(options)",
   "",
   apiRowsToMarkdownTable(anchoredToastAddOptionsApi),
 ].join("\n")
@@ -152,16 +170,19 @@ export default function ToastDocPage() {
         <Credits
           sources={[
             { label: "shadcn/ui", href: "https://ui.shadcn.com" },
-            { label: "coss ui", href: "https://coss.com/ui/docs/components/toast" },
+            {
+              label: "coss ui",
+              href: "https://coss.com/ui/docs/components/toast",
+            },
           ]}
           changed
           changes={[
-            "Adds a logical position=\"start\"/\"end\" (on both ToastProvider's corner and the physical left/right CSS it drives) on top of coss ui's literal left/right/center, resolved from the ambient direction measured where the provider's children actually render — matching the pattern already used by Dialog/Drawer/Tooltip for portaled content",
+            'Adds a logical position="start"/"end" (on both ToastProvider\'s corner and the physical left/right CSS it drives) on top of coss ui\'s literal left/right/center, resolved from the ambient direction measured where the provider\'s children actually render — matching the pattern already used by Dialog/Drawer/Tooltip for portaled content',
             "ToastProvider and AnchoredToastProvider explicitly set dir on the portaled Viewport/Positioner from that same measurement, so swipe-to-dismiss direction and logical spacing resolve correctly even when the provider sits in an otherwise-LTR page",
             "Merges shadcn's per-slot exported pieces (ToastTitle/ToastDescription/ToastAction/ToastClose, and an explicit close button) with coss ui's position-aware viewport, stacking math, and AnchoredToastProvider",
             'Adds an "x" variant (compact rounded-full pill with an avatar/icon slot, in the style of X\'s native in-app notifications) on top of both sources\' plain card style, selected per-toast via `data: { variant: "x" }`',
             "Aligns the leading icon/avatar to the title line (items-start) instead of centering it against the combined title+description block",
-            'Adds a per-toast `data: { dir }` override so a toast\'s content direction can be forced regardless of the provider\'s ambient/measured direction — the provider\'s corner position still follows the ambient direction, only the toast\'s own text/logical spacing is overridden',
+            "Adds a per-toast `data: { dir }` override so a toast's content direction can be forced regardless of the provider's ambient/measured direction — the provider's corner position still follows the ambient direction, only the toast's own text/logical spacing is overridden",
             "Dropped coss ui's custom swipe-replay keyframes (bounce-on-update, shake-on-error) — this repo's registry has no mechanism yet for shipping component-scoped @keyframes, unlike coss ui's registry-item cssVars/css fields",
           ]}
         />
@@ -196,6 +217,13 @@ export default function ToastDocPage() {
 
           <TabsContent value="cli" className="mt-4">
             <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/toast.json" />
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+              Add the providers to your root layout so either manager can render
+              its toasts.
+            </p>
+            <div className="mt-2">
+              <CodeBlock code={providerSnippet} lang="tsx" />
+            </div>
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">
@@ -212,24 +240,9 @@ export default function ToastDocPage() {
                   title="components/ui/toast.tsx"
                 />
               </div>
-              <Step>Wrap your app in ToastProvider</Step>
+              <Step>Add the providers to your root layout</Step>
               <div className="mt-2">
-                <CodeBlock
-                  code={`import { AnchoredToastProvider, ToastProvider } from "@/components/ui/toast"
-
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <body>
-        <ToastProvider>
-          <AnchoredToastProvider>{children}</AnchoredToastProvider>
-        </ToastProvider>
-      </body>
-    </html>
-  )
-}`}
-                  lang="tsx"
-                />
+                <CodeBlock code={providerSnippet} lang="tsx" />
               </div>
             </Steps>
           </TabsContent>
@@ -241,14 +254,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <p className="mt-3 leading-relaxed text-muted-foreground">
           Call{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            toast.add()
+            toastManager.add()
           </code>{" "}
-          from anywhere inside a{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            ToastProvider
-          </code>{" "}
-          — no hook needed, since the manager is a plain module-level
-          instance.
+          from anywhere in your app after adding the provider to your root{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">layout</code>{" "}
+          — no hook needed, since the manager is a plain module-level instance.
         </p>
         <div className="mt-4">
           <CodeBlock code={usageSnippet} lang="tsx" />
@@ -270,9 +280,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
             Pass{" "}
-            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-              type
-            </code>{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">type</code>{" "}
             to pick the leading icon and its color:{" "}
             <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
               success
@@ -286,16 +294,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               warning
             </code>
             ,{" "}
-            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-              info
-            </code>
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">info</code>
             , or{" "}
             <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
               loading
             </code>
             . Update a loading toast in place with{" "}
             <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-              toast.update(id, options)
+              toastManager.update(id, options)
             </code>
             .
           </p>
@@ -327,9 +333,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="mt-3">
             <ComponentPreview
               preview={<ToastXExample />}
-              code={
-                <CodeBlock code={getExampleSource("toast-x")} lang="tsx" />
-              }
+              code={<CodeBlock code={getExampleSource("toast-x")} lang="tsx" />}
             />
           </div>
         </div>
@@ -348,21 +352,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </code>{" "}
             and call{" "}
             <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-              anchoredToast.add({"{"} positionerProps: {"{"} anchor {"}"} {"}"}
-              )
+              anchoredToastManager.add({"{"} positionerProps: {"{"} anchor {"}"}{" "}
+              {"}"})
             </code>{" "}
             to position a toast against a specific element — a tooltip-like
             confirmation next to the button that triggered it — instead of
-            stacking it in a screen corner. The smallest way to see it in
-            action is{" "}
+            stacking it in a screen corner. The smallest way to see it in action
+            is{" "}
             <Link
               href="/docs/components/copy-button"
               className="font-medium text-foreground underline underline-offset-4"
             >
               Copy Button
             </Link>
-            , a small building block that anchors its own copy confirmation
-            this way — the Dialog and Drawer examples below use it too.
+            , a small building block that anchors its own copy confirmation this
+            way — the Dialog and Drawer examples below use it too.
           </p>
           <div className="mt-3">
             <CodeBlock code={anchoredUsageSnippet} lang="tsx" />
@@ -434,16 +438,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             RTL
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
-            By default every position — including the centered ones —
-            mirrors automatically:{" "}
+            By default every position — including the centered ones — mirrors
+            automatically:{" "}
             <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
               start
             </code>{" "}
-            lands on the right in RTL and the left in LTR (and vice versa
-            for{" "}
-            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-              end
-            </code>
+            lands on the right in RTL and the left in LTR (and vice versa for{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">end</code>
             ), matching the ambient{" "}
             <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
               dir
@@ -479,13 +480,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           title="AnchoredToastProvider"
           rows={anchoredToastProviderApi}
         />
-        <ApiReference title="toast.add(options)" rows={toastAddOptionsApi} />
         <ApiReference
-          title="anchoredToast.add(options)"
+          title="toastManager.add(options)"
+          rows={toastAddOptionsApi}
+        />
+        <ApiReference
+          title="anchoredToastManager.add(options)"
           rows={anchoredToastAddOptionsApi}
         />
 
-        <DocsPageFooter href="/docs/components/toast" sourcePath={SOURCE_PATH} />
+        <DocsPageFooter
+          href="/docs/components/toast"
+          sourcePath={SOURCE_PATH}
+        />
       </article>
 
       <aside className="hidden w-44 shrink-0 xl:block">

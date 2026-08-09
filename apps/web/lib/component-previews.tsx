@@ -2042,7 +2042,7 @@ export function ToastPreview() {
     <div
       style={{
         display: "flex",
-        alignItems: "center",
+        alignItems: "flex-start",
         gap: "10px",
         width: "230px",
         padding: "12px 14px",

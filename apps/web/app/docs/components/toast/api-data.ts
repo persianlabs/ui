@@ -31,9 +31,9 @@ export const toastProviderApi: ApiReferenceRow[] = [
   {
     prop: "toastManager",
     type: "ReturnType<typeof Toast.createToastManager>",
-    default: "toast",
+    default: "toastManager",
     description:
-      "The manager this provider renders. Pass your own (via `Toast.createToastManager()`) to run an isolated toast stack instead of the shared `toast` singleton — e.g. when multiple providers are mounted at once.",
+      "The manager this provider renders. Pass your own (via `Toast.createToastManager()`) to run an isolated toast stack instead of the shared `toastManager` singleton — e.g. when multiple providers are mounted at once.",
   },
 ]
 
@@ -48,9 +48,9 @@ export const anchoredToastProviderApi: ApiReferenceRow[] = [
   {
     prop: "toastManager",
     type: "ReturnType<typeof Toast.createToastManager>",
-    default: "anchoredToast",
+    default: "anchoredToastManager",
     description:
-      "The manager this provider renders. Pass your own to run an isolated anchored-toast stack instead of the shared `anchoredToast` singleton.",
+      "The manager this provider renders. Pass your own to run an isolated anchored-toast stack instead of the shared `anchoredToastManager` singleton.",
   },
 ]
 
