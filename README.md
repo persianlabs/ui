@@ -11,8 +11,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/persianlabs/ui/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/persianlabs/ui?color=000000&style=flat-square" /></a>
-  <a href="https://ui.shadcn.com/docs/registry"><img alt="shadcn compatible" src="https://img.shields.io/badge/shadcn-compatible-000000?style=flat-square" /></a>
+  <a href="https://github.com/persianlabs/ui"><img src="https://www.shieldcn.dev/github/stars/persianlabs/ui.svg?variant=secondary&size=xs&theme=zinc" alt="GitHub Stars" /></a>
+  <a href="https://x.com/persianlabs"><img src="https://www.shieldcn.dev/x/follow/persianlabs.svg?variant=branded&size=xs&theme=zinc" alt="Follow PersianLabs on X" /></a>
+  <a href="https://ui.shadcn.com/docs/registry"><img src="https://img.shields.io/badge/shadcn-compatible-000000?style=flat-square" alt="shadcn compatible" /></a>
 </p>
 
 <p align="center">
