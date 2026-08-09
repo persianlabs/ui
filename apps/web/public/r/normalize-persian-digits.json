@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "normalize-persian-digits",
+  "title": "Normalize Persian Digits",
+  "description": "Converts Persian (۰-۹) and Arabic-Indic (٠-٩) numerals to plain 0-9 digits.",
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/base/lib/normalize-persian-digits.ts",
+      "content": "const persianAndArabicDigits: Record<string, string> = {\n  \"۰\": \"0\",\n  \"۱\": \"1\",\n  \"۲\": \"2\",\n  \"۳\": \"3\",\n  \"۴\": \"4\",\n  \"۵\": \"5\",\n  \"۶\": \"6\",\n  \"۷\": \"7\",\n  \"۸\": \"8\",\n  \"۹\": \"9\",\n  \"٠\": \"0\",\n  \"١\": \"1\",\n  \"٢\": \"2\",\n  \"٣\": \"3\",\n  \"٤\": \"4\",\n  \"٥\": \"5\",\n  \"٦\": \"6\",\n  \"٧\": \"7\",\n  \"٨\": \"8\",\n  \"٩\": \"9\",\n}\n\n/** Persian keyboards commonly type ۰-۹ (or Arabic-Indic ٠-٩) instead of 0-9. */\nexport function normalizePersianDigits(value: string) {\n  return value.replace(/[۰-۹٠-٩]/g, (char) => persianAndArabicDigits[char] ?? char)\n}\n\n/** A single-character lookup, for normalizing one keystroke at a time. */\nexport function normalizePersianDigit(char: string) {\n  return persianAndArabicDigits[char]\n}\n",
+      "type": "registry:lib"
+    }
+  ],
+  "type": "registry:lib"
+}

@@ -81,6 +81,11 @@ export const docsNav: DocsNavGroup[] = [
       { title: "Native Select", href: "/docs/components/native-select" },
       { title: "Pagination", href: "/docs/components/pagination" },
       { title: "Popover", href: "/docs/components/popover" },
+      {
+        title: "Price Input",
+        href: "/docs/components/price-input",
+        badge: "New",
+      },
       { title: "Progress", href: "/docs/components/progress" },
       { title: "Radio Group", href: "/docs/components/radio-group" },
       { title: "Resizable", href: "/docs/components/resizable" },
@@ -111,8 +116,28 @@ export const docsNav: DocsNavGroup[] = [
       { title: "Textarea", href: "/docs/components/textarea" },
       { title: "Toggle", href: "/docs/components/toggle" },
       { title: "Toggle Group", href: "/docs/components/toggle-group" },
+      {
+        title: "Toman Icon",
+        href: "/docs/components/toman-icon",
+        badge: "New",
+      },
       { title: "Tooltip", href: "/docs/components/tooltip" },
       { title: "Typography", href: "/docs/components/typography" },
+    ],
+  },
+  {
+    title: "Utilities",
+    items: [
+      {
+        title: "Normalize Persian Digits",
+        href: "/docs/utilities/normalize-persian-digits",
+        badge: "New",
+      },
+      {
+        title: "useControllableState",
+        href: "/docs/utilities/use-controllable-state",
+        badge: "New",
+      },
     ],
   },
   {
