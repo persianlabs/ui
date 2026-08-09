@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-copy-to-clipboard",
+  "title": "useCopyToClipboard",
+  "description": "Copies text to the clipboard, exposing an idle/done/error state for UI feedback, with a legacy execCommand fallback.",
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/base/hooks/use-copy-to-clipboard.ts",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nexport type CopyState = \"idle\" | \"done\" | \"error\"\n\nfunction legacyCopy(value: string) {\n  const textArea = document.createElement(\"textarea\")\n  textArea.value = value\n  textArea.setAttribute(\"readonly\", \"\")\n  textArea.style.position = \"fixed\"\n  textArea.style.opacity = \"0\"\n  textArea.style.pointerEvents = \"none\"\n\n  document.body.appendChild(textArea)\n  textArea.focus()\n  textArea.select()\n  textArea.setSelectionRange(0, value.length)\n\n  let hasCopied = false\n  try {\n    hasCopied = document.execCommand(\"copy\")\n  } catch {\n    hasCopied = false\n  }\n\n  document.body.removeChild(textArea)\n  return hasCopied\n}\n\nexport interface UseCopyToClipboardOptions {\n  /** Delay before `state` resets back to `\"idle\"`, in ms. @default 2000 */\n  resetDelay?: number\n  onCopySuccess?: (text: string) => void\n  onCopyError?: (error: Error) => void\n}\n\n/** Copies text to the clipboard, exposing an idle/done/error state for UI feedback. */\nexport function useCopyToClipboard({\n  resetDelay = 2000,\n  onCopySuccess,\n  onCopyError,\n}: UseCopyToClipboardOptions = {}) {\n  const [state, setState] = React.useState<CopyState>(\"idle\")\n  const resetTimeout = React.useRef<ReturnType<typeof setTimeout>>(undefined)\n\n  const copy = React.useCallback(\n    async (value: string) => {\n      window.clearTimeout(resetTimeout.current)\n\n      try {\n        if (navigator.clipboard?.writeText) {\n          await navigator.clipboard.writeText(value)\n        } else if (!legacyCopy(value)) {\n          throw new Error(\"Copy command was not successful\")\n        }\n\n        setState(\"done\")\n        onCopySuccess?.(value)\n      } catch (err) {\n        setState(\"error\")\n        onCopyError?.(err instanceof Error ? err : new Error(String(err)))\n      }\n\n      if (resetDelay !== 0) {\n        resetTimeout.current = setTimeout(() => setState(\"idle\"), resetDelay)\n      }\n    },\n    [onCopyError, onCopySuccess, resetDelay]\n  )\n\n  React.useEffect(() => () => window.clearTimeout(resetTimeout.current), [])\n\n  return { state, copy }\n}\n",
+      "type": "registry:hook"
+    }
+  ],
+  "type": "registry:hook"
+}

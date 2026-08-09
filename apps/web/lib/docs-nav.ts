@@ -49,6 +49,11 @@ export const docsNav: DocsNavGroup[] = [
       { title: "Combobox", href: "/docs/components/combobox" },
       { title: "Command", href: "/docs/components/command" },
       { title: "Context Menu", href: "/docs/components/context-menu" },
+      {
+        title: "Copy Button",
+        href: "/docs/components/copy-button",
+        badge: "New",
+      },
       { title: "Dialog", href: "/docs/components/dialog" },
       { title: "Direction", href: "/docs/components/direction" },
       { title: "Drawer", href: "/docs/components/drawer" },
@@ -114,6 +119,7 @@ export const docsNav: DocsNavGroup[] = [
       { title: "Table", href: "/docs/components/table" },
       { title: "Tabs", href: "/docs/components/tabs" },
       { title: "Textarea", href: "/docs/components/textarea" },
+      { title: "Toast", href: "/docs/components/toast", badge: "New" },
       { title: "Toggle", href: "/docs/components/toggle" },
       { title: "Toggle Group", href: "/docs/components/toggle-group" },
       {

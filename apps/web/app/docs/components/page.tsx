@@ -20,6 +20,7 @@ import {
   ComboboxPreview,
   CommandPreview,
   ContextMenuPreview,
+  CopyButtonPreview,
   DialogPreview,
   DirectionPreview,
   DrawerPreview,
@@ -59,6 +60,7 @@ import {
   TablePreview,
   TabsPreview,
   TextareaPreview,
+  ToastPreview,
   ToggleGroupPreview,
   TogglePreview,
   TomanIconPreview,
@@ -785,6 +787,32 @@ const components = [
     thumbnail: (
       <ThumbnailFrame>
         <TomanIconPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Toast",
+    href: "/docs/components/toast" as const,
+    description:
+      "A temporary notification that stacks in a corner of the screen or anchors to an element, built on Base UI.",
+    badge: "New",
+    createdAt: "2026-08-09",
+    thumbnail: (
+      <ThumbnailFrame>
+        <ToastPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Copy Button",
+    href: "/docs/components/copy-button" as const,
+    description:
+      "An icon button that copies text to the clipboard, morphs its icon to reflect the result, and anchors a confirmation toast to itself.",
+    badge: "New",
+    createdAt: "2026-08-09",
+    thumbnail: (
+      <ThumbnailFrame>
+        <CopyButtonPreview />
       </ThumbnailFrame>
     ),
   },

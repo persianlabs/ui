@@ -919,6 +919,43 @@
       ]
     },
     {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "description": "A temporary notification that stacks in a corner of the screen or anchors to an element, built on Base UI, with success/error/warning/info/loading and X-style variants.",
+      "registryDependencies": ["utils", "https://ui.persian-labs.ir/r/button.json"],
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/base/ui/toast.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "copy-button",
+      "type": "registry:ui",
+      "title": "Copy Button",
+      "description": "An icon button that copies text to the clipboard, morphs its icon to reflect the result, and anchors a confirmation toast to itself.",
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/button.json",
+        "https://ui.persian-labs.ir/r/tooltip.json",
+        "https://ui.persian-labs.ir/r/toast.json"
+      ],
+      "dependencies": ["lucide-react", "motion"],
+      "files": [
+        {
+          "path": "registry/base/ui/copy-button.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base/hooks/use-copy-to-clipboard.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
       "name": "normalize-persian-digits",
       "type": "registry:lib",
       "title": "Normalize Persian Digits",
@@ -940,6 +977,19 @@
       "files": [
         {
           "path": "registry/base/hooks/use-controllable-state.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-copy-to-clipboard",
+      "type": "registry:hook",
+      "title": "useCopyToClipboard",
+      "description": "Copies text to the clipboard, exposing an idle/done/error state for UI feedback, with a legacy execCommand fallback.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/base/hooks/use-copy-to-clipboard.ts",
           "type": "registry:hook"
         }
       ]
