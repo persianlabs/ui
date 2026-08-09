@@ -37,10 +37,16 @@ export const metadata: Metadata = {
 
 const tocItems = [
   { id: "overview", title: "Overview" },
-  { id: "no-footer", title: "No footer" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "no-footer", title: "No footer" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -148,31 +154,6 @@ export default function DialogDocPage() {
         </div>
 
         <h2
-          id="no-footer"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          No footer
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            DialogFooter
-          </code>{" "}
-          is just another child — skip it for purely informational dialogs that
-          don&apos;t need a confirm/cancel pair.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<DialogNoFooterExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("dialog-no-footer")}
-                lang="tsx"
-              />
-            }
-          />
-        </div>
-
-        <h2
           id="installation"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
@@ -214,17 +195,53 @@ export default function DialogDocPage() {
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
+        <h2
+          id="examples"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Examples
         </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<DialogRtlExample />}
-            code={
-              <CodeBlock code={getExampleSource("dialog-rtl")} lang="tsx" />
-            }
-          />
+
+        <div className="mt-8">
+          <h3
+            id="no-footer"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            No footer
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              DialogFooter
+            </code>{" "}
+            is just another child — skip it for purely informational dialogs
+            that don&apos;t need a confirm/cancel pair.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<DialogNoFooterExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("dialog-no-footer")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<DialogRtlExample />}
+              code={
+                <CodeBlock code={getExampleSource("dialog-rtl")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
         <h2

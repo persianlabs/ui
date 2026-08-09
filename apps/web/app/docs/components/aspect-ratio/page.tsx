@@ -37,8 +37,14 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "square", title: "Square" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "square", title: "Square" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -160,40 +166,54 @@ export default function AspectRatioDocPage() {
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
-        <h2 id="square" className="mt-12 text-xl font-semibold tracking-tight">
-          Square
+        <h2
+          id="examples"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Examples
         </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<AspectRatioSquareExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("aspect-ratio-square")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3
+            id="square"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Square
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<AspectRatioSquareExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("aspect-ratio-square")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Aspect Ratio has no directional CSS, so it needs no RTL-specific
-          handling — content placed inside it (like this caption) still
-          respects the surrounding text direction.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<AspectRatioRtlExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("aspect-ratio-rtl")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Aspect Ratio has no directional CSS, so it needs no RTL-specific
+            handling — content placed inside it (like this caption) still
+            respects the surrounding text direction.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<AspectRatioRtlExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("aspect-ratio-rtl")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

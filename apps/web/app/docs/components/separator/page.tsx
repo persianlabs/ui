@@ -41,11 +41,17 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "vertical", title: "Vertical" },
-  { id: "menu", title: "Menu" },
-  { id: "list", title: "List" },
-  { id: "rtl", title: "RTL" },
-  { id: "receipt", title: "Receipt breakdown" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "vertical", title: "Vertical" },
+      { id: "menu", title: "Menu" },
+      { id: "list", title: "List" },
+      { id: "rtl", title: "RTL" },
+      { id: "receipt", title: "Receipt breakdown" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -169,100 +175,120 @@ export default function SeparatorDocPage() {
         </div>
 
         <h2
-          id="vertical"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          Vertical
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            orientation=&quot;vertical&quot;
-          </code>{" "}
-          for a vertical separator.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<SeparatorVerticalExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("separator-vertical")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3
+            id="vertical"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Vertical
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              orientation=&quot;vertical&quot;
+            </code>{" "}
+            for a vertical separator.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<SeparatorVerticalExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("separator-vertical")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="menu" className="mt-12 text-xl font-semibold tracking-tight">
-          Menu
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Vertical separators between menu items with descriptions.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<SeparatorMenuExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("separator-menu")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="menu" className="text-sm font-medium text-muted-foreground">
+            Menu
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Vertical separators between menu items with descriptions.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<SeparatorMenuExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("separator-menu")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="list" className="mt-12 text-xl font-semibold tracking-tight">
-          List
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Horizontal separators between list items.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<SeparatorListExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("separator-list")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="list" className="text-sm font-medium text-muted-foreground">
+            List
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Horizontal separators between list items.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<SeparatorListExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("separator-list")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<SeparatorRtlExample />}
-            code={
-              <CodeBlock code={getExampleSource("separator-rtl")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<SeparatorRtlExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("separator-rtl")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="receipt"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Receipt breakdown
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          A Persian-market pattern: horizontal separators dividing a price
-          breakdown, with right-to-left digits and Toman currency.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<SeparatorReceiptExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("separator-receipt")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="receipt"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Receipt breakdown
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            A Persian-market pattern: horizontal separators dividing a price
+            breakdown, with right-to-left digits and Toman currency.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<SeparatorReceiptExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("separator-receipt")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

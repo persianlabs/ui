@@ -220,7 +220,7 @@ export default function ComboboxDocPage() {
           Examples
         </h2>
 
-        <div className="mt-4">
+        <div className="mt-8">
           <h3
             id="example-multiple"
             className="text-sm font-medium text-muted-foreground"

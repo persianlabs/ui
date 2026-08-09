@@ -255,7 +255,7 @@ function ToastBody({
           aria-label="Close toast"
           data-slot="toast-close"
           render={<button type="button" />}
-          className="relative shrink-0 rounded-full p-1 text-white/60 after:absolute after:-inset-2 after:content-[''] hover:bg-white/10 hover:text-white dark:text-neutral-900/60 dark:hover:bg-neutral-900/10 dark:hover:text-neutral-900"
+          className="relative shrink-0 self-center rounded-full p-1 text-white/60 after:absolute after:-inset-2 after:content-[''] hover:bg-white/10 hover:text-white dark:text-neutral-900/60 dark:hover:bg-neutral-900/10 dark:hover:text-neutral-900"
         >
           <XIcon className="size-3.5" />
         </ToastPrimitive.Close>

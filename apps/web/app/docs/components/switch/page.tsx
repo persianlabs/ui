@@ -39,8 +39,14 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "size", title: "Size" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "size", title: "Size" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -156,36 +162,47 @@ export default function SwitchDocPage() {
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
-        <h2 id="size" className="mt-12 text-xl font-semibold tracking-tight">
-          Size
+        <h2
+          id="examples"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            size=&quot;sm&quot;
-          </code>{" "}
-          for a smaller switch.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<SwitchSizeExample />}
-            code={
-              <CodeBlock code={getExampleSource("switch-size")} lang="tsx" />
-            }
-          />
+
+        <div className="mt-8">
+          <h3 id="size" className="text-sm font-medium text-muted-foreground">
+            Size
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              size=&quot;sm&quot;
+            </code>{" "}
+            for a smaller switch.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<SwitchSizeExample />}
+              code={
+                <CodeBlock code={getExampleSource("switch-size")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<SwitchRtlExample />}
-            code={
-              <CodeBlock code={getExampleSource("switch-rtl")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<SwitchRtlExample />}
+              code={
+                <CodeBlock code={getExampleSource("switch-rtl")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
         <h2

@@ -43,8 +43,14 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "vertical", title: "Vertical" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "vertical", title: "Vertical" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -182,42 +188,53 @@ export default function ResizableDocPage() {
         </div>
 
         <h2
-          id="vertical"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          Vertical
+          Examples
         </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ResizableVerticalExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("resizable-vertical")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3
+            id="vertical"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Vertical
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ResizableVerticalExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("resizable-vertical")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          The drag handle&apos;s centering is direction-agnostic, and the
-          panel order visually flips along with the surrounding layout
-          under RTL.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<ResizableRtlExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("resizable-rtl")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            The drag handle&apos;s centering is direction-agnostic, and the
+            panel order visually flips along with the surrounding layout
+            under RTL.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<ResizableRtlExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("resizable-rtl")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

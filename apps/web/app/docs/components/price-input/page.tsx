@@ -40,11 +40,17 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "negative", title: "Negative Amounts" },
-  { id: "group-text", title: "With a Currency Suffix" },
-  { id: "group-abbreviation", title: "With an Abbreviation" },
-  { id: "group-icon", title: "With the Toman Icon" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "negative", title: "Negative Amounts" },
+      { id: "group-text", title: "With a Currency Suffix" },
+      { id: "group-abbreviation", title: "With an Abbreviation" },
+      { id: "group-icon", title: "With the Toman Icon" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -168,139 +174,156 @@ export default function PriceInputDocPage() {
         </div>
 
         <h2
-          id="negative"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          Negative Amounts
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Negative values are allowed by default. Pass{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            min={"{0}"}
-          </code>{" "}
-          to disallow them — the value is clamped to the given{" "}
-          <code>min</code>/<code>max</code> range on blur.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<PriceInputNegativeExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("price-input-negative")}
-                lang="tsx"
-              />
-            }
-          />
-        </div>
 
-        <h2
-          id="group-text"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          With a Currency Suffix
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Compose <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">PriceInput</code>{" "}
-          with{" "}
-          <a
-            href="/docs/components/input-group"
-            className="text-foreground underline underline-offset-4"
+        <div className="mt-8">
+          <h3
+            id="negative"
+            className="text-sm font-medium text-muted-foreground"
           >
-            Input Group
-          </a>{" "}
-          for a currency suffix like &quot;تومان&quot;. Pass the group&apos;s
-          control styles through <code>className</code>, and set{" "}
-          <code>data-slot=&quot;input-group-control&quot;</code> so it sits
-          flush with the addon and its border/focus states bubble up to the
-          group.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<PriceInputGroupTextExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("price-input-group-text")}
-                lang="tsx"
-              />
-            }
-          />
+            Negative Amounts
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Negative values are allowed by default. Pass{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              min={"{0}"}
+            </code>{" "}
+            to disallow them — the value is clamped to the given{" "}
+            <code>min</code>/<code>max</code> range on blur.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<PriceInputNegativeExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("price-input-negative")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="group-abbreviation"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          With an Abbreviation
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          A short abbreviation like &quot;T&quot; reads well in dense UI —
-          tables, cards, compact forms — where the full word would crowd
-          the layout.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<PriceInputGroupAbbreviationExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("price-input-group-abbreviation")}
-                lang="tsx"
-              />
-            }
-          />
-        </div>
-
-        <h2
-          id="group-icon"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          With the Toman Icon
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use the{" "}
-          <a
-            href="/docs/components/toman-icon"
-            className="text-foreground underline underline-offset-4"
+        <div className="mt-8">
+          <h3
+            id="group-text"
+            className="text-sm font-medium text-muted-foreground"
           >
-            Toman Icon
-          </a>{" "}
-          instead of text for a more compact, symbol-first affordance.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<PriceInputGroupIconExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("price-input-group-icon")}
-                lang="tsx"
-              />
-            }
-          />
+            With a Currency Suffix
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Compose <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">PriceInput</code>{" "}
+            with{" "}
+            <a
+              href="/docs/components/input-group"
+              className="text-foreground underline underline-offset-4"
+            >
+              Input Group
+            </a>{" "}
+            for a currency suffix like &quot;تومان&quot;. Pass the
+            group&apos;s control styles through <code>className</code>, and
+            set <code>data-slot=&quot;input-group-control&quot;</code> so it
+            sits flush with the addon and its border/focus states bubble up
+            to the group.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<PriceInputGroupTextExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("price-input-group-text")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          The formatted amount itself stays{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            dir=&quot;ltr&quot;
-          </code>{" "}
-          — digits always read left-to-right — while the label, suffix,
-          and description flow naturally with the RTL layout around it.
-          Try typing Persian digits (۰-۹) below; they&apos;re normalized
-          automatically.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<PriceInputRtlExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("price-input-rtl")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="group-abbreviation"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            With an Abbreviation
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            A short abbreviation like &quot;T&quot; reads well in dense UI —
+            tables, cards, compact forms — where the full word would crowd
+            the layout.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<PriceInputGroupAbbreviationExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("price-input-group-abbreviation")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3
+            id="group-icon"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            With the Toman Icon
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use the{" "}
+            <a
+              href="/docs/components/toman-icon"
+              className="text-foreground underline underline-offset-4"
+            >
+              Toman Icon
+            </a>{" "}
+            instead of text for a more compact, symbol-first affordance.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<PriceInputGroupIconExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("price-input-group-icon")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            The formatted amount itself stays{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              dir=&quot;ltr&quot;
+            </code>{" "}
+            — digits always read left-to-right — while the label, suffix,
+            and description flow naturally with the RTL layout around it.
+            Try typing Persian digits (۰-۹) below; they&apos;re normalized
+            automatically.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<PriceInputRtlExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("price-input-rtl")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

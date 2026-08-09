@@ -40,8 +40,14 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "toman", title: "Toman price range" },
-  { id: "percent", title: "Percent range" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "toman", title: "Toman price range" },
+      { id: "percent", title: "Percent range" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -198,40 +204,55 @@ export default function ElasticRangeSliderDocPage() {
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
-        <h2 id="toman" className="mt-12 text-xl font-semibold tracking-tight">
-          Toman price range
+        <h2
+          id="examples"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          A Persian-market pattern: Toman pricing with Persian digits, and the
-          selected range spelled out below the track as{" "}
-          <span dir="rtl">از … تومان</span> / <span dir="rtl">تا … تومان</span>.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<ElasticSliderRangeTomanExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("elastic-slider-range-toman")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3 id="toman" className="text-sm font-medium text-muted-foreground">
+            Toman price range
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            A Persian-market pattern: Toman pricing with Persian digits, and
+            the selected range spelled out below the track as{" "}
+            <span dir="rtl">از … تومان</span> /{" "}
+            <span dir="rtl">تا … تومان</span>.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<ElasticSliderRangeTomanExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("elastic-slider-range-toman")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="percent" className="mt-12 text-xl font-semibold tracking-tight">
-          Percent range
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ElasticSliderRangePercentExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("elastic-slider-range-percent")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="percent"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Percent range
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ElasticSliderRangePercentExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("elastic-slider-range-percent")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

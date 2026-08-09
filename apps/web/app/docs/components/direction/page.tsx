@@ -38,7 +38,11 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "use-direction", title: "useDirection" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [{ id: "use-direction", title: "useDirection" }],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -164,32 +168,41 @@ export default function DirectionDocPage() {
         </div>
 
         <h2
-          id="use-direction"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          useDirection
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Read the direction set by the nearest{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            DirectionProvider
-          </code>{" "}
-          with the{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+
+        <div className="mt-8">
+          <h3
+            id="use-direction"
+            className="text-sm font-medium text-muted-foreground"
+          >
             useDirection
-          </code>{" "}
-          hook.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<DirectionHookExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("direction-hook")}
-                lang="tsx"
-              />
-            }
-          />
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Read the direction set by the nearest{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              DirectionProvider
+            </code>{" "}
+            with the{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              useDirection
+            </code>{" "}
+            hook.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<DirectionHookExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("direction-hook")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

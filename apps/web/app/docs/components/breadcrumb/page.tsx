@@ -51,10 +51,10 @@ const tocItems = [
       { id: "example-dropdown", title: "Dropdown" },
       { id: "example-ellipsis", title: "Collapsed" },
       { id: "example-link", title: "Link component" },
+      { id: "rtl", title: "RTL" },
+      { id: "city", title: "Province & city" },
     ],
   },
-  { id: "rtl", title: "RTL" },
-  { id: "city", title: "Province & city" },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -207,7 +207,7 @@ export default function BreadcrumbDocPage() {
           Examples
         </h2>
 
-        <div className="mt-4">
+        <div className="mt-8">
           <h3
             id="example-separator"
             className="text-sm font-medium text-muted-foreground"
@@ -327,46 +327,50 @@ export default function BreadcrumbDocPage() {
           </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<BreadcrumbRtlExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("breadcrumb-rtl")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<BreadcrumbRtlExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("breadcrumb-rtl")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="city" className="mt-12 text-xl font-semibold tracking-tight">
-          Province &amp; city
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          A Persian navigation pattern pairing well with{" "}
-          <a
-            href="/docs/components/city-selector"
-            className="text-foreground underline underline-offset-4"
-          >
-            City Selector
-          </a>
-          : country, province, and city as breadcrumb levels.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<BreadcrumbCityExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("breadcrumb-city")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="city" className="text-sm font-medium text-muted-foreground">
+            Province &amp; city
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            A Persian navigation pattern pairing well with{" "}
+            <a
+              href="/docs/components/city-selector"
+              className="text-foreground underline underline-offset-4"
+            >
+              City Selector
+            </a>
+            : country, province, and city as breadcrumb levels.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<BreadcrumbCityExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("breadcrumb-city")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

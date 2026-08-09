@@ -38,8 +38,14 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "horizontal", title: "Horizontal" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "horizontal", title: "Horizontal" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -160,52 +166,63 @@ export default function ScrollAreaDocPage() {
         </div>
 
         <h2
-          id="horizontal"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          Horizontal
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Set{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            scrollbarOrientation=&quot;horizontal&quot;
-          </code>{" "}
-          for a horizontally scrolling row.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ScrollAreaHorizontalExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("scroll-area-horizontal")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3
+            id="horizontal"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Horizontal
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Set{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              scrollbarOrientation=&quot;horizontal&quot;
+            </code>{" "}
+            for a horizontally scrolling row.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ScrollAreaHorizontalExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("scroll-area-horizontal")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          The vertical scrollbar uses a logical{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            border-s
-          </code>{" "}
-          rather than a physical side, so it correctly sits on the visual
-          left when the viewport is RTL.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<ScrollAreaRtlExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("scroll-area-rtl")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            The vertical scrollbar uses a logical{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              border-s
+            </code>{" "}
+            rather than a physical side, so it correctly sits on the visual
+            left when the viewport is RTL.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<ScrollAreaRtlExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("scroll-area-rtl")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

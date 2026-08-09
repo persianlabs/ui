@@ -2,6 +2,31 @@ import { DocsSidebar } from "@/components/docs-sidebar"
 import { SiteHeader } from "@/components/site-header"
 import { ScrollArea } from "@workspace/ui/components/scroll-area"
 
+const mainClassName = [
+  "w-full min-w-0 px-6 py-10",
+  "[&>div:has(>aside)]:relative",
+  "[&>div:has(>aside)]:w-full",
+  "[&>div:has(>aside)]:justify-center",
+  "lg:max-xl:[&>div:has(>aside)]:justify-end",
+  "lg:max-xl:[&>div:has(>aside)>article]:max-w-[calc(100%-18rem)]",
+  "xl:[&>div:has(>aside)>article]:flex-none",
+  "xl:max-2xl:[&>div:has(>aside)>article]:max-w-[44rem]",
+  "xl:max-2xl:[&>div:has(>aside)>article]:translate-x-6",
+  "[&>div:has(>aside)>aside]:absolute",
+  "[&>div:has(>aside)>aside]:top-0",
+  "[&>div:has(>aside)>aside]:-right-6",
+  "[&>div:has(>aside)>aside]:pl-6",
+  "xl:[&>div:has(>aside)>aside]:fixed",
+  "xl:[&>div:has(>aside)>aside]:top-20",
+  "xl:[&>div:has(>aside)>aside]:right-2",
+  "xl:[&>div:has(>aside)>aside]:h-[calc(100vh-5rem)]",
+  "xl:[&>div:has(>aside)>aside]:w-60",
+  "2xl:[&>div:has(>aside)>aside]:right-auto",
+  "2xl:[&>div:has(>aside)>aside]:left-[calc(50%+26rem)]",
+  "2xl:[&>div:has(>aside)>aside]:w-88",
+  "xl:[&>div:has(>aside)>aside>div]:h-full",
+].join(" ")
+
 export default function DocsLayout({
   children,
 }: Readonly<{
@@ -33,9 +58,7 @@ export default function DocsLayout({
           </div>
         </aside>
 
-        <main className="w-full min-w-0 px-6 py-10 [&>:not(:has(>aside))]:mx-auto lg:[&>:not(:has(>aside))]:ml-72 [&>div:has(>aside)]:relative [&>div:has(>aside)]:w-full [&>div:has(>aside)]:justify-center lg:max-xl:[&>div:has(>aside)]:justify-end lg:max-xl:[&>div:has(>aside)>article]:max-w-[calc(100%-18rem)] xl:[&>div:has(>aside)>article]:flex-none xl:max-2xl:[&>div:has(>aside)>article]:max-w-[44rem] xl:max-2xl:[&>div:has(>aside)>article]:translate-x-6 [&>div:has(>aside)>aside]:absolute [&>div:has(>aside)>aside]:top-0 [&>div:has(>aside)>aside]:-right-6 [&>div:has(>aside)>aside]:pl-6 xl:[&>div:has(>aside)>aside]:fixed xl:[&>div:has(>aside)>aside]:top-20 xl:[&>div:has(>aside)>aside]:right-2 xl:[&>div:has(>aside)>aside]:h-[calc(100vh-5rem)] xl:[&>div:has(>aside)>aside]:w-60 2xl:[&>div:has(>aside)>aside]:right-auto 2xl:[&>div:has(>aside)>aside]:left-[calc(50%+26rem)] 2xl:[&>div:has(>aside)>aside]:w-88 xl:[&>div:has(>aside)>aside>div]:h-full">
-          {children}
-        </main>
+        <main className={mainClassName}>{children}</main>
       </div>
     </div>
   )

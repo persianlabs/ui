@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 
 import { ComponentsGrid } from "@/components/components-grid"
+import { CopyCommand } from "@/components/copy-command"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
 import {
   AccordionPreview,
@@ -66,6 +67,12 @@ import {
   TomanIconPreview,
   TooltipPreview,
 } from "@/lib/component-previews"
+import registry from "@/registry.json"
+
+const installAllCommand = `npx shadcn@latest add ${registry.items
+  .filter((item) => item.type === "registry:ui")
+  .map((item) => `https://ui.persian-labs.ir/r/${item.name}.json`)
+  .join(" ")}`
 
 export const metadata: Metadata = {
   title: "Components",
@@ -74,7 +81,7 @@ export const metadata: Metadata = {
 
 function ThumbnailFrame({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-44 w-full items-center justify-center overflow-hidden rounded-t-xl bg-muted p-6">
+    <div className="dark flex h-44 w-full items-center justify-center overflow-hidden rounded-t-xl bg-card p-6">
       {children}
     </div>
   )
@@ -833,7 +840,7 @@ export const componentsMarkdown = [
 
 export default function DocsComponentsPage() {
   return (
-    <div className="max-w-5xl">
+    <div className="mx-auto max-w-5xl">
       <div className="flex flex-col items-end justify-between gap-3 sm:flex-row sm:items-center">
         <h1 className="self-start text-3xl font-semibold tracking-tight sm:self-auto">
           Components
@@ -847,6 +854,10 @@ export default function DocsComponentsPage() {
         </code>{" "}
         registry. More are on the way.
       </p>
+
+      <div className="mt-6 max-w-2xl">
+        <CopyCommand command={installAllCommand} />
+      </div>
 
       <ComponentsGrid featured={featuredComponents} rest={restComponents} />
     </div>

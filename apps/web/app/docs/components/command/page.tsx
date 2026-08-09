@@ -266,7 +266,7 @@ export default function CommandDocPage() {
           Examples
         </h2>
 
-        <div className="mt-4">
+        <div className="mt-8">
           <h3
             id="example-panel"
             className="text-sm font-medium text-muted-foreground"

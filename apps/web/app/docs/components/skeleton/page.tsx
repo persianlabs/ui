@@ -37,8 +37,14 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "card", title: "Card" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "card", title: "Card" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -149,32 +155,46 @@ export default function SkeletonDocPage() {
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
-        <h2 id="card" className="mt-12 text-xl font-semibold tracking-tight">
-          Card
+        <h2
+          id="examples"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Examples
         </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<SkeletonCardExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("skeleton-card")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3 id="card" className="text-sm font-medium text-muted-foreground">
+            Card
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<SkeletonCardExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("skeleton-card")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<SkeletonRtlExample />}
-            code={
-              <CodeBlock code={getExampleSource("skeleton-rtl")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<SkeletonRtlExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("skeleton-rtl")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

@@ -9,7 +9,7 @@
   ],
   "registryDependencies": [
     "utils",
-    "toggle"
+    "https://ui.persian-labs.ir/r/toggle.json"
   ],
   "files": [
     {

@@ -53,26 +53,26 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "sizes", title: "Sizes" },
   {
-    id: "variants",
-    title: "Variants",
+    id: "examples",
+    title: "Examples",
     children: [
+      { id: "sizes", title: "Sizes" },
       { id: "variant-outline", title: "Outline" },
       { id: "variant-secondary", title: "Secondary" },
       { id: "variant-ghost", title: "Ghost" },
       { id: "variant-destructive", title: "Destructive" },
       { id: "variant-link", title: "Link" },
       { id: "variant-blue", title: "Blue" },
+      { id: "icon", title: "Icon" },
+      { id: "with-icon", title: "With icon" },
+      { id: "rounded", title: "Rounded" },
+      { id: "loading", title: "Loading" },
+      { id: "as-link", title: "As link" },
+      { id: "button-group", title: "Button Group" },
+      { id: "rtl", title: "RTL" },
     ],
   },
-  { id: "icon", title: "Icon" },
-  { id: "with-icon", title: "With icon" },
-  { id: "rounded", title: "Rounded" },
-  { id: "loading", title: "Loading" },
-  { id: "as-link", title: "As link" },
-  { id: "button-group", title: "Button Group" },
-  { id: "rtl", title: "RTL" },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -198,33 +198,35 @@ export default function ButtonDocPage() {
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
-        <h2 id="sizes" className="mt-12 text-xl font-semibold tracking-tight">
-          Sizes
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Pass{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            size
-          </code>{" "}
-          to change the size of the button.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ButtonSizeExample />}
-            code={
-              <CodeBlock code={getExampleSource("button-size")} lang="tsx" />
-            }
-          />
-        </div>
-
         <h2
-          id="variants"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          Variants
+          Examples
         </h2>
 
-        <div className="mt-4">
+        <div className="mt-8">
+          <h3 id="sizes" className="text-sm font-medium text-muted-foreground">
+            Sizes
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Pass{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              size
+            </code>{" "}
+            to change the size of the button.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ButtonSizeExample />}
+              code={
+                <CodeBlock code={getExampleSource("button-size")} lang="tsx" />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
           <h3
             id="variant-outline"
             className="text-sm font-medium text-muted-foreground"
@@ -335,187 +337,219 @@ export default function ButtonDocPage() {
           </div>
         </div>
 
-        <h2 id="icon" className="mt-12 text-xl font-semibold tracking-tight">
-          Icon
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ButtonIconExample />}
-            code={
-              <CodeBlock code={getExampleSource("button-icon")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="icon" className="text-sm font-medium text-muted-foreground">
+            Icon
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ButtonIconExample />}
+              code={
+                <CodeBlock code={getExampleSource("button-icon")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="with-icon"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          With icon
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Add{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            data-icon=&quot;inline-start&quot;
-          </code>{" "}
-          or{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            data-icon=&quot;inline-end&quot;
-          </code>{" "}
-          to the icon for the correct spacing.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ButtonWithIconExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("button-with-icon")}
-                lang="tsx"
-              />
-            }
-          />
-        </div>
-
-        <h2 id="rounded" className="mt-12 text-xl font-semibold tracking-tight">
-          Rounded
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use the{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            rounded-full
-          </code>{" "}
-          class to make the button rounded.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ButtonRoundedExample />}
-            code={
-              <CodeBlock code={getExampleSource("button-rounded")} lang="tsx" />
-            }
-          />
-        </div>
-
-        <h2 id="loading" className="mt-12 text-xl font-semibold tracking-tight">
-          Loading
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Pass{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            loading
-          </code>{" "}
-          to show a spinner alongside the button&apos;s content and disable
-          interaction. The spinner scales with the button&apos;s{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            size
-          </code>
-          .
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ButtonLoadingExample />}
-            code={
-              <CodeBlock code={getExampleSource("button-loading")} lang="tsx" />
-            }
-          />
-        </div>
-
-        <p className="mt-6 leading-relaxed text-muted-foreground">
-          Add{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            hideContentOnLoading
-          </code>{" "}
-          to hide the content instead and show only a centered spinner.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ButtonLoadingHideContentExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("button-loading-hide-content")}
-                lang="tsx"
-              />
-            }
-          />
-        </div>
-
-        <h2 id="as-link" className="mt-12 text-xl font-semibold tracking-tight">
-          As link
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use the{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            buttonVariants
-          </code>{" "}
-          helper to make a link look like a button. Base UI&apos;s{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            Button
-          </code>{" "}
-          always applies{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            role=&quot;button&quot;
-          </code>
-          , which overrides the semantic link role on{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            {"<a>"}
-          </code>{" "}
-          elements — use a plain{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            {"<a>"}
-          </code>{" "}
-          with{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            buttonVariants
-          </code>{" "}
-          instead.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ButtonRenderExample />}
-            code={
-              <CodeBlock code={getExampleSource("button-render")} lang="tsx" />
-            }
-          />
-        </div>
-
-        <h2
-          id="button-group"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Button Group
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          To create a button group, use the{" "}
-          <Link
-            href="/docs/components/button-group"
-            className="text-foreground underline underline-offset-4"
+        <div className="mt-8">
+          <h3
+            id="with-icon"
+            className="text-sm font-medium text-muted-foreground"
           >
-            ButtonGroup
-          </Link>{" "}
-          component.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ButtonGroupDemoExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("button-group-demo")}
-                lang="tsx"
-              />
-            }
-          />
+            With icon
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Add{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              data-icon=&quot;inline-start&quot;
+            </code>{" "}
+            or{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              data-icon=&quot;inline-end&quot;
+            </code>{" "}
+            to the icon for the correct spacing.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ButtonWithIconExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("button-with-icon")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<ButtonRtlExample />}
-            code={
-              <CodeBlock code={getExampleSource("button-rtl")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="rounded"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Rounded
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use the{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              rounded-full
+            </code>{" "}
+            class to make the button rounded.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ButtonRoundedExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("button-rounded")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3
+            id="loading"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Loading
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Pass{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              loading
+            </code>{" "}
+            to show a spinner alongside the button&apos;s content and disable
+            interaction. The spinner scales with the button&apos;s{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              size
+            </code>
+            .
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ButtonLoadingExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("button-loading")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+
+          <p className="mt-6 leading-relaxed text-muted-foreground">
+            Add{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              hideContentOnLoading
+            </code>{" "}
+            to hide the content instead and show only a centered spinner.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ButtonLoadingHideContentExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("button-loading-hide-content")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3
+            id="as-link"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            As link
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use the{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              buttonVariants
+            </code>{" "}
+            helper to make a link look like a button. Base UI&apos;s{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              Button
+            </code>{" "}
+            always applies{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              role=&quot;button&quot;
+            </code>
+            , which overrides the semantic link role on{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              {"<a>"}
+            </code>{" "}
+            elements — use a plain{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              {"<a>"}
+            </code>{" "}
+            with{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              buttonVariants
+            </code>{" "}
+            instead.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ButtonRenderExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("button-render")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3
+            id="button-group"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Button Group
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            To create a button group, use the{" "}
+            <Link
+              href="/docs/components/button-group"
+              className="text-foreground underline underline-offset-4"
+            >
+              ButtonGroup
+            </Link>{" "}
+            component.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ButtonGroupDemoExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("button-group-demo")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<ButtonRtlExample />}
+              code={
+                <CodeBlock code={getExampleSource("button-rtl")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
         <h2

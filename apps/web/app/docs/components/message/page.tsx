@@ -37,7 +37,11 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [{ id: "rtl", title: "RTL" }],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -174,24 +178,36 @@ export default function MessageDocPage() {
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
+        <h2
+          id="examples"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            align
-          </code>{" "}
-          uses <code>flex-row-reverse</code> rather than a physical side, so
-          it already reads correctly under RTL.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<MessageRtlExample />}
-            code={
-              <CodeBlock code={getExampleSource("message-rtl")} lang="tsx" />
-            }
-          />
+
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              align
+            </code>{" "}
+            uses <code>flex-row-reverse</code> rather than a physical side,
+            so it already reads correctly under RTL.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<MessageRtlExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("message-rtl")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

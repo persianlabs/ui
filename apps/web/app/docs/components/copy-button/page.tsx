@@ -38,8 +38,14 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "with-text", title: "With Text" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "with-text", title: "With Text" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -140,7 +146,7 @@ export default function CopyButtonDocPage() {
             <Steps>
               <Step>Install the dependencies</Step>
               <div className="mt-2">
-                <InstallCommand packages="lucide-react motion" />
+                <InstallCommand packages="lucide morphicons" />
               </div>
               <Step>Copy the hook source</Step>
               <div className="mt-2">
@@ -175,62 +181,73 @@ export default function CopyButtonDocPage() {
         </div>
 
         <h2
-          id="with-text"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          With Text
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          It&apos;s a regular{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            Button
-          </code>{" "}
-          under the hood, so any variant, size, or children work — pass a
-          label as{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            children
-          </code>{" "}
-          alongside the icon.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<CopyButtonWithTextExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("copy-button-with-text")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3
+            id="with-text"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            With Text
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            It&apos;s a regular{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              Button
+            </code>{" "}
+            under the hood, so any variant, size, or children work — pass a
+            label as{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              children
+            </code>{" "}
+            alongside the icon.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<CopyButtonWithTextExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("copy-button-with-text")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          The default{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            label
-          </code>{" "}
-          is already Persian (&quot;کپی&quot;), and the anchored confirmation
-          toast mirrors correctly since it goes through the same
-          direction-aware{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            AnchoredToastProvider
-          </code>{" "}
-          as Toast.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<CopyButtonRtlExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("copy-button-rtl")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            The default{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              label
+            </code>{" "}
+            is already Persian (&quot;کپی&quot;), and the anchored
+            confirmation toast mirrors correctly since it goes through the
+            same direction-aware{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              AnchoredToastProvider
+            </code>{" "}
+            as Toast.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<CopyButtonRtlExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("copy-button-rtl")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

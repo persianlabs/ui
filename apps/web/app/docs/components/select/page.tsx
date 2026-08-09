@@ -57,10 +57,10 @@ const tocItems = [
       { id: "example-disabled", title: "Disabled" },
       { id: "example-invalid", title: "Invalid" },
       { id: "example-align-item", title: "Align item with trigger" },
+      { id: "rtl", title: "RTL" },
+      { id: "mixed-direction", title: "Mixed direction" },
     ],
   },
-  { id: "rtl", title: "RTL" },
-  { id: "mixed-direction", title: "Mixed direction" },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -397,59 +397,63 @@ export default function SelectDocPage() {
           </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<SelectRtlExample />}
-            code={
-              <CodeBlock code={getExampleSource("select-rtl")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<SelectRtlExample />}
+              code={
+                <CodeBlock code={getExampleSource("select-rtl")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="mixed-direction"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Mixed direction
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Base UI&apos;s{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            SelectContent
-          </code>{" "}
-          renders through a portal, so it doesn&apos;t inherit{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            dir
-          </code>{" "}
-          from a nearby wrapper — only from{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            document.documentElement
-          </code>
-          . This{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            Select
-          </code>{" "}
-          measures the ambient direction where its trigger actually renders and
-          pushes it down, so each popup below follows its own local{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            dir
-          </code>{" "}
-          island correctly — even though both selects share the same page.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<SelectMixedDirectionExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("select-mixed-direction")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="mixed-direction"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Mixed direction
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Base UI&apos;s{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              SelectContent
+            </code>{" "}
+            renders through a portal, so it doesn&apos;t inherit{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              dir
+            </code>{" "}
+            from a nearby wrapper — only from{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              document.documentElement
+            </code>
+            . This{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              Select
+            </code>{" "}
+            measures the ambient direction where its trigger actually renders
+            and pushes it down, so each popup below follows its own local{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              dir
+            </code>{" "}
+            island correctly — even though both selects share the same page.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<SelectMixedDirectionExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("select-mixed-direction")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

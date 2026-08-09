@@ -53,17 +53,23 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "orientation", title: "Orientation" },
-  { id: "size", title: "Size" },
-  { id: "nested", title: "Nested" },
-  { id: "separator", title: "Separator" },
-  { id: "split", title: "Split" },
-  { id: "input", title: "Input" },
-  { id: "input-group", title: "Input Group" },
-  { id: "dropdown-menu", title: "Dropdown Menu" },
-  { id: "select", title: "Select" },
-  { id: "popover", title: "Popover" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "orientation", title: "Orientation" },
+      { id: "size", title: "Size" },
+      { id: "nested", title: "Nested" },
+      { id: "separator", title: "Separator" },
+      { id: "split", title: "Split" },
+      { id: "input", title: "Input" },
+      { id: "input-group", title: "Input Group" },
+      { id: "dropdown-menu", title: "Dropdown Menu" },
+      { id: "select", title: "Select" },
+      { id: "popover", title: "Popover" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -202,255 +208,288 @@ export default function ButtonGroupDocPage() {
         </div>
 
         <h2
-          id="orientation"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          Orientation
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Set the{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            orientation
-          </code>{" "}
-          prop to change the button group layout.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ButtonGroupOrientationExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("button-group-orientation")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3
+            id="orientation"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Orientation
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Set the{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              orientation
+            </code>{" "}
+            prop to change the button group layout.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ButtonGroupOrientationExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("button-group-orientation")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="size" className="mt-12 text-xl font-semibold tracking-tight">
-          Size
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Control the size of buttons using the{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            size
-          </code>{" "}
-          prop on individual buttons.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ButtonGroupSizeExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("button-group-size")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="size" className="text-sm font-medium text-muted-foreground">
+            Size
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Control the size of buttons using the{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              size
+            </code>{" "}
+            prop on individual buttons.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ButtonGroupSizeExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("button-group-size")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="nested" className="mt-12 text-xl font-semibold tracking-tight">
-          Nested
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Nest{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            {"<ButtonGroup>"}
-          </code>{" "}
-          components to create button groups with spacing.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ButtonGroupNestedExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("button-group-nested")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="nested" className="text-sm font-medium text-muted-foreground">
+            Nested
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Nest{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              {"<ButtonGroup>"}
+            </code>{" "}
+            components to create button groups with spacing.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ButtonGroupNestedExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("button-group-nested")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="separator"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Separator
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          The{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            ButtonGroupSeparator
-          </code>{" "}
-          component visually divides buttons within a group. Buttons with the{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            outline
-          </code>{" "}
-          variant don&apos;t need one since they already have a border.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ButtonGroupSeparatorExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("button-group-separator")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="separator"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Separator
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            The{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              ButtonGroupSeparator
+            </code>{" "}
+            component visually divides buttons within a group. Buttons with
+            the{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              outline
+            </code>{" "}
+            variant don&apos;t need one since they already have a border.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ButtonGroupSeparatorExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("button-group-separator")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="split" className="mt-12 text-xl font-semibold tracking-tight">
-          Split
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Create a split button group by adding two buttons separated by a{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            ButtonGroupSeparator
-          </code>
-          .
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ButtonGroupSplitExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("button-group-split")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="split" className="text-sm font-medium text-muted-foreground">
+            Split
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Create a split button group by adding two buttons separated by a{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              ButtonGroupSeparator
+            </code>
+            .
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ButtonGroupSplitExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("button-group-split")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="input" className="mt-12 text-xl font-semibold tracking-tight">
-          Input
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Wrap an{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+        <div className="mt-8">
+          <h3 id="input" className="text-sm font-medium text-muted-foreground">
             Input
-          </code>{" "}
-          component with buttons.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ButtonGroupInputExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("button-group-input")}
-                lang="tsx"
-              />
-            }
-          />
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Wrap an{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              Input
+            </code>{" "}
+            component with buttons.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ButtonGroupInputExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("button-group-input")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="input-group"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Input Group
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Wrap an{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            InputGroup
-          </code>{" "}
-          component to create complex input layouts.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ButtonGroupInputGroupExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("button-group-input-group")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="input-group"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Input Group
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Wrap an{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              InputGroup
+            </code>{" "}
+            component to create complex input layouts.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ButtonGroupInputGroupExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("button-group-input-group")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="dropdown-menu"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Dropdown Menu
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Create a split button group with a{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            DropdownMenu
-          </code>{" "}
-          component.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ButtonGroupDropdownExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("button-group-dropdown")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="dropdown-menu"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Dropdown Menu
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Create a split button group with a{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              DropdownMenu
+            </code>{" "}
+            component.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ButtonGroupDropdownExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("button-group-dropdown")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="select" className="mt-12 text-xl font-semibold tracking-tight">
-          Select
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Pair with a{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+        <div className="mt-8">
+          <h3 id="select" className="text-sm font-medium text-muted-foreground">
             Select
-          </code>{" "}
-          component.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ButtonGroupSelectExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("button-group-select")}
-                lang="tsx"
-              />
-            }
-          />
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Pair with a{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              Select
+            </code>{" "}
+            component.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ButtonGroupSelectExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("button-group-select")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="popover" className="mt-12 text-xl font-semibold tracking-tight">
-          Popover
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use with a{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+        <div className="mt-8">
+          <h3
+            id="popover"
+            className="text-sm font-medium text-muted-foreground"
+          >
             Popover
-          </code>{" "}
-          component.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ButtonGroupPopoverExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("button-group-popover")}
-                lang="tsx"
-              />
-            }
-          />
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use with a{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              Popover
+            </code>{" "}
+            component.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ButtonGroupPopoverExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("button-group-popover")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<ButtonGroupRtlExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("button-group-rtl")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<ButtonGroupRtlExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("button-group-rtl")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

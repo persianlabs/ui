@@ -58,24 +58,24 @@ const tocItems = [
   { id: "usage", title: "Usage" },
   { id: "composition", title: "Composition" },
   {
-    id: "align",
-    title: "Align",
+    id: "examples",
+    title: "Examples",
     children: [
       { id: "align-inline-start", title: "Inline start" },
       { id: "align-inline-end", title: "Inline end" },
       { id: "align-block-start", title: "Block start" },
       { id: "align-block-end", title: "Block end" },
+      { id: "icon", title: "Icon" },
+      { id: "text", title: "Text" },
+      { id: "button", title: "Button" },
+      { id: "kbd", title: "Kbd" },
+      { id: "dropdown", title: "Dropdown" },
+      { id: "spinner", title: "Spinner" },
+      { id: "textarea", title: "Textarea" },
+      { id: "custom-input", title: "Custom Input" },
+      { id: "rtl", title: "RTL" },
     ],
   },
-  { id: "icon", title: "Icon" },
-  { id: "text", title: "Text" },
-  { id: "button", title: "Button" },
-  { id: "kbd", title: "Kbd" },
-  { id: "dropdown", title: "Dropdown" },
-  { id: "spinner", title: "Spinner" },
-  { id: "textarea", title: "Textarea" },
-  { id: "custom-input", title: "Custom Input" },
-  { id: "rtl", title: "RTL" },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -253,8 +253,11 @@ export default function InputGroupDocPage() {
           <CodeBlock code={compositionSnippet} lang="text" />
         </div>
 
-        <h2 id="align" className="mt-12 text-xl font-semibold tracking-tight">
-          Align
+        <h2
+          id="examples"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Examples
         </h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
           For proper focus management,{" "}
@@ -280,7 +283,7 @@ export default function InputGroupDocPage() {
           to position the addon relative to the input.
         </p>
 
-        <div className="mt-4">
+        <div className="mt-8">
           <h3
             id="align-inline-start"
             className="text-sm font-medium text-muted-foreground"
@@ -360,158 +363,182 @@ export default function InputGroupDocPage() {
           </div>
         </div>
 
-        <h2 id="icon" className="mt-12 text-xl font-semibold tracking-tight">
-          Icon
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<InputGroupIconExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("input-group-icon")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="icon" className="text-sm font-medium text-muted-foreground">
+            Icon
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<InputGroupIconExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-group-icon")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="text" className="mt-12 text-xl font-semibold tracking-tight">
-          Text
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<InputGroupTextExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("input-group-text")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="text" className="text-sm font-medium text-muted-foreground">
+            Text
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<InputGroupTextExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-group-text")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="button" className="mt-12 text-xl font-semibold tracking-tight">
-          Button
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<InputGroupButtonExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("input-group-button")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="button"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Button
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<InputGroupButtonExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-group-button")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="kbd" className="mt-12 text-xl font-semibold tracking-tight">
-          Kbd
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<InputGroupKbdExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("input-group-kbd")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="kbd" className="text-sm font-medium text-muted-foreground">
+            Kbd
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<InputGroupKbdExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-group-kbd")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="dropdown"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Dropdown
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<InputGroupDropdownExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("input-group-dropdown")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="dropdown"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Dropdown
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<InputGroupDropdownExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-group-dropdown")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="spinner" className="mt-12 text-xl font-semibold tracking-tight">
-          Spinner
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<InputGroupSpinnerExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("input-group-spinner")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="spinner"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Spinner
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<InputGroupSpinnerExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-group-spinner")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="textarea"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Textarea
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<InputGroupTextareaExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("input-group-textarea")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="textarea"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Textarea
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<InputGroupTextareaExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-group-textarea")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="custom-input"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Custom Input
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Add the{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            data-slot=&quot;input-group-control&quot;
-          </code>{" "}
-          attribute to any custom input for automatic focus-state styling.
-          Here&apos;s a custom auto-resizing textarea from a third-party
-          library.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<InputGroupCustomExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("input-group-custom")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="custom-input"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Custom Input
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Add the{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              data-slot=&quot;input-group-control&quot;
+            </code>{" "}
+            attribute to any custom input for automatic focus-state styling.
+            Here&apos;s a custom auto-resizing textarea from a third-party
+            library.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<InputGroupCustomExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-group-custom")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<InputGroupRtlExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("input-group-rtl")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<InputGroupRtlExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-group-rtl")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

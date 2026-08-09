@@ -38,7 +38,11 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [{ id: "rtl", title: "RTL" }],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -167,32 +171,41 @@ export default function HoverCardDocPage() {
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
+        <h2
+          id="examples"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Base UI reports the popup&apos;s resolved side as{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            inline-start
-          </code>{" "}
-          /{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            inline-end
-          </code>{" "}
-          rather than a fixed left/right, so positioning and entry
-          animation stay correct under RTL without any extra work.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<HoverCardRtlExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("hover-card-rtl")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Base UI reports the popup&apos;s resolved side as{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              inline-start
+            </code>{" "}
+            /{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              inline-end
+            </code>{" "}
+            rather than a fixed left/right, so positioning and entry
+            animation stay correct under RTL without any extra work.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<HoverCardRtlExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("hover-card-rtl")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

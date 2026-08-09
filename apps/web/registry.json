@@ -67,7 +67,7 @@
       "title": "Scroll Area",
       "description": "Cross-browser custom scrollbars, built on Base UI.",
       "registryDependencies": ["utils"],
-      "dependencies": ["@base-ui/react", "shadcn"],
+      "dependencies": ["@base-ui/react"],
       "files": [
         {
           "path": "registry/base/ui/scroll-area.tsx",
@@ -432,7 +432,10 @@
       "type": "registry:ui",
       "title": "Toggle Group",
       "description": "A set of two-state buttons that can be toggled on or off, built on Base UI.",
-      "registryDependencies": ["utils", "toggle"],
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/toggle.json"
+      ],
       "dependencies": ["@base-ui/react", "class-variance-authority"],
       "files": [
         {
@@ -943,7 +946,7 @@
         "https://ui.persian-labs.ir/r/tooltip.json",
         "https://ui.persian-labs.ir/r/toast.json"
       ],
-      "dependencies": ["lucide-react", "motion"],
+      "dependencies": ["lucide", "morphicons"],
       "files": [
         {
           "path": "registry/base/ui/copy-button.tsx",

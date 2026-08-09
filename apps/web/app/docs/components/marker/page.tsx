@@ -40,9 +40,15 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "separator", title: "Separator" },
-  { id: "border", title: "Border" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "separator", title: "Separator" },
+      { id: "border", title: "Border" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -167,58 +173,77 @@ export default function MarkerDocPage() {
         </div>
 
         <h2
-          id="separator"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          Separator
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          The <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">separator</code>{" "}
-          variant draws a rule on each side of the content, e.g. between two
-          alternate actions.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<MarkerSeparatorExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("marker-separator")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3
+            id="separator"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Separator
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            The{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              separator
+            </code>{" "}
+            variant draws a rule on each side of the content, e.g. between
+            two alternate actions.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<MarkerSeparatorExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("marker-separator")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="border" className="mt-12 text-xl font-semibold tracking-tight">
-          Border
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<MarkerBorderExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("marker-border")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="border"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Border
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<MarkerBorderExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("marker-border")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          The separator&apos;s rules on either side of &quot;یا&quot; mirror
-          correctly under RTL.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<MarkerRtlExample />}
-            code={
-              <CodeBlock code={getExampleSource("marker-rtl")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            The separator&apos;s rules on either side of &quot;یا&quot; mirror
+            correctly under RTL.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<MarkerRtlExample />}
+              code={
+                <CodeBlock code={getExampleSource("marker-rtl")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
         <h2

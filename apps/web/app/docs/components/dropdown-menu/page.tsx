@@ -42,8 +42,14 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "checkboxes", title: "Checkboxes" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "checkboxes", title: "Checkboxes" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -181,37 +187,48 @@ export default function DropdownMenuDocPage() {
         </div>
 
         <h2
-          id="checkboxes"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          Checkboxes
+          Examples
         </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<DropdownMenuCheckboxesExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("dropdown-menu-checkboxes")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3
+            id="checkboxes"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Checkboxes
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<DropdownMenuCheckboxesExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("dropdown-menu-checkboxes")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<DropdownMenuRtlExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("dropdown-menu-rtl")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<DropdownMenuRtlExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("dropdown-menu-rtl")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2
