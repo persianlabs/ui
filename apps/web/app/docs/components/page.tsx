@@ -8,6 +8,7 @@ import {
   AlertPreview,
   AspectRatioPreview,
   AvatarPreview,
+  BadgePreview,
   BreadcrumbPreview,
   BubblePreview,
   ButtonGroupPreview,
@@ -22,30 +23,37 @@ import {
   DialogPreview,
   DirectionPreview,
   DrawerPreview,
+  DropdownMenuPreview,
   ElasticRangeSliderPreview,
   ElasticSliderPreview,
   EmptyPreview,
+  FieldPreview,
   HoverCardPreview,
   InputGroupPreview,
   InputOTPPreview,
   InputPreview,
   ItemPreview,
+  KbdPreview,
+  LabelPreview,
   MarkerPreview,
   MenubarPreview,
   MessagePreview,
   MessageScrollerPreview,
   NativeSelectPreview,
   PaginationPreview,
+  PopoverPreview,
   ProgressPreview,
   RadioGroupPreview,
   ResizablePreview,
   ResponsiveAlertDialogPreview,
   ResponsiveDialogPreview,
   ResponsiveMenuPreview,
+  ScrollAreaPreview,
   SelectPreview,
   SeparatorPreview,
   SheetPreview,
   SkeletonPreview,
+  SpinnerPreview,
   SwitchPreview,
   TablePreview,
   TabsPreview,
@@ -660,6 +668,96 @@ const components = [
     thumbnail: (
       <ThumbnailFrame>
         <TablePreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Badge",
+    href: "/docs/components/badge" as const,
+    description: "Displays a small badge to highlight status or metadata.",
+    createdAt: "2026-08-09",
+    thumbnail: (
+      <ThumbnailFrame>
+        <BadgePreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Dropdown Menu",
+    href: "/docs/components/dropdown-menu" as const,
+    description:
+      "Displays a menu of actions or options, triggered by a button.",
+    createdAt: "2026-08-09",
+    thumbnail: (
+      <ThumbnailFrame>
+        <DropdownMenuPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Field",
+    href: "/docs/components/field" as const,
+    description:
+      "Groups a label, control, and description into an accessible form field, built on Base UI.",
+    createdAt: "2026-08-09",
+    thumbnail: (
+      <ThumbnailFrame>
+        <FieldPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Kbd",
+    href: "/docs/components/kbd" as const,
+    description: "Displays a keyboard key or shortcut.",
+    createdAt: "2026-08-09",
+    thumbnail: (
+      <ThumbnailFrame>
+        <KbdPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Label",
+    href: "/docs/components/label" as const,
+    description: "An accessible, styled label element.",
+    createdAt: "2026-08-09",
+    thumbnail: (
+      <ThumbnailFrame>
+        <LabelPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Popover",
+    href: "/docs/components/popover" as const,
+    description: "Displays rich content in a portal, anchored to a trigger.",
+    createdAt: "2026-08-09",
+    thumbnail: (
+      <ThumbnailFrame>
+        <PopoverPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Scroll Area",
+    href: "/docs/components/scroll-area" as const,
+    description: "Cross-browser custom scrollbars, built on Base UI.",
+    createdAt: "2026-08-09",
+    thumbnail: (
+      <ThumbnailFrame>
+        <ScrollAreaPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Spinner",
+    href: "/docs/components/spinner" as const,
+    description: "A spinning loading indicator icon.",
+    createdAt: "2026-08-09",
+    thumbnail: (
+      <ThumbnailFrame>
+        <SpinnerPreview />
       </ThumbnailFrame>
     ),
   },
