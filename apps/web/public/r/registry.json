@@ -1009,6 +1009,20 @@
           "type": "registry:hook"
         }
       ]
+    },
+    {
+      "name": "hitbox",
+      "type": "registry:ui",
+      "title": "Hitbox",
+      "description": "Extends the clickable area of a child element for improved accessibility.",
+      "registryDependencies": ["utils"],
+      "dependencies": ["class-variance-authority"],
+      "files": [
+        {
+          "path": "registry/base/ui/hitbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

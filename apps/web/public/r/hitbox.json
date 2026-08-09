@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hitbox",
+  "title": "Hitbox",
+  "description": "Extends the clickable area of a child element for improved accessibility.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/base/ui/hitbox.tsx",
+      "content": "import { cva, type VariantProps } from \"class-variance-authority\"\nimport * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\ntype Size = \"default\" | \"sm\" | \"lg\"\ntype DynamicSize = Size | (string & {})\n\nconst sizes: DynamicSize[] = [\"default\", \"sm\", \"lg\"]\n\nconst hitboxVariants = cva(\n  \"relative [--size-default:12px] [--size-lg:16px] [--size-sm:8px] after:absolute after:content-['']\",\n  {\n    variants: {\n      size: {\n        default: \"[--size:var(--size-default)]\",\n        sm: \"[--size:var(--size-sm)]\",\n        lg: \"[--size:var(--size-lg)]\",\n        dynamic: \"[--size:var(--size)]\",\n      },\n      position: {\n        all: \"after:[inset:calc(-1*var(--size))]\",\n        top: \"after:[top:calc(-1*var(--size))] after:[right:0] after:[left:0] after:[height:var(--size)]\",\n        bottom:\n          \"after:[right:0] after:[bottom:calc(-1*var(--size))] after:[left:0] after:[height:var(--size)]\",\n        left: \"after:[top:0] after:[bottom:0] after:[left:calc(-1*var(--size))] after:[width:var(--size)]\",\n        right:\n          \"after:[top:0] after:[right:calc(-1*var(--size))] after:[bottom:0] after:[width:var(--size)]\",\n        vertical:\n          \"after:[top:calc(-1*var(--size))] after:[right:0] after:[bottom:calc(-1*var(--size))] after:[left:0]\",\n        horizontal:\n          \"after:[top:0] after:[right:calc(-1*var(--size))] after:[bottom:0] after:[left:calc(-1*var(--size))]\",\n      },\n      radius: {\n        none: \"\",\n        sm: \"after:rounded-sm\",\n        md: \"after:rounded-md\",\n        lg: \"after:rounded-lg\",\n        full: \"after:rounded-full\",\n      },\n      debug: {\n        true: \"after:border after:border-dashed after:border-red-500 after:bg-red-500/20\",\n        false: \"\",\n      },\n    },\n    defaultVariants: {\n      size: \"default\",\n      position: \"all\",\n      radius: \"none\",\n      debug: false,\n    },\n  }\n)\n\ninterface HitboxProps\n  extends\n    Omit<React.HTMLAttributes<HTMLElement>, \"children\">,\n    Omit<VariantProps<typeof hitboxVariants>, \"size\"> {\n  size?: DynamicSize\n  children: React.ReactElement<React.HTMLAttributes<HTMLElement>>\n}\n\nfunction Hitbox(props: HitboxProps) {\n  const {\n    className,\n    style,\n    size,\n    position,\n    radius,\n    debug = false,\n    children,\n    ...hitboxProps\n  } = props\n\n  const isDynamicSize = size && !sizes.includes(size)\n\n  return React.cloneElement(children, {\n    ...hitboxProps,\n    className: cn(\n      hitboxVariants({\n        size: isDynamicSize ? \"dynamic\" : (size as Size),\n        position,\n        radius,\n        debug,\n      }),\n      children.props.className,\n      className\n    ),\n    style: {\n      ...(isDynamicSize && { \"--size\": size }),\n      ...children.props.style,\n      ...style,\n    },\n  })\n}\n\nexport { Hitbox }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

@@ -39,6 +39,7 @@ export const docsNav: DocsNavGroup[] = [
       { title: "Button", href: "/docs/components/button" },
       { title: "Button Group", href: "/docs/components/button-group" },
       { title: "Card", href: "/docs/components/card" },
+      { title: "Charts", href: "/docs/charts" },
       { title: "Checkbox", href: "/docs/components/checkbox" },
       {
         title: "City Selector",
@@ -134,6 +135,7 @@ export const docsNav: DocsNavGroup[] = [
   {
     title: "Utilities",
     items: [
+      { title: "Hitbox", href: "/docs/utilities/hitbox", badge: "New" },
       {
         title: "Normalize Persian Digits",
         href: "/docs/utilities/normalize-persian-digits",
