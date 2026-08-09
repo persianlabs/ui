@@ -883,6 +883,66 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "toman-icon",
+      "type": "registry:ui",
+      "title": "Toman Icon",
+      "description": "The Toman currency symbol, as a standalone icon component.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/base/ui/toman-icon.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "price-input",
+      "type": "registry:ui",
+      "title": "Price Input",
+      "description": "A text input that live-formats digits as a grouped price as you type, with support for Persian/Arabic-Indic numerals.",
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/input.json",
+        "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+      ],
+      "files": [
+        {
+          "path": "registry/base/ui/price-input.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base/hooks/use-controllable-state.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "normalize-persian-digits",
+      "type": "registry:lib",
+      "title": "Normalize Persian Digits",
+      "description": "Converts Persian (۰-۹) and Arabic-Indic (٠-٩) numerals to plain 0-9 digits.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/base/lib/normalize-persian-digits.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "use-controllable-state",
+      "type": "registry:hook",
+      "title": "useControllableState",
+      "description": "A hook for a value that can be either controlled or uncontrolled, with a single consistent API either way.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/base/hooks/use-controllable-state.ts",
+          "type": "registry:hook"
+        }
+      ]
     }
   ]
 }

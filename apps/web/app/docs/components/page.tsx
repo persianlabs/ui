@@ -42,6 +42,7 @@ import {
   NativeSelectPreview,
   PaginationPreview,
   PopoverPreview,
+  PriceInputPreview,
   ProgressPreview,
   RadioGroupPreview,
   ResizablePreview,
@@ -60,6 +61,7 @@ import {
   TextareaPreview,
   ToggleGroupPreview,
   TogglePreview,
+  TomanIconPreview,
   TooltipPreview,
 } from "@/lib/component-previews"
 
@@ -758,6 +760,31 @@ const components = [
     thumbnail: (
       <ThumbnailFrame>
         <SpinnerPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Price Input",
+    href: "/docs/components/price-input" as const,
+    description:
+      "A text input that formats digits as a grouped price as you type, with support for Persian/Arabic-Indic numerals.",
+    badge: "New",
+    createdAt: "2026-08-09",
+    thumbnail: (
+      <ThumbnailFrame>
+        <PriceInputPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Toman Icon",
+    href: "/docs/components/toman-icon" as const,
+    description: "The Toman currency symbol, as a standalone icon component.",
+    badge: "New",
+    createdAt: "2026-08-09",
+    thumbnail: (
+      <ThumbnailFrame>
+        <TomanIconPreview />
       </ThumbnailFrame>
     ),
   },
