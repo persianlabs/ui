@@ -9,29 +9,33 @@ import {
 import { ApiReference } from "@/components/api-reference"
 import { CodeBlock } from "@/components/code-block"
 import { ComponentPreview } from "@/components/component-preview"
-import { CopyButtonDemoExample } from "@/components/examples/copy-button-demo"
-import { CopyButtonRtlExample } from "@/components/examples/copy-button-rtl"
-import { CopyButtonWithTextExample } from "@/components/examples/copy-button-with-text"
 import { CopyCommand } from "@/components/copy-command"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
+import { Credits } from "@/components/credits"
 import { DocsPageFooter } from "@/components/docs-page-footer"
-import { InstallCommand } from "@/components/install-command"
+import { UseCopyToClipboardCallbackExample } from "@/components/examples/use-copy-to-clipboard-callback"
+import { UseCopyToClipboardDemoExample } from "@/components/examples/use-copy-to-clipboard-demo"
+import { UseCopyToClipboardRtlExample } from "@/components/examples/use-copy-to-clipboard-rtl"
+import { UseCopyToClipboardTimeoutExample } from "@/components/examples/use-copy-to-clipboard-timeout"
 import { LastUpdated } from "@/components/last-updated"
 import { Step, Steps } from "@/components/steps"
 import { TableOfContents } from "@/components/table-of-contents"
-import { getComponentSource, getHookSource } from "@/lib/component-source"
 import { getExampleSource } from "@/lib/example-source"
+import { getHookSource } from "@/lib/component-source"
 import { getLastEditedDate } from "@/lib/last-edited"
 import { CODE_FENCE, apiRowsToMarkdownTable } from "@/lib/markdown"
 
-const SOURCE_PATH = "apps/web/app/docs/components/copy-button/page.tsx"
+import {
+  useCopyToClipboardOptionsApi,
+  useCopyToClipboardReturnApi,
+} from "./api-data"
 
-import { copyButtonApi } from "./api-data"
+const SOURCE_PATH = "apps/web/app/docs/utilities/use-copy-to-clipboard/page.tsx"
 
 export const metadata: Metadata = {
-  title: "Copy Button",
+  title: "useCopyToClipboard",
   description:
-    "An icon button that copies text to the clipboard, morphs its icon to reflect the result, and anchors a confirmation toast to itself.",
+    "A React hook that wraps the Clipboard API with a built-in timeout to reset the copied state.",
 }
 
 const tocItems = [
@@ -42,28 +46,35 @@ const tocItems = [
     id: "examples",
     title: "Examples",
     children: [
-      { id: "with-text", title: "With Text" },
+      { id: "custom-timeout", title: "Custom timeout" },
+      { id: "callback", title: "Callback on copy" },
       { id: "rtl", title: "RTL" },
     ],
   },
   { id: "api-reference", title: "API Reference" },
 ]
 
-const usageSnippet = `import { CopyButton } from "@/components/ui/copy-button"
+const usageSnippet = `import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
 
-export function Example() {
-  return <CopyButton text="https://persian-labs.ir" label="Copy link" />
+function CopyButton({ text }: { text: string }) {
+  const { copyToClipboard, isCopied } = useCopyToClipboard()
+
+  return (
+    <button onClick={() => copyToClipboard(text)}>
+      {isCopied ? "Copied!" : "Copy"}
+    </button>
+  )
 }`
 
-export const copyButtonMarkdown = [
-  "# Copy Button",
+export const useCopyToClipboardMarkdown = [
+  "# useCopyToClipboard",
   "",
-  "An icon button that copies text to the clipboard, morphs its icon to reflect the result, and anchors a confirmation toast to itself. Self-contained — it brings its own toast manager and provider, so it works with zero setup.",
+  "A React hook that wraps the Clipboard API with a built-in timeout to reset the copied state. Useful for copy buttons that show brief confirmation feedback.",
   "",
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/copy-button.json",
+  "npx shadcn@latest add https://ui.persian-labs.ir/r/use-copy-to-clipboard.json",
   CODE_FENCE,
   "",
   "## Usage",
@@ -74,12 +85,16 @@ export const copyButtonMarkdown = [
   "",
   "## API Reference",
   "",
-  "### CopyButton",
+  "### useCopyToClipboard(options)",
   "",
-  apiRowsToMarkdownTable(copyButtonApi),
+  apiRowsToMarkdownTable(useCopyToClipboardOptionsApi),
+  "",
+  "### Return value",
+  "",
+  apiRowsToMarkdownTable(useCopyToClipboardReturnApi),
 ].join("\n")
 
-export default function CopyButtonDocPage() {
+export default function UseCopyToClipboardDocPage() {
   const lastEdited = getLastEditedDate(SOURCE_PATH)
 
   return (
@@ -87,25 +102,32 @@ export default function CopyButtonDocPage() {
       <article className="max-w-3xl min-w-0 flex-1">
         <div className="flex flex-col items-end justify-between gap-3 sm:flex-row sm:items-center">
           <h1 className="self-start text-3xl font-semibold tracking-tight sm:self-auto">
-            Copy Button
+            useCopyToClipboard
           </h1>
-          <CopyMarkdownButton markdown={copyButtonMarkdown} />
+          <CopyMarkdownButton markdown={useCopyToClipboardMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          An icon button that copies text to the clipboard, morphs its icon
-          from a copy glyph to a checkmark, and anchors a confirmation toast
-          to itself — built on{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            Tooltip
-          </code>{" "}
-          and the anchored{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            Toast
-          </code>
-          . It brings its own toast manager and provider internally, so it
-          drops in anywhere with zero setup.
+          Wraps the Clipboard API with a built-in timeout to reset the copied
+          state — useful for copy buttons that show brief confirmation
+          feedback. Powers{" "}
+          <a
+            href="/docs/components/copy-button"
+            className="text-foreground underline underline-offset-4"
+          >
+            Copy Button
+          </a>
+          .
         </p>
         <LastUpdated date={lastEdited} />
+        <Credits
+          sources={[
+            {
+              label: "coss ui",
+              href: "https://coss.com/ui/docs/hooks/use-copy-to-clipboard",
+            },
+          ]}
+          changed={false}
+        />
 
         <h2
           id="overview"
@@ -115,10 +137,10 @@ export default function CopyButtonDocPage() {
         </h2>
         <div className="mt-4">
           <ComponentPreview
-            preview={<CopyButtonDemoExample />}
+            preview={<UseCopyToClipboardDemoExample />}
             code={
               <CodeBlock
-                code={getExampleSource("copy-button-demo")}
+                code={getExampleSource("use-copy-to-clipboard-demo")}
                 lang="tsx"
               />
             }
@@ -139,29 +161,17 @@ export default function CopyButtonDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/copy-button.json" />
+            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/use-copy-to-clipboard.json" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">
             <Steps>
-              <Step>Install the dependencies</Step>
-              <div className="mt-2">
-                <InstallCommand packages="lucide morphicons" />
-              </div>
-              <Step>Copy the hook source</Step>
+              <Step>Copy the source into your project</Step>
               <div className="mt-2">
                 <CodeBlock
                   code={getHookSource("use-copy-to-clipboard")}
-                  lang="tsx"
+                  lang="ts"
                   title="hooks/use-copy-to-clipboard.ts"
-                />
-              </div>
-              <Step>Copy the component source</Step>
-              <div className="mt-2">
-                <CodeBlock
-                  code={getComponentSource("copy-button")}
-                  lang="tsx"
-                  title="components/ui/copy-button.tsx"
                 />
               </div>
             </Steps>
@@ -171,11 +181,6 @@ export default function CopyButtonDocPage() {
         <h2 id="usage" className="mt-12 text-xl font-semibold tracking-tight">
           Usage
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          No provider to wrap — the copy confirmation is a toast anchored to
-          the button itself (not a corner-stacked one), and CopyButton
-          manages that internally by default.
-        </p>
         <div className="mt-4">
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
@@ -189,29 +194,55 @@ export default function CopyButtonDocPage() {
 
         <div className="mt-8">
           <h3
-            id="with-text"
+            id="custom-timeout"
             className="text-sm font-medium text-muted-foreground"
           >
-            With Text
+            Custom timeout
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
-            It&apos;s a regular{" "}
-            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-              Button
+            The{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              isCopied
             </code>{" "}
-            under the hood, so any variant, size, or children work — pass a
-            label as{" "}
-            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-              children
+            state resets after 2 seconds by default. Set{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              timeout
             </code>{" "}
-            alongside the icon.
+            to 0 to keep it true indefinitely (until the component unmounts).
           </p>
           <div className="mt-3">
             <ComponentPreview
-              preview={<CopyButtonWithTextExample />}
+              preview={<UseCopyToClipboardTimeoutExample />}
               code={
                 <CodeBlock
-                  code={getExampleSource("copy-button-with-text")}
+                  code={getExampleSource("use-copy-to-clipboard-timeout")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3
+            id="callback"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Callback on copy
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Run a side effect when a copy succeeds with{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              onCopy
+            </code>
+            .
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<UseCopyToClipboardCallbackExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("use-copy-to-clipboard-callback")}
                   lang="tsx"
                 />
               }
@@ -223,26 +254,13 @@ export default function CopyButtonDocPage() {
           <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
             RTL
           </h3>
-          <p className="mt-2 leading-relaxed text-muted-foreground">
-            The default{" "}
-            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-              label
-            </code>{" "}
-            is already Persian (&quot;کپی&quot;), and the anchored
-            confirmation toast mirrors correctly since it goes through the
-            same direction-aware{" "}
-            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-              AnchoredToastProvider
-            </code>{" "}
-            as Toast.
-          </p>
           <div className="mt-3">
             <ComponentPreview
               dir="rtl"
-              preview={<CopyButtonRtlExample />}
+              preview={<UseCopyToClipboardRtlExample />}
               code={
                 <CodeBlock
-                  code={getExampleSource("copy-button-rtl")}
+                  code={getExampleSource("use-copy-to-clipboard-rtl")}
                   lang="tsx"
                 />
               }
@@ -256,10 +274,17 @@ export default function CopyButtonDocPage() {
         >
           API Reference
         </h2>
-        <ApiReference title="CopyButton" rows={copyButtonApi} />
+        <ApiReference
+          title="useCopyToClipboard(options)"
+          rows={useCopyToClipboardOptionsApi}
+        />
+        <ApiReference
+          title="Return value"
+          rows={useCopyToClipboardReturnApi}
+        />
 
         <DocsPageFooter
-          href="/docs/components/copy-button"
+          href="/docs/utilities/use-copy-to-clipboard"
           sourcePath={SOURCE_PATH}
         />
       </article>
