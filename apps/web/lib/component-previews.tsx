@@ -2018,3 +2018,94 @@ export function PriceInputPreview() {
     </div>
   )
 }
+
+function CheckCircleGlyph({ size = 16 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#34d399"
+      strokeWidth={2.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="9" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  )
+}
+
+export function ToastPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "10px",
+        width: "230px",
+        padding: "12px 14px",
+        borderRadius: "16px",
+        backgroundColor: "#191817",
+        border: "1px solid rgba(242,240,238,0.16)",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexShrink: 0,
+        }}
+      >
+        <CheckCircleGlyph size={18} />
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+        <div style={{ display: "flex", fontSize: "13px", fontWeight: 600, color: "#f2f0ee" }}>
+          Event created
+        </div>
+        <div
+          style={{
+            display: "flex",
+            fontSize: "11px",
+            color: "rgba(242,240,238,0.5)",
+          }}
+        >
+          Sunday, December 3 at 9:00 AM
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export function CopyButtonPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "40px",
+        height: "40px",
+        borderRadius: "10px",
+        backgroundColor: "#191817",
+        border: "1px solid rgba(242,240,238,0.16)",
+      }}
+    >
+      <svg
+        width={16}
+        height={16}
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#f2f0ee"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <rect x="9" y="9" width="13" height="13" rx="2" />
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+      </svg>
+    </div>
+  )
+}
