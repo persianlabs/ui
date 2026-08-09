@@ -29,6 +29,13 @@ export const citySelectorApi: ApiReferenceRow[] = [
       "Forces Persian or English labels, placeholders, and text direction. When omitted, follows the document's text direction (rtl → fa, ltr → en).",
   },
   {
+    prop: "initialLocale",
+    type: '"fa" | "en"',
+    default: '"fa"',
+    description:
+      "Initial labels before the automatic direction check runs. Set this when the server knows the initial direction to prevent a label flash during hydration.",
+  },
+  {
     prop: "disabled",
     type: "boolean",
     default: "false",

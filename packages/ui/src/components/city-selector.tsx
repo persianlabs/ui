@@ -60,8 +60,11 @@ const STRINGS: Record<
  * element itself has no explicit `dir` — otherwise it would just echo back
  * its own forced value.
  */
-function useAutoLocale(ref: React.RefObject<HTMLElement | null>) {
-  const [locale, setLocale] = React.useState<CitySelectorLocale>("fa")
+function useAutoLocale(
+  ref: React.RefObject<HTMLElement | null>,
+  initialLocale: CitySelectorLocale
+) {
+  const [locale, setLocale] = React.useState<CitySelectorLocale>(initialLocale)
 
   React.useEffect(() => {
     function update() {
@@ -112,6 +115,7 @@ function CitySelector({
   defaultValue = EMPTY_VALUE,
   onValueChange,
   locale: localeProp,
+  initialLocale = "fa",
   disabled,
   className,
   children,
@@ -121,13 +125,15 @@ function CitySelector({
   onValueChange?: (value: CitySelectorValue) => void
   /** Force "fa" or "en" labels, placeholders, and text direction. Defaults to following the document's text direction. */
   locale?: CitySelectorLocale
+  /** Locale to render before the automatic direction check runs. Use this when the server already knows the initial direction. */
+  initialLocale?: CitySelectorLocale
   disabled?: boolean
   className?: string
   /** Defaults to `<CitySelectorProvince /><CitySelectorCity />`. Pass your own children to fully customize the layout. */
   children?: React.ReactNode
 }) {
   const rootRef = React.useRef<HTMLDivElement>(null)
-  const autoLocale = useAutoLocale(rootRef)
+  const autoLocale = useAutoLocale(rootRef, initialLocale)
   const locale = localeProp ?? autoLocale
   const strings = STRINGS[locale]
 
