@@ -1,4 +1,4 @@
-import { CopyButton } from "@/components/copy-button"
+import { CopyButton } from "@workspace/ui/components/copy-button"
 
 export function CopyCommand({ command }: { command: string }) {
   return (
@@ -7,7 +7,13 @@ export function CopyCommand({ command }: { command: string }) {
         <span className="text-muted-foreground select-none">$ </span>
         {command}
       </code>
-      <CopyButton text={command} label="Copy command" />
+      <CopyButton
+        text={command}
+        label="Copy command"
+        variant="ghost"
+        size="icon"
+        className="size-7 shrink-0"
+      />
     </div>
   )
 }

@@ -52,7 +52,7 @@ export default function ThemingPage() {
   const themingMarkdown = getThemingMarkdown()
 
   return (
-    <article className="max-w-2xl">
+    <article className="mx-auto max-w-2xl">
       <div className="flex flex-col items-end justify-between gap-3 sm:flex-row sm:items-center">
         <h1 className="text-3xl font-semibold tracking-tight self-start sm:self-auto">
           Theming

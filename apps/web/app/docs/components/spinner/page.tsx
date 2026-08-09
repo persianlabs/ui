@@ -38,8 +38,14 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "button", title: "In a Button" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "button", title: "In a Button" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -151,39 +157,53 @@ export default function SpinnerDocPage() {
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
-        <h2 id="button" className="mt-12 text-xl font-semibold tracking-tight">
-          In a Button
+        <h2
+          id="examples"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            Button
-          </code>{" "}
-          renders a <code>Spinner</code> automatically when its{" "}
-          <code>loading</code> prop is set.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<SpinnerButtonExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("spinner-button")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3
+            id="button"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            In a Button
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              Button
+            </code>{" "}
+            renders a <code>Spinner</code> automatically when its{" "}
+            <code>loading</code> prop is set.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<SpinnerButtonExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("spinner-button")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<SpinnerRtlExample />}
-            code={
-              <CodeBlock code={getExampleSource("spinner-rtl")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<SpinnerRtlExample />}
+              code={
+                <CodeBlock code={getExampleSource("spinner-rtl")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
         <h2

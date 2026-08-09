@@ -40,10 +40,16 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "card", title: "Card Variant" },
-  { id: "actions", title: "Actions" },
-  { id: "selection", title: "Selection" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "card", title: "Card Variant" },
+      { id: "actions", title: "Actions" },
+      { id: "selection", title: "Selection" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -192,118 +198,133 @@ export default function TableDocPage() {
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
-        <h2 id="card" className="mt-12 text-xl font-semibold tracking-tight">
-          Card Variant
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Set{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            variant=&quot;card&quot;
-          </code>{" "}
-          for a card-style table: separated borders, rounded corners, and
-          row surfaces that read as individual cards. The default variant
-          is a simpler grid with shared borders.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<TableCardExample />}
-            code={
-              <CodeBlock code={getExampleSource("table-card")} lang="tsx" />
-            }
-          />
-        </div>
-
         <h2
-          id="actions"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          Actions
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          A table showing per-row actions using a{" "}
-          <a
-            href="/docs/components/dropdown-menu"
-            className="text-foreground underline underline-offset-4"
-          >
-            Dropdown Menu
-          </a>
-          .
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<TableActionsExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("table-actions")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3 id="card" className="text-sm font-medium text-muted-foreground">
+            Card Variant
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Set{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              variant=&quot;card&quot;
+            </code>{" "}
+            for a card-style table: separated borders, rounded corners, and
+            row surfaces that read as individual cards. The default variant
+            is a simpler grid with shared borders.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<TableCardExample />}
+              code={
+                <CodeBlock code={getExampleSource("table-card")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="selection"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Selection
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Combine the card variant with{" "}
-          <a
-            href="/docs/components/checkbox"
-            className="text-foreground underline underline-offset-4"
+        <div className="mt-8">
+          <h3
+            id="actions"
+            className="text-sm font-medium text-muted-foreground"
           >
-            Checkbox
-          </a>{" "}
-          row selection,{" "}
-          <a
-            href="/docs/components/avatar"
-            className="text-foreground underline underline-offset-4"
-          >
-            Avatar
-          </a>
-          , a status{" "}
-          <a
-            href="/docs/components/badge"
-            className="text-foreground underline underline-offset-4"
-          >
-            Badge
-          </a>
-          , and a Dropdown Menu for row actions — a common shape for team or
-          user management tables.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<TableTeamExample />}
-            code={
-              <CodeBlock code={getExampleSource("table-team")} lang="tsx" />
-            }
-          />
+            Actions
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            A table showing per-row actions using a{" "}
+            <a
+              href="/docs/components/dropdown-menu"
+              className="text-foreground underline underline-offset-4"
+            >
+              Dropdown Menu
+            </a>
+            .
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<TableActionsExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("table-actions")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Header and cell alignment use logical{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            text-start
-          </code>{" "}
-          /{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            text-end
-          </code>{" "}
-          utilities, so numeric columns stay aligned to the trailing edge
-          in both directions.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<TableRtlExample />}
-            code={
-              <CodeBlock code={getExampleSource("table-rtl")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="selection"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Selection
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Combine the card variant with{" "}
+            <a
+              href="/docs/components/checkbox"
+              className="text-foreground underline underline-offset-4"
+            >
+              Checkbox
+            </a>{" "}
+            row selection,{" "}
+            <a
+              href="/docs/components/avatar"
+              className="text-foreground underline underline-offset-4"
+            >
+              Avatar
+            </a>
+            , a status{" "}
+            <a
+              href="/docs/components/badge"
+              className="text-foreground underline underline-offset-4"
+            >
+              Badge
+            </a>
+            , and a Dropdown Menu for row actions — a common shape for team
+            or user management tables.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<TableTeamExample />}
+              code={
+                <CodeBlock code={getExampleSource("table-team")} lang="tsx" />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Header and cell alignment use logical{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              text-start
+            </code>{" "}
+            /{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              text-end
+            </code>{" "}
+            utilities, so numeric columns stay aligned to the trailing edge
+            in both directions.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<TableRtlExample />}
+              code={
+                <CodeBlock code={getExampleSource("table-rtl")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
         <h2

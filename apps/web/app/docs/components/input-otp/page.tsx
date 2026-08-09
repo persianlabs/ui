@@ -47,14 +47,20 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "pattern", title: "Pattern" },
-  { id: "separator", title: "Separator" },
-  { id: "disabled", title: "Disabled" },
-  { id: "controlled", title: "Controlled" },
-  { id: "invalid", title: "Invalid" },
-  { id: "four-digits", title: "Four digits" },
-  { id: "alphanumeric", title: "Alphanumeric" },
-  { id: "form", title: "Form" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "pattern", title: "Pattern" },
+      { id: "separator", title: "Separator" },
+      { id: "disabled", title: "Disabled" },
+      { id: "controlled", title: "Controlled" },
+      { id: "invalid", title: "Invalid" },
+      { id: "four-digits", title: "Four digits" },
+      { id: "alphanumeric", title: "Alphanumeric" },
+      { id: "form", title: "Form" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -202,197 +208,229 @@ export default function InputOTPDocPage() {
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
-        <h2 id="pattern" className="mt-12 text-xl font-semibold tracking-tight">
-          Pattern
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use the{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            pattern
-          </code>{" "}
-          prop to define a custom pattern for the OTP input.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="ltr"
-            preview={<InputOTPPatternExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("input-otp-pattern")}
-                lang="tsx"
-              />
-            }
-          />
-        </div>
-
         <h2
-          id="separator"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          Separator
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            {"<InputOTPSeparator />"}
-          </code>{" "}
-          to add a separator between input groups.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="ltr"
-            preview={<InputOTPSeparatorExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("input-otp-separator")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3
+            id="pattern"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Pattern
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use the{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              pattern
+            </code>{" "}
+            prop to define a custom pattern for the OTP input.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="ltr"
+              preview={<InputOTPPatternExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-otp-pattern")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="disabled"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Disabled
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use the{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            disabled
-          </code>{" "}
-          prop to disable the input.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="ltr"
-            preview={<InputOTPDisabledExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("input-otp-disabled")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="separator"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Separator
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              {"<InputOTPSeparator />"}
+            </code>{" "}
+            to add a separator between input groups.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="ltr"
+              preview={<InputOTPSeparatorExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-otp-separator")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="controlled"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Controlled
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use the{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            value
-          </code>{" "}
-          and{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            onChange
-          </code>{" "}
-          props to control the input value.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="ltr"
-            preview={<InputOTPControlledExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("input-otp-controlled")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="disabled"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Disabled
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use the{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              disabled
+            </code>{" "}
+            prop to disable the input.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="ltr"
+              preview={<InputOTPDisabledExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-otp-disabled")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="invalid" className="mt-12 text-xl font-semibold tracking-tight">
-          Invalid
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            aria-invalid
-          </code>{" "}
-          on the slots to show an error state.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="ltr"
-            preview={<InputOTPInvalidExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("input-otp-invalid")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="controlled"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Controlled
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use the{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              value
+            </code>{" "}
+            and{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              onChange
+            </code>{" "}
+            props to control the input value.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="ltr"
+              preview={<InputOTPControlledExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-otp-controlled")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="four-digits"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Four digits
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          A common pattern for PIN codes, using{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            pattern={"{REGEXP_ONLY_DIGITS}"}
-          </code>
-          .
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="ltr"
-            preview={<InputOTPFourDigitsExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("input-otp-four-digits")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="invalid"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Invalid
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              aria-invalid
+            </code>{" "}
+            on the slots to show an error state.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="ltr"
+              preview={<InputOTPInvalidExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-otp-invalid")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="alphanumeric"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Alphanumeric
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            REGEXP_ONLY_DIGITS_AND_CHARS
-          </code>{" "}
-          to accept both letters and numbers.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="ltr"
-            preview={<InputOTPAlphanumericExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("input-otp-alphanumeric")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="four-digits"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Four digits
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            A common pattern for PIN codes, using{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              pattern={"{REGEXP_ONLY_DIGITS}"}
+            </code>
+            .
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="ltr"
+              preview={<InputOTPFourDigitsExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-otp-four-digits")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="form" className="mt-12 text-xl font-semibold tracking-tight">
-          Form
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="ltr"
-            preview={<InputOTPFormExample />}
-            code={
-              <CodeBlock code={getExampleSource("input-otp-form")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="alphanumeric"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Alphanumeric
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              REGEXP_ONLY_DIGITS_AND_CHARS
+            </code>{" "}
+            to accept both letters and numbers.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="ltr"
+              preview={<InputOTPAlphanumericExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-otp-alphanumeric")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3 id="form" className="text-sm font-medium text-muted-foreground">
+            Form
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="ltr"
+              preview={<InputOTPFormExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-otp-form")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

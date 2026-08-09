@@ -42,11 +42,17 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "field", title: "Field" },
-  { id: "disabled", title: "Disabled" },
-  { id: "invalid", title: "Invalid" },
-  { id: "button", title: "Button" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "field", title: "Field" },
+      { id: "disabled", title: "Disabled" },
+      { id: "invalid", title: "Invalid" },
+      { id: "button", title: "Button" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -154,129 +160,161 @@ export default function TextareaDocPage() {
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
-        <h2 id="field" className="mt-12 text-xl font-semibold tracking-tight">
-          Field
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            Field
-          </code>
-          ,{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            FieldLabel
-          </code>
-          , and{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            FieldDescription
-          </code>{" "}
-          to create a textarea with a label and description.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<TextareaFieldExample />}
-            code={
-              <CodeBlock code={getExampleSource("textarea-field")} lang="tsx" />
-            }
-          />
-        </div>
-
         <h2
-          id="disabled"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          Disabled
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use the{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            disabled
-          </code>{" "}
-          prop to disable the textarea. Add{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            data-disabled
-          </code>{" "}
-          to{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+
+        <div className="mt-8">
+          <h3
+            id="field"
+            className="text-sm font-medium text-muted-foreground"
+          >
             Field
-          </code>{" "}
-          to style the disabled label too.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<TextareaDisabledExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("textarea-disabled")}
-                lang="tsx"
-              />
-            }
-          />
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              Field
+            </code>
+            ,{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              FieldLabel
+            </code>
+            , and{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              FieldDescription
+            </code>{" "}
+            to create a textarea with a label and description.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<TextareaFieldExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("textarea-field")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="invalid" className="mt-12 text-xl font-semibold tracking-tight">
-          Invalid
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            aria-invalid
-          </code>{" "}
-          to mark the textarea as invalid, and{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            data-invalid
-          </code>{" "}
-          on{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            Field
-          </code>{" "}
-          to style the invalid label.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<TextareaInvalidExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("textarea-invalid")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="disabled"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Disabled
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use the{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              disabled
+            </code>{" "}
+            prop to disable the textarea. Add{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              data-disabled
+            </code>{" "}
+            to{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              Field
+            </code>{" "}
+            to style the disabled label too.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<TextareaDisabledExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("textarea-disabled")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="button" className="mt-12 text-xl font-semibold tracking-tight">
-          Button
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Pair with{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+        <div className="mt-8">
+          <h3
+            id="invalid"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Invalid
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              aria-invalid
+            </code>{" "}
+            to mark the textarea as invalid, and{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              data-invalid
+            </code>{" "}
+            on{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              Field
+            </code>{" "}
+            to style the invalid label.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<TextareaInvalidExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("textarea-invalid")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3
+            id="button"
+            className="text-sm font-medium text-muted-foreground"
+          >
             Button
-          </code>{" "}
-          to create a textarea with a submit button.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<TextareaButtonExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("textarea-button")}
-                lang="tsx"
-              />
-            }
-          />
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Pair with{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              Button
+            </code>{" "}
+            to create a textarea with a submit button.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<TextareaButtonExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("textarea-button")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<TextareaRtlExample />}
-            code={
-              <CodeBlock code={getExampleSource("textarea-rtl")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<TextareaRtlExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("textarea-rtl")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

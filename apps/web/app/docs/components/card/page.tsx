@@ -44,10 +44,16 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "size", title: "Size" },
-  { id: "image", title: "Image" },
-  { id: "rtl", title: "RTL" },
-  { id: "product", title: "Product card" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "size", title: "Size" },
+      { id: "image", title: "Image" },
+      { id: "rtl", title: "RTL" },
+      { id: "product", title: "Product card" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -194,70 +200,90 @@ export default function CardDocPage() {
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
-        <h2 id="size" className="mt-12 text-xl font-semibold tracking-tight">
-          Size
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            size=&quot;sm&quot;
-          </code>{" "}
-          for a compact card with smaller spacing.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<CardSmallExample />}
-            code={
-              <CodeBlock code={getExampleSource("card-small")} lang="tsx" />
-            }
-          />
-        </div>
-
-        <h2 id="image" className="mt-12 text-xl font-semibold tracking-tight">
-          Image
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Add an image before the card header to create a card with an
-          image.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<CardImageExample />}
-            code={
-              <CodeBlock code={getExampleSource("card-image")} lang="tsx" />
-            }
-          />
-        </div>
-
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<CardRtlExample />}
-            code={<CodeBlock code={getExampleSource("card-rtl")} lang="tsx" />}
-          />
-        </div>
-
         <h2
-          id="product"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          Product card
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          A Persian e-commerce pattern: Toman pricing with a discount badge
-          and a right-to-left price line.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<CardProductExample />}
-            code={
-              <CodeBlock code={getExampleSource("card-product")} lang="tsx" />
-            }
-          />
+
+        <div className="mt-8">
+          <h3 id="size" className="text-sm font-medium text-muted-foreground">
+            Size
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              size=&quot;sm&quot;
+            </code>{" "}
+            for a compact card with smaller spacing.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<CardSmallExample />}
+              code={
+                <CodeBlock code={getExampleSource("card-small")} lang="tsx" />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3 id="image" className="text-sm font-medium text-muted-foreground">
+            Image
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Add an image before the card header to create a card with an
+            image.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<CardImageExample />}
+              code={
+                <CodeBlock code={getExampleSource("card-image")} lang="tsx" />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<CardRtlExample />}
+              code={
+                <CodeBlock code={getExampleSource("card-rtl")} lang="tsx" />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3
+            id="product"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Product card
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            A Persian e-commerce pattern: Toman pricing with a discount badge
+            and a right-to-left price line.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<CardProductExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("card-product")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

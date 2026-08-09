@@ -41,11 +41,17 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "outline", title: "Outline" },
-  { id: "background", title: "Background" },
-  { id: "input-group", title: "Input Group" },
-  { id: "rtl", title: "RTL" },
-  { id: "city", title: "No city found" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "outline", title: "Outline" },
+      { id: "background", title: "Background" },
+      { id: "input-group", title: "Input Group" },
+      { id: "rtl", title: "RTL" },
+      { id: "city", title: "No city found" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -179,118 +185,138 @@ export default function EmptyDocPage() {
         </div>
 
         <h2
-          id="outline"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          Outline
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use the{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            border
-          </code>{" "}
-          utility class to create an outline empty state.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<EmptyOutlineExample />}
-            code={
-              <CodeBlock code={getExampleSource("empty-outline")} lang="tsx" />
-            }
-          />
-        </div>
 
-        <h2
-          id="background"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Background
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use the{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            bg-*
-          </code>{" "}
-          utilities to add a background to the empty state.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<EmptyBackgroundExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("empty-background")}
-                lang="tsx"
-              />
-            }
-          />
-        </div>
-
-        <h2
-          id="input-group"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Input Group
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Add an{" "}
-          <a
-            href="/docs/components/input-group"
-            className="text-foreground underline underline-offset-4"
+        <div className="mt-8">
+          <h3
+            id="outline"
+            className="text-sm font-medium text-muted-foreground"
           >
-            InputGroup
-          </a>{" "}
-          component to{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            EmptyContent
-          </code>
-          .
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<EmptyInputGroupExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("empty-input-group")}
-                lang="tsx"
-              />
-            }
-          />
+            Outline
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use the{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              border
+            </code>{" "}
+            utility class to create an outline empty state.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<EmptyOutlineExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("empty-outline")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<EmptyRtlExample />}
-            code={
-              <CodeBlock code={getExampleSource("empty-rtl")} lang="tsx" />
-            }
-          />
-        </div>
-
-        <h2 id="city" className="mt-12 text-xl font-semibold tracking-tight">
-          No city found
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          A pattern for{" "}
-          <a
-            href="/docs/components/city-selector"
-            className="text-foreground underline underline-offset-4"
+        <div className="mt-8">
+          <h3
+            id="background"
+            className="text-sm font-medium text-muted-foreground"
           >
-            City Selector
-          </a>
-          &apos;s dependent city field before a province is chosen.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<EmptyCityExample />}
-            code={
-              <CodeBlock code={getExampleSource("empty-city")} lang="tsx" />
-            }
-          />
+            Background
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use the{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              bg-*
+            </code>{" "}
+            utilities to add a background to the empty state.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<EmptyBackgroundExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("empty-background")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3
+            id="input-group"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Input Group
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Add an{" "}
+            <a
+              href="/docs/components/input-group"
+              className="text-foreground underline underline-offset-4"
+            >
+              InputGroup
+            </a>{" "}
+            component to{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              EmptyContent
+            </code>
+            .
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<EmptyInputGroupExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("empty-input-group")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<EmptyRtlExample />}
+              code={
+                <CodeBlock code={getExampleSource("empty-rtl")} lang="tsx" />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3 id="city" className="text-sm font-medium text-muted-foreground">
+            No city found
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            A pattern for{" "}
+            <a
+              href="/docs/components/city-selector"
+              className="text-foreground underline underline-offset-4"
+            >
+              City Selector
+            </a>
+            &apos;s dependent city field before a province is chosen.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<EmptyCityExample />}
+              code={
+                <CodeBlock code={getExampleSource("empty-city")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
         <h2

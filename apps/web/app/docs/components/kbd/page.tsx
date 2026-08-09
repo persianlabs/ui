@@ -37,8 +37,14 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "inline", title: "Inline" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "inline", title: "Inline" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -146,43 +152,54 @@ export default function KbdDocPage() {
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
-        <h2 id="inline" className="mt-12 text-xl font-semibold tracking-tight">
-          Inline
+        <h2
+          id="examples"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Examples
         </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<KbdInlineExample />}
-            code={
-              <CodeBlock code={getExampleSource("kbd-inline")} lang="tsx" />
-            }
-          />
+
+        <div className="mt-8">
+          <h3 id="inline" className="text-sm font-medium text-muted-foreground">
+            Inline
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<KbdInlineExample />}
+              code={
+                <CodeBlock code={getExampleSource("kbd-inline")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Keyboard shortcuts are always Latin characters, so{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            Kbd
-          </code>{" "}
-          forces <code>dir=&quot;ltr&quot;</code> internally — the key
-          itself stays left-to-right even while the surrounding Farsi
-          sentence reads right-to-left. When a shortcut has more than one
-          key, wrap them together in their own{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            dir=&quot;ltr&quot;
-          </code>{" "}
-          container — otherwise the bidi algorithm can reorder two
-          separately-LTR keys relative to each other inside RTL text, so
-          &quot;⌘K&quot; could visually read as &quot;K⌘&quot;.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<KbdRtlExample />}
-            code={<CodeBlock code={getExampleSource("kbd-rtl")} lang="tsx" />}
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Keyboard shortcuts are always Latin characters, so{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              Kbd
+            </code>{" "}
+            forces <code>dir=&quot;ltr&quot;</code> internally — the key
+            itself stays left-to-right even while the surrounding Farsi
+            sentence reads right-to-left. When a shortcut has more than one
+            key, wrap them together in their own{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              dir=&quot;ltr&quot;
+            </code>{" "}
+            container — otherwise the bidi algorithm can reorder two
+            separately-LTR keys relative to each other inside RTL text, so
+            &quot;⌘K&quot; could visually read as &quot;K⌘&quot;.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<KbdRtlExample />}
+              code={<CodeBlock code={getExampleSource("kbd-rtl")} lang="tsx" />}
+            />
+          </div>
         </div>
 
         <h2

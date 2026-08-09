@@ -94,7 +94,7 @@ export function ComponentsGrid({
           <h2 className="text-sm font-medium text-muted-foreground">
             New &amp; Special
           </h2>
-          <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
             {filteredFeatured.map((component) => (
               <ComponentCard key={component.href} component={component} />
             ))}
@@ -109,7 +109,7 @@ export function ComponentsGrid({
               All components
             </h2>
           )}
-          <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-4 grid gap-5 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3">
             {filteredRest.map((component) => (
               <ComponentCard key={component.href} component={component} />
             ))}

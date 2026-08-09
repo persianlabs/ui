@@ -42,7 +42,11 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [{ id: "rtl", title: "RTL" }],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -197,22 +201,32 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
+        <h2
+          id="examples"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          The tooltip measures the direction it actually renders in and passes
-          it to the portaled popup, so it opens on the correct side even though
-          the popup itself lives outside the RTL container in the DOM.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<TooltipRtlExample />}
-            code={
-              <CodeBlock code={getExampleSource("tooltip-rtl")} lang="tsx" />
-            }
-          />
+
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            The tooltip measures the direction it actually renders in and
+            passes it to the portaled popup, so it opens on the correct side
+            even though the popup itself lives outside the RTL container in
+            the DOM.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<TooltipRtlExample />}
+              code={
+                <CodeBlock code={getExampleSource("tooltip-rtl")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
         <h2

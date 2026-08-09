@@ -42,15 +42,21 @@ export const metadata: Metadata = {
 
 const tocItems = [
   { id: "overview", title: "Overview" },
-  { id: "no-footer", title: "No footer" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "positions", title: "Positions" },
-  { id: "variants", title: "Variants" },
-  { id: "scrollable", title: "Scrollable content" },
-  { id: "snap-points", title: "Snap points" },
-  { id: "nested", title: "Nested drawers" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "no-footer", title: "No footer" },
+      { id: "positions", title: "Positions" },
+      { id: "variants", title: "Variants" },
+      { id: "scrollable", title: "Scrollable content" },
+      { id: "snap-points", title: "Snap points" },
+      { id: "nested", title: "Nested drawers" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -166,31 +172,6 @@ export default function DrawerDocPage() {
         </div>
 
         <h2
-          id="no-footer"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          No footer
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            DrawerFooter
-          </code>{" "}
-          is optional — skip it for a purely informational sheet that only needs
-          to be swiped away.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<DrawerNoFooterExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("drawer-no-footer")}
-                lang="tsx"
-              />
-            }
-          />
-        </div>
-
-        <h2
           id="installation"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
@@ -233,162 +214,217 @@ export default function DrawerDocPage() {
         </div>
 
         <h2
-          id="positions"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          Positions
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Pass{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            position
-          </code>{" "}
-          to control which edge the drawer slides in from.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<DrawerPositionsExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("drawer-positions")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3
+            id="no-footer"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            No footer
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              DrawerFooter
+            </code>{" "}
+            is optional — skip it for a purely informational sheet that only
+            needs to be swiped away.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<DrawerNoFooterExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("drawer-no-footer")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="variants"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Variants
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            default
-          </code>{" "}
-          rounds the corners touching the screen edge,{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            straight
-          </code>{" "}
-          has no rounding and skips the nested-drawer scale-down effect, and{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">inset</code>{" "}
-          floats with a margin from the edge on larger screens.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<DrawerVariantsExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("drawer-variants")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="positions"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Positions
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Pass{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              position
+            </code>{" "}
+            to control which edge the drawer slides in from.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<DrawerPositionsExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("drawer-positions")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="scrollable"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Scrollable content
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            DrawerHeader
-          </code>{" "}
-          and{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            DrawerFooter
-          </code>{" "}
-          stay fixed outside the scroll container —{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            DrawerPanel
-          </code>{" "}
-          is the only part that scrolls.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<DrawerScrollableExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("drawer-scrollable")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="variants"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Variants
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              default
+            </code>{" "}
+            rounds the corners touching the screen edge,{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              straight
+            </code>{" "}
+            has no rounding and skips the nested-drawer scale-down effect,
+            and{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              inset
+            </code>{" "}
+            floats with a margin from the edge on larger screens.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<DrawerVariantsExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("drawer-variants")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="snap-points"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Snap points
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Pass{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            snapPoints
-          </code>{" "}
-          to have the drawer settle at preset heights instead of following the
-          drag freely. Numbers between 0 and 1 are fractions of the viewport
-          height. Snap points only apply to{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            position=&quot;bottom&quot;
-          </code>{" "}
-          drawers.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<DrawerSnapPointsExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("drawer-snap-points")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="scrollable"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Scrollable content
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              DrawerHeader
+            </code>{" "}
+            and{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              DrawerFooter
+            </code>{" "}
+            stay fixed outside the scroll container —{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              DrawerPanel
+            </code>{" "}
+            is the only part that scrolls.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<DrawerScrollableExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("drawer-scrollable")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="nested" className="mt-12 text-xl font-semibold tracking-tight">
-          Nested drawers
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          A drawer opened from inside another already-open drawer stacks on top
-          of it, scaling the one behind it down slightly. Pass{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            modal=&quot;trap-focus&quot;
-          </code>{" "}
-          on the inner drawer — the outer one already owns the page-level scroll
-          lock, so the inner one should only trap focus.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<DrawerNestedExample />}
-            code={
-              <CodeBlock code={getExampleSource("drawer-nested")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="snap-points"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Snap points
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Pass{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              snapPoints
+            </code>{" "}
+            to have the drawer settle at preset heights instead of following
+            the drag freely. Numbers between 0 and 1 are fractions of the
+            viewport height. Snap points only apply to{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              position=&quot;bottom&quot;
+            </code>{" "}
+            drawers.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<DrawerSnapPointsExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("drawer-snap-points")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            position=&quot;start&quot;
-          </code>{" "}
-          opens from the reading-start edge — the right in RTL, the left in LTR
-          — instead of a hardcoded side.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<DrawerRtlExample />}
-            code={
-              <CodeBlock code={getExampleSource("drawer-rtl")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="nested"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Nested drawers
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            A drawer opened from inside another already-open drawer stacks on
+            top of it, scaling the one behind it down slightly. Pass{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              modal=&quot;trap-focus&quot;
+            </code>{" "}
+            on the inner drawer — the outer one already owns the page-level
+            scroll lock, so the inner one should only trap focus.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<DrawerNestedExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("drawer-nested")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              position=&quot;start&quot;
+            </code>{" "}
+            opens from the reading-start edge — the right in RTL, the left in
+            LTR — instead of a hardcoded side.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<DrawerRtlExample />}
+              code={
+                <CodeBlock code={getExampleSource("drawer-rtl")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
         <h2

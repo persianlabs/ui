@@ -38,8 +38,14 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "disabled", title: "Disabled" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "disabled", title: "Disabled" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -166,37 +172,48 @@ export default function RadioGroupDocPage() {
         </div>
 
         <h2
-          id="disabled"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          Disabled
+          Examples
         </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<RadioGroupDisabledExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("radio-group-disabled")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3
+            id="disabled"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Disabled
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<RadioGroupDisabledExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("radio-group-disabled")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<RadioGroupRtlExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("radio-group-rtl")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<RadioGroupRtlExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("radio-group-rtl")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

@@ -39,11 +39,17 @@ export const metadata: Metadata = {
 
 const tocItems = [
   { id: "overview", title: "Overview" },
-  { id: "desktop-only-actions", title: "Desktop-only actions" },
-  { id: "no-footer", title: "No footer" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "desktop-only-actions", title: "Desktop-only actions" },
+      { id: "no-footer", title: "No footer" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -171,46 +177,6 @@ export default function ResponsiveDialogDocPage() {
           />
         </div>
 
-        <h2 id="desktop-only-actions" className="mt-12 text-xl font-semibold tracking-tight">
-          Desktop-only actions
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Wrap a secondary cancel action with{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">ResponsiveDialogDesktopOnly</code>.
-          The primary action remains available everywhere, while mobile users dismiss the drawer by swiping down.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ResponsiveDialogDesktopOnlyExample />}
-            code={<CodeBlock code={getExampleSource("responsive-dialog-desktop-only")} lang="tsx" />}
-          />
-        </div>
-
-        <h2
-          id="no-footer"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          No footer
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            ResponsiveDialogFooter
-          </code>{" "}
-          is optional here too — for a purely informational modal, skip it on
-          both the Dialog and Drawer side.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ResponsiveDialogNoFooterExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("responsive-dialog-no-footer")}
-                lang="tsx"
-              />
-            }
-          />
-        </div>
-
         <h2
           id="installation"
           className="mt-12 text-xl font-semibold tracking-tight"
@@ -273,20 +239,84 @@ export default function ResponsiveDialogDocPage() {
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
+        <h2
+          id="examples"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Examples
         </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<ResponsiveDialogRtlExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("responsive-dialog-rtl")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3
+            id="desktop-only-actions"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Desktop-only actions
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Wrap a secondary cancel action with{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              ResponsiveDialogDesktopOnly
+            </code>
+            . The primary action remains available everywhere, while mobile
+            users dismiss the drawer by swiping down.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ResponsiveDialogDesktopOnlyExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("responsive-dialog-desktop-only")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3
+            id="no-footer"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            No footer
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              ResponsiveDialogFooter
+            </code>{" "}
+            is optional here too — for a purely informational modal, skip it
+            on both the Dialog and Drawer side.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ResponsiveDialogNoFooterExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("responsive-dialog-no-footer")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<ResponsiveDialogRtlExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("responsive-dialog-rtl")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

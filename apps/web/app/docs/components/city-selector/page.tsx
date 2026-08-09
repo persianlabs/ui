@@ -275,7 +275,7 @@ export default function CitySelectorDocPage() {
           Examples
         </h2>
 
-        <div className="mt-4">
+        <div className="mt-8">
           <h3
             id="example-controlled"
             className="text-sm font-medium text-muted-foreground"

@@ -39,9 +39,15 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "destructive", title: "Destructive" },
-  { id: "action", title: "Action" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "destructive", title: "Destructive" },
+      { id: "action", title: "Action" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -170,53 +176,72 @@ export default function AlertDocPage() {
         </div>
 
         <h2
-          id="destructive"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          Destructive
+          Examples
         </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<AlertDestructiveExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("alert-destructive")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3
+            id="destructive"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Destructive
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<AlertDestructiveExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("alert-destructive")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="action" className="mt-12 text-xl font-semibold tracking-tight">
-          Action
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            AlertAction
-          </code>{" "}
-          to place a button in the corner of the alert.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<AlertActionExample />}
-            code={
-              <CodeBlock code={getExampleSource("alert-action")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="action"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Action
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              AlertAction
+            </code>{" "}
+            to place a button in the corner of the alert.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<AlertActionExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("alert-action")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<AlertRtlExample />}
-            code={
-              <CodeBlock code={getExampleSource("alert-rtl")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<AlertRtlExample />}
+              code={
+                <CodeBlock code={getExampleSource("alert-rtl")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
         <h2

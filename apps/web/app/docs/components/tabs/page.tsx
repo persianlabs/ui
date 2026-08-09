@@ -48,11 +48,11 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "variants", title: "Variants" },
   {
     id: "examples",
     title: "Examples",
     children: [
+      { id: "variants", title: "Variants" },
       { id: "example-icons", title: "With icons" },
       { id: "example-disabled", title: "Disabled tab" },
       { id: "example-controlled", title: "Controlled" },
@@ -203,39 +203,44 @@ export default function TabsDocPage() {
         </div>
 
         <h2
-          id="variants"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Variants
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Pass{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            variant
-          </code>{" "}
-          to{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            Tabs
-          </code>{" "}
-          to switch the tab list&apos;s visual style.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<TabsVariantsExample />}
-            code={
-              <CodeBlock code={getExampleSource("tabs-variants")} lang="tsx" />
-            }
-          />
-        </div>
-
-        <h2
           id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
           Examples
         </h2>
 
-        <div className="mt-4">
+        <div className="mt-8">
+          <h3
+            id="variants"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Variants
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Pass{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              variant
+            </code>{" "}
+            to{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              Tabs
+            </code>{" "}
+            to switch the tab list&apos;s visual style.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<TabsVariantsExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("tabs-variants")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
           <h3
             id="example-icons"
             className="text-sm font-medium text-muted-foreground"

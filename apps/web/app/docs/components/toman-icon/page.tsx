@@ -39,10 +39,16 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "sizes", title: "Sizes" },
-  { id: "inline", title: "Inline with an Amount" },
-  { id: "badge", title: "In a Badge" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "sizes", title: "Sizes" },
+      { id: "inline", title: "Inline with an Amount" },
+      { id: "badge", title: "In a Badge" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -154,74 +160,92 @@ export default function TomanIconDocPage() {
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
-        <h2 id="sizes" className="mt-12 text-xl font-semibold tracking-tight">
-          Sizes
+        <h2
+          id="examples"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Examples
         </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<TomanIconSizesExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("toman-icon-sizes")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3 id="sizes" className="text-sm font-medium text-muted-foreground">
+            Sizes
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<TomanIconSizesExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("toman-icon-sizes")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="inline" className="mt-12 text-xl font-semibold tracking-tight">
-          Inline with an Amount
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<TomanIconInlineExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("toman-icon-inline")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="inline"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Inline with an Amount
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<TomanIconInlineExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("toman-icon-inline")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="badge" className="mt-12 text-xl font-semibold tracking-tight">
-          In a Badge
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<TomanIconBadgeExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("toman-icon-badge")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="badge" className="text-sm font-medium text-muted-foreground">
+            In a Badge
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<TomanIconBadgeExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("toman-icon-badge")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          The icon has no directional geometry, so it just needs to sit on
-          the correct side of the amount — before it in RTL, after it in
-          LTR. The amount itself stays{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            dir=&quot;ltr&quot;
-          </code>{" "}
-          since digits always read left-to-right.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<TomanIconRtlExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("toman-icon-rtl")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            The icon has no directional geometry, so it just needs to sit on
+            the correct side of the amount — before it in RTL, after it in
+            LTR. The amount itself stays{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              dir=&quot;ltr&quot;
+            </code>{" "}
+            since digits always read left-to-right.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<TomanIconRtlExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("toman-icon-rtl")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

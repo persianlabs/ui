@@ -39,8 +39,14 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "outline", title: "Outline" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "outline", title: "Outline" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -172,42 +178,56 @@ export default function ToggleGroupDocPage() {
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
-        <h2 id="outline" className="mt-12 text-xl font-semibold tracking-tight">
-          Outline
+        <h2
+          id="examples"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Set{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            spacing={"{0}"}
-          </code>{" "}
-          to merge items into one segmented control.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ToggleGroupOutlineExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("toggle-group-outline")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3
+            id="outline"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Outline
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Set{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              spacing={"{0}"}
+            </code>{" "}
+            to merge items into one segmented control.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ToggleGroupOutlineExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("toggle-group-outline")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<ToggleGroupRtlExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("toggle-group-rtl")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<ToggleGroupRtlExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("toggle-group-rtl")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

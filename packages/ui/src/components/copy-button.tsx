@@ -1,7 +1,7 @@
 "use client"
 
-import { CheckIcon, CopyIcon, XCircleIcon } from "lucide-react"
-import { AnimatePresence, motion } from "motion/react"
+import { Check, Copy, XCircle } from "lucide"
+import { MorphIcon } from "morphicons/react"
 import * as React from "react"
 
 import { Button } from "@workspace/ui/components/button"
@@ -18,30 +18,6 @@ import type { CopyState } from "@workspace/ui/hooks/use-copy-to-clipboard"
 import { useCopyToClipboard } from "@workspace/ui/hooks/use-copy-to-clipboard"
 import { cn } from "@workspace/ui/lib/utils"
 
-function IconSwap({ children }: React.PropsWithChildren) {
-  return (
-    <AnimatePresence mode="popLayout" initial={false}>
-      {children}
-    </AnimatePresence>
-  )
-}
-
-function IconSwapItem({
-  className,
-  ...props
-}: React.ComponentProps<typeof motion.span>) {
-  return (
-    <motion.span
-      initial={{ opacity: 0, scale: 0.25, filter: "blur(4px)" }}
-      animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-      exit={{ opacity: 0, scale: 0.25, filter: "blur(4px)" }}
-      transition={{ type: "spring", duration: 0.3, bounce: 0 }}
-      className={cn("flex items-center justify-center", className)}
-      {...props}
-    />
-  )
-}
-
 export interface CopyStateIconProps {
   state: CopyState
   idleIcon?: React.ReactNode
@@ -55,15 +31,16 @@ export function CopyStateIcon({
   doneIcon,
   errorIcon,
 }: CopyStateIconProps) {
+  if (state === "idle" && idleIcon) return idleIcon
+  if (state === "done" && doneIcon) return doneIcon
+  if (state === "error" && errorIcon) return errorIcon
+
   return (
-    <IconSwap>
-      <IconSwapItem key={state}>
-        {state === "idle" && (idleIcon ?? <CopyIcon className="size-4" />)}
-        {state === "done" && (doneIcon ?? <CheckIcon className="size-4" />)}
-        {state === "error" &&
-          (errorIcon ?? <XCircleIcon className="size-4" />)}
-      </IconSwapItem>
-    </IconSwap>
+    <MorphIcon
+      icon={state === "done" ? Check : state === "error" ? XCircle : Copy}
+      spring="snappy"
+      className="size-4"
+    />
   )
 }
 

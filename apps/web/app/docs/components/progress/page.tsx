@@ -39,8 +39,14 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "animated", title: "Animated" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "animated", title: "Animated" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -154,41 +160,55 @@ export default function ProgressDocPage() {
         </div>
 
         <h2
-          id="animated"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          Animated
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Update{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            value
-          </code>{" "}
-          over time to animate the indicator.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ProgressAnimatedExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("progress-animated")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3
+            id="animated"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Animated
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Update{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              value
+            </code>{" "}
+            over time to animate the indicator.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ProgressAnimatedExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("progress-animated")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<ProgressRtlExample />}
-            code={
-              <CodeBlock code={getExampleSource("progress-rtl")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<ProgressRtlExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("progress-rtl")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

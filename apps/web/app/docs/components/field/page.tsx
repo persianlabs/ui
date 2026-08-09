@@ -40,9 +40,15 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "horizontal", title: "Horizontal" },
-  { id: "error", title: "Error" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "horizontal", title: "Horizontal" },
+      { id: "error", title: "Error" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -170,54 +176,67 @@ export default function FieldDocPage() {
         </div>
 
         <h2
-          id="horizontal"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          Horizontal
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Set{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            orientation=&quot;horizontal&quot;
-          </code>{" "}
-          to place the label and control side by side, e.g. for a
-          settings-style toggle row.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<FieldHorizontalExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("field-horizontal")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3
+            id="horizontal"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Horizontal
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Set{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              orientation=&quot;horizontal&quot;
+            </code>{" "}
+            to place the label and control side by side, e.g. for a
+            settings-style toggle row.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<FieldHorizontalExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("field-horizontal")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="error" className="mt-12 text-xl font-semibold tracking-tight">
-          Error
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<FieldErrorExample />}
-            code={
-              <CodeBlock code={getExampleSource("field-error")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="error" className="text-sm font-medium text-muted-foreground">
+            Error
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<FieldErrorExample />}
+              code={
+                <CodeBlock code={getExampleSource("field-error")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<FieldRtlExample />}
-            code={
-              <CodeBlock code={getExampleSource("field-rtl")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<FieldRtlExample />}
+              code={
+                <CodeBlock code={getExampleSource("field-rtl")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
         <h2

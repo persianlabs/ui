@@ -40,7 +40,11 @@ const tocItems = [
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
   { id: "range-slider", title: "Range slider" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [{ id: "rtl", title: "RTL" }],
+  },
   { id: "keyboard", title: "Keyboard" },
   { id: "api-reference", title: "API Reference" },
 ]
@@ -223,20 +227,29 @@ export default function ElasticSliderDocPage() {
           instead.
         </p>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
+        <h2
+          id="examples"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Examples
         </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<ElasticSliderRtlExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("elastic-slider-rtl")}
-                lang="tsx"
-              />
-            }
-          />
+
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<ElasticSliderRtlExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("elastic-slider-rtl")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
         <h2

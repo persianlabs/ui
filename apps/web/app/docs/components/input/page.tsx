@@ -51,20 +51,26 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "basic", title: "Basic" },
-  { id: "field", title: "Field" },
-  { id: "field-group", title: "Field Group" },
-  { id: "disabled", title: "Disabled" },
-  { id: "invalid", title: "Invalid" },
-  { id: "file", title: "File" },
-  { id: "inline", title: "Inline" },
-  { id: "grid", title: "Grid" },
-  { id: "required", title: "Required" },
-  { id: "badge", title: "Badge" },
-  { id: "input-group", title: "Input Group" },
-  { id: "button-group", title: "Button Group" },
-  { id: "form", title: "Form" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "basic", title: "Basic" },
+      { id: "field", title: "Field" },
+      { id: "field-group", title: "Field Group" },
+      { id: "disabled", title: "Disabled" },
+      { id: "invalid", title: "Invalid" },
+      { id: "file", title: "File" },
+      { id: "inline", title: "Inline" },
+      { id: "grid", title: "Grid" },
+      { id: "required", title: "Required" },
+      { id: "badge", title: "Badge" },
+      { id: "input-group", title: "Input Group" },
+      { id: "button-group", title: "Button Group" },
+      { id: "form", title: "Form" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -189,313 +195,377 @@ export default function InputDocPage() {
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
-        <h2 id="basic" className="mt-12 text-xl font-semibold tracking-tight">
-          Basic
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<InputBasicExample />}
-            code={
-              <CodeBlock code={getExampleSource("input-basic")} lang="tsx" />
-            }
-          />
-        </div>
-
-        <h2 id="field" className="mt-12 text-xl font-semibold tracking-tight">
-          Field
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            Field
-          </code>
-          ,{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            FieldLabel
-          </code>
-          , and{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            FieldDescription
-          </code>{" "}
-          to create an input with a label and description.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<InputFieldExample />}
-            code={
-              <CodeBlock code={getExampleSource("input-field")} lang="tsx" />
-            }
-          />
-        </div>
-
         <h2
-          id="field-group"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          Field Group
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            FieldGroup
-          </code>{" "}
-          to show multiple{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+
+        <div className="mt-8">
+          <h3
+            id="basic"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Basic
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<InputBasicExample />}
+              code={
+                <CodeBlock code={getExampleSource("input-basic")} lang="tsx" />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3
+            id="field"
+            className="text-sm font-medium text-muted-foreground"
+          >
             Field
-          </code>{" "}
-          blocks and build forms.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<InputFieldGroupExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("input-fieldgroup")}
-                lang="tsx"
-              />
-            }
-          />
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              Field
+            </code>
+            ,{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              FieldLabel
+            </code>
+            , and{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              FieldDescription
+            </code>{" "}
+            to create an input with a label and description.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<InputFieldExample />}
+              code={
+                <CodeBlock code={getExampleSource("input-field")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="disabled"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Disabled
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use the{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            disabled
-          </code>{" "}
-          prop to disable the input. Add{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            data-disabled
-          </code>{" "}
-          to{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            Field
-          </code>{" "}
-          to style the disabled label and description too.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<InputDisabledExample />}
-            code={
-              <CodeBlock code={getExampleSource("input-disabled")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="field-group"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Field Group
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              FieldGroup
+            </code>{" "}
+            to show multiple{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              Field
+            </code>{" "}
+            blocks and build forms.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<InputFieldGroupExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-fieldgroup")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="invalid" className="mt-12 text-xl font-semibold tracking-tight">
-          Invalid
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            aria-invalid
-          </code>{" "}
-          to mark the input as invalid, and{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            data-invalid
-          </code>{" "}
-          on{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            Field
-          </code>{" "}
-          to style the invalid label.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<InputInvalidExample />}
-            code={
-              <CodeBlock code={getExampleSource("input-invalid")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="disabled"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Disabled
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use the{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              disabled
+            </code>{" "}
+            prop to disable the input. Add{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              data-disabled
+            </code>{" "}
+            to{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              Field
+            </code>{" "}
+            to style the disabled label and description too.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<InputDisabledExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-disabled")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="file" className="mt-12 text-xl font-semibold tracking-tight">
-          File
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            type=&quot;file&quot;
-          </code>{" "}
-          to create a file input.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<InputFileExample />}
-            code={
-              <CodeBlock code={getExampleSource("input-file")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="invalid"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Invalid
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              aria-invalid
+            </code>{" "}
+            to mark the input as invalid, and{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              data-invalid
+            </code>{" "}
+            on{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              Field
+            </code>{" "}
+            to style the invalid label.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<InputInvalidExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-invalid")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="inline" className="mt-12 text-xl font-semibold tracking-tight">
-          Inline
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            Field
-          </code>{" "}
-          with{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            orientation=&quot;horizontal&quot;
-          </code>{" "}
-          to create an inline input, paired with{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            Button
-          </code>{" "}
-          for a search field.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<InputInlineExample />}
-            code={
-              <CodeBlock code={getExampleSource("input-inline")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="file" className="text-sm font-medium text-muted-foreground">
+            File
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              type=&quot;file&quot;
+            </code>{" "}
+            to create a file input.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<InputFileExample />}
+              code={
+                <CodeBlock code={getExampleSource("input-file")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="grid" className="mt-12 text-xl font-semibold tracking-tight">
-          Grid
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use a grid layout to place multiple inputs side by side.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<InputGridExample />}
-            code={
-              <CodeBlock code={getExampleSource("input-grid")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="inline"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Inline
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              Field
+            </code>{" "}
+            with{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              orientation=&quot;horizontal&quot;
+            </code>{" "}
+            to create an inline input, paired with{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              Button
+            </code>{" "}
+            for a search field.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<InputInlineExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-inline")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="required"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Required
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use the{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            required
-          </code>{" "}
-          attribute to indicate required inputs.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<InputRequiredExample />}
-            code={
-              <CodeBlock code={getExampleSource("input-required")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="grid" className="text-sm font-medium text-muted-foreground">
+            Grid
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use a grid layout to place multiple inputs side by side.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<InputGridExample />}
+              code={
+                <CodeBlock code={getExampleSource("input-grid")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="badge" className="mt-12 text-xl font-semibold tracking-tight">
-          Badge
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+        <div className="mt-8">
+          <h3
+            id="required"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Required
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use the{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              required
+            </code>{" "}
+            attribute to indicate required inputs.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<InputRequiredExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-required")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3
+            id="badge"
+            className="text-sm font-medium text-muted-foreground"
+          >
             Badge
-          </code>{" "}
-          in the label to highlight a recommended field.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<InputBadgeExample />}
-            code={
-              <CodeBlock code={getExampleSource("input-badge")} lang="tsx" />
-            }
-          />
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              Badge
+            </code>{" "}
+            in the label to highlight a recommended field.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<InputBadgeExample />}
+              code={
+                <CodeBlock code={getExampleSource("input-badge")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="input-group"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Input Group
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          To add icons, text, or buttons inside an input, use{" "}
-          <a
-            href="/docs/components/input-group"
-            className="text-foreground underline underline-offset-4"
+        <div className="mt-8">
+          <h3
+            id="input-group"
+            className="text-sm font-medium text-muted-foreground"
           >
-            InputGroup
-          </a>
-          .
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<InputInputGroupExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("input-input-group")}
-                lang="tsx"
-              />
-            }
-          />
+            Input Group
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            To add icons, text, or buttons inside an input, use{" "}
+            <a
+              href="/docs/components/input-group"
+              className="text-foreground underline underline-offset-4"
+            >
+              InputGroup
+            </a>
+            .
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<InputInputGroupExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-input-group")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2
-          id="button-group"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Button Group
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          To add buttons to an input, use{" "}
-          <a
-            href="/docs/components/button-group"
-            className="text-foreground underline underline-offset-4"
+        <div className="mt-8">
+          <h3
+            id="button-group"
+            className="text-sm font-medium text-muted-foreground"
           >
-            ButtonGroup
-          </a>
-          .
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<InputButtonGroupExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("input-button-group")}
-                lang="tsx"
-              />
-            }
-          />
+            Button Group
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            To add buttons to an input, use{" "}
+            <a
+              href="/docs/components/button-group"
+              className="text-foreground underline underline-offset-4"
+            >
+              ButtonGroup
+            </a>
+            .
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<InputButtonGroupExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("input-button-group")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="form" className="mt-12 text-xl font-semibold tracking-tight">
-          Form
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          A full form example with multiple inputs, a select, and a button.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<InputFormExample />}
-            code={
-              <CodeBlock code={getExampleSource("input-form")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="form" className="text-sm font-medium text-muted-foreground">
+            Form
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            A full form example with multiple inputs, a select, and a button.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<InputFormExample />}
+              code={
+                <CodeBlock code={getExampleSource("input-form")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<InputRtlExample />}
-            code={<CodeBlock code={getExampleSource("input-rtl")} lang="tsx" />}
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<InputRtlExample />}
+              code={
+                <CodeBlock code={getExampleSource("input-rtl")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
         <h2

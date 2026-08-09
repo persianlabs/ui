@@ -49,10 +49,19 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "statuses", title: "Statuses" },
-  { id: "x", title: "X style" },
-  { id: "anchored", title: "Anchored toast" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "statuses", title: "Statuses" },
+      { id: "x", title: "X style" },
+      { id: "anchored", title: "Anchored toast" },
+      { id: "anchored-standalone", title: "Standalone" },
+      { id: "anchored-dialog", title: "From a Dialog" },
+      { id: "anchored-drawer", title: "From a Drawer" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -246,171 +255,217 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
 
         <h2
-          id="statuses"
+          id="examples"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          Statuses
+          Examples
         </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Pass{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">type</code>{" "}
-          to pick the leading icon and its color:{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            success
-          </code>
-          ,{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            error
-          </code>
-          ,{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            warning
-          </code>
-          ,{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">info</code>
-          , or{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            loading
-          </code>
-          . Update a loading toast in place with{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            toast.update(id, options)
-          </code>
-          .
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ToastStatusesExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("toast-statuses")}
-                lang="tsx"
-              />
-            }
-          />
-        </div>
 
-        <h2 id="x" className="mt-12 text-xl font-semibold tracking-tight">
-          X style
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Set{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            data: {"{"} variant: &quot;x&quot; {"}"}
-          </code>{" "}
-          for a compact, rounded-full pill in the style of X&apos;s native
-          in-app notifications, with an avatar or icon slot.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ToastXExample />}
-            code={<CodeBlock code={getExampleSource("toast-x")} lang="tsx" />}
-          />
-        </div>
-
-        <h2
-          id="anchored"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Anchored toast
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Wrap in{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            AnchoredToastProvider
-          </code>{" "}
-          and call{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            anchoredToast.add({"{"} positionerProps: {"{"} anchor {"}"} {"}"}
-            )
-          </code>{" "}
-          to position a toast against a specific element — a tooltip-like
-          confirmation next to the button that triggered it — instead of
-          stacking it in a screen corner. The smallest way to see it in
-          action is{" "}
-          <Link
-            href="/docs/components/copy-button"
-            className="font-medium text-foreground underline underline-offset-4"
+        <div className="mt-8">
+          <h3
+            id="statuses"
+            className="text-sm font-medium text-muted-foreground"
           >
-            Copy Button
-          </Link>
-          , a small building block that anchors its own copy confirmation
-          this way — the Dialog and Drawer examples below use it too.
-        </p>
-        <div className="mt-4">
-          <CodeBlock code={anchoredUsageSnippet} lang="tsx" />
+            Statuses
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Pass{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              type
+            </code>{" "}
+            to pick the leading icon and its color:{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              success
+            </code>
+            ,{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              error
+            </code>
+            ,{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              warning
+            </code>
+            ,{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              info
+            </code>
+            , or{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              loading
+            </code>
+            . Update a loading toast in place with{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              toast.update(id, options)
+            </code>
+            .
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ToastStatusesExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("toast-statuses")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h3 className="mt-8 text-base font-semibold tracking-tight">
-          Standalone
-        </h3>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ToastAnchoredExample />}
-            code={
-              <CodeBlock code={getExampleSource("toast-anchored")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="x" className="text-sm font-medium text-muted-foreground">
+            X style
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Set{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              data: {"{"} variant: &quot;x&quot; {"}"}
+            </code>{" "}
+            for a compact, rounded-full pill in the style of X&apos;s native
+            in-app notifications, with an avatar or icon slot.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ToastXExample />}
+              code={
+                <CodeBlock code={getExampleSource("toast-x")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
-        <h3 className="mt-8 text-base font-semibold tracking-tight">
-          From a Dialog
-        </h3>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ToastAnchoredDialogExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("toast-anchored-dialog")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="anchored"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Anchored toast
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Wrap in{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              AnchoredToastProvider
+            </code>{" "}
+            and call{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              anchoredToast.add({"{"} positionerProps: {"{"} anchor {"}"} {"}"}
+              )
+            </code>{" "}
+            to position a toast against a specific element — a tooltip-like
+            confirmation next to the button that triggered it — instead of
+            stacking it in a screen corner. The smallest way to see it in
+            action is{" "}
+            <Link
+              href="/docs/components/copy-button"
+              className="font-medium text-foreground underline underline-offset-4"
+            >
+              Copy Button
+            </Link>
+            , a small building block that anchors its own copy confirmation
+            this way — the Dialog and Drawer examples below use it too.
+          </p>
+          <div className="mt-3">
+            <CodeBlock code={anchoredUsageSnippet} lang="tsx" />
+          </div>
         </div>
 
-        <h3 className="mt-8 text-base font-semibold tracking-tight">
-          From a Drawer
-        </h3>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<ToastAnchoredDrawerExample />}
-            code={
-              <CodeBlock
-                code={getExampleSource("toast-anchored-drawer")}
-                lang="tsx"
-              />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="anchored-standalone"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Standalone
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ToastAnchoredExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("toast-anchored")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          By default every position — including the centered ones — mirrors
-          automatically:{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            start
-          </code>{" "}
-          lands on the right in RTL and the left in LTR (and vice versa for{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">end</code>
-          ), matching the ambient{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">dir</code>{" "}
-          the provider measures from its parent. To force a toast&apos;s
-          content direction regardless of the ambient page direction — e.g.
-          Persian content on an otherwise-LTR page — pass{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            data: {"{"} dir: &quot;rtl&quot; {"}"}
-          </code>{" "}
-          per call, as this example does rather than relying on the page
-          direction toggle.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<ToastRtlExample />}
-            code={<CodeBlock code={getExampleSource("toast-rtl")} lang="tsx" />}
-          />
+        <div className="mt-8">
+          <h3
+            id="anchored-dialog"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            From a Dialog
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ToastAnchoredDialogExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("toast-anchored-dialog")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3
+            id="anchored-drawer"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            From a Drawer
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<ToastAnchoredDrawerExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("toast-anchored-drawer")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
+        </div>
+
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            By default every position — including the centered ones —
+            mirrors automatically:{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              start
+            </code>{" "}
+            lands on the right in RTL and the left in LTR (and vice versa
+            for{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              end
+            </code>
+            ), matching the ambient{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              dir
+            </code>{" "}
+            the provider measures from its parent. To force a toast&apos;s
+            content direction regardless of the ambient page direction — e.g.
+            Persian content on an otherwise-LTR page — pass{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
+              data: {"{"} dir: &quot;rtl&quot; {"}"}
+            </code>{" "}
+            per call, as this example does rather than relying on the page
+            direction toggle.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<ToastRtlExample />}
+              code={
+                <CodeBlock code={getExampleSource("toast-rtl")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
         <h2

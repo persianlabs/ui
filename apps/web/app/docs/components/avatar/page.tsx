@@ -45,10 +45,16 @@ const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "size", title: "Size" },
-  { id: "badge", title: "Badge" },
-  { id: "group", title: "Group" },
-  { id: "rtl", title: "RTL" },
+  {
+    id: "examples",
+    title: "Examples",
+    children: [
+      { id: "size", title: "Size" },
+      { id: "badge", title: "Badge" },
+      { id: "group", title: "Group" },
+      { id: "rtl", title: "RTL" },
+    ],
+  },
   { id: "api-reference", title: "API Reference" },
 ]
 
@@ -182,67 +188,105 @@ export default function AvatarDocPage() {
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
-        <h2 id="size" className="mt-12 text-xl font-semibold tracking-tight">
-          Size
+        <h2
+          id="examples"
+          className="mt-12 text-xl font-semibold tracking-tight"
+        >
+          Examples
         </h2>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<AvatarSizeExample />}
-            code={
-              <CodeBlock code={getExampleSource("avatar-size")} lang="tsx" />
-            }
-          />
+
+        <div className="mt-8">
+          <h3 id="size" className="text-sm font-medium text-muted-foreground">
+            Size
+          </h3>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<AvatarSizeExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("avatar-size")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="badge" className="mt-12 text-xl font-semibold tracking-tight">
-          Badge
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">AvatarBadge</code>{" "}
-          to overlay a status indicator, such as an online dot.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<AvatarBadgeExample />}
-            code={
-              <CodeBlock code={getExampleSource("avatar-badge")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="badge"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Badge
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              AvatarBadge
+            </code>{" "}
+            to overlay a status indicator, such as an online dot.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<AvatarBadgeExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("avatar-badge")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="group" className="mt-12 text-xl font-semibold tracking-tight">
-          Group
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">AvatarGroup</code>{" "}
-          and{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">AvatarGroupCount</code>{" "}
-          to stack multiple avatars with an overflow count.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            preview={<AvatarGroupExample />}
-            code={
-              <CodeBlock code={getExampleSource("avatar-group")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3
+            id="group"
+            className="text-sm font-medium text-muted-foreground"
+          >
+            Group
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            Use{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              AvatarGroup
+            </code>{" "}
+            and{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              AvatarGroupCount
+            </code>{" "}
+            to stack multiple avatars with an overflow count.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              preview={<AvatarGroupExample />}
+              code={
+                <CodeBlock
+                  code={getExampleSource("avatar-group")}
+                  lang="tsx"
+                />
+              }
+            />
+          </div>
         </div>
 
-        <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
-          RTL
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          The badge position and group overlap direction both flip correctly
-          under RTL.
-        </p>
-        <div className="mt-4">
-          <ComponentPreview
-            dir="rtl"
-            preview={<AvatarRtlExample />}
-            code={
-              <CodeBlock code={getExampleSource("avatar-rtl")} lang="tsx" />
-            }
-          />
+        <div className="mt-8">
+          <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
+            RTL
+          </h3>
+          <p className="mt-2 leading-relaxed text-muted-foreground">
+            The badge position and group overlap direction both flip
+            correctly under RTL.
+          </p>
+          <div className="mt-3">
+            <ComponentPreview
+              dir="rtl"
+              preview={<AvatarRtlExample />}
+              code={
+                <CodeBlock code={getExampleSource("avatar-rtl")} lang="tsx" />
+              }
+            />
+          </div>
         </div>
 
         <h2
