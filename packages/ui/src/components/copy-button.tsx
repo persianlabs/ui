@@ -1,6 +1,6 @@
 "use client"
 
-import { Check, Copy, XCircle } from "lucide"
+import { Check, Copy } from "lucide"
 import { MorphIcon } from "morphicons/react"
 import * as React from "react"
 
@@ -14,30 +14,26 @@ import {
   AnchoredToastProvider,
   ToastPrimitive,
 } from "@workspace/ui/components/toast"
-import type { CopyState } from "@workspace/ui/hooks/use-copy-to-clipboard"
 import { useCopyToClipboard } from "@workspace/ui/hooks/use-copy-to-clipboard"
 import { cn } from "@workspace/ui/lib/utils"
 
 export interface CopyStateIconProps {
-  state: CopyState
+  copied: boolean
   idleIcon?: React.ReactNode
   doneIcon?: React.ReactNode
-  errorIcon?: React.ReactNode
 }
 
 export function CopyStateIcon({
-  state,
+  copied,
   idleIcon,
   doneIcon,
-  errorIcon,
 }: CopyStateIconProps) {
-  if (state === "idle" && idleIcon) return idleIcon
-  if (state === "done" && doneIcon) return doneIcon
-  if (state === "error" && errorIcon) return errorIcon
+  if (!copied && idleIcon) return idleIcon
+  if (copied && doneIcon) return doneIcon
 
   return (
     <MorphIcon
-      icon={state === "done" ? Check : state === "error" ? XCircle : Copy}
+      icon={copied ? Check : Copy}
       spring="snappy"
       className="size-4"
     />
@@ -58,10 +54,8 @@ export interface CopyButtonProps extends React.ComponentProps<typeof Button> {
   /** Which side of the button the confirmation toast anchors to. @default "top" */
   side?: NonNullable<ToastPrimitive.Positioner.Props["side"]>
   onCopySuccess?: (text: string) => void
-  onCopyError?: (error: Error) => void
   idleIcon?: React.ReactNode
   doneIcon?: React.ReactNode
-  errorIcon?: React.ReactNode
 }
 
 /**
@@ -79,13 +73,12 @@ export function CopyButton({
   side = "top",
   idleIcon,
   doneIcon,
-  errorIcon,
   onClick,
   onCopySuccess,
-  onCopyError,
   ...props
 }: CopyButtonProps) {
   const ref = React.useRef<HTMLButtonElement>(null)
+  const pendingValue = React.useRef("")
   const timeout = 2000
   const ownManager = React.useMemo(
     () => ToastPrimitive.createToastManager(),
@@ -93,9 +86,9 @@ export function CopyButton({
   )
   const manager = toastManager ?? ownManager
 
-  const { state, copy } = useCopyToClipboard({
-    resetDelay: timeout,
-    onCopySuccess: (copied) => {
+  const { copyToClipboard, isCopied } = useCopyToClipboard({
+    timeout,
+    onCopy: () => {
       if (ref.current) {
         manager.add({
           title: "کپی شد!",
@@ -103,18 +96,7 @@ export function CopyButton({
           positionerProps: { anchor: ref.current, side },
         })
       }
-      onCopySuccess?.(copied)
-    },
-    onCopyError: (error) => {
-      if (ref.current) {
-        manager.add({
-          title: "خطا در کپی",
-          type: "error",
-          timeout,
-          positionerProps: { anchor: ref.current, side },
-        })
-      }
-      onCopyError?.(error)
+      onCopySuccess?.(pendingValue.current)
     },
   })
 
@@ -128,16 +110,17 @@ export function CopyButton({
             size={size}
             aria-label={label}
             onClick={(event) => {
-              copy(typeof text === "function" ? text() : text)
+              const value = typeof text === "function" ? text() : text
+              pendingValue.current = value
+              copyToClipboard(value)
               onClick?.(event)
             }}
             {...props}
           >
             <CopyStateIcon
-              state={state}
+              copied={isCopied}
               idleIcon={idleIcon}
               doneIcon={doneIcon}
-              errorIcon={errorIcon}
             />
             {children}
           </Button>

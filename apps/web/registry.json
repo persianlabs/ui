@@ -988,11 +988,24 @@
       "name": "use-copy-to-clipboard",
       "type": "registry:hook",
       "title": "useCopyToClipboard",
-      "description": "Copies text to the clipboard, exposing an idle/done/error state for UI feedback, with a legacy execCommand fallback.",
+      "description": "Wraps the Clipboard API with a built-in timeout to reset the copied state, for copy buttons that show brief confirmation feedback.",
       "registryDependencies": [],
       "files": [
         {
           "path": "registry/base/hooks/use-copy-to-clipboard.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-media-query",
+      "type": "registry:hook",
+      "title": "useMediaQuery",
+      "description": "Reactive media query hook with Tailwind-like breakpoint syntax, built on useSyncExternalStore for SSR safety.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/base/hooks/use-media-query.ts",
           "type": "registry:hook"
         }
       ]

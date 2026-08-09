@@ -35,12 +35,6 @@ export const copyButtonApi: ApiReferenceRow[] = [
     description: "Called after a successful copy, in addition to the toast.",
   },
   {
-    prop: "onCopyError",
-    type: "(error: Error) => void",
-    default: "undefined",
-    description: "Called if the copy fails, in addition to the toast.",
-  },
-  {
     prop: "idleIcon",
     type: "ReactNode",
     default: "<CopyIcon />",
@@ -51,12 +45,6 @@ export const copyButtonApi: ApiReferenceRow[] = [
     type: "ReactNode",
     default: "<CheckIcon />",
     description: "Icon shown briefly after a successful copy.",
-  },
-  {
-    prop: "errorIcon",
-    type: "ReactNode",
-    default: "<XCircleIcon />",
-    description: "Icon shown briefly if the copy fails.",
   },
   {
     prop: "...props",

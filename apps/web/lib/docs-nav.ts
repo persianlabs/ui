@@ -144,6 +144,16 @@ export const docsNav: DocsNavGroup[] = [
         href: "/docs/utilities/use-controllable-state",
         badge: "New",
       },
+      {
+        title: "useCopyToClipboard",
+        href: "/docs/utilities/use-copy-to-clipboard",
+        badge: "New",
+      },
+      {
+        title: "useMediaQuery",
+        href: "/docs/utilities/use-media-query",
+        badge: "New",
+      },
     ],
   },
   {
