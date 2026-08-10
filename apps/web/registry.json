@@ -1001,6 +1001,18 @@
       ]
     },
     {
+      "name": "use-countdown",
+      "type": "registry:hook",
+      "title": "useCountdown",
+      "description": "A timer-aligned countdown hook for ISO-8601 target dates, with overdue state and formatted output.",
+      "files": [
+        {
+          "path": "registry/base/hooks/use-countdown.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
       "name": "use-media-query",
       "type": "registry:hook",
       "title": "useMediaQuery",

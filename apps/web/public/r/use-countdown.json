@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-countdown",
+  "title": "useCountdown",
+  "description": "A timer-aligned countdown hook for ISO-8601 target dates, with overdue state and formatted output.",
+  "files": [
+    {
+      "path": "registry/base/hooks/use-countdown.ts",
+      "content": "\"use client\"\n\nimport * as React from \"react\"\n\nexport type CountdownResult = {\n  /** Whole hours remaining. Hours are not capped at 24. */\n  hours: number\n  /** Remaining whole minutes after hours. */\n  minutes: number\n  /** Remaining whole seconds after minutes. */\n  seconds: number\n  /** Signed remaining seconds. A negative value means the target has passed. */\n  totalSeconds: number\n  /** Whether the target time has passed. */\n  isOverdue: boolean\n  /** A zero-padded `HH:MM:SS` representation of the absolute duration. */\n  formatted: string\n}\n\nfunction createCountdownResult(targetTime: number): CountdownResult {\n  // Ceiling keeps a visible countdown from showing 00:00:00 before the target\n  // is actually reached. Once it passes, the signed value becomes negative.\n  const totalSeconds = Math.ceil((targetTime - Date.now()) / 1000)\n  const isOverdue = totalSeconds < 0\n  const absoluteSeconds = Math.abs(totalSeconds)\n  const hours = Math.floor(absoluteSeconds / 3600)\n  const minutes = Math.floor((absoluteSeconds % 3600) / 60)\n  const seconds = absoluteSeconds % 60\n  const pad = (value: number) => String(value).padStart(2, \"0\")\n\n  return {\n    hours,\n    minutes,\n    seconds,\n    totalSeconds,\n    isOverdue,\n    formatted: `${pad(hours)}:${pad(minutes)}:${pad(seconds)}`,\n  }\n}\n\n/**\n * Returns the time remaining until an ISO-8601 date string, updating at the\n * next clock-second boundary. Pass `null` or an invalid date to disable it.\n */\nexport function useCountdown(targetIso: string | null): CountdownResult | null {\n  const targetTime = targetIso ? new Date(targetIso).getTime() : Number.NaN\n\n  const [result, setResult] = React.useState<CountdownResult | null>(null)\n\n  React.useEffect(() => {\n    if (!Number.isFinite(targetTime)) {\n      return\n    }\n\n    let timeoutId: ReturnType<typeof setTimeout> | undefined\n\n    const update = () => {\n      setResult(createCountdownResult(targetTime))\n\n      // Re-align after every update instead of relying on a drifting interval.\n      const millisecondsUntilNextSecond = 1000 - (Date.now() % 1000)\n      timeoutId = setTimeout(update, millisecondsUntilNextSecond)\n    }\n\n    update()\n\n    return () => {\n      if (timeoutId) clearTimeout(timeoutId)\n    }\n  }, [targetTime])\n\n  return Number.isFinite(targetTime) ? result : null\n}\n",
+      "type": "registry:hook"
+    }
+  ],
+  "type": "registry:hook"
+}
