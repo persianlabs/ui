@@ -21,7 +21,7 @@ const utilityDescriptions: Record<string, string> = {
   useMediaQuery: "Responds to viewport and device queries from React.",
 }
 
-function UtilityPreview({ item }: { item: DocsNavItem }) {
+export function UtilityPreview({ item }: { item: DocsNavItem }) {
   switch (item.title) {
     case "Hitbox":
       return <div className="flex h-full items-center justify-center bg-card"><Hitbox debug><Checkbox /></Hitbox></div>
