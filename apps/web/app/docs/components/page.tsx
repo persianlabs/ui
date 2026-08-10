@@ -81,7 +81,7 @@ export const metadata: Metadata = {
 
 function ThumbnailFrame({ children }: { children: React.ReactNode }) {
   return (
-    <div className="dark flex h-44 w-full items-center justify-center overflow-hidden rounded-t-xl bg-card p-6">
+    <div className="flex h-44 w-full items-center justify-center overflow-hidden rounded-t-xl bg-card p-6">
       {children}
     </div>
   )
@@ -833,19 +833,23 @@ export const componentsMarkdown = [
   "",
   "Every component ships as source through the @persianlabsui registry. More are on the way.",
   "",
-  ...components.map(
-    (c) => `- [${c.title}](${c.href}.md): ${c.description}`
-  ),
+  ...components.map((c) => `- [${c.title}](${c.href}.md): ${c.description}`),
 ].join("\n")
 
-export default function DocsComponentsPage() {
+export default function DocsComponentsPage({
+  showCopyControls = true,
+}: {
+  showCopyControls?: boolean
+}) {
   return (
     <div className="mx-auto max-w-5xl">
       <div className="flex flex-col items-end justify-between gap-3 sm:flex-row sm:items-center">
         <h1 className="self-start text-3xl font-semibold tracking-tight sm:self-auto">
           Components
         </h1>
-        <CopyMarkdownButton markdown={componentsMarkdown} />
+        {showCopyControls && (
+          <CopyMarkdownButton markdown={componentsMarkdown} />
+        )}
       </div>
       <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
         Every component below ships as source through the{" "}
@@ -855,9 +859,11 @@ export default function DocsComponentsPage() {
         registry. More are on the way.
       </p>
 
-      <div className="mt-6 max-w-2xl">
-        <CopyCommand command={installAllCommand} />
-      </div>
+      {showCopyControls && (
+        <div className="mt-6 max-w-2xl">
+          <CopyCommand command={installAllCommand} />
+        </div>
+      )}
 
       <ComponentsGrid featured={featuredComponents} rest={restComponents} />
     </div>

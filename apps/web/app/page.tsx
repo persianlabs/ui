@@ -2,17 +2,19 @@ import { ArrowRightIcon } from "lucide-react"
 import Link from "next/link"
 
 import { CopyCommand } from "@/components/copy-command"
+import { HomeCatalog } from "@/components/home-catalog"
 import { GithubIcon } from "@/components/icons"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { GITHUB_URL } from "@/lib/github"
+import DocsComponentsPage from "@/app/docs/components/page"
 
 export default function Page() {
   return (
     <div className="flex min-h-svh flex-col">
       <SiteHeader />
 
-      <main className="flex flex-1 items-center">
+      <main className="flex flex-1 flex-col">
         <section className="relative w-full overflow-hidden px-6 py-20">
           <div
             aria-hidden
@@ -64,6 +66,12 @@ export default function Page() {
             </div>
           </div>
         </section>
+        <section className="w-full border-t border-border/60 px-6 py-20 sm:py-24">
+          <div className="mx-auto max-w-5xl">
+            <DocsComponentsPage showCopyControls={false} />
+          </div>
+        </section>
+        <HomeCatalog />
       </main>
       <SiteFooter />
     </div>

@@ -1,9 +1,8 @@
 import Link from "next/link"
-import { Suspense } from "react"
 
 import { AppLogo } from "@/components/app-logo"
-import { GithubStars, GithubStarsFallback } from "@/components/github-stars"
-import { GithubIcon } from "@/components/icons"
+import { GithubStars } from "@/components/github-stars"
+import { GithubIcon, XIcon } from "@/components/icons"
 import { MobileNav } from "@/components/mobile-nav"
 import { SiteSearch } from "@/components/site-search"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -65,9 +64,16 @@ export function SiteHeader({
             className="flex h-7 items-center gap-2 rounded-md border border-border px-2.5 transition-colors hover:bg-muted"
           >
             <GithubIcon className="size-4" />
-            <Suspense fallback={<GithubStarsFallback />}>
-              <GithubStars />
-            </Suspense>
+            <GithubStars />
+          </a>
+          <a
+            href="https://x.com/persianlabs"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Follow PersianLabs on X"
+            className="inline-flex size-7 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+          >
+            <XIcon className="size-3.5" />
           </a>
           <ThemeToggle />
         </div>

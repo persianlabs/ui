@@ -5,16 +5,6 @@
  * thumbnails on /docs/components).
  */
 
-const preview = {
-  background: "var(--background)",
-  foreground: "var(--foreground)",
-  muted: "var(--muted)",
-  mutedForeground: "var(--muted-foreground)",
-  border: "var(--border)",
-  primary: "var(--primary)",
-  primaryForeground: "var(--primary-foreground)",
-  success: "var(--success)",
-}
 function ChevronDownGlyph({ size = 16 }: { size?: number }) {
   return (
     <svg
@@ -22,7 +12,7 @@ function ChevronDownGlyph({ size = 16 }: { size?: number }) {
       height={size}
       viewBox="0 0 24 24"
       fill="none"
-      stroke={preview.mutedForeground}
+      stroke="rgba(242,240,238,0.5)"
       strokeWidth={2.5}
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -39,7 +29,7 @@ function SearchGlyph({ size = 16 }: { size?: number }) {
       height={size}
       viewBox="0 0 24 24"
       fill="none"
-      stroke={preview.mutedForeground}
+      stroke="rgba(242,240,238,0.5)"
       strokeWidth={2.5}
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -59,7 +49,7 @@ export function TabsPreview() {
         gap: "6px",
         padding: "6px",
         borderRadius: "14px",
-        backgroundColor: preview.muted,
+        backgroundColor: "rgba(242,240,238,0.08)",
       }}
     >
       <div
@@ -67,8 +57,8 @@ export function TabsPreview() {
           display: "flex",
           padding: "10px 18px",
           borderRadius: "10px",
-          backgroundColor: preview.primary,
-          color: preview.primaryForeground,
+          backgroundColor: "#f2f0ee",
+          color: "#191817",
           fontSize: "17px",
           fontWeight: 600,
         }}
@@ -80,7 +70,7 @@ export function TabsPreview() {
           display: "flex",
           padding: "10px 18px",
           fontSize: "17px",
-          color: preview.mutedForeground,
+          color: "rgba(242,240,238,0.5)",
         }}
       >
         Activity
@@ -96,8 +86,8 @@ export function ButtonPreview() {
         display: "flex",
         padding: "12px 24px",
         borderRadius: "10px",
-        backgroundColor: preview.primary,
-        color: preview.primaryForeground,
+        backgroundColor: "#f2f0ee",
+        color: "#191817",
         fontSize: "18px",
         fontWeight: 600,
       }}
@@ -114,7 +104,7 @@ export function ButtonGroupPreview() {
         display: "flex",
         borderRadius: "10px",
         overflow: "hidden",
-        border: `1px solid ${preview.border}`,
+        border: "1px solid rgba(242,240,238,0.16)",
       }}
     >
       {["Button 1", "Button 2"].map((label, index) => (
@@ -124,8 +114,9 @@ export function ButtonGroupPreview() {
             display: "flex",
             padding: "12px 20px",
             fontSize: "17px",
-            color: preview.foreground,
-            borderLeft: index > 0 ? `1px solid ${preview.border}` : undefined,
+            color: "#f2f0ee",
+            borderLeft:
+              index > 0 ? "1px solid rgba(242,240,238,0.16)" : undefined,
           }}
         >
           {label}
@@ -144,10 +135,10 @@ export function InputPreview() {
         width: "220px",
         padding: "10px 14px",
         borderRadius: "10px",
-        backgroundColor: preview.background,
-        border: `1px solid ${preview.border}`,
+        backgroundColor: "#191817",
+        border: "1px solid rgba(242,240,238,0.16)",
         fontSize: "16px",
-        color: preview.mutedForeground,
+        color: "rgba(242,240,238,0.5)",
       }}
     >
       you@example.com
@@ -168,9 +159,9 @@ export function InputOTPPreview() {
             width: "40px",
             height: "40px",
             borderRadius: "8px",
-            backgroundColor: index === 1 ? preview.primary : preview.muted,
-            border: `1px solid ${preview.border}`,
-            color: index === 1 ? preview.primaryForeground : preview.foreground,
+            backgroundColor: index === 1 ? "#f2f0ee" : "rgba(242,240,238,0.06)",
+            border: "1px solid rgba(242,240,238,0.16)",
+            color: index === 1 ? "#191817" : "#f2f0ee",
             fontSize: "18px",
             fontWeight: 600,
           }}
@@ -192,10 +183,10 @@ export function InputGroupPreview() {
         width: "240px",
         padding: "10px 14px",
         borderRadius: "10px",
-        backgroundColor: preview.background,
-        border: `1px solid ${preview.border}`,
+        backgroundColor: "#191817",
+        border: "1px solid rgba(242,240,238,0.16)",
         fontSize: "16px",
-        color: preview.mutedForeground,
+        color: "rgba(242,240,238,0.5)",
       }}
     >
       Search...
@@ -212,10 +203,10 @@ export function TextareaPreview() {
         minHeight: "64px",
         padding: "10px 14px",
         borderRadius: "10px",
-        backgroundColor: preview.background,
-        border: `1px solid ${preview.border}`,
+        backgroundColor: "#191817",
+        border: "1px solid rgba(242,240,238,0.16)",
         fontSize: "16px",
-        color: preview.mutedForeground,
+        color: "rgba(242,240,238,0.5)",
       }}
     >
       Type your message here.
@@ -231,8 +222,8 @@ export function ComboboxPreview() {
         flexDirection: "column",
         width: "260px",
         borderRadius: "14px",
-        backgroundColor: preview.background,
-        border: `1px solid ${preview.border}`,
+        backgroundColor: "#191817",
+        border: "1px solid rgba(242,240,238,0.16)",
         overflow: "hidden",
       }}
     >
@@ -242,16 +233,10 @@ export function ComboboxPreview() {
           alignItems: "center",
           justifyContent: "space-between",
           padding: "12px 18px",
-          borderBottom: `1px solid ${preview.border}`,
+          borderBottom: "1px solid rgba(242,240,238,0.12)",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            fontSize: "18px",
-            color: preview.foreground,
-          }}
-        >
+        <div style={{ display: "flex", fontSize: "18px", color: "#f2f0ee" }}>
           Next.js
         </div>
         <div style={{ display: "flex" }}>
@@ -263,8 +248,8 @@ export function ComboboxPreview() {
           display: "flex",
           padding: "10px 18px",
           fontSize: "16px",
-          color: preview.mutedForeground,
-          backgroundColor: preview.muted,
+          color: "rgba(242,240,238,0.6)",
+          backgroundColor: "rgba(242,240,238,0.06)",
         }}
       >
         SvelteKit
@@ -281,8 +266,8 @@ export function CommandPreview() {
         flexDirection: "column",
         width: "260px",
         borderRadius: "14px",
-        backgroundColor: preview.background,
-        border: `1px solid ${preview.border}`,
+        backgroundColor: "#191817",
+        border: "1px solid rgba(242,240,238,0.16)",
         overflow: "hidden",
       }}
     >
@@ -292,7 +277,7 @@ export function CommandPreview() {
           alignItems: "center",
           gap: "8px",
           padding: "12px 18px",
-          borderBottom: `1px solid ${preview.border}`,
+          borderBottom: "1px solid rgba(242,240,238,0.12)",
         }}
       >
         <div style={{ display: "flex" }}>
@@ -302,7 +287,7 @@ export function CommandPreview() {
           style={{
             display: "flex",
             fontSize: "16px",
-            color: preview.mutedForeground,
+            color: "rgba(242,240,238,0.5)",
           }}
         >
           Search commands...
@@ -313,8 +298,8 @@ export function CommandPreview() {
           display: "flex",
           padding: "10px 18px",
           fontSize: "16px",
-          color: preview.foreground,
-          backgroundColor: preview.muted,
+          color: "#f2f0ee",
+          backgroundColor: "rgba(242,240,238,0.06)",
         }}
       >
         Calendar
@@ -324,7 +309,7 @@ export function CommandPreview() {
           display: "flex",
           padding: "10px 18px",
           fontSize: "16px",
-          color: preview.mutedForeground,
+          color: "rgba(242,240,238,0.6)",
         }}
       >
         Calculator
@@ -343,13 +328,11 @@ export function SelectPreview() {
         width: "220px",
         padding: "12px 18px",
         borderRadius: "10px",
-        backgroundColor: preview.background,
-        border: `1px solid ${preview.border}`,
+        backgroundColor: "#191817",
+        border: "1px solid rgba(242,240,238,0.16)",
       }}
     >
-      <div
-        style={{ display: "flex", fontSize: "18px", color: preview.foreground }}
-      >
+      <div style={{ display: "flex", fontSize: "18px", color: "#f2f0ee" }}>
         Apple
       </div>
       <div style={{ display: "flex" }}>
@@ -374,7 +357,7 @@ export function CitySelectorPreview() {
             style={{
               display: "flex",
               fontSize: "13px",
-              color: preview.mutedForeground,
+              color: "rgba(242,240,238,0.5)",
             }}
           >
             {field.label}
@@ -387,10 +370,10 @@ export function CitySelectorPreview() {
               width: "220px",
               padding: "9px 14px",
               borderRadius: "10px",
-              backgroundColor: preview.background,
-              border: `1px solid ${preview.border}`,
+              backgroundColor: "#191817",
+              border: "1px solid rgba(242,240,238,0.16)",
               fontSize: "17px",
-              color: preview.foreground,
+              color: "#f2f0ee",
             }}
           >
             <div style={{ display: "flex" }}>{field.value}</div>
@@ -414,9 +397,7 @@ export function SeparatorPreview() {
         width: "220px",
       }}
     >
-      <div
-        style={{ display: "flex", fontSize: "16px", color: preview.foreground }}
-      >
+      <div style={{ display: "flex", fontSize: "16px", color: "#f2f0ee" }}>
         PersianLabs/ui
       </div>
       <div
@@ -424,14 +405,14 @@ export function SeparatorPreview() {
           display: "flex",
           height: "1px",
           width: "100%",
-          backgroundColor: preview.muted,
+          backgroundColor: "rgba(242,240,238,0.16)",
         }}
       />
       <div
         style={{
           display: "flex",
           fontSize: "13px",
-          color: preview.mutedForeground,
+          color: "rgba(242,240,238,0.5)",
         }}
       >
         Design system foundation
@@ -448,8 +429,8 @@ export function CardPreview() {
         flexDirection: "column",
         width: "220px",
         borderRadius: "14px",
-        backgroundColor: preview.background,
-        border: `1px solid ${preview.border}`,
+        backgroundColor: "#191817",
+        border: "1px solid rgba(242,240,238,0.16)",
         overflow: "hidden",
       }}
     >
@@ -461,20 +442,14 @@ export function CardPreview() {
           padding: "16px 18px",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            fontSize: "17px",
-            color: preview.foreground,
-          }}
-        >
+        <div style={{ display: "flex", fontSize: "17px", color: "#f2f0ee" }}>
           Card Title
         </div>
         <div
           style={{
             display: "flex",
             fontSize: "13px",
-            color: preview.mutedForeground,
+            color: "rgba(242,240,238,0.5)",
           }}
         >
           Card description text
@@ -483,10 +458,10 @@ export function CardPreview() {
       <div
         style={{
           display: "flex",
-          borderTop: `1px solid ${preview.border}`,
+          borderTop: "1px solid rgba(242,240,238,0.12)",
           padding: "12px 18px",
           fontSize: "13px",
-          color: preview.mutedForeground,
+          color: "rgba(242,240,238,0.5)",
         }}
       >
         Card footer
@@ -505,17 +480,15 @@ export function BreadcrumbPreview() {
         fontSize: "16px",
       }}
     >
-      <div style={{ display: "flex", color: preview.mutedForeground }}>
+      <div style={{ display: "flex", color: "rgba(242,240,238,0.5)" }}>
         Home
       </div>
-      <div style={{ display: "flex", color: preview.mutedForeground }}>/</div>
-      <div style={{ display: "flex", color: preview.mutedForeground }}>
+      <div style={{ display: "flex", color: "rgba(242,240,238,0.3)" }}>/</div>
+      <div style={{ display: "flex", color: "rgba(242,240,238,0.5)" }}>
         Components
       </div>
-      <div style={{ display: "flex", color: preview.mutedForeground }}>/</div>
-      <div style={{ display: "flex", color: preview.foreground }}>
-        Breadcrumb
-      </div>
+      <div style={{ display: "flex", color: "rgba(242,240,238,0.3)" }}>/</div>
+      <div style={{ display: "flex", color: "#f2f0ee" }}>Breadcrumb</div>
     </div>
   )
 }
@@ -539,21 +512,19 @@ export function EmptyPreview() {
           width: "44px",
           height: "44px",
           borderRadius: "12px",
-          backgroundColor: preview.muted,
+          backgroundColor: "rgba(242,240,238,0.08)",
         }}
       >
         <ChevronDownGlyph size={20} />
       </div>
-      <div
-        style={{ display: "flex", fontSize: "16px", color: preview.foreground }}
-      >
+      <div style={{ display: "flex", fontSize: "16px", color: "#f2f0ee" }}>
         No results
       </div>
       <div
         style={{
           display: "flex",
           fontSize: "12px",
-          color: preview.mutedForeground,
+          color: "rgba(242,240,238,0.5)",
           textAlign: "center",
         }}
       >
@@ -571,7 +542,7 @@ export function SwitchPreview() {
         alignItems: "center",
         gap: "10px",
         fontSize: "16px",
-        color: preview.foreground,
+        color: "#f2f0ee",
       }}
     >
       <div
@@ -580,7 +551,7 @@ export function SwitchPreview() {
           width: "32px",
           height: "18px",
           borderRadius: "999px",
-          backgroundColor: preview.primary,
+          backgroundColor: "#f2f0ee",
           padding: "2px",
           justifyContent: "flex-end",
         }}
@@ -591,7 +562,7 @@ export function SwitchPreview() {
             width: "14px",
             height: "14px",
             borderRadius: "999px",
-            backgroundColor: preview.background,
+            backgroundColor: "#191817",
           }}
         />
       </div>
@@ -608,7 +579,7 @@ export function CheckboxPreview() {
         alignItems: "center",
         gap: "10px",
         fontSize: "16px",
-        color: preview.foreground,
+        color: "#f2f0ee",
       }}
     >
       <div
@@ -619,8 +590,8 @@ export function CheckboxPreview() {
           width: "16px",
           height: "16px",
           borderRadius: "4px",
-          backgroundColor: preview.primary,
-          color: preview.primaryForeground,
+          backgroundColor: "#f2f0ee",
+          color: "#191817",
           fontSize: "12px",
         }}
       >
@@ -642,7 +613,7 @@ export function RadioGroupPreview() {
             alignItems: "center",
             gap: "10px",
             fontSize: "16px",
-            color: preview.foreground,
+            color: "#f2f0ee",
           }}
         >
           <div
@@ -653,8 +624,8 @@ export function RadioGroupPreview() {
               width: "16px",
               height: "16px",
               borderRadius: "999px",
-              border: `1px solid ${preview.border}`,
-              backgroundColor: i === 1 ? preview.primary : "transparent",
+              border: "1px solid rgba(242,240,238,0.4)",
+              backgroundColor: i === 1 ? "#f2f0ee" : "transparent",
             }}
           >
             {i === 1 && (
@@ -664,7 +635,7 @@ export function RadioGroupPreview() {
                   width: "6px",
                   height: "6px",
                   borderRadius: "999px",
-                  backgroundColor: preview.background,
+                  backgroundColor: "#191817",
                 }}
               />
             )}
@@ -684,7 +655,7 @@ export function ProgressPreview() {
         width: "220px",
         height: "8px",
         borderRadius: "999px",
-        backgroundColor: preview.muted,
+        backgroundColor: "rgba(242,240,238,0.16)",
         overflow: "hidden",
       }}
     >
@@ -693,7 +664,7 @@ export function ProgressPreview() {
           display: "flex",
           width: "66%",
           height: "100%",
-          backgroundColor: preview.primary,
+          backgroundColor: "#f2f0ee",
           borderRadius: "999px",
         }}
       />
@@ -716,7 +687,7 @@ export function CollapsiblePreview() {
         style={{
           display: "flex",
           justifyContent: "space-between",
-          color: preview.foreground,
+          color: "#f2f0ee",
         }}
       >
         <span>3 starred repos</span>
@@ -727,8 +698,8 @@ export function CollapsiblePreview() {
           display: "flex",
           padding: "8px 12px",
           borderRadius: "8px",
-          border: `1px solid ${preview.border}`,
-          color: preview.mutedForeground,
+          border: "1px solid rgba(242,240,238,0.16)",
+          color: "rgba(242,240,238,0.6)",
         }}
       >
         @base_ui/react
@@ -747,8 +718,8 @@ export function TogglePreview() {
         width: "36px",
         height: "36px",
         borderRadius: "8px",
-        backgroundColor: preview.muted,
-        color: preview.foreground,
+        backgroundColor: "rgba(242,240,238,0.14)",
+        color: "#f2f0ee",
         fontSize: "16px",
         fontWeight: 700,
       }}
@@ -765,7 +736,7 @@ export function ToggleGroupPreview() {
         display: "flex",
         borderRadius: "8px",
         overflow: "hidden",
-        border: `1px solid ${preview.border}`,
+        border: "1px solid rgba(242,240,238,0.16)",
       }}
     >
       {["B", "I", "U"].map((letter, i) => (
@@ -777,12 +748,12 @@ export function ToggleGroupPreview() {
             justifyContent: "center",
             width: "36px",
             height: "36px",
-            backgroundColor: i === 0 ? preview.muted : "transparent",
-            color: preview.foreground,
+            backgroundColor: i === 0 ? "rgba(242,240,238,0.14)" : "transparent",
+            color: "#f2f0ee",
             fontSize: "16px",
             fontWeight: 700,
             borderInlineStart:
-              i > 0 ? `1px solid ${preview.border}` : undefined,
+              i > 0 ? "1px solid rgba(242,240,238,0.16)" : undefined,
           }}
         >
           {letter}
@@ -802,10 +773,10 @@ export function NativeSelectPreview() {
         width: "180px",
         padding: "10px 14px",
         borderRadius: "8px",
-        backgroundColor: preview.background,
-        border: `1px solid ${preview.border}`,
+        backgroundColor: "#191817",
+        border: "1px solid rgba(242,240,238,0.16)",
         fontSize: "16px",
-        color: preview.foreground,
+        color: "#f2f0ee",
       }}
     >
       Next.js
@@ -824,7 +795,7 @@ export function ElasticSliderPreview() {
         width: "200px",
         height: "36px",
         borderRadius: "10px",
-        backgroundColor: preview.muted,
+        backgroundColor: "rgba(242,240,238,0.1)",
         padding: "0 12px",
         position: "relative",
         overflow: "hidden",
@@ -837,19 +808,17 @@ export function ElasticSliderPreview() {
           top: 0,
           bottom: 0,
           width: "55%",
-          backgroundColor: preview.muted,
+          backgroundColor: "rgba(242,240,238,0.14)",
         }}
       />
-      <div
-        style={{ display: "flex", fontSize: "13px", color: preview.foreground }}
-      >
+      <div style={{ display: "flex", fontSize: "13px", color: "#f2f0ee" }}>
         Opacity
       </div>
       <div
         style={{
           display: "flex",
           fontSize: "13px",
-          color: preview.mutedForeground,
+          color: "rgba(242,240,238,0.6)",
         }}
       >
         0.55
@@ -868,7 +837,7 @@ export function ElasticRangeSliderPreview() {
         width: "200px",
         height: "36px",
         borderRadius: "10px",
-        backgroundColor: preview.muted,
+        backgroundColor: "rgba(242,240,238,0.1)",
         padding: "0 12px",
         position: "relative",
         overflow: "hidden",
@@ -881,19 +850,17 @@ export function ElasticRangeSliderPreview() {
           insetInlineEnd: "20%",
           top: 0,
           bottom: 0,
-          backgroundColor: preview.muted,
+          backgroundColor: "rgba(242,240,238,0.14)",
         }}
       />
-      <div
-        style={{ display: "flex", fontSize: "13px", color: preview.foreground }}
-      >
+      <div style={{ display: "flex", fontSize: "13px", color: "#f2f0ee" }}>
         Price
       </div>
       <div
         style={{
           display: "flex",
           fontSize: "13px",
-          color: preview.mutedForeground,
+          color: "rgba(242,240,238,0.6)",
         }}
       >
         $200 – $700
@@ -916,8 +883,8 @@ export function TooltipPreview() {
         style={{
           display: "flex",
           borderRadius: "6px",
-          backgroundColor: preview.primary,
-          color: preview.primaryForeground,
+          backgroundColor: "#f2f0ee",
+          color: "#1a1a1a",
           fontSize: "12px",
           padding: "6px 10px",
         }}
@@ -929,7 +896,7 @@ export function TooltipPreview() {
           display: "flex",
           width: "8px",
           height: "8px",
-          backgroundColor: preview.primary,
+          backgroundColor: "#f2f0ee",
           transform: "rotate(45deg)",
         }}
       />
@@ -938,9 +905,9 @@ export function TooltipPreview() {
           display: "flex",
           marginTop: "8px",
           borderRadius: "8px",
-          border: `1px solid ${preview.border}`,
+          border: "1px solid rgba(242,240,238,0.2)",
           fontSize: "13px",
-          color: preview.foreground,
+          color: "#f2f0ee",
           padding: "6px 16px",
         }}
       >
@@ -963,9 +930,9 @@ export function AccordionPreview() {
             justifyContent: "space-between",
             padding: "10px 2px",
             borderBottom:
-              i < rows.length - 1 ? `1px solid ${preview.border}` : "none",
+              i < rows.length - 1 ? "1px solid rgba(242,240,238,0.12)" : "none",
             fontSize: "13px",
-            color: i === 0 ? preview.foreground : preview.mutedForeground,
+            color: i === 0 ? "#f2f0ee" : "rgba(242,240,238,0.6)",
           }}
         >
           <span>{row}</span>
@@ -984,7 +951,7 @@ export function SheetPreview() {
         width: "220px",
         height: "140px",
         borderRadius: "10px",
-        backgroundColor: preview.muted,
+        backgroundColor: "rgba(242,240,238,0.06)",
         position: "relative",
         overflow: "hidden",
       }}
@@ -999,8 +966,8 @@ export function SheetPreview() {
           top: 0,
           bottom: 0,
           width: "40%",
-          backgroundColor: preview.background,
-          borderInlineStart: `1px solid ${preview.border}`,
+          backgroundColor: "#1a1a1a",
+          borderInlineStart: "1px solid rgba(242,240,238,0.16)",
           padding: "12px",
         }}
       >
@@ -1010,7 +977,7 @@ export function SheetPreview() {
             width: "60%",
             height: "8px",
             borderRadius: "999px",
-            backgroundColor: preview.muted,
+            backgroundColor: "rgba(242,240,238,0.5)",
           }}
         />
         <div
@@ -1019,7 +986,7 @@ export function SheetPreview() {
             width: "80%",
             height: "6px",
             borderRadius: "999px",
-            backgroundColor: preview.muted,
+            backgroundColor: "rgba(242,240,238,0.2)",
           }}
         />
       </div>
@@ -1036,8 +1003,8 @@ export function ContextMenuPreview() {
         flexDirection: "column",
         width: "150px",
         borderRadius: "10px",
-        backgroundColor: preview.background,
-        border: `1px solid ${preview.border}`,
+        backgroundColor: "#1a1a1a",
+        border: "1px solid rgba(242,240,238,0.14)",
         padding: "6px",
         gap: "2px",
       }}
@@ -1050,8 +1017,8 @@ export function ContextMenuPreview() {
             borderRadius: "6px",
             padding: "6px 8px",
             fontSize: "12px",
-            backgroundColor: i === 1 ? preview.muted : "transparent",
-            color: preview.foreground,
+            backgroundColor: i === 1 ? "rgba(242,240,238,0.12)" : "transparent",
+            color: "#f2f0ee",
           }}
         >
           {row}
@@ -1070,8 +1037,8 @@ export function MenubarPreview() {
         alignItems: "center",
         gap: "4px",
         borderRadius: "10px",
-        border: `1px solid ${preview.border}`,
-        backgroundColor: preview.muted,
+        border: "1px solid rgba(242,240,238,0.16)",
+        backgroundColor: "rgba(242,240,238,0.04)",
         padding: "6px",
       }}
     >
@@ -1083,8 +1050,8 @@ export function MenubarPreview() {
             borderRadius: "6px",
             padding: "6px 10px",
             fontSize: "13px",
-            backgroundColor: i === 0 ? preview.muted : "transparent",
-            color: preview.foreground,
+            backgroundColor: i === 0 ? "rgba(242,240,238,0.14)" : "transparent",
+            color: "#f2f0ee",
           }}
         >
           {item}
@@ -1103,21 +1070,19 @@ export function DialogPreview() {
         gap: "10px",
         width: "220px",
         borderRadius: "14px",
-        border: `1px solid ${preview.border}`,
-        backgroundColor: preview.muted,
+        border: "1px solid rgba(242,240,238,0.16)",
+        backgroundColor: "rgba(242,240,238,0.04)",
         padding: "16px",
       }}
     >
-      <div
-        style={{ display: "flex", fontSize: "14px", color: preview.foreground }}
-      >
+      <div style={{ display: "flex", fontSize: "14px", color: "#f2f0ee" }}>
         Edit profile
       </div>
       <div
         style={{
           display: "flex",
           fontSize: "12px",
-          color: preview.mutedForeground,
+          color: "rgba(242,240,238,0.6)",
         }}
       >
         Make changes to your profile here.
@@ -1127,7 +1092,7 @@ export function DialogPreview() {
           display: "flex",
           height: "24px",
           borderRadius: "6px",
-          border: `1px solid ${preview.border}`,
+          border: "1px solid rgba(242,240,238,0.16)",
         }}
       />
     </div>
@@ -1144,22 +1109,20 @@ export function AlertDialogPreview() {
         gap: "8px",
         width: "200px",
         borderRadius: "14px",
-        border: `1px solid ${preview.border}`,
-        backgroundColor: preview.muted,
+        border: "1px solid rgba(242,240,238,0.16)",
+        backgroundColor: "rgba(242,240,238,0.04)",
         padding: "16px",
         textAlign: "center",
       }}
     >
-      <div
-        style={{ display: "flex", fontSize: "13px", color: preview.foreground }}
-      >
+      <div style={{ display: "flex", fontSize: "13px", color: "#f2f0ee" }}>
         Are you absolutely sure?
       </div>
       <div
         style={{
           display: "flex",
           fontSize: "11px",
-          color: preview.mutedForeground,
+          color: "rgba(242,240,238,0.6)",
         }}
       >
         This action cannot be undone.
@@ -1169,10 +1132,10 @@ export function AlertDialogPreview() {
           style={{
             display: "flex",
             borderRadius: "6px",
-            border: `1px solid ${preview.border}`,
+            border: "1px solid rgba(242,240,238,0.2)",
             padding: "6px 14px",
             fontSize: "12px",
-            color: preview.foreground,
+            color: "#f2f0ee",
           }}
         >
           Cancel
@@ -1203,7 +1166,7 @@ export function DrawerPreview() {
         width: "200px",
         height: "140px",
         borderRadius: "10px",
-        backgroundColor: preview.muted,
+        backgroundColor: "rgba(242,240,238,0.06)",
         position: "relative",
         overflow: "hidden",
       }}
@@ -1219,8 +1182,8 @@ export function DrawerPreview() {
           insetInlineEnd: 0,
           bottom: 0,
           height: "55%",
-          backgroundColor: preview.background,
-          borderTop: `1px solid ${preview.border}`,
+          backgroundColor: "#1a1a1a",
+          borderTop: "1px solid rgba(242,240,238,0.16)",
           borderTopLeftRadius: "14px",
           borderTopRightRadius: "14px",
           padding: "10px 12px",
@@ -1232,7 +1195,7 @@ export function DrawerPreview() {
             width: "36px",
             height: "4px",
             borderRadius: "999px",
-            backgroundColor: preview.muted,
+            backgroundColor: "rgba(242,240,238,0.3)",
           }}
         />
         <div
@@ -1241,7 +1204,7 @@ export function DrawerPreview() {
             width: "60%",
             height: "8px",
             borderRadius: "999px",
-            backgroundColor: preview.muted,
+            backgroundColor: "rgba(242,240,238,0.5)",
           }}
         />
       </div>
@@ -1300,21 +1263,19 @@ export function AlertPreview() {
         gap: "4px",
         width: "220px",
         borderRadius: "12px",
-        border: `1px solid ${preview.border}`,
-        backgroundColor: preview.background,
+        border: "1px solid rgba(242,240,238,0.16)",
+        backgroundColor: "#191817",
         padding: "12px 14px",
       }}
     >
-      <div
-        style={{ display: "flex", fontSize: "14px", color: preview.foreground }}
-      >
+      <div style={{ display: "flex", fontSize: "14px", color: "#f2f0ee" }}>
         Heads up
       </div>
       <div
         style={{
           display: "flex",
           fontSize: "12px",
-          color: preview.mutedForeground,
+          color: "rgba(242,240,238,0.5)",
         }}
       >
         You can add components to your app
@@ -1333,10 +1294,10 @@ export function AspectRatioPreview() {
         width: "220px",
         height: "124px",
         borderRadius: "12px",
-        backgroundColor: preview.muted,
-        border: `1px solid ${preview.border}`,
+        backgroundColor: "rgba(242,240,238,0.08)",
+        border: "1px solid rgba(242,240,238,0.16)",
         fontSize: "12px",
-        color: preview.mutedForeground,
+        color: "rgba(242,240,238,0.5)",
       }}
     >
       16 : 9
@@ -1354,8 +1315,8 @@ export function AvatarPreview() {
         width: "48px",
         height: "48px",
         borderRadius: "9999px",
-        backgroundColor: preview.muted,
-        color: preview.foreground,
+        backgroundColor: "rgba(242,240,238,0.14)",
+        color: "#f2f0ee",
         fontSize: "16px",
         fontWeight: 700,
       }}
@@ -1373,11 +1334,11 @@ export function DirectionPreview() {
         alignItems: "center",
         gap: "8px",
         fontSize: "14px",
-        color: preview.foreground,
+        color: "#f2f0ee",
       }}
     >
       <div style={{ display: "flex" }}>LTR</div>
-      <div style={{ display: "flex", color: preview.mutedForeground }}>
+      <div style={{ display: "flex", color: "rgba(242,240,238,0.3)" }}>
         {"<->"}
       </div>
       <div style={{ display: "flex" }}>RTL</div>
@@ -1394,21 +1355,19 @@ export function HoverCardPreview() {
         gap: "6px",
         width: "200px",
         borderRadius: "12px",
-        border: `1px solid ${preview.border}`,
-        backgroundColor: preview.background,
+        border: "1px solid rgba(242,240,238,0.16)",
+        backgroundColor: "#191817",
         padding: "12px 14px",
       }}
     >
-      <div
-        style={{ display: "flex", fontSize: "14px", color: preview.foreground }}
-      >
+      <div style={{ display: "flex", fontSize: "14px", color: "#f2f0ee" }}>
         @shadcn
       </div>
       <div
         style={{
           display: "flex",
           fontSize: "12px",
-          color: preview.mutedForeground,
+          color: "rgba(242,240,238,0.5)",
         }}
       >
         The React Framework for design engineers
@@ -1426,7 +1385,7 @@ export function ItemPreview() {
         gap: "10px",
         width: "220px",
         borderRadius: "12px",
-        border: `1px solid ${preview.border}`,
+        border: "1px solid rgba(242,240,238,0.16)",
         padding: "10px 14px",
       }}
     >
@@ -1436,24 +1395,18 @@ export function ItemPreview() {
           width: "28px",
           height: "28px",
           borderRadius: "8px",
-          backgroundColor: preview.muted,
+          backgroundColor: "rgba(242,240,238,0.14)",
         }}
       />
       <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-        <div
-          style={{
-            display: "flex",
-            fontSize: "13px",
-            color: preview.foreground,
-          }}
-        >
+        <div style={{ display: "flex", fontSize: "13px", color: "#f2f0ee" }}>
           Item title
         </div>
         <div
           style={{
             display: "flex",
             fontSize: "11px",
-            color: preview.mutedForeground,
+            color: "rgba(242,240,238,0.5)",
           }}
         >
           Item description
@@ -1472,7 +1425,7 @@ export function MarkerPreview() {
         gap: "8px",
         width: "200px",
         fontSize: "12px",
-        color: preview.mutedForeground,
+        color: "rgba(242,240,238,0.5)",
       }}
     >
       <div
@@ -1480,7 +1433,7 @@ export function MarkerPreview() {
           display: "flex",
           height: "1px",
           flex: 1,
-          backgroundColor: preview.muted,
+          backgroundColor: "rgba(242,240,238,0.16)",
         }}
       />
       <div style={{ display: "flex" }}>OR</div>
@@ -1489,7 +1442,7 @@ export function MarkerPreview() {
           display: "flex",
           height: "1px",
           flex: 1,
-          backgroundColor: preview.muted,
+          backgroundColor: "rgba(242,240,238,0.16)",
         }}
       />
     </div>
@@ -1511,8 +1464,8 @@ export function BubblePreview() {
           display: "flex",
           alignSelf: "flex-start",
           borderRadius: "12px",
-          backgroundColor: preview.muted,
-          color: preview.foreground,
+          backgroundColor: "rgba(242,240,238,0.1)",
+          color: "#f2f0ee",
           fontSize: "12px",
           padding: "8px 12px",
         }}
@@ -1524,8 +1477,8 @@ export function BubblePreview() {
           display: "flex",
           alignSelf: "flex-end",
           borderRadius: "12px",
-          backgroundColor: preview.primary,
-          color: preview.primaryForeground,
+          backgroundColor: "#f2f0ee",
+          color: "#191817",
           fontSize: "12px",
           padding: "8px 12px",
         }}
@@ -1552,15 +1505,15 @@ export function MessagePreview() {
           width: "28px",
           height: "28px",
           borderRadius: "9999px",
-          backgroundColor: preview.muted,
+          backgroundColor: "rgba(242,240,238,0.14)",
         }}
       />
       <div
         style={{
           display: "flex",
           borderRadius: "12px",
-          backgroundColor: preview.muted,
-          color: preview.foreground,
+          backgroundColor: "rgba(242,240,238,0.1)",
+          color: "#f2f0ee",
           fontSize: "12px",
           padding: "8px 12px",
         }}
@@ -1581,8 +1534,8 @@ export function MessageScrollerPreview() {
         width: "36px",
         height: "36px",
         borderRadius: "9999px",
-        backgroundColor: preview.muted,
-        color: preview.foreground,
+        backgroundColor: "rgba(242,240,238,0.14)",
+        color: "#f2f0ee",
       }}
     >
       ↓
@@ -1609,7 +1562,7 @@ export function PaginationPreview() {
           width: "32px",
           height: "32px",
           borderRadius: "8px",
-          color: preview.mutedForeground,
+          color: "rgba(242,240,238,0.5)",
           fontSize: "16px",
         }}
       >
@@ -1630,12 +1583,10 @@ export function PaginationPreview() {
                 height: "32px",
                 borderRadius: "8px",
                 border: active
-                  ? `1px solid ${preview.border}`
+                  ? "1px solid rgba(242,240,238,0.16)"
                   : "1px solid transparent",
                 backgroundColor: "transparent",
-                color: active
-                  ? preview.primaryForeground
-                  : preview.mutedForeground,
+                color: active ? "#f2f0ee" : "rgba(242,240,238,0.5)",
                 fontSize: "12px",
                 fontWeight: active ? 600 : 500,
               }}
@@ -1650,7 +1601,7 @@ export function PaginationPreview() {
             alignItems: "center",
             justifyContent: "center",
             width: "32px",
-            color: preview.mutedForeground,
+            color: "rgba(242,240,238,0.5)",
             fontSize: "12px",
           }}
         >
@@ -1665,7 +1616,7 @@ export function PaginationPreview() {
           width: "32px",
           height: "32px",
           borderRadius: "8px",
-          color: preview.mutedForeground,
+          color: "rgba(242,240,238,0.5)",
           fontSize: "16px",
         }}
       >
@@ -1684,7 +1635,7 @@ export function ResizablePreview() {
         width: "180px",
         height: "80px",
         borderRadius: "10px",
-        border: `1px solid ${preview.border}`,
+        border: "1px solid rgba(242,240,238,0.16)",
         overflow: "hidden",
       }}
     >
@@ -1692,14 +1643,14 @@ export function ResizablePreview() {
         style={{
           display: "flex",
           flex: 1,
-          backgroundColor: preview.muted,
+          backgroundColor: "rgba(242,240,238,0.08)",
         }}
       />
       <div
         style={{
           display: "flex",
           width: "2px",
-          backgroundColor: preview.muted,
+          backgroundColor: "rgba(242,240,238,0.24)",
         }}
       />
       <div
@@ -1728,7 +1679,7 @@ export function SkeletonPreview() {
           width: "44px",
           height: "44px",
           borderRadius: "9999px",
-          backgroundColor: preview.muted,
+          backgroundColor: "rgba(242,240,238,0.1)",
         }}
       />
       <div
@@ -1737,7 +1688,7 @@ export function SkeletonPreview() {
           width: "140px",
           height: "10px",
           borderRadius: "6px",
-          backgroundColor: preview.muted,
+          backgroundColor: "rgba(242,240,238,0.1)",
         }}
       />
       <div
@@ -1746,7 +1697,7 @@ export function SkeletonPreview() {
           width: "100px",
           height: "10px",
           borderRadius: "6px",
-          backgroundColor: preview.muted,
+          backgroundColor: "rgba(242,240,238,0.1)",
         }}
       />
     </div>
@@ -1765,7 +1716,7 @@ export function TablePreview() {
         flexDirection: "column",
         width: "220px",
         borderRadius: "10px",
-        border: `1px solid ${preview.border}`,
+        border: "1px solid rgba(242,240,238,0.16)",
         overflow: "hidden",
       }}
     >
@@ -1774,10 +1725,10 @@ export function TablePreview() {
           display: "flex",
           justifyContent: "space-between",
           padding: "8px 12px",
-          borderBottom: `1px solid ${preview.border}`,
-          backgroundColor: preview.muted,
+          borderBottom: "1px solid rgba(242,240,238,0.16)",
+          backgroundColor: "rgba(242,240,238,0.06)",
           fontSize: "12px",
-          color: preview.mutedForeground,
+          color: "rgba(242,240,238,0.5)",
         }}
       >
         <div style={{ display: "flex" }}>Field</div>
@@ -1791,13 +1742,15 @@ export function TablePreview() {
             justifyContent: "space-between",
             padding: "8px 12px",
             borderBottom:
-              i < rows.length - 1 ? `1px solid ${preview.border}` : undefined,
+              i < rows.length - 1
+                ? "1px solid rgba(242,240,238,0.1)"
+                : undefined,
             fontSize: "13px",
-            color: preview.foreground,
+            color: "#f2f0ee",
           }}
         >
           <div style={{ display: "flex" }}>{row.name}</div>
-          <div style={{ display: "flex", color: preview.mutedForeground }}>
+          <div style={{ display: "flex", color: "rgba(242,240,238,0.6)" }}>
             {row.value}
           </div>
         </div>
@@ -1813,8 +1766,8 @@ export function BadgePreview() {
         style={{
           display: "flex",
           borderRadius: "9999px",
-          backgroundColor: preview.primary,
-          color: preview.primaryForeground,
+          backgroundColor: "#f2f0ee",
+          color: "#191817",
           fontSize: "12px",
           fontWeight: 600,
           padding: "3px 10px",
@@ -1826,8 +1779,8 @@ export function BadgePreview() {
         style={{
           display: "flex",
           borderRadius: "9999px",
-          border: `1px solid ${preview.border}`,
-          color: preview.foreground,
+          border: "1px solid rgba(242,240,238,0.24)",
+          color: "#f2f0ee",
           fontSize: "12px",
           fontWeight: 600,
           padding: "3px 10px",
@@ -1848,8 +1801,8 @@ export function DropdownMenuPreview() {
         flexDirection: "column",
         width: "160px",
         borderRadius: "10px",
-        backgroundColor: preview.background,
-        border: `1px solid ${preview.border}`,
+        backgroundColor: "#1a1a1a",
+        border: "1px solid rgba(242,240,238,0.14)",
         padding: "6px",
         gap: "2px",
       }}
@@ -1862,8 +1815,8 @@ export function DropdownMenuPreview() {
             borderRadius: "6px",
             padding: "6px 8px",
             fontSize: "12px",
-            backgroundColor: i === 0 ? preview.muted : "transparent",
-            color: preview.foreground,
+            backgroundColor: i === 0 ? "rgba(242,240,238,0.12)" : "transparent",
+            color: "#f2f0ee",
           }}
         >
           {row}
@@ -1883,9 +1836,7 @@ export function FieldPreview() {
         width: "200px",
       }}
     >
-      <div
-        style={{ display: "flex", fontSize: "13px", color: preview.foreground }}
-      >
+      <div style={{ display: "flex", fontSize: "13px", color: "#f2f0ee" }}>
         Email
       </div>
       <div
@@ -1893,10 +1844,10 @@ export function FieldPreview() {
           display: "flex",
           padding: "9px 12px",
           borderRadius: "8px",
-          backgroundColor: preview.background,
-          border: `1px solid ${preview.border}`,
+          backgroundColor: "#191817",
+          border: "1px solid rgba(242,240,238,0.16)",
           fontSize: "13px",
-          color: preview.mutedForeground,
+          color: "rgba(242,240,238,0.5)",
         }}
       >
         you@example.com
@@ -1905,7 +1856,7 @@ export function FieldPreview() {
         style={{
           display: "flex",
           fontSize: "11px",
-          color: preview.mutedForeground,
+          color: "rgba(242,240,238,0.5)",
         }}
       >
         We&apos;ll never share your email.
@@ -1927,8 +1878,8 @@ export function KbdPreview() {
             minWidth: "22px",
             height: "22px",
             borderRadius: "5px",
-            backgroundColor: preview.muted,
-            color: preview.mutedForeground,
+            backgroundColor: "rgba(242,240,238,0.1)",
+            color: "rgba(242,240,238,0.7)",
             fontSize: "12px",
             padding: "0 5px",
           }}
@@ -1951,16 +1902,14 @@ export function LabelPreview() {
           width: "16px",
           height: "16px",
           borderRadius: "4px",
-          backgroundColor: preview.primary,
-          color: preview.primaryForeground,
+          backgroundColor: "#f2f0ee",
+          color: "#191817",
           fontSize: "11px",
         }}
       >
         ✓
       </div>
-      <div
-        style={{ display: "flex", fontSize: "14px", color: preview.foreground }}
-      >
+      <div style={{ display: "flex", fontSize: "14px", color: "#f2f0ee" }}>
         Accept terms and conditions
       </div>
     </div>
@@ -1976,21 +1925,19 @@ export function PopoverPreview() {
         gap: "4px",
         width: "200px",
         borderRadius: "12px",
-        border: `1px solid ${preview.border}`,
-        backgroundColor: preview.background,
+        border: "1px solid rgba(242,240,238,0.16)",
+        backgroundColor: "#191817",
         padding: "14px 16px",
       }}
     >
-      <div
-        style={{ display: "flex", fontSize: "13px", color: preview.foreground }}
-      >
+      <div style={{ display: "flex", fontSize: "13px", color: "#f2f0ee" }}>
         Dimensions
       </div>
       <div
         style={{
           display: "flex",
           fontSize: "11px",
-          color: preview.mutedForeground,
+          color: "rgba(242,240,238,0.5)",
         }}
       >
         Set the dimensions for the layer.
@@ -2008,7 +1955,7 @@ export function ScrollAreaPreview() {
         width: "140px",
         height: "110px",
         borderRadius: "10px",
-        border: `1px solid ${preview.border}`,
+        border: "1px solid rgba(242,240,238,0.16)",
         overflow: "hidden",
         position: "relative",
       }}
@@ -2024,11 +1971,7 @@ export function ScrollAreaPreview() {
         {rows.map((row) => (
           <div
             key={row}
-            style={{
-              display: "flex",
-              fontSize: "12px",
-              color: preview.foreground,
-            }}
+            style={{ display: "flex", fontSize: "12px", color: "#f2f0ee" }}
           >
             {row}
           </div>
@@ -2042,7 +1985,7 @@ export function ScrollAreaPreview() {
           bottom: "8px",
           width: "4px",
           borderRadius: "999px",
-          backgroundColor: preview.muted,
+          backgroundColor: "rgba(242,240,238,0.24)",
         }}
       />
     </div>
@@ -2059,8 +2002,8 @@ export function SpinnerPreview() {
         width: "36px",
         height: "36px",
         borderRadius: "9999px",
-        border: `2px solid ${preview.border}`,
-        borderTopColor: preview.primary,
+        border: "2px solid rgba(242,240,238,0.16)",
+        borderTopColor: "#f2f0ee",
       }}
     />
   )
@@ -2068,12 +2011,7 @@ export function SpinnerPreview() {
 
 function TomanGlyph({ size = 28 }: { size?: number }) {
   return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 14 14"
-      fill={preview.foreground}
-    >
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="#f2f0ee">
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -2093,7 +2031,7 @@ export function TomanIconPreview() {
         width: "56px",
         height: "56px",
         borderRadius: "14px",
-        backgroundColor: preview.muted,
+        backgroundColor: "rgba(242,240,238,0.08)",
       }}
     >
       <TomanGlyph size={28} />
@@ -2111,8 +2049,8 @@ export function PriceInputPreview() {
         width: "200px",
         padding: "10px 14px",
         borderRadius: "10px",
-        backgroundColor: preview.background,
-        border: `1px solid ${preview.border}`,
+        backgroundColor: "#191817",
+        border: "1px solid rgba(242,240,238,0.16)",
       }}
     >
       <div
@@ -2120,7 +2058,7 @@ export function PriceInputPreview() {
           display: "flex",
           fontSize: "16px",
           fontWeight: 600,
-          color: preview.foreground,
+          color: "#f2f0ee",
         }}
       >
         125,000
@@ -2139,7 +2077,7 @@ function CheckCircleGlyph({ size = 16 }: { size?: number }) {
       height={size}
       viewBox="0 0 24 24"
       fill="none"
-      stroke={preview.success}
+      stroke="#34d399"
       strokeWidth={2.5}
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -2160,8 +2098,8 @@ export function ToastPreview() {
         width: "230px",
         padding: "12px 14px",
         borderRadius: "16px",
-        backgroundColor: preview.background,
-        border: `1px solid ${preview.border}`,
+        backgroundColor: "#191817",
+        border: "1px solid rgba(242,240,238,0.16)",
       }}
     >
       <div
@@ -2180,7 +2118,7 @@ export function ToastPreview() {
             display: "flex",
             fontSize: "13px",
             fontWeight: 600,
-            color: preview.foreground,
+            color: "#f2f0ee",
           }}
         >
           Event created
@@ -2189,7 +2127,7 @@ export function ToastPreview() {
           style={{
             display: "flex",
             fontSize: "11px",
-            color: preview.mutedForeground,
+            color: "rgba(242,240,238,0.5)",
           }}
         >
           Sunday, December 3 at 9:00 AM
@@ -2209,8 +2147,8 @@ export function CopyButtonPreview() {
         width: "40px",
         height: "40px",
         borderRadius: "10px",
-        backgroundColor: preview.background,
-        border: `1px solid ${preview.border}`,
+        backgroundColor: "#191817",
+        border: "1px solid rgba(242,240,238,0.16)",
       }}
     >
       <svg
@@ -2218,7 +2156,7 @@ export function CopyButtonPreview() {
         height={16}
         viewBox="0 0 24 24"
         fill="none"
-        stroke={preview.foreground}
+        stroke="#f2f0ee"
         strokeWidth={2}
         strokeLinecap="round"
         strokeLinejoin="round"
