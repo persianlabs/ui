@@ -1,4 +1,4 @@
-import { MarkerPreview } from "@/lib/component-previews"
+import { MarkerPreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Marker — PersianLabs UI"

@@ -1,4 +1,4 @@
-import { ElasticRangeSliderPreview } from "@/lib/component-previews"
+import { ElasticRangeSliderPreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Elastic Range Slider — PersianLabs UI"

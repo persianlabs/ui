@@ -1,4 +1,4 @@
-import { ButtonPreview } from "@/lib/component-previews"
+import { ButtonPreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Button — PersianLabs UI"

@@ -1,4 +1,4 @@
-import { SwitchPreview } from "@/lib/component-previews"
+import { SwitchPreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Switch — PersianLabs UI"

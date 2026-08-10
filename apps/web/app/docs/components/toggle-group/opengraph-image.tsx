@@ -1,4 +1,4 @@
-import { ToggleGroupPreview } from "@/lib/component-previews"
+import { ToggleGroupPreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Toggle Group — PersianLabs UI"

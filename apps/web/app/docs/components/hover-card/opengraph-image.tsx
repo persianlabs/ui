@@ -1,4 +1,4 @@
-import { HoverCardPreview } from "@/lib/component-previews"
+import { HoverCardPreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Hover Card — PersianLabs UI"

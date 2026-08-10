@@ -1,4 +1,4 @@
-import { TablePreview } from "@/lib/component-previews"
+import { TablePreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Table — PersianLabs UI"

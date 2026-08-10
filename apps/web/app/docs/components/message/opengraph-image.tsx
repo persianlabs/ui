@@ -1,4 +1,4 @@
-import { MessagePreview } from "@/lib/component-previews"
+import { MessagePreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Message — PersianLabs UI"

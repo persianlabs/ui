@@ -1,4 +1,4 @@
-import { DrawerPreview } from "@/lib/component-previews"
+import { DrawerPreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Drawer — PersianLabs UI"

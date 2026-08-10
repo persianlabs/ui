@@ -1,4 +1,4 @@
-import { BreadcrumbPreview } from "@/lib/component-previews"
+import { BreadcrumbPreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Breadcrumb — PersianLabs UI"

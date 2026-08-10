@@ -1,4 +1,4 @@
-import { ScrollAreaPreview } from "@/lib/component-previews"
+import { ScrollAreaPreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Scroll Area — PersianLabs UI"

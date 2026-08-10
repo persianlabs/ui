@@ -1,4 +1,4 @@
-import { AspectRatioPreview } from "@/lib/component-previews"
+import { AspectRatioPreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Aspect Ratio — PersianLabs UI"

@@ -1,4 +1,4 @@
-import { PriceInputPreview } from "@/lib/component-previews"
+import { PriceInputPreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Price Input — PersianLabs UI"

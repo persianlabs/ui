@@ -1,4 +1,4 @@
-import { CardPreview } from "@/lib/component-previews"
+import { CardPreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Card — PersianLabs UI"

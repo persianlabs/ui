@@ -1,4 +1,4 @@
-import { RadioGroupPreview } from "@/lib/component-previews"
+import { RadioGroupPreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Radio Group — PersianLabs UI"

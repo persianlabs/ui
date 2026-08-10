@@ -1,4 +1,4 @@
-import { LabelPreview } from "@/lib/component-previews"
+import { LabelPreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Label — PersianLabs UI"

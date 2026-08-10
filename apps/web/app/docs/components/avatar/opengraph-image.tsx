@@ -1,4 +1,4 @@
-import { AvatarPreview } from "@/lib/component-previews"
+import { AvatarPreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Avatar — PersianLabs UI"

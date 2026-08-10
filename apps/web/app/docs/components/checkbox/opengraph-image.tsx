@@ -1,4 +1,4 @@
-import { CheckboxPreview } from "@/lib/component-previews"
+import { CheckboxPreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Checkbox — PersianLabs UI"

@@ -1,4 +1,4 @@
-import { CopyButtonPreview } from "@/lib/component-previews"
+import { CopyButtonPreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Copy Button — PersianLabs UI"

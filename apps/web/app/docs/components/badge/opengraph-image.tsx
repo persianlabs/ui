@@ -1,4 +1,4 @@
-import { BadgePreview } from "@/lib/component-previews"
+import { BadgePreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Badge — PersianLabs UI"

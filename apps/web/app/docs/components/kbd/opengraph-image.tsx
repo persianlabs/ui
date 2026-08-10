@@ -1,4 +1,4 @@
-import { KbdPreview } from "@/lib/component-previews"
+import { KbdPreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Kbd — PersianLabs UI"

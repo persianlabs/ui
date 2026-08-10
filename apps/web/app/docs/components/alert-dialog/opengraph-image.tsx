@@ -1,4 +1,4 @@
-import { AlertDialogPreview } from "@/lib/component-previews"
+import { AlertDialogPreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Alert Dialog — PersianLabs UI"

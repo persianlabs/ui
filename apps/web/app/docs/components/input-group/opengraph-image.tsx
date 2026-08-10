@@ -1,4 +1,4 @@
-import { InputGroupPreview } from "@/lib/component-previews"
+import { InputGroupPreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Input Group — PersianLabs UI"
