@@ -3,7 +3,10 @@
   "name": "item",
   "title": "Item",
   "description": "A flexible layout for a piece of content, media, or action, often used in lists.",
-  "dependencies": ["@base-ui/react", "class-variance-authority"],
+  "dependencies": [
+    "@base-ui/react",
+    "class-variance-authority"
+  ],
   "registryDependencies": [
     "utils",
     "https://ui.persian-labs.ir/r/separator.json"

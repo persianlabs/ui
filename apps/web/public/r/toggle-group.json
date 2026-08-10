@@ -3,8 +3,14 @@
   "name": "toggle-group",
   "title": "Toggle Group",
   "description": "A set of two-state buttons that can be toggled on or off, built on Base UI.",
-  "dependencies": ["@base-ui/react", "class-variance-authority"],
-  "registryDependencies": ["utils", "https://ui.persian-labs.ir/r/toggle.json"],
+  "dependencies": [
+    "@base-ui/react",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "utils",
+    "https://ui.persian-labs.ir/r/toggle.json"
+  ],
   "files": [
     {
       "path": "registry/base/ui/toggle-group.tsx",

@@ -3,8 +3,12 @@
   "name": "direction",
   "title": "Direction",
   "description": "A provider for setting the reading direction (LTR or RTL) of your app, built on Base UI.",
-  "dependencies": ["@base-ui/react"],
-  "registryDependencies": ["utils"],
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
   "files": [
     {
       "path": "registry/base/ui/direction.tsx",

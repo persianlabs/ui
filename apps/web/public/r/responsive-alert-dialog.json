@@ -3,7 +3,10 @@
   "name": "responsive-alert-dialog",
   "title": "Responsive Alert Dialog",
   "description": "Renders an Alert Dialog on desktop and a bottom Drawer on mobile from one shared set of components.",
-  "dependencies": ["@base-ui/react", "lucide-react"],
+  "dependencies": [
+    "@base-ui/react",
+    "lucide-react"
+  ],
   "registryDependencies": [
     "utils",
     "https://ui.persian-labs.ir/r/alert-dialog.json",

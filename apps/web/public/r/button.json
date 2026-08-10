@@ -3,7 +3,10 @@
   "name": "button",
   "title": "Button",
   "description": "A button built on Base UI with variant and size support.",
-  "dependencies": ["@base-ui/react", "class-variance-authority"],
+  "dependencies": [
+    "@base-ui/react",
+    "class-variance-authority"
+  ],
   "registryDependencies": [
     "utils",
     "https://ui.persian-labs.ir/r/spinner.json"

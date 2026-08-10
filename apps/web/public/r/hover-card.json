@@ -3,8 +3,12 @@
   "name": "hover-card",
   "title": "Hover Card",
   "description": "For sighted users to preview content available behind a link, built on Base UI.",
-  "dependencies": ["@base-ui/react"],
-  "registryDependencies": ["utils"],
+  "dependencies": [
+    "@base-ui/react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
   "files": [
     {
       "path": "registry/base/ui/hover-card.tsx",

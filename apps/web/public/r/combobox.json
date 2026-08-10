@@ -3,7 +3,9 @@
   "name": "combobox",
   "title": "Combobox",
   "description": "A searchable, accessible combobox built on Base UI.",
-  "dependencies": ["@base-ui/react"],
+  "dependencies": [
+    "@base-ui/react"
+  ],
   "registryDependencies": [
     "utils",
     "https://ui.persian-labs.ir/r/scroll-area.json"

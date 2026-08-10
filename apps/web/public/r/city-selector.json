@@ -3,7 +3,9 @@
   "name": "city-selector",
   "title": "City Selector",
   "description": "A province and city picker for Iran, built on Combobox and bundled with a full dataset of all 31 provinces and 1,119 cities.",
-  "dependencies": ["@base-ui/react"],
+  "dependencies": [
+    "@base-ui/react"
+  ],
   "registryDependencies": [
     "utils",
     "https://ui.persian-labs.ir/r/combobox.json"

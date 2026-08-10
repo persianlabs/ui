@@ -3,8 +3,12 @@
   "name": "elastic-range-slider",
   "title": "Elastic Range Slider",
   "description": "A single-track, dual-thumb range slider in the same visual language as Elastic Slider.",
-  "dependencies": ["motion"],
-  "registryDependencies": ["utils"],
+  "dependencies": [
+    "motion"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
   "files": [
     {
       "path": "registry/base/ui/elastic-range-slider.tsx",

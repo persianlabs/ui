@@ -3,8 +3,13 @@
   "name": "pagination",
   "title": "Pagination",
   "description": "Navigation for paginated content, built on Button.",
-  "dependencies": ["lucide-react"],
-  "registryDependencies": ["utils", "https://ui.persian-labs.ir/r/button.json"],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "https://ui.persian-labs.ir/r/button.json"
+  ],
   "files": [
     {
       "path": "registry/base/ui/pagination.tsx",

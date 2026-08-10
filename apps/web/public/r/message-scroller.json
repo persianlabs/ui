@@ -3,8 +3,14 @@
   "name": "message-scroller",
   "title": "Message Scroller",
   "description": "An auto-scrolling viewport for chat messages, with scroll-to-start/end buttons, built on @shadcn/react.",
-  "dependencies": ["@shadcn/react", "lucide-react"],
-  "registryDependencies": ["utils", "https://ui.persian-labs.ir/r/button.json"],
+  "dependencies": [
+    "@shadcn/react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils",
+    "https://ui.persian-labs.ir/r/button.json"
+  ],
   "files": [
     {
       "path": "registry/base/ui/message-scroller.tsx",

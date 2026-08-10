@@ -3,7 +3,10 @@
   "name": "copy-button",
   "title": "Copy Button",
   "description": "An icon button that copies text to the clipboard, morphs its icon to reflect the result, and anchors a confirmation toast to itself.",
-  "dependencies": ["lucide", "morphicons"],
+  "dependencies": [
+    "lucide",
+    "morphicons"
+  ],
   "registryDependencies": [
     "utils",
     "https://ui.persian-labs.ir/r/button.json",

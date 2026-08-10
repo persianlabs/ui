@@ -3,8 +3,13 @@
   "name": "select",
   "title": "Select",
   "description": "A searchable-free listbox for choosing a single value, built on Base UI.",
-  "dependencies": ["@base-ui/react", "lucide-react"],
-  "registryDependencies": ["utils"],
+  "dependencies": [
+    "@base-ui/react",
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
   "files": [
     {
       "path": "registry/base/ui/select.tsx",

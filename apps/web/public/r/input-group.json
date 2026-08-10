@@ -3,7 +3,10 @@
   "name": "input-group",
   "title": "Input Group",
   "description": "Groups an input with addons, buttons, or text for complex input layouts.",
-  "dependencies": ["@base-ui/react", "class-variance-authority"],
+  "dependencies": [
+    "@base-ui/react",
+    "class-variance-authority"
+  ],
   "registryDependencies": [
     "utils",
     "https://ui.persian-labs.ir/r/button.json",

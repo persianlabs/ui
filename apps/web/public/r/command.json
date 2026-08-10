@@ -3,7 +3,9 @@
   "name": "command",
   "title": "Command",
   "description": "A command palette component built with Dialog and Autocomplete for searching and executing commands.",
-  "dependencies": ["@base-ui/react"],
+  "dependencies": [
+    "@base-ui/react"
+  ],
   "registryDependencies": [
     "utils",
     "https://ui.persian-labs.ir/r/scroll-area.json"

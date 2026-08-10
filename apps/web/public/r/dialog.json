@@ -3,7 +3,10 @@
   "name": "dialog",
   "title": "Dialog",
   "description": "A modal window layered over the page for focused tasks or confirmations, built on Base UI.",
-  "dependencies": ["@base-ui/react", "lucide-react"],
+  "dependencies": [
+    "@base-ui/react",
+    "lucide-react"
+  ],
   "registryDependencies": [
     "utils",
     "https://ui.persian-labs.ir/r/button.json",

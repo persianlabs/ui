@@ -3,8 +3,12 @@
   "name": "native-select",
   "title": "Native Select",
   "description": "A styled native <select> element for choosing a single value.",
-  "dependencies": ["lucide-react"],
-  "registryDependencies": ["utils"],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
   "files": [
     {
       "path": "registry/base/ui/native-select.tsx",

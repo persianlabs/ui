@@ -3,7 +3,9 @@
   "name": "label",
   "title": "Label",
   "description": "An accessible, styled label element.",
-  "registryDependencies": ["utils"],
+  "registryDependencies": [
+    "utils"
+  ],
   "files": [
     {
       "path": "registry/base/ui/label.tsx",

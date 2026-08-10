@@ -3,7 +3,9 @@
   "name": "skeleton",
   "title": "Skeleton",
   "description": "Used to show a placeholder while content is loading.",
-  "registryDependencies": ["utils"],
+  "registryDependencies": [
+    "utils"
+  ],
   "files": [
     {
       "path": "registry/base/ui/skeleton.tsx",
