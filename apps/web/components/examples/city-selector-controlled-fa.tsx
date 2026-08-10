@@ -16,7 +16,7 @@ export function CitySelectorControlledFaExample() {
   return (
     <div className="flex flex-col gap-3">
       <CitySelector locale="fa" value={value} onValueChange={setValue} />
-      <p className="text-muted-foreground text-sm">
+      <p className="text-sm text-muted-foreground">
         {value.city
           ? `${value.province?.name} — ${value.city.name}`
           : "شهری انتخاب نشده است."}

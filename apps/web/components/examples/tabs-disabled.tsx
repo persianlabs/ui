@@ -1,4 +1,9 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@workspace/ui/components/tabs"
 
 export function TabsDisabledExample() {
   return (
@@ -12,13 +17,13 @@ export function TabsDisabledExample() {
       </TabsList>
       <TabsContent
         value="draft"
-        className="text-muted-foreground mt-4 text-sm leading-relaxed"
+        className="mt-4 text-sm leading-relaxed text-muted-foreground"
       >
         Only visible to you until it&apos;s sent for review.
       </TabsContent>
       <TabsContent
         value="review"
-        className="text-muted-foreground mt-4 text-sm leading-relaxed"
+        className="mt-4 text-sm leading-relaxed text-muted-foreground"
       >
         Waiting on a teammate to approve this change.
       </TabsContent>

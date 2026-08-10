@@ -213,10 +213,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             RTL
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
-            The tooltip measures the direction it actually renders in and
-            passes it to the portaled popup, so it opens on the correct side
-            even though the popup itself lives outside the RTL container in
-            the DOM.
+            The tooltip measures the direction it actually renders in and passes
+            it to the portaled popup, so it opens on the correct side even
+            though the popup itself lives outside the RTL container in the DOM.
           </p>
           <div className="mt-3">
             <ComponentPreview

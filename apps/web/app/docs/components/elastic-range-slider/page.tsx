@@ -216,8 +216,8 @@ export default function ElasticRangeSliderDocPage() {
             Toman price range
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
-            A Persian-market pattern: Toman pricing with Persian digits, and
-            the selected range spelled out below the track as{" "}
+            A Persian-market pattern: Toman pricing with Persian digits, and the
+            selected range spelled out below the track as{" "}
             <span dir="rtl">از … تومان</span> /{" "}
             <span dir="rtl">تا … تومان</span>.
           </p>

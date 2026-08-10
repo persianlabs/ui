@@ -289,8 +289,7 @@ export default function DrawerDocPage() {
             <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
               straight
             </code>{" "}
-            has no rounding and skips the nested-drawer scale-down effect,
-            and{" "}
+            has no rounding and skips the nested-drawer scale-down effect, and{" "}
             <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
               inset
             </code>{" "}
@@ -355,9 +354,9 @@ export default function DrawerDocPage() {
             <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
               snapPoints
             </code>{" "}
-            to have the drawer settle at preset heights instead of following
-            the drag freely. Numbers between 0 and 1 are fractions of the
-            viewport height. Snap points only apply to{" "}
+            to have the drawer settle at preset heights instead of following the
+            drag freely. Numbers between 0 and 1 are fractions of the viewport
+            height. Snap points only apply to{" "}
             <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
               position=&quot;bottom&quot;
             </code>{" "}
@@ -377,10 +376,7 @@ export default function DrawerDocPage() {
         </div>
 
         <div className="mt-8">
-          <h3
-            id="nested"
-            className="text-sm font-medium text-muted-foreground"
-          >
+          <h3 id="nested" className="text-sm font-medium text-muted-foreground">
             Nested drawers
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">

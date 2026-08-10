@@ -346,10 +346,7 @@ export default function CommandDocPage() {
           title="CommandDialogTrigger"
           rows={commandDialogTriggerApi}
         />
-        <ApiReference
-          title="CommandDialogPopup"
-          rows={commandDialogPopupApi}
-        />
+        <ApiReference title="CommandDialogPopup" rows={commandDialogPopupApi} />
         <ApiReference title="CommandInput" rows={commandInputApi} />
         <ApiReference title="CommandItem" rows={commandItemApi} />
         <ApiReference title="CommandGroup" rows={commandGroupApi} />

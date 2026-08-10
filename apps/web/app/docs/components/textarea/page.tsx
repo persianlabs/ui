@@ -168,10 +168,7 @@ export default function TextareaDocPage() {
         </h2>
 
         <div className="mt-8">
-          <h3
-            id="field"
-            className="text-sm font-medium text-muted-foreground"
-          >
+          <h3 id="field" className="text-sm font-medium text-muted-foreground">
             Field
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
@@ -273,10 +270,7 @@ export default function TextareaDocPage() {
         </div>
 
         <div className="mt-8">
-          <h3
-            id="button"
-            className="text-sm font-medium text-muted-foreground"
-          >
+          <h3 id="button" className="text-sm font-medium text-muted-foreground">
             Button
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
@@ -308,10 +302,7 @@ export default function TextareaDocPage() {
               dir="rtl"
               preview={<TextareaRtlExample />}
               code={
-                <CodeBlock
-                  code={getExampleSource("textarea-rtl")}
-                  lang="tsx"
-                />
+                <CodeBlock code={getExampleSource("textarea-rtl")} lang="tsx" />
               }
             />
           </div>

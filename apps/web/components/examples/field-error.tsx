@@ -1,9 +1,5 @@
 import { Input } from "@workspace/ui/components/input"
-import {
-  Field,
-  FieldError,
-  FieldLabel,
-} from "@workspace/ui/components/field"
+import { Field, FieldError, FieldLabel } from "@workspace/ui/components/field"
 
 export function FieldErrorExample() {
   return (

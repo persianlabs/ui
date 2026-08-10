@@ -10,7 +10,8 @@ export const useControllableStateApi: ApiReferenceRow[] = [
   {
     prop: "defaultProp",
     type: "T",
-    description: "The initial value when uncontrolled (i.e. prop is undefined).",
+    description:
+      "The initial value when uncontrolled (i.e. prop is undefined).",
   },
   {
     prop: "onChange",

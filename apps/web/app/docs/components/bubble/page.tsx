@@ -266,10 +266,7 @@ export default function BubbleDocPage() {
             <ComponentPreview
               preview={<BubbleGroupExample />}
               code={
-                <CodeBlock
-                  code={getExampleSource("bubble-group")}
-                  lang="tsx"
-                />
+                <CodeBlock code={getExampleSource("bubble-group")} lang="tsx" />
               }
             />
           </div>
@@ -405,8 +402,7 @@ export default function BubbleDocPage() {
             >
               Popover
             </a>{" "}
-            to surface more information on demand, such as a full error
-            message.
+            to surface more information on demand, such as a full error message.
           </p>
           <div className="mt-3">
             <ComponentPreview

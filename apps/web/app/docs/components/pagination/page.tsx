@@ -202,8 +202,8 @@ export default function PaginationDocPage() {
               rtl:-scale-x-100
             </code>{" "}
             rather than swapping which icon renders on which side, so
-            &quot;Previous&quot; now correctly points toward the visual
-            right and &quot;Next&quot; toward the visual left.
+            &quot;Previous&quot; now correctly points toward the visual right
+            and &quot;Next&quot; toward the visual left.
           </p>
           <div className="mt-3">
             <ComponentPreview

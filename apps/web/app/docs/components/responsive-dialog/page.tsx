@@ -285,8 +285,8 @@ export default function ResponsiveDialogDocPage() {
             <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
               ResponsiveDialogFooter
             </code>{" "}
-            is optional here too — for a purely informational modal, skip it
-            on both the Dialog and Drawer side.
+            is optional here too — for a purely informational modal, skip it on
+            both the Dialog and Drawer side.
           </p>
           <div className="mt-3">
             <ComponentPreview
@@ -326,8 +326,14 @@ export default function ResponsiveDialogDocPage() {
           API Reference
         </h2>
         <ApiReference title="ResponsiveDialog" rows={responsiveDialogRootApi} />
-        <BaseUiReference href="https://base-ui.com/react/components/dialog" label="Dialog API" />
-        <BaseUiReference href="https://base-ui.com/react/components/drawer" label="Drawer API" />
+        <BaseUiReference
+          href="https://base-ui.com/react/components/dialog"
+          label="Dialog API"
+        />
+        <BaseUiReference
+          href="https://base-ui.com/react/components/drawer"
+          label="Drawer API"
+        />
 
         <DocsPageFooter
           href="/docs/components/responsive-dialog"

@@ -81,7 +81,10 @@ export function CommandBasicExample() {
     <CommandDialog open={open} onOpenChange={setOpen}>
       <CommandDialogTrigger
         render={
-          <Button variant="outline" className="justify-between text-muted-foreground">
+          <Button
+            variant="outline"
+            className="justify-between text-muted-foreground"
+          >
             Search commands...
             <Kbd>⌘K</Kbd>
           </Button>

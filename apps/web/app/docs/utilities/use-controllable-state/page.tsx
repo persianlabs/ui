@@ -21,7 +21,8 @@ import { getHookSource } from "@/lib/component-source"
 import { getLastEditedDate } from "@/lib/last-edited"
 import { CODE_FENCE, apiRowsToMarkdownTable } from "@/lib/markdown"
 
-const SOURCE_PATH = "apps/web/app/docs/utilities/use-controllable-state/page.tsx"
+const SOURCE_PATH =
+  "apps/web/app/docs/utilities/use-controllable-state/page.tsx"
 
 import { useControllableStateApi } from "./api-data"
 
@@ -130,10 +131,9 @@ export default function UseControllableStateDocPage() {
           Overview
         </h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
-          The first counter manages its own state internally
-          (uncontrolled). The second is driven entirely by the parent
-          (controlled) — the same <code>Counter</code> implementation
-          handles both.
+          The first counter manages its own state internally (uncontrolled). The
+          second is driven entirely by the parent (controlled) — the same{" "}
+          <code>Counter</code> implementation handles both.
         </p>
         <div className="mt-4">
           <ComponentPreview

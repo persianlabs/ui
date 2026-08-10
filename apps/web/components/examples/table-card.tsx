@@ -17,10 +17,30 @@ const statusDotClass: Record<string, string> = {
 }
 
 const projects = [
-  { project: "Website Redesign", status: "Paid", team: "Frontend Team", budget: "$12,500" },
-  { project: "Mobile App", status: "Unpaid", team: "Mobile Team", budget: "$8,750" },
-  { project: "API Integration", status: "Pending", team: "Backend Team", budget: "$5,200" },
-  { project: "Database Migration", status: "Paid", team: "DevOps Team", budget: "$3,800" },
+  {
+    project: "Website Redesign",
+    status: "Paid",
+    team: "Frontend Team",
+    budget: "$12,500",
+  },
+  {
+    project: "Mobile App",
+    status: "Unpaid",
+    team: "Mobile Team",
+    budget: "$8,750",
+  },
+  {
+    project: "API Integration",
+    status: "Pending",
+    team: "Backend Team",
+    budget: "$5,200",
+  },
+  {
+    project: "Database Migration",
+    status: "Paid",
+    team: "DevOps Team",
+    budget: "$3,800",
+  },
 ]
 
 export function TableCardExample() {

@@ -117,10 +117,7 @@ export default function DirectionDocPage() {
           <ComponentPreview
             preview={<DirectionDemoExample />}
             code={
-              <CodeBlock
-                code={getExampleSource("direction-demo")}
-                lang="tsx"
-              />
+              <CodeBlock code={getExampleSource("direction-demo")} lang="tsx" />
             }
           />
         </div>

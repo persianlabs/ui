@@ -1,6 +1,11 @@
 import { SearchIcon } from "lucide-react"
 
-import { Field, FieldDescription, FieldGroup, FieldLabel } from "@workspace/ui/components/field"
+import {
+  Field,
+  FieldDescription,
+  FieldGroup,
+  FieldLabel,
+} from "@workspace/ui/components/field"
 import {
   InputGroup,
   InputGroupAddon,
@@ -32,7 +37,10 @@ export function InputGroupRtlExample() {
         <Field>
           <FieldLabel htmlFor="rtl-textarea">متن</FieldLabel>
           <InputGroup>
-            <InputGroupTextarea id="rtl-textarea" placeholder="نظر خود را بنویسید..." />
+            <InputGroupTextarea
+              id="rtl-textarea"
+              placeholder="نظر خود را بنویسید..."
+            />
             <InputGroupAddon align="block-end">
               <InputGroupText>۰/۲۸۰</InputGroupText>
               <InputGroupButton variant="default" size="sm" className="ms-auto">

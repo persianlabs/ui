@@ -95,8 +95,8 @@ export default function TomanIconDocPage() {
           <CopyMarkdownButton markdown={tomanIconMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          The Toman currency symbol (تومان), as a standalone icon component
-          you can size and color like any lucide icon.
+          The Toman currency symbol (تومان), as a standalone icon component you
+          can size and color like any lucide icon.
         </p>
         <LastUpdated date={lastEdited} />
         <Credits
@@ -185,10 +185,7 @@ export default function TomanIconDocPage() {
         </div>
 
         <div className="mt-8">
-          <h3
-            id="inline"
-            className="text-sm font-medium text-muted-foreground"
-          >
+          <h3 id="inline" className="text-sm font-medium text-muted-foreground">
             Inline with an Amount
           </h3>
           <div className="mt-3">
@@ -226,9 +223,9 @@ export default function TomanIconDocPage() {
             RTL
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
-            The icon has no directional geometry, so it just needs to sit on
-            the correct side of the amount — before it in RTL, after it in
-            LTR. The amount itself stays{" "}
+            The icon has no directional geometry, so it just needs to sit on the
+            correct side of the amount — before it in RTL, after it in LTR. The
+            amount itself stays{" "}
             <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
               dir=&quot;ltr&quot;
             </code>{" "}

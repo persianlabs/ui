@@ -15,8 +15,7 @@ export function BubbleVariantsExample() {
       </Bubble>
       <Bubble variant="muted">
         <BubbleContent>
-          This one is muted. It uses a lower emphasis color for the chat
-          bubble.
+          This one is muted. It uses a lower emphasis color for the chat bubble.
         </BubbleContent>
         <BubbleReactions role="img" aria-label="Reaction: thumbs up">
           <span>👍</span>
@@ -39,9 +38,9 @@ export function BubbleVariantsExample() {
       </Bubble>
       <Bubble variant="ghost">
         <BubbleContent>
-          Ghost bubbles work for assistant text and other content that
-          should not be framed. They are full width and can take the full
-          width of the container.
+          Ghost bubbles work for assistant text and other content that should
+          not be framed. They are full width and can take the full width of the
+          container.
         </BubbleContent>
       </Bubble>
     </div>

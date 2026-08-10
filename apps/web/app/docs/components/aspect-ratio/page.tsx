@@ -174,10 +174,7 @@ export default function AspectRatioDocPage() {
         </h2>
 
         <div className="mt-8">
-          <h3
-            id="square"
-            className="text-sm font-medium text-muted-foreground"
-          >
+          <h3 id="square" className="text-sm font-medium text-muted-foreground">
             Square
           </h3>
           <div className="mt-3">

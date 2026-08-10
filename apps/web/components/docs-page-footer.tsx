@@ -17,12 +17,12 @@ export function DocsPageFooter({
   const { prev, next } = getAdjacentDocsPages(href)
 
   return (
-    <div className="border-border/60 mt-16 flex flex-col gap-6 border-t pt-8">
+    <div className="mt-16 flex flex-col gap-6 border-t border-border/60 pt-8">
       <a
         href={`https://github.com/${GITHUB_REPO}/blob/main/${sourcePath}`}
         target="_blank"
         rel="noreferrer"
-        className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1.5 text-sm transition-colors"
+        className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
       >
         <PencilIcon className="size-3.5" />
         Edit this page on GitHub
@@ -33,13 +33,13 @@ export function DocsPageFooter({
           {prev ? (
             <Link
               href={prev.href as Route}
-              className="border-border hover:bg-muted flex flex-1 flex-col items-start gap-1 rounded-lg border px-4 py-3 transition-colors"
+              className="flex flex-1 flex-col items-start gap-1 rounded-lg border border-border px-4 py-3 transition-colors hover:bg-muted"
             >
-              <span className="text-muted-foreground inline-flex items-center gap-1 text-xs">
+              <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
                 <ArrowLeftIcon className="size-3" />
                 Previous
               </span>
-              <span className="text-foreground text-sm font-medium">
+              <span className="text-sm font-medium text-foreground">
                 {prev.title}
               </span>
             </Link>
@@ -49,13 +49,13 @@ export function DocsPageFooter({
           {next ? (
             <Link
               href={next.href as Route}
-              className="border-border hover:bg-muted flex flex-1 flex-col items-end gap-1 rounded-lg border px-4 py-3 text-end transition-colors"
+              className="flex flex-1 flex-col items-end gap-1 rounded-lg border border-border px-4 py-3 text-end transition-colors hover:bg-muted"
             >
-              <span className="text-muted-foreground inline-flex items-center gap-1 text-xs">
+              <span className="inline-flex items-center gap-1 text-xs text-muted-foreground">
                 Next
                 <ArrowRightIcon className="size-3" />
               </span>
-              <span className="text-foreground text-sm font-medium">
+              <span className="text-sm font-medium text-foreground">
                 {next.title}
               </span>
             </Link>

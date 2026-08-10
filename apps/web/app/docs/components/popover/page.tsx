@@ -105,8 +105,8 @@ export default function PopoverDocPage() {
           <CopyMarkdownButton markdown={popoverMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          Displays rich content in a portal, anchored to a trigger. Built
-          on Base UI&apos;s popover primitive.
+          Displays rich content in a portal, anchored to a trigger. Built on
+          Base UI&apos;s popover primitive.
         </p>
         <LastUpdated date={lastEdited} />
         <Credits
@@ -186,10 +186,7 @@ export default function PopoverDocPage() {
             <ComponentPreview
               preview={<PopoverFormExample />}
               code={
-                <CodeBlock
-                  code={getExampleSource("popover-form")}
-                  lang="tsx"
-                />
+                <CodeBlock code={getExampleSource("popover-form")} lang="tsx" />
               }
             />
           </div>

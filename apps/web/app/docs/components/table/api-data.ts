@@ -6,6 +6,6 @@ export const tableApi: ApiReferenceRow[] = [
     type: '"default" | "card"',
     default: '"default"',
     description:
-      "\"card\" separates each row into its own bordered, elevated surface instead of a shared grid.",
+      '"card" separates each row into its own bordered, elevated surface instead of a shared grid.',
   },
 ]

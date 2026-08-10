@@ -203,10 +203,7 @@ export default function AlertDocPage() {
         </div>
 
         <div className="mt-8">
-          <h3
-            id="action"
-            className="text-sm font-medium text-muted-foreground"
-          >
+          <h3 id="action" className="text-sm font-medium text-muted-foreground">
             Action
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
@@ -220,10 +217,7 @@ export default function AlertDocPage() {
             <ComponentPreview
               preview={<AlertActionExample />}
               code={
-                <CodeBlock
-                  code={getExampleSource("alert-action")}
-                  lang="tsx"
-                />
+                <CodeBlock code={getExampleSource("alert-action")} lang="tsx" />
               }
             />
           </div>

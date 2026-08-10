@@ -50,10 +50,7 @@ export function InputGroupDropdownExample() {
           <DropdownMenu>
             <DropdownMenuTrigger
               render={
-                <InputGroupButton
-                  variant="ghost"
-                  className="pe-1.5! text-xs"
-                />
+                <InputGroupButton variant="ghost" className="pe-1.5! text-xs" />
               }
             >
               Search In... <ChevronDownIcon className="size-3" />

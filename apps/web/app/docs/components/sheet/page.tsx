@@ -200,9 +200,7 @@ export default function SheetDocPage() {
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
             Pass{" "}
-            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-              side
-            </code>{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 text-sm">side</code>{" "}
             to control which edge the sheet slides in from.
           </p>
           <div className="mt-3">

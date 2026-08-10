@@ -165,10 +165,7 @@ export default function SpinnerDocPage() {
         </h2>
 
         <div className="mt-8">
-          <h3
-            id="button"
-            className="text-sm font-medium text-muted-foreground"
-          >
+          <h3 id="button" className="text-sm font-medium text-muted-foreground">
             In a Button
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">

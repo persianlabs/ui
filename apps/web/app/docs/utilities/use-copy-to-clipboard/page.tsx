@@ -108,8 +108,8 @@ export default function UseCopyToClipboardDocPage() {
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
           Wraps the Clipboard API with a built-in timeout to reset the copied
-          state — useful for copy buttons that show brief confirmation
-          feedback. Powers{" "}
+          state — useful for copy buttons that show brief confirmation feedback.
+          Powers{" "}
           <a
             href="/docs/components/copy-button"
             className="text-foreground underline underline-offset-4"
@@ -278,10 +278,7 @@ export default function UseCopyToClipboardDocPage() {
           title="useCopyToClipboard(options)"
           rows={useCopyToClipboardOptionsApi}
         />
-        <ApiReference
-          title="Return value"
-          rows={useCopyToClipboardReturnApi}
-        />
+        <ApiReference title="Return value" rows={useCopyToClipboardReturnApi} />
 
         <DocsPageFooter
           href="/docs/utilities/use-copy-to-clipboard"

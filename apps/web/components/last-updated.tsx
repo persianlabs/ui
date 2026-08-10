@@ -14,7 +14,7 @@ export function LastUpdated({ date }: { date: string | null }) {
   })
 
   return (
-    <p className="text-muted-foreground mt-3 text-sm">
+    <p className="mt-3 text-sm text-muted-foreground">
       Last updated {formatted}
       {timeAgo && <> ({timeAgo})</>}
     </p>

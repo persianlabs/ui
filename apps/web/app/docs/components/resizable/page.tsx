@@ -137,10 +137,7 @@ export default function ResizableDocPage() {
           <ComponentPreview
             preview={<ResizableDemoExample />}
             code={
-              <CodeBlock
-                code={getExampleSource("resizable-demo")}
-                lang="tsx"
-              />
+              <CodeBlock code={getExampleSource("resizable-demo")} lang="tsx" />
             }
           />
         </div>
@@ -220,8 +217,8 @@ export default function ResizableDocPage() {
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
             The drag handle&apos;s centering is direction-agnostic, and the
-            panel order visually flips along with the surrounding layout
-            under RTL.
+            panel order visually flips along with the surrounding layout under
+            RTL.
           </p>
           <div className="mt-3">
             <ComponentPreview
@@ -243,7 +240,10 @@ export default function ResizableDocPage() {
         >
           API Reference
         </h2>
-        <ApiReference title="ResizablePanelGroup" rows={resizablePanelGroupApi} />
+        <ApiReference
+          title="ResizablePanelGroup"
+          rows={resizablePanelGroupApi}
+        />
         <ApiReference title="ResizablePanel" rows={resizablePanelApi} />
         <ApiReference title="ResizableHandle" rows={resizableHandleApi} />
 

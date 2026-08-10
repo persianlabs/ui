@@ -79,10 +79,10 @@ export default function NormalizePersianDigitsDocPage() {
           <CopyMarkdownButton markdown={normalizePersianDigitsMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          Persian keyboards commonly type ۰-۹ (or Arabic-Indic ٠-٩) instead
-          of 0-9. This utility converts either set back to plain digits, so
-          numeric inputs and parsers keep working regardless of which
-          keyboard the user is on.{" "}
+          Persian keyboards commonly type ۰-۹ (or Arabic-Indic ٠-٩) instead of
+          0-9. This utility converts either set back to plain digits, so numeric
+          inputs and parsers keep working regardless of which keyboard the user
+          is on.{" "}
           <a
             href="/docs/components/price-input"
             className="text-foreground underline underline-offset-4"

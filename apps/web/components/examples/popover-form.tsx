@@ -15,11 +15,19 @@ export function PopoverFormExample() {
         <div className="flex flex-col gap-3">
           <div className="flex flex-col gap-1">
             <Label htmlFor="popover-form-width">Width</Label>
-            <Input id="popover-form-width" defaultValue="100%" className="h-8" />
+            <Input
+              id="popover-form-width"
+              defaultValue="100%"
+              className="h-8"
+            />
           </div>
           <div className="flex flex-col gap-1">
             <Label htmlFor="popover-form-height">Height</Label>
-            <Input id="popover-form-height" defaultValue="25px" className="h-8" />
+            <Input
+              id="popover-form-height"
+              defaultValue="25px"
+              className="h-8"
+            />
           </div>
         </div>
       </PopoverContent>

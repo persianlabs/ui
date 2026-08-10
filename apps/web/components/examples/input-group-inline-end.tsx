@@ -1,6 +1,10 @@
 import { EyeOffIcon } from "lucide-react"
 
-import { Field, FieldDescription, FieldLabel } from "@workspace/ui/components/field"
+import {
+  Field,
+  FieldDescription,
+  FieldLabel,
+} from "@workspace/ui/components/field"
 import {
   InputGroup,
   InputGroupAddon,

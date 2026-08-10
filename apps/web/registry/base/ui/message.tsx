@@ -43,10 +43,7 @@ function MessageAvatar({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function MessageContent({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+function MessageContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="message-content"

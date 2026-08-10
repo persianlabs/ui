@@ -23,7 +23,11 @@ export function ComboboxDisabledExample() {
       <ComboboxContent>
         <ComboboxEmpty>No frameworks found.</ComboboxEmpty>
         <ComboboxList>
-          {(item: string) => <ComboboxItem key={item} value={item}>{item}</ComboboxItem>}
+          {(item: string) => (
+            <ComboboxItem key={item} value={item}>
+              {item}
+            </ComboboxItem>
+          )}
         </ComboboxList>
       </ComboboxContent>
     </Combobox>

@@ -9,7 +9,7 @@ function Section({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-muted-foreground text-[10px] font-semibold tracking-wider uppercase">
+      <span className="text-[10px] font-semibold tracking-wider text-muted-foreground uppercase">
         {title}
       </span>
       {children}

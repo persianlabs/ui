@@ -202,10 +202,7 @@ export default function ProgressDocPage() {
               dir="rtl"
               preview={<ProgressRtlExample />}
               code={
-                <CodeBlock
-                  code={getExampleSource("progress-rtl")}
-                  lang="tsx"
-                />
+                <CodeBlock code={getExampleSource("progress-rtl")} lang="tsx" />
               }
             />
           </div>

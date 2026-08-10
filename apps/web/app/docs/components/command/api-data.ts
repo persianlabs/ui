@@ -61,8 +61,7 @@ export const commandDialogPopupApi: ApiReferenceRow[] = [
     prop: "title",
     type: "string",
     default: "'Command Palette'",
-    description:
-      "Visually hidden dialog title, read by assistive technology.",
+    description: "Visually hidden dialog title, read by assistive technology.",
   },
   {
     prop: "description",

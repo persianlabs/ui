@@ -128,8 +128,7 @@ export default function BreadcrumbDocPage() {
           <CopyMarkdownButton markdown={breadcrumbMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          Displays the path to the current resource using a hierarchy of
-          links.
+          Displays the path to the current resource using a hierarchy of links.
         </p>
         <LastUpdated date={lastEdited} />
         <Credits

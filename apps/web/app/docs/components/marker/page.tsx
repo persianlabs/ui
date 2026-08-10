@@ -102,8 +102,8 @@ export default function MarkerDocPage() {
           <CopyMarkdownButton markdown={markerMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          A small label for annotating content, such as a section divider,
-          an inline note, or an &quot;OR&quot; separator between actions.
+          A small label for annotating content, such as a section divider, an
+          inline note, or an &quot;OR&quot; separator between actions.
         </p>
         <LastUpdated date={lastEdited} />
         <Credits
@@ -191,8 +191,8 @@ export default function MarkerDocPage() {
             <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
               separator
             </code>{" "}
-            variant draws a rule on each side of the content, e.g. between
-            two alternate actions.
+            variant draws a rule on each side of the content, e.g. between two
+            alternate actions.
           </p>
           <div className="mt-3">
             <ComponentPreview
@@ -208,10 +208,7 @@ export default function MarkerDocPage() {
         </div>
 
         <div className="mt-8">
-          <h3
-            id="border"
-            className="text-sm font-medium text-muted-foreground"
-          >
+          <h3 id="border" className="text-sm font-medium text-muted-foreground">
             Border
           </h3>
           <div className="mt-3">

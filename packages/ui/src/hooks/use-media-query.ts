@@ -14,9 +14,7 @@ const BREAKPOINTS = {
 
 type Breakpoint = keyof typeof BREAKPOINTS
 type BreakpointQuery =
-  | Breakpoint
-  | `max-${Breakpoint}`
-  | `${Breakpoint}:max-${Breakpoint}`
+  Breakpoint | `max-${Breakpoint}` | `${Breakpoint}:max-${Breakpoint}`
 
 function resolveMin(value: Breakpoint | number): string {
   const px = typeof value === "number" ? value : BREAKPOINTS[value]

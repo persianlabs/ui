@@ -1,4 +1,8 @@
-import { ChevronLeftIcon, ChevronRightIcon, MoreHorizontalIcon } from "lucide-react"
+import {
+  ChevronLeftIcon,
+  ChevronRightIcon,
+  MoreHorizontalIcon,
+} from "lucide-react"
 import type * as React from "react"
 
 import { Button } from "@workspace/ui/components/button"

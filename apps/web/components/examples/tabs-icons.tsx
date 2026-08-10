@@ -1,6 +1,11 @@
 import { BellIcon, HomeIcon, UserIcon } from "lucide-react"
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@workspace/ui/components/tabs"
 
 export function TabsIconsExample() {
   return (
@@ -21,19 +26,19 @@ export function TabsIconsExample() {
       </TabsList>
       <TabsContent
         value="home"
-        className="text-muted-foreground mt-4 text-sm leading-relaxed"
+        className="mt-4 text-sm leading-relaxed text-muted-foreground"
       >
         Your feed, curated from the people you follow.
       </TabsContent>
       <TabsContent
         value="notifications"
-        className="text-muted-foreground mt-4 text-sm leading-relaxed"
+        className="mt-4 text-sm leading-relaxed text-muted-foreground"
       >
         Nothing new — you&apos;re all caught up.
       </TabsContent>
       <TabsContent
         value="profile"
-        className="text-muted-foreground mt-4 text-sm leading-relaxed"
+        className="mt-4 text-sm leading-relaxed text-muted-foreground"
       >
         Manage your public profile and account details.
       </TabsContent>

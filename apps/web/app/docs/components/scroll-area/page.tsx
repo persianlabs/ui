@@ -208,8 +208,8 @@ export default function ScrollAreaDocPage() {
             <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
               border-s
             </code>{" "}
-            rather than a physical side, so it correctly sits on the visual
-            left when the viewport is RTL.
+            rather than a physical side, so it correctly sits on the visual left
+            when the viewport is RTL.
           </p>
           <div className="mt-3">
             <ComponentPreview

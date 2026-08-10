@@ -276,85 +276,85 @@ function DrawerPopup({
       <DrawerViewport position={position} variant={variant}>
         <DrawerPopupVariantContext.Provider value={variant}>
           <DrawerPrimitive.Popup
-          data-slot="drawer-popup"
-          className={cn(
-            "relative flex max-h-full min-h-0 w-full min-w-0 flex-col bg-popover text-popover-foreground shadow-lg/5 transition-[transform,box-shadow,height,background-color] duration-450 ease-[cubic-bezier(0.32,0.72,0,1)] will-change-transform outline-none [--peek:calc(--spacing(6)-1px)] [--scale-base:calc(max(0,1-(var(--nested-drawers)*var(--stack-step))))] [--scale:clamp(0,calc(var(--scale-base)+(var(--stack-step)*var(--stack-progress))),1)] [--shrink:calc(1-var(--scale))] [--stack-peek-offset:max(0px,calc((var(--nested-drawers)-var(--stack-progress))*var(--peek)))] [--stack-progress:clamp(0,var(--drawer-swipe-progress),1)] [--stack-step:0.05] not-dark:bg-clip-padding before:pointer-events-none before:absolute before:inset-0 before:shadow-[0_1px_--theme(--color-black/4%)] after:pointer-events-none after:absolute after:bg-popover data-nested-drawer-open:overflow-hidden data-nested-drawer-open:bg-[color-mix(in_srgb,var(--popover),var(--color-black)_calc(2%*(var(--nested-drawers)-var(--stack-progress))))] data-swiping:select-none data-[ending-style]:shadow-transparent data-[ending-style]:duration-[calc(var(--drawer-swipe-strength)*400ms)] data-[starting-style]:shadow-transparent dark:before:shadow-[0_-1px_--theme(--color-white/6%)] dark:data-nested-drawer-open:bg-[color-mix(in_srgb,var(--popover),var(--color-black)_calc(6%*(var(--nested-drawers)-var(--stack-progress))))]",
-            "touch-none",
-            position === "bottom" &&
-              "max-w-[400px] transform-[translateY(calc(var(--drawer-snap-point-offset)+var(--drawer-swipe-movement-y)))] border-t border-border pb-[max(0px,calc(env(safe-area-inset-bottom,0px)+var(--drawer-snap-point-offset,0px)+clamp(0,1,var(--drawer-snap-point-offset,0px)/1px)*var(--drawer-swipe-movement-y,0px)))] not-data-[starting-style]:not-data-[ending-style]:transition-[transform,box-shadow,height,background-color,padding] after:inset-x-0 after:top-full after:h-(--bleed) has-data-[slot=drawer-bar]:pt-2 data-[ending-style]:transform-[translateY(calc(100%+env(safe-area-inset-bottom,0px)+var(--inset)))] data-[ending-style]:pb-0 data-[starting-style]:transform-[translateY(calc(100%+env(safe-area-inset-bottom,0px)+var(--inset)))] data-[starting-style]:pb-0",
-            position === "top" &&
-              "transform-[translateY(var(--drawer-swipe-movement-y))] border-b border-border after:inset-x-0 after:bottom-full after:h-(--bleed) has-data-[slot=drawer-bar]:pb-2 data-[ending-style]:transform-[translateY(calc(-100%-var(--inset)))] data-[starting-style]:transform-[translateY(calc(-100%-var(--inset)))]",
-            position === "left" &&
-              "w-[calc(100%-(--spacing(12)))] max-w-md transform-[translateX(var(--drawer-swipe-movement-x))] border-r border-border after:inset-y-0 after:right-full after:w-(--bleed) has-data-[slot=drawer-bar]:pr-2 data-[ending-style]:transform-[translateX(calc(-100%-var(--inset)))] data-[starting-style]:transform-[translateX(calc(-100%-var(--inset)))]",
-            position === "right" &&
-              "w-[calc(100%-(--spacing(12)))] max-w-md transform-[translateX(var(--drawer-swipe-movement-x))] border-l border-border after:inset-y-0 after:left-full after:w-(--bleed) has-data-[slot=drawer-bar]:pl-2 data-[ending-style]:transform-[translateX(calc(100%+var(--inset)))] data-[starting-style]:transform-[translateX(calc(100%+var(--inset)))]",
-            variant !== "straight" &&
-              cn(
-                position === "bottom" && "rounded-t-2xl",
-                position === "top" &&
-                  "rounded-b-2xl **:data-[slot=drawer-footer]:rounded-b-[calc(var(--radius-2xl)-1px)]",
-                position === "left" &&
-                  "rounded-r-2xl **:data-[slot=drawer-footer]:rounded-br-[calc(var(--radius-2xl)-1px)]",
-                position === "right" &&
-                  "rounded-l-2xl **:data-[slot=drawer-footer]:rounded-bl-[calc(var(--radius-2xl)-1px)]"
-              ),
-            variant === "default" &&
-              cn(
-                position === "bottom" &&
-                  "before:rounded-t-[calc(var(--radius-2xl)-1px)]",
-                position === "top" &&
-                  "before:rounded-b-[calc(var(--radius-2xl)-1px)]",
-                position === "left" &&
-                  "before:rounded-r-[calc(var(--radius-2xl)-1px)]",
-                position === "right" &&
-                  "before:rounded-l-[calc(var(--radius-2xl)-1px)]"
-              ),
-            variant === "inset" &&
-              // The footer paints its own bleed rectangle below itself (see
-              // DrawerFooter) to cover DrawerPopup's own bleed color during
-              // drag/overscroll. The inset variant floats as a fully
-              // rounded, bordered card instead — nothing sits behind it to
-              // cover, so that rectangle just pokes out past the rounded
-              // bottom corner as a stray patch of color. Kill it here the
-              // same way the popup's own bleed is killed below.
-              "before:hidden sm:rounded-2xl sm:border sm:border-border sm:before:rounded-[calc(var(--radius-2xl)-1px)] sm:after:bg-transparent sm:**:data-[slot=drawer-footer]:rounded-b-[calc(var(--radius-2xl)-1px)] sm:**:data-[slot=drawer-footer]:after:border-transparent sm:**:data-[slot=drawer-footer]:after:bg-transparent",
-            variant === "straight" && "[--stack-step:0]",
-            (position === "bottom" || position === "top") &&
-              // max-h-full is a no-op here: the viewport lays these two
-              // positions out with CSS grid (row 2 is auto-sized to fit the
-              // popup itself), so percentage heights have nothing definite
-              // to resolve against and the popup can grow past the viewport
-              // with tall content. Cap it against the viewport directly —
-              // this is also what lets snapPoints do anything: Base UI
-              // derives --drawer-snap-point-offset from how much taller the
-              // popup's *actual* rendered height is than each snap target,
-              // so a popup that's never allowed to grow past its content
-              // always measures the same height as every snap point and the
-              // offset comes out to 0.
-              "h-(--drawer-height,auto) max-h-[calc(100dvh-(--spacing(12)))] [--height:max(0px,calc(var(--drawer-frontmost-height,var(--drawer-height))))] data-nested-drawer-open:h-(--height)",
-            position === "bottom" &&
-              "origin-[50%_calc(100%-var(--inset))] data-nested-drawer-open:transform-[translateY(calc(var(--drawer-swipe-movement-y)-var(--stack-peek-offset)-(var(--shrink)*var(--height))))_scale(var(--scale))]",
-            position === "top" &&
-              "origin-[50%_var(--inset)] data-nested-drawer-open:transform-[translateY(calc(var(--drawer-swipe-movement-y)+var(--stack-peek-offset)+(var(--shrink)*var(--height))))_scale(var(--scale))]",
-            position === "left" &&
-              "origin-right data-nested-drawer-open:transform-[translateX(calc(var(--drawer-swipe-movement-x)+var(--stack-peek-offset)))_scale(var(--scale))]",
-            position === "right" &&
-              "origin-left data-nested-drawer-open:transform-[translateX(calc(var(--drawer-swipe-movement-x)-var(--stack-peek-offset)))_scale(var(--scale))]",
-            className
-          )}
-          {...props}
-        >
-          {children}
-          {showCloseButton && (
-            <DrawerPrimitive.Close
-              aria-label="Close"
-              className="absolute end-2 top-2"
-              render={<Button size="icon-sm" variant="ghost" />}
-            >
-              <XIcon />
-            </DrawerPrimitive.Close>
-          )}
-          {showBar && <DrawerBar position={position} />}
+            data-slot="drawer-popup"
+            className={cn(
+              "relative flex max-h-full min-h-0 w-full min-w-0 flex-col bg-popover text-popover-foreground shadow-lg/5 transition-[transform,box-shadow,height,background-color] duration-450 ease-[cubic-bezier(0.32,0.72,0,1)] will-change-transform outline-none [--peek:calc(--spacing(6)-1px)] [--scale-base:calc(max(0,1-(var(--nested-drawers)*var(--stack-step))))] [--scale:clamp(0,calc(var(--scale-base)+(var(--stack-step)*var(--stack-progress))),1)] [--shrink:calc(1-var(--scale))] [--stack-peek-offset:max(0px,calc((var(--nested-drawers)-var(--stack-progress))*var(--peek)))] [--stack-progress:clamp(0,var(--drawer-swipe-progress),1)] [--stack-step:0.05] not-dark:bg-clip-padding before:pointer-events-none before:absolute before:inset-0 before:shadow-[0_1px_--theme(--color-black/4%)] after:pointer-events-none after:absolute after:bg-popover data-nested-drawer-open:overflow-hidden data-nested-drawer-open:bg-[color-mix(in_srgb,var(--popover),var(--color-black)_calc(2%*(var(--nested-drawers)-var(--stack-progress))))] data-swiping:select-none data-[ending-style]:shadow-transparent data-[ending-style]:duration-[calc(var(--drawer-swipe-strength)*400ms)] data-[starting-style]:shadow-transparent dark:before:shadow-[0_-1px_--theme(--color-white/6%)] dark:data-nested-drawer-open:bg-[color-mix(in_srgb,var(--popover),var(--color-black)_calc(6%*(var(--nested-drawers)-var(--stack-progress))))]",
+              "touch-none",
+              position === "bottom" &&
+                "max-w-[400px] transform-[translateY(calc(var(--drawer-snap-point-offset)+var(--drawer-swipe-movement-y)))] border-t border-border pb-[max(0px,calc(env(safe-area-inset-bottom,0px)+var(--drawer-snap-point-offset,0px)+clamp(0,1,var(--drawer-snap-point-offset,0px)/1px)*var(--drawer-swipe-movement-y,0px)))] not-data-[starting-style]:not-data-[ending-style]:transition-[transform,box-shadow,height,background-color,padding] after:inset-x-0 after:top-full after:h-(--bleed) has-data-[slot=drawer-bar]:pt-2 data-[ending-style]:transform-[translateY(calc(100%+env(safe-area-inset-bottom,0px)+var(--inset)))] data-[ending-style]:pb-0 data-[starting-style]:transform-[translateY(calc(100%+env(safe-area-inset-bottom,0px)+var(--inset)))] data-[starting-style]:pb-0",
+              position === "top" &&
+                "transform-[translateY(var(--drawer-swipe-movement-y))] border-b border-border after:inset-x-0 after:bottom-full after:h-(--bleed) has-data-[slot=drawer-bar]:pb-2 data-[ending-style]:transform-[translateY(calc(-100%-var(--inset)))] data-[starting-style]:transform-[translateY(calc(-100%-var(--inset)))]",
+              position === "left" &&
+                "w-[calc(100%-(--spacing(12)))] max-w-md transform-[translateX(var(--drawer-swipe-movement-x))] border-r border-border after:inset-y-0 after:right-full after:w-(--bleed) has-data-[slot=drawer-bar]:pr-2 data-[ending-style]:transform-[translateX(calc(-100%-var(--inset)))] data-[starting-style]:transform-[translateX(calc(-100%-var(--inset)))]",
+              position === "right" &&
+                "w-[calc(100%-(--spacing(12)))] max-w-md transform-[translateX(var(--drawer-swipe-movement-x))] border-l border-border after:inset-y-0 after:left-full after:w-(--bleed) has-data-[slot=drawer-bar]:pl-2 data-[ending-style]:transform-[translateX(calc(100%+var(--inset)))] data-[starting-style]:transform-[translateX(calc(100%+var(--inset)))]",
+              variant !== "straight" &&
+                cn(
+                  position === "bottom" && "rounded-t-2xl",
+                  position === "top" &&
+                    "rounded-b-2xl **:data-[slot=drawer-footer]:rounded-b-[calc(var(--radius-2xl)-1px)]",
+                  position === "left" &&
+                    "rounded-r-2xl **:data-[slot=drawer-footer]:rounded-br-[calc(var(--radius-2xl)-1px)]",
+                  position === "right" &&
+                    "rounded-l-2xl **:data-[slot=drawer-footer]:rounded-bl-[calc(var(--radius-2xl)-1px)]"
+                ),
+              variant === "default" &&
+                cn(
+                  position === "bottom" &&
+                    "before:rounded-t-[calc(var(--radius-2xl)-1px)]",
+                  position === "top" &&
+                    "before:rounded-b-[calc(var(--radius-2xl)-1px)]",
+                  position === "left" &&
+                    "before:rounded-r-[calc(var(--radius-2xl)-1px)]",
+                  position === "right" &&
+                    "before:rounded-l-[calc(var(--radius-2xl)-1px)]"
+                ),
+              variant === "inset" &&
+                // The footer paints its own bleed rectangle below itself (see
+                // DrawerFooter) to cover DrawerPopup's own bleed color during
+                // drag/overscroll. The inset variant floats as a fully
+                // rounded, bordered card instead — nothing sits behind it to
+                // cover, so that rectangle just pokes out past the rounded
+                // bottom corner as a stray patch of color. Kill it here the
+                // same way the popup's own bleed is killed below.
+                "before:hidden sm:rounded-2xl sm:border sm:border-border sm:before:rounded-[calc(var(--radius-2xl)-1px)] sm:after:bg-transparent sm:**:data-[slot=drawer-footer]:rounded-b-[calc(var(--radius-2xl)-1px)] sm:**:data-[slot=drawer-footer]:after:border-transparent sm:**:data-[slot=drawer-footer]:after:bg-transparent",
+              variant === "straight" && "[--stack-step:0]",
+              (position === "bottom" || position === "top") &&
+                // max-h-full is a no-op here: the viewport lays these two
+                // positions out with CSS grid (row 2 is auto-sized to fit the
+                // popup itself), so percentage heights have nothing definite
+                // to resolve against and the popup can grow past the viewport
+                // with tall content. Cap it against the viewport directly —
+                // this is also what lets snapPoints do anything: Base UI
+                // derives --drawer-snap-point-offset from how much taller the
+                // popup's *actual* rendered height is than each snap target,
+                // so a popup that's never allowed to grow past its content
+                // always measures the same height as every snap point and the
+                // offset comes out to 0.
+                "h-(--drawer-height,auto) max-h-[calc(100dvh-(--spacing(12)))] [--height:max(0px,calc(var(--drawer-frontmost-height,var(--drawer-height))))] data-nested-drawer-open:h-(--height)",
+              position === "bottom" &&
+                "origin-[50%_calc(100%-var(--inset))] data-nested-drawer-open:transform-[translateY(calc(var(--drawer-swipe-movement-y)-var(--stack-peek-offset)-(var(--shrink)*var(--height))))_scale(var(--scale))]",
+              position === "top" &&
+                "origin-[50%_var(--inset)] data-nested-drawer-open:transform-[translateY(calc(var(--drawer-swipe-movement-y)+var(--stack-peek-offset)+(var(--shrink)*var(--height))))_scale(var(--scale))]",
+              position === "left" &&
+                "origin-right data-nested-drawer-open:transform-[translateX(calc(var(--drawer-swipe-movement-x)+var(--stack-peek-offset)))_scale(var(--scale))]",
+              position === "right" &&
+                "origin-left data-nested-drawer-open:transform-[translateX(calc(var(--drawer-swipe-movement-x)-var(--stack-peek-offset)))_scale(var(--scale))]",
+              className
+            )}
+            {...props}
+          >
+            {children}
+            {showCloseButton && (
+              <DrawerPrimitive.Close
+                aria-label="Close"
+                className="absolute end-2 top-2"
+                render={<Button size="icon-sm" variant="ghost" />}
+              >
+                <XIcon />
+              </DrawerPrimitive.Close>
+            )}
+            {showBar && <DrawerBar position={position} />}
           </DrawerPrimitive.Popup>
         </DrawerPopupVariantContext.Provider>
       </DrawerViewport>
@@ -441,7 +441,7 @@ function DrawerFooter({
       variant === "default" &&
         position === "left" &&
         popupVariant === "default" &&
-        "after:-top-px after:bottom-0 after:right-full after:w-[200px] after:border-t after:border-border",
+        "after:-top-px after:right-full after:bottom-0 after:w-[200px] after:border-t after:border-border",
       variant === "bare" &&
         "pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+--spacing(6))] in-[[data-slot=drawer-popup]:has([data-slot=drawer-panel])]:pt-3",
       // DrawerPopup reserves space for the drag bar via padding on itself

@@ -117,8 +117,8 @@ export default function DropdownMenuDocPage() {
           <CopyMarkdownButton markdown={dropdownMenuMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          Displays a menu of actions or options, triggered by a button.
-          Built on Base UI&apos;s menu primitive.
+          Displays a menu of actions or options, triggered by a button. Built on
+          Base UI&apos;s menu primitive.
         </p>
         <LastUpdated date={lastEdited} />
         <Credits
@@ -237,7 +237,10 @@ export default function DropdownMenuDocPage() {
         >
           API Reference
         </h2>
-        <ApiReference title="DropdownMenuContent" rows={dropdownMenuContentApi} />
+        <ApiReference
+          title="DropdownMenuContent"
+          rows={dropdownMenuContentApi}
+        />
         <ApiReference title="DropdownMenuItem" rows={dropdownMenuItemApi} />
         <ApiReference
           title="DropdownMenuCheckboxItem"

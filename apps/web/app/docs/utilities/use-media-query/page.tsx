@@ -174,7 +174,12 @@ export default function UseMediaQueryDocPage() {
         </p>
         <LastUpdated date={lastEdited} />
         <Credits
-          sources={[{ label: "coss ui", href: "https://coss.com/ui/docs/hooks/use-media-query" }]}
+          sources={[
+            {
+              label: "coss ui",
+              href: "https://coss.com/ui/docs/hooks/use-media-query",
+            },
+          ]}
           changed={false}
         />
 
@@ -231,8 +236,8 @@ export default function UseMediaQueryDocPage() {
           Usage
         </h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
-          Use Tailwind variant syntax to match breakpoints — TypeScript
-          provides full autocomplete.
+          Use Tailwind variant syntax to match breakpoints — TypeScript provides
+          full autocomplete.
         </p>
         <div className="mt-4">
           <CodeBlock code={breakpointShorthandSnippet} lang="tsx" />
@@ -251,8 +256,8 @@ export default function UseMediaQueryDocPage() {
           <CodeBlock code={rawQuerySnippet} lang="tsx" />
         </div>
         <p className="mt-6 leading-relaxed text-muted-foreground">
-          The primary use case — mount one component instead of another
-          based on viewport.
+          The primary use case — mount one component instead of another based on
+          viewport.
         </p>
         <div className="mt-4">
           <CodeBlock code={conditionalSnippet} lang="tsx" />
@@ -328,10 +333,7 @@ export default function UseMediaQueryDocPage() {
         </div>
 
         <div className="mt-8">
-          <h3
-            id="ranges"
-            className="text-sm font-medium text-muted-foreground"
-          >
+          <h3 id="ranges" className="text-sm font-medium text-muted-foreground">
             Ranges
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
@@ -351,10 +353,7 @@ export default function UseMediaQueryDocPage() {
         </div>
 
         <div className="mt-8">
-          <h3
-            id="device"
-            className="text-sm font-medium text-muted-foreground"
-          >
+          <h3 id="device" className="text-sm font-medium text-muted-foreground">
             Device & preferences
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">

@@ -12,10 +12,10 @@ const tabsListVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-muted text-muted-foreground w-fit gap-1 rounded-lg p-1",
-        rounded: "bg-muted text-muted-foreground w-fit gap-1 rounded-full p-1",
-        line: "text-muted-foreground border-border w-full gap-4 border-b",
-        ghost: "text-muted-foreground w-fit gap-1",
+        default: "w-fit gap-1 rounded-lg bg-muted p-1 text-muted-foreground",
+        rounded: "w-fit gap-1 rounded-full bg-muted p-1 text-muted-foreground",
+        line: "w-full gap-4 border-b border-border text-muted-foreground",
+        ghost: "w-fit gap-1 text-muted-foreground",
       },
     },
     defaultVariants: { variant: "default" },
@@ -23,16 +23,16 @@ const tabsListVariants = cva(
 )
 
 const tabsTriggerVariants = cva(
-  "relative inline-flex h-7 items-center justify-center gap-1.5 px-3 text-sm font-medium whitespace-nowrap outline-none transition-colors select-none focus-visible:ring-2 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[orientation=vertical]:w-full data-[orientation=vertical]:justify-start [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "relative inline-flex h-7 items-center justify-center gap-1.5 px-3 text-sm font-medium whitespace-nowrap transition-colors outline-none select-none focus-visible:ring-2 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[orientation=vertical]:w-full data-[orientation=vertical]:justify-start [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         default:
-          "text-muted-foreground data-[active]:text-primary-foreground rounded-md",
+          "rounded-md text-muted-foreground data-[active]:text-primary-foreground",
         rounded:
-          "text-muted-foreground data-[active]:text-primary-foreground rounded-full",
-        line: "text-muted-foreground data-[active]:text-foreground h-9 rounded-none px-1 pb-3",
-        ghost: "text-muted-foreground data-[active]:text-foreground rounded-lg",
+          "rounded-full text-muted-foreground data-[active]:text-primary-foreground",
+        line: "h-9 rounded-none px-1 pb-3 text-muted-foreground data-[active]:text-foreground",
+        ghost: "rounded-lg text-muted-foreground data-[active]:text-foreground",
       },
     },
     defaultVariants: { variant: "default" },
@@ -86,7 +86,9 @@ function Tabs({
   variant = "default",
   ...props
 }: TabsProps) {
-  const [uncontrolledValue, setUncontrolledValue] = React.useState(defaultValue ?? null)
+  const [uncontrolledValue, setUncontrolledValue] = React.useState(
+    defaultValue ?? null
+  )
   const activeValue = value !== undefined ? value : uncontrolledValue
 
   return (
@@ -181,7 +183,12 @@ function TabsList({ className, children, ...props }: TabsPrimitive.List.Props) {
             className={cn("absolute top-0 left-0", indicatorStyle.className)}
             style={{ borderRadius: indicatorStyle.radius }}
             initial={false}
-            animate={{ x: rect.x, y: rect.y, width: rect.width, height: rect.height }}
+            animate={{
+              x: rect.x,
+              y: rect.y,
+              width: rect.width,
+              height: rect.height,
+            }}
             transition={{ type: "spring", bounce: 0.15, duration: 0.3 }}
           />
         )}
@@ -232,5 +239,12 @@ function TabsContent({
   )
 }
 
-export { Tabs, TabsList, TabsTrigger, TabsContent, tabsListVariants, tabsTriggerVariants }
+export {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  tabsListVariants,
+  tabsTriggerVariants,
+}
 export type { TabsVariant }

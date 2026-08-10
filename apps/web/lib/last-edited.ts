@@ -28,7 +28,9 @@ export function getLastEditedDate(relativePath: string): string | null {
     // turbopackIgnore: this is a dev-time-only fallback for files without
     // git history yet — it must stay dynamic and must not pull the whole
     // repo into the build's file trace.
-    const stat = fs.statSync(path.join(/* turbopackIgnore: true */ REPO_ROOT, relativePath))
+    const stat = fs.statSync(
+      path.join(/* turbopackIgnore: true */ REPO_ROOT, relativePath)
+    )
     return stat.mtime.toISOString()
   } catch {
     return null

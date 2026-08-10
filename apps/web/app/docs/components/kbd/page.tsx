@@ -108,9 +108,7 @@ export default function KbdDocPage() {
         <div className="mt-4">
           <ComponentPreview
             preview={<KbdDemoExample />}
-            code={
-              <CodeBlock code={getExampleSource("kbd-demo")} lang="tsx" />
-            }
+            code={<CodeBlock code={getExampleSource("kbd-demo")} lang="tsx" />}
           />
         </div>
 
@@ -182,10 +180,10 @@ export default function KbdDocPage() {
             <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
               Kbd
             </code>{" "}
-            forces <code>dir=&quot;ltr&quot;</code> internally — the key
-            itself stays left-to-right even while the surrounding Farsi
-            sentence reads right-to-left. When a shortcut has more than one
-            key, wrap them together in their own{" "}
+            forces <code>dir=&quot;ltr&quot;</code> internally — the key itself
+            stays left-to-right even while the surrounding Farsi sentence reads
+            right-to-left. When a shortcut has more than one key, wrap them
+            together in their own{" "}
             <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
               dir=&quot;ltr&quot;
             </code>{" "}
@@ -210,10 +208,7 @@ export default function KbdDocPage() {
         </h2>
         <ApiReference title="Kbd" rows={kbdApi} />
 
-        <DocsPageFooter
-          href="/docs/components/kbd"
-          sourcePath={SOURCE_PATH}
-        />
+        <DocsPageFooter href="/docs/components/kbd" sourcePath={SOURCE_PATH} />
       </article>
 
       <aside className="hidden w-44 shrink-0 xl:block">

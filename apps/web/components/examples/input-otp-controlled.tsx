@@ -23,7 +23,7 @@ export function InputOTPControlledExample() {
           <InputOTPSlot index={5} />
         </InputOTPGroup>
       </InputOTP>
-      <p className="text-muted-foreground text-sm">
+      <p className="text-sm text-muted-foreground">
         {value === "" ? "Enter your code." : `Value: ${value}`}
       </p>
     </div>

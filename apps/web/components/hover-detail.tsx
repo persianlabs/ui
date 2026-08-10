@@ -14,14 +14,14 @@ export function HoverDetail({
     <TooltipPrimitive.Provider delay={150} closeDelay={0}>
       <TooltipPrimitive.Root>
         <TooltipPrimitive.Trigger
-          className="text-foreground decoration-muted-foreground/60 cursor-default border-none bg-transparent p-0 font-mono underline decoration-dotted underline-offset-4"
+          className="cursor-default border-none bg-transparent p-0 font-mono text-foreground underline decoration-muted-foreground/60 decoration-dotted underline-offset-4"
           render={<span />}
         >
           {children}
         </TooltipPrimitive.Trigger>
         <TooltipPrimitive.Portal>
           <TooltipPrimitive.Positioner sideOffset={6}>
-            <TooltipPrimitive.Popup className="bg-foreground text-background z-50 max-w-xs rounded-md px-2.5 py-1.5 font-mono text-xs leading-relaxed shadow-md">
+            <TooltipPrimitive.Popup className="z-50 max-w-xs rounded-md bg-foreground px-2.5 py-1.5 font-mono text-xs leading-relaxed text-background shadow-md">
               {detail}
             </TooltipPrimitive.Popup>
           </TooltipPrimitive.Positioner>

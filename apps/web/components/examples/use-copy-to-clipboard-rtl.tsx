@@ -9,10 +9,7 @@ export function UseCopyToClipboardRtlExample() {
   const { copyToClipboard, isCopied } = useCopyToClipboard()
 
   return (
-    <Button
-      variant="outline"
-      onClick={() => copyToClipboard("۰۹۱۲۳۴۵۶۷۸۹")}
-    >
+    <Button variant="outline" onClick={() => copyToClipboard("۰۹۱۲۳۴۵۶۷۸۹")}>
       {isCopied ? (
         <CheckIcon aria-hidden="true" />
       ) : (

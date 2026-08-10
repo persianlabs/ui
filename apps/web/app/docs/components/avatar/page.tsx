@@ -29,11 +29,7 @@ import { CODE_FENCE, apiRowsToMarkdownTable } from "@/lib/markdown"
 
 const SOURCE_PATH = "apps/web/app/docs/components/avatar/page.tsx"
 
-import {
-  avatarFallbackApi,
-  avatarImageApi,
-  avatarRootApi,
-} from "./api-data"
+import { avatarFallbackApi, avatarImageApi, avatarRootApi } from "./api-data"
 
 export const metadata: Metadata = {
   title: "Avatar",
@@ -118,8 +114,8 @@ export default function AvatarDocPage() {
           <CopyMarkdownButton markdown={avatarMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          An image element with a fallback, for representing a user or
-          entity. Built on Base UI&apos;s avatar primitive.
+          An image element with a fallback, for representing a user or entity.
+          Built on Base UI&apos;s avatar primitive.
         </p>
         <LastUpdated date={lastEdited} />
         <Credits
@@ -203,20 +199,14 @@ export default function AvatarDocPage() {
             <ComponentPreview
               preview={<AvatarSizeExample />}
               code={
-                <CodeBlock
-                  code={getExampleSource("avatar-size")}
-                  lang="tsx"
-                />
+                <CodeBlock code={getExampleSource("avatar-size")} lang="tsx" />
               }
             />
           </div>
         </div>
 
         <div className="mt-8">
-          <h3
-            id="badge"
-            className="text-sm font-medium text-muted-foreground"
-          >
+          <h3 id="badge" className="text-sm font-medium text-muted-foreground">
             Badge
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
@@ -230,20 +220,14 @@ export default function AvatarDocPage() {
             <ComponentPreview
               preview={<AvatarBadgeExample />}
               code={
-                <CodeBlock
-                  code={getExampleSource("avatar-badge")}
-                  lang="tsx"
-                />
+                <CodeBlock code={getExampleSource("avatar-badge")} lang="tsx" />
               }
             />
           </div>
         </div>
 
         <div className="mt-8">
-          <h3
-            id="group"
-            className="text-sm font-medium text-muted-foreground"
-          >
+          <h3 id="group" className="text-sm font-medium text-muted-foreground">
             Group
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
@@ -261,10 +245,7 @@ export default function AvatarDocPage() {
             <ComponentPreview
               preview={<AvatarGroupExample />}
               code={
-                <CodeBlock
-                  code={getExampleSource("avatar-group")}
-                  lang="tsx"
-                />
+                <CodeBlock code={getExampleSource("avatar-group")} lang="tsx" />
               }
             />
           </div>
@@ -275,8 +256,8 @@ export default function AvatarDocPage() {
             RTL
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
-            The badge position and group overlap direction both flip
-            correctly under RTL.
+            The badge position and group overlap direction both flip correctly
+            under RTL.
           </p>
           <div className="mt-3">
             <ComponentPreview

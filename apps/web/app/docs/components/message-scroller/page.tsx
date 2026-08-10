@@ -123,8 +123,8 @@ export default function MessageScrollerDocPage() {
           <CopyMarkdownButton markdown={messageScrollerMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          An auto-scrolling viewport for chat messages, with a
-          scroll-to-latest button. Built on{" "}
+          An auto-scrolling viewport for chat messages, with a scroll-to-latest
+          button. Built on{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
             @shadcn/react
           </code>
@@ -148,8 +148,8 @@ export default function MessageScrollerDocPage() {
           Overview
         </h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
-          Scroll up inside the viewport below, then use the button to jump
-          back to the latest message.
+          Scroll up inside the viewport below, then use the button to jump back
+          to the latest message.
         </p>
         <div className="mt-4">
           <ComponentPreview

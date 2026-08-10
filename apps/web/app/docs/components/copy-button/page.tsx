@@ -92,18 +92,16 @@ export default function CopyButtonDocPage() {
           <CopyMarkdownButton markdown={copyButtonMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          An icon button that copies text to the clipboard, morphs its icon
-          from a copy glyph to a checkmark, and anchors a confirmation toast
-          to itself — built on{" "}
+          An icon button that copies text to the clipboard, morphs its icon from
+          a copy glyph to a checkmark, and anchors a confirmation toast to
+          itself — built on{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
             Tooltip
           </code>{" "}
           and the anchored{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
-            Toast
-          </code>
-          . It brings its own toast manager and provider internally, so it
-          drops in anywhere with zero setup.
+          <code className="rounded bg-muted px-1.5 py-0.5 text-sm">Toast</code>.
+          It brings its own toast manager and provider internally, so it drops
+          in anywhere with zero setup.
         </p>
         <LastUpdated date={lastEdited} />
 
@@ -172,9 +170,9 @@ export default function CopyButtonDocPage() {
           Usage
         </h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
-          No provider to wrap — the copy confirmation is a toast anchored to
-          the button itself (not a corner-stacked one), and CopyButton
-          manages that internally by default.
+          No provider to wrap — the copy confirmation is a toast anchored to the
+          button itself (not a corner-stacked one), and CopyButton manages that
+          internally by default.
         </p>
         <div className="mt-4">
           <CodeBlock code={usageSnippet} lang="tsx" />
@@ -228,9 +226,9 @@ export default function CopyButtonDocPage() {
             <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
               label
             </code>{" "}
-            is already Persian (&quot;کپی&quot;), and the anchored
-            confirmation toast mirrors correctly since it goes through the
-            same direction-aware{" "}
+            is already Persian (&quot;کپی&quot;), and the anchored confirmation
+            toast mirrors correctly since it goes through the same
+            direction-aware{" "}
             <code className="rounded bg-muted px-1.5 py-0.5 text-sm">
               AnchoredToastProvider
             </code>{" "}

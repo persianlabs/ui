@@ -8,7 +8,9 @@ import {
 export function PopoverDemoExample() {
   return (
     <Popover>
-      <PopoverTrigger render={<Button variant="outline">Open popover</Button>} />
+      <PopoverTrigger
+        render={<Button variant="outline">Open popover</Button>}
+      />
       <PopoverContent>
         <p className="text-sm font-medium">Dimensions</p>
         <p className="mt-1 text-sm text-muted-foreground">

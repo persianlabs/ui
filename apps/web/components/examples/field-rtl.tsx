@@ -10,7 +10,9 @@ export function FieldRtlExample() {
     <Field className="w-full max-w-xs">
       <FieldLabel htmlFor="field-rtl-email">ایمیل</FieldLabel>
       <Input id="field-rtl-email" type="email" placeholder="you@example.com" />
-      <FieldDescription>ایمیل شما با کسی به اشتراک گذاشته نمی‌شود.</FieldDescription>
+      <FieldDescription>
+        ایمیل شما با کسی به اشتراک گذاشته نمی‌شود.
+      </FieldDescription>
     </Field>
   )
 }

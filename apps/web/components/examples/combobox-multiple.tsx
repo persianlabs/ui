@@ -20,7 +20,12 @@ export function ComboboxMultipleExample() {
   const [value, setValue] = React.useState<string[]>(["Next.js"])
 
   return (
-    <Combobox items={frameworks} multiple value={value} onValueChange={setValue}>
+    <Combobox
+      items={frameworks}
+      multiple
+      value={value}
+      onValueChange={setValue}
+    >
       <ComboboxChips className="w-72">
         <ComboboxValue>
           {(items: string[]) =>
@@ -32,7 +37,11 @@ export function ComboboxMultipleExample() {
       <ComboboxContent>
         <ComboboxEmpty>No frameworks found.</ComboboxEmpty>
         <ComboboxList>
-          {(item: string) => <ComboboxItem key={item} value={item}>{item}</ComboboxItem>}
+          {(item: string) => (
+            <ComboboxItem key={item} value={item}>
+              {item}
+            </ComboboxItem>
+          )}
         </ComboboxList>
       </ComboboxContent>
     </Combobox>

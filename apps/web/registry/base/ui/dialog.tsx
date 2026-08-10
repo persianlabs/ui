@@ -123,7 +123,7 @@ function DialogPopup({
         <DialogPrimitive.Popup
           data-slot="dialog-popup"
           className={cn(
-            "relative row-start-2 flex max-h-[calc(100dvh-2rem)] min-h-0 w-full max-w-lg min-w-0 flex-col rounded-2xl border border-border bg-popover text-popover-foreground shadow-lg outline-none duration-150 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
+            "relative row-start-2 flex max-h-[calc(100dvh-2rem)] min-h-0 w-full max-w-lg min-w-0 flex-col rounded-2xl border border-border bg-popover text-popover-foreground shadow-lg duration-150 outline-none data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
             className
           )}
           {...props}

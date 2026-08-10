@@ -21,9 +21,7 @@ export function UseMediaQueryDeviceExample() {
   const isCoarse = useMediaQuery({ pointer: "coarse" })
   const isFine = useMediaQuery({ pointer: "fine" })
   const prefersDark = useMediaQuery("(prefers-color-scheme: dark)")
-  const prefersReducedMotion = useMediaQuery(
-    "(prefers-reduced-motion: reduce)"
-  )
+  const prefersReducedMotion = useMediaQuery("(prefers-reduced-motion: reduce)")
 
   return (
     <div className="w-full max-w-xs">

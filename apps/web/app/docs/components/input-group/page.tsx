@@ -398,10 +398,7 @@ export default function InputGroupDocPage() {
         </div>
 
         <div className="mt-8">
-          <h3
-            id="button"
-            className="text-sm font-medium text-muted-foreground"
-          >
+          <h3 id="button" className="text-sm font-medium text-muted-foreground">
             Button
           </h3>
           <div className="mt-3">

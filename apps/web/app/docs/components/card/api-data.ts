@@ -5,7 +5,8 @@ export const cardRootApi: ApiReferenceRow[] = [
     prop: "size",
     type: '"default" | "sm"',
     default: '"default"',
-    description: "Controls the card's spacing via the --card-spacing CSS variable.",
+    description:
+      "Controls the card's spacing via the --card-spacing CSS variable.",
   },
 ]
 

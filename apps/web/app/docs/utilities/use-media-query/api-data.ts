@@ -27,7 +27,8 @@ export const mediaQueryInputApi: ApiReferenceRow[] = [
     prop: "pointer",
     type: '"coarse" | "fine"',
     default: "—",
-    description: 'Pointer type — "coarse" for touch, "fine" for mouse/trackpad.',
+    description:
+      'Pointer type — "coarse" for touch, "fine" for mouse/trackpad.',
   },
 ]
 

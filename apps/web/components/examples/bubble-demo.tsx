@@ -17,8 +17,8 @@ export function BubbleDemoExample() {
         </Bubble>
         <Bubble variant="muted">
           <BubbleContent>
-            I can group messages, switch sides, and keep the whole thread
-            easy to scan.
+            I can group messages, switch sides, and keep the whole thread easy
+            to scan.
           </BubbleContent>
           <BubbleReactions role="img" aria-label="Reaction: thumbs up">
             <span>👍</span>
@@ -30,8 +30,8 @@ export function BubbleDemoExample() {
       </Bubble>
       <Bubble variant="muted">
         <BubbleContent>
-          Yes. You are reading a demo that is demoing itself. Very meta.
-          Very on-brand.
+          Yes. You are reading a demo that is demoing itself. Very meta. Very
+          on-brand.
         </BubbleContent>
         <BubbleReactions
           role="img"

@@ -25,7 +25,11 @@ export function UseMediaQueryBreakpointsExample() {
   return (
     <div className="w-full max-w-xs">
       {BREAKPOINTS.map((bp, index) => (
-        <Row key={bp} label={`useMediaQuery("${bp}")`} matches={matches[index]!} />
+        <Row
+          key={bp}
+          label={`useMediaQuery("${bp}")`}
+          matches={matches[index]!}
+        />
       ))}
     </div>
   )

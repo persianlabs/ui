@@ -12,7 +12,9 @@ import {
 export function DropdownMenuRtlExample() {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger render={<Button variant="outline">باز کردن منو</Button>} />
+      <DropdownMenuTrigger
+        render={<Button variant="outline">باز کردن منو</Button>}
+      />
       <DropdownMenuContent>
         <DropdownMenuGroup>
           <DropdownMenuGroupLabel>حساب من</DropdownMenuGroupLabel>

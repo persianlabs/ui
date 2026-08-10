@@ -138,8 +138,8 @@ export default function CardDocPage() {
           <CopyMarkdownButton markdown={cardMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          Displays content in a structured container with an optional
-          header, content, and footer.
+          Displays content in a structured container with an optional header,
+          content, and footer.
         </p>
         <LastUpdated date={lastEdited} />
         <Credits
@@ -156,9 +156,7 @@ export default function CardDocPage() {
         <div className="mt-4">
           <ComponentPreview
             preview={<CardDemoExample />}
-            code={
-              <CodeBlock code={getExampleSource("card-demo")} lang="tsx" />
-            }
+            code={<CodeBlock code={getExampleSource("card-demo")} lang="tsx" />}
           />
         </div>
 
@@ -233,8 +231,7 @@ export default function CardDocPage() {
             Image
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
-            Add an image before the card header to create a card with an
-            image.
+            Add an image before the card header to create a card with an image.
           </p>
           <div className="mt-3">
             <ComponentPreview
@@ -277,10 +274,7 @@ export default function CardDocPage() {
               dir="rtl"
               preview={<CardProductExample />}
               code={
-                <CodeBlock
-                  code={getExampleSource("card-product")}
-                  lang="tsx"
-                />
+                <CodeBlock code={getExampleSource("card-product")} lang="tsx" />
               }
             />
           </div>
@@ -297,10 +291,7 @@ export default function CardDocPage() {
         <ApiReference title="CardContent" rows={cardContentApi} />
         <ApiReference title="CardFooter" rows={cardFooterApi} />
 
-        <DocsPageFooter
-          href="/docs/components/card"
-          sourcePath={SOURCE_PATH}
-        />
+        <DocsPageFooter href="/docs/components/card" sourcePath={SOURCE_PATH} />
       </article>
 
       <aside className="hidden w-44 shrink-0 xl:block">

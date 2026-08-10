@@ -55,10 +55,7 @@ function MarkerIcon({ className, ...props }: React.ComponentProps<"span">) {
   )
 }
 
-function MarkerContent({
-  className,
-  ...props
-}: React.ComponentProps<"span">) {
+function MarkerContent({ className, ...props }: React.ComponentProps<"span">) {
   return (
     <span
       data-slot="marker-content"

@@ -52,9 +52,9 @@ export default function TypographyDocPage() {
           <CopyMarkdownButton markdown={typographyMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          Styles for headings, paragraphs, lists, etc. No typography styles
-          ship by default — this page shows how to style your text with
-          utility classes.
+          Styles for headings, paragraphs, lists, etc. No typography styles ship
+          by default — this page shows how to style your text with utility
+          classes.
         </p>
         <LastUpdated date={lastEdited} />
         <Credits
@@ -92,7 +92,7 @@ export default function TypographyDocPage() {
             </a>{" "}
             را مطالعه کنید.
           </p>
-          <blockquote className="mt-6 border-s-2 border-border ps-6 italic text-muted-foreground">
+          <blockquote className="mt-6 border-s-2 border-border ps-6 text-muted-foreground italic">
             &quot;راست‌به‌چپ به‌عنوان پیش‌فرض، نه یک افترتات.&quot;
           </blockquote>
         </div>
@@ -173,10 +173,9 @@ export default function TypographyDocPage() {
           blockquote
         </h2>
         <div className="mt-4">
-          <blockquote className="border-s-2 border-border ps-6 italic text-muted-foreground">
-            &quot;After all,&quot; he said, &quot;everyone enjoys a good
-            joke, so it&apos;s only fair that they should pay for the
-            privilege.&quot;
+          <blockquote className="border-s-2 border-border ps-6 text-muted-foreground italic">
+            &quot;After all,&quot; he said, &quot;everyone enjoys a good joke,
+            so it&apos;s only fair that they should pay for the privilege.&quot;
           </blockquote>
         </div>
         <div className="mt-4">

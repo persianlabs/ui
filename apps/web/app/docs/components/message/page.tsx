@@ -193,18 +193,15 @@ export default function MessageDocPage() {
             <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
               align
             </code>{" "}
-            uses <code>flex-row-reverse</code> rather than a physical side,
-            so it already reads correctly under RTL.
+            uses <code>flex-row-reverse</code> rather than a physical side, so
+            it already reads correctly under RTL.
           </p>
           <div className="mt-3">
             <ComponentPreview
               dir="rtl"
               preview={<MessageRtlExample />}
               code={
-                <CodeBlock
-                  code={getExampleSource("message-rtl")}
-                  lang="tsx"
-                />
+                <CodeBlock code={getExampleSource("message-rtl")} lang="tsx" />
               }
             />
           </div>

@@ -56,13 +56,15 @@ export const comboboxRootApi: ApiReferenceRow[] = [
     prop: "filter",
     type: "(item, query, itemToString?) => boolean",
     default: "built-in",
-    description: "Custom filter function used to match items against the input query.",
+    description:
+      "Custom filter function used to match items against the input query.",
   },
   {
     prop: "autoHighlight",
     type: "boolean",
     default: "false",
-    description: "Highlights the first matching item automatically while filtering.",
+    description:
+      "Highlights the first matching item automatically while filtering.",
   },
 ]
 

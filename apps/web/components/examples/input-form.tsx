@@ -32,7 +32,9 @@ export function InputFormExample() {
             placeholder="you@example.com"
             required
           />
-          <FieldDescription>We&apos;ll never share your email.</FieldDescription>
+          <FieldDescription>
+            We&apos;ll never share your email.
+          </FieldDescription>
         </Field>
         <Field>
           <FieldLabel htmlFor="input-form-country">Country</FieldLabel>

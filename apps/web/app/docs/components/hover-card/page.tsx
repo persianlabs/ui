@@ -102,8 +102,8 @@ export default function HoverCardDocPage() {
           <CopyMarkdownButton markdown={hoverCardMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          For sighted users to preview content available behind a link.
-          Built on Base UI&apos;s preview card primitive.
+          For sighted users to preview content available behind a link. Built on
+          Base UI&apos;s preview card primitive.
         </p>
         <LastUpdated date={lastEdited} />
         <Credits
@@ -191,8 +191,8 @@ export default function HoverCardDocPage() {
             <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
               inline-end
             </code>{" "}
-            rather than a fixed left/right, so positioning and entry
-            animation stay correct under RTL without any extra work.
+            rather than a fixed left/right, so positioning and entry animation
+            stay correct under RTL without any extra work.
           </p>
           <div className="mt-3">
             <ComponentPreview

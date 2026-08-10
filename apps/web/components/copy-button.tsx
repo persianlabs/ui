@@ -29,11 +29,15 @@ export function CopyButton({
       aria-label={label}
       onClick={onCopy}
       className={cn(
-        "text-muted-foreground hover:text-foreground shrink-0 transition-colors",
+        "shrink-0 text-muted-foreground transition-colors hover:text-foreground",
         className
       )}
     >
-      <MorphIcon icon={copied ? Check : Copy} spring="snappy" className="size-4" />
+      <MorphIcon
+        icon={copied ? Check : Copy}
+        spring="snappy"
+        className="size-4"
+      />
     </button>
   )
 }

@@ -69,97 +69,135 @@ import { tooltipMarkdown as markdown_tooltip } from "../../tooltip/page"
 import { typographyMarkdown as markdown_typography } from "../../typography/page"
 
 const markdownBySlug: Record<string, string> = {
-  "accordion": markdown_accordion,
-  "alert": markdown_alert,
+  accordion: markdown_accordion,
+  alert: markdown_alert,
   "alert-dialog": markdown_alert_dialog,
   "aspect-ratio": markdown_aspect_ratio,
-  "avatar": markdown_avatar,
-  "badge": markdown_badge,
-  "breadcrumb": markdown_breadcrumb,
-  "bubble": markdown_bubble,
-  "button": markdown_button,
+  avatar: markdown_avatar,
+  badge: markdown_badge,
+  breadcrumb: markdown_breadcrumb,
+  bubble: markdown_bubble,
+  button: markdown_button,
   "button-group": markdown_button_group,
-  "card": markdown_card,
-  "checkbox": markdown_checkbox,
+  card: markdown_card,
+  checkbox: markdown_checkbox,
   "city-selector": markdown_city_selector,
-  "collapsible": markdown_collapsible,
-  "combobox": markdown_combobox,
-  "command": markdown_command,
+  collapsible: markdown_collapsible,
+  combobox: markdown_combobox,
+  command: markdown_command,
   "context-menu": markdown_context_menu,
   "copy-button": markdown_copy_button,
-  "dialog": markdown_dialog,
-  "direction": markdown_direction,
-  "drawer": markdown_drawer,
+  dialog: markdown_dialog,
+  direction: markdown_direction,
+  drawer: markdown_drawer,
   "dropdown-menu": markdown_dropdown_menu,
   "elastic-range-slider": markdown_elastic_range_slider,
   "elastic-slider": markdown_elastic_slider,
-  "empty": markdown_empty,
-  "field": markdown_field,
+  empty: markdown_empty,
+  field: markdown_field,
   "hover-card": markdown_hover_card,
-  "input": markdown_input,
+  input: markdown_input,
   "input-group": markdown_input_group,
   "input-otp": markdown_input_otp,
-  "item": markdown_item,
-  "kbd": markdown_kbd,
-  "label": markdown_label,
-  "marker": markdown_marker,
-  "menubar": markdown_menubar,
-  "message": markdown_message,
+  item: markdown_item,
+  kbd: markdown_kbd,
+  label: markdown_label,
+  marker: markdown_marker,
+  menubar: markdown_menubar,
+  message: markdown_message,
   "message-scroller": markdown_message_scroller,
   "native-select": markdown_native_select,
-  "pagination": markdown_pagination,
-  "popover": markdown_popover,
+  pagination: markdown_pagination,
+  popover: markdown_popover,
   "price-input": markdown_price_input,
-  "progress": markdown_progress,
+  progress: markdown_progress,
   "radio-group": markdown_radio_group,
-  "resizable": markdown_resizable,
+  resizable: markdown_resizable,
   "responsive-alert-dialog": markdown_responsive_alert_dialog,
   "responsive-dialog": markdown_responsive_dialog,
   "responsive-menu": markdown_responsive_menu,
   "scroll-area": markdown_scroll_area,
-  "select": markdown_select,
-  "separator": markdown_separator,
-  "sheet": markdown_sheet,
-  "skeleton": markdown_skeleton,
-  "spinner": markdown_spinner,
-  "switch": markdown_switch,
-  "table": markdown_table,
-  "tabs": markdown_tabs,
-  "textarea": markdown_textarea,
-  "toast": markdown_toast,
-  "toggle": markdown_toggle,
+  select: markdown_select,
+  separator: markdown_separator,
+  sheet: markdown_sheet,
+  skeleton: markdown_skeleton,
+  spinner: markdown_spinner,
+  switch: markdown_switch,
+  table: markdown_table,
+  tabs: markdown_tabs,
+  textarea: markdown_textarea,
+  toast: markdown_toast,
+  toggle: markdown_toggle,
   "toggle-group": markdown_toggle_group,
   "toman-icon": markdown_toman_icon,
-  "tooltip": markdown_tooltip,
-  "typography": markdown_typography,
+  tooltip: markdown_tooltip,
+  typography: markdown_typography,
 }
 
 function getCompleteMarkdown(slug: string, markdown: string) {
-  const pagePath = path.join(process.cwd(), "app", "docs", "components", slug, "page.tsx")
-  const pageSource = fs.readFileSync(pagePath, "utf8")
-  const examples = [...pageSource.matchAll(/getExampleSource\("([^"]+)"\)/g)].map(
-    (match) => match[1]!
+  const pagePath = path.join(
+    process.cwd(),
+    "app",
+    "docs",
+    "components",
+    slug,
+    "page.tsx"
   )
+  const pageSource = fs.readFileSync(pagePath, "utf8")
+  const examples = [
+    ...pageSource.matchAll(/getExampleSource\("([^"]+)"\)/g),
+  ].map((match) => match[1]!)
 
   const sections = [markdown]
   if (examples.length > 0 && !markdown.includes("## Examples")) {
     sections.push("", "## Examples")
     for (const name of [...new Set(examples)]) {
-      sections.push("", `### ${name}`, "", "```tsx", getExampleSource(name), "```")
+      sections.push(
+        "",
+        `### ${name}`,
+        "",
+        "```tsx",
+        getExampleSource(name),
+        "```"
+      )
     }
   }
 
-  const componentPath = path.join(process.cwd(), "registry", "base", "ui", `${slug}.tsx`)
-  if (!markdown.includes("## Component source") && fs.existsSync(componentPath)) {
-    sections.push("", "## Component source", "", `### ${slug}.tsx`, "", "```tsx", getComponentSource(slug), "```")
+  const componentPath = path.join(
+    process.cwd(),
+    "registry",
+    "base",
+    "ui",
+    `${slug}.tsx`
+  )
+  if (
+    !markdown.includes("## Component source") &&
+    fs.existsSync(componentPath)
+  ) {
+    sections.push(
+      "",
+      "## Component source",
+      "",
+      `### ${slug}.tsx`,
+      "",
+      "```tsx",
+      getComponentSource(slug),
+      "```"
+    )
   }
 
   return sections.join("\n")
 }
 
-export async function GET(_request: Request, { params }: { params: Promise<{ slug: string }> }) {
+export async function GET(
+  _request: Request,
+  { params }: { params: Promise<{ slug: string }> }
+) {
   const slug = (await params).slug
   const markdown = markdownBySlug[slug]
-  if (!markdown) return new Response("Markdown is unavailable.", { status: 404 })
-  return new Response(getCompleteMarkdown(slug, markdown), { headers: { "content-type": "text/markdown; charset=utf-8" } })
+  if (!markdown)
+    return new Response("Markdown is unavailable.", { status: 404 })
+  return new Response(getCompleteMarkdown(slug, markdown), {
+    headers: { "content-type": "text/markdown; charset=utf-8" },
+  })
 }

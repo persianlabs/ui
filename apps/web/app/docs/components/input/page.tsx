@@ -203,10 +203,7 @@ export default function InputDocPage() {
         </h2>
 
         <div className="mt-8">
-          <h3
-            id="basic"
-            className="text-sm font-medium text-muted-foreground"
-          >
+          <h3 id="basic" className="text-sm font-medium text-muted-foreground">
             Basic
           </h3>
           <div className="mt-3">
@@ -220,10 +217,7 @@ export default function InputDocPage() {
         </div>
 
         <div className="mt-8">
-          <h3
-            id="field"
-            className="text-sm font-medium text-muted-foreground"
-          >
+          <h3 id="field" className="text-sm font-medium text-muted-foreground">
             Field
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
@@ -374,10 +368,7 @@ export default function InputDocPage() {
         </div>
 
         <div className="mt-8">
-          <h3
-            id="inline"
-            className="text-sm font-medium text-muted-foreground"
-          >
+          <h3 id="inline" className="text-sm font-medium text-muted-foreground">
             Inline
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
@@ -399,10 +390,7 @@ export default function InputDocPage() {
             <ComponentPreview
               preview={<InputInlineExample />}
               code={
-                <CodeBlock
-                  code={getExampleSource("input-inline")}
-                  lang="tsx"
-                />
+                <CodeBlock code={getExampleSource("input-inline")} lang="tsx" />
               }
             />
           </div>
@@ -453,10 +441,7 @@ export default function InputDocPage() {
         </div>
 
         <div className="mt-8">
-          <h3
-            id="badge"
-            className="text-sm font-medium text-muted-foreground"
-          >
+          <h3 id="badge" className="text-sm font-medium text-muted-foreground">
             Badge
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">

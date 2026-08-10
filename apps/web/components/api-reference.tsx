@@ -144,58 +144,77 @@ export function ApiReference({
     ? rows.filter((row) => localProps[title]?.includes(row.prop))
     : rows
 
-  if (upstreamHref && shownRows.length === 0 && !baseUiReferenceOwners.has(title)) {
+  if (
+    upstreamHref &&
+    shownRows.length === 0 &&
+    !baseUiReferenceOwners.has(title)
+  ) {
     return null
   }
 
   return (
     <div className="mt-6">
-      <h3 className="text-foreground font-mono text-sm font-medium">{title}</h3>
+      <h3 className="font-mono text-sm font-medium text-foreground">{title}</h3>
       {shownRows.length > 0 ? (
         <ScrollArea
           scrollbarOrientation="horizontal"
-          className="border-border mt-3 rounded-lg border"
+          className="mt-3 rounded-lg border border-border"
         >
-        <table className="min-w-[48rem] w-full text-left text-sm">
-          <thead>
-            <tr className="border-border bg-muted/40 border-b">
-              <th className="text-muted-foreground px-4 py-2 font-medium">Prop</th>
-              <th className="text-muted-foreground px-4 py-2 font-medium">Type</th>
-              <th className="text-muted-foreground px-4 py-2 font-medium">Default</th>
-              <th className="text-muted-foreground min-w-64 px-4 py-2 font-medium">
-                Description
-              </th>
-            </tr>
-          </thead>
-          <tbody className="divide-border/60 divide-y">
-            {shownRows.map((row) => (
-              <tr key={row.prop}>
-                <td className="text-foreground px-4 py-2.5 font-mono whitespace-nowrap">
-                  {row.prop}
-                </td>
-                <td className="text-muted-foreground px-4 py-2.5 font-mono whitespace-nowrap">
-                  {row.typeDetail ? (
-                    <HoverDetail detail={row.typeDetail}>{row.type}</HoverDetail>
-                  ) : (
-                    row.type
-                  )}
-                </td>
-                <td className="text-muted-foreground px-4 py-2.5 font-mono whitespace-nowrap">
-                  {row.default ?? "—"}
-                </td>
-                <td className="text-muted-foreground min-w-64 px-4 py-2.5 leading-relaxed">
-                  {row.description}
-                </td>
+          <table className="w-full min-w-[48rem] text-left text-sm">
+            <thead>
+              <tr className="border-b border-border bg-muted/40">
+                <th className="px-4 py-2 font-medium text-muted-foreground">
+                  Prop
+                </th>
+                <th className="px-4 py-2 font-medium text-muted-foreground">
+                  Type
+                </th>
+                <th className="px-4 py-2 font-medium text-muted-foreground">
+                  Default
+                </th>
+                <th className="min-w-64 px-4 py-2 font-medium text-muted-foreground">
+                  Description
+                </th>
               </tr>
-            ))}
-          </tbody>
+            </thead>
+            <tbody className="divide-y divide-border/60">
+              {shownRows.map((row) => (
+                <tr key={row.prop}>
+                  <td className="px-4 py-2.5 font-mono whitespace-nowrap text-foreground">
+                    {row.prop}
+                  </td>
+                  <td className="px-4 py-2.5 font-mono whitespace-nowrap text-muted-foreground">
+                    {row.typeDetail ? (
+                      <HoverDetail detail={row.typeDetail}>
+                        {row.type}
+                      </HoverDetail>
+                    ) : (
+                      row.type
+                    )}
+                  </td>
+                  <td className="px-4 py-2.5 font-mono whitespace-nowrap text-muted-foreground">
+                    {row.default ?? "—"}
+                  </td>
+                  <td className="min-w-64 px-4 py-2.5 leading-relaxed text-muted-foreground">
+                    {row.description}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </table>
         </ScrollArea>
       ) : null}
       {upstreamHref && baseUiReferenceOwners.has(title) ? (
         <p className="mt-3 text-sm text-muted-foreground">
-          {shownRows.length > 0 ? "All other props are inherited from " : "API reference: "}
-          <a href={upstreamHref} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-foreground underline underline-offset-4">
+          {shownRows.length > 0
+            ? "All other props are inherited from "
+            : "API reference: "}
+          <a
+            href={upstreamHref}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1 text-foreground underline underline-offset-4"
+          >
             {upstreamLabel} {title} <ExternalLinkIcon className="size-3" />
           </a>
           .

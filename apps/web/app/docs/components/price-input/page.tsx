@@ -99,14 +99,13 @@ export default function PriceInputDocPage() {
           <CopyMarkdownButton markdown={priceInputMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          A text input that live-formats digits with thousands separators
-          as you type — e.g. typing <code>125000</code> shows{" "}
-          <code>125,000</code> on every keystroke, not just on blur.
-          Reports back a plain <code>number | null</code>, so it&apos;s
-          trivial to send to a server. It also normalizes Persian (۰-۹)
-          and Arabic-Indic (٠-٩) numerals to plain digits as you type or
-          paste, since Persian keyboards commonly type those instead of
-          0-9 — see{" "}
+          A text input that live-formats digits with thousands separators as you
+          type — e.g. typing <code>125000</code> shows <code>125,000</code> on
+          every keystroke, not just on blur. Reports back a plain{" "}
+          <code>number | null</code>, so it&apos;s trivial to send to a server.
+          It also normalizes Persian (۰-۹) and Arabic-Indic (٠-٩) numerals to
+          plain digits as you type or paste, since Persian keyboards commonly
+          type those instead of 0-9 — see{" "}
           <a
             href="/docs/utilities/normalize-persian-digits"
             className="text-foreground underline underline-offset-4"
@@ -216,7 +215,10 @@ export default function PriceInputDocPage() {
             With a Currency Suffix
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
-            Compose <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">PriceInput</code>{" "}
+            Compose{" "}
+            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+              PriceInput
+            </code>{" "}
             with{" "}
             <a
               href="/docs/components/input-group"
@@ -224,11 +226,11 @@ export default function PriceInputDocPage() {
             >
               Input Group
             </a>{" "}
-            for a currency suffix like &quot;تومان&quot;. Pass the
-            group&apos;s control styles through <code>className</code>, and
-            set <code>data-slot=&quot;input-group-control&quot;</code> so it
-            sits flush with the addon and its border/focus states bubble up
-            to the group.
+            for a currency suffix like &quot;تومان&quot;. Pass the group&apos;s
+            control styles through <code>className</code>, and set{" "}
+            <code>data-slot=&quot;input-group-control&quot;</code> so it sits
+            flush with the addon and its border/focus states bubble up to the
+            group.
           </p>
           <div className="mt-3">
             <ComponentPreview
@@ -252,8 +254,8 @@ export default function PriceInputDocPage() {
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
             A short abbreviation like &quot;T&quot; reads well in dense UI —
-            tables, cards, compact forms — where the full word would crowd
-            the layout.
+            tables, cards, compact forms — where the full word would crowd the
+            layout.
           </p>
           <div className="mt-3">
             <ComponentPreview
@@ -307,10 +309,9 @@ export default function PriceInputDocPage() {
             <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
               dir=&quot;ltr&quot;
             </code>{" "}
-            — digits always read left-to-right — while the label, suffix,
-            and description flow naturally with the RTL layout around it.
-            Try typing Persian digits (۰-۹) below; they&apos;re normalized
-            automatically.
+            — digits always read left-to-right — while the label, suffix, and
+            description flow naturally with the RTL layout around it. Try typing
+            Persian digits (۰-۹) below; they&apos;re normalized automatically.
           </p>
           <div className="mt-3">
             <ComponentPreview

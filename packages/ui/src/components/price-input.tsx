@@ -7,11 +7,10 @@ import { useControllableState } from "@workspace/ui/hooks/use-controllable-state
 import { normalizePersianDigits } from "@workspace/ui/lib/normalize-persian-digits"
 import { cn } from "@workspace/ui/lib/utils"
 
-export interface PriceInputProps
-  extends Omit<
-    React.ComponentProps<typeof Input>,
-    "value" | "defaultValue" | "onChange" | "type"
-  > {
+export interface PriceInputProps extends Omit<
+  React.ComponentProps<typeof Input>,
+  "value" | "defaultValue" | "onChange" | "type"
+> {
   /** The numeric value. Use when controlled. */
   value?: number | null
   /** The initial numeric value when uncontrolled. */
@@ -35,7 +34,9 @@ function clamp(value: number, min?: number, max?: number) {
 
 function formatValue(value: number | null, locale: Intl.LocalesArgument) {
   if (value === null) return ""
-  return new Intl.NumberFormat(locale, { maximumFractionDigits: 0 }).format(value)
+  return new Intl.NumberFormat(locale, { maximumFractionDigits: 0 }).format(
+    value
+  )
 }
 
 function countDigits(text: string) {

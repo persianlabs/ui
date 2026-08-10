@@ -62,7 +62,7 @@ function FieldDescription({
     <FieldPrimitive.Description
       data-slot="field-description"
       className={cn(
-        "text-muted-foreground text-sm leading-normal group-data-[disabled]/field:opacity-50",
+        "text-sm leading-normal text-muted-foreground group-data-[disabled]/field:opacity-50",
         className
       )}
       {...props}
@@ -74,7 +74,7 @@ function FieldError({ className, ...props }: FieldPrimitive.Error.Props) {
   return (
     <FieldPrimitive.Error
       data-slot="field-error"
-      className={cn("text-destructive text-sm leading-normal", className)}
+      className={cn("text-sm leading-normal text-destructive", className)}
       {...props}
     />
   )

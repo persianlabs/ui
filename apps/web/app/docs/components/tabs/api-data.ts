@@ -34,8 +34,7 @@ export const tabsRootApi: ApiReferenceRow[] = [
     type: "TabsVariant",
     typeDetail: '"default" | "rounded" | "line" | "ghost"',
     default: '"default"',
-    description:
-      "The visual style of the tab list and its sliding indicator.",
+    description: "The visual style of the tab list and its sliding indicator.",
   },
 ]
 
@@ -51,7 +50,8 @@ export const tabsListApi: ApiReferenceRow[] = [
     prop: "loopFocus",
     type: "boolean",
     default: "true",
-    description: "Loop keyboard focus back to the first tab when the end of the list is reached.",
+    description:
+      "Loop keyboard focus back to the first tab when the end of the list is reached.",
   },
 ]
 
@@ -67,7 +67,8 @@ export const tabsTriggerApi: ApiReferenceRow[] = [
     prop: "disabled",
     type: "boolean",
     default: "false",
-    description: "Prevents interaction and excludes the tab from keyboard navigation.",
+    description:
+      "Prevents interaction and excludes the tab from keyboard navigation.",
   },
 ]
 
@@ -83,6 +84,7 @@ export const tabsContentApi: ApiReferenceRow[] = [
     prop: "keepMounted",
     type: "boolean",
     default: "false",
-    description: "Keep the panel mounted in the DOM while hidden, instead of unmounting it.",
+    description:
+      "Keep the panel mounted in the DOM while hidden, instead of unmounting it.",
   },
 ]

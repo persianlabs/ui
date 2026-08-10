@@ -194,10 +194,7 @@ export default function CheckboxDocPage() {
               dir="rtl"
               preview={<CheckboxRtlExample />}
               code={
-                <CodeBlock
-                  code={getExampleSource("checkbox-rtl")}
-                  lang="tsx"
-                />
+                <CodeBlock code={getExampleSource("checkbox-rtl")} lang="tsx" />
               }
             />
           </div>

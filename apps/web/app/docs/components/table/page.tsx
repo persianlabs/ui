@@ -33,7 +33,8 @@ import { tableApi } from "./api-data"
 
 export const metadata: Metadata = {
   title: "Table",
-  description: "A responsive table component, with an optional card-row variant.",
+  description:
+    "A responsive table component, with an optional card-row variant.",
 }
 
 const tocItems = [
@@ -121,8 +122,8 @@ export default function TableDocPage() {
           <CopyMarkdownButton markdown={tableMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          A responsive table component with a caption, header, body, and
-          footer, plus an optional{" "}
+          A responsive table component with a caption, header, body, and footer,
+          plus an optional{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
             card
           </code>{" "}
@@ -137,7 +138,7 @@ export default function TableDocPage() {
           changed={true}
           changes={[
             "Replaced text-left with text-start, and pr-0 with pe-0 on the checkbox column, for RTL",
-            "Added an optional card variant (Table variant=\"card\") that separates each row into its own bordered, elevated surface — inspired by cossui's Table",
+            'Added an optional card variant (Table variant="card") that separates each row into its own bordered, elevated surface — inspired by cossui\'s Table',
           ]}
         />
 
@@ -214,9 +215,9 @@ export default function TableDocPage() {
             <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
               variant=&quot;card&quot;
             </code>{" "}
-            for a card-style table: separated borders, rounded corners, and
-            row surfaces that read as individual cards. The default variant
-            is a simpler grid with shared borders.
+            for a card-style table: separated borders, rounded corners, and row
+            surfaces that read as individual cards. The default variant is a
+            simpler grid with shared borders.
           </p>
           <div className="mt-3">
             <ComponentPreview
@@ -287,8 +288,8 @@ export default function TableDocPage() {
             >
               Badge
             </a>
-            , and a Dropdown Menu for row actions — a common shape for team
-            or user management tables.
+            , and a Dropdown Menu for row actions — a common shape for team or
+            user management tables.
           </p>
           <div className="mt-3">
             <ComponentPreview
@@ -313,8 +314,8 @@ export default function TableDocPage() {
             <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
               text-end
             </code>{" "}
-            utilities, so numeric columns stay aligned to the trailing edge
-            in both directions.
+            utilities, so numeric columns stay aligned to the trailing edge in
+            both directions.
           </p>
           <div className="mt-3">
             <ComponentPreview

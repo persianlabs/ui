@@ -18,9 +18,7 @@ export function DropdownMenuCheckboxesExample() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger
-        render={<Button variant="outline">View</Button>}
-      />
+      <DropdownMenuTrigger render={<Button variant="outline">View</Button>} />
       <DropdownMenuContent>
         <DropdownMenuGroupLabel>Appearance</DropdownMenuGroupLabel>
         <DropdownMenuSeparator />

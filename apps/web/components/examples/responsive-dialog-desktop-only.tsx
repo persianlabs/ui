@@ -29,7 +29,9 @@ export function ResponsiveDialogDesktopOnlyExample() {
         <ResponsiveDialogFooter>
           <Button variant="destructive">Discard</Button>
           <ResponsiveDialogDesktopOnly>
-            <ResponsiveDialogClose render={<Button variant="outline">Cancel</Button>} />
+            <ResponsiveDialogClose
+              render={<Button variant="outline">Cancel</Button>}
+            />
           </ResponsiveDialogDesktopOnly>
         </ResponsiveDialogFooter>
       </ResponsiveDialogPopup>

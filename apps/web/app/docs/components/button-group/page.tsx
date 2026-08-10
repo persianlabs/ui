@@ -301,8 +301,7 @@ export default function ButtonGroupDocPage() {
             <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
               ButtonGroupSeparator
             </code>{" "}
-            component visually divides buttons within a group. Buttons with
-            the{" "}
+            component visually divides buttons within a group. Buttons with the{" "}
             <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
               outline
             </code>{" "}

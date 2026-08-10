@@ -1,4 +1,9 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@workspace/ui/components/tabs"
 
 export function TabsDefaultExample() {
   return (
@@ -10,19 +15,19 @@ export function TabsDefaultExample() {
       </TabsList>
       <TabsContent
         value="overview"
-        className="text-muted-foreground mt-4 text-sm leading-relaxed"
+        className="mt-4 text-sm leading-relaxed text-muted-foreground"
       >
         A quick summary of what changed, at a glance.
       </TabsContent>
       <TabsContent
         value="activity"
-        className="text-muted-foreground mt-4 text-sm leading-relaxed"
+        className="mt-4 text-sm leading-relaxed text-muted-foreground"
       >
         A running log of recent events, newest first.
       </TabsContent>
       <TabsContent
         value="settings"
-        className="text-muted-foreground mt-4 text-sm leading-relaxed"
+        className="mt-4 text-sm leading-relaxed text-muted-foreground"
       >
         Preferences that apply across the whole workspace.
       </TabsContent>

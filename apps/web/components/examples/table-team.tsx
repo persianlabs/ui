@@ -24,9 +24,27 @@ import {
 } from "@workspace/ui/components/table"
 
 const members = [
-  { id: "1", name: "Sara Ahmadi", initials: "SA", role: "Owner", status: "active" as const },
-  { id: "2", name: "Kian Rahimi", initials: "KR", role: "Admin", status: "active" as const },
-  { id: "3", name: "Niloofar Zare", initials: "NZ", role: "Member", status: "invited" as const },
+  {
+    id: "1",
+    name: "Sara Ahmadi",
+    initials: "SA",
+    role: "Owner",
+    status: "active" as const,
+  },
+  {
+    id: "2",
+    name: "Kian Rahimi",
+    initials: "KR",
+    role: "Admin",
+    status: "active" as const,
+  },
+  {
+    id: "3",
+    name: "Niloofar Zare",
+    initials: "NZ",
+    role: "Member",
+    status: "invited" as const,
+  },
 ]
 
 export function TableTeamExample() {
@@ -83,7 +101,9 @@ export function TableTeamExample() {
               {member.role}
             </TableCell>
             <TableCell>
-              <Badge variant={member.status === "active" ? "default" : "outline"}>
+              <Badge
+                variant={member.status === "active" ? "default" : "outline"}
+              >
                 {member.status === "active" ? "Active" : "Invited"}
               </Badge>
             </TableCell>

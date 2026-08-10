@@ -2,7 +2,10 @@
 
 import * as React from "react"
 
-import { InputGroup, InputGroupAddon } from "@workspace/ui/components/input-group"
+import {
+  InputGroup,
+  InputGroupAddon,
+} from "@workspace/ui/components/input-group"
 import { PriceInput } from "@workspace/ui/components/price-input"
 import { TomanIcon } from "@workspace/ui/components/toman-icon"
 

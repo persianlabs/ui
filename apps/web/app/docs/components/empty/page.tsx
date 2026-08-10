@@ -34,7 +34,8 @@ import { emptyMediaApi } from "./api-data"
 
 export const metadata: Metadata = {
   title: "Empty",
-  description: "Displays an empty state with a title, description, and optional actions.",
+  description:
+    "Displays an empty state with a title, description, and optional actions.",
 }
 
 const tocItems = [

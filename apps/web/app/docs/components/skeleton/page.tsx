@@ -109,10 +109,7 @@ export default function SkeletonDocPage() {
           <ComponentPreview
             preview={<SkeletonDemoExample />}
             code={
-              <CodeBlock
-                code={getExampleSource("skeleton-demo")}
-                lang="tsx"
-              />
+              <CodeBlock code={getExampleSource("skeleton-demo")} lang="tsx" />
             }
           />
         </div>
@@ -188,10 +185,7 @@ export default function SkeletonDocPage() {
               dir="rtl"
               preview={<SkeletonRtlExample />}
               code={
-                <CodeBlock
-                  code={getExampleSource("skeleton-rtl")}
-                  lang="tsx"
-                />
+                <CodeBlock code={getExampleSource("skeleton-rtl")} lang="tsx" />
               }
             />
           </div>

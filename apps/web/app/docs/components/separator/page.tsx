@@ -102,8 +102,8 @@ export default function SeparatorDocPage() {
           <CopyMarkdownButton markdown={separatorMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          Visually or semantically separates content. Built on Base
-          UI&apos;s separator primitive.
+          Visually or semantically separates content. Built on Base UI&apos;s
+          separator primitive.
         </p>
         <LastUpdated date={lastEdited} />
         <Credits
@@ -124,10 +124,7 @@ export default function SeparatorDocPage() {
           <ComponentPreview
             preview={<SeparatorDemoExample />}
             code={
-              <CodeBlock
-                code={getExampleSource("separator-demo")}
-                lang="tsx"
-              />
+              <CodeBlock code={getExampleSource("separator-demo")} lang="tsx" />
             }
           />
         </div>

@@ -50,7 +50,10 @@ export function CitySelectorFormExample() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex w-full max-w-sm flex-col gap-4">
+    <form
+      onSubmit={handleSubmit}
+      className="flex w-full max-w-sm flex-col gap-4"
+    >
       <div className="flex flex-col gap-1.5">
         <Label htmlFor="city-selector-form-name">Full name</Label>
         <Input
@@ -60,7 +63,7 @@ export function CitySelectorFormExample() {
           placeholder="Jane Doe"
         />
         {errors.fullName && (
-          <p className="text-destructive text-xs">{errors.fullName}</p>
+          <p className="text-xs text-destructive">{errors.fullName}</p>
         )}
       </div>
 
@@ -72,7 +75,7 @@ export function CitySelectorFormExample() {
           onValueChange={setLocation}
         />
         {(errors.province || errors.city) && (
-          <p className="text-destructive text-xs">
+          <p className="text-xs text-destructive">
             {errors.province ?? errors.city}
           </p>
         )}
@@ -81,7 +84,7 @@ export function CitySelectorFormExample() {
       <Button type="submit">Submit</Button>
 
       {submitted && (
-        <p className="text-muted-foreground text-sm">
+        <p className="text-sm text-muted-foreground">
           Submitted: {fullName} — {location.province?.nameEn},{" "}
           {location.city?.nameEn}
         </p>

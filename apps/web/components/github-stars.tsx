@@ -15,10 +15,14 @@ export function GithubStars() {
     const controller = new AbortController()
     async function loadStars() {
       try {
-        const response = await fetch("https://api.github.com/repos/persianlabs/ui", { signal: controller.signal })
+        const response = await fetch(
+          "https://api.github.com/repos/persianlabs/ui",
+          { signal: controller.signal }
+        )
         if (!response.ok) return
         const data = (await response.json()) as { stargazers_count?: number }
-        if (typeof data.stargazers_count === "number") setStars(data.stargazers_count)
+        if (typeof data.stargazers_count === "number")
+          setStars(data.stargazers_count)
       } catch {
         // The GitHub link remains useful when the public API is unavailable.
       }

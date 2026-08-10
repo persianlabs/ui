@@ -1,6 +1,14 @@
 import { ScrollArea } from "@workspace/ui/components/scroll-area"
 
-const colors = ["#f87171", "#fb923c", "#facc15", "#4ade80", "#22d3ee", "#818cf8", "#f472b6"]
+const colors = [
+  "#f87171",
+  "#fb923c",
+  "#facc15",
+  "#4ade80",
+  "#22d3ee",
+  "#818cf8",
+  "#f472b6",
+]
 
 export function ScrollAreaHorizontalExample() {
   return (

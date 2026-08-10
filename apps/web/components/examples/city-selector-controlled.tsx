@@ -16,7 +16,7 @@ export function CitySelectorControlledExample() {
   return (
     <div className="flex flex-col gap-3">
       <CitySelector locale="en" value={value} onValueChange={setValue} />
-      <p className="text-muted-foreground text-sm">
+      <p className="text-sm text-muted-foreground">
         {value.city
           ? `${value.province?.nameEn} — ${value.city.nameEn}`
           : "No city selected."}

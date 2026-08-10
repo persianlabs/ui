@@ -50,9 +50,7 @@ export function InputGroupButtonExample() {
             className="flex flex-col gap-1 rounded-xl text-sm"
           >
             <p className="font-medium">Your connection is not secure.</p>
-            <p>
-              You should not enter any sensitive information on this site.
-            </p>
+            <p>You should not enter any sensitive information on this site.</p>
           </PopoverContent>
         </Popover>
         <InputGroupAddon className="ps-1.5 text-muted-foreground">

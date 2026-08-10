@@ -119,14 +119,16 @@ export default function ItemDocPage() {
           <CopyMarkdownButton markdown={itemMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          A flexible layout for a piece of content, media, or action, often
-          used in lists, such as a file list or a settings menu.
+          A flexible layout for a piece of content, media, or action, often used
+          in lists, such as a file list or a settings menu.
         </p>
         <LastUpdated date={lastEdited} />
         <Credits
           sources={[{ label: "shadcn/ui", href: "https://ui.shadcn.com" }]}
           changed={true}
-          changes={["Replaced text-left with text-start on ItemDescription for RTL"]}
+          changes={[
+            "Replaced text-left with text-start on ItemDescription for RTL",
+          ]}
         />
 
         <h2
@@ -138,9 +140,7 @@ export default function ItemDocPage() {
         <div className="mt-4">
           <ComponentPreview
             preview={<ItemDemoExample />}
-            code={
-              <CodeBlock code={getExampleSource("item-demo")} lang="tsx" />
-            }
+            code={<CodeBlock code={getExampleSource("item-demo")} lang="tsx" />}
           />
         </div>
 
@@ -204,20 +204,14 @@ export default function ItemDocPage() {
             <ComponentPreview
               preview={<ItemOutlineExample />}
               code={
-                <CodeBlock
-                  code={getExampleSource("item-outline")}
-                  lang="tsx"
-                />
+                <CodeBlock code={getExampleSource("item-outline")} lang="tsx" />
               }
             />
           </div>
         </div>
 
         <div className="mt-8">
-          <h3
-            id="image"
-            className="text-sm font-medium text-muted-foreground"
-          >
+          <h3 id="image" className="text-sm font-medium text-muted-foreground">
             Image
           </h3>
           <div className="mt-3">
@@ -254,10 +248,7 @@ export default function ItemDocPage() {
         <ApiReference title="Item" rows={itemApi} />
         <ApiReference title="ItemMedia" rows={itemMediaApi} />
 
-        <DocsPageFooter
-          href="/docs/components/item"
-          sourcePath={SOURCE_PATH}
-        />
+        <DocsPageFooter href="/docs/components/item" sourcePath={SOURCE_PATH} />
       </article>
 
       <aside className="hidden w-44 shrink-0 xl:block">

@@ -167,7 +167,15 @@ function CitySelector({
       getProvinceLabel,
       getCityLabel,
     }),
-    [resolvedValue, setValue, locale, strings, disabled, getProvinceLabel, getCityLabel]
+    [
+      resolvedValue,
+      setValue,
+      locale,
+      strings,
+      disabled,
+      getProvinceLabel,
+      getCityLabel,
+    ]
   )
 
   return (
@@ -207,7 +215,10 @@ function CitySelectorProvince({
       onValueChange={(province) => setValue({ province, city: null })}
       disabled={disabled}
     >
-      <ComboboxInputGroup className={cn("w-full sm:w-64", className)} {...props}>
+      <ComboboxInputGroup
+        className={cn("w-full sm:w-64", className)}
+        {...props}
+      >
         <ComboboxInput placeholder={placeholder ?? strings.province} />
         <ComboboxIcon />
       </ComboboxInputGroup>
@@ -243,7 +254,10 @@ function CitySelectorCity({
       onValueChange={(city) => setValue({ ...value, city })}
       disabled={disabled || !value.province}
     >
-      <ComboboxInputGroup className={cn("w-full sm:w-64", className)} {...props}>
+      <ComboboxInputGroup
+        className={cn("w-full sm:w-64", className)}
+        {...props}
+      >
         <ComboboxInput
           placeholder={
             value.province

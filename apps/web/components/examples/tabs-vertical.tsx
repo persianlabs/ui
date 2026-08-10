@@ -1,4 +1,9 @@
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@workspace/ui/components/tabs"
 
 export function TabsVerticalExample() {
   return (
@@ -15,19 +20,19 @@ export function TabsVerticalExample() {
       <div className="flex-1">
         <TabsContent
           value="general"
-          className="text-muted-foreground text-sm leading-relaxed"
+          className="text-sm leading-relaxed text-muted-foreground"
         >
           Name, language, and workspace preferences.
         </TabsContent>
         <TabsContent
           value="security"
-          className="text-muted-foreground text-sm leading-relaxed"
+          className="text-sm leading-relaxed text-muted-foreground"
         >
           Two-factor auth and active sessions.
         </TabsContent>
         <TabsContent
           value="billing"
-          className="text-muted-foreground text-sm leading-relaxed"
+          className="text-sm leading-relaxed text-muted-foreground"
         >
           Plan, invoices, and payment methods.
         </TabsContent>

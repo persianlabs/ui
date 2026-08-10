@@ -61,14 +61,12 @@ const searchGroups = docsNav
     icon: groupIcons[group.title] ?? BoxIcon,
     items: group.items
       .filter((item) => !item.disabled)
-      .map(
-        (item): SearchItem => ({
-          value: item.href,
-          label: item.title,
-          href: item.href,
-          badge: item.badge,
-        })
-      ),
+      .map((item): SearchItem => ({
+        value: item.href,
+        label: item.title,
+        href: item.href,
+        badge: item.badge,
+      })),
   }))
   .filter((group) => group.items.length > 0)
 

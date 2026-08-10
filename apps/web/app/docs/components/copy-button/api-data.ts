@@ -50,6 +50,7 @@ export const copyButtonApi: ApiReferenceRow[] = [
     prop: "...props",
     type: "ComponentProps<typeof Button>",
     default: "—",
-    description: "Any other Button prop — variant, size, className, children, etc.",
+    description:
+      "Any other Button prop — variant, size, className, children, etc.",
   },
 ]

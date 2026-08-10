@@ -4,7 +4,8 @@ export const citySelectorApi: ApiReferenceRow[] = [
   {
     prop: "value",
     type: "CitySelectorValue",
-    typeDetail: "{ province: PersianProvince | null; city: PersianCity | null }",
+    typeDetail:
+      "{ province: PersianProvince | null; city: PersianCity | null }",
     default: "undefined",
     description: "The selected province and city. Use when controlled.",
   },

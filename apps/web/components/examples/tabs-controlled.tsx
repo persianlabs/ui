@@ -2,7 +2,12 @@
 
 import * as React from "react"
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@workspace/ui/components/tabs"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@workspace/ui/components/tabs"
 
 const steps = ["details", "shipping", "payment"] as const
 type Step = (typeof steps)[number]
@@ -20,19 +25,19 @@ export function TabsControlledExample() {
         </TabsList>
         <TabsContent
           value="details"
-          className="text-muted-foreground mt-4 text-sm leading-relaxed"
+          className="mt-4 text-sm leading-relaxed text-muted-foreground"
         >
           Step 1 of 3 — tell us about the order.
         </TabsContent>
         <TabsContent
           value="shipping"
-          className="text-muted-foreground mt-4 text-sm leading-relaxed"
+          className="mt-4 text-sm leading-relaxed text-muted-foreground"
         >
           Step 2 of 3 — where should it go.
         </TabsContent>
         <TabsContent
           value="payment"
-          className="text-muted-foreground mt-4 text-sm leading-relaxed"
+          className="mt-4 text-sm leading-relaxed text-muted-foreground"
         >
           Step 3 of 3 — how you&apos;ll pay.
         </TabsContent>
@@ -45,7 +50,7 @@ export function TabsControlledExample() {
             const index = steps.indexOf(step)
             setStep(steps[(index + 1) % steps.length]!)
           }}
-          className="border-border hover:bg-muted rounded-md border px-3 py-1.5 text-xs font-medium transition-colors"
+          className="rounded-md border border-border px-3 py-1.5 text-xs font-medium transition-colors hover:bg-muted"
         >
           Next step
         </button>

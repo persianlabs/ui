@@ -3,16 +3,12 @@
   "name": "separator",
   "title": "Separator",
   "description": "Visually or semantically separates content, built on Base UI.",
-  "dependencies": [
-    "@base-ui/react"
-  ],
-  "registryDependencies": [
-    "utils"
-  ],
+  "dependencies": ["@base-ui/react"],
+  "registryDependencies": ["utils"],
   "files": [
     {
       "path": "registry/base/ui/separator.tsx",
-      "content": "\"use client\"\r\n\r\nimport { Separator as SeparatorPrimitive } from \"@base-ui/react/separator\"\r\n\r\nimport { cn } from \"@/lib/utils\"\r\n\r\nfunction Separator({\r\n  className,\r\n  orientation = \"horizontal\",\r\n  ...props\r\n}: SeparatorPrimitive.Props) {\r\n  return (\r\n    <SeparatorPrimitive\r\n      data-slot=\"separator\"\r\n      orientation={orientation}\r\n      className={cn(\r\n        \"shrink-0 bg-border data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-px data-[orientation=vertical]:self-stretch\",\r\n        className\r\n      )}\r\n      {...props}\r\n    />\r\n  )\r\n}\r\n\r\nexport { Separator }\r\n",
+      "content": "\"use client\"\n\nimport { Separator as SeparatorPrimitive } from \"@base-ui/react/separator\"\n\nimport { cn } from \"@/lib/utils\"\n\nfunction Separator({\n  className,\n  orientation = \"horizontal\",\n  ...props\n}: SeparatorPrimitive.Props) {\n  return (\n    <SeparatorPrimitive\n      data-slot=\"separator\"\n      orientation={orientation}\n      className={cn(\n        \"shrink-0 bg-border data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:w-px data-[orientation=vertical]:self-stretch\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Separator }\n",
       "type": "registry:ui"
     }
   ],
