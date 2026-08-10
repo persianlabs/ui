@@ -33,7 +33,7 @@ export function UseCountdownOtpRtlExample() {
       <div className="space-y-1 text-center">
         <p className="text-sm font-medium">کد تأیید را وارد کنید</p>
         <p className="text-xs text-muted-foreground">
-          کد ۶ رقمی به شماره ۰۹۱۲ ۳۴۵ ۶۷۸۹ ارسال شد
+          کد ۶ رقمی به شماره ۰۹۱۲۳۴۵۶۷۸۹ ارسال شد
         </p>
       </div>
       <InputOTP maxLength={6} aria-label="کد تأیید">
