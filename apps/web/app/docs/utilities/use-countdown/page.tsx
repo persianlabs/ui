@@ -16,9 +16,10 @@ import { Credits } from "@/components/credits"
 import { DocsPageFooter } from "@/components/docs-page-footer"
 import { UseCountdownDemoExample } from "@/components/examples/use-countdown-demo"
 import { UseCountdownOverdueExample } from "@/components/examples/use-countdown-overdue"
+import { UseCountdownOtpExample } from "@/components/examples/use-countdown-otp"
+import { UseCountdownOtpRtlExample } from "@/components/examples/use-countdown-otp-rtl"
 import { UseCountdownPartsExample } from "@/components/examples/use-countdown-parts"
 import { UseCountdownResetExample } from "@/components/examples/use-countdown-reset"
-import { UseCountdownRtlExample } from "@/components/examples/use-countdown-rtl"
 import { LastUpdated } from "@/components/last-updated"
 import { Step, Steps } from "@/components/steps"
 import { TableOfContents } from "@/components/table-of-contents"
@@ -46,8 +47,9 @@ const tocItems = [
     title: "Examples",
     children: [
       { id: "parts", title: "Time units" },
-      { id: "reset", title: "Reset or pause" },
+      { id: "reset", title: "Pause & play" },
       { id: "overdue", title: "Overdue targets" },
+      { id: "otp", title: "OTP resend" },
       { id: "rtl", title: "RTL" },
     ],
   },
@@ -222,8 +224,8 @@ export default function UseCountdownDocPage() {
         />
         <ExampleSection
           id="reset"
-          title="Reset or pause"
-          description="Changing the target starts a fresh countdown; passing null clears it without leaving a timer running."
+          title="Pause and play"
+          description="Pause a countdown without losing its remaining duration, then resume it from exactly where it stopped."
           preview={<UseCountdownResetExample />}
           source="use-countdown-reset"
         />
@@ -233,6 +235,13 @@ export default function UseCountdownDocPage() {
           description="After the target passes, formatted remains absolute while totalSeconds is negative and isOverdue becomes true."
           preview={<UseCountdownOverdueExample />}
           source="use-countdown-overdue"
+        />
+        <ExampleSection
+          id="otp"
+          title="OTP resend"
+          description="Keep the resend action unavailable until the cooldown expires, then start a fresh countdown whenever another code is sent."
+          preview={<UseCountdownOtpExample />}
+          source="use-countdown-otp"
         />
         <div className="mt-8">
           <h3 id="rtl" className="text-sm font-medium text-muted-foreground">
@@ -245,10 +254,10 @@ export default function UseCountdownDocPage() {
           <div className="mt-3">
             <ComponentPreview
               dir="rtl"
-              preview={<UseCountdownRtlExample />}
+              preview={<UseCountdownOtpRtlExample />}
               code={
                 <CodeBlock
-                  code={getExampleSource("use-countdown-rtl")}
+                  code={getExampleSource("use-countdown-otp-rtl")}
                   lang="tsx"
                 />
               }
