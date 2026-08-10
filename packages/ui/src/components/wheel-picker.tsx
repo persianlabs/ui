@@ -64,16 +64,16 @@ function WheelPicker<T extends WheelPickerValue = string>({
     <WheelPickerPrimitive.WheelPicker
       classNames={{
         optionItem: cn(
-          "scale-90 text-muted-foreground transition-[scale,color,opacity] data-disabled:opacity-40",
+          "text-muted-foreground data-disabled:opacity-40",
           classNames?.optionItem
         ),
         highlightWrapper: cn(
-          "border-y border-border bg-[color-mix(in_srgb,var(--card),var(--foreground)_6%)] text-foreground shadow-sm",
+          "bg-[color-mix(in_srgb,var(--card),var(--foreground)_6%)] text-foreground",
           "data-rwp-focused:inset-ring-2 data-rwp-focused:inset-ring-ring/50",
           classNames?.highlightWrapper
         ),
         highlightItem: cn(
-          "scale-110 font-semibold text-foreground transition-[scale,color,opacity] data-disabled:opacity-40",
+          "data-disabled:opacity-40",
           classNames?.highlightItem
         ),
       }}

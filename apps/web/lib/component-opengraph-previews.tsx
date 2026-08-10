@@ -115,8 +115,9 @@ export function ButtonGroupPreview() {
             padding: "12px 20px",
             fontSize: "17px",
             color: "#f2f0ee",
-            borderLeft:
-              index > 0 ? "1px solid rgba(242,240,238,0.16)" : undefined,
+            ...(index > 0
+              ? { borderLeft: "1px solid rgba(242,240,238,0.16)" }
+              : {}),
           }}
         >
           {label}
@@ -199,17 +200,60 @@ export function TextareaPreview() {
     <div
       style={{
         display: "flex",
-        width: "220px",
-        minHeight: "64px",
-        padding: "10px 14px",
-        borderRadius: "10px",
+        width: "264px",
+        minHeight: "77px",
+        padding: "12px 17px",
+        borderRadius: "12px",
         backgroundColor: "#191817",
         border: "1px solid rgba(242,240,238,0.16)",
-        fontSize: "16px",
+        fontSize: "19px",
         color: "rgba(242,240,238,0.5)",
       }}
     >
       Type your message here.
+    </div>
+  )
+}
+
+export function TypographyPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "12px",
+        width: "280px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          fontSize: "44px",
+          fontWeight: 700,
+          letterSpacing: "-1px",
+          color: "#f2f0ee",
+        }}
+      >
+        Heading
+      </div>
+      <div
+        style={{
+          display: "flex",
+          width: "220px",
+          height: "12px",
+          borderRadius: "999px",
+          backgroundColor: "rgba(242,240,238,0.38)",
+        }}
+      />
+      <div
+        style={{
+          display: "flex",
+          width: "180px",
+          height: "12px",
+          borderRadius: "999px",
+          backgroundColor: "rgba(242,240,238,0.2)",
+        }}
+      />
     </div>
   )
 }
@@ -393,17 +437,17 @@ export function SeparatorPreview() {
       style={{
         display: "flex",
         flexDirection: "column",
-        gap: "14px",
-        width: "220px",
+        gap: "28px",
+        width: "440px",
       }}
     >
-      <div style={{ display: "flex", fontSize: "16px", color: "#f2f0ee" }}>
+      <div style={{ display: "flex", fontSize: "32px", color: "#f2f0ee" }}>
         PersianLabs/ui
       </div>
       <div
         style={{
           display: "flex",
-          height: "1px",
+          height: "2px",
           width: "100%",
           backgroundColor: "rgba(242,240,238,0.16)",
         }}
@@ -411,7 +455,7 @@ export function SeparatorPreview() {
       <div
         style={{
           display: "flex",
-          fontSize: "13px",
+          fontSize: "26px",
           color: "rgba(242,240,238,0.5)",
         }}
       >
@@ -540,27 +584,27 @@ export function SwitchPreview() {
       style={{
         display: "flex",
         alignItems: "center",
-        gap: "10px",
-        fontSize: "16px",
+        gap: "20px",
+        fontSize: "32px",
         color: "#f2f0ee",
       }}
     >
       <div
         style={{
           display: "flex",
-          width: "32px",
-          height: "18px",
+          width: "64px",
+          height: "36px",
           borderRadius: "999px",
           backgroundColor: "#f2f0ee",
-          padding: "2px",
+          padding: "4px",
           justifyContent: "flex-end",
         }}
       >
         <div
           style={{
             display: "flex",
-            width: "14px",
-            height: "14px",
+            width: "28px",
+            height: "28px",
             borderRadius: "999px",
             backgroundColor: "#191817",
           }}
@@ -577,9 +621,10 @@ export function CheckboxPreview() {
       style={{
         display: "flex",
         alignItems: "center",
-        gap: "10px",
-        fontSize: "16px",
+        gap: "20px",
         color: "#f2f0ee",
+        fontSize: "28px",
+        fontWeight: 500,
       }}
     >
       <div
@@ -587,15 +632,27 @@ export function CheckboxPreview() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          width: "16px",
-          height: "16px",
-          borderRadius: "4px",
-          backgroundColor: "#f2f0ee",
-          color: "#191817",
-          fontSize: "12px",
+          width: "64px",
+          height: "64px",
+          borderRadius: "12px",
+          border: "3px solid #f2f0ee",
         }}
       >
-        ✓
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="32"
+          height="32"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="none"
+            stroke="#ffffff"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M20 6L9 17l-5-5"
+          />
+        </svg>
       </div>
       Accept terms
     </div>
@@ -604,15 +661,15 @@ export function CheckboxPreview() {
 
 export function RadioGroupPreview() {
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+    <div style={{ display: "flex", flexDirection: "column", gap: "15px" }}>
       {["Default", "Comfortable"].map((label, i) => (
         <div
           key={label}
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "10px",
-            fontSize: "16px",
+            gap: "15px",
+            fontSize: "24px",
             color: "#f2f0ee",
           }}
         >
@@ -621,10 +678,10 @@ export function RadioGroupPreview() {
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              width: "16px",
-              height: "16px",
+              width: "24px",
+              height: "24px",
               borderRadius: "999px",
-              border: "1px solid rgba(242,240,238,0.4)",
+              border: "2px solid rgba(242,240,238,0.4)",
               backgroundColor: i === 1 ? "#f2f0ee" : "transparent",
             }}
           >
@@ -632,8 +689,8 @@ export function RadioGroupPreview() {
               <div
                 style={{
                   display: "flex",
-                  width: "6px",
-                  height: "6px",
+                  width: "9px",
+                  height: "9px",
                   borderRadius: "999px",
                   backgroundColor: "#191817",
                 }}
@@ -715,12 +772,12 @@ export function TogglePreview() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        width: "36px",
-        height: "36px",
-        borderRadius: "8px",
+        width: "72px",
+        height: "72px",
+        borderRadius: "16px",
         backgroundColor: "rgba(242,240,238,0.14)",
         color: "#f2f0ee",
-        fontSize: "16px",
+        fontSize: "32px",
         fontWeight: 700,
       }}
     >
@@ -752,8 +809,9 @@ export function ToggleGroupPreview() {
             color: "#f2f0ee",
             fontSize: "16px",
             fontWeight: 700,
-            borderInlineStart:
-              i > 0 ? "1px solid rgba(242,240,238,0.16)" : undefined,
+            ...(i > 0
+              ? { borderInlineStart: "1px solid rgba(242,240,238,0.16)" }
+              : {}),
           }}
         >
           {letter}
@@ -876,17 +934,17 @@ export function TooltipPreview() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        gap: "6px",
+        gap: "12px",
       }}
     >
       <div
         style={{
           display: "flex",
-          borderRadius: "6px",
+          borderRadius: "12px",
           backgroundColor: "#f2f0ee",
           color: "#1a1a1a",
-          fontSize: "12px",
-          padding: "6px 10px",
+          fontSize: "24px",
+          padding: "12px 20px",
         }}
       >
         Add to library
@@ -894,8 +952,8 @@ export function TooltipPreview() {
       <div
         style={{
           display: "flex",
-          width: "8px",
-          height: "8px",
+          width: "16px",
+          height: "16px",
           backgroundColor: "#f2f0ee",
           transform: "rotate(45deg)",
         }}
@@ -903,12 +961,12 @@ export function TooltipPreview() {
       <div
         style={{
           display: "flex",
-          marginTop: "8px",
-          borderRadius: "8px",
+          marginTop: "16px",
+          borderRadius: "16px",
           border: "1px solid rgba(242,240,238,0.2)",
-          fontSize: "13px",
+          fontSize: "26px",
           color: "#f2f0ee",
-          padding: "6px 16px",
+          padding: "12px 32px",
         }}
       >
         Hover
@@ -948,9 +1006,10 @@ export function SheetPreview() {
     <div
       style={{
         display: "flex",
-        width: "220px",
-        height: "140px",
-        borderRadius: "10px",
+        width: "330px",
+        height: "210px",
+        borderRadius: "15px",
+        border: "2px solid rgba(242,240,238,0.18)",
         backgroundColor: "rgba(242,240,238,0.06)",
         position: "relative",
         overflow: "hidden",
@@ -960,22 +1019,22 @@ export function SheetPreview() {
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: "8px",
+          gap: "12px",
           position: "absolute",
           insetInlineEnd: 0,
           top: 0,
           bottom: 0,
           width: "40%",
           backgroundColor: "#1a1a1a",
-          borderInlineStart: "1px solid rgba(242,240,238,0.16)",
-          padding: "12px",
+          borderInlineStart: "2px solid rgba(242,240,238,0.16)",
+          padding: "18px",
         }}
       >
         <div
           style={{
             display: "flex",
             width: "60%",
-            height: "8px",
+            height: "12px",
             borderRadius: "999px",
             backgroundColor: "rgba(242,240,238,0.5)",
           }}
@@ -984,7 +1043,7 @@ export function SheetPreview() {
           style={{
             display: "flex",
             width: "80%",
-            height: "6px",
+            height: "9px",
             borderRadius: "999px",
             backgroundColor: "rgba(242,240,238,0.2)",
           }}
@@ -1035,7 +1094,7 @@ export function MenubarPreview() {
       style={{
         display: "flex",
         alignItems: "center",
-        gap: "4px",
+        gap: "3px",
         borderRadius: "10px",
         border: "1px solid rgba(242,240,238,0.16)",
         backgroundColor: "rgba(242,240,238,0.04)",
@@ -1162,11 +1221,12 @@ export function DrawerPreview() {
     <div
       style={{
         display: "flex",
-        flexDirection: "column",
-        width: "200px",
-        height: "140px",
-        borderRadius: "10px",
-        backgroundColor: "rgba(242,240,238,0.06)",
+        alignItems: "flex-end",
+        justifyContent: "center",
+        width: "330px",
+        height: "230px",
+        borderRadius: "18px",
+        backgroundColor: "rgba(242,240,238,0.08)",
         position: "relative",
         overflow: "hidden",
       }}
@@ -1176,24 +1236,24 @@ export function DrawerPreview() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          gap: "8px",
+          gap: "14px",
           position: "absolute",
-          insetInlineStart: 0,
-          insetInlineEnd: 0,
+          left: "16px",
+          right: "16px",
           bottom: 0,
-          height: "55%",
+          height: "66%",
           backgroundColor: "#1a1a1a",
           borderTop: "1px solid rgba(242,240,238,0.16)",
-          borderTopLeftRadius: "14px",
-          borderTopRightRadius: "14px",
-          padding: "10px 12px",
+          borderTopLeftRadius: "18px",
+          borderTopRightRadius: "18px",
+          padding: "18px 22px",
         }}
       >
         <div
           style={{
             display: "flex",
-            width: "36px",
-            height: "4px",
+            width: "54px",
+            height: "6px",
             borderRadius: "999px",
             backgroundColor: "rgba(242,240,238,0.3)",
           }}
@@ -1201,8 +1261,8 @@ export function DrawerPreview() {
         <div
           style={{
             display: "flex",
-            width: "60%",
-            height: "8px",
+            width: "68%",
+            height: "12px",
             borderRadius: "999px",
             backgroundColor: "rgba(242,240,238,0.5)",
           }}
@@ -1233,6 +1293,7 @@ export function ResponsiveAlertDialogPreview() {
         display: "flex",
         alignItems: "center",
         gap: "10px",
+        transform: "scale(1.5)",
       }}
     >
       <AlertDialogPreview />
@@ -1247,6 +1308,7 @@ export function ResponsiveMenuPreview() {
         display: "flex",
         alignItems: "center",
         gap: "10px",
+        transform: "scale(1.5)",
       }}
     >
       <ContextMenuPreview />
@@ -1332,16 +1394,29 @@ export function DirectionPreview() {
       style={{
         display: "flex",
         alignItems: "center",
-        gap: "8px",
-        fontSize: "14px",
+        justifyContent: "center",
+        width: "300px",
+        height: "190px",
+        gap: "20px",
+        borderRadius: "18px",
+        border: "1px solid rgba(242,240,238,0.18)",
+        backgroundColor: "rgba(242,240,238,0.07)",
+        fontSize: "46px",
+        fontWeight: 700,
         color: "#f2f0ee",
       }}
     >
-      <div style={{ display: "flex" }}>LTR</div>
-      <div style={{ display: "flex", color: "rgba(242,240,238,0.3)" }}>
-        {"<->"}
+      <div style={{ display: "flex", letterSpacing: "-2px" }}>LTR</div>
+      <div
+        style={{
+          display: "flex",
+          color: "rgba(242,240,238,0.5)",
+          fontSize: "38px",
+        }}
+      >
+        {"↔"}
       </div>
-      <div style={{ display: "flex" }}>RTL</div>
+      <div style={{ display: "flex", letterSpacing: "-2px" }}>RTL</div>
     </div>
   )
 }
@@ -1422,29 +1497,47 @@ export function MarkerPreview() {
       style={{
         display: "flex",
         alignItems: "center",
-        gap: "8px",
-        width: "200px",
-        fontSize: "12px",
-        color: "rgba(242,240,238,0.5)",
+        justifyContent: "center",
+        width: "252px",
       }}
     >
       <div
         style={{
           display: "flex",
-          height: "1px",
-          flex: 1,
-          backgroundColor: "rgba(242,240,238,0.16)",
+          alignItems: "center",
+          width: "252px",
+          gap: "13px",
         }}
-      />
-      <div style={{ display: "flex" }}>OR</div>
-      <div
-        style={{
-          display: "flex",
-          height: "1px",
-          flex: 1,
-          backgroundColor: "rgba(242,240,238,0.16)",
-        }}
-      />
+      >
+        <div
+          style={{
+            display: "flex",
+            height: "1px",
+            flex: 1,
+            backgroundColor: "rgba(242,240,238,0.24)",
+          }}
+        />
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            fontSize: "20px",
+            fontWeight: 700,
+            color: "#f2f0ee",
+          }}
+        >
+          OR
+        </div>
+        <div
+          style={{
+            display: "flex",
+            height: "1px",
+            flex: 1,
+            backgroundColor: "rgba(242,240,238,0.24)",
+          }}
+        />
+      </div>
     </div>
   )
 }
@@ -1495,15 +1588,15 @@ export function MessagePreview() {
       style={{
         display: "flex",
         alignItems: "flex-end",
-        gap: "8px",
-        width: "200px",
+        gap: "24px",
+        width: "380px",
       }}
     >
       <div
         style={{
           display: "flex",
-          width: "28px",
-          height: "28px",
+          width: "84px",
+          height: "84px",
           borderRadius: "9999px",
           backgroundColor: "rgba(242,240,238,0.14)",
         }}
@@ -1511,11 +1604,11 @@ export function MessagePreview() {
       <div
         style={{
           display: "flex",
-          borderRadius: "12px",
+          borderRadius: "32px",
           backgroundColor: "rgba(242,240,238,0.1)",
           color: "#f2f0ee",
-          fontSize: "12px",
-          padding: "8px 12px",
+          fontSize: "36px",
+          padding: "24px 36px",
         }}
       >
         Got it, thanks!
@@ -1531,11 +1624,14 @@ export function MessageScrollerPreview() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        width: "36px",
-        height: "36px",
+        width: "96px",
+        height: "96px",
         borderRadius: "9999px",
         backgroundColor: "rgba(242,240,238,0.14)",
         color: "#f2f0ee",
+        fontSize: "62px",
+        fontWeight: 600,
+        lineHeight: 1,
       }}
     >
       ↓
@@ -1551,7 +1647,7 @@ export function PaginationPreview() {
       style={{
         display: "flex",
         alignItems: "center",
-        gap: "2px",
+        gap: "4px",
       }}
     >
       <div
@@ -1559,16 +1655,23 @@ export function PaginationPreview() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          width: "32px",
-          height: "32px",
-          borderRadius: "8px",
+          width: "45px",
+          height: "45px",
+          borderRadius: "11px",
           color: "rgba(242,240,238,0.5)",
-          fontSize: "16px",
         }}
       >
-        ‹
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
+          <path
+            d="m15 18-6-6 6-6"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
       </div>
-      <div style={{ display: "flex", alignItems: "center", gap: "2px" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "3px" }}>
         {pages.map((page) => {
           const active = page === "2"
 
@@ -1579,15 +1682,15 @@ export function PaginationPreview() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                width: "32px",
-                height: "32px",
-                borderRadius: "8px",
+                width: "45px",
+                height: "45px",
+                borderRadius: "11px",
                 border: active
                   ? "1px solid rgba(242,240,238,0.16)"
                   : "1px solid transparent",
                 backgroundColor: "transparent",
                 color: active ? "#f2f0ee" : "rgba(242,240,238,0.5)",
-                fontSize: "12px",
+                fontSize: "17px",
                 fontWeight: active ? 600 : 500,
               }}
             >
@@ -1600,9 +1703,9 @@ export function PaginationPreview() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            width: "32px",
+            width: "45px",
             color: "rgba(242,240,238,0.5)",
-            fontSize: "12px",
+            fontSize: "17px",
           }}
         >
           •••
@@ -1613,14 +1716,21 @@ export function PaginationPreview() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          width: "32px",
-          height: "32px",
-          borderRadius: "8px",
+          width: "45px",
+          height: "45px",
+          borderRadius: "11px",
           color: "rgba(242,240,238,0.5)",
-          fontSize: "16px",
         }}
       >
-        ›
+        <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
+          <path
+            d="m9 18 6-6-6-6"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
       </div>
     </div>
   )
@@ -1632,10 +1742,10 @@ export function ResizablePreview() {
       style={{
         display: "flex",
         alignItems: "stretch",
-        width: "180px",
-        height: "80px",
-        borderRadius: "10px",
-        border: "1px solid rgba(242,240,238,0.16)",
+        width: "360px",
+        height: "160px",
+        borderRadius: "20px",
+        border: "2px solid rgba(242,240,238,0.16)",
         overflow: "hidden",
       }}
     >
@@ -1649,7 +1759,7 @@ export function ResizablePreview() {
       <div
         style={{
           display: "flex",
-          width: "2px",
+          width: "4px",
           backgroundColor: "rgba(242,240,238,0.24)",
         }}
       />
@@ -1669,15 +1779,15 @@ export function SkeletonPreview() {
       style={{
         display: "flex",
         flexDirection: "column",
-        gap: "8px",
-        width: "200px",
+        gap: "12px",
+        width: "300px",
       }}
     >
       <div
         style={{
           display: "flex",
-          width: "44px",
-          height: "44px",
+          width: "66px",
+          height: "66px",
           borderRadius: "9999px",
           backgroundColor: "rgba(242,240,238,0.1)",
         }}
@@ -1685,18 +1795,18 @@ export function SkeletonPreview() {
       <div
         style={{
           display: "flex",
-          width: "140px",
-          height: "10px",
-          borderRadius: "6px",
+          width: "210px",
+          height: "15px",
+          borderRadius: "9px",
           backgroundColor: "rgba(242,240,238,0.1)",
         }}
       />
       <div
         style={{
           display: "flex",
-          width: "100px",
-          height: "10px",
-          borderRadius: "6px",
+          width: "150px",
+          height: "15px",
+          borderRadius: "9px",
           backgroundColor: "rgba(242,240,238,0.1)",
         }}
       />
@@ -1741,10 +1851,9 @@ export function TablePreview() {
             display: "flex",
             justifyContent: "space-between",
             padding: "8px 12px",
-            borderBottom:
-              i < rows.length - 1
-                ? "1px solid rgba(242,240,238,0.1)"
-                : undefined,
+            ...(i < rows.length - 1
+              ? { borderBottom: "1px solid rgba(242,240,238,0.1)" }
+              : {}),
             fontSize: "13px",
             color: "#f2f0ee",
           }}
@@ -1867,21 +1976,22 @@ export function FieldPreview() {
 
 export function KbdPreview() {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "4px" }}>
-      {["⌘", "K"].map((key) => (
+    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+      {["Ctrl", "K"].map((key) => (
         <div
           key={key}
           style={{
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            minWidth: "22px",
-            height: "22px",
-            borderRadius: "5px",
-            backgroundColor: "rgba(242,240,238,0.1)",
-            color: "rgba(242,240,238,0.7)",
-            fontSize: "12px",
-            padding: "0 5px",
+            width: key === "Ctrl" ? "95px" : "65px",
+            height: "75px",
+            borderRadius: "10px",
+            border: "1px solid rgba(242,240,238,0.28)",
+            backgroundColor: "rgba(242,240,238,0.12)",
+            color: "#f2f0ee",
+            fontSize: key === "Ctrl" ? "24px" : "32px",
+            fontWeight: 600,
           }}
         >
           {key}
@@ -1893,24 +2003,45 @@ export function KbdPreview() {
 
 export function LabelPreview() {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+    <div style={{ display: "flex", alignItems: "center", gap: "22px" }}>
       <div
         style={{
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          width: "16px",
-          height: "16px",
-          borderRadius: "4px",
-          backgroundColor: "#f2f0ee",
-          color: "#191817",
-          fontSize: "11px",
+          width: "56px",
+          height: "56px",
+          borderRadius: "12px",
+          border: "3px solid rgba(242,240,238,0.4)",
+          backgroundColor: "rgba(242,240,238,0.08)",
         }}
       >
-        ✓
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="30"
+          height="30"
+          viewBox="0 0 24 24"
+        >
+          <path
+            fill="none"
+            stroke="rgba(242,240,238,0.45)"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M20 6L9 17l-5-5"
+          />
+        </svg>
       </div>
-      <div style={{ display: "flex", fontSize: "14px", color: "#f2f0ee" }}>
-        Accept terms and conditions
+      <div
+        style={{
+          display: "flex",
+          fontSize: "42px",
+          fontWeight: 600,
+          letterSpacing: "-1px",
+          color: "#f2f0ee",
+        }}
+      >
+        Accept terms
       </div>
     </div>
   )
@@ -1922,25 +2053,59 @@ export function PopoverPreview() {
       style={{
         display: "flex",
         flexDirection: "column",
-        gap: "4px",
-        width: "200px",
-        borderRadius: "12px",
-        border: "1px solid rgba(242,240,238,0.16)",
-        backgroundColor: "#191817",
-        padding: "14px 16px",
+        alignItems: "center",
+        gap: "18px",
+        width: "280px",
       }}
     >
-      <div style={{ display: "flex", fontSize: "13px", color: "#f2f0ee" }}>
-        Dimensions
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "54px",
+          padding: "0 22px",
+          borderRadius: "12px",
+          backgroundColor: "#f2f0ee",
+          color: "#191817",
+          fontSize: "18px",
+          fontWeight: 600,
+        }}
+      >
+        Open popover
       </div>
       <div
         style={{
           display: "flex",
-          fontSize: "11px",
-          color: "rgba(242,240,238,0.5)",
+          flexDirection: "column",
+          gap: "8px",
+          width: "280px",
+          borderRadius: "16px",
+          border: "1px solid rgba(242,240,238,0.2)",
+          backgroundColor: "#242321",
+          padding: "20px 22px",
         }}
       >
-        Set the dimensions for the layer.
+        <div
+          style={{
+            display: "flex",
+            fontSize: "22px",
+            fontWeight: 600,
+            color: "#f2f0ee",
+          }}
+        >
+          Dimensions
+        </div>
+        <div
+          style={{
+            display: "flex",
+            fontSize: "16px",
+            lineHeight: 1.4,
+            color: "rgba(242,240,238,0.58)",
+          }}
+        >
+          Set the dimensions for the layer.
+        </div>
       </div>
     </div>
   )
@@ -1952,10 +2117,10 @@ export function ScrollAreaPreview() {
     <div
       style={{
         display: "flex",
-        width: "140px",
-        height: "110px",
-        borderRadius: "10px",
-        border: "1px solid rgba(242,240,238,0.16)",
+        width: "210px",
+        height: "165px",
+        borderRadius: "15px",
+        border: "2px solid rgba(242,240,238,0.16)",
         overflow: "hidden",
         position: "relative",
       }}
@@ -1964,14 +2129,14 @@ export function ScrollAreaPreview() {
         style={{
           display: "flex",
           flexDirection: "column",
-          gap: "10px",
-          padding: "12px",
+          gap: "15px",
+          padding: "18px",
         }}
       >
         {rows.map((row) => (
           <div
             key={row}
-            style={{ display: "flex", fontSize: "12px", color: "#f2f0ee" }}
+            style={{ display: "flex", fontSize: "18px", color: "#f2f0ee" }}
           >
             {row}
           </div>
@@ -1980,10 +2145,10 @@ export function ScrollAreaPreview() {
       <div
         style={{
           position: "absolute",
-          insetInlineEnd: "3px",
-          top: "8px",
-          bottom: "8px",
-          width: "4px",
+          insetInlineEnd: "5px",
+          top: "12px",
+          bottom: "12px",
+          width: "6px",
           borderRadius: "999px",
           backgroundColor: "rgba(242,240,238,0.24)",
         }}
@@ -1999,10 +2164,10 @@ export function SpinnerPreview() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        width: "36px",
-        height: "36px",
+        width: "112px",
+        height: "112px",
         borderRadius: "9999px",
-        border: "2px solid rgba(242,240,238,0.16)",
+        border: "6px solid rgba(242,240,238,0.16)",
         borderTopColor: "#f2f0ee",
       }}
     />
@@ -2011,7 +2176,13 @@ export function SpinnerPreview() {
 
 function TomanGlyph({ size = 28 }: { size?: number }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 14 14" fill="#f2f0ee">
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 14 14"
+      fill="#f2f0ee"
+      shapeRendering="geometricPrecision"
+    >
       <path
         fillRule="evenodd"
         clipRule="evenodd"
@@ -2022,21 +2193,7 @@ function TomanGlyph({ size = 28 }: { size?: number }) {
 }
 
 export function TomanIconPreview() {
-  return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        width: "56px",
-        height: "56px",
-        borderRadius: "14px",
-        backgroundColor: "rgba(242,240,238,0.08)",
-      }}
-    >
-      <TomanGlyph size={28} />
-    </div>
-  )
+  return <TomanGlyph size={140} />
 }
 
 export function PriceInputPreview() {
@@ -2044,27 +2201,62 @@ export function PriceInputPreview() {
     <div
       style={{
         display: "flex",
-        alignItems: "center",
-        gap: "8px",
-        width: "200px",
-        padding: "10px 14px",
-        borderRadius: "10px",
-        backgroundColor: "#191817",
-        border: "1px solid rgba(242,240,238,0.16)",
+        flexDirection: "column",
+        gap: "14px",
+        width: "310px",
       }}
     >
       <div
         style={{
           display: "flex",
-          fontSize: "16px",
-          fontWeight: 600,
-          color: "#f2f0ee",
+          fontSize: "17px",
+          fontWeight: 500,
+          color: "rgba(242,240,238,0.68)",
         }}
       >
-        125,000
+        Amount
       </div>
-      <div style={{ display: "flex", marginInlineStart: "auto" }}>
-        <TomanGlyph size={16} />
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          width: "310px",
+          height: "78px",
+          overflow: "hidden",
+          borderRadius: "14px",
+          border: "1px solid rgba(242,240,238,0.28)",
+          backgroundColor: "#1e1d1b",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flex: 1,
+            padding: "0 22px",
+            fontSize: "31px",
+            fontWeight: 600,
+            letterSpacing: "0.5px",
+            color: "#f2f0ee",
+          }}
+        >
+          125,000
+        </div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            alignSelf: "stretch",
+            width: "96px",
+            borderLeft: "1px solid rgba(242,240,238,0.18)",
+            backgroundColor: "rgba(242,240,238,0.1)",
+            color: "rgba(242,240,238,0.8)",
+            fontSize: "18px",
+            fontWeight: 600,
+          }}
+        >
+          Toman
+        </div>
       </div>
     </div>
   )
@@ -2094,10 +2286,10 @@ export function ToastPreview() {
       style={{
         display: "flex",
         alignItems: "flex-start",
-        gap: "10px",
-        width: "230px",
-        padding: "12px 14px",
-        borderRadius: "16px",
+        gap: "13px",
+        width: "299px",
+        padding: "16px 18px",
+        borderRadius: "21px",
         backgroundColor: "#191817",
         border: "1px solid rgba(242,240,238,0.16)",
       }}
@@ -2110,13 +2302,13 @@ export function ToastPreview() {
           flexShrink: 0,
         }}
       >
-        <CheckCircleGlyph size={18} />
+        <CheckCircleGlyph size={23} />
       </div>
-      <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
         <div
           style={{
             display: "flex",
-            fontSize: "13px",
+            fontSize: "17px",
             fontWeight: 600,
             color: "#f2f0ee",
           }}
@@ -2126,7 +2318,7 @@ export function ToastPreview() {
         <div
           style={{
             display: "flex",
-            fontSize: "11px",
+            fontSize: "14px",
             color: "rgba(242,240,238,0.5)",
           }}
         >
@@ -2144,20 +2336,20 @@ export function CopyButtonPreview() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        width: "40px",
-        height: "40px",
-        borderRadius: "10px",
+        width: "140px",
+        height: "140px",
+        borderRadius: "28px",
         backgroundColor: "#191817",
         border: "1px solid rgba(242,240,238,0.16)",
       }}
     >
       <svg
-        width={16}
-        height={16}
+        width={56}
+        height={56}
         viewBox="0 0 24 24"
         fill="none"
         stroke="#f2f0ee"
-        strokeWidth={2}
+        strokeWidth={1.75}
         strokeLinecap="round"
         strokeLinejoin="round"
       >
@@ -2174,6 +2366,7 @@ export function WheelPickerPreview() {
     ["28", "29", "30", "31", "32"],
     ["", "AM", "PM", "", ""],
   ]
+  const activeValues = ["09", "30", "PM"]
 
   return (
     <div
@@ -2191,17 +2384,36 @@ export function WheelPickerPreview() {
         style={{
           display: "flex",
           position: "absolute",
-          top: "59px",
+          top: "50%",
           right: "0px",
           left: "0px",
           height: "30px",
-          borderTop: "1px solid rgba(242,240,238,0.16)",
-          borderBottom: "1px solid rgba(242,240,238,0.16)",
-          backgroundColor: "#191817",
+          transform: "translateY(-50%)",
+          backgroundColor: "#2b2926",
           boxShadow: "0 1px 3px rgba(0,0,0,0.3)",
           pointerEvents: "none",
+          zIndex: 2,
         }}
-      />
+      >
+        {activeValues.map((value) => (
+          <div
+            key={value}
+            style={{
+              display: "flex",
+              flex: 1,
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#ffffff",
+              fontSize: value === "PM" ? "13px" : "16px",
+              fontWeight: 900,
+              lineHeight: 1,
+              textAlign: "center",
+            }}
+          >
+            {value}
+          </div>
+        ))}
+      </div>
       {wheels.map((options, wheelIndex) => (
         <div
           key={wheelIndex}
@@ -2224,23 +2436,207 @@ export function WheelPickerPreview() {
                 height: "30px",
                 alignItems: "center",
                 justifyContent: "center",
+                textAlign: "center",
                 color: "#f2f0ee",
                 fontSize: wheelIndex === 2 ? "12px" : "15px",
-                fontWeight: optionIndex === 2 ? 600 : 400,
-                transform: `scale(${optionIndex === 2 ? 1.12 : 0.84})`,
-                opacity:
-                  optionIndex === 2
-                    ? 1
-                    : optionIndex === 1 || optionIndex === 3
-                      ? 0.42
-                      : 0.16,
+                fontWeight: 400,
+                transform: "translateX(2px) scale(0.84)",
+                opacity: optionIndex === 1 || optionIndex === 3 ? 0.42 : 0.16,
               }}
             >
-              {option}
+              {optionIndex === 2 ? "" : option}
             </div>
           ))}
         </div>
       ))}
+    </div>
+  )
+}
+
+export function HitboxPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "264px",
+        height: "264px",
+        borderRadius: "14px",
+        border: "2px dashed #f87171",
+        backgroundColor: "rgba(248,113,113,0.08)",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          width: "64px",
+          height: "64px",
+          borderRadius: "8px",
+          backgroundColor: "#383634",
+          border: "1px solid rgba(242,240,238,0.14)",
+        }}
+      />
+    </div>
+  )
+}
+
+export function NormalizePersianDigitsPreview() {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+      <div
+        style={{
+          display: "flex",
+          fontSize: "28px",
+          color: "rgba(242,240,238,0.5)",
+        }}
+      >
+        ۱۲۳۴۵
+      </div>
+      <div
+        style={{
+          display: "flex",
+          fontSize: "24px",
+          color: "rgba(242,240,238,0.4)",
+        }}
+      >
+        →
+      </div>
+      <div
+        style={{
+          display: "flex",
+          fontSize: "28px",
+          fontWeight: 700,
+          color: "#f2f0ee",
+        }}
+      >
+        12345
+      </div>
+    </div>
+  )
+}
+
+export function UseControllableStatePreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "10px",
+        width: "190px",
+      }}
+    >
+      {["Controlled", "Uncontrolled"].map((label, index) => (
+        <div
+          key={label}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            padding: "10px 12px",
+            borderRadius: "10px",
+            backgroundColor:
+              index === 0 ? "rgba(242,240,238,0.1)" : "transparent",
+            border: "1px solid rgba(242,240,238,0.16)",
+            color: index === 0 ? "#f2f0ee" : "rgba(242,240,238,0.55)",
+            fontSize: "12px",
+          }}
+        >
+          <div style={{ display: "flex" }}>{label}</div>
+          <div
+            style={{
+              display: "flex",
+              width: "28px",
+              height: "16px",
+              justifyContent: index === 0 ? "flex-end" : "flex-start",
+              alignItems: "center",
+              padding: "2px",
+              borderRadius: "999px",
+              backgroundColor:
+                index === 0 ? "#f2f0ee" : "rgba(242,240,238,0.2)",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                width: "12px",
+                height: "12px",
+                borderRadius: "999px",
+                backgroundColor: index === 0 ? "#191817" : "#f2f0ee",
+              }}
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export function UseCopyToClipboardPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "12px",
+        width: "210px",
+        padding: "12px 14px",
+        borderRadius: "12px",
+        border: "1px solid rgba(242,240,238,0.16)",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          flex: 1,
+          fontSize: "13px",
+          color: "rgba(242,240,238,0.55)",
+        }}
+      >
+        Copy text
+      </div>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "28px",
+          height: "28px",
+          borderRadius: "7px",
+          backgroundColor: "#f2f0ee",
+          color: "#191817",
+          fontSize: "15px",
+          fontWeight: 700,
+        }}
+      >
+        ✓
+      </div>
+    </div>
+  )
+}
+
+export function UseMediaQueryPreview() {
+  return (
+    <div style={{ display: "flex", alignItems: "flex-end", gap: "12px" }}>
+      <div
+        style={{
+          display: "flex",
+          width: "44px",
+          height: "74px",
+          borderRadius: "8px",
+          border: "2px solid rgba(242,240,238,0.35)",
+        }}
+      />
+      <div
+        style={{
+          display: "flex",
+          width: "112px",
+          height: "74px",
+          borderRadius: "8px",
+          border: "2px solid #f2f0ee",
+          boxShadow: "0 0 0 5px rgba(242,240,238,0.08)",
+        }}
+      />
     </div>
   )
 }

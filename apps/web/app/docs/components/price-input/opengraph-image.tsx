@@ -8,7 +8,7 @@ export const contentType = "image/png"
 export default function OpengraphImage() {
   return buildOgImage(
     "Price Input",
-    "A text input that formats digits as a grouped price as you type, with support for Persian/Arabic-Indic numerals.",
+    "A text input that formats grouped prices as you type.",
     <PriceInputPreview />
   )
 }

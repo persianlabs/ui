@@ -9,6 +9,7 @@ export default function OpengraphImage() {
   return buildOgImage(
     "Message Scroller",
     "An auto-scrolling viewport for chat messages, with scroll-to-start/end buttons, built on @shadcn/react.",
-    <MessageScrollerPreview />
+    <MessageScrollerPreview />,
+    { titleFontSize: 54 }
   )
 }
