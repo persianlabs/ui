@@ -11,7 +11,8 @@
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "tsc --noEmit",
-    "registry:build": "shadcn build"
+    "registry:build": "shadcn build",
+    "update": "npx npm-check-updates"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
@@ -19,9 +20,9 @@
     "@vercel/analytics": "^2.0.1",
     "@workspace/ui": "workspace:*",
     "input-otp": "^1.4.2",
-    "lucide": "^1.28.0",
-    "lucide-react": "^1.28.0",
-    "morphicons": "^1.4.1",
+    "lucide": "^1.31.0",
+    "lucide-react": "^1.31.0",
+    "morphicons": "^1.6.0",
     "motion": "^13.0.0",
     "next": "16.3.0",
     "next-themes": "^0.4.6",
@@ -32,19 +33,19 @@
     "rehype-stringify": "^10.0.1",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",
-    "shiki": "^4.4.2",
+    "shiki": "^4.4.3",
     "unified": "^11.0.5",
     "zod": "^4.4.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^26",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@workspace/eslint-config": "workspace:^",
     "@workspace/typescript-config": "workspace:*",
-    "eslint": "^9",
-    "shadcn": "^4.16.1",
-    "typescript": "^5"
+    "eslint": "^10",
+    "shadcn": "^4.16.2",
+    "typescript": "^7.0.2"
   }
 }

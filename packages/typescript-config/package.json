@@ -2,6 +2,9 @@
   "name": "@workspace/typescript-config",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "update": "npx npm-check-updates"
+  },
   "license": "PROPRIETARY",
   "publishConfig": {
     "access": "public"
