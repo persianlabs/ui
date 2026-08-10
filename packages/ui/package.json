@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "bunx --package @typescript/native tsc --noEmit",
     "update": "npx npm-check-updates"
   },
   "dependencies": {
@@ -23,7 +23,7 @@
     "next-themes": "^0.4.6",
     "react": "19.2.8",
     "react-dom": "19.2.8",
-    "react-resizable-panels": "^4.12.2",
+    "react-resizable-panels": "^3.0.0",
     "react-textarea-autosize": "^8.5.9",
     "shadcn": "^4.16.2",
     "tailwind-merge": "^3.6.0",
@@ -32,15 +32,16 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@typescript/native": "npm:typescript@^7.0.2",
     "@turbo/gen": "^2.10.9",
     "@types/node": "^26",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
-    "eslint": "^10",
+    "eslint": "^9.39.1",
     "tailwindcss": "^4",
-    "typescript": "^7.0.2"
+    "typescript": "^6.0.2"
   },
   "exports": {
     "./globals.css": "./src/styles/globals.css",

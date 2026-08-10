@@ -10,7 +10,7 @@
     "start": "next start",
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "bunx --package @typescript/native tsc --noEmit",
     "registry:build": "shadcn build",
     "update": "npx npm-check-updates"
   },
@@ -39,13 +39,14 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@typescript/native": "npm:typescript@^7.0.2",
     "@types/node": "^26",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@workspace/eslint-config": "workspace:^",
     "@workspace/typescript-config": "workspace:*",
-    "eslint": "^10",
+    "eslint": "^9.39.1",
     "shadcn": "^4.16.2",
-    "typescript": "^7.0.2"
+    "typescript": "^6.0.2"
   }
 }
