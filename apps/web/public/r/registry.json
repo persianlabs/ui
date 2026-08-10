@@ -1026,6 +1026,89 @@
       ]
     },
     {
+      "name": "persian-date",
+      "type": "registry:lib",
+      "title": "Persian Date",
+      "description": "Jalali/Gregorian date utilities built on date-fns and date-fns-jalali: formatting, parsing, conversion, ranges, and digit conversion, switchable with a calendarType prop.",
+      "registryDependencies": [
+        "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+      ],
+      "dependencies": ["date-fns", "date-fns-jalali"],
+      "files": [
+        {
+          "path": "registry/base/lib/persian-date.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "persian-date-zod",
+      "type": "registry:lib",
+      "title": "Persian Date (Zod)",
+      "description": "zod schemas for persian-date: zPersianDate coerces an ISO string, a shamsi yyyy/MM/dd string, an epoch number, or a Date into a Date with optional min/max bounds; zPersianDateRange validates a from/to reservation-style range.",
+      "registryDependencies": [
+        "https://ui.persian-labs.ir/r/persian-date.json"
+      ],
+      "dependencies": ["date-fns", "date-fns-jalali", "zod"],
+      "files": [
+        {
+          "path": "registry/base/lib/persian-date-zod.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "persian-holidays",
+      "type": "registry:lib",
+      "title": "Persian Holidays",
+      "description": "Official/religious/cultural Iranian holiday lookup for a date, range, or year, resolving Jalali, Gregorian, and tabular-Hijri entries.",
+      "registryDependencies": [
+        "https://ui.persian-labs.ir/r/persian-date.json"
+      ],
+      "dependencies": ["date-fns", "date-fns-jalali"],
+      "files": [
+        {
+          "path": "registry/base/lib/persian-holidays.ts",
+          "type": "registry:lib"
+        },
+        {
+          "path": "registry/base/lib/persian-holidays-data.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "use-date",
+      "type": "registry:hook",
+      "title": "useDate",
+      "description": "A reactive current date/time hook with Jalali/Gregorian support, formatted output, and optional holiday flagging.",
+      "registryDependencies": [
+        "https://ui.persian-labs.ir/r/persian-date.json",
+        "https://ui.persian-labs.ir/r/persian-holidays.json"
+      ],
+      "files": [
+        {
+          "path": "registry/base/hooks/use-date.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-time-ago",
+      "type": "registry:hook",
+      "title": "useTimeAgo",
+      "description": "A reactive relative-time formatter (\"۲ روز پیش\" / \"2 days ago\") with built-in Persian and English message tables.",
+      "registryDependencies": [
+        "https://ui.persian-labs.ir/r/persian-date.json"
+      ],
+      "files": [
+        {
+          "path": "registry/base/hooks/use-time-ago.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
       "name": "hitbox",
       "type": "registry:ui",
       "title": "Hitbox",

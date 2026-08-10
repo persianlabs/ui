@@ -24,6 +24,14 @@ const utilityDescriptions: Record<string, string> = {
   useCountdown:
     "Tracks time remaining until a target date, with formatted and overdue states.",
   useMediaQuery: "Responds to viewport and device queries from React.",
+  "Persian Date":
+    "Jalali/Gregorian date formatting, parsing, conversion, and ranges.",
+  "Persian Date (Zod)":
+    "Zod schemas that coerce and validate dates and reservation-style ranges.",
+  "Persian Holidays":
+    "Looks up official, religious, and cultural Iranian holidays.",
+  useDate: "A reactive current date/time hook with calendar support.",
+  useTimeAgo: 'A reactive relative-time formatter, like "۲ روز پیش".',
 }
 
 export function UtilityPreview({ item }: { item: DocsNavItem }) {
@@ -98,6 +106,74 @@ export function UtilityPreview({ item }: { item: DocsNavItem }) {
           <div className="h-12 w-16 rounded border border-border bg-muted" />
           <div className="h-16 w-24 rounded border-2 border-primary bg-background" />
           <div className="h-12 w-16 rounded border border-border bg-muted" />
+        </div>
+      )
+    case "Persian Date":
+      return (
+        <div className="flex h-full items-center justify-center gap-3 bg-card font-mono">
+          <span className="rounded-md bg-muted px-2 py-1 text-sm">
+            ۱۴۰۵/۰۵/۱۹
+          </span>
+          <ArrowRightIcon className="size-3.5 text-muted-foreground" />
+          <span className="rounded-md border border-border bg-background px-2 py-1 text-sm">
+            2026/08/10
+          </span>
+        </div>
+      )
+    case "Persian Date (Zod)":
+      return (
+        <div className="flex h-full items-center justify-center gap-3 bg-card font-mono">
+          <span className="rounded-md bg-muted px-2 py-1 text-sm">
+            1405/05/19
+          </span>
+          <ArrowRightIcon className="size-3.5 text-muted-foreground" />
+          <span className="rounded-md border border-emerald-500/40 bg-background px-2 py-1 text-sm text-emerald-500">
+            ✓ Date
+          </span>
+        </div>
+      )
+    case "Persian Holidays":
+      return (
+        <div className="flex h-full items-center justify-center bg-card p-5">
+          <div className="grid grid-cols-7 gap-1">
+            {Array.from({ length: 21 }, (_, index) => (
+              <span
+                key={index}
+                className={`size-4 rounded-sm ${
+                  index === 3
+                    ? "bg-destructive"
+                    : index === 10
+                      ? "bg-primary"
+                      : "bg-muted"
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      )
+    case "useDate":
+      return (
+        <div className="flex h-full items-center justify-center bg-card p-5">
+          <div className="w-48 rounded-xl border border-border bg-background p-4 text-center shadow-sm">
+            <p className="text-[10px] font-medium tracking-wide text-muted-foreground uppercase">
+              اکنون
+            </p>
+            <output
+              dir="ltr"
+              className="mt-2 block font-mono text-xl font-semibold tracking-tight tabular-nums"
+            >
+              ۱۴۰۵/۰۵/۱۹
+            </output>
+          </div>
+        </div>
+      )
+    case "useTimeAgo":
+      return (
+        <div className="flex h-full items-center justify-center bg-card p-5">
+          <div className="flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 text-xs shadow-sm">
+            <span className="size-1.5 rounded-full bg-primary" />
+            <span>۲ ساعت پیش</span>
+          </div>
         </div>
       )
     default:
