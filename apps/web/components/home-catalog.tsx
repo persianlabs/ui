@@ -21,6 +21,8 @@ const utilityDescriptions: Record<string, string> = {
     "Synchronizes controlled and uncontrolled component state.",
   useCopyToClipboard:
     "Copies text with a simple, reliable browser API wrapper.",
+  useCountdown:
+    "Tracks time remaining until a target date, with formatted and overdue states.",
   useMediaQuery: "Responds to viewport and device queries from React.",
 }
 
@@ -71,6 +73,22 @@ export function UtilityPreview({ item }: { item: DocsNavItem }) {
             <span className="border-l border-border pl-2">
               <CopyIcon className="size-3.5" />
             </span>
+          </div>
+        </div>
+      )
+    case "useCountdown":
+      return (
+        <div className="flex h-full items-center justify-center bg-card p-5">
+          <div className="w-48 rounded-xl border border-border bg-background p-4 text-center shadow-sm">
+            <p className="text-[10px] font-medium tracking-wide text-muted-foreground uppercase">
+              Resend code in
+            </p>
+            <output className="mt-2 block font-mono text-2xl font-semibold tracking-tight tabular-nums">
+              00:24:18
+            </output>
+            <div className="mt-3 h-1 overflow-hidden rounded-full bg-muted">
+              <div className="h-full w-2/3 rounded-full bg-primary" />
+            </div>
           </div>
         </div>
       )
