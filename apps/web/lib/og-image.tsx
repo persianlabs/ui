@@ -45,6 +45,9 @@ const compactDescriptions: Record<string, string> = {
   "Native Select": "A styled native select.",
   "Normalize Persian Digits": "Converts Persian digits to 0–9.",
   Pagination: "Page navigation controls.",
+  "Persian Date": "Jalali/Gregorian date utilities.",
+  "Persian Date (Zod)": "Zod schemas for dates and ranges.",
+  "Persian Holidays": "Iranian holiday lookup.",
   Popover: "Rich content from a trigger.",
   "Price Input": "Formatted price entry.",
   Progress: "Task completion progress.",
@@ -71,7 +74,9 @@ const compactDescriptions: Record<string, string> = {
   useControllableState: "Controlled and uncontrolled state.",
   useCountdown: "Timer-aligned countdown state.",
   useCopyToClipboard: "Copy text with a React hook.",
+  useDate: "Reactive Jalali/Gregorian date and time.",
   useMediaQuery: "Reactive media query state.",
+  useTimeAgo: "Reactive relative-time formatting.",
   "Wheel Picker": "An iOS-style wheel picker.",
 }
 

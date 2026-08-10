@@ -147,6 +147,21 @@ export const docsNav: DocsNavGroup[] = [
         badge: "New",
       },
       {
+        title: "Persian Date",
+        href: "/docs/utilities/persian-date",
+        badge: "New",
+      },
+      {
+        title: "Persian Date (Zod)",
+        href: "/docs/utilities/persian-date-zod",
+        badge: "New",
+      },
+      {
+        title: "Persian Holidays",
+        href: "/docs/utilities/persian-holidays",
+        badge: "New",
+      },
+      {
         title: "useControllableState",
         href: "/docs/utilities/use-controllable-state",
         badge: "New",
@@ -162,8 +177,18 @@ export const docsNav: DocsNavGroup[] = [
         badge: "New",
       },
       {
+        title: "useDate",
+        href: "/docs/utilities/use-date",
+        badge: "New",
+      },
+      {
         title: "useMediaQuery",
         href: "/docs/utilities/use-media-query",
+        badge: "New",
+      },
+      {
+        title: "useTimeAgo",
+        href: "/docs/utilities/use-time-ago",
         badge: "New",
       },
     ],

@@ -7,6 +7,8 @@
     "lint": "eslint",
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "bunx --package @typescript/native tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "update": "npx npm-check-updates"
   },
   "dependencies": {
@@ -15,6 +17,8 @@
     "@shadcn/react": "^0.3.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "date-fns": "^4.4.0",
+    "date-fns-jalali": "^4.4.0-0",
     "input-otp": "^1.4.2",
     "lucide": "^1.31.0",
     "lucide-react": "^1.31.0",
@@ -32,6 +36,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@testing-library/react": "^16.3.2",
     "@typescript/native": "npm:typescript@^7.0.2",
     "@turbo/gen": "^2.10.9",
     "@types/node": "^26",
@@ -40,8 +45,10 @@
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "eslint": "^9.39.1",
+    "jsdom": "^30.0.1",
     "tailwindcss": "^4",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.10"
   },
   "exports": {
     "./globals.css": "./src/styles/globals.css",
