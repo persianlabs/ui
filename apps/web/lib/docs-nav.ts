@@ -130,6 +130,11 @@ export const docsNav: DocsNavGroup[] = [
       },
       { title: "Tooltip", href: "/docs/components/tooltip" },
       { title: "Typography", href: "/docs/components/typography" },
+      {
+        title: "Wheel Picker",
+        href: "/docs/components/wheel-picker",
+        badge: "New",
+      },
     ],
   },
   {

@@ -10,17 +10,18 @@
     "cssVariables": true
   },
   "iconLibrary": "lucide",
-  "aliases": {
-    "components": "@/components",
-    "hooks": "@/hooks",
-    "lib": "@/lib",
-    "utils": "@workspace/ui/lib/utils",
-    "ui": "@workspace/ui/components"
-  },
   "rtl": true,
   "menuColor": "default",
   "menuAccent": "subtle",
+  "aliases": {
+    "components": "@/components",
+    "utils": "@workspace/ui/lib/utils",
+    "ui": "@workspace/ui/components",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
   "registries": {
-    "@persianlabsui": "https://ui.persian-labs.ir/r/{name}.json"
+    "@persianlabsui": "https://ui.persian-labs.ir/r/{name}.json",
+    "@ncdai": "https://chanhdai.com/r/{name}.json"
   }
 }
