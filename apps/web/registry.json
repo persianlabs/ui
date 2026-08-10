@@ -926,7 +926,10 @@
       "type": "registry:ui",
       "title": "Toast",
       "description": "A temporary notification that stacks in a corner of the screen or anchors to an element, built on Base UI, with success/error/warning/info/loading and X-style variants.",
-      "registryDependencies": ["utils", "https://ui.persian-labs.ir/r/button.json"],
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/button.json"
+      ],
       "dependencies": ["@base-ui/react", "lucide-react"],
       "files": [
         {
@@ -1020,6 +1023,20 @@
       "files": [
         {
           "path": "registry/base/ui/hitbox.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "wheel-picker",
+      "type": "registry:ui",
+      "title": "Wheel Picker",
+      "description": "An iOS-like wheel picker with smooth inertia, infinite scrolling, and keyboard navigation.",
+      "registryDependencies": ["utils"],
+      "dependencies": ["@ncdai/react-wheel-picker"],
+      "files": [
+        {
+          "path": "registry/base/ui/wheel-picker.tsx",
           "type": "registry:ui"
         }
       ]

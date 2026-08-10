@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "wheel-picker",
+  "title": "Wheel Picker",
+  "description": "An iOS-like wheel picker with smooth inertia, infinite scrolling, and keyboard navigation.",
+  "dependencies": [
+    "@ncdai/react-wheel-picker"
+  ],
+  "registryDependencies": [
+    "utils"
+  ],
+  "files": [
+    {
+      "path": "registry/base/ui/wheel-picker.tsx",
+      "content": "\"use client\"\n\nimport \"@ncdai/react-wheel-picker/style.css\"\n\nimport { useEffect, useRef, type ComponentProps } from \"react\"\nimport * as WheelPickerPrimitive from \"@ncdai/react-wheel-picker\"\n\nimport { cn } from \"@/lib/utils\"\n\ntype WheelPickerValue = WheelPickerPrimitive.WheelPickerValue\n\ntype WheelPickerOption<T extends WheelPickerValue = string> =\n  WheelPickerPrimitive.WheelPickerOption<T>\n\ntype WheelPickerClassNames = WheelPickerPrimitive.WheelPickerClassNames\n\nfunction WheelPickerWrapper({\n  className,\n  ...props\n}: ComponentProps<typeof WheelPickerPrimitive.WheelPickerWrapper>) {\n  const gestureBoundaryRef = useRef<HTMLDivElement>(null)\n\n  useEffect(() => {\n    const boundary = gestureBoundaryRef.current\n    if (!boundary) return\n\n    // Drawers listen for vertical touch gestures too. Stop propagation at this\n    // boundary after the wheel receives it, preserving the picker's inertia.\n    const isolateWheelGesture = (event: TouchEvent) => event.stopPropagation()\n\n    boundary.addEventListener(\"touchstart\", isolateWheelGesture)\n    boundary.addEventListener(\"touchmove\", isolateWheelGesture)\n    boundary.addEventListener(\"touchend\", isolateWheelGesture)\n    boundary.addEventListener(\"touchcancel\", isolateWheelGesture)\n\n    return () => {\n      boundary.removeEventListener(\"touchstart\", isolateWheelGesture)\n      boundary.removeEventListener(\"touchmove\", isolateWheelGesture)\n      boundary.removeEventListener(\"touchend\", isolateWheelGesture)\n      boundary.removeEventListener(\"touchcancel\", isolateWheelGesture)\n    }\n  }, [])\n\n  return (\n    <div ref={gestureBoundaryRef} dir=\"ltr\" className=\"touch-none\">\n      <WheelPickerPrimitive.WheelPickerWrapper\n        className={cn(\n          \"min-w-56 rounded-lg border border-border bg-card px-1 shadow-xs\",\n          \"*:data-rwp:first:*:data-rwp-highlight-wrapper:rounded-s-md\",\n          \"*:data-rwp:last:*:data-rwp-highlight-wrapper:rounded-e-md\",\n          className\n        )}\n        {...props}\n      />\n    </div>\n  )\n}\n\nfunction WheelPicker<T extends WheelPickerValue = string>({\n  classNames,\n  ...props\n}: WheelPickerPrimitive.WheelPickerProps<T>) {\n  return (\n    <WheelPickerPrimitive.WheelPicker\n      classNames={{\n        optionItem: cn(\n          \"scale-90 text-muted-foreground transition-[scale,color,opacity] data-disabled:opacity-40\",\n          classNames?.optionItem\n        ),\n        highlightWrapper: cn(\n          \"border-y border-border bg-[color-mix(in_srgb,var(--card),var(--foreground)_6%)] text-foreground shadow-sm\",\n          \"data-rwp-focused:inset-ring-2 data-rwp-focused:inset-ring-ring/50\",\n          classNames?.highlightWrapper\n        ),\n        highlightItem: cn(\n          \"scale-110 font-semibold text-foreground transition-[scale,color,opacity] data-disabled:opacity-40\",\n          classNames?.highlightItem\n        ),\n      }}\n      {...props}\n    />\n  )\n}\n\nexport { WheelPicker, WheelPickerWrapper }\nexport type { WheelPickerClassNames, WheelPickerOption }\n",
+      "type": "registry:ui"
+    }
+  ],
+  "type": "registry:ui"
+}

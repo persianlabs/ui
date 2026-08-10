@@ -62,6 +62,7 @@ import {
   TabsPreview,
   TextareaPreview,
   ToastPreview,
+  WheelPickerPreview,
   ToggleGroupPreview,
   TogglePreview,
   TomanIconPreview,
@@ -88,6 +89,19 @@ function ThumbnailFrame({ children }: { children: React.ReactNode }) {
 }
 
 const components = [
+  {
+    title: "Wheel Picker",
+    href: "/docs/components/wheel-picker" as const,
+    description:
+      "An iOS-like wheel picker with smooth inertia, infinite scrolling, and keyboard navigation.",
+    badge: "New",
+    createdAt: "2026-08-10",
+    thumbnail: (
+      <ThumbnailFrame>
+        <WheelPickerPreview />
+      </ThumbnailFrame>
+    ),
+  },
   {
     title: "Button",
     href: "/docs/components/button" as const,
