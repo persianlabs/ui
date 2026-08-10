@@ -157,6 +157,11 @@ export const docsNav: DocsNavGroup[] = [
         badge: "New",
       },
       {
+        title: "useCountdown",
+        href: "/docs/utilities/use-countdown",
+        badge: "New",
+      },
+      {
         title: "useMediaQuery",
         href: "/docs/utilities/use-media-query",
         badge: "New",

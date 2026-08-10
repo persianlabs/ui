@@ -69,6 +69,7 @@ const compactDescriptions: Record<string, string> = {
   "Toman Icon": "The Toman currency symbol.",
   Tooltip: "Helpful contextual information.",
   useControllableState: "Controlled and uncontrolled state.",
+  useCountdown: "Timer-aligned countdown state.",
   useCopyToClipboard: "Copy text with a React hook.",
   useMediaQuery: "Reactive media query state.",
   "Wheel Picker": "An iOS-style wheel picker.",
