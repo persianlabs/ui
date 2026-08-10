@@ -8,3 +8,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 ## Component and utility previews
 
 Every new component or utility must include both a gallery preview image and an Open Graph image. Follow the repository workflow in `CLAUDE.md`: add the inline-style thumbnail preview, wire it into the gallery when applicable, and add the component's `opengraph-image.tsx` route with its matching OG preview.
+
+## Before pushing
+
+Before every push, run `bun run lint` and `bun run format`. Resolve any errors and include Prettier's formatting changes in the same commit before pushing.

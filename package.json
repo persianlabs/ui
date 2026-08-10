@@ -8,20 +8,13 @@
     "lint": "turbo lint",
     "format": "turbo format",
     "typecheck": "turbo typecheck",
-    "prepare": "husky",
-    "prepush": "bun run lint && bun run typecheck && bun run build",
     "update-check": "npx npm-check-updates --workspaces",
     "update": "npx npm-check-updates --workspaces -u"
-  },
-  "lint-staged": {
-    "*.{ts,tsx,js,jsx,json,md,css}": "prettier --write"
   },
   "devDependencies": {
     "@workspace/eslint-config": "workspace:*",
     "@workspace/typescript-config": "workspace:*",
     "@typescript/native": "npm:typescript@^7.0.2",
-    "husky": "^9.1.7",
-    "lint-staged": "^17.3.0",
     "prettier": "^3.9.6",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "turbo": "^2.10.9",

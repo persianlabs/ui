@@ -25,6 +25,10 @@ Scope to one workspace with turbo filters, e.g. `bunx turbo build --filter=web`,
 
 There is no test suite configured in this repo.
 
+## Before pushing
+
+Before every push, run `bun run lint` and `bun run format`. Resolve any errors and include Prettier's formatting changes in the same commit before pushing.
+
 ## Architecture: components exist in two places, on purpose
 
 This is the one thing that isn't obvious from browsing a single directory. Every UI component is maintained in **two parallel copies** with different import aliases:
