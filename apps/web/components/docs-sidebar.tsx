@@ -32,15 +32,15 @@ function SidebarPreview({ item, group }: { item: DocsNavItem; group: string }) {
       showArrow={false}
       className="pointer-events-none hidden w-72 overflow-hidden rounded-xl bg-popover p-0 text-popover-foreground shadow-lg ring-1 ring-foreground/10 lg:block"
     >
-      {isComponent && ComponentPreview ? (
-        <div className="flex h-44 items-center justify-center overflow-hidden bg-card px-5 pt-7 pb-5">
-          <div
-            style={
-              item.title === "Calendar" ? { transform: "scale(0.7)" } : undefined
-            }
-          >
+      {isComponent ? (
+        <div className="flex items-center justify-center overflow-hidden bg-card p-8">
+          {ComponentPreview ? (
             <ComponentPreview />
-          </div>
+          ) : (
+            <span className="text-xs text-muted-foreground">
+              No preview available
+            </span>
+          )}
         </div>
       ) : (
         <div className="h-44 overflow-hidden">

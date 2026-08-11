@@ -2501,7 +2501,7 @@ export function DateWheelPickerPreview() {
 
 export function CalendarPreview() {
   const weekdays = ["ش", "ی", "د", "س", "چ", "پ", "ج"]
-  const days = Array.from({ length: 28 }, (_, i) => i + 1)
+  const days = Array.from({ length: 30 }, (_, i) => i + 1)
   const today = 16
   const selected = 20
   // Fixed square cells for both the weekday header and the day grid, sized
@@ -2554,39 +2554,51 @@ export function CalendarPreview() {
           </div>
         ))}
       </div>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {days.map((day) => {
-          const isToday = day === today
-          const isSelected = day === selected
-          return (
-            <div
-              key={day}
-              style={{
-                display: "flex",
-                width: `${cellSize}px`,
-                height: `${cellSize}px`,
-                flexShrink: 0,
-                alignItems: "center",
-                justifyContent: "center",
-                fontSize: "10px",
-                borderRadius: "6px",
-                backgroundColor: isSelected
-                  ? preview.primary
-                  : isToday
-                    ? preview.muted
-                    : "transparent",
-                color: isSelected
-                  ? preview.primaryForeground
-                  : preview.foreground,
-              }}
-            >
-              {day}
-            </div>
-          )
-        })}
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        {chunk(days, 7).map((week, weekIndex) => (
+          <div key={weekIndex} style={{ display: "flex" }}>
+            {week.map((day) => {
+              const isToday = day === today
+              const isSelected = day === selected
+              return (
+                <div
+                  key={day}
+                  style={{
+                    display: "flex",
+                    width: `${cellSize}px`,
+                    height: `${cellSize}px`,
+                    flexShrink: 0,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "10px",
+                    borderRadius: "6px",
+                    backgroundColor: isSelected
+                      ? preview.primary
+                      : isToday
+                        ? preview.muted
+                        : "transparent",
+                    color: isSelected
+                      ? preview.primaryForeground
+                      : preview.foreground,
+                  }}
+                >
+                  {day}
+                </div>
+              )
+            })}
+          </div>
+        ))}
       </div>
     </div>
   )
+}
+
+function chunk<T>(items: T[], size: number): T[][] {
+  const result: T[][] = []
+  for (let i = 0; i < items.length; i += size) {
+    result.push(items.slice(i, i + size))
+  }
+  return result
 }
 
 function CalendarGlyph({ size = 14 }: { size?: number }) {
@@ -2609,9 +2621,14 @@ function CalendarGlyph({ size = 14 }: { size?: number }) {
 
 export function DatePickerPreview() {
   const weekdays = ["ش", "ی", "د", "س", "چ", "پ", "ج"]
-  const days = Array.from({ length: 21 }, (_, i) => i + 1)
+  const days = Array.from({ length: 30 }, (_, i) => i + 1)
   const selected = 14
   const cellSize = 24
+  // The calendar box below has its own 8px padding on every side, so its
+  // content area is only as wide as (its own width - 16px). Sizing this
+  // outer wrapper to exactly cellSize * 7 shortchanged that content area by
+  // 16px, squeezing the last weekday/day column out of column alignment.
+  const calendarBoxPadding = 8
 
   return (
     <div
@@ -2619,7 +2636,7 @@ export function DatePickerPreview() {
         display: "flex",
         flexDirection: "column",
         gap: "8px",
-        width: `${cellSize * 7}px`,
+        width: `${cellSize * 7 + calendarBoxPadding * 2}px`,
       }}
     >
       <div
@@ -2656,13 +2673,14 @@ export function DatePickerPreview() {
         }}
       >
         <div style={{ display: "flex" }}>
-          {weekdays.map((day) => (
+          {weekdays.map((day, index) => (
             <div
-              key={day}
+              key={`${day}-${index}`}
               style={{
                 display: "flex",
                 width: `${cellSize}px`,
                 height: `${cellSize}px`,
+                flexShrink: 0,
                 alignItems: "center",
                 justifyContent: "center",
                 fontSize: "9px",
@@ -2673,30 +2691,37 @@ export function DatePickerPreview() {
             </div>
           ))}
         </div>
-        <div style={{ display: "flex", flexWrap: "wrap" }}>
-          {days.map((day) => {
-            const isSelected = day === selected
-            return (
-              <div
-                key={day}
-                style={{
-                  display: "flex",
-                  width: `${cellSize}px`,
-                  height: `${cellSize}px`,
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "9px",
-                  borderRadius: "5px",
-                  backgroundColor: isSelected ? preview.primary : "transparent",
-                  color: isSelected
-                    ? preview.primaryForeground
-                    : preview.foreground,
-                }}
-              >
-                {day}
-              </div>
-            )
-          })}
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          {chunk(days, 7).map((week, weekIndex) => (
+            <div key={weekIndex} style={{ display: "flex" }}>
+              {week.map((day) => {
+                const isSelected = day === selected
+                return (
+                  <div
+                    key={day}
+                    style={{
+                      display: "flex",
+                      width: `${cellSize}px`,
+                      height: `${cellSize}px`,
+                      flexShrink: 0,
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontSize: "9px",
+                      borderRadius: "5px",
+                      backgroundColor: isSelected
+                        ? preview.primary
+                        : "transparent",
+                      color: isSelected
+                        ? preview.primaryForeground
+                        : preview.foreground,
+                    }}
+                  >
+                    {day}
+                  </div>
+                )
+              })}
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -170,14 +170,23 @@ export function UtilityPreview({ item }: { item: DocsNavItem }) {
     case "useTimeAgo":
       return (
         <div className="flex h-full items-center justify-center bg-card p-5">
-          <div className="flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 text-xs shadow-sm">
+          <div
+            dir="rtl"
+            className="flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 text-xs shadow-sm"
+          >
             <span className="size-1.5 rounded-full bg-primary" />
             <span>۲ ساعت پیش</span>
           </div>
         </div>
       )
     default:
-      return null
+      return (
+        <div className="flex h-full items-center justify-center bg-card">
+          <span className="text-xs text-muted-foreground">
+            No preview available
+          </span>
+        </div>
+      )
   }
 }
 
