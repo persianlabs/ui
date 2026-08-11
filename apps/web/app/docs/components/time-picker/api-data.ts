@@ -27,6 +27,12 @@ export const timePickerApi: ApiReferenceRow[] = [
     description: "Adds a third, seconds wheel.",
   },
   {
+    prop: "showLabels",
+    type: "boolean",
+    default: "false",
+    description: "Shows h, m, and s labels above their wheel columns.",
+  },
+  {
     prop: "hourFormat",
     type: '"24" | "12"',
     default: '"24"',
@@ -43,7 +49,7 @@ export const timePickerApi: ApiReferenceRow[] = [
     prop: "className",
     type: "string",
     default: "—",
-    description: "Additional classes for the WheelPickerWrapper.",
+    description: "Additional classes for the time picker container.",
   },
 ]
 
@@ -76,7 +82,7 @@ export const responsiveTimePickerContentApi: ApiReferenceRow[] = [
     description: "Forwarded to the inner TimePicker.",
   },
   {
-    prop: "showSeconds / hourFormat / digits",
+    prop: "showSeconds / showLabels / hourFormat / digits",
     type: "—",
     default: "—",
     description: "Forwarded to the inner TimePicker.",

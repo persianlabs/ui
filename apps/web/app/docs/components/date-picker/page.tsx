@@ -298,8 +298,10 @@ export default function DatePickerDocPage() {
               >
                 Time Picker
               </a>{" "}
-              below the Calendar in the same Popover, so a single trigger picks
-              both a date and a time of day.
+              below the Calendar in the same Popover on desktop. On smaller
+              screens, the date picker keeps its compact popover while the time
+              picker opens in its own responsive drawer, so the wheel is never
+              cramped beneath the calendar.
             </>
           }
         >

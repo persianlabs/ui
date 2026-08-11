@@ -115,6 +115,8 @@ export interface TimePickerProps {
   onValueChange?: (value: TimePickerValue) => void
   /** Adds a seconds wheel. @default false */
   showSeconds?: boolean
+  /** Shows h, m, and s labels above their wheel columns. @default false */
+  showLabels?: boolean
   /** 24-hour or 12-hour (with an AM/PM wheel) display. @default "24" */
   hourFormat?: TimePickerHourFormat
   /** Wheel label digit style. @default "fa" */
@@ -127,6 +129,7 @@ function TimePicker({
   defaultValue = DEFAULT_VALUE,
   onValueChange,
   showSeconds = false,
+  showLabels = false,
   hourFormat = "24",
   digits = "fa",
   className,
@@ -172,43 +175,56 @@ function TimePicker({
   const second = clamp(value.second ?? 0, 0, 59)
 
   return (
-    <WheelPickerWrapper className={className}>
-      <WheelPicker
-        options={hourOptions}
-        value={hourFormat === "12" ? hour12 : value.hour}
-        onValueChange={(nextHour) => {
-          const hour =
-            hourFormat === "12" ? from12Hour(nextHour, period) : nextHour
-          setValue({ ...value, hour })
-        }}
-        infinite
-      />
-      <WheelPicker
-        options={minuteOptions}
-        value={value.minute}
-        onValueChange={(minute) => setValue({ ...value, minute })}
-        infinite
-      />
-      {showSeconds && (
+    <div className={cn("flex flex-col", className)}>
+      {showLabels && (
+        <div
+          aria-hidden="true"
+          className="grid auto-cols-fr grid-flow-col px-1 pb-1 text-center text-xs text-muted-foreground"
+        >
+          <span>h</span>
+          <span>m</span>
+          {showSeconds && <span>s</span>}
+          {hourFormat === "12" && <span>AM/PM</span>}
+        </div>
+      )}
+      <WheelPickerWrapper>
         <WheelPicker
-          options={secondOptions}
-          value={second}
-          onValueChange={(nextSecond) =>
-            setValue({ ...value, second: nextSecond })
-          }
+          options={hourOptions}
+          value={hourFormat === "12" ? hour12 : value.hour}
+          onValueChange={(nextHour) => {
+            const hour =
+              hourFormat === "12" ? from12Hour(nextHour, period) : nextHour
+            setValue({ ...value, hour })
+          }}
           infinite
         />
-      )}
-      {hourFormat === "12" && (
         <WheelPicker
-          options={periodOptions(digits)}
-          value={period}
-          onValueChange={(nextPeriod) =>
-            setValue({ ...value, hour: from12Hour(hour12, nextPeriod) })
-          }
+          options={minuteOptions}
+          value={value.minute}
+          onValueChange={(minute) => setValue({ ...value, minute })}
+          infinite
         />
-      )}
-    </WheelPickerWrapper>
+        {showSeconds && (
+          <WheelPicker
+            options={secondOptions}
+            value={second}
+            onValueChange={(nextSecond) =>
+              setValue({ ...value, second: nextSecond })
+            }
+            infinite
+          />
+        )}
+        {hourFormat === "12" && (
+          <WheelPicker
+            options={periodOptions(digits)}
+            value={period}
+            onValueChange={(nextPeriod) =>
+              setValue({ ...value, hour: from12Hour(hour12, nextPeriod) })
+            }
+          />
+        )}
+      </WheelPickerWrapper>
+    </div>
   )
 }
 

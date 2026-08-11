@@ -12,6 +12,9 @@ import {
 } from "@workspace/ui/components/popover"
 import {
   formatTimePickerValue,
+  ResponsiveTimePicker,
+  ResponsiveTimePickerContent,
+  ResponsiveTimePickerTrigger,
   TimePicker,
   type TimePickerValue,
 } from "@workspace/ui/components/time-picker"
@@ -53,7 +56,7 @@ export function DatePickerWithTimeExample() {
           defaultMonth={date ?? today}
           className="p-2"
         />
-        <div className="flex flex-col items-center gap-2 border-t border-border p-3">
+        <div className="hidden flex-col items-center gap-2 border-t border-border p-3 md:flex">
           <TimePicker value={time} onValueChange={setTime} />
           <Button
             size="sm"
@@ -65,6 +68,18 @@ export function DatePickerWithTimeExample() {
           </Button>
         </div>
       </PopoverContent>
+      <div className="mt-3 md:hidden">
+        <ResponsiveTimePicker>
+          <ResponsiveTimePickerTrigger
+            render={
+              <Button variant="outline" className="w-64 justify-start">
+                {formatTimePickerValue(time)}
+              </Button>
+            }
+          />
+          <ResponsiveTimePickerContent value={time} onValueChange={setTime} />
+        </ResponsiveTimePicker>
+      </div>
     </Popover>
   )
 }
