@@ -19,6 +19,7 @@ import { DatePickerDobExample } from "@/components/examples/date-picker-dob"
 import { DatePickerInputExample } from "@/components/examples/date-picker-input"
 import { DatePickerRangeExample } from "@/components/examples/date-picker-range"
 import { DatePickerReservationExample } from "@/components/examples/date-picker-reservation"
+import { DatePickerResponsiveExample } from "@/components/examples/date-picker-responsive"
 import { DatePickerRtlExample } from "@/components/examples/date-picker-rtl"
 import { DatePickerWithTimeExample } from "@/components/examples/date-picker-with-time"
 import { DatePickerZodExample } from "@/components/examples/date-picker-zod"
@@ -51,6 +52,7 @@ const tocItems = [
     children: [
       { id: "range", title: "Range" },
       { id: "with-time", title: "With Time" },
+      { id: "responsive", title: "Fully Responsive" },
       { id: "input", title: "Typed Input" },
       { id: "date-of-birth", title: "Date of Birth" },
       { id: "calendar-type", title: "Calendar Type" },
@@ -305,6 +307,19 @@ export default function DatePickerDocPage() {
           }
         >
           <DatePickerWithTimeExample />
+        </ExampleSection>
+
+        <ExampleSection
+          id="responsive"
+          title="Fully Responsive"
+          description={
+            <>
+              Date and time each use their own responsive picker: a Popover on
+              desktop and a Drawer on smaller screens.
+            </>
+          }
+        >
+          <DatePickerResponsiveExample />
         </ExampleSection>
 
         <ExampleSection
