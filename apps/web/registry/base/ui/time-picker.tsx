@@ -176,6 +176,7 @@ function TimePicker({
       {showLabels && (
         <div
           aria-hidden="true"
+          dir="ltr"
           className="grid auto-cols-fr grid-flow-col px-1 pb-1 text-center text-xs text-muted-foreground"
         >
           <span>h</span>
