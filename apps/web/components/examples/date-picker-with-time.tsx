@@ -59,7 +59,7 @@ export function DatePickerWithTimeExample() {
           <div className="flex w-full items-center justify-between gap-2">
             <span className="flex items-center gap-1.5 text-sm font-medium">
               <ClockIcon className="size-4" />
-              ساعت
+              زمان
             </span>
             <ResponsiveTimePicker>
               <ResponsiveTimePickerTrigger
