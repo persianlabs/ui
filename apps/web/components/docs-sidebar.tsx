@@ -45,8 +45,56 @@ function SidebarPreview({ item, group }: { item: DocsNavItem; group: string }) {
   )
 }
 
+/**
+ * Walks up from `el` to the nearest scrollable ancestor. The desktop
+ * sidebar sits inside a ScrollArea (Radix/Base UI sets overflow on its
+ * `[data-slot="scroll-area-viewport"]`), while the mobile nav's Dialog.Popup
+ * scrolls itself directly via a plain `overflow-y-auto` class -- walking up
+ * by computed style covers both without hardcoding either structure.
+ */
+function findScrollParent(el: HTMLElement): HTMLElement | null {
+  let node = el.parentElement
+  while (node) {
+    const style = getComputedStyle(node)
+    if (
+      /(auto|scroll)/.test(style.overflowY) &&
+      node.scrollHeight > node.clientHeight
+    ) {
+      return node
+    }
+    node = node.parentElement
+  }
+  return null
+}
+
 export function DocsSidebar({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname()
+  const activeLinkRef = React.useRef<HTMLAnchorElement | null>(null)
+  const isFirstRender = React.useRef(true)
+
+  React.useEffect(() => {
+    const link = activeLinkRef.current
+    const wasFirstRender = isFirstRender.current
+    isFirstRender.current = false
+    if (!link) return
+
+    const viewport = findScrollParent(link)
+    if (!viewport) return
+
+    const linkRect = link.getBoundingClientRect()
+    const viewportRect = viewport.getBoundingClientRect()
+    const isVisible =
+      linkRect.top >= viewportRect.top && linkRect.bottom <= viewportRect.bottom
+    if (isVisible) return
+
+    // Direct page load: jump straight to centered, no animation. Client-side
+    // navigation to a page whose sidebar entry has scrolled out of view:
+    // ease it into view instead of snapping.
+    link.scrollIntoView({
+      block: "center",
+      behavior: wasFirstRender ? "instant" : "smooth",
+    })
+  }, [pathname])
 
   return (
     <TooltipProvider delay={0} closeDelay={0}>
@@ -82,6 +130,7 @@ export function DocsSidebar({ onNavigate }: { onNavigate?: () => void }) {
                         <TooltipTrigger
                           render={
                             <Link
+                              ref={active ? activeLinkRef : undefined}
                               href={item.href as Route}
                               onClick={onNavigate}
                               className={cn(
@@ -100,6 +149,7 @@ export function DocsSidebar({ onNavigate }: { onNavigate?: () => void }) {
                       </Tooltip>
                     ) : (
                       <Link
+                        ref={active ? activeLinkRef : undefined}
                         href={item.href as Route}
                         onClick={onNavigate}
                         className={cn(
