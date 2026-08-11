@@ -5,6 +5,7 @@ import { MenuIcon, XIcon } from "lucide-react"
 import * as React from "react"
 
 import { DocsSidebar } from "@/components/docs-sidebar"
+import { ScrollArea } from "@workspace/ui/components/scroll-area"
 
 export function MobileNav() {
   const [open, setOpen] = React.useState(false)
@@ -19,8 +20,8 @@ export function MobileNav() {
       </Dialog.Trigger>
       <Dialog.Portal>
         <Dialog.Backdrop className="fixed inset-0 z-50 bg-black/50 transition-opacity duration-150 data-[ending-style]:opacity-0 data-[starting-style]:opacity-0" />
-        <Dialog.Popup className="fixed inset-y-0 start-0 z-50 flex w-72 max-w-[85vw] flex-col overflow-y-auto border-e border-border bg-background p-6 shadow-lg transition-transform duration-200 data-[ending-style]:-translate-x-full data-[starting-style]:-translate-x-full">
-          <div className="mb-6 flex items-center justify-between">
+        <Dialog.Popup className="fixed inset-y-0 start-0 z-50 flex w-72 max-w-[85vw] flex-col border-e border-border bg-background shadow-lg transition-transform duration-200 data-[ending-style]:-translate-x-full data-[starting-style]:-translate-x-full">
+          <div className="mb-6 flex items-center justify-between p-6 pb-0">
             <Dialog.Title className="text-sm font-semibold">Menu</Dialog.Title>
             <Dialog.Close
               aria-label="Close menu"
@@ -29,7 +30,11 @@ export function MobileNav() {
               <XIcon className="size-4" />
             </Dialog.Close>
           </div>
-          <DocsSidebar onNavigate={() => setOpen(false)} />
+          <ScrollArea className="min-h-0 flex-1">
+            <div className="px-6 pb-6">
+              <DocsSidebar onNavigate={() => setOpen(false)} />
+            </div>
+          </ScrollArea>
         </Dialog.Popup>
       </Dialog.Portal>
     </Dialog.Root>
