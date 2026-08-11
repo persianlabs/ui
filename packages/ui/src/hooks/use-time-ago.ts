@@ -11,13 +11,7 @@ import {
 export type TimeAgoFormatter<T = number> = (value: T, isPast: boolean) => string
 
 export type TimeAgoUnitName =
-  | "second"
-  | "minute"
-  | "hour"
-  | "day"
-  | "week"
-  | "month"
-  | "year"
+  "second" | "minute" | "hour" | "day" | "week" | "month" | "year"
 
 export interface TimeAgoMessages {
   justNow: string
@@ -163,7 +157,9 @@ export function formatTimeAgo(
   const {
     max,
     messages = options.locale === "en" ? enMessages : faMessages,
-    fullDateFormatter = defaultFullDateFormatter(options.calendarType ?? "shamsi"),
+    fullDateFormatter = defaultFullDateFormatter(
+      options.calendarType ?? "shamsi"
+    ),
     units = DEFAULT_UNITS,
     showSecond = false,
     rounding = "round",

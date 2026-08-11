@@ -19,7 +19,10 @@ export function PersianDateConversionExample() {
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-3 text-sm">
-      <Row label="میلادی" value={`${miladi.year}/${miladi.month}/${miladi.day}`} />
+      <Row
+        label="میلادی"
+        value={`${miladi.year}/${miladi.month}/${miladi.day}`}
+      />
       <Row
         label="→ toShamsi"
         value={`${shamsi.year}/${shamsi.month}/${shamsi.day}`}

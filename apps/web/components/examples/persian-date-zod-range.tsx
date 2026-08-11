@@ -37,7 +37,9 @@ export function PersianDateZodRangeExample() {
       </div>
       <p
         className={
-          result.success ? "text-sm text-emerald-500" : "text-sm text-destructive"
+          result.success
+            ? "text-sm text-emerald-500"
+            : "text-sm text-destructive"
         }
       >
         {result.success

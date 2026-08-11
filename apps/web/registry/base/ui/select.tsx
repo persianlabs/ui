@@ -95,6 +95,16 @@ function SelectContent({
         data-slot="select-positioner"
         sideOffset={sideOffset}
         className="z-50 outline-none"
+        // Base UI's default alignItemWithTrigger={true} tries to overlay the
+        // selected item's text on top of the trigger's own text (native-
+        // <select>-like UX), computed via a custom position:fixed + manual
+        // measurement path instead of normal anchor-based floating-ui
+        // placement. That measurement path was producing a popup positioned
+        // at (0,0) with zero size in this app -- reproducible even on this
+        // component's own bare doc-page demo. Falling back to standard
+        // anchor-below-trigger placement sidesteps that measurement path
+        // entirely and is more predictable for custom-styled triggers.
+        alignItemWithTrigger={false}
         {...props}
       >
         <SelectPrimitive.Popup

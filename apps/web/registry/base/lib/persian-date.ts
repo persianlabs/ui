@@ -22,9 +22,10 @@ export interface DateParts {
   day: number
 }
 
+/** Matches react-day-picker's own DateRange shape exactly, for drop-in compatibility. */
 export interface DateRange {
   from: Date | undefined
-  to: Date | undefined
+  to?: Date | undefined
 }
 
 const persianDigitMap = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"]
@@ -325,6 +326,43 @@ export function isWithinRange(date: Date, range: DateRange): boolean {
 export function rangeLengthInDays(range: DateRange): number {
   if (!range.from || !range.to) return 0
   return daysBetween(range.from, range.to) + 1
+}
+
+/**
+ * Click-to-toggle logic for a two-endpoint range picker: clicking an
+ * already-selected endpoint clears just that endpoint, leaving the other one
+ * in place. The next click fills whichever slot is empty, keeping `from`
+ * chronologically before `to` -- if the new day would invert that order, it
+ * swaps into the other slot instead (e.g. clicking an earlier day while only
+ * `to` is empty makes that day the new `from` and shifts the old `from` into
+ * `to`, rather than storing an inverted `from > to` pair). An inverted pair
+ * would still *look* like a normal range in the Calendar's own rendering
+ * (start/end dots at whichever cells `from`/`to` point to), which made
+ * clicking the visually-first endpoint clear the visually-last one instead --
+ * always keeping `from <= to` avoids that mismatch, and matches the
+ * "inverted" check `validateRange` already assumes elsewhere.
+ * Clicking a day that isn't either endpoint while both are already set starts
+ * a fresh range instead of extending the old one.
+ *
+ * Clearing `from` moves the remaining day into `from` (not left in `to`):
+ * react-day-picker's own range-mode rendering doesn't support a `{from:
+ * undefined, to: Date}` selection -- given that shape, it silently falls
+ * back to treating whatever cell was just clicked as its own fresh
+ * single-day selection instead of showing the remaining day as selected at
+ * all. Since a lone `from` renders correctly, relabeling keeps the same day
+ * visibly selected instead of it appearing to vanish.
+ */
+export function toggleRangeSelection(range: DateRange, day: Date): DateRange {
+  const { from, to } = range
+
+  if (from && isSameDay(day, from)) return { from: to, to: undefined }
+  if (to && isSameDay(day, to)) return { from, to: undefined }
+  if (!from && !to) return { from: day, to: undefined }
+  if (!from)
+    return isBefore(day, to as Date) ? { from: day, to } : { from: to, to: day }
+  if (!to)
+    return isBefore(day, from) ? { from: day, to: from } : { from, to: day }
+  return { from: day, to: undefined }
 }
 
 export interface RangeValidationOptions {

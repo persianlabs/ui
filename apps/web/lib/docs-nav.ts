@@ -38,6 +38,11 @@ export const docsNav: DocsNavGroup[] = [
       { title: "Bubble", href: "/docs/components/bubble" },
       { title: "Button", href: "/docs/components/button" },
       { title: "Button Group", href: "/docs/components/button-group" },
+      {
+        title: "Calendar",
+        href: "/docs/components/calendar",
+        badge: "New",
+      },
       { title: "Card", href: "/docs/components/card" },
       { title: "Charts", href: "/docs/charts" },
       { title: "Checkbox", href: "/docs/components/checkbox" },
@@ -53,6 +58,16 @@ export const docsNav: DocsNavGroup[] = [
       {
         title: "Copy Button",
         href: "/docs/components/copy-button",
+        badge: "New",
+      },
+      {
+        title: "Date Picker",
+        href: "/docs/components/date-picker",
+        badge: "New",
+      },
+      {
+        title: "Date Wheel Picker",
+        href: "/docs/components/date-wheel-picker",
         badge: "New",
       },
       { title: "Dialog", href: "/docs/components/dialog" },
@@ -120,6 +135,11 @@ export const docsNav: DocsNavGroup[] = [
       { title: "Table", href: "/docs/components/table" },
       { title: "Tabs", href: "/docs/components/tabs" },
       { title: "Textarea", href: "/docs/components/textarea" },
+      {
+        title: "Time Picker",
+        href: "/docs/components/time-picker",
+        badge: "New",
+      },
       { title: "Toast", href: "/docs/components/toast", badge: "New" },
       { title: "Toggle", href: "/docs/components/toggle" },
       { title: "Toggle Group", href: "/docs/components/toggle-group" },

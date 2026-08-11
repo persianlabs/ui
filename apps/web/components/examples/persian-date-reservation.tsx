@@ -63,11 +63,11 @@ export function PersianDateReservationExample() {
         />
       </div>
       <p
-        className={reason ? "text-sm text-destructive" : "text-sm text-emerald-500"}
+        className={
+          reason ? "text-sm text-destructive" : "text-sm text-emerald-500"
+        }
       >
-        {reason
-          ? reasonMessages[reason]
-          : "بازهٔ انتخابی برای رزرو معتبر است."}
+        {reason ? reasonMessages[reason] : "بازهٔ انتخابی برای رزرو معتبر است."}
       </p>
     </div>
   )
@@ -91,10 +91,20 @@ function DateField({
         {formatDate(value, "yyyy/MM/dd")}
       </span>
       <div className="flex gap-1.5">
-        <Button size="icon" variant="outline" className="size-7" onClick={onDecrease}>
+        <Button
+          size="icon"
+          variant="outline"
+          className="size-7"
+          onClick={onDecrease}
+        >
           -
         </Button>
-        <Button size="icon" variant="outline" className="size-7" onClick={onIncrease}>
+        <Button
+          size="icon"
+          variant="outline"
+          className="size-7"
+          onClick={onIncrease}
+        >
           +
         </Button>
       </div>

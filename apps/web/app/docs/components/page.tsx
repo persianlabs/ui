@@ -14,6 +14,7 @@ import {
   BubblePreview,
   ButtonGroupPreview,
   ButtonPreview,
+  CalendarPreview,
   CardPreview,
   CheckboxPreview,
   CitySelectorPreview,
@@ -22,6 +23,8 @@ import {
   CommandPreview,
   ContextMenuPreview,
   CopyButtonPreview,
+  DatePickerPreview,
+  DateWheelPickerPreview,
   DialogPreview,
   DirectionPreview,
   DrawerPreview,
@@ -61,6 +64,7 @@ import {
   TablePreview,
   TabsPreview,
   TextareaPreview,
+  TimePickerPreview,
   ToastPreview,
   WheelPickerPreview,
   ToggleGroupPreview,
@@ -103,6 +107,45 @@ const components = [
     ),
   },
   {
+    title: "Time Picker",
+    href: "/docs/components/time-picker" as const,
+    description:
+      "An hour/minute/second wheel-based time picker, with a responsive Popover-on-desktop, Drawer-on-mobile composition.",
+    badge: "New",
+    createdAt: "2026-08-10",
+    thumbnail: (
+      <ThumbnailFrame>
+        <TimePickerPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Date Picker",
+    href: "/docs/components/date-picker" as const,
+    description:
+      "A date picker composed from Popover and Calendar — there's no standalone DatePicker component, same as upstream shadcn/ui.",
+    badge: "New",
+    createdAt: "2026-08-10",
+    thumbnail: (
+      <ThumbnailFrame>
+        <DatePickerPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Date Wheel Picker",
+    href: "/docs/components/date-wheel-picker" as const,
+    description:
+      "An iOS-style year/month/day wheel-based date picker, switchable between the Shamsi and Gregorian calendars, with a responsive Popover-on-desktop, Drawer-on-mobile composition.",
+    badge: "New",
+    createdAt: "2026-08-10",
+    thumbnail: (
+      <ThumbnailFrame>
+        <DateWheelPickerPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
     title: "Button",
     href: "/docs/components/button" as const,
     description: "A button built on Base UI with variant and size support.",
@@ -122,6 +165,19 @@ const components = [
     thumbnail: (
       <ThumbnailFrame>
         <ButtonGroupPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Calendar",
+    href: "/docs/components/calendar" as const,
+    description:
+      "A date-grid calendar built on react-day-picker, switchable between the Jalali (Shamsi) and Gregorian (Miladi) calendars via a calendarType prop.",
+    badge: "New",
+    createdAt: "2026-08-10",
+    thumbnail: (
+      <ThumbnailFrame>
+        <CalendarPreview />
       </ThumbnailFrame>
     ),
   },

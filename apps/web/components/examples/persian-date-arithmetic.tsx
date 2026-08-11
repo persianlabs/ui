@@ -11,7 +11,10 @@ import {
 
 export function PersianDateArithmeticExample() {
   // 1403 is a leap Jalali year -- Esfand has 30 days.
-  const esfand29 = React.useMemo(() => fromShamsi({ year: 1403, month: 12, day: 29 }), [])
+  const esfand29 = React.useMemo(
+    () => fromShamsi({ year: 1403, month: 12, day: 29 }),
+    []
+  )
 
   const plusOneDay = addDays(esfand29, 1)
   const plusOneMonth = addMonths(esfand29, 1)
@@ -19,7 +22,10 @@ export function PersianDateArithmeticExample() {
   return (
     <div className="flex w-full max-w-sm flex-col gap-3 text-sm">
       <Row label="۲۹ اسفند ۱۴۰۳" value={formatDate(esfand29, "yyyy/MM/dd")} />
-      <Row label="addDays(date, 1)" value={formatDate(plusOneDay, "yyyy/MM/dd")} />
+      <Row
+        label="addDays(date, 1)"
+        value={formatDate(plusOneDay, "yyyy/MM/dd")}
+      />
       <Row
         label="addMonths(date, 1)"
         value={formatDate(plusOneMonth, "yyyy/MM/dd")}

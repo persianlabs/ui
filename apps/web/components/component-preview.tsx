@@ -22,9 +22,30 @@ export function ComponentPreview({
   const [dir, setDir] = React.useState<"ltr" | "rtl">(forcedDir ?? "ltr")
   const resolvedDir = forcedDir ?? dir
   const [expanded, setExpanded] = React.useState(false)
+  const [isNear, setIsNear] = React.useState(false)
+  const containerRef = React.useRef<HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    const node = containerRef.current
+    if (!node) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setIsNear(true)
+          observer.disconnect()
+        }
+      },
+      { rootMargin: "400px 0px" }
+    )
+    observer.observe(node)
+
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <div
+      ref={containerRef}
       className={cn(
         "relative flex w-full flex-col overflow-hidden rounded-2xl border border-border",
         className
@@ -53,18 +74,25 @@ export function ComponentPreview({
         dir={resolvedDir}
         className="flex min-h-56 items-center justify-center bg-background p-8"
       >
-        {preview}
+        {isNear ? (
+          preview
+        ) : (
+          <div className="size-full animate-pulse rounded-lg bg-muted" />
+        )}
       </div>
 
       <div className="relative border-t border-border">
         <div
-          style={!expanded ? { maxHeight: COLLAPSED_CODE_HEIGHT } : undefined}
+          style={{
+            maxHeight: !expanded ? COLLAPSED_CODE_HEIGHT : undefined,
+            minHeight: !isNear ? COLLAPSED_CODE_HEIGHT : undefined,
+          }}
           className={cn(
             "[&_[data-slot=code-block]]:m-0 [&_[data-slot=code-block]]:rounded-none [&_[data-slot=code-block]]:border-0",
             !expanded && "overflow-hidden"
           )}
         >
-          {code}
+          {isNear && code}
         </div>
         {!expanded && (
           <div className="absolute inset-x-0 bottom-0 flex items-end justify-center bg-gradient-to-t from-card to-transparent pt-10 pb-3">

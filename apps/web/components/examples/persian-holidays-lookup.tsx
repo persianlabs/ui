@@ -26,7 +26,10 @@ export function PersianHolidaysLookupExample() {
             className="flex flex-col gap-1 rounded-lg border border-border px-3 py-2"
           >
             <div className="flex items-center justify-between">
-              <span dir="ltr" className="font-mono text-xs tabular-nums text-muted-foreground">
+              <span
+                dir="ltr"
+                className="font-mono text-xs text-muted-foreground tabular-nums"
+              >
                 {formatDate(date, "yyyy/MM/dd")}
               </span>
               <Badge variant={isHoliday(date) ? "default" : "outline"}>

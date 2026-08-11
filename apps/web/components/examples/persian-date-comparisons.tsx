@@ -41,7 +41,10 @@ export function PersianDateComparisonsExample() {
           className="flex items-center justify-between gap-4 rounded-lg border border-border px-3 py-2"
         >
           <span>{item.label}</span>
-          <span dir="ltr" className="font-mono tabular-nums text-muted-foreground">
+          <span
+            dir="ltr"
+            className="font-mono text-muted-foreground tabular-nums"
+          >
             {formatDate(item.value, "yyyy/MM/dd")}
           </span>
           <Badge variant={isToday(item.value) ? "default" : "outline"}>

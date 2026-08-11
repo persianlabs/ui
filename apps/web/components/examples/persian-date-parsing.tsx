@@ -22,9 +22,7 @@ export function PersianDateParsingExample() {
   return (
     <div className="flex w-full max-w-sm flex-col gap-3">
       <div className="flex flex-col gap-1.5">
-        <Label htmlFor="persian-date-parsing-input">
-          تاریخ تولد (شمسی)
-        </Label>
+        <Label htmlFor="persian-date-parsing-input">تاریخ تولد (شمسی)</Label>
         <Input
           id="persian-date-parsing-input"
           dir="ltr"

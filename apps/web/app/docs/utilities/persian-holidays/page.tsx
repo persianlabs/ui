@@ -115,9 +115,9 @@ export default function PersianHolidaysDocPage() {
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
           Look up official, religious, and cultural Iranian holidays for a
-          single date, a range, or a whole calendar year. Jalali and
-          Gregorian entries resolve to an exact date; Hijri (lunar) entries
-          are resolved with a tabular approximation and flagged{" "}
+          single date, a range, or a whole calendar year. Jalali and Gregorian
+          entries resolve to an exact date; Hijri (lunar) entries are resolved
+          with a tabular approximation and flagged{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
             approximate: true
           </code>
@@ -232,9 +232,8 @@ export default function PersianHolidaysDocPage() {
             RTL
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
-            Holiday titles are Persian text end-to-end, so this reads
-            naturally inside right-to-left layouts without any extra
-            direction handling.
+            Holiday titles are Persian text end-to-end, so this reads naturally
+            inside right-to-left layouts without any extra direction handling.
           </p>
           <div className="mt-3">
             <ComponentPreview
@@ -304,4 +303,3 @@ function ExampleSection({
     </div>
   )
 }
-

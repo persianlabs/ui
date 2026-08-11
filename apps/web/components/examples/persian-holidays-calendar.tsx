@@ -23,10 +23,7 @@ export function PersianHolidaysCalendarExample() {
   const to = endOfMonth(monthStart)
 
   const days = React.useMemo(() => eachDayOfRange(from, to), [from, to])
-  const holidays = React.useMemo(
-    () => getHolidaysInRange(from, to),
-    [from, to]
-  )
+  const holidays = React.useMemo(() => getHolidaysInRange(from, to), [from, to])
 
   const isHolidayDay = (day: Date) =>
     holidays.some((holiday) => isSameDay(holiday.date, day))

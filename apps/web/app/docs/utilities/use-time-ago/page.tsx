@@ -121,9 +121,9 @@ export default function UseTimeAgoDocPage() {
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
           Formats the distance between a timestamp and now — &ldquo;همین
           الان&rdquo;, &ldquo;۵ دقیقه پیش&rdquo;, &ldquo;دیروز&rdquo; — and
-          keeps that string current by
-          re-rendering on an interval. Works with Persian or English
-          messages, and can fall back to an absolute date past a threshold.
+          keeps that string current by re-rendering on an interval. Works with
+          Persian or English messages, and can fall back to an absolute date
+          past a threshold.
         </p>
         <LastUpdated date={lastEdited} />
 
@@ -304,4 +304,3 @@ function ExampleSection({
     </div>
   )
 }
-
