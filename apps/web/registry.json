@@ -177,7 +177,7 @@
       "type": "registry:ui",
       "title": "Select",
       "description": "A searchable-free listbox for choosing a single value, built on Base UI.",
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["utils", "scroll-area"],
       "dependencies": ["@base-ui/react", "lucide-react"],
       "files": [
         {
