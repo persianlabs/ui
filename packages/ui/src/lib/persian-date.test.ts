@@ -275,13 +275,10 @@ describe("toggleRangeSelection", () => {
     })
   })
 
-  it("moves to into from when clicking the existing from endpoint again", () => {
-    // react-day-picker's range mode can't render a {from: undefined, to: X}
-    // selection, so the remaining day is relabeled into `from` instead of
-    // left in `to` -- see toggleRangeSelection's own doc comment.
+  it("clears from without changing the remaining to endpoint", () => {
     expect(toggleRangeSelection({ from: day1, to: day2 }, day1)).toEqual({
-      from: day2,
-      to: undefined,
+      from: undefined,
+      to: day2,
     })
   })
 
@@ -300,11 +297,11 @@ describe("toggleRangeSelection", () => {
     })
   })
 
-  it("swaps into to when refilling the cleared from slot with a later day", () => {
+  it("always refills the from slot after from was cleared", () => {
     const afterDeselect = toggleRangeSelection({ from: day1, to: day2 }, day1)
     expect(toggleRangeSelection(afterDeselect, day3)).toEqual({
-      from: day2,
-      to: day3,
+      from: day3,
+      to: day2,
     })
   })
 

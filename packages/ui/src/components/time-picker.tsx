@@ -1,11 +1,15 @@
 "use client"
 
+import { CheckIcon } from "lucide-react"
 import * as React from "react"
 
+import { Button } from "@workspace/ui/components/button"
 import {
   Drawer,
+  DrawerFooter,
   DrawerPanel,
   DrawerPopup,
+  DrawerTitle,
   DrawerTrigger,
 } from "@workspace/ui/components/drawer"
 import {
@@ -19,7 +23,10 @@ import {
   WheelPickerWrapper,
 } from "@workspace/ui/components/wheel-picker"
 import { useIsMobile } from "@workspace/ui/hooks/use-media-query"
-import { toPersianDigits } from "@workspace/ui/lib/persian-date"
+import {
+  toPersianDigits,
+  type DigitStyle,
+} from "@workspace/ui/lib/persian-date"
 import { cn } from "@workspace/ui/lib/utils"
 
 /** Time-of-day value. Plain fields, not a `Date` -- a clock has no calendar date. */
@@ -30,7 +37,7 @@ export interface TimePickerValue {
 }
 
 /** Mirrors persian-date's `DigitStyle`, kept local so this file has no digit-only dependency on it. */
-export type TimePickerDigits = "fa" | "en"
+export type TimePickerDigits = DigitStyle
 
 export type TimePickerHourFormat = "24" | "12"
 
@@ -309,12 +316,18 @@ type ResponsiveTimePickerContentProps = TimePickerProps & {
   align?: React.ComponentProps<typeof PopoverContent>["align"]
   side?: React.ComponentProps<typeof PopoverContent>["side"]
   sideOffset?: number
+  drawerTitle?: React.ReactNode
+  drawerConfirmLabel?: React.ReactNode
+  onDrawerConfirm?: () => void
 }
 
 function ResponsiveTimePickerContent({
   align = "center",
   side = "bottom",
   sideOffset = 6,
+  drawerTitle = "انتخاب زمان",
+  drawerConfirmLabel,
+  onDrawerConfirm,
   className,
   ...timePickerProps
 }: ResponsiveTimePickerContentProps) {
@@ -328,6 +341,22 @@ function ResponsiveTimePickerContent({
         sideOffset={sideOffset}
         className="w-auto p-3"
       >
+        {onDrawerConfirm && (
+          <div dir="ltr" className="mb-1 flex w-full justify-end">
+            <Button
+              variant="ghost"
+              size="icon-xs"
+              aria-label={
+                typeof drawerConfirmLabel === "string"
+                  ? drawerConfirmLabel
+                  : "تایید زمان"
+              }
+              onClick={onDrawerConfirm}
+            >
+              <CheckIcon />
+            </Button>
+          </div>
+        )}
         <TimePicker className={className} {...timePickerProps} />
       </PopoverContent>
     )
@@ -335,12 +364,20 @@ function ResponsiveTimePickerContent({
 
   return (
     <DrawerPopup showBar>
+      <DrawerTitle className="sr-only">{drawerTitle}</DrawerTitle>
       <DrawerPanel
         scrollable={false}
         className={cn("flex items-center justify-center pb-8")}
       >
         <TimePicker className={className} {...timePickerProps} />
       </DrawerPanel>
+      {drawerConfirmLabel && (
+        <DrawerFooter>
+          <Button className="w-full" onClick={onDrawerConfirm}>
+            {drawerConfirmLabel}
+          </Button>
+        </DrawerFooter>
+      )}
     </DrawerPopup>
   )
 }

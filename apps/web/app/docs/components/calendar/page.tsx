@@ -133,7 +133,10 @@ export default function CalendarDocPage() {
         <Credits
           sources={[
             { label: "shadcn/ui", href: "https://ui.shadcn.com" },
-            { label: "daypicker.dev", href: "https://daypicker.dev" },
+            {
+              label: "coss/ui",
+              href: "https://coss.com/ui/docs/components/calendar",
+            },
           ]}
           changed
           changes={[
@@ -223,11 +226,9 @@ export default function CalendarDocPage() {
               <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
                 mode=&quot;range&quot;
               </code>{" "}
-              with{" "}
-              <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-                numberOfMonths={"{2}"}
-              </code>
-              .
+              with a controlled <code>selected</code> value and{" "}
+              <code>onSelect</code>. One responsive calendar handles both
+              endpoints.
             </>
           }
         >
@@ -253,7 +254,7 @@ export default function CalendarDocPage() {
         <ExampleSection
           id="presets"
           title="Presets"
-          description="A calendar with quick-preset buttons, updating both the selected date and the displayed month."
+          description="A calendar with a scrollable preset sidebar on desktop and a compact Drawer trigger above the month on smaller screens."
         >
           <CalendarPresetsExample />
         </ExampleSection>

@@ -123,7 +123,7 @@ const components = [
     title: "Date Picker",
     href: "/docs/components/date-picker" as const,
     description:
-      "A date picker composed from Popover and Calendar — there's no standalone DatePicker component, same as upstream shadcn/ui.",
+      "Responsive Shamsi/Gregorian date and date-time fields with SSR-safe defaults and confirmation flows.",
     badge: "New",
     createdAt: "2026-08-10",
     thumbnail: (

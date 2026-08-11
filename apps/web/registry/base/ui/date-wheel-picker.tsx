@@ -23,11 +23,12 @@ import {
   toParts,
   toPersianDigits,
   type CalendarType,
+  type DigitStyle,
 } from "@/lib/persian-date"
 import { cn } from "@/lib/utils"
 
 /** Mirrors persian-date's `DigitStyle`, kept local so this file has no digit-only dependency on it. */
-export type DateWheelPickerDigits = "fa" | "en"
+export type DateWheelPickerDigits = DigitStyle
 
 const DEFAULT_MIN_YEAR: Record<CalendarType, number> = {
   shamsi: 1300,

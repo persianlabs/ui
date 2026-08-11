@@ -59,6 +59,13 @@ export const calendarApi: ApiReferenceRow[] = [
     description: "Shows days outside the current month.",
   },
   {
+    prop: "fixedWeeks",
+    type: "boolean",
+    default: "true",
+    description:
+      "Always renders six week rows, filling them with adjacent-month days so the Calendar height never changes.",
+  },
+  {
     prop: "showHolidays",
     type: "boolean",
     default: "false",

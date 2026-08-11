@@ -2,26 +2,30 @@
 
 import * as React from "react"
 
+import { Button } from "@workspace/ui/components/button"
 import { Calendar } from "@workspace/ui/components/calendar"
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@workspace/ui/components/card"
+  Drawer,
+  DrawerPanel,
+  DrawerPopup,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@workspace/ui/components/drawer"
+import { ScrollArea } from "@workspace/ui/components/scroll-area"
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@workspace/ui/components/select"
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@workspace/ui/components/tooltip"
+import { useIsMobile } from "@workspace/ui/hooks/use-media-query"
+import type { CalendarType } from "@workspace/ui/lib/persian-date"
 import {
   addDays,
   addMonths,
   addWeeks,
   addYears,
+  formatDate,
 } from "@workspace/ui/lib/persian-date"
 
 /**
@@ -61,10 +65,17 @@ const PRESETS = [
   { label: "۲۰۰ روز پیش", duration: "-200d" },
 ]
 
-export function CalendarPresetsExample() {
+export function CalendarPresetsExample({
+  calendarType = "shamsi",
+}: {
+  calendarType?: CalendarType
+}) {
+  const isMobile = useIsMobile()
   const [today, setToday] = React.useState<Date | null>(null)
   const [date, setDate] = React.useState<Date | undefined>(undefined)
   const [month, setMonth] = React.useState<Date | undefined>(undefined)
+  const [activePreset, setActivePreset] = React.useState("0d")
+  const [presetsOpen, setPresetsOpen] = React.useState(false)
 
   React.useEffect(() => {
     const init = () => {
@@ -81,52 +92,151 @@ export function CalendarPresetsExample() {
   const applyPreset = (duration: string | null) => {
     if (!duration) return
     const next = applyDuration(today, duration)
+    setActivePreset(duration)
     setDate(next)
     setMonth(next)
+    setPresetsOpen(false)
+  }
+
+  if (isMobile) {
+    return (
+      <div className="w-fit max-w-full overflow-hidden rounded-xl border bg-background">
+        <div className="px-3 pt-3">
+          <Drawer open={presetsOpen} onOpenChange={setPresetsOpen}>
+            <DrawerTrigger
+              render={
+                <Button variant="outline" className="w-full">
+                  انتخاب سریع
+                </Button>
+              }
+            />
+            <DrawerPopup showBar>
+              <DrawerTitle className="sr-only">انتخاب سریع تاریخ</DrawerTitle>
+              <DrawerPanel scrollable className="max-h-[70dvh] px-2 pt-4 pb-2">
+                <PresetButtons
+                  activePreset={activePreset}
+                  onSelect={applyPreset}
+                />
+              </DrawerPanel>
+            </DrawerPopup>
+          </Drawer>
+        </div>
+        <div>
+          <Calendar
+            calendarType={calendarType}
+            mode="single"
+            selected={date}
+            onSelect={(next) => {
+              setDate(next)
+              setActivePreset("")
+            }}
+            month={month}
+            onMonthChange={setMonth}
+            className="p-3"
+          />
+        </div>
+      </div>
+    )
   }
 
   return (
-    <Card className="w-fit gap-4 py-4">
-      <CardHeader className="px-4">
-        <CardTitle className="text-sm">انتخاب سریع تاریخ</CardTitle>
-        <CardDescription>
-          یک بازه را انتخاب کنید تا روی تقویم اعمال شود.
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="flex flex-col gap-3 px-4">
-        <Select
-          onValueChange={applyPreset}
-          // SelectValue resolves the selected item's label from this map --
-          // without it, the trigger would show the raw duration value
-          // ("1d") instead of the label ("فردا") once something is picked.
-          items={PRESETS.map((preset) => ({
-            value: preset.duration,
-            label: preset.label,
-          }))}
-        >
-          <SelectTrigger className="w-full min-w-0">
-            <SelectValue
-              placeholder="یک گزینه را انتخاب کنید"
-              className="truncate"
+    <div className="flex w-fit max-w-full flex-col items-start overflow-hidden rounded-xl border bg-background sm:flex-row">
+      <div className="relative box-border min-h-0 shrink-0 self-stretch overflow-hidden border-b sm:w-48 sm:border-e sm:border-b-0">
+        <div className="absolute inset-0 flex min-h-0 flex-col overflow-hidden">
+          <p className="px-3 pt-3 pb-2 text-xs font-medium text-muted-foreground">
+            انتخاب سریع
+          </p>
+          <ScrollArea className="min-h-0 flex-1 overflow-hidden">
+            <PresetButtons
+              activePreset={activePreset}
+              onSelect={applyPreset}
+              className="px-2 pb-5"
+              showTooltips
+              today={today}
+              calendarType={calendarType}
             />
-          </SelectTrigger>
-          <SelectContent>
-            {PRESETS.map((preset) => (
-              <SelectItem key={preset.label} value={preset.duration}>
-                {preset.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+          </ScrollArea>
+        </div>
+      </div>
+      <div className="shrink-0 self-start">
         <Calendar
+          calendarType={calendarType}
           mode="single"
           selected={date}
-          onSelect={setDate}
+          onSelect={(next) => {
+            setDate(next)
+            setActivePreset("")
+          }}
           month={month}
           onMonthChange={setMonth}
-          className="p-0"
+          className="p-3"
         />
-      </CardContent>
-    </Card>
+      </div>
+    </div>
+  )
+}
+
+function PresetButtons({
+  activePreset,
+  onSelect,
+  className,
+  showTooltips = false,
+  today,
+  calendarType = "shamsi",
+}: {
+  activePreset: string
+  onSelect: (duration: string) => void
+  className?: string
+  showTooltips?: boolean
+  today?: Date
+  calendarType?: CalendarType
+}) {
+  const rootRef = React.useRef<HTMLDivElement>(null)
+  const [direction, setDirection] = React.useState<"ltr" | "rtl">("ltr")
+
+  React.useLayoutEffect(() => {
+    if (!rootRef.current) return
+    setDirection(
+      getComputedStyle(rootRef.current).direction === "rtl" ? "rtl" : "ltr"
+    )
+  }, [])
+
+  return (
+    <TooltipProvider delay={1000}>
+      <div ref={rootRef} className={`grid gap-1 ${className ?? ""}`}>
+        {PRESETS.map((preset) => {
+          const button = (
+            <Button
+              variant={activePreset === preset.duration ? "secondary" : "ghost"}
+              size="sm"
+              className="h-auto min-h-8 justify-start py-1.5 text-start whitespace-normal"
+              onClick={() => onSelect(preset.duration)}
+            >
+              {preset.label}
+            </Button>
+          )
+
+          if (!showTooltips || !today) {
+            return (
+              <React.Fragment key={preset.duration}>{button}</React.Fragment>
+            )
+          }
+
+          const targetDate = applyDuration(today, preset.duration)
+          const localizedDate = formatDate(targetDate, "yyyy d MMMM EEEE", {
+            calendarType,
+            locale: direction === "rtl" ? "fa" : "en",
+            digits: direction === "rtl" ? "fa" : "en",
+          })
+
+          return (
+            <Tooltip key={preset.duration}>
+              <TooltipTrigger render={button} />
+              <TooltipContent>{localizedDate}</TooltipContent>
+            </Tooltip>
+          )
+        })}
+      </div>
+    </TooltipProvider>
   )
 }

@@ -84,15 +84,16 @@ export function DatePickerReservationExample() {
                 ? range.to
                   ? `${formatDate(range.from, "yyyy/MM/dd")} تا ${formatDate(range.to, "yyyy/MM/dd")}`
                   : formatDate(range.from, "yyyy/MM/dd")
-                : "انتخاب بازه اقامت"}
+                : range?.to
+                  ? `— تا ${formatDate(range.to, "yyyy/MM/dd")}`
+                  : "انتخاب بازه اقامت"}
             </Button>
           }
         />
         <PopoverContent className="w-auto p-0">
           <Calendar
             mode="range"
-            numberOfMonths={2}
-            selected={range}
+            selected={range?.from ? range : undefined}
             // react-day-picker only stays truly controlled by `selected`
             // when `onSelect` is provided -- without it, it silently falls
             // back to its own internal uncontrolled range state after the
@@ -108,8 +109,17 @@ export function DatePickerReservationExample() {
             }
             month={month}
             onMonthChange={setMonth}
-            disabled={{ before: today }}
-            modifiers={{ holiday: holidayDates }}
+            disabled={[
+              { before: today },
+              ...(!range?.from && range?.to ? [{ after: range.to }] : []),
+              ...(range?.from && !range.to ? [{ before: range.from }] : []),
+            ]}
+            modifiers={{
+              holiday: holidayDates,
+              ...(!range?.from && range?.to
+                ? { range_end: range.to }
+                : undefined),
+            }}
             modifiersClassNames={{
               holiday: "text-destructive font-semibold",
             }}

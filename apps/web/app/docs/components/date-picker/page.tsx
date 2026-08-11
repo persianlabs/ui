@@ -14,14 +14,22 @@ import { CopyMarkdownButton } from "@/components/copy-markdown-button"
 import { Credits } from "@/components/credits"
 import { DocsPageFooter } from "@/components/docs-page-footer"
 import { DatePickerCalendarTypeExample } from "@/components/examples/date-picker-calendar-type"
+import { DatePickerCloseOnSelectExample } from "@/components/examples/date-picker-close-on-select"
+import { DatePickerConfirmationExample } from "@/components/examples/date-picker-confirmation"
+import { DatePickerConstrainedExample } from "@/components/examples/date-picker-constrained"
+import { DatePickerControlledExample } from "@/components/examples/date-picker-controlled"
+import { DatePickerCustomTriggerExample } from "@/components/examples/date-picker-custom-trigger"
 import { DatePickerDemoExample } from "@/components/examples/date-picker-demo"
 import { DatePickerDobExample } from "@/components/examples/date-picker-dob"
 import { DatePickerInputExample } from "@/components/examples/date-picker-input"
+import { DatePickerMiladiExample } from "@/components/examples/date-picker-miladi"
+import { DatePickerPresetsResponsiveExample } from "@/components/examples/date-picker-presets-responsive"
 import { DatePickerRangeExample } from "@/components/examples/date-picker-range"
 import { DatePickerReservationExample } from "@/components/examples/date-picker-reservation"
 import { DatePickerResponsiveExample } from "@/components/examples/date-picker-responsive"
 import { DatePickerRtlExample } from "@/components/examples/date-picker-rtl"
 import { DatePickerWithTimeExample } from "@/components/examples/date-picker-with-time"
+import { DatePickerTimeAdvancedExample } from "@/components/examples/date-picker-time-advanced"
 import { DatePickerZodExample } from "@/components/examples/date-picker-zod"
 import { InstallCommand } from "@/components/install-command"
 import { LastUpdated } from "@/components/last-updated"
@@ -34,12 +42,12 @@ import { CODE_FENCE, apiRowsToMarkdownTable } from "@/lib/markdown"
 
 const SOURCE_PATH = "apps/web/app/docs/components/date-picker/page.tsx"
 
-import { datePickerApi } from "./api-data"
+import { datePickerApi, dateTimePickerApi } from "./api-data"
 
 export const metadata: Metadata = {
   title: "Date Picker",
   description:
-    "A date picker composed from Popover and Calendar — there's no standalone DatePicker component, same as upstream shadcn/ui.",
+    "An opinionated, responsive Shamsi/Gregorian date and date-time picker with SSR-safe defaults and accessible confirmation flows.",
 }
 
 const tocItems = [
@@ -51,11 +59,19 @@ const tocItems = [
     title: "Examples",
     children: [
       { id: "range", title: "Range" },
+      { id: "close-on-select", title: "Close on Select" },
+      { id: "controlled", title: "Controlled" },
+      { id: "constrained", title: "Constrained Dates" },
+      { id: "confirmation", title: "Confirmation Modes" },
+      { id: "custom-trigger", title: "Custom Trigger" },
+      { id: "presets-responsive", title: "Responsive Presets" },
       { id: "with-time", title: "With Time" },
       { id: "responsive", title: "Fully Responsive" },
+      { id: "time-advanced", title: "Advanced Time" },
       { id: "input", title: "Typed Input" },
       { id: "date-of-birth", title: "Date of Birth" },
       { id: "calendar-type", title: "Calendar Type" },
+      { id: "miladi", title: "Miladi + LTR" },
       { id: "reservation", title: "Reservation" },
       { id: "zod-form", title: "Zod-Validated Form" },
       { id: "rtl", title: "RTL" },
@@ -64,56 +80,21 @@ const tocItems = [
   { id: "api-reference", title: "API Reference" },
 ]
 
-const usageSnippet = `import { CalendarIcon } from "lucide-react"
-import * as React from "react"
-
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
-import { formatDate } from "@/lib/persian-date"
+const usageSnippet = `import { DatePicker } from "@/components/ui/date-picker"
 
 export function Example() {
-  const [date, setDate] = React.useState<Date | undefined>(undefined)
-  const [open, setOpen] = React.useState(false)
-
-  return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger
-        render={
-          <Button variant="outline" className="w-56 justify-start font-normal">
-            <CalendarIcon className="size-4" />
-            {date ? formatDate(date, "yyyy/MM/dd") : "انتخاب تاریخ"}
-          </Button>
-        }
-      />
-      <PopoverContent className="w-auto p-0">
-        <Calendar
-          mode="single"
-          selected={date}
-          onSelect={(value) => {
-            setDate(value)
-            setOpen(false)
-          }}
-          className="p-2"
-        />
-      </PopoverContent>
-    </Popover>
-  )
+  return <DatePicker defaultValue="today" />
 }`
 
 export const datePickerMarkdown = [
   "# Date Picker",
   "",
-  "A date picker composed from Popover and Calendar — there's no standalone DatePicker component, same as upstream shadcn/ui.",
+  "An opinionated, responsive Shamsi/Gregorian date and date-time picker.",
   "",
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/calendar.json https://ui.persian-labs.ir/r/popover.json",
+  "npx shadcn@latest add https://ui.persian-labs.ir/r/date-picker.json",
   CODE_FENCE,
   "",
   "## Usage",
@@ -140,25 +121,17 @@ export default function DatePickerDocPage() {
           <CopyMarkdownButton markdown={datePickerMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          There&apos;s no standalone{" "}
+          Use{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
             DatePicker
           </code>{" "}
-          component — this page shows how to compose a date picker from{" "}
-          <a
-            href="/docs/components/popover"
-            className="text-foreground underline underline-offset-4"
-          >
-            Popover
-          </a>{" "}
-          and{" "}
-          <a
-            href="/docs/components/calendar"
-            className="text-foreground underline underline-offset-4"
-          >
-            Calendar
-          </a>
-          , the same pattern upstream shadcn/ui uses.
+          for the common path and{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+            DateTimePicker
+          </code>{" "}
+          when date and time belong to one field. Both choose a Popover on
+          desktop and a Drawer on mobile, while Calendar and TimePicker remain
+          available as lower-level primitives.
         </p>
         <LastUpdated date={lastEdited} />
         <Credits
@@ -172,6 +145,7 @@ export default function DatePickerDocPage() {
           changes={[
             "Replaced shadcn's chrono-node natural-language input example with parseDate/formatDate + toLatinDigits from this repo's persian-date utility (no chrono-node dependency here)",
             "Uses this repo's own Calendar (Jalali/Gregorian switchable via calendarType) and Popover components instead of shadcn's react-day-picker Calendar",
+            "Added first-class DatePicker and DateTimePicker APIs with responsive presentation, SSR-safe today defaults, and draft/confirm behavior",
             "Added Calendar Type toggle, hospital/hotel Reservation, and Field + zod-validated Form examples not present upstream",
           ]}
         />
@@ -201,21 +175,9 @@ export default function DatePickerDocPage() {
           Installation
         </h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
-          Date Picker is composed entirely from{" "}
-          <a
-            href="/docs/components/calendar"
-            className="text-foreground underline underline-offset-4"
-          >
-            Calendar
-          </a>{" "}
-          and{" "}
-          <a
-            href="/docs/components/popover"
-            className="text-foreground underline underline-offset-4"
-          >
-            Popover
-          </a>
-          . Install both, then copy one of the examples below into your project.
+          Install the complete picker family with one registry command. Its
+          Calendar, TimePicker, Popover, and Drawer dependencies are installed
+          automatically.
         </p>
 
         <Tabs defaultValue="cli" className="mt-4">
@@ -225,7 +187,7 @@ export default function DatePickerDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/calendar.json https://ui.persian-labs.ir/r/popover.json" />
+            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/date-picker.json" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">
@@ -234,22 +196,15 @@ export default function DatePickerDocPage() {
               <div className="mt-2">
                 <InstallCommand packages="react-day-picker @daypicker/persian date-fns @base-ui/react" />
               </div>
-              <Step>Copy the Calendar component source</Step>
+              <Step>Copy the Date Picker component source</Step>
               <div className="mt-2">
                 <CodeBlock
-                  code={getComponentSource("calendar")}
+                  code={getComponentSource("date-picker")}
                   lang="tsx"
-                  title="components/ui/calendar.tsx"
+                  title="components/ui/date-picker.tsx"
                 />
               </div>
-              <Step>Copy the Popover component source</Step>
-              <div className="mt-2">
-                <CodeBlock
-                  code={getComponentSource("popover")}
-                  lang="tsx"
-                  title="components/ui/popover.tsx"
-                />
-              </div>
+              <Step>Install the component dependencies listed above</Step>
             </Steps>
           </TabsContent>
         </Tabs>
@@ -273,19 +228,68 @@ export default function DatePickerDocPage() {
           title="Range"
           description={
             <>
-              Use{" "}
+              Keep a controlled{" "}
               <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-                mode=&quot;range&quot;
+                DateRange
               </code>{" "}
-              with{" "}
+              and pass{" "}
               <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-                numberOfMonths={"{2}"}
+                onSelect={"{setRange}"}
               </code>{" "}
-              to pick a from/to pair.
+              directly. The same single-calendar interaction appears in a
+              Popover on desktop and a Drawer on mobile.
             </>
           }
         >
           <DatePickerRangeExample />
+        </ExampleSection>
+
+        <ExampleSection
+          id="close-on-select"
+          title="Close on Select"
+          description="Control the Popover state and close it after a valid date is selected."
+        >
+          <DatePickerCloseOnSelectExample />
+        </ExampleSection>
+
+        <ExampleSection
+          id="controlled"
+          title="Controlled Value"
+          description="Own the selected date in application state when other fields, validation, or server mutations need to react to every committed change."
+        >
+          <DatePickerControlledExample />
+        </ExampleSection>
+
+        <ExampleSection
+          id="constrained"
+          title="Constrained Dates"
+          description="Forward Calendar props to limit selection to a rolling seven-day booking window. The same pattern supports disabled weekdays, minimum dates, and maximum dates."
+        >
+          <DatePickerConstrainedExample />
+        </ExampleSection>
+
+        <ExampleSection
+          id="confirmation"
+          title="Confirmation Modes"
+          description="Compare immediate commits with an explicit confirmation flow. Explicit mode is useful when changing the value has expensive side effects."
+        >
+          <DatePickerConfirmationExample />
+        </ExampleSection>
+
+        <ExampleSection
+          id="custom-trigger"
+          title="Custom Trigger"
+          description="Use renderTrigger to replace the default field while retaining disclosure state, formatting, keyboard behavior, and responsive presentation."
+        >
+          <DatePickerCustomTriggerExample />
+        </ExampleSection>
+
+        <ExampleSection
+          id="presets-responsive"
+          title="Responsive Presets"
+          description="Combine controlled state, a responsive Popover/Drawer, and Calendar footer content to provide common dates without giving up free calendar selection."
+        >
+          <DatePickerPresetsResponsiveExample />
         </ExampleSection>
 
         <ExampleSection
@@ -321,6 +325,14 @@ export default function DatePickerDocPage() {
           }
         >
           <DatePickerResponsiveExample />
+        </ExampleSection>
+
+        <ExampleSection
+          id="time-advanced"
+          title="Advanced Time Options"
+          description="Combine a verbose date label with a 12-hour time wheel, Latin digits, seconds, and visible hour/minute/second headings."
+        >
+          <DatePickerTimeAdvancedExample />
         </ExampleSection>
 
         <ExampleSection
@@ -381,6 +393,14 @@ export default function DatePickerDocPage() {
           }
         >
           <DatePickerCalendarTypeExample />
+        </ExampleSection>
+
+        <ExampleSection
+          id="miladi"
+          title="Miladi + LTR"
+          description="Use the Gregorian calendar with English labels, LTR direction, and a long-form trigger format while retaining the same responsive behavior."
+        >
+          <DatePickerMiladiExample />
         </ExampleSection>
 
         <ExampleSection
@@ -472,25 +492,17 @@ export default function DatePickerDocPage() {
           API Reference
         </h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
-          Date Picker has no props of its own — it&apos;s a composition of
-          Calendar and Popover. The props below are the ones you&apos;ll
-          actually reach for; see{" "}
+          The product-level APIs cover common date and date-time fields. Use{" "}
           <a
             href="/docs/components/calendar"
             className="text-foreground underline underline-offset-4"
           >
             Calendar
           </a>{" "}
-          and{" "}
-          <a
-            href="/docs/components/popover"
-            className="text-foreground underline underline-offset-4"
-          >
-            Popover
-          </a>{" "}
-          for the complete reference.
+          for lower-level day-grid customization.
         </p>
-        <ApiReference title="Composition" rows={datePickerApi} />
+        <ApiReference title="DatePicker" rows={datePickerApi} />
+        <ApiReference title="DateTimePicker" rows={dateTimePickerApi} />
 
         <DocsPageFooter
           href="/docs/components/date-picker"

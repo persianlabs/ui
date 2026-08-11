@@ -33,6 +33,7 @@ import {
   isSameDay,
   startOfDay,
   startOfMonth,
+  type CalendarType,
 } from "@workspace/ui/lib/persian-date"
 import {
   getHolidaysInRange,
@@ -46,7 +47,7 @@ import { cn } from "@workspace/ui/lib/utils"
  * plain Gregorian calendar via `react-day-picker` (enUS locale, LTR, Latin
  * numerals).
  */
-export type CalendarType = "shamsi" | "miladi"
+export type { CalendarType } from "@workspace/ui/lib/persian-date"
 
 // A fixed, non-time-dependent placeholder month used only for the very first
 // render (server + initial client) when the caller controls neither `month`
@@ -77,6 +78,7 @@ function Calendar({
   className,
   classNames,
   showOutsideDays,
+  fixedWeeks = true,
   captionLayout = "label",
   buttonVariant = "ghost",
   formatters,
@@ -169,11 +171,11 @@ function Calendar({
   // "outside days" bleed into the adjacent month's grid, so the shared
   // boundary date (e.g. the 31st) visually appears twice. Defaulting outside
   // days off for multi-month layouts avoids that -- still overridable.
-  const resolvedShowOutsideDays =
-    showOutsideDays ?? !(numberOfMonths && numberOfMonths > 1)
+  const resolvedShowOutsideDays = showOutsideDays ?? true
 
   const dayPickerProps = {
     showOutsideDays: resolvedShowOutsideDays,
+    fixedWeeks,
     numberOfMonths,
     ...(visibleMonth
       ? { month: visibleMonth }
@@ -182,14 +184,11 @@ function Calendar({
     modifiers: resolvedModifiers,
     modifiersClassNames: resolvedModifiersClassNames,
     className: cn(
-      "group/calendar bg-background p-3 [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
+      "group/calendar bg-background p-3 [--cell-size:--spacing(10)] sm:[--cell-size:--spacing(9)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
       // A Gregorian calendar retains its LTR grid by default, but it can be
       // placed within an RTL interface. Mirror only its arrow artwork in that
       // inherited RTL context; an explicit dir="rtl" is handled directly by
       // the Chevron component below.
-      calendarType === "miladi" && dir !== "rtl"
-        ? String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180 rtl:**:[.rdp-button\_previous>svg]:rotate-180`
-        : undefined,
       className
     ),
     captionLayout,
@@ -202,7 +201,7 @@ function Calendar({
       ...formatters,
     },
     classNames: {
-      root: cn("w-fit", defaultClassNames.root),
+      root: cn("m-0 w-fit", defaultClassNames.root),
       months: cn(
         "relative flex flex-col gap-4 md:flex-row",
         defaultClassNames.months
@@ -293,6 +292,7 @@ function Calendar({
         return (
           <div
             data-slot="calendar"
+            data-calendar-type={calendarType}
             ref={rootRef}
             className={cn(rootClassName)}
             {...rootProps}
@@ -312,7 +312,7 @@ function Calendar({
             resolvedDir === "rtl" ? ChevronRightIcon : ChevronLeftIcon
           return (
             <Icon
-              className={cn("size-4", chevronClassName)}
+              className={cn("size-4.5 sm:size-4", chevronClassName)}
               {...chevronProps}
             />
           )
@@ -323,7 +323,7 @@ function Calendar({
             resolvedDir === "rtl" ? ChevronLeftIcon : ChevronRightIcon
           return (
             <Icon
-              className={cn("size-4", chevronClassName)}
+              className={cn("size-4.5 sm:size-4", chevronClassName)}
               {...chevronProps}
             />
           )
@@ -370,10 +370,20 @@ function Calendar({
       <GregorianDayPicker {...(dayPickerProps as GregorianDayPickerProps)} />
     )
 
+  const content = (
+    <>
+      {calendarType === "miladi" && dir !== "rtl" && (
+        <style>{`[dir="rtl"] [data-calendar-type="miladi"] .rdp-button_previous svg,
+[dir="rtl"] [data-calendar-type="miladi"] .rdp-button_next svg { transform: rotate(180deg); }`}</style>
+      )}
+      {picker}
+    </>
+  )
+
   return showHolidays ? (
-    <TooltipProvider delay={150}>{picker}</TooltipProvider>
+    <TooltipProvider delay={150}>{content}</TooltipProvider>
   ) : (
-    picker
+    content
   )
 }
 
@@ -407,11 +417,12 @@ function CalendarDayButton({
         !modifiers.range_end &&
         !modifiers.range_middle
       }
+      data-today={modifiers.today}
       data-range-start={modifiers.range_start}
       data-range-end={modifiers.range_end}
       data-range-middle={modifiers.range_middle}
       className={cn(
-        "flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 leading-none font-normal select-none group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-[3px] group-data-[focused=true]/day:ring-ring/50 data-[range-end=true]:rounded-md data-[range-end=true]:rounded-e-md data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground data-[range-middle=true]:rounded-none data-[range-middle=true]:bg-accent data-[range-middle=true]:text-accent-foreground data-[range-start=true]:rounded-md data-[range-start=true]:rounded-s-md data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground [&>span]:text-xs [&>span]:opacity-70",
+        "data-[today=true][data-range-end=true]:after:bg-primary-foreground data-[today=true][data-range-start=true]:after:bg-primary-foreground data-[today=true][data-selected-single=true]:after:bg-primary-foreground flex aspect-square size-auto w-full min-w-(--cell-size) flex-col gap-1 text-base leading-none font-normal select-none group-data-[focused=true]/day:relative group-data-[focused=true]/day:z-10 group-data-[focused=true]/day:border-ring group-data-[focused=true]/day:ring-[3px] group-data-[focused=true]/day:ring-ring/50 disabled:text-muted-foreground/72 disabled:line-through disabled:opacity-100 data-[range-end=true]:rounded-md data-[range-end=true]:rounded-s-none data-[range-end=true]:bg-primary data-[range-end=true]:text-primary-foreground data-[range-middle=true]:rounded-none data-[range-middle=true]:bg-accent data-[range-middle=true]:text-accent-foreground data-[range-start=true]:rounded-md data-[range-start=true]:rounded-e-none data-[range-start=true]:bg-primary data-[range-start=true]:text-primary-foreground data-[selected-single=true]:bg-primary data-[selected-single=true]:text-primary-foreground data-[today=true]:after:pointer-events-none data-[today=true]:after:absolute data-[today=true]:after:inset-x-0 data-[today=true]:after:bottom-1 data-[today=true]:after:z-1 data-[today=true]:after:mx-auto data-[today=true]:after:size-[3px] data-[today=true]:after:rounded-full data-[today=true]:after:bg-primary data-[today=true]:after:content-[''] data-[today=true]:disabled:after:bg-foreground/30 sm:text-sm [&>span]:text-xs [&>span]:opacity-70",
         // The selected/range states above set bg-primary + text-primary-foreground on
         // the *base* class, but Button's own ghost variant also carries a plain
         // hover:bg-muted hover:text-foreground with the same specificity -- whichever
