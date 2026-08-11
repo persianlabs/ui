@@ -3021,6 +3021,12 @@ export function CalendarPreview() {
   const days = Array.from({ length: 28 }, (_, i) => i + 1)
   const today = 16
   const selected = 20
+  // Fixed square cells for both the weekday header and the day grid, sized
+  // so 7 columns plus the box's own padding land back on a round 200px --
+  // a percentage width here would drift from the fixed pixel height below
+  // and stop being square (the exact bug this preview used to have).
+  const cellSize = 24
+  const padding = 16
 
   return (
     <div
@@ -3028,8 +3034,8 @@ export function CalendarPreview() {
         display: "flex",
         flexDirection: "column",
         gap: "6px",
-        width: "200px",
-        padding: "10px",
+        width: `${cellSize * 7 + padding * 2}px`,
+        padding: `${padding}px`,
         borderRadius: "12px",
         border: "1px solid rgba(242,240,238,0.16)",
       }}
@@ -3046,12 +3052,15 @@ export function CalendarPreview() {
         August 2026
       </div>
       <div style={{ display: "flex" }}>
-        {weekdays.map((day) => (
+        {weekdays.map((day, index) => (
           <div
-            key={day}
+            key={`${day}-${index}`}
             style={{
               display: "flex",
-              width: "14.2857%",
+              width: `${cellSize}px`,
+              height: `${cellSize}px`,
+              flexShrink: 0,
+              alignItems: "center",
               justifyContent: "center",
               fontSize: "10px",
               color: "rgba(242,240,238,0.5)",
@@ -3070,8 +3079,9 @@ export function CalendarPreview() {
               key={day}
               style={{
                 display: "flex",
-                width: "14.2857%",
-                height: "22px",
+                width: `${cellSize}px`,
+                height: `${cellSize}px`,
+                flexShrink: 0,
                 alignItems: "center",
                 justifyContent: "center",
                 fontSize: "10px",
@@ -3116,6 +3126,11 @@ export function DatePickerPreview() {
   const days = Array.from({ length: 21 }, (_, i) => i + 1)
   const selected = 14
   const cellSize = 24
+  // The calendar box below has its own 8px padding on every side, so its
+  // content area is only as wide as (its own width - 16px). Sizing this
+  // outer wrapper to exactly cellSize * 7 shortchanged that content area by
+  // 16px, squeezing the last weekday/day column out of column alignment.
+  const calendarBoxPadding = 8
 
   return (
     <div
@@ -3123,7 +3138,7 @@ export function DatePickerPreview() {
         display: "flex",
         flexDirection: "column",
         gap: "8px",
-        width: `${cellSize * 7}px`,
+        width: `${cellSize * 7 + calendarBoxPadding * 2}px`,
       }}
     >
       <div
@@ -3159,6 +3174,7 @@ export function DatePickerPreview() {
                 display: "flex",
                 width: `${cellSize}px`,
                 height: `${cellSize}px`,
+                flexShrink: 0,
                 alignItems: "center",
                 justifyContent: "center",
                 fontSize: "9px",
@@ -3179,6 +3195,7 @@ export function DatePickerPreview() {
                   display: "flex",
                   width: `${cellSize}px`,
                   height: `${cellSize}px`,
+                  flexShrink: 0,
                   alignItems: "center",
                   justifyContent: "center",
                   fontSize: "9px",

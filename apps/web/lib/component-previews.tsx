@@ -2504,6 +2504,12 @@ export function CalendarPreview() {
   const days = Array.from({ length: 28 }, (_, i) => i + 1)
   const today = 16
   const selected = 20
+  // Fixed square cells for both the weekday header and the day grid, sized
+  // so 7 columns plus the box's own padding land back on a round 200px --
+  // a percentage width here would drift from the fixed pixel height below
+  // and stop being square (the exact bug this preview used to have).
+  const cellSize = 24
+  const padding = 16
 
   return (
     <div
@@ -2511,8 +2517,8 @@ export function CalendarPreview() {
         display: "flex",
         flexDirection: "column",
         gap: "6px",
-        width: "200px",
-        padding: "10px",
+        width: `${cellSize * 7 + padding * 2}px`,
+        padding: `${padding}px`,
         borderRadius: "12px",
         border: `1px solid ${preview.border}`,
         backgroundColor: preview.background,
@@ -2530,12 +2536,15 @@ export function CalendarPreview() {
         مرداد ۱۴۰۴
       </div>
       <div style={{ display: "flex" }}>
-        {weekdays.map((day) => (
+        {weekdays.map((day, index) => (
           <div
-            key={day}
+            key={`${day}-${index}`}
             style={{
               display: "flex",
-              width: "14.2857%",
+              width: `${cellSize}px`,
+              height: `${cellSize}px`,
+              flexShrink: 0,
+              alignItems: "center",
               justifyContent: "center",
               fontSize: "10px",
               color: preview.mutedForeground,
@@ -2554,8 +2563,9 @@ export function CalendarPreview() {
               key={day}
               style={{
                 display: "flex",
-                width: "14.2857%",
-                height: "22px",
+                width: `${cellSize}px`,
+                height: `${cellSize}px`,
+                flexShrink: 0,
                 alignItems: "center",
                 justifyContent: "center",
                 fontSize: "10px",

@@ -34,7 +34,13 @@ function SidebarPreview({ item, group }: { item: DocsNavItem; group: string }) {
     >
       {isComponent && ComponentPreview ? (
         <div className="flex h-44 items-center justify-center overflow-hidden bg-card px-5 pt-7 pb-5">
-          <ComponentPreview />
+          <div
+            style={
+              item.title === "Calendar" ? { transform: "scale(0.7)" } : undefined
+            }
+          >
+            <ComponentPreview />
+          </div>
         </div>
       ) : (
         <div className="h-44 overflow-hidden">
