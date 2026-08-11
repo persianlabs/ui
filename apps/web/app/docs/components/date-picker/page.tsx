@@ -19,6 +19,7 @@ import { DatePickerDobExample } from "@/components/examples/date-picker-dob"
 import { DatePickerInputExample } from "@/components/examples/date-picker-input"
 import { DatePickerRangeExample } from "@/components/examples/date-picker-range"
 import { DatePickerReservationExample } from "@/components/examples/date-picker-reservation"
+import { DatePickerResponsiveExample } from "@/components/examples/date-picker-responsive"
 import { DatePickerRtlExample } from "@/components/examples/date-picker-rtl"
 import { DatePickerWithTimeExample } from "@/components/examples/date-picker-with-time"
 import { DatePickerZodExample } from "@/components/examples/date-picker-zod"
@@ -51,6 +52,7 @@ const tocItems = [
     children: [
       { id: "range", title: "Range" },
       { id: "with-time", title: "With Time" },
+      { id: "responsive", title: "Fully Responsive" },
       { id: "input", title: "Typed Input" },
       { id: "date-of-birth", title: "Date of Birth" },
       { id: "calendar-type", title: "Calendar Type" },
@@ -298,12 +300,27 @@ export default function DatePickerDocPage() {
               >
                 Time Picker
               </a>{" "}
-              below the Calendar in the same Popover, so a single trigger picks
-              both a date and a time of day.
+              input below the Calendar. That input opens its own popover on
+              desktop and a drawer on smaller screens, so the wheel is never
+              cramped beneath the calendar.
             </>
           }
         >
           <DatePickerWithTimeExample />
+        </ExampleSection>
+
+        <ExampleSection
+          id="responsive"
+          title="Fully Responsive"
+          description={
+            <>
+              One trigger opens the familiar Calendar-and-time Popover on
+              desktop, then switches to a single Drawer containing both controls
+              on smaller screens.
+            </>
+          }
+        >
+          <DatePickerResponsiveExample />
         </ExampleSection>
 
         <ExampleSection

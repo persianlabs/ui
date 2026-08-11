@@ -183,8 +183,13 @@ function Calendar({
     modifiersClassNames: resolvedModifiersClassNames,
     className: cn(
       "group/calendar bg-background p-3 [--cell-size:--spacing(8)] [[data-slot=card-content]_&]:bg-transparent [[data-slot=popover-content]_&]:bg-transparent",
-      String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180`,
-      String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`,
+      // A Gregorian calendar retains its LTR grid by default, but it can be
+      // placed within an RTL interface. Mirror only its arrow artwork in that
+      // inherited RTL context; an explicit dir="rtl" is handled directly by
+      // the Chevron component below.
+      calendarType === "miladi" && dir !== "rtl"
+        ? String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180 rtl:**:[.rdp-button\_previous>svg]:rotate-180`
+        : undefined,
       className
     ),
     captionLayout,
@@ -303,8 +308,10 @@ function Calendar({
         orientation?: "up" | "down" | "left" | "right"
       } & React.SVGProps<SVGSVGElement>) => {
         if (orientation === "left") {
+          const Icon =
+            resolvedDir === "rtl" ? ChevronRightIcon : ChevronLeftIcon
           return (
-            <ChevronLeftIcon
+            <Icon
               className={cn("size-4", chevronClassName)}
               {...chevronProps}
             />
@@ -312,8 +319,10 @@ function Calendar({
         }
 
         if (orientation === "right") {
+          const Icon =
+            resolvedDir === "rtl" ? ChevronLeftIcon : ChevronRightIcon
           return (
-            <ChevronRightIcon
+            <Icon
               className={cn("size-4", chevronClassName)}
               {...chevronProps}
             />

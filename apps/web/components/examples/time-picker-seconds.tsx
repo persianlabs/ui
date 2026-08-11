@@ -17,7 +17,12 @@ export function TimePickerSecondsExample() {
 
   return (
     <div className="flex flex-col items-center gap-3">
-      <TimePicker value={value} onValueChange={setValue} showSeconds />
+      <TimePicker
+        value={value}
+        onValueChange={setValue}
+        showSeconds
+        showLabels
+      />
       <p className="text-sm text-muted-foreground">
         {formatTimePickerValue(value, { showSeconds: true })}
       </p>
