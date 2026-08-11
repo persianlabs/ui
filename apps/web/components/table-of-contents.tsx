@@ -1,6 +1,6 @@
 "use client"
 
-import { animate, motion } from "motion/react"
+import { motion } from "motion/react"
 import * as React from "react"
 
 import { ScrollArea } from "@workspace/ui/components/scroll-area"
@@ -244,14 +244,16 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
     event.preventDefault()
     const target = document.getElementById(id)
     if (!target) return
+    const targetElement = target
 
     // Measured live (not hardcoded) so it stays correct across the header's
     // mobile and desktop heights, plus a little breathing room below it.
     const headerHeight =
       document.querySelector("header")?.getBoundingClientRect().height ?? 0
     const offset = headerHeight + 24
-    const destination =
-      target.getBoundingClientRect().top + window.scrollY - offset
+    function getDestination() {
+      return targetElement.getBoundingClientRect().top + window.scrollY - offset
+    }
 
     navigationCleanupRef.current?.()
     isNavigatingRef.current = true
@@ -262,21 +264,19 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
       setNavigationComplete((version) => version + 1)
     }
 
-    // Native `scrollTo({ behavior: "smooth" })` uses a fixed browser-defined
-    // curve that reads as slightly mechanical. Driving the scroll position
-    // with Motion instead gives it a real, interruptible easing curve --
-    // clicking a second link mid-scroll retargets smoothly instead of
-    // restarting or fighting the previous scroll.
-    const distance = Math.abs(destination - window.scrollY)
-    const duration = Math.min(0.6, Math.max(0.25, distance / 2000))
-    const controls = animate(window.scrollY, destination, {
-      duration,
-      ease: [0.77, 0, 0.175, 1],
-      onUpdate: (value) => window.scrollTo(0, value),
-      onComplete: finishNavigation,
+    window.scrollTo(0, getDestination())
+    const settleFrame = window.requestAnimationFrame(() => {
+      window.scrollTo(0, getDestination())
     })
+    const settleTimeout = window.setTimeout(() => {
+      window.scrollTo(0, getDestination())
+      finishNavigation()
+    }, 150)
 
-    navigationCleanupRef.current = () => controls.stop()
+    navigationCleanupRef.current = () => {
+      window.cancelAnimationFrame(settleFrame)
+      window.clearTimeout(settleTimeout)
+    }
   }
 
   function isActiveOrParentOfActive(item: TocItem) {
