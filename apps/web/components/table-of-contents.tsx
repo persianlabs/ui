@@ -281,9 +281,7 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
 
   function isActiveOrParentOfActive(item: TocItem) {
     if (activeIds.includes(item.id)) return true
-    return (
-      item.children?.some((child) => activeIds.includes(child.id)) ?? false
-    )
+    return item.children?.some((child) => activeIds.includes(child.id)) ?? false
   }
 
   return (

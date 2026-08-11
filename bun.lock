@@ -86,6 +86,7 @@
         "@base-ui/react": "^1.7.0",
         "@daypicker/persian": "^10.0.1",
         "@ncdai/react-wheel-picker": "^1.2.2",
+        "@persianlabs/icons": "^1.0.0",
         "@shadcn/react": "^0.3.0",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
@@ -439,6 +440,8 @@
     "@nodelib/fs.walk": ["@nodelib/fs.walk@1.2.8", "", { "dependencies": { "@nodelib/fs.scandir": "2.1.5", "fastq": "^1.6.0" } }, "sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg=="],
 
     "@oxc-project/types": ["@oxc-project/types@0.143.0", "", {}, "sha512-u6JZdLBTLotrNC9Vd6vPssINdzcCzleKAH6EJKImQb7GtYvX5keN2dxkoK44stCc4tffE6QQRtZTXVSzsLUlWA=="],
+
+    "@persianlabs/icons": ["@persianlabs/icons@1.0.0", "", { "peerDependencies": { "react": ">=18", "vue": ">=3.5" }, "optionalPeers": ["react", "vue"] }, "sha512-O7jf93Zw2gBQxkXqS5Xaz94W6Kc8jk++/rjsrdodbpe1P3+A0kKpSr4Xn/H1q/3RYfeFG/w9eh0uT6h6bg5nQw=="],
 
     "@rolldown/binding-android-arm64": ["@rolldown/binding-android-arm64@1.2.3", "", { "os": "android", "cpu": "arm64" }, "sha512-zrJtHDcaZJ1Fp7xf4hNl+7seH9Cn/N5TwLYkhgXREtBwAd/jaqW3uqeHxpDugJLVICWg4eW44kOQEGJ1r6jCGw=="],
 
