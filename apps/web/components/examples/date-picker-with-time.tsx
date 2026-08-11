@@ -66,7 +66,7 @@ export function DatePickerWithTimeExample() {
                 render={
                   <Button
                     variant="outline"
-                    className="w-20 justify-center font-mono tabular-nums"
+                    className="flex-1 justify-center text-center font-mono tabular-nums"
                   >
                     {formatTimePickerValue(time)}
                   </Button>
