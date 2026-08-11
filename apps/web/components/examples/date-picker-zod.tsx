@@ -17,7 +17,11 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@workspace/ui/components/popover"
-import { addYears, formatDate } from "@workspace/ui/lib/persian-date"
+import {
+  addYears,
+  formatDate,
+  toggleRangeSelection,
+} from "@workspace/ui/lib/persian-date"
 import {
   zPersianDate,
   zPersianDateRange,
@@ -119,18 +123,30 @@ export function DatePickerZodExample() {
                     ? stay.to
                       ? `${formatDate(stay.from, "yyyy/MM/dd")} تا ${formatDate(stay.to, "yyyy/MM/dd")}`
                       : formatDate(stay.from, "yyyy/MM/dd")
-                    : "انتخاب بازه اقامت"}
+                    : stay?.to
+                      ? `— تا ${formatDate(stay.to, "yyyy/MM/dd")}`
+                      : "انتخاب بازه اقامت"}
                 </Button>
               }
             />
             <PopoverContent className="w-auto p-0">
               <Calendar
                 mode="range"
-                numberOfMonths={2}
-                selected={stay}
-                onSelect={setStay}
+                selected={stay?.from ? stay : undefined}
+                modifiers={
+                  !stay?.from && stay?.to ? { range_end: stay.to } : undefined
+                }
+                onSelect={(_next, day) =>
+                  setStay((current) =>
+                    toggleRangeSelection(current ?? { from: undefined }, day)
+                  )
+                }
                 defaultMonth={today}
-                disabled={{ before: today }}
+                disabled={[
+                  { before: today },
+                  ...(!stay?.from && stay?.to ? [{ after: stay.to }] : []),
+                  ...(stay?.from && !stay.to ? [{ before: stay.from }] : []),
+                ]}
                 className="p-2"
               />
             </PopoverContent>

@@ -2723,6 +2723,22 @@ export function DatePickerPreview() {
             </div>
           ))}
         </div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            marginTop: "4px",
+            padding: "7px 9px",
+            borderRadius: "7px",
+            border: `1px solid ${preview.border}`,
+            color: preview.foreground,
+            fontSize: "10px",
+          }}
+        >
+          <div style={{ display: "flex" }}>انتخاب زمان</div>
+          <div style={{ display: "flex", fontWeight: 600 }}>۰۹:۳۰</div>
+        </div>
       </div>
     </div>
   )

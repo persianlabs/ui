@@ -1,85 +1,14 @@
 "use client"
 
-import { CalendarIcon, ClockIcon } from "lucide-react"
-import * as React from "react"
-
-import { Button } from "@workspace/ui/components/button"
-import { Calendar } from "@workspace/ui/components/calendar"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@workspace/ui/components/popover"
-import {
-  formatTimePickerValue,
-  ResponsiveTimePicker,
-  ResponsiveTimePickerContent,
-  ResponsiveTimePickerTrigger,
-  type TimePickerValue,
-} from "@workspace/ui/components/time-picker"
-import { formatDate } from "@workspace/ui/lib/persian-date"
+import { DateTimePicker } from "@workspace/ui/components/date-picker"
 
 export function DatePickerWithTimeExample() {
-  const [date, setDate] = React.useState<Date | undefined>(undefined)
-  const [time, setTime] = React.useState<TimePickerValue>({
-    hour: 9,
-    minute: 30,
-  })
-  const [today, setToday] = React.useState<Date | null>(null)
-  const [open, setOpen] = React.useState(false)
-
-  React.useEffect(() => {
-    const init = () => setToday(new Date())
-    init()
-  }, [])
-
-  if (!today) return null
-
   return (
-    <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger
-        render={
-          <Button variant="outline" className="w-64 justify-start font-normal">
-            <CalendarIcon className="size-4" />
-            {date
-              ? `${formatDate(date, "yyyy/MM/dd")} - ${formatTimePickerValue(time)}`
-              : "انتخاب تاریخ و ساعت"}
-          </Button>
-        }
-      />
-      <PopoverContent className="w-auto p-0">
-        <Calendar
-          mode="single"
-          selected={date}
-          onSelect={setDate}
-          defaultMonth={date ?? today}
-          className="p-2"
-        />
-        <div className="flex flex-col items-center gap-2 border-t border-border p-3">
-          <ResponsiveTimePicker>
-            <ResponsiveTimePickerTrigger
-              render={
-                <Button variant="outline" className="w-full justify-start">
-                  <ClockIcon className="size-4" />
-                  انتخاب زمان
-                  <span className="ms-auto font-mono tabular-nums">
-                    {formatTimePickerValue(time)}
-                  </span>
-                </Button>
-              }
-            />
-            <ResponsiveTimePickerContent value={time} onValueChange={setTime} />
-          </ResponsiveTimePicker>
-          <Button
-            size="sm"
-            className="w-full"
-            disabled={!date}
-            onClick={() => setOpen(false)}
-          >
-            تایید
-          </Button>
-        </div>
-      </PopoverContent>
-    </Popover>
+    <DateTimePicker
+      defaultValue={{
+        date: "today",
+        time: { hour: 9, minute: 30 },
+      }}
+    />
   )
 }

@@ -3230,6 +3230,22 @@ export function DatePickerPreview() {
             </div>
           ))}
         </div>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            marginTop: "4px",
+            padding: "7px 9px",
+            borderRadius: "7px",
+            border: "1px solid rgba(242,240,238,0.16)",
+            color: "#f2f0ee",
+            fontSize: "10px",
+          }}
+        >
+          <div style={{ display: "flex" }}>Select time</div>
+          <div style={{ display: "flex", fontWeight: 600 }}>09:30</div>
+        </div>
       </div>
     </div>
   )

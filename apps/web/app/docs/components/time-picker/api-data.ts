@@ -105,4 +105,17 @@ export const responsiveTimePickerContentApi: ApiReferenceRow[] = [
     default: "6",
     description: "Popover offset from the trigger (desktop only).",
   },
+  {
+    prop: "drawerTitle",
+    type: "ReactNode",
+    default: '"انتخاب زمان"',
+    description: "Accessible title for the mobile Drawer.",
+  },
+  {
+    prop: "drawerConfirmLabel / onDrawerConfirm",
+    type: "ReactNode / () => void",
+    default: "— / —",
+    description:
+      "Optionally adds a full-width confirmation action to the mobile Drawer footer.",
+  },
 ]
