@@ -1159,12 +1159,35 @@
       ]
     },
     {
+      "name": "date-picker",
+      "type": "registry:ui",
+      "title": "Date Picker",
+      "description": "An opinionated, responsive Shamsi/Gregorian date and date-time picker with SSR-safe today defaults, draft state, and Popover-to-Drawer presentation.",
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/button.json",
+        "https://ui.persian-labs.ir/r/calendar.json",
+        "https://ui.persian-labs.ir/r/popover.json",
+        "https://ui.persian-labs.ir/r/drawer.json",
+        "https://ui.persian-labs.ir/r/time-picker.json",
+        "https://ui.persian-labs.ir/r/persian-date.json"
+      ],
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/base/ui/date-picker.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "time-picker",
       "type": "registry:ui",
       "title": "Time Picker",
       "description": "An hour/minute/second wheel-based time picker, with a responsive Popover-on-desktop, Drawer-on-mobile composition.",
       "registryDependencies": [
         "utils",
+        "https://ui.persian-labs.ir/r/button.json",
         "https://ui.persian-labs.ir/r/wheel-picker.json",
         "https://ui.persian-labs.ir/r/popover.json",
         "https://ui.persian-labs.ir/r/drawer.json",
