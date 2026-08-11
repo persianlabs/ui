@@ -1,6 +1,6 @@
 "use client"
 
-import { motion } from "motion/react"
+import { animate, motion } from "motion/react"
 import * as React from "react"
 
 import { ScrollArea } from "@workspace/ui/components/scroll-area"
@@ -34,9 +34,15 @@ function flatten(items: TocItem[]): FlatItem[] {
 const X_BY_DEPTH = [4, 16]
 const CURVE_RUN = 12
 
+const MAX_ACTIVE_ITEMS = 3
+
+function sameIds(a: string[], b: string[]) {
+  return a.length === b.length && a.every((id, index) => id === b[index])
+}
+
 export function TableOfContents({ items }: { items: TocItem[] }) {
   const flatItems = React.useMemo(() => flatten(items), [items])
-  const [activeId, setActiveId] = React.useState<string | null>(null)
+  const [activeIds, setActiveIds] = React.useState<string[]>([])
   const [canAnimate, setCanAnimate] = React.useState(false)
   const [navigationComplete, setNavigationComplete] = React.useState(0)
   const listRef = React.useRef<HTMLUListElement>(null)
@@ -57,40 +63,62 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
     if (headings.length === 0) return
 
     let frameId: number | null = null
+    let prevIds: string[] = []
 
-    function updateActiveItem() {
+    function updateActiveItems() {
       frameId = null
       const headerHeight =
         document.querySelector("header")?.getBoundingClientRect().height ?? 0
       const offset = headerHeight + 24
-      let current = headings[0]!
+      const viewportBottom = window.innerHeight
 
-      for (const heading of headings) {
-        if (heading.getBoundingClientRect().top <= offset) {
-          current = heading
-        } else {
-          break
+      // Each heading "owns" the section from its own position down to the
+      // next heading's -- that covers the whole page with no gaps, so any
+      // scroll position always falls inside at least one section.
+      const positions = headings.map((h) => h.getBoundingClientRect().top)
+      const sections = headings.map((heading, index) => ({
+        id: heading.id,
+        start: positions[index]!,
+        end: index < headings.length - 1 ? positions[index + 1]! : Infinity,
+      }))
+
+      let visible = sections.filter(
+        (section) => section.start < viewportBottom && section.end > offset
+      )
+
+      if (visible.length === 0) {
+        // Between two headings whose sections don't overlap the viewport at
+        // all (a very short section entirely above the offset) -- fall back
+        // to whichever heading was most recently scrolled past.
+        let current = sections[0]!
+        for (const section of sections) {
+          if (section.start <= offset) current = section
+          else break
         }
+        visible = [current]
       }
 
-      // The final heading can be too close to the document bottom to ever
-      // cross the header offset. Once the page reaches its scroll limit,
-      // make that final topic active instead of leaving the previous row
-      // highlighted.
+      // The final heading's section can be too close to the document bottom
+      // to ever get much overlap. Once the page reaches its scroll limit,
+      // make that final topic active on its own instead of highlighting
+      // whatever also happens to overlap.
       const atDocumentEnd =
         window.scrollY + window.innerHeight >=
         document.documentElement.scrollHeight - 2
-      if (atDocumentEnd) current = headings.at(-1)!
+      if (atDocumentEnd) visible = [sections.at(-1)!]
 
-      setActiveId(current.id)
+      const nextIds = visible.slice(0, MAX_ACTIVE_ITEMS).map((s) => s.id)
+      if (sameIds(prevIds, nextIds)) return
+      prevIds = nextIds
+      setActiveIds(nextIds)
     }
 
     function scheduleUpdate() {
       if (frameId !== null) return
-      frameId = window.requestAnimationFrame(updateActiveItem)
+      frameId = window.requestAnimationFrame(updateActiveItems)
     }
 
-    updateActiveItem()
+    updateActiveItems()
     window.addEventListener("scroll", scheduleUpdate, { passive: true })
     window.addEventListener("resize", scheduleUpdate)
 
@@ -166,28 +194,36 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
     return () => observer.disconnect()
   }, [flatItems])
 
-  // The active window is just the vertical span of the current row — a
-  // clip-path reveals that slice of the (identical) colored line on top of
-  // the muted one underneath.
+  // The active window spans from the top of the first active row to the
+  // bottom of the last — a single continuous clip-path reveals that slice of
+  // the (identical) colored line on top of the muted one underneath, even
+  // when multiple rows are active at once.
   React.useLayoutEffect(() => {
     const list = listRef.current
-    if (!list || !activeId) return
+    if (!list || activeIds.length === 0) return
 
-    const row = list.querySelector<HTMLElement>(`[data-toc-id="${activeId}"]`)
-    if (!row) return
+    const rows = activeIds
+      .map((id) => list.querySelector<HTMLElement>(`[data-toc-id="${id}"]`))
+      .filter((row): row is HTMLElement => row !== null)
+    if (rows.length === 0) return
 
-    setTrack({ top: row.offsetTop, bottom: row.offsetTop + row.offsetHeight })
+    const top = Math.min(...rows.map((row) => row.offsetTop))
+    const bottom = Math.max(
+      ...rows.map((row) => row.offsetTop + row.offsetHeight)
+    )
+    setTrack({ top, bottom })
 
     const viewport = scrollAreaRef.current?.querySelector<HTMLElement>(
       '[data-slot="scroll-area-viewport"]'
     )
     if (!viewport || isNavigatingRef.current) return
 
-    const rowTop = row.offsetTop
+    const centerRow = rows[0]!
+    const rowTop = centerRow.offsetTop
     const targetScrollTop = Math.max(
       0,
       Math.min(
-        rowTop - viewport.clientHeight / 2 + row.offsetHeight / 2,
+        rowTop - viewport.clientHeight / 2 + centerRow.offsetHeight / 2,
         viewport.scrollHeight - viewport.clientHeight
       )
     )
@@ -198,7 +234,7 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
         behavior: canAnimate ? "smooth" : "auto",
       })
     }
-  }, [activeId, canAnimate, navigationComplete])
+  }, [activeIds, canAnimate, navigationComplete])
 
   React.useEffect(() => {
     return () => navigationCleanupRef.current?.()
@@ -214,33 +250,40 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
     const headerHeight =
       document.querySelector("header")?.getBoundingClientRect().height ?? 0
     const offset = headerHeight + 24
-    const top = target.getBoundingClientRect().top + window.scrollY - offset
+    const destination =
+      target.getBoundingClientRect().top + window.scrollY - offset
 
     navigationCleanupRef.current?.()
     isNavigatingRef.current = true
 
-    let timeoutId: number | null = null
-    const finishNavigation = () => {
-      if (timeoutId !== null) window.clearTimeout(timeoutId)
-      window.removeEventListener("scroll", handleScroll)
+    function finishNavigation() {
       isNavigatingRef.current = false
       navigationCleanupRef.current = null
       setNavigationComplete((version) => version + 1)
     }
-    const handleScroll = () => {
-      if (timeoutId !== null) window.clearTimeout(timeoutId)
-      timeoutId = window.setTimeout(finishNavigation, 150)
-    }
 
-    navigationCleanupRef.current = finishNavigation
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    handleScroll()
-    window.scrollTo({ top, behavior: "smooth" })
+    // Native `scrollTo({ behavior: "smooth" })` uses a fixed browser-defined
+    // curve that reads as slightly mechanical. Driving the scroll position
+    // with Motion instead gives it a real, interruptible easing curve --
+    // clicking a second link mid-scroll retargets smoothly instead of
+    // restarting or fighting the previous scroll.
+    const distance = Math.abs(destination - window.scrollY)
+    const duration = Math.min(0.6, Math.max(0.25, distance / 2000))
+    const controls = animate(window.scrollY, destination, {
+      duration,
+      ease: [0.77, 0, 0.175, 1],
+      onUpdate: (value) => window.scrollTo(0, value),
+      onComplete: finishNavigation,
+    })
+
+    navigationCleanupRef.current = () => controls.stop()
   }
 
   function isActiveOrParentOfActive(item: TocItem) {
-    if (item.id === activeId) return true
-    return item.children?.some((child) => child.id === activeId) ?? false
+    if (activeIds.includes(item.id)) return true
+    return (
+      item.children?.some((child) => activeIds.includes(child.id)) ?? false
+    )
   }
 
   return (
@@ -326,7 +369,7 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
                       onClick={(event) => onLinkClick(event, child.id)}
                       className={cn(
                         "relative block py-1 pl-7 text-[13px] transition-colors",
-                        activeId === child.id
+                        activeIds.includes(child.id)
                           ? "font-medium text-foreground"
                           : "text-muted-foreground hover:text-foreground"
                       )}
