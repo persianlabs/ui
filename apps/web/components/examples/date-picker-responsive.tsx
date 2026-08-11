@@ -7,6 +7,7 @@ import { Button } from "@workspace/ui/components/button"
 import { Calendar } from "@workspace/ui/components/calendar"
 import {
   Drawer,
+  DrawerFooter,
   DrawerPanel,
   DrawerPopup,
   DrawerTrigger,
@@ -31,75 +32,67 @@ const DEFAULT_DATE = fromParts({ year: 1403, month: 1, day: 1 }, "shamsi")
 export function DatePickerResponsiveExample() {
   const [date, setDate] = useState<Date>(DEFAULT_DATE)
   const [time, setTime] = useState<TimePickerValue>({ hour: 9, minute: 30 })
-  const [dateOpen, setDateOpen] = useState(false)
+  const [open, setOpen] = useState(false)
   const isDesktop = !useIsMobile()
 
-  const dateTrigger = (
-    <Button variant="outline" className="flex-1 justify-start font-normal">
+  const trigger = (
+    <Button variant="outline" className="w-64 justify-start font-normal">
       <CalendarIcon className="size-4" />
-      {formatDate(date, "yyyy/MM/dd")}
+      {formatDate(date, "yyyy/MM/dd")} - {formatTimePickerValue(time)}
     </Button>
   )
 
-  const calendar = (
-    <Calendar
-      mode="single"
-      selected={date}
-      onSelect={(nextDate) => {
-        if (!nextDate) return
-        setDate(nextDate)
-        setDateOpen(false)
-      }}
-      defaultMonth={date}
-      className="p-2"
-    />
-  )
-
-  return (
-    <div className="flex w-full max-w-sm flex-col gap-3">
-      <div className="flex items-center gap-2">
-        <span className="flex items-center gap-1.5 text-sm font-medium">
-          <CalendarIcon className="size-4" />
-          تاریخ
-        </span>
-        {isDesktop ? (
-          <Popover open={dateOpen} onOpenChange={setDateOpen}>
-            <PopoverTrigger render={dateTrigger} />
-            <PopoverContent className="w-auto p-0">{calendar}</PopoverContent>
-          </Popover>
-        ) : (
-          <Drawer open={dateOpen} onOpenChange={setDateOpen}>
-            <DrawerTrigger render={dateTrigger} />
-            <DrawerPopup showBar>
-              <DrawerPanel
-                scrollable={false}
-                className="flex items-center justify-center pb-8"
-              >
-                {calendar}
-              </DrawerPanel>
-            </DrawerPopup>
-          </Drawer>
-        )}
-      </div>
-      <div className="flex items-center gap-2">
-        <span className="flex items-center gap-1.5 text-sm font-medium">
-          <ClockIcon className="size-4" />
-          زمان
-        </span>
+  const content = (
+    <>
+      <Calendar
+        mode="single"
+        selected={date}
+        onSelect={(nextDate) => nextDate && setDate(nextDate)}
+        defaultMonth={date}
+        className="p-2"
+      />
+      <div className="flex w-full max-w-60 flex-col items-center gap-2 border-t border-border p-3">
         <ResponsiveTimePicker>
           <ResponsiveTimePickerTrigger
             render={
-              <Button
-                variant="outline"
-                className="flex-1 justify-center text-center font-mono tabular-nums"
-              >
-                {formatTimePickerValue(time)}
+              <Button variant="outline" className="w-full justify-start">
+                <ClockIcon className="size-4" />
+                انتخاب زمان
+                <span className="ms-auto font-mono tabular-nums">
+                  {formatTimePickerValue(time)}
+                </span>
               </Button>
             }
           />
           <ResponsiveTimePickerContent value={time} onValueChange={setTime} />
         </ResponsiveTimePicker>
+        {isDesktop && (
+          <Button size="sm" className="w-full" onClick={() => setOpen(false)}>
+            تایید
+          </Button>
+        )}
       </div>
-    </div>
+    </>
+  )
+
+  return isDesktop ? (
+    <Popover open={open} onOpenChange={setOpen}>
+      <PopoverTrigger render={trigger} />
+      <PopoverContent className="w-auto p-0">{content}</PopoverContent>
+    </Popover>
+  ) : (
+    <Drawer open={open} onOpenChange={setOpen}>
+      <DrawerTrigger render={trigger} />
+      <DrawerPopup showBar>
+        <DrawerPanel scrollable={false} className="flex flex-col items-center">
+          {content}
+        </DrawerPanel>
+        <DrawerFooter>
+          <Button className="w-full" onClick={() => setOpen(false)}>
+            تایید
+          </Button>
+        </DrawerFooter>
+      </DrawerPopup>
+    </Drawer>
   )
 }

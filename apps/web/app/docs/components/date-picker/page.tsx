@@ -314,8 +314,9 @@ export default function DatePickerDocPage() {
           title="Fully Responsive"
           description={
             <>
-              Date and time each use their own responsive picker: a Popover on
-              desktop and a Drawer on smaller screens.
+              One trigger opens the familiar Calendar-and-time Popover on
+              desktop, then switches to a single Drawer containing both controls
+              on smaller screens.
             </>
           }
         >

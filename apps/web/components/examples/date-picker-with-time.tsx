@@ -56,28 +56,20 @@ export function DatePickerWithTimeExample() {
           className="p-2"
         />
         <div className="flex flex-col items-center gap-2 border-t border-border p-3">
-          <div className="flex w-full items-center justify-between gap-2">
-            <span className="flex items-center gap-1.5 text-sm font-medium">
-              <ClockIcon className="size-4" />
-              زمان
-            </span>
-            <ResponsiveTimePicker>
-              <ResponsiveTimePickerTrigger
-                render={
-                  <Button
-                    variant="outline"
-                    className="flex-1 justify-center text-center font-mono tabular-nums"
-                  >
+          <ResponsiveTimePicker>
+            <ResponsiveTimePickerTrigger
+              render={
+                <Button variant="outline" className="w-full justify-start">
+                  <ClockIcon className="size-4" />
+                  انتخاب زمان
+                  <span className="ms-auto font-mono tabular-nums">
                     {formatTimePickerValue(time)}
-                  </Button>
-                }
-              />
-              <ResponsiveTimePickerContent
-                value={time}
-                onValueChange={setTime}
-              />
-            </ResponsiveTimePicker>
-          </div>
+                  </span>
+                </Button>
+              }
+            />
+            <ResponsiveTimePickerContent value={time} onValueChange={setTime} />
+          </ResponsiveTimePicker>
           <Button
             size="sm"
             className="w-full"
