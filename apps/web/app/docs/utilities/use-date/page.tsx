@@ -120,9 +120,9 @@ export default function UseDateDocPage() {
           <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
             persian-holidays
           </code>
-          . Returns the current date/time, a ready-to-render formatted
-          string, individual calendar fields, and — when asked — whether
-          today is a holiday.
+          . Returns the current date/time, a ready-to-render formatted string,
+          individual calendar fields, and — when asked — whether today is a
+          holiday.
         </p>
         <LastUpdated date={lastEdited} />
 

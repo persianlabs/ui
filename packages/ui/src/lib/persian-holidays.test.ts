@@ -37,7 +37,9 @@ describe("hijriToJdn / jdnToGregorian", () => {
 describe("getHolidays", () => {
   it("includes Nowruz as an official shamsi holiday", () => {
     const holidays = getHolidays(1405, "shamsi")
-    const nowruz = holidays.find((h) => h.day === 1 && h.month === 1 && h.calendar === "jalali")
+    const nowruz = holidays.find(
+      (h) => h.day === 1 && h.month === 1 && h.calendar === "jalali"
+    )
     expect(nowruz).toBeDefined()
     expect(nowruz?.official).toBe(true)
   })
@@ -83,7 +85,9 @@ describe("isHoliday / getHolidayInfo", () => {
       includeUnofficial: true,
     })
     expect(info.length).toBeGreaterThanOrEqual(1)
-    expect(info.every((h) => h.date.toDateString() === info[0]!.date.toDateString())).toBe(true)
+    expect(
+      info.every((h) => h.date.toDateString() === info[0]!.date.toDateString())
+    ).toBe(true)
   })
 })
 

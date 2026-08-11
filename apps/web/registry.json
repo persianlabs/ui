@@ -1123,6 +1123,28 @@
       ]
     },
     {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "A date-grid calendar built on react-day-picker, switchable between the Jalali (Shamsi) and Gregorian (Miladi) calendars via a calendarType prop, with an optional showHolidays prop for Iranian holiday highlighting.",
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/button.json",
+        "https://ui.persian-labs.ir/r/select.json",
+        "https://ui.persian-labs.ir/r/badge.json",
+        "https://ui.persian-labs.ir/r/tooltip.json",
+        "https://ui.persian-labs.ir/r/persian-date.json",
+        "https://ui.persian-labs.ir/r/persian-holidays.json"
+      ],
+      "dependencies": ["react-day-picker", "@daypicker/persian", "date-fns"],
+      "files": [
+        {
+          "path": "registry/base/ui/calendar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "wheel-picker",
       "type": "registry:ui",
       "title": "Wheel Picker",
@@ -1133,6 +1155,54 @@
         {
           "path": "registry/base/ui/wheel-picker.tsx",
           "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "time-picker",
+      "type": "registry:ui",
+      "title": "Time Picker",
+      "description": "An hour/minute/second wheel-based time picker, with a responsive Popover-on-desktop, Drawer-on-mobile composition.",
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/wheel-picker.json",
+        "https://ui.persian-labs.ir/r/popover.json",
+        "https://ui.persian-labs.ir/r/drawer.json",
+        "https://ui.persian-labs.ir/r/persian-date.json"
+      ],
+      "dependencies": ["@ncdai/react-wheel-picker", "@base-ui/react"],
+      "files": [
+        {
+          "path": "registry/base/ui/time-picker.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base/hooks/use-media-query.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "date-wheel-picker",
+      "type": "registry:ui",
+      "title": "Date Wheel Picker",
+      "description": "An iOS-style year/month/day wheel-based date picker, switchable between the Shamsi and Gregorian calendars, with a responsive Popover-on-desktop, Drawer-on-mobile composition.",
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/wheel-picker.json",
+        "https://ui.persian-labs.ir/r/popover.json",
+        "https://ui.persian-labs.ir/r/drawer.json",
+        "https://ui.persian-labs.ir/r/persian-date.json"
+      ],
+      "dependencies": ["@ncdai/react-wheel-picker", "@base-ui/react"],
+      "files": [
+        {
+          "path": "registry/base/ui/date-wheel-picker.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base/hooks/use-media-query.ts",
+          "type": "registry:hook"
         }
       ]
     }

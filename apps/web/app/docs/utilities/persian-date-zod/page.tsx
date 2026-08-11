@@ -186,8 +186,8 @@ export default function PersianDateZodDocPage() {
         </div>
         <p className="mt-6 leading-relaxed text-muted-foreground">
           Both schemas are plain zod schemas, so they drop into any zod-based
-          form resolver (react-hook-form, VeeValidate, Felte, ...) the same
-          way any other zod field would.
+          form resolver (react-hook-form, VeeValidate, Felte, ...) the same way
+          any other zod field would.
         </p>
 
         <h2
@@ -203,8 +203,8 @@ export default function PersianDateZodDocPage() {
           <p className="mt-2 leading-relaxed text-muted-foreground">
             The demo above is bounded to 2026 (
             <code>{`min: "2026-01-01"`}</code>,{" "}
-            <code>{`max: "2026-12-31"`}</code>) -- try a date outside that
-            range to see the bound violation message.
+            <code>{`max: "2026-12-31"`}</code>) -- try a date outside that range
+            to see the bound violation message.
           </p>
         </div>
         <div className="mt-8">
@@ -213,9 +213,9 @@ export default function PersianDateZodDocPage() {
           </h3>
           <p className="mt-2 leading-relaxed text-muted-foreground">
             <code>zPersianDateRange</code> validates a check-in/check-out pair
-            in one schema -- the same reservation-form use case persian-date&apos;s{" "}
-            <code>validateRange</code> targets, just expressed as a zod
-            schema you can plug into a form resolver.
+            in one schema -- the same reservation-form use case
+            persian-date&apos;s <code>validateRange</code> targets, just
+            expressed as a zod schema you can plug into a form resolver.
           </p>
           <div className="mt-3">
             <ComponentPreview

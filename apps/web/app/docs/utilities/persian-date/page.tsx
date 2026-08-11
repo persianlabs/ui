@@ -81,7 +81,7 @@ formatDate(checkOut, "d MMMM", { calendarType: "miladi" }) // Gregorian`
 export const persianDateMarkdown = [
   "# Persian Date",
   "",
-  "Jalali/Gregorian date utilities built on date-fns and date-fns-jalali: formatting, parsing, conversion, arithmetic, ranges, comparisons, and digit conversion. Every function that depends on a calendar accepts an optional `calendarType` (`\"shamsi\"` by default, or `\"miladi\"`).",
+  'Jalali/Gregorian date utilities built on date-fns and date-fns-jalali: formatting, parsing, conversion, arithmetic, ranges, comparisons, and digit conversion. Every function that depends on a calendar accepts an optional `calendarType` (`"shamsi"` by default, or `"miladi"`).',
   "",
   "## Installation",
   "",
@@ -281,8 +281,8 @@ export default function PersianDateDocPage() {
           <p className="mt-2 leading-relaxed text-muted-foreground">
             formatDate already outputs Persian digits and Persian month/weekday
             names by default in the shamsi calendar, so the formatted string
-            reads naturally inside right-to-left content with no extra
-            direction handling.
+            reads naturally inside right-to-left content with no extra direction
+            handling.
           </p>
           <div className="mt-3">
             <ComponentPreview
@@ -304,10 +304,16 @@ export default function PersianDateDocPage() {
         >
           API Reference
         </h2>
-        <ApiReference title="Formatting & Parsing" rows={formattingParsingApi} />
+        <ApiReference
+          title="Formatting & Parsing"
+          rows={formattingParsingApi}
+        />
         <ApiReference title="Conversion" rows={conversionApi} />
         <ApiReference title="Arithmetic" rows={arithmeticApi} />
-        <ApiReference title="Comparisons & Ranges" rows={comparisonsRangesApi} />
+        <ApiReference
+          title="Comparisons & Ranges"
+          rows={comparisonsRangesApi}
+        />
         <ApiReference title="Digits" rows={digitsApi} />
         <ApiReference title="DateOptions" rows={dateOptionsApi} />
         <DocsPageFooter
@@ -354,4 +360,3 @@ function ExampleSection({
     </div>
   )
 }
-

@@ -23,15 +23,17 @@ export const formattingParsingApi: ApiReferenceRow[] = [
 export const conversionApi: ApiReferenceRow[] = [
   {
     prop: "toParts(date, calendarType?)",
-    type: '(date: Date, calendarType?: CalendarType) => DateParts',
+    type: "(date: Date, calendarType?: CalendarType) => DateParts",
     default: '"shamsi"',
-    description: "Reads a date's calendar fields (1-indexed month) in the given calendar.",
+    description:
+      "Reads a date's calendar fields (1-indexed month) in the given calendar.",
   },
   {
     prop: "fromParts(parts, calendarType?)",
     type: "(parts: DateParts, calendarType?: CalendarType) => Date",
     default: '"shamsi"',
-    description: "Builds a Date (at local midnight) from calendar fields (1-indexed month).",
+    description:
+      "Builds a Date (at local midnight) from calendar fields (1-indexed month).",
   },
   {
     prop: "toShamsi(date)",
@@ -129,13 +131,15 @@ export const comparisonsRangesApi: ApiReferenceRow[] = [
   {
     prop: "daysBetween(from, to)",
     type: "(from: Date, to: Date) => number",
-    description: "Real elapsed days between two dates, independent of calendar system.",
+    description:
+      "Real elapsed days between two dates, independent of calendar system.",
   },
   {
     prop: "monthsBetween(from, to, calendarType?)",
     type: "(from: Date, to: Date, calendarType?: CalendarType) => number",
     default: '"shamsi"',
-    description: "Calendar-month distance between two dates; month length depends on calendarType.",
+    description:
+      "Calendar-month distance between two dates; month length depends on calendarType.",
   },
   {
     prop: "isSameDay(a, b) / isBefore(a, b) / isAfter(a, b)",
@@ -165,7 +169,8 @@ export const comparisonsRangesApi: ApiReferenceRow[] = [
   {
     prop: "isWithinRange(date, range)",
     type: "(date: Date, range: DateRange) => boolean",
-    description: "True when date falls within range (inclusive, missing bounds are open-ended).",
+    description:
+      "True when date falls within range (inclusive, missing bounds are open-ended).",
   },
   {
     prop: "rangeLengthInDays(range)",
@@ -186,7 +191,8 @@ export const digitsApi: ApiReferenceRow[] = [
   {
     prop: "toPersianDigits(value)",
     type: "(value: string) => string",
-    description: "Converts every plain 0-9 digit in a string to its Persian (۰-۹) equivalent.",
+    description:
+      "Converts every plain 0-9 digit in a string to its Persian (۰-۹) equivalent.",
   },
   {
     prop: "toLatinDigits(value)",
@@ -201,7 +207,8 @@ export const dateOptionsApi: ApiReferenceRow[] = [
     prop: "calendarType",
     type: '"shamsi" | "miladi"',
     default: '"shamsi"',
-    description: '"shamsi" is the Jalali/Solar Hijri calendar (default, Iran-first). "miladi" is the Gregorian calendar.',
+    description:
+      '"shamsi" is the Jalali/Solar Hijri calendar (default, Iran-first). "miladi" is the Gregorian calendar.',
   },
   {
     prop: "locale",

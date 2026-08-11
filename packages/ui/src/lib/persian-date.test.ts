@@ -24,6 +24,7 @@ import {
   toParts,
   toPersianDigits,
   toShamsi,
+  toggleRangeSelection,
   validateRange,
 } from "./persian-date.js"
 
@@ -45,9 +46,7 @@ describe("digits", () => {
 describe("formatDate", () => {
   it("formats in the shamsi calendar by default, with Persian digits", () => {
     // 2026-08-10 is 1405/05/19
-    expect(formatDate(new Date(2026, 7, 10), "yyyy/MM/dd")).toBe(
-      "۱۴۰۵/۰۵/۱۹"
-    )
+    expect(formatDate(new Date(2026, 7, 10), "yyyy/MM/dd")).toBe("۱۴۰۵/۰۵/۱۹")
   })
 
   it("formats in the miladi calendar with Latin digits by default", () => {
@@ -172,13 +171,21 @@ describe("calendar arithmetic", () => {
 
   it("reports days in a shamsi month correctly for leap and non-leap Esfand", () => {
     // 1403 is a leap shamsi year (30-day Esfand), 1404 is not (29-day Esfand).
-    expect(daysInMonth(fromShamsi({ year: 1403, month: 12, day: 1 }), "shamsi")).toBe(30)
-    expect(daysInMonth(fromShamsi({ year: 1404, month: 12, day: 1 }), "shamsi")).toBe(29)
+    expect(
+      daysInMonth(fromShamsi({ year: 1403, month: 12, day: 1 }), "shamsi")
+    ).toBe(30)
+    expect(
+      daysInMonth(fromShamsi({ year: 1404, month: 12, day: 1 }), "shamsi")
+    ).toBe(29)
   })
 
   it("isLeapYear matches daysInMonth for Esfand", () => {
-    expect(isLeapYear(fromShamsi({ year: 1403, month: 1, day: 1 }), "shamsi")).toBe(true)
-    expect(isLeapYear(fromShamsi({ year: 1404, month: 1, day: 1 }), "shamsi")).toBe(false)
+    expect(
+      isLeapYear(fromShamsi({ year: 1403, month: 1, day: 1 }), "shamsi")
+    ).toBe(true)
+    expect(
+      isLeapYear(fromShamsi({ year: 1404, month: 1, day: 1 }), "shamsi")
+    ).toBe(false)
   })
 })
 
@@ -220,12 +227,92 @@ describe("ranges and comparisons", () => {
 
   it("rangeLengthInDays is inclusive of both endpoints", () => {
     expect(
-      rangeLengthInDays({ from: new Date(2026, 7, 1), to: new Date(2026, 7, 3) })
+      rangeLengthInDays({
+        from: new Date(2026, 7, 1),
+        to: new Date(2026, 7, 3),
+      })
     ).toBe(3)
   })
 
   it("rangeLengthInDays is 0 for an incomplete range", () => {
     expect(rangeLengthInDays({ from: new Date(), to: undefined })).toBe(0)
+  })
+})
+
+describe("toggleRangeSelection", () => {
+  const day1 = new Date(2026, 7, 10)
+  const day2 = new Date(2026, 7, 15)
+  const day3 = new Date(2026, 7, 20)
+
+  it("fills from first when the range is empty", () => {
+    expect(
+      toggleRangeSelection({ from: undefined, to: undefined }, day1)
+    ).toEqual({
+      from: day1,
+      to: undefined,
+    })
+  })
+
+  it("fills to when from is already set and the new day is later", () => {
+    expect(toggleRangeSelection({ from: day1, to: undefined }, day2)).toEqual({
+      from: day1,
+      to: day2,
+    })
+  })
+
+  it("swaps into from when the new day lands before the existing from, keeping from <= to", () => {
+    expect(toggleRangeSelection({ from: day2, to: undefined }, day1)).toEqual({
+      from: day1,
+      to: day2,
+    })
+  })
+
+  it("refills the cleared to slot on the next click when the new day is later", () => {
+    const afterDeselect = toggleRangeSelection({ from: day1, to: day3 }, day3)
+    expect(toggleRangeSelection(afterDeselect, day2)).toEqual({
+      from: day1,
+      to: day2,
+    })
+  })
+
+  it("moves to into from when clicking the existing from endpoint again", () => {
+    // react-day-picker's range mode can't render a {from: undefined, to: X}
+    // selection, so the remaining day is relabeled into `from` instead of
+    // left in `to` -- see toggleRangeSelection's own doc comment.
+    expect(toggleRangeSelection({ from: day1, to: day2 }, day1)).toEqual({
+      from: day2,
+      to: undefined,
+    })
+  })
+
+  it("clears to when clicking the existing to endpoint again", () => {
+    expect(toggleRangeSelection({ from: day1, to: day2 }, day2)).toEqual({
+      from: day1,
+      to: undefined,
+    })
+  })
+
+  it("refills the cleared from slot on the next click when the new day is earlier", () => {
+    const afterDeselect = toggleRangeSelection({ from: day1, to: day3 }, day1)
+    expect(toggleRangeSelection(afterDeselect, day2)).toEqual({
+      from: day2,
+      to: day3,
+    })
+  })
+
+  it("swaps into to when refilling the cleared from slot with a later day", () => {
+    const afterDeselect = toggleRangeSelection({ from: day1, to: day2 }, day1)
+    expect(toggleRangeSelection(afterDeselect, day3)).toEqual({
+      from: day2,
+      to: day3,
+    })
+  })
+
+  it("starts a fresh range when both endpoints are set and a third day is clicked", () => {
+    expect(toggleRangeSelection({ from: day1, to: day2 }, day3)).toEqual({
+      from: day3,
+      to: undefined,
+    })
   })
 })
 
@@ -241,15 +328,15 @@ describe("validateRange (hospital reservation constraints)", () => {
   })
 
   it("flags a stay shorter than minDays", () => {
-    expect(
-      validateRange({ from, to: addDays(from, 1) }, { minDays: 3 })
-    ).toBe("too-short")
+    expect(validateRange({ from, to: addDays(from, 1) }, { minDays: 3 })).toBe(
+      "too-short"
+    )
   })
 
   it("flags a stay longer than maxDays", () => {
-    expect(
-      validateRange({ from, to: addDays(from, 10) }, { maxDays: 3 })
-    ).toBe("too-long")
+    expect(validateRange({ from, to: addDays(from, 10) }, { maxDays: 3 })).toBe(
+      "too-long"
+    )
   })
 
   it("flags a past start date when disablePast is set", () => {
@@ -271,10 +358,7 @@ describe("validateRange (hospital reservation constraints)", () => {
 
   it("returns null for a valid range", () => {
     expect(
-      validateRange(
-        { from, to: addDays(from, 2) },
-        { minDays: 1, maxDays: 5 }
-      )
+      validateRange({ from, to: addDays(from, 2) }, { minDays: 1, maxDays: 5 })
     ).toBeNull()
   })
 })

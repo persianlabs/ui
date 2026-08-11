@@ -5,7 +5,8 @@ export const useDateApi: ApiReferenceRow[] = [
     prop: "calendarType",
     type: '"shamsi" | "miladi"',
     default: '"shamsi"',
-    description: "Calendar used to derive year/month/day and the formatted output.",
+    description:
+      "Calendar used to derive year/month/day and the formatted output.",
   },
   {
     prop: "locale",
@@ -23,7 +24,8 @@ export const useDateApi: ApiReferenceRow[] = [
     prop: "interval",
     type: "number",
     default: "1000",
-    description: "Tick interval in milliseconds. Set 0 to read the time once and never update.",
+    description:
+      "Tick interval in milliseconds. Set 0 to read the time once and never update.",
   },
   {
     prop: "pattern",
@@ -48,7 +50,8 @@ export const useDateResultApi: ApiReferenceRow[] = [
   {
     prop: "formatted",
     type: "string",
-    description: "date formatted with pattern, honoring calendarType/locale/digits.",
+    description:
+      "date formatted with pattern, honoring calendarType/locale/digits.",
   },
   {
     prop: "year / month / day",
@@ -63,16 +66,19 @@ export const useDateResultApi: ApiReferenceRow[] = [
   {
     prop: "weekday",
     type: "number",
-    description: "0 (Sunday) - 6 (Saturday), same in both calendars — a real-world invariant.",
+    description:
+      "0 (Sunday) - 6 (Saturday), same in both calendars — a real-world invariant.",
   },
   {
     prop: "isHoliday",
     type: "boolean",
-    description: "True when checkHoliday is enabled and date matches a holiday.",
+    description:
+      "True when checkHoliday is enabled and date matches a holiday.",
   },
   {
     prop: "holidays",
     type: "ResolvedHoliday[]",
-    description: "Populated only when checkHoliday is true and date matches an entry.",
+    description:
+      "Populated only when checkHoliday is true and date matches an entry.",
   },
 ]

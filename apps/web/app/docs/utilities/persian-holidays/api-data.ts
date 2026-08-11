@@ -6,7 +6,7 @@ export const holidaysApi: ApiReferenceRow[] = [
     type: "(year: number, calendarType?: CalendarType, options?: GetHolidaysOptions) => ResolvedHoliday[]",
     default: '"shamsi"',
     description:
-      "Convenience wrapper around getHolidaysInRange for a whole calendar year, e.g. getHolidays(1405) for Jalali year 1405, or getHolidays(2026, \"miladi\").",
+      'Convenience wrapper around getHolidaysInRange for a whole calendar year, e.g. getHolidays(1405) for Jalali year 1405, or getHolidays(2026, "miladi").',
   },
   {
     prop: "getHolidaysInRange(from, to, options?)",
@@ -81,7 +81,7 @@ export const lowLevelHijriApi: ApiReferenceRow[] = [
     prop: "hijriToJdn(year, month, day)",
     type: "(year: number, month: number, day: number) => number",
     description:
-      "Tabular (\"civil\"/Kuwaiti) Hijri calendar day → Julian Day Number.",
+      'Tabular ("civil"/Kuwaiti) Hijri calendar day → Julian Day Number.',
   },
   {
     prop: "jdnToGregorian(jdn)",

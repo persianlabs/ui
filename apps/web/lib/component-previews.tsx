@@ -2349,3 +2349,346 @@ export function WheelPickerPreview() {
     </div>
   )
 }
+
+export function TimePickerPreview() {
+  const wheels = [
+    ["08", "09", "10", "11", "12"],
+    ["15", "30", "45", "00", "15"],
+  ]
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        position: "relative",
+        width: "150px",
+        height: "150px",
+        borderRadius: "12px",
+        border: `1px solid ${preview.border}`,
+        overflow: "hidden",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          position: "absolute",
+          top: "59px",
+          right: "0px",
+          left: "0px",
+          height: "30px",
+          borderTop: `1px solid ${preview.border}`,
+          borderBottom: `1px solid ${preview.border}`,
+          backgroundColor: preview.background,
+          boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
+          pointerEvents: "none",
+        }}
+      />
+      {wheels.map((options, wheelIndex) => (
+        <div
+          key={wheelIndex}
+          style={{
+            display: "flex",
+            position: "relative",
+            zIndex: 1,
+            flex: 1,
+            flexDirection: "column",
+          }}
+        >
+          {options.map((option, optionIndex) => (
+            <div
+              key={`${wheelIndex}-${optionIndex}`}
+              style={{
+                display: "flex",
+                width: "100%",
+                height: "30px",
+                alignItems: "center",
+                justifyContent: "center",
+                color: preview.foreground,
+                fontSize: "15px",
+                fontWeight: optionIndex === 2 ? 600 : 400,
+                transform: `scale(${optionIndex === 2 ? 1.12 : 0.84})`,
+                opacity:
+                  optionIndex === 2
+                    ? 1
+                    : optionIndex === 1 || optionIndex === 3
+                      ? 0.42
+                      : 0.16,
+              }}
+            >
+              {option}
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export function DateWheelPickerPreview() {
+  const wheels = [
+    ["۱۴۰۱", "۱۴۰۲", "۱۴۰۳", "۱۴۰۴", "۱۴۰۵"],
+    ["بهمن", "اسفند", "فروردین", "اردیبهشت", "خرداد"],
+    ["۱۷", "۱۸", "۱۹", "۲۰", "۲۱"],
+  ]
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        position: "relative",
+        width: "190px",
+        height: "150px",
+        borderRadius: "12px",
+        border: `1px solid ${preview.border}`,
+        overflow: "hidden",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          position: "absolute",
+          top: "59px",
+          right: "0px",
+          left: "0px",
+          height: "30px",
+          borderTop: `1px solid ${preview.border}`,
+          borderBottom: `1px solid ${preview.border}`,
+          backgroundColor: preview.background,
+          boxShadow: "0 1px 3px rgba(0,0,0,0.08)",
+          pointerEvents: "none",
+        }}
+      />
+      {wheels.map((options, wheelIndex) => (
+        <div
+          key={wheelIndex}
+          style={{
+            display: "flex",
+            position: "relative",
+            zIndex: 1,
+            flex: wheelIndex === 1 ? 1.4 : 1,
+            flexDirection: "column",
+          }}
+        >
+          {options.map((option, optionIndex) => (
+            <div
+              key={`${wheelIndex}-${optionIndex}`}
+              style={{
+                display: "flex",
+                width: "100%",
+                height: "30px",
+                alignItems: "center",
+                justifyContent: "center",
+                color: preview.foreground,
+                fontSize: wheelIndex === 1 ? "12px" : "14px",
+                fontWeight: optionIndex === 2 ? 600 : 400,
+                transform: `scale(${optionIndex === 2 ? 1.08 : 0.84})`,
+                opacity:
+                  optionIndex === 2
+                    ? 1
+                    : optionIndex === 1 || optionIndex === 3
+                      ? 0.42
+                      : 0.16,
+              }}
+            >
+              {option}
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  )
+}
+
+export function CalendarPreview() {
+  const weekdays = ["ش", "ی", "د", "س", "چ", "پ", "ج"]
+  const days = Array.from({ length: 28 }, (_, i) => i + 1)
+  const today = 16
+  const selected = 20
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "6px",
+        width: "200px",
+        padding: "10px",
+        borderRadius: "12px",
+        border: `1px solid ${preview.border}`,
+        backgroundColor: preview.background,
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          fontSize: "12px",
+          fontWeight: 600,
+          color: preview.foreground,
+        }}
+      >
+        مرداد ۱۴۰۴
+      </div>
+      <div style={{ display: "flex" }}>
+        {weekdays.map((day) => (
+          <div
+            key={day}
+            style={{
+              display: "flex",
+              width: "14.2857%",
+              justifyContent: "center",
+              fontSize: "10px",
+              color: preview.mutedForeground,
+            }}
+          >
+            {day}
+          </div>
+        ))}
+      </div>
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        {days.map((day) => {
+          const isToday = day === today
+          const isSelected = day === selected
+          return (
+            <div
+              key={day}
+              style={{
+                display: "flex",
+                width: "14.2857%",
+                height: "22px",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "10px",
+                borderRadius: "6px",
+                backgroundColor: isSelected
+                  ? preview.primary
+                  : isToday
+                    ? preview.muted
+                    : "transparent",
+                color: isSelected
+                  ? preview.primaryForeground
+                  : preview.foreground,
+              }}
+            >
+              {day}
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+function CalendarGlyph({ size = 14 }: { size?: number }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke={preview.mutedForeground}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="3" y="4" width="18" height="18" rx="2" />
+      <path d="M16 2v4M8 2v4M3 10h18" />
+    </svg>
+  )
+}
+
+export function DatePickerPreview() {
+  const weekdays = ["ش", "ی", "د", "س", "چ", "پ", "ج"]
+  const days = Array.from({ length: 21 }, (_, i) => i + 1)
+  const selected = 14
+  const cellSize = 24
+
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "8px",
+        width: `${cellSize * 7}px`,
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "8px",
+          padding: "8px 10px",
+          borderRadius: "8px",
+          border: `1px solid ${preview.border}`,
+          backgroundColor: preview.background,
+        }}
+      >
+        <CalendarGlyph />
+        <div
+          style={{
+            display: "flex",
+            fontSize: "12px",
+            color: preview.foreground,
+          }}
+        >
+          ۱۴۰۵/۰۵/۱۴
+        </div>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "4px",
+          padding: "8px",
+          borderRadius: "10px",
+          border: `1px solid ${preview.border}`,
+          backgroundColor: preview.background,
+        }}
+      >
+        <div style={{ display: "flex" }}>
+          {weekdays.map((day) => (
+            <div
+              key={day}
+              style={{
+                display: "flex",
+                width: `${cellSize}px`,
+                height: `${cellSize}px`,
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: "9px",
+                color: preview.mutedForeground,
+              }}
+            >
+              {day}
+            </div>
+          ))}
+        </div>
+        <div style={{ display: "flex", flexWrap: "wrap" }}>
+          {days.map((day) => {
+            const isSelected = day === selected
+            return (
+              <div
+                key={day}
+                style={{
+                  display: "flex",
+                  width: `${cellSize}px`,
+                  height: `${cellSize}px`,
+                  alignItems: "center",
+                  justifyContent: "center",
+                  fontSize: "9px",
+                  borderRadius: "5px",
+                  backgroundColor: isSelected ? preview.primary : "transparent",
+                  color: isSelected
+                    ? preview.primaryForeground
+                    : preview.foreground,
+                }}
+              >
+                {day}
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </div>
+  )
+}

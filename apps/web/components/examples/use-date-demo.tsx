@@ -12,7 +12,10 @@ export function UseDateDemoExample() {
   return (
     <div className="flex flex-col items-center gap-2 text-center">
       <span className="text-sm text-muted-foreground">اکنون (شمسی)</span>
-      <output dir="ltr" className="font-mono text-3xl font-semibold tracking-tight tabular-nums">
+      <output
+        dir="ltr"
+        className="font-mono text-3xl font-semibold tracking-tight tabular-nums"
+      >
         {formatted}
       </output>
     </div>

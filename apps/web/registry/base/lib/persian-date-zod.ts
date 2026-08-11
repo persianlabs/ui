@@ -66,34 +66,32 @@ export function zPersianDate(options: ZPersianDateOptions = {}) {
   const minDate = options.min != null ? coerceToDate(options.min) : undefined
   const maxDate = options.max != null ? coerceToDate(options.max) : undefined
 
-  return z
-    .custom<PersianDateInput>()
-    .transform((value, ctx): Date => {
-      const date = coerceToDate(value)
+  return z.custom<PersianDateInput>().transform((value, ctx): Date => {
+    const date = coerceToDate(value)
 
-      if (!date) {
-        ctx.addIssue({ code: "custom", message: "Invalid date" })
-        return z.NEVER
-      }
+    if (!date) {
+      ctx.addIssue({ code: "custom", message: "Invalid date" })
+      return z.NEVER
+    }
 
-      if (minDate && isBefore(date, minDate)) {
-        ctx.addIssue({
-          code: "custom",
-          message: `Date must be on or after ${minDate.toISOString()}`,
-        })
-        return z.NEVER
-      }
+    if (minDate && isBefore(date, minDate)) {
+      ctx.addIssue({
+        code: "custom",
+        message: `Date must be on or after ${minDate.toISOString()}`,
+      })
+      return z.NEVER
+    }
 
-      if (maxDate && isAfter(date, maxDate)) {
-        ctx.addIssue({
-          code: "custom",
-          message: `Date must be on or before ${maxDate.toISOString()}`,
-        })
-        return z.NEVER
-      }
+    if (maxDate && isAfter(date, maxDate)) {
+      ctx.addIssue({
+        code: "custom",
+        message: `Date must be on or before ${maxDate.toISOString()}`,
+      })
+      return z.NEVER
+    }
 
-      return date
-    })
+    return date
+  })
 }
 
 /**

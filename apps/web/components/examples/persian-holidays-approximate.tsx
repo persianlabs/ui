@@ -19,8 +19,8 @@ export function PersianHolidaysApproximateExample() {
         <code className="rounded bg-muted px-1 py-0.5 font-mono">
           approximate: true
         </code>{" "}
-        بازمی‌گردند، چون تاریخ دقیق آن‌ها به رؤیت هلال بستگی دارد و ممکن است
-        تا یک روز جابه‌جا شود.
+        بازمی‌گردند، چون تاریخ دقیق آن‌ها به رؤیت هلال بستگی دارد و ممکن است تا
+        یک روز جابه‌جا شود.
       </p>
       <ul className="flex max-h-56 flex-col gap-1.5 overflow-y-auto text-sm">
         {hijriHolidays.map((holiday) => (
@@ -28,7 +28,10 @@ export function PersianHolidaysApproximateExample() {
             key={`${holiday.title}-${holiday.date.toISOString()}`}
             className="flex items-center justify-between gap-3 rounded-lg border border-border px-3 py-2"
           >
-            <span dir="ltr" className="font-mono text-xs tabular-nums text-muted-foreground">
+            <span
+              dir="ltr"
+              className="font-mono text-xs text-muted-foreground tabular-nums"
+            >
               {formatDate(holiday.date, "yyyy/MM/dd")}
             </span>
             <span className="flex-1 text-end">{holiday.title}</span>

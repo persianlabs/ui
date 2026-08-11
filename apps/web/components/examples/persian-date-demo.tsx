@@ -10,9 +10,7 @@ import {
 } from "@workspace/ui/lib/persian-date"
 
 export function PersianDateDemoExample() {
-  const [calendarType, setCalendarType] = React.useState<CalendarType>(
-    "shamsi"
-  )
+  const [calendarType, setCalendarType] = React.useState<CalendarType>("shamsi")
   const [digits, setDigits] = React.useState<DigitStyle>("fa")
   const [now, setNow] = React.useState<Date | null>(null)
 

@@ -12,7 +12,10 @@ import {
 } from "@workspace/ui/lib/persian-date"
 
 export function PersianDateRangeExample() {
-  const from = React.useMemo(() => fromShamsi({ year: 1404, month: 6, day: 1 }), [])
+  const from = React.useMemo(
+    () => fromShamsi({ year: 1404, month: 6, day: 1 }),
+    []
+  )
   const to = React.useMemo(() => addDays(from, 6), [from])
   const probe = React.useMemo(() => addDays(from, 3), [from])
 

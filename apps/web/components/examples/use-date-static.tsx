@@ -15,7 +15,10 @@ export function UseDateStaticExample() {
       <span className="text-sm text-muted-foreground">
         فقط یک‌بار خوانده می‌شود (interval: 0)
       </span>
-      <output dir="ltr" className="font-mono text-3xl font-semibold tracking-tight tabular-nums">
+      <output
+        dir="ltr"
+        className="font-mono text-3xl font-semibold tracking-tight tabular-nums"
+      >
         {formatted}
       </output>
     </div>

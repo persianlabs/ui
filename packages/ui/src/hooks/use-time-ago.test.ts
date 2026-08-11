@@ -79,9 +79,7 @@ describe("formatTimeAgo", () => {
 
   it("shows seconds when showSecond is true", () => {
     const from = new Date(now - 5_000)
-    expect(formatTimeAgo(from, { showSecond: true }, now)).toBe(
-      "۵ ثانیه پیش"
-    )
+    expect(formatTimeAgo(from, { showSecond: true }, now)).toBe("۵ ثانیه پیش")
   })
 
   it("supports a fully custom messages table", () => {

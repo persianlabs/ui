@@ -21,8 +21,8 @@ export function PersianDateRtlExample() {
         {formatDate(date, "EEEE d MMMM yyyy")}
       </p>
       <p className="text-xs text-muted-foreground">
-        خروجی formatDate با ارقام و نام روز/ماه فارسی، بدون نیاز به تنظیم
-        جهت جداگانه در محتوای راست‌به‌چپ می‌نشیند.
+        خروجی formatDate با ارقام و نام روز/ماه فارسی، بدون نیاز به تنظیم جهت
+        جداگانه در محتوای راست‌به‌چپ می‌نشیند.
       </p>
     </div>
   )

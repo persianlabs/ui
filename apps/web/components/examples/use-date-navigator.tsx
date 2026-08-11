@@ -74,13 +74,13 @@ export function UseDateNavigatorExample() {
               size="icon"
               className="size-7"
               aria-label={`${unit.label} قبل`}
-              onClick={() => setDate((current) => shift(current!, unit.key, -1))}
+              onClick={() =>
+                setDate((current) => shift(current!, unit.key, -1))
+              }
             >
               <ChevronLeft className="rtl:-scale-x-100" />
             </Button>
-            <span className="text-xs text-muted-foreground">
-              {unit.label}
-            </span>
+            <span className="text-xs text-muted-foreground">{unit.label}</span>
             <Button
               variant="ghost"
               size="icon"

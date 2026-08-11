@@ -14,7 +14,10 @@ import {
 } from "@workspace/ui/lib/persian-date"
 
 export function PersianDateBoundariesExample() {
-  const date = React.useMemo(() => fromShamsi({ year: 1404, month: 5, day: 12 }), [])
+  const date = React.useMemo(
+    () => fromShamsi({ year: 1404, month: 5, day: 12 }),
+    []
+  )
 
   const rows = [
     { label: "شروع هفته", value: startOfWeek(date) },
@@ -37,7 +40,10 @@ export function PersianDateBoundariesExample() {
             className="flex flex-col gap-1 rounded-lg border border-border px-3 py-2"
           >
             <span className="text-xs text-muted-foreground">{row.label}</span>
-            <span dir="ltr" className="font-mono text-sm font-medium tabular-nums">
+            <span
+              dir="ltr"
+              className="font-mono text-sm font-medium tabular-nums"
+            >
               {formatDate(row.value, "yyyy/MM/dd")}
             </span>
           </div>

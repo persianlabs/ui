@@ -19,7 +19,10 @@ export function PersianHolidaysDemoExample() {
             key={`${holiday.title}-${holiday.date.toISOString()}`}
             className="flex items-center justify-between gap-4 rounded-lg border border-border px-3 py-2"
           >
-            <span dir="ltr" className="font-mono text-xs tabular-nums text-muted-foreground">
+            <span
+              dir="ltr"
+              className="font-mono text-xs text-muted-foreground tabular-nums"
+            >
               {formatDate(holiday.date, "yyyy/MM/dd")}
             </span>
             <span className="text-end">{holiday.title}</span>

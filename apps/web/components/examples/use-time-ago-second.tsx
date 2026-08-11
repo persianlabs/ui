@@ -24,7 +24,9 @@ export function UseTimeAgoSecondExample() {
         <span className="text-lg font-semibold">{withSeconds}</span>
       </div>
       <div className="flex flex-col gap-1">
-        <span className="text-muted-foreground">showSecond: false (پیش‌فرض)</span>
+        <span className="text-muted-foreground">
+          showSecond: false (پیش‌فرض)
+        </span>
         <span className="text-lg font-semibold">{withoutSeconds}</span>
       </div>
     </div>
