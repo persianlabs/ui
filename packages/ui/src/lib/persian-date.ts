@@ -344,22 +344,17 @@ export function rangeLengthInDays(range: DateRange): number {
  * Clicking a day that isn't either endpoint while both are already set starts
  * a fresh range instead of extending the old one.
  *
- * Clearing `from` moves the remaining day into `from` (not left in `to`):
- * react-day-picker's own range-mode rendering doesn't support a `{from:
- * undefined, to: Date}` selection -- given that shape, it silently falls
- * back to treating whatever cell was just clicked as its own fresh
- * single-day selection instead of showing the remaining day as selected at
- * all. Since a lone `from` renders correctly, relabeling keeps the same day
- * visibly selected instead of it appearing to vanish.
+ * A cleared endpoint stays cleared: consumers that render a lone `to` should
+ * expose it through a custom `range_end` modifier because react-day-picker's
+ * built-in range renderer only understands a lone `from`.
  */
 export function toggleRangeSelection(range: DateRange, day: Date): DateRange {
   const { from, to } = range
 
-  if (from && isSameDay(day, from)) return { from: to, to: undefined }
+  if (from && isSameDay(day, from)) return { from: undefined, to }
   if (to && isSameDay(day, to)) return { from, to: undefined }
   if (!from && !to) return { from: day, to: undefined }
-  if (!from)
-    return isBefore(day, to as Date) ? { from: day, to } : { from: to, to: day }
+  if (!from) return { from: day, to }
   if (!to)
     return isBefore(day, from) ? { from: day, to: from } : { from, to: day }
   return { from: day, to: undefined }

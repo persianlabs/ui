@@ -20,14 +20,18 @@ export function CalendarRangeExample() {
   return (
     <Calendar
       mode="range"
-      numberOfMonths={2}
-      selected={range}
-      // react-day-picker only stays truly controlled by `selected` when
-      // `onSelect` is provided -- without it, it silently falls back to its
-      // own internal uncontrolled range state after the first render. Ignore
-      // its own computed range and drive selection from our own toggle logic
-      // instead, keyed off the clicked day (the 2nd callback argument).
-      onSelect={(_range, day) =>
+      selected={range?.from ? range : undefined}
+      modifiers={
+        !range?.from && range?.to ? { range_end: range.to } : undefined
+      }
+      disabled={
+        !range?.from && range?.to
+          ? { after: range.to }
+          : range?.from && !range.to
+            ? { before: range.from }
+            : undefined
+      }
+      onSelect={(_next, day) =>
         setRange((current) =>
           toggleRangeSelection(current ?? { from: undefined }, day)
         )
