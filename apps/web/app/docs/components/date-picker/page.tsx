@@ -298,9 +298,8 @@ export default function DatePickerDocPage() {
               >
                 Time Picker
               </a>{" "}
-              below the Calendar in the same Popover on desktop. On smaller
-              screens, the date picker keeps its compact popover while the time
-              picker opens in its own responsive drawer, so the wheel is never
+              input below the Calendar. That input opens its own popover on
+              desktop and a drawer on smaller screens, so the wheel is never
               cramped beneath the calendar.
             </>
           }
