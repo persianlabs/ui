@@ -9,6 +9,7 @@ import {
   AlertPreview,
   AspectRatioPreview,
   AvatarPreview,
+  BankInputPreview,
   BadgePreview,
   BreadcrumbPreview,
   BubblePreview,
@@ -116,6 +117,19 @@ const components = [
     thumbnail: (
       <ThumbnailFrame>
         <TimePickerPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Bank Input",
+    href: "/docs/components/bank-input" as const,
+    description:
+      "Iranian card-number and Shaba fields with paste normalization, checksums, and bank detection.",
+    badge: "New",
+    createdAt: "2026-08-11",
+    thumbnail: (
+      <ThumbnailFrame>
+        <BankInputPreview />
       </ThumbnailFrame>
     ),
   },

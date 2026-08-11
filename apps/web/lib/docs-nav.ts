@@ -33,6 +33,11 @@ export const docsNav: DocsNavGroup[] = [
       { title: "Alert Dialog", href: "/docs/components/alert-dialog" },
       { title: "Aspect Ratio", href: "/docs/components/aspect-ratio" },
       { title: "Avatar", href: "/docs/components/avatar" },
+      {
+        title: "Bank Input",
+        href: "/docs/components/bank-input",
+        badge: "New",
+      },
       { title: "Badge", href: "/docs/components/badge" },
       { title: "Breadcrumb", href: "/docs/components/breadcrumb" },
       { title: "Bubble", href: "/docs/components/bubble" },
@@ -160,6 +165,11 @@ export const docsNav: DocsNavGroup[] = [
   {
     title: "Utilities",
     items: [
+      {
+        title: "Iranian Bank",
+        href: "/docs/utilities/iranian-bank",
+        badge: "New",
+      },
       { title: "Hitbox", href: "/docs/utilities/hitbox", badge: "New" },
       {
         title: "Normalize Persian Digits",

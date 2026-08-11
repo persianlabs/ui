@@ -901,6 +901,43 @@
       ]
     },
     {
+      "name": "iranian-bank",
+      "type": "registry:lib",
+      "title": "Iranian Bank",
+      "description": "Iranian card and Shaba normalization, checksum validation, and bank detection.",
+      "registryDependencies": [
+        "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+      ],
+      "files": [
+        {
+          "path": "registry/base/lib/iranian-bank.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "bank-input",
+      "type": "registry:ui",
+      "title": "Bank Input",
+      "description": "Iranian card-number and Shaba inputs with paste normalization, checksum validation, and bank detection.",
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/input-group.json",
+        "https://ui.persian-labs.ir/r/iranian-bank.json"
+      ],
+      "dependencies": ["@persianlabs/icons"],
+      "files": [
+        {
+          "path": "registry/base/ui/bank-input.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base/hooks/use-controllable-state.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
       "name": "price-input",
       "type": "registry:ui",
       "title": "Price Input",

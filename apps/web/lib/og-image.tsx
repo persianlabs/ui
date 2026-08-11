@@ -84,7 +84,7 @@ export function buildOgImage(
   title: string,
   description: string,
   preview?: React.ReactNode,
-  options?: { titleFontSize?: number }
+  options?: { titleFontSize?: number; previewScale?: number }
 ) {
   const compactDescription = compactDescriptions[title] ?? description
 
@@ -176,7 +176,7 @@ export function buildOgImage(
             justifyContent: "center",
             width: "500px",
             height: "360px",
-            transform: "scale(1.6)",
+            transform: `scale(${options?.previewScale ?? 1.6})`,
           }}
         >
           {preview}

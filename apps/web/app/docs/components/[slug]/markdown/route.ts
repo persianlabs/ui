@@ -9,6 +9,7 @@ import { alertDialogMarkdown as markdown_alert_dialog } from "../../alert-dialog
 import { alertMarkdown as markdown_alert } from "../../alert/page"
 import { aspectRatioMarkdown as markdown_aspect_ratio } from "../../aspect-ratio/page"
 import { avatarMarkdown as markdown_avatar } from "../../avatar/page"
+import { bankInputMarkdown as markdown_bank_input } from "../../bank-input/page"
 import { badgeMarkdown as markdown_badge } from "../../badge/page"
 import { breadcrumbMarkdown as markdown_breadcrumb } from "../../breadcrumb/page"
 import { bubbleMarkdown as markdown_bubble } from "../../bubble/page"
@@ -74,6 +75,7 @@ const markdownBySlug: Record<string, string> = {
   "alert-dialog": markdown_alert_dialog,
   "aspect-ratio": markdown_aspect_ratio,
   avatar: markdown_avatar,
+  "bank-input": markdown_bank_input,
   badge: markdown_badge,
   breadcrumb: markdown_breadcrumb,
   bubble: markdown_bubble,
