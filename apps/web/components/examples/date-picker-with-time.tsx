@@ -1,6 +1,6 @@
 "use client"
 
-import { CalendarIcon } from "lucide-react"
+import { CalendarIcon, ClockIcon } from "lucide-react"
 import * as React from "react"
 
 import { Button } from "@workspace/ui/components/button"
@@ -56,16 +56,28 @@ export function DatePickerWithTimeExample() {
           className="p-2"
         />
         <div className="flex flex-col items-center gap-2 border-t border-border p-3">
-          <ResponsiveTimePicker>
-            <ResponsiveTimePickerTrigger
-              render={
-                <Button variant="outline" className="w-full justify-start">
-                  {formatTimePickerValue(time)}
-                </Button>
-              }
-            />
-            <ResponsiveTimePickerContent value={time} onValueChange={setTime} />
-          </ResponsiveTimePicker>
+          <div className="flex w-full items-center justify-between gap-2">
+            <span className="flex items-center gap-1.5 text-sm font-medium">
+              <ClockIcon className="size-4" />
+              ساعت
+            </span>
+            <ResponsiveTimePicker>
+              <ResponsiveTimePickerTrigger
+                render={
+                  <Button
+                    variant="outline"
+                    className="w-20 justify-center font-mono tabular-nums"
+                  >
+                    {formatTimePickerValue(time)}
+                  </Button>
+                }
+              />
+              <ResponsiveTimePickerContent
+                value={time}
+                onValueChange={setTime}
+              />
+            </ResponsiveTimePicker>
+          </div>
           <Button
             size="sm"
             className="w-full"
