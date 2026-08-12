@@ -1,5 +1,11 @@
 import type { Metadata } from "next"
 import type * as React from "react"
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@workspace/ui/components/tabs"
 
 import { ApiReference } from "@/components/api-reference"
 import { CodeBlock } from "@/components/code-block"
@@ -41,8 +47,8 @@ const tocItems = [
     title: "Examples",
     children: [
       { id: "shaba", title: "Shaba" },
-      { id: "separator", title: "Separator" },
       { id: "zod", title: "Zod Validation" },
+      { id: "separator", title: "Separator" },
       { id: "supported-banks", title: "Supported Banks" },
       { id: "rtl", title: "RTL" },
     ],
@@ -89,7 +95,12 @@ export default function BankInputDocPage() {
   return (
     <div className="flex gap-10">
       <article className="max-w-3xl min-w-0 flex-1">
-        <h1 className="text-3xl font-semibold tracking-tight">Bank Input</h1>
+        <div className="flex flex-col items-end justify-between gap-3 sm:flex-row sm:items-center">
+          <h1 className="self-start text-3xl font-semibold tracking-tight sm:self-auto">
+            Bank Input
+          </h1>
+          <CopyMarkdownButton markdown={bankInputMarkdown} />
+        </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
           Payment-ready Iranian card and Shaba fields. They normalize mixed
           paste formats, force a readable LTR tabular layout, validate
@@ -104,7 +115,6 @@ export default function BankInputDocPage() {
           .
         </p>
         <LastUpdated date={lastEdited} />
-        <CopyMarkdownButton markdown={bankInputMarkdown} />
         <h2
           id="overview"
           className="mt-10 text-xl font-semibold tracking-tight"
@@ -132,23 +142,34 @@ export default function BankInputDocPage() {
           Install the inputs, their bank utility, input-group primitives, and
           the PersianLabs icon package in one step.
         </p>
-        <div className="mt-4">
-          <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/bank-input.json" />
-        </div>
-        <Steps className="mt-5">
-          <Step>Install the component dependencies</Step>
-          <div className="mt-2">
-            <InstallCommand packages="@persianlabs/icons" />
-          </div>
-          <Step>Copy the component source</Step>
-          <div className="mt-2">
-            <CodeBlock
-              code={getComponentSource("bank-input")}
-              lang="tsx"
-              title="components/ui/bank-input.tsx"
-            />
-          </div>
-        </Steps>
+
+        <Tabs defaultValue="cli" className="mt-4">
+          <TabsList>
+            <TabsTrigger value="cli">CLI</TabsTrigger>
+            <TabsTrigger value="manual">Manual</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="cli" className="mt-4">
+            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/bank-input.json" />
+          </TabsContent>
+
+          <TabsContent value="manual" className="mt-4">
+            <Steps>
+              <Step>Install the component dependencies</Step>
+              <div className="mt-2">
+                <InstallCommand packages="@persianlabs/icons" />
+              </div>
+              <Step>Copy the component source</Step>
+              <div className="mt-2">
+                <CodeBlock
+                  code={getComponentSource("bank-input")}
+                  lang="tsx"
+                  title="components/ui/bank-input.tsx"
+                />
+              </div>
+            </Steps>
+          </TabsContent>
+        </Tabs>
         <h2 id="usage" className="mt-12 text-xl font-semibold tracking-tight">
           Usage
         </h2>
@@ -165,6 +186,7 @@ export default function BankInputDocPage() {
           id="shaba"
           title="Shaba"
           description="The IR prefix is presented as an input-group prefix. Pasting an entire IBAN, with or without separators, removes IR and normalizes the remaining 24 digits."
+          code={getExampleSource("bank-input-shaba")}
         >
           <BankInputShabaExample />
         </Example>
@@ -172,6 +194,7 @@ export default function BankInputDocPage() {
           id="zod"
           title="Zod Validation"
           description="Use the exported checksum validators in Zod refinements, while the inputs surface invalid complete values immediately."
+          code={getExampleSource("bank-input-zod")}
         >
           <BankInputZodExample />
         </Example>
@@ -179,6 +202,7 @@ export default function BankInputDocPage() {
           id="separator"
           title="Separator"
           description="Card numbers use spaces by default (1234 1234 1234 1234). Pass separator to use any other display delimiter; the stored value always stays as 16 plain digits."
+          code={getExampleSource("bank-input-separator")}
         >
           <BankInputSeparatorExample />
         </Example>
@@ -186,6 +210,7 @@ export default function BankInputDocPage() {
           id="supported-banks"
           title="Supported Banks"
           description="هر ورودی یک شماره کارت معتبر نمونه دارد؛ لوگوی انتهایی نشان می‌دهد که تشخیص بانک برای همه بانک‌های پشتیبانی‌شده فعال است."
+          code={getExampleSource("bank-input-supported-banks")}
         >
           <BankInputSupportedBanksExample />
         </Example>
@@ -194,6 +219,7 @@ export default function BankInputDocPage() {
           title="RTL"
           description="Labels, descriptions, and bank names follow the surrounding RTL interface while the card and Shaba values remain intentionally LTR. Persian digits are normalized during input."
           dir="rtl"
+          code={getExampleSource("bank-input-rtl")}
         >
           <BankInputRtlExample />
         </Example>
@@ -225,12 +251,14 @@ function Example({
   description,
   children,
   dir,
+  code,
 }: {
   id: string
   title: string
   description: string
   children: React.ReactNode
   dir?: "ltr" | "rtl"
+  code: string
 }) {
   return (
     <div className="mt-8">
@@ -244,9 +272,7 @@ function Example({
         <ComponentPreview
           preview={children}
           dir={dir}
-          code={
-            <CodeBlock code={getExampleSource(`bank-input-${id}`)} lang="tsx" />
-          }
+          code={<CodeBlock code={code} lang="tsx" />}
         />
       </div>
     </div>
