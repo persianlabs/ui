@@ -1676,9 +1676,7 @@ export function PaginationPreview() {
                   ? `1px solid ${preview.border}`
                   : "1px solid transparent",
                 backgroundColor: "transparent",
-                color: active
-                  ? preview.primaryForeground
-                  : preview.mutedForeground,
+                color: active ? preview.foreground : preview.mutedForeground,
                 fontSize: "12px",
                 fontWeight: active ? 600 : 500,
               }}

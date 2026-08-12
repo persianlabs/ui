@@ -142,7 +142,9 @@ const components = [
     createdAt: "2026-08-10",
     thumbnail: (
       <ThumbnailFrame>
-        <DatePickerPreview />
+        <div style={{ transform: "scale(0.6)" }}>
+          <DatePickerPreview />
+        </div>
       </ThumbnailFrame>
     ),
   },
