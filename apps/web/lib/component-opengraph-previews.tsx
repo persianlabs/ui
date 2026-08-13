@@ -35,6 +35,7 @@ export function ReceiptPrinterPreview() {
       <div
         style={{
           display: "flex",
+          position: "relative",
           width: "300px",
           height: "118px",
           flexDirection: "column",
@@ -84,11 +85,27 @@ export function ReceiptPrinterPreview() {
         >
           READY · 12:48
         </div>
+        <div
+          style={{
+            display: "flex",
+            position: "absolute",
+            zIndex: 2,
+            right: "28px",
+            bottom: "15px",
+            left: "28px",
+            height: "8px",
+            borderRadius: "4px",
+            backgroundColor: "#11110f",
+            border: "1px solid #050504",
+          }}
+        />
       </div>
       <div
         style={{
           display: "flex",
+          zIndex: 1,
           width: "238px",
+          marginTop: "-12px",
           minHeight: "190px",
           flexDirection: "column",
           padding: "22px",
