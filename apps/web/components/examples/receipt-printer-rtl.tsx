@@ -2,6 +2,11 @@
 
 import { Button } from "@workspace/ui/components/button"
 import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@workspace/ui/components/avatar"
+import {
   ReceiptPrinterHeader,
   ReceiptPrinterMachine,
   ReceiptPrinterOutput,
@@ -60,11 +65,16 @@ export function ReceiptPrinterRtlExample() {
                 <p className="mt-1 text-[10px] text-stone-500">رسید خرید شما</p>
               </div>
               <div className="my-4 flex items-center gap-3 border-y border-dashed border-stone-300 py-3">
-                <img
-                  className="size-11 rounded-sm object-cover"
-                  src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=120&q=80"
-                  alt="Sneaker"
-                />
+                <Avatar className="size-11 rounded-sm">
+                  <AvatarImage
+                    className="rounded-sm"
+                    src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=120&q=80"
+                    alt="Sneaker"
+                  />
+                  <AvatarFallback className="rounded-sm text-xs">
+                    ک
+                  </AvatarFallback>
+                </Avatar>
                 <div className="min-w-0 flex-1">
                   <p className="truncate text-xs font-bold">کتانی روزمره</p>
                   <p className="mt-1 text-[10px] text-stone-500">۱ عدد</p>
