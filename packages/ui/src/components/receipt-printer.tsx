@@ -149,7 +149,6 @@ function ReceiptPrinterOutput({
     >
       <motion.div
         animate={{
-          opacity: stage === "processing" ? 0 : 1,
           y: isPrinting
             ? [
                 "-96%",
@@ -168,9 +167,11 @@ function ReceiptPrinterOutput({
               ? "-96%"
               : "0%",
         }}
-        initial={false}
+        initial={{
+          y: stage === "printing" ? "-96%" : "0%",
+        }}
         transition={{
-          duration: isPrinting ? 2.4 : 0.2,
+          duration: isPrinting ? 2.4 : 0,
           ease: isPrinting ? "linear" : "easeOut",
           times: isPrinting
             ? [0, 0.11, 0.16, 0.27, 0.32, 0.45, 0.5, 0.64, 0.69, 0.84, 1]

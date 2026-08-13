@@ -2,6 +2,11 @@
 
 import { Button } from "@workspace/ui/components/button"
 import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@workspace/ui/components/avatar"
+import {
   ReceiptPrinterHeader,
   ReceiptPrinterMachine,
   ReceiptPrinterOutput,
@@ -64,11 +69,16 @@ export function ReceiptPrinterDemoExample() {
               </div>
               <div className="my-4 border-y border-dashed border-stone-300 py-3">
                 <div className="flex items-center gap-3">
-                  <img
-                    className="size-11 rounded-sm object-cover grayscale"
-                    src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=120&q=80"
-                    alt="Silver watch"
-                  />
+                  <Avatar className="size-11 rounded-sm">
+                    <AvatarImage
+                      className="rounded-sm grayscale"
+                      src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=120&q=80"
+                      alt="Silver watch"
+                    />
+                    <AvatarFallback className="rounded-sm text-xs">
+                      W
+                    </AvatarFallback>
+                  </Avatar>
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-xs font-bold">Everyday watch</p>
                     <p className="mt-1 text-[10px] text-stone-500">
