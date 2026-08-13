@@ -105,13 +105,14 @@ export function ReceiptPrinterPreview() {
           display: "flex",
           zIndex: 1,
           width: "238px",
-          marginTop: "-16px",
+          marginTop: "-20px",
           minHeight: "190px",
           flexDirection: "column",
           padding: "22px",
           backgroundColor: "#fffdf7",
           color: "#282722",
           fontFamily: "monospace",
+          boxShadow: "inset 0 18px 18px -20px rgba(0,0,0,.85)",
         }}
       >
         <div
