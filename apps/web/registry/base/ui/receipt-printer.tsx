@@ -15,8 +15,13 @@ type RootProps = React.ComponentProps<"section"> & {
   stage?: ReceiptPrinterStage
 }
 
-const receiptEdge =
-  "polygon(0 0,100% 0,100% calc(100% - 7px),97% 100%,94% calc(100% - 7px),91% 100%,88% calc(100% - 7px),85% 100%,82% calc(100% - 7px),79% 100%,76% calc(100% - 7px),73% 100%,70% calc(100% - 7px),67% 100%,64% calc(100% - 7px),61% 100%,58% calc(100% - 7px),55% 100%,52% calc(100% - 7px),49% 100%,46% calc(100% - 7px),43% 100%,40% calc(100% - 7px),37% 100%,34% calc(100% - 7px),31% 100%,28% calc(100% - 7px),25% 100%,22% calc(100% - 7px),19% 100%,16% calc(100% - 7px),13% 100%,10% calc(100% - 7px),7% 100%,4% calc(100% - 7px),0 100%)"
+const receiptToothDepth = 5
+const receiptTeeth = Array.from({ length: 80 }, (_, index) => {
+  const x = 100 - ((index + 1) * 100) / 80
+  const y = index % 2 === 0 ? "100%" : `calc(100% - ${receiptToothDepth}px)`
+  return `${x}% ${y}`
+}).join(", ")
+const receiptEdge = `polygon(0 0, 100% 0, 100% calc(100% - ${receiptToothDepth}px), ${receiptTeeth})`
 
 function ReceiptPrinterRoot({
   className,
