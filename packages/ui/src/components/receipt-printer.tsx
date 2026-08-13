@@ -142,7 +142,7 @@ function ReceiptPrinterOutput({
     <div
       data-slot="receipt-printer-output"
       className={cn(
-        "relative z-20 -mt-3 w-[84%] overflow-hidden px-2 pt-0",
+        "relative z-20 -mt-4 w-[84%] overflow-hidden px-2 pt-0",
         className
       )}
       {...props}

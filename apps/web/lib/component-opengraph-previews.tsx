@@ -105,7 +105,7 @@ export function ReceiptPrinterPreview() {
           display: "flex",
           zIndex: 1,
           width: "238px",
-          marginTop: "-12px",
+          marginTop: "-16px",
           minHeight: "190px",
           flexDirection: "column",
           padding: "22px",
