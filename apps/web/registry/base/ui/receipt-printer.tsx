@@ -51,7 +51,7 @@ function ReceiptPrinterMachine({
     <div
       data-slot="receipt-printer-machine"
       className={cn(
-        "relative z-10 w-full rounded-[1.6rem] border border-white/15 bg-[#292825] p-3 pb-8 shadow-[0_22px_38px_-24px_rgba(0,0,0,.8),inset_0_1px_0_rgba(255,255,255,.14),inset_0_-3px_0_rgba(0,0,0,.3)] before:absolute before:inset-0 before:rounded-[inherit] before:bg-[radial-gradient(rgba(255,255,255,.09)_1px,transparent_1px)] before:bg-[size:4px_4px] before:opacity-35 before:content-['']",
+        "relative z-10 w-full overflow-visible rounded-[1.6rem] border border-white/15 bg-[#292825] p-3 pb-8 shadow-[0_22px_38px_-24px_rgba(0,0,0,.8),inset_0_1px_0_rgba(255,255,255,.14),inset_0_-3px_0_rgba(0,0,0,.3)] before:absolute before:inset-0 before:z-0 before:rounded-[inherit] before:bg-[radial-gradient(rgba(255,255,255,.09)_1px,transparent_1px)] before:bg-[size:4px_4px] before:opacity-35 before:content-['']",
         className
       )}
       {...props}
@@ -137,7 +137,7 @@ function ReceiptPrinterOutput({
     <div
       data-slot="receipt-printer-output"
       className={cn(
-        "relative -mt-12 w-[84%] overflow-hidden px-2 pt-0",
+        "relative z-20 -mt-12 w-[84%] overflow-hidden px-2 pt-0",
         className
       )}
       {...props}
