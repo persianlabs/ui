@@ -1243,6 +1243,20 @@
       ]
     },
     {
+      "name": "receipt-printer",
+      "type": "registry:ui",
+      "title": "Receipt Printer",
+      "description": "A tactile checkout printer with processing stages and a composable thermal-paper receipt.",
+      "registryDependencies": ["utils"],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "registry/base/ui/receipt-printer.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "date-wheel-picker",
       "type": "registry:ui",
       "title": "Date Wheel Picker",

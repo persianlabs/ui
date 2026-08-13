@@ -114,6 +114,11 @@ export const docsNav: DocsNavGroup[] = [
       },
       { title: "Progress", href: "/docs/components/progress" },
       { title: "Radio Group", href: "/docs/components/radio-group" },
+      {
+        title: "Receipt Printer",
+        href: "/docs/components/receipt-printer",
+        badge: "New",
+      },
       { title: "Resizable", href: "/docs/components/resizable" },
       {
         title: "Responsive Alert Dialog",
