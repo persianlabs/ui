@@ -38,6 +38,7 @@ function ReceiptPrinterRoot({
   )
 }
 function ReceiptPrinterMachine({
+  children,
   className,
   ...props
 }: React.ComponentProps<"div">) {
@@ -49,7 +50,15 @@ function ReceiptPrinterMachine({
         className
       )}
       {...props}
-    />
+    >
+      {children}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-6 bottom-3 z-30 h-2 rounded-[0.25rem] border border-black/80 bg-[#11110f] shadow-[inset_0_1px_2px_rgba(0,0,0,.95),0_1px_0_rgba(255,255,255,.12)]"
+      >
+        <div className="mx-1 h-px bg-white/10" />
+      </div>
+    </div>
   )
 }
 function ReceiptPrinterHeader({
