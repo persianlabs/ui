@@ -98,7 +98,6 @@ export function ReceiptPrinterPreview() {
           style={{
             display: "flex",
             position: "absolute",
-            zIndex: 2,
             right: "28px",
             bottom: "15px",
             left: "28px",
@@ -112,7 +111,6 @@ export function ReceiptPrinterPreview() {
       <div
         style={{
           display: "flex",
-          zIndex: 1,
           width: "238px",
           marginTop: "-20px",
           minHeight: "190px",
@@ -2535,7 +2533,6 @@ export function WheelPickerPreview() {
           backgroundColor: "#2b2926",
           boxShadow: "0 1px 3px rgba(0,0,0,0.3)",
           pointerEvents: "none",
-          zIndex: 2,
         }}
       >
         {activeValues.map((value) => (
@@ -2563,7 +2560,6 @@ export function WheelPickerPreview() {
           style={{
             display: "flex",
             position: "relative",
-            zIndex: 1,
             flex: 1,
             flexDirection: "column",
             paddingTop: "0px",
@@ -2627,7 +2623,6 @@ export function TimePickerPreview() {
           backgroundColor: "#2b2926",
           boxShadow: "0 1px 3px rgba(0,0,0,0.3)",
           pointerEvents: "none",
-          zIndex: 2,
         }}
       >
         {activeValues.map((value) => (
@@ -2655,7 +2650,6 @@ export function TimePickerPreview() {
           style={{
             display: "flex",
             position: "relative",
-            zIndex: 1,
             flex: 1,
             flexDirection: "column",
           }}
@@ -2718,7 +2712,6 @@ export function DateWheelPickerPreview() {
           backgroundColor: "#2b2926",
           boxShadow: "0 1px 3px rgba(0,0,0,0.3)",
           pointerEvents: "none",
-          zIndex: 2,
         }}
       >
         {activeValues.map((value, index) => (
@@ -2746,7 +2739,6 @@ export function DateWheelPickerPreview() {
           style={{
             display: "flex",
             position: "relative",
-            zIndex: 1,
             flex: wheelIndex === 1 ? 1.4 : 1,
             flexDirection: "column",
           }}
@@ -2982,11 +2974,20 @@ export function UseCopyToClipboardPreview() {
           borderRadius: "7px",
           backgroundColor: "#f2f0ee",
           color: "#191817",
-          fontSize: "15px",
-          fontWeight: 700,
         }}
       >
-        ✓
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            d="M21.5303 5.46967C21.8232 5.76256 21.8232 6.23744 21.5303 6.53033L9.53033 18.5303C9.23744 18.8232 8.76256 18.8232 8.46967 18.5303L2.46967 12.5303C2.17678 12.2374 2.17678 11.7626 2.46967 11.4697C2.76256 11.1768 3.23744 11.1768 3.53033 11.4697L9 16.9393L20.4697 5.46967C20.7626 5.17678 21.2374 5.17678 21.5303 5.46967Z"
+            fill="currentColor"
+          />
+        </svg>
       </div>
     </div>
   )
