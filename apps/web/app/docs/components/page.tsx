@@ -51,6 +51,7 @@ import {
   PriceInputPreview,
   ProgressPreview,
   RadioGroupPreview,
+  ReceiptPrinterPreview,
   ResizablePreview,
   ResponsiveAlertDialogPreview,
   ResponsiveDialogPreview,
@@ -94,6 +95,19 @@ function ThumbnailFrame({ children }: { children: React.ReactNode }) {
 }
 
 const components = [
+  {
+    title: "Receipt Printer",
+    href: "/docs/components/receipt-printer" as const,
+    description:
+      "A tactile checkout printer with processing stages and a composable thermal-paper receipt.",
+    badge: "New",
+    createdAt: "2026-08-13",
+    thumbnail: (
+      <ThumbnailFrame>
+        <ReceiptPrinterPreview />
+      </ThumbnailFrame>
+    ),
+  },
   {
     title: "Wheel Picker",
     href: "/docs/components/wheel-picker" as const,
