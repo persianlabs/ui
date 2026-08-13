@@ -1,4 +1,22 @@
-import { ReceiptPrinter } from "@workspace/ui/components/receipt-printer"
+import {
+  ReceiptPrinterHeader,
+  ReceiptPrinterMachine,
+  ReceiptPrinterOutput,
+  ReceiptPrinterPaper,
+  ReceiptPrinterRoot,
+  ReceiptPrinterScreen,
+  ReceiptPrinterStatus,
+} from "@workspace/ui/components/receipt-printer"
+
+const ReceiptPrinter = {
+  Root: ReceiptPrinterRoot,
+  Machine: ReceiptPrinterMachine,
+  Header: ReceiptPrinterHeader,
+  Screen: ReceiptPrinterScreen,
+  Status: ReceiptPrinterStatus,
+  Output: ReceiptPrinterOutput,
+  Paper: ReceiptPrinterPaper,
+}
 
 export function ReceiptPrinterSubscriptionExample() {
   return (

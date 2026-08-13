@@ -142,6 +142,16 @@ function ReceiptPrinterPaper({
   )
 }
 
+export {
+  ReceiptPrinterHeader,
+  ReceiptPrinterMachine,
+  ReceiptPrinterOutput,
+  ReceiptPrinterPaper,
+  ReceiptPrinterRoot,
+  ReceiptPrinterScreen,
+  ReceiptPrinterStatus,
+}
+
 export const ReceiptPrinter = {
   Root: ReceiptPrinterRoot,
   Machine: ReceiptPrinterMachine,
