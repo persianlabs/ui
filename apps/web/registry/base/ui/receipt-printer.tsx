@@ -1,11 +1,15 @@
 "use client"
 
 import { CheckIcon, LoaderCircleIcon } from "lucide-react"
-import type * as React from "react"
+import { motion, useReducedMotion } from "motion/react"
+import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
 export type ReceiptPrinterStage = "processing" | "printing" | "complete"
+
+const ReceiptPrinterContext =
+  React.createContext<ReceiptPrinterStage>("complete")
 
 type RootProps = React.ComponentProps<"section"> & {
   stage?: ReceiptPrinterStage
@@ -20,15 +24,17 @@ function ReceiptPrinterRoot({
   ...props
 }: RootProps) {
   return (
-    <section
-      data-slot="receipt-printer"
-      data-stage={stage}
-      className={cn(
-        "group/receipt-printer flex w-full max-w-sm flex-col items-center",
-        className
-      )}
-      {...props}
-    />
+    <ReceiptPrinterContext.Provider value={stage}>
+      <section
+        data-slot="receipt-printer"
+        data-stage={stage}
+        className={cn(
+          "group/receipt-printer flex w-full max-w-sm flex-col items-center",
+          className
+        )}
+        {...props}
+      />
+    </ReceiptPrinterContext.Provider>
   )
 }
 function ReceiptPrinterMachine({
@@ -105,9 +111,14 @@ function ReceiptPrinterScreen({
   )
 }
 function ReceiptPrinterOutput({
+  children,
   className,
   ...props
 }: React.ComponentProps<"div">) {
+  const stage = React.useContext(ReceiptPrinterContext)
+  const shouldReduceMotion = useReducedMotion()
+  const isPrinting = stage === "printing" && !shouldReduceMotion
+
   return (
     <div
       data-slot="receipt-printer-output"
@@ -116,7 +127,40 @@ function ReceiptPrinterOutput({
         className
       )}
       {...props}
-    />
+    >
+      <motion.div
+        animate={{
+          opacity: stage === "processing" ? 0 : 1,
+          y: isPrinting
+            ? [
+                "-96%",
+                "-82%",
+                "-82%",
+                "-67%",
+                "-67%",
+                "-49%",
+                "-49%",
+                "-29%",
+                "-29%",
+                "-12%",
+                "0%",
+              ]
+            : stage === "processing"
+              ? "-96%"
+              : "0%",
+        }}
+        initial={false}
+        transition={{
+          duration: isPrinting ? 2.4 : 0.2,
+          ease: isPrinting ? "linear" : "easeOut",
+          times: isPrinting
+            ? [0, 0.11, 0.16, 0.27, 0.32, 0.45, 0.5, 0.64, 0.69, 0.84, 1]
+            : undefined,
+        }}
+      >
+        {children}
+      </motion.div>
+    </div>
   )
 }
 function ReceiptPrinterPaper({

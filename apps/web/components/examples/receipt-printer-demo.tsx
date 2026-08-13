@@ -29,7 +29,7 @@ export function ReceiptPrinterDemoExample() {
     setStage("processing")
     await new Promise((resolve) => setTimeout(resolve, 700))
     setStage("printing")
-    await new Promise((resolve) => setTimeout(resolve, 900))
+    await new Promise((resolve) => setTimeout(resolve, 2500))
     setStage("complete")
   }
 
