@@ -63,11 +63,20 @@ export function ReceiptPrinterPreview() {
               color: "#14532d",
               alignItems: "center",
               justifyContent: "center",
-              fontSize: "13px",
-              fontWeight: 900,
             }}
           >
-            ✓
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M21.5303 5.46967C21.8232 5.76256 21.8232 6.23744 21.5303 6.53033L9.53033 18.5303C9.23744 18.8232 8.76256 18.8232 8.46967 18.5303L2.46967 12.5303C2.17678 12.2374 2.17678 11.7626 2.46967 11.4697C2.76256 11.1768 3.23744 11.1768 3.53033 11.4697L9 16.9393L20.4697 5.46967C20.7626 5.17678 21.2374 5.17678 21.5303 5.46967Z"
+                fill="currentColor"
+              />
+            </svg>
           </div>
           ORDER COMPLETE
         </div>
