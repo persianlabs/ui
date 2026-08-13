@@ -1,0 +1,3 @@
+# Keep checkouts aligned with Prettier's `endOfLine: lf` setting. This avoids
+# CRLF/LF-only working-tree changes on Windows when formatters rewrite files.
+* text=auto eol=lf
