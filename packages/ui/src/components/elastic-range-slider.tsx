@@ -205,6 +205,12 @@ export function ElasticRangeSlider({
     [minPercent, maxPercent, shouldReduceMotion]
   )
 
+  const stopThumbAnimation = useCallback((thumb: Thumb) => {
+    const animation = thumb === "min" ? minAnimRef : maxAnimRef
+    animation.current?.stop()
+    animation.current = null
+  }, [])
+
   const computeRubberStretch = useCallback((clientX: number, sign: number) => {
     const rect = wrapperRectRef.current
     if (!rect) return 0
@@ -298,9 +304,7 @@ export function ElasticRangeSlider({
           : clamp(rawValue, min + step, absoluteMax)
 
       const motionValue = thumb === "min" ? minPercent : maxPercent
-      const animRef = thumb === "min" ? minAnimRef : maxAnimRef
-      animRef.current?.stop()
-      animRef.current = null
+      stopThumbAnimation(thumb)
       motionValue.jump(percentFromValue(value))
 
       setRange(thumb === "min" ? [value, max] : [min, value])
@@ -319,6 +323,7 @@ export function ElasticRangeSlider({
       rubberStretch,
       computeRubberStretch,
       shouldReduceMotion,
+      stopThumbAnimation,
     ]
   )
 
@@ -390,27 +395,25 @@ export function ElasticRangeSlider({
     (thumb: Thumb) => (e: React.KeyboardEvent) => {
       const arrowStep = e.shiftKey ? step * 10 : step
 
-      let next: number | null = null
       const current = thumb === "min" ? min : max
+      const next = (() => {
+        switch (e.key) {
+          case "ArrowRight":
+          case "ArrowUp":
+            return current + arrowStep
+          case "ArrowLeft":
+          case "ArrowDown":
+            return current - arrowStep
+          case "Home":
+            return thumb === "min" ? absoluteMin : min
+          case "End":
+            return thumb === "min" ? max : absoluteMax
+          default:
+            return null
+        }
+      })()
 
-      switch (e.key) {
-        case "ArrowRight":
-        case "ArrowUp":
-          next = current + arrowStep
-          break
-        case "ArrowLeft":
-        case "ArrowDown":
-          next = current - arrowStep
-          break
-        case "Home":
-          next = thumb === "min" ? absoluteMin : min
-          break
-        case "End":
-          next = thumb === "min" ? max : absoluteMax
-          break
-        default:
-          return
-      }
+      if (next === null) return
 
       e.preventDefault()
       setKeyboardFocusThumb(thumb)

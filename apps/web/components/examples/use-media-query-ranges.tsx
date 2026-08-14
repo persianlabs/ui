@@ -20,7 +20,10 @@ function Row({ label, matches }: { label: string; matches: boolean }) {
 }
 
 export function UseMediaQueryRangesExample() {
-  const matches = RANGES.map((range) => useMediaQuery(range))
+  const smToMd = useMediaQuery("sm:max-md")
+  const mdToLg = useMediaQuery("md:max-lg")
+  const lgToXl = useMediaQuery("lg:max-xl")
+  const matches = [smToMd, mdToLg, lgToXl]
 
   return (
     <div className="w-full max-w-xs">

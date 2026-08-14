@@ -5,6 +5,15 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
   typedRoutes: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "github.com",
+        pathname: "/shadcn.png",
+      },
+    ],
+  },
   async rewrites() {
     return [
       { source: "/docs.md", destination: "/docs/markdown" },

@@ -10,7 +10,12 @@ export function ItemImageExample() {
   return (
     <Item variant="muted" className="w-full max-w-sm">
       <ItemMedia variant="image">
-        <img src="https://github.com/shadcn.png" alt="shadcn" />
+        <Image
+          src="https://github.com/shadcn.png"
+          alt="shadcn"
+          width={460}
+          height={460}
+        />
       </ItemMedia>
       <ItemContent>
         <ItemTitle>shadcn</ItemTitle>
@@ -19,3 +24,4 @@ export function ItemImageExample() {
     </Item>
   )
 }
+import Image from "next/image"

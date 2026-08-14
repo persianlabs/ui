@@ -230,6 +230,11 @@ export function ElasticSlider({
     [fillPercent, shouldReduceMotion]
   )
 
+  const stopFillAnimation = useCallback(() => {
+    animRef.current?.stop()
+    animRef.current = null
+  }, [])
+
   const computeRubberStretch = useCallback((clientX: number, sign: number) => {
     const rect = wrapperRectRef.current
     if (!rect) return 0
@@ -297,8 +302,7 @@ export function ElasticSlider({
       }
 
       const newValue = positionToValue(e.clientX)
-      animRef.current?.stop()
-      animRef.current = null
+      stopFillAnimation()
       fillPercent.jump(percentFromValue(newValue))
       setValue(roundValue(newValue, step))
     },
@@ -312,6 +316,7 @@ export function ElasticSlider({
       rubberStretch,
       computeRubberStretch,
       shouldReduceMotion,
+      stopFillAnimation,
     ]
   )
 
@@ -370,30 +375,24 @@ export function ElasticSlider({
       const forwardKey = dirRef.current === "rtl" ? "ArrowLeft" : "ArrowRight"
       const backwardKey = dirRef.current === "rtl" ? "ArrowRight" : "ArrowLeft"
 
-      let next: number | null = null
+      const next = (() => {
+        switch (e.key) {
+          case forwardKey:
+          case "ArrowUp":
+            return value + arrowStep
+          case backwardKey:
+          case "ArrowDown":
+            return value - arrowStep
+          case "Home":
+            return min
+          case "End":
+            return max
+          default:
+            return null
+        }
+      })()
 
-      switch (e.key) {
-        case forwardKey:
-        case "ArrowUp":
-          next = value + arrowStep
-          break
-
-        case backwardKey:
-        case "ArrowDown":
-          next = value - arrowStep
-          break
-
-        case "Home":
-          next = min
-          break
-
-        case "End":
-          next = max
-          break
-
-        default:
-          return
-      }
+      if (next === null) return
 
       e.preventDefault()
 

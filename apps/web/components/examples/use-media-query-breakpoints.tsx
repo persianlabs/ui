@@ -20,7 +20,12 @@ function Row({ label, matches }: { label: string; matches: boolean }) {
 }
 
 export function UseMediaQueryBreakpointsExample() {
-  const matches = BREAKPOINTS.map((bp) => useMediaQuery(bp))
+  const sm = useMediaQuery("sm")
+  const md = useMediaQuery("md")
+  const lg = useMediaQuery("lg")
+  const xl = useMediaQuery("xl")
+  const xl2 = useMediaQuery("2xl")
+  const matches = [sm, md, lg, xl, xl2]
 
   return (
     <div className="w-full max-w-xs">

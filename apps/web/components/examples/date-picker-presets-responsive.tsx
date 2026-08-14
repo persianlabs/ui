@@ -63,7 +63,13 @@ export function DatePickerPresetsResponsiveExample() {
   const [open, setOpen] = React.useState(false)
   const [presetsOpen, setPresetsOpen] = React.useState(false)
 
-  React.useEffect(() => setToday(new Date()), [])
+  React.useEffect(() => {
+    function initializeToday() {
+      setToday(new Date())
+    }
+
+    initializeToday()
+  }, [])
 
   const trigger = (
     <Button variant="outline" className="w-64 justify-start font-normal">

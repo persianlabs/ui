@@ -38,15 +38,13 @@ export function useTimeAgo(
   const [text, setText] = React.useState<string | null>(null)
 
   React.useEffect(() => {
-    if (date == null) {
-      setText(null)
-      return
+    function update() {
+      setText(date == null ? null : formatTimeAgo(date))
     }
 
-    function update() {
-      if (date != null) {
-        setText(formatTimeAgo(date))
-      }
+    if (date == null) {
+      update()
+      return
     }
 
     update()

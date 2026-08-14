@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import * as BankIcons from "@persianlabs/icons/react"
 
 import {
   InputGroup,
@@ -109,24 +110,13 @@ function BankIdentity({
   logo: BankLogoVariant
 }) {
   if (!bank) return null
-  const Logo = React.useMemo(
-    () =>
-      React.lazy(async () => {
-        const icons = await import("@persianlabs/icons/react")
-        return {
-          default: icons[
-            `${iconNames[bank.id]}${logo === "mono" ? "Mono" : "Color"}` as keyof typeof icons
-          ] as React.ComponentType<React.SVGProps<SVGSVGElement>>,
-        }
-      }),
-    [bank.id, logo]
-  )
+  const Logo = BankIcons[
+    `${iconNames[bank.id]}${logo === "mono" ? "Mono" : "Color"}` as keyof typeof BankIcons
+  ] as React.ComponentType<React.SVGProps<SVGSVGElement>>
 
   return (
     <InputGroupAddon align="inline-end" className="pe-2">
-      <React.Suspense fallback={<span className="size-5 shrink-0" />}>
-        <Logo className="size-5 shrink-0" aria-hidden="true" />
-      </React.Suspense>
+      <Logo className="size-5 shrink-0" aria-hidden="true" />
     </InputGroupAddon>
   )
 }

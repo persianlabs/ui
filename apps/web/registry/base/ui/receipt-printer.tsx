@@ -187,7 +187,8 @@ function ReceiptPrinterPaper({
     <article
       data-slot="receipt-printer-paper"
       className={cn(
-        "relative bg-[#fffdf7] px-5 pt-6 pb-10 font-mono text-[#282722] shadow-[0_14px_20px_-12px_rgba(0,0,0,.5)] before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:z-10 before:h-8 before:bg-gradient-to-b before:from-black/20 before:to-transparent before:content-[''] dark:bg-[#f4f0e7]"
+        "relative bg-[#fffdf7] px-5 pt-6 pb-10 font-mono text-[#282722] shadow-[0_14px_20px_-12px_rgba(0,0,0,.5)] before:pointer-events-none before:absolute before:inset-x-0 before:top-0 before:z-10 before:h-8 before:bg-gradient-to-b before:from-black/20 before:to-transparent before:content-[''] dark:bg-[#f4f0e7]",
+        className
       )}
       style={{ clipPath: receiptEdge, ...style }}
       {...props}
