@@ -3,6 +3,15 @@
 @import "shadcn/tailwind.css";
 
 @custom-variant dark (&:is(.dark *));
+
+html.preview-loading body {
+  visibility: hidden;
+}
+
+html.preview-loading,
+html.preview-loading body {
+  overflow: hidden;
+}
 @source "../../../apps/**/*.{ts,tsx}";
 @source "../../../components/**/*.{ts,tsx}";
 @source "../**/*.{ts,tsx}";

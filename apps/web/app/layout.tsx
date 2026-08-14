@@ -76,6 +76,12 @@ export default function RootLayout({
       )}
     >
       <body>
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              'if(new URLSearchParams(location.search).get("embed")==="1")document.documentElement.classList.add("preview-loading")',
+          }}
+        />
         <ThemeProvider>
           <ToastProvider>
             <AnchoredToastProvider>{children}</AnchoredToastProvider>
