@@ -3,30 +3,39 @@ import { SiteHeader } from "@/components/site-header"
 import { ScrollArea } from "@workspace/ui/components/scroll-area"
 
 const mainClassName = [
-  "w-full min-w-0 px-6 py-10",
-  "[&>div:has(>aside)]:relative",
-  "[&>div:has(>aside)]:w-full",
-  "[&>div:has(>aside)]:justify-center",
-  "lg:max-xl:[&>div:has(>aside)]:justify-end",
-  "lg:max-xl:[&>div:has(>aside)>article]:max-w-[calc(100%-18rem)]",
-  "xl:[&>div:has(>aside)>article]:flex-none",
-  "xl:[&>div:has(>aside)>article]:w-[48rem]",
-  "xl:max-2xl:[&>div:has(>aside)>article]:max-w-[44rem]",
-  "xl:max-2xl:[&>div:has(>aside)>article]:w-[44rem]",
-  "xl:max-2xl:[&>div:has(>aside)>article]:translate-x-6",
-  "[&>div:has(>aside)>aside]:absolute",
-  "[&>div:has(>aside)>aside]:top-0",
-  "[&>div:has(>aside)>aside]:-right-6",
-  "[&>div:has(>aside)>aside]:pl-6",
-  "xl:[&>div:has(>aside)>aside]:fixed",
-  "xl:[&>div:has(>aside)>aside]:top-20",
-  "xl:[&>div:has(>aside)>aside]:right-2",
-  "xl:[&>div:has(>aside)>aside]:h-[calc(100vh-5rem)]",
-  "xl:[&>div:has(>aside)>aside]:w-60",
-  "2xl:[&>div:has(>aside)>aside]:right-auto",
-  "2xl:[&>div:has(>aside)>aside]:left-[calc(50%+26rem)]",
-  "2xl:[&>div:has(>aside)>aside]:w-88",
-  "xl:[&>div:has(>aside)>aside>div]:h-full",
+  "min-w-0 flex-1 px-6 py-10 lg:px-8",
+  "[&>div>div:has(>aside)]:mx-auto",
+  "[&>div>div:has(>aside)]:w-full",
+  "[&>div>div:has(>aside)]:max-w-none",
+  "[&>div>div:has(>aside)>article]:mx-auto",
+  "[&>div>div:has(>aside)>article]:w-full",
+  "[&>div>div:has(>aside)>article]:max-w-[40rem]",
+  "[&>div>div:has(>aside)>article]:flex-none",
+  "xl:[&>div>div:has(>aside)]:[--toc-width:16rem]",
+  "xl:[&>div>div:has(>aside)]:grid",
+  "xl:[&>div>div:has(>aside)]:grid-cols-[minmax(0,1fr)_var(--toc-width)]",
+  "xl:[&>div>div:has(>aside)]:items-start",
+  "xl:[&>div>div:has(>aside)]:gap-10",
+  "xl:[&>div>div:has(>aside)>article]:justify-self-center",
+  "xl:[&>div>div:has(>aside)>aside]:sticky",
+  "xl:[&>div>div:has(>aside)>aside]:top-[calc(3.5rem+1.5rem)]",
+  "xl:[&>div>div:has(>aside)>aside]:self-start",
+  "xl:[&>div>div:has(>aside)>aside]:z-30",
+  "xl:[&>div>div:has(>aside)>aside]:ml-auto",
+  "xl:[&>div>div:has(>aside)>aside]:flex",
+  "xl:[&>div>div:has(>aside)>aside]:h-[90svh]",
+  "xl:[&>div>div:has(>aside)>aside]:w-(--toc-width)",
+  "xl:[&>div>div:has(>aside)>aside]:min-h-0",
+  "xl:[&>div>div:has(>aside)>aside]:flex-col",
+  "xl:[&>div>div:has(>aside)>aside]:gap-4",
+  "xl:[&>div>div:has(>aside)>aside]:overflow-hidden",
+  "xl:[&>div>div:has(>aside)>aside]:overscroll-none",
+  "xl:[&>div>div:has(>aside)>aside]:pb-8",
+  "xl:[&>div>div:has(>aside)>aside]:justify-self-end",
+  "xl:[&>div>div:has(>aside)>aside>div]:static",
+  "xl:[&>div>div:has(>aside)>aside>div]:min-h-0",
+  "xl:[&>div>div:has(>aside)>aside>div]:h-full",
+  "xl:[&>div>div:has(>aside)>aside>div]:flex-1",
 ].join(" ")
 
 export default function DocsLayout({
@@ -38,15 +47,8 @@ export default function DocsLayout({
     <div className="flex min-h-svh flex-col">
       <SiteHeader showMobileNav />
 
-      <div className="relative flex w-full flex-1">
-        <aside className="absolute inset-y-0 left-0 z-10 hidden w-72 lg:block">
-          {/* This has to live on a plain wrapper div, not ScrollArea's own
-              className: ScrollArea's root ships with a baked-in "relative",
-              and tailwind-merge doesn't treat "relative" and "sticky" as
-              conflicting utilities, so both end up in the class list and
-              whichever Tailwind happens to define later in its generated
-              stylesheet wins the cascade — which was "relative", silently
-              downgrading this to non-sticky. */}
+      <div className="flex w-full flex-1">
+        <aside className="hidden w-72 shrink-0 lg:block">
           <div className="relative sticky top-14 h-[calc(100vh-3.5rem)]">
             <div
               aria-hidden="true"
@@ -60,7 +62,9 @@ export default function DocsLayout({
           </div>
         </aside>
 
-        <main className={mainClassName}>{children}</main>
+        <main className={mainClassName}>
+          <div className="w-full">{children}</div>
+        </main>
       </div>
     </div>
   )

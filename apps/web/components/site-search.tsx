@@ -100,13 +100,13 @@ export function SiteSearch() {
         render={
           <Button
             variant="outline"
-            className="w-9 justify-between text-muted-foreground sm:w-56"
+            className="w-9 justify-between text-muted-foreground lg:w-56"
           >
             <span className="flex items-center gap-1.5">
               <SearchIcon />
-              <span className="hidden sm:inline">Search...</span>
+              <span className="hidden lg:inline">Search...</span>
             </span>
-            <Kbd className="hidden sm:inline-flex">⌘K</Kbd>
+            <Kbd className="hidden lg:inline-flex">⌘K</Kbd>
           </Button>
         }
       />

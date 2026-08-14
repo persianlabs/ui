@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 
 import { CodeBlock } from "@/components/code-block"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
+import { TableOfContents } from "@/components/table-of-contents"
 import { CODE_FENCE } from "@/lib/markdown"
 import { getThemeVariables } from "@/lib/theme-variables"
 
@@ -24,6 +25,12 @@ const neutralPairs = [
 const statusColors = ["destructive", "info", "success", "warning"]
 
 const outlineTokens = ["border", "input", "ring"]
+
+const tocItems = [
+  { id: "preview", title: "Preview" },
+  { id: "light", title: "Light" },
+  { id: "dark", title: "Dark" },
+]
 
 export function getThemingMarkdown() {
   const { light, dark } = getThemeVariables()
@@ -52,85 +59,99 @@ export default function ThemingPage() {
   const themingMarkdown = getThemingMarkdown()
 
   return (
-    <article className="mx-auto max-w-2xl">
-      <div className="flex flex-col items-end justify-between gap-3 sm:flex-row sm:items-center">
-        <h1 className="self-start text-3xl font-semibold tracking-tight sm:self-auto">
-          Theming
-        </h1>
-        <CopyMarkdownButton markdown={themingMarkdown} />
-      </div>
-      <p className="mt-3 leading-relaxed text-muted-foreground">
-        Every color in PersianLabs/ui is a CSS variable. Copy the blocks below
-        into your own{" "}
-        <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-          globals.css
-        </code>{" "}
-        and adjust the values — every component reads from these tokens, nothing
-        is hard-coded.
-      </p>
+    <div className="mx-auto flex w-full max-w-6xl gap-10">
+      <article className="max-w-2xl min-w-0 flex-1">
+        <div className="flex flex-col items-end justify-between gap-3 sm:flex-row sm:items-center">
+          <h1 className="self-start text-3xl font-semibold tracking-tight sm:self-auto">
+            Theming
+          </h1>
+          <CopyMarkdownButton markdown={themingMarkdown} />
+        </div>
+        <p className="mt-3 leading-relaxed text-muted-foreground">
+          Every color in PersianLabs/ui is a CSS variable. Copy the blocks below
+          into your own{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+            globals.css
+          </code>{" "}
+          and adjust the values — every component reads from these tokens,
+          nothing is hard-coded.
+        </p>
 
-      <h2 className="mt-10 text-xl font-semibold tracking-tight">Preview</h2>
-      <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
-        {neutralPairs.map((pair) => (
-          <div
-            key={pair.name}
-            style={{
-              backgroundColor: `var(--${pair.name})`,
-              color: `var(--${pair.fg})`,
-            }}
-            className="flex h-16 items-center justify-center rounded-lg border border-border/60 font-mono text-xs"
-          >
-            {pair.name}
-          </div>
-        ))}
-      </div>
-
-      <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
-        Status colors are meant to be used as soft tints — text in the base
-        color over a faint background, the same way{" "}
-        <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-          destructive
-        </code>{" "}
-        buttons are styled — not as solid fills.
-      </p>
-      <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
-        {statusColors.map((name) => (
-          <div
-            key={name}
-            style={{
-              backgroundColor: `color-mix(in oklab, var(--${name}) 12%, transparent)`,
-              color: `var(--${name})`,
-            }}
-            className="flex h-16 items-center justify-center rounded-lg font-mono text-xs font-medium"
-          >
-            {name}
-          </div>
-        ))}
-      </div>
-
-      <div className="mt-3 grid grid-cols-3 gap-3">
-        {outlineTokens.map((token) => (
-          <div key={token} className="flex flex-col items-center gap-1.5">
+        <h2 id="preview" className="mt-10 text-xl font-semibold tracking-tight">
+          Preview
+        </h2>
+        <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+          {neutralPairs.map((pair) => (
             <div
-              style={{ borderColor: `var(--${token})` }}
-              className="h-10 w-full rounded-lg border-2"
-            />
-            <span className="font-mono text-xs text-muted-foreground">
-              {token}
-            </span>
-          </div>
-        ))}
-      </div>
+              key={pair.name}
+              style={{
+                backgroundColor: `var(--${pair.name})`,
+                color: `var(--${pair.fg})`,
+              }}
+              className="flex h-16 items-center justify-center rounded-lg border border-border/60 font-mono text-xs"
+            >
+              {pair.name}
+            </div>
+          ))}
+        </div>
 
-      <h2 className="mt-10 text-xl font-semibold tracking-tight">Light</h2>
-      <div className="mt-4">
-        <CodeBlock code={light} lang="css" />
-      </div>
+        <p className="mt-6 text-sm leading-relaxed text-muted-foreground">
+          Status colors are meant to be used as soft tints — text in the base
+          color over a faint background, the same way{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+            destructive
+          </code>{" "}
+          buttons are styled — not as solid fills.
+        </p>
+        <div className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          {statusColors.map((name) => (
+            <div
+              key={name}
+              style={{
+                backgroundColor: `color-mix(in oklab, var(--${name}) 12%, transparent)`,
+                color: `var(--${name})`,
+              }}
+              className="flex h-16 items-center justify-center rounded-lg font-mono text-xs font-medium"
+            >
+              {name}
+            </div>
+          ))}
+        </div>
 
-      <h2 className="mt-10 text-xl font-semibold tracking-tight">Dark</h2>
-      <div className="mt-4">
-        <CodeBlock code={dark} lang="css" />
-      </div>
-    </article>
+        <div className="mt-3 grid grid-cols-3 gap-3">
+          {outlineTokens.map((token) => (
+            <div key={token} className="flex flex-col items-center gap-1.5">
+              <div
+                style={{ borderColor: `var(--${token})` }}
+                className="h-10 w-full rounded-lg border-2"
+              />
+              <span className="font-mono text-xs text-muted-foreground">
+                {token}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        <h2 id="light" className="mt-10 text-xl font-semibold tracking-tight">
+          Light
+        </h2>
+        <div className="mt-4">
+          <CodeBlock code={light} lang="css" />
+        </div>
+
+        <h2 id="dark" className="mt-10 text-xl font-semibold tracking-tight">
+          Dark
+        </h2>
+        <div className="mt-4">
+          <CodeBlock code={dark} lang="css" />
+        </div>
+      </article>
+
+      <aside className="hidden w-44 shrink-0 xl:block">
+        <div className="sticky top-24 h-[calc(100vh-6rem)]">
+          <TableOfContents items={tocItems} />
+        </div>
+      </aside>
+    </div>
   )
 }

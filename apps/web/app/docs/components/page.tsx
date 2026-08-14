@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { ComponentsGrid } from "@/components/components-grid"
 import { CopyCommand } from "@/components/copy-command"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
+import { TableOfContents } from "@/components/table-of-contents"
 import {
   AccordionPreview,
   AlertDialogPreview,
@@ -930,6 +931,11 @@ const components = [
 const featuredComponents = components.filter((c) => "badge" in c && c.badge)
 const restComponents = components.filter((c) => !("badge" in c && c.badge))
 
+const tocItems = [
+  { id: "installation", title: "Installation" },
+  { id: "catalog", title: "Component catalog" },
+]
+
 export const componentsMarkdown = [
   "# Components",
   "",
@@ -943,31 +949,43 @@ export default function DocsComponentsPage({
 }: {
   showCopyControls?: boolean
 }) {
+  const visibleTocItems = showCopyControls ? tocItems : tocItems.slice(1)
+
   return (
-    <div className="mx-auto max-w-5xl">
-      <div className="flex flex-col items-end justify-between gap-3 sm:flex-row sm:items-center">
-        <h1 className="self-start text-3xl font-semibold tracking-tight sm:self-auto">
-          Components
-        </h1>
-        {showCopyControls && (
-          <CopyMarkdownButton markdown={componentsMarkdown} />
-        )}
-      </div>
-      <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
-        Every component below ships as source through the{" "}
-        <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-          @persianlabsui
-        </code>{" "}
-        registry. More are on the way.
-      </p>
-
-      {showCopyControls && (
-        <div className="mt-6 max-w-2xl">
-          <CopyCommand command={installAllCommand} />
+    <div className="mx-auto flex w-full max-w-6xl gap-10">
+      <article className="min-w-0 flex-1">
+        <div className="flex flex-col items-end justify-between gap-3 sm:flex-row sm:items-center">
+          <h1 className="self-start text-3xl font-semibold tracking-tight sm:self-auto">
+            Components
+          </h1>
+          {showCopyControls && (
+            <CopyMarkdownButton markdown={componentsMarkdown} />
+          )}
         </div>
-      )}
+        <p className="mt-4 max-w-2xl leading-relaxed text-muted-foreground">
+          Every component below ships as source through the{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+            @persianlabsui
+          </code>{" "}
+          registry. More are on the way.
+        </p>
 
-      <ComponentsGrid featured={featuredComponents} rest={restComponents} />
+        {showCopyControls && (
+          <div id="installation" className="mt-6 max-w-2xl">
+            <CopyCommand command={installAllCommand} />
+          </div>
+        )}
+
+        <div id="catalog">
+          <ComponentsGrid featured={featuredComponents} rest={restComponents} />
+        </div>
+      </article>
+
+      <aside className="hidden w-44 shrink-0 xl:block">
+        <div className="sticky top-24 h-[calc(100vh-6rem)]">
+          <TableOfContents items={visibleTocItems} />
+        </div>
+      </aside>
     </div>
   )
 }
