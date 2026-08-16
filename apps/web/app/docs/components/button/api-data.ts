@@ -25,13 +25,6 @@ export const buttonRootApi: ApiReferenceRow[] = [
       "Shows a spinner alongside the button's content and disables interaction.",
   },
   {
-    prop: "hideContentOnLoading",
-    type: "boolean",
-    default: "false",
-    description:
-      "While loading, hide the button's content and show only a centered spinner.",
-  },
-  {
     prop: "disabled",
     type: "boolean",
     default: "false",

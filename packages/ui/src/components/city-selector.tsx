@@ -11,6 +11,7 @@ import {
   ComboboxInputGroup,
   ComboboxItem,
   ComboboxList,
+  ComboboxVirtualList,
 } from "@workspace/ui/components/combobox"
 import {
   persianProvinces,
@@ -253,6 +254,10 @@ function CitySelectorCity({
       value={value.city}
       onValueChange={(city) => setValue({ ...value, city })}
       disabled={disabled || !value.province}
+      // Provinces can have 50+ cities (see persian-provinces.ts), so the
+      // city list is windowed via ComboboxVirtualList instead of mounting
+      // every item's DOM node.
+      virtualized
     >
       <ComboboxInputGroup
         className={cn("w-full sm:w-64", className)}
@@ -269,13 +274,13 @@ function CitySelectorCity({
       </ComboboxInputGroup>
       <ComboboxContent>
         <ComboboxEmpty>{strings.noCities}</ComboboxEmpty>
-        <ComboboxList>
-          {(item: PersianCity) => (
-            <ComboboxItem key={item.id} value={item}>
+        <ComboboxVirtualList>
+          {(item: PersianCity, index) => (
+            <ComboboxItem key={item.id} index={index} value={item}>
               {getCityLabel(item)}
             </ComboboxItem>
           )}
-        </ComboboxList>
+        </ComboboxVirtualList>
       </ComboboxContent>
     </Combobox>
   )

@@ -124,6 +124,8 @@ function CardNumberInput({
         dir="ltr"
         inputMode="numeric"
         autoComplete="cc-number"
+        spellCheck={false}
+        translate="no"
         value={formatCardNumber(normalized, separator)}
         onChange={(event) => {
           const count = normalizeCardNumber(
@@ -140,7 +142,7 @@ function CardNumberInput({
           )
         }}
         placeholder={`1234${separator}1234${separator}1234${separator}1234`}
-        className="font-mono tracking-wide"
+        className="font-mono text-sm tracking-wide md:text-base"
       />
       {bankLogo && <BankIdentity bank={bank} logo={bankLogo} />}
     </InputGroup>
@@ -176,6 +178,8 @@ function ShabaInput({
         dir="ltr"
         inputMode="numeric"
         autoComplete="off"
+        spellCheck={false}
+        translate="no"
         value={formatShaba(normalized, separator)}
         onChange={(event) => {
           const count = normalizeShaba(
@@ -192,7 +196,7 @@ function ShabaInput({
           )
         }}
         placeholder={`1234${separator}1234${separator}1234${separator}1234${separator}1234${separator}1234`}
-        className="font-mono tracking-wide"
+        className="font-mono text-sm tracking-wide md:text-base"
       />
       {bankLogo && <BankIdentity bank={bank} logo={bankLogo} />}
     </InputGroup>

@@ -84,7 +84,7 @@
         "utils",
         "https://ui.persian-labs.ir/r/scroll-area.json"
       ],
-      "dependencies": ["@base-ui/react"],
+      "dependencies": ["@base-ui/react", "react-virtuoso"],
       "files": [
         {
           "path": "registry/base/ui/combobox.tsx",
@@ -878,7 +878,7 @@
       "type": "registry:ui",
       "title": "Table",
       "description": "A responsive table component, with an optional card-row variant.",
-      "registryDependencies": ["utils"],
+      "registryDependencies": ["utils", "empty"],
       "dependencies": ["@base-ui/react"],
       "files": [
         {

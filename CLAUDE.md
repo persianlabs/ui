@@ -74,6 +74,22 @@ Blocks (`apps/web/app/docs/blocks`) aren't implemented yet — the nav entry is 
 - ESLint: flat config per workspace (`apps/web/eslint.config.js`, `packages/ui/eslint.config.js`) extending `@workspace/eslint-config`; `eslint-plugin-only-warn` means lint issues surface as warnings, not hard failures.
 - Every component doc page must credit where it came from via `<Credits>` (`apps/web/components/credits.tsx`), placed right under `<LastUpdated>`. Never fabricate a source, a "what changed" list, or publish status — if it isn't already known from context, ask the user for it first.
 
+## Interface guidelines
+
+Every new or edited component must be checked against Vercel's [web-interface-guidelines](https://raw.githubusercontent.com/vercel-labs/web-interface-guidelines/main/AGENTS.md) — an accessibility/performance/polish checklist covering:
+
+- **Interactions**: full keyboard support, visible `:focus-visible` rings, 24px minimum hit targets (44px on mobile), 16px minimum mobile input font-size (see the Bank Input exception below), `touch-action: manipulation` on tap targets, no blocked paste, proper `autocomplete`/`inputMode`, `spellCheck={false}` on sensitive fields, inline errors, unsaved-changes warnings.
+- **Animation**: honor `prefers-reduced-motion`, animate only `transform`/`opacity` (never layout properties like `height`/`width`), never use bare `transition`/`transition-all`, correct `transform-origin`, interruptible/input-driven gestures.
+- **Layout**: respect safe areas (`env(safe-area-inset-*)`), no unwanted scrollbars, Flex/Grid over JS measurement.
+- **Content & Accessibility**: skeletons mirror final content, `font-variant-numeric: tabular-nums` for numbers, redundant status cues beyond color, accurate `aria-label`/`aria-hidden`, text truncation paired with `min-w-0` on flex parents, locale-aware formatting, `translate="no"` on identifiers (card numbers, IBANs, shortcut keys).
+- **Performance**: virtualize lists over 50 items, prevent CLS with explicit image dimensions, minimize re-renders.
+- **Dark Mode & Hydration**: `color-scheme` set on `:root`, `theme-color` meta tag, native `<select>` needs explicit background/color, controlled `value` always paired with `onChange`.
+- **Design**: layered (ambient + direct) shadows, nested radii (child ≤ parent), prefer APCA over WCAG 2 for contrast.
+
+Two repo-specific trade-offs decided against this checklist — don't "fix" them back without asking first:
+- **Button never hides content while loading.** `loading` always renders the spinner alongside `children`, never `hideContentOnLoading`-style content-swapping — matches Vercel Geist's own Button behavior (stays focusable, keeps its label, announces busy state).
+- **Bank Input intentionally uses sub-16px text on mobile.** `CardNumberInput`/`ShabaInput` deliberately break the 16px mobile-input-size guideline so a full 16–24 digit card/IBAN number fits without wrapping or horizontal scroll; the resulting iOS zoom-on-focus is an accepted trade-off, not a bug.
+
 ## Naming conventions
 
 - **Component names**: kebab-case everywhere a slug is needed (file names, `registry.json` `name`, doc route segment, e.g. `hover-card`, `message-scroller`). The human-readable `title` and doc `<h1>` are Title Case (e.g. "Hover Card"). Component function/export names are PascalCase matching the title (`HoverCard`, `MessageScroller`).

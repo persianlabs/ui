@@ -16,6 +16,7 @@ import {
   ReceiptPrinterStatus,
 } from "@workspace/ui/components/receipt-printer"
 import type { ReceiptPrinterStage } from "@workspace/ui/components/receipt-printer"
+import { joinWithNbsp } from "@workspace/ui/lib/join-with-nbsp"
 import * as React from "react"
 
 const ReceiptPrinter = {
@@ -93,7 +94,9 @@ export function ReceiptPrinterRtlExample() {
               </div>
               <div className="mt-4 flex justify-between border-t-2 border-stone-800 pt-3">
                 <span className="text-xs font-bold">مبلغ پرداختی</span>
-                <span className="text-lg font-black">۱٬۹۹۰٬۰۰۰ تومان</span>
+                <span className="text-lg font-black">
+                  {joinWithNbsp("۱٬۹۹۰٬۰۰۰", "تومان")}
+                </span>
               </div>
               <p className="mt-5 text-center text-[9px] text-stone-500">
                 سپاس از خرید شما

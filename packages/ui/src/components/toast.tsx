@@ -119,9 +119,9 @@ function statusIconColor(type?: string) {
 function toastAppearance(variant: ToastVariant) {
   switch (variant) {
     case "x":
-      return "rounded-full border-0 bg-neutral-900 text-white shadow-xl shadow-black/25 before:hidden dark:bg-neutral-50 dark:text-neutral-900"
+      return "rounded-full border-0 bg-neutral-900 text-white shadow-[var(--shadow-elevation-lg)] before:hidden dark:bg-neutral-50 dark:text-neutral-900"
     default:
-      return "rounded-2xl border bg-[color-mix(in_srgb,var(--popover),var(--color-black)_calc(1%*max(0,var(--toast-index,0))))] text-popover-foreground not-dark:bg-clip-padding shadow-lg/5 before:rounded-[calc(var(--radius-2xl)-1px)] before:shadow-[0_1px_--theme(--color-black/4%)] data-expanded:bg-popover dark:bg-[color-mix(in_srgb,var(--popover),var(--color-black)_calc(6%*max(0,var(--toast-index,0))))] dark:data-expanded:bg-popover dark:before:shadow-[0_-1px_--theme(--color-white/6%)]"
+      return "rounded-2xl border bg-[color-mix(in_srgb,var(--popover),var(--color-black)_calc(1%*max(0,var(--toast-index,0))))] text-popover-foreground not-dark:bg-clip-padding shadow-[var(--shadow-elevation-md)] before:hidden data-expanded:bg-popover dark:bg-[color-mix(in_srgb,var(--popover),var(--color-black)_calc(6%*max(0,var(--toast-index,0))))] dark:data-expanded:bg-popover"
   }
 }
 

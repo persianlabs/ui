@@ -75,8 +75,14 @@ function SelectTrigger({
   )
 }
 
-function SelectValue(props: SelectPrimitive.Value.Props) {
-  return <SelectPrimitive.Value data-slot="select-value" {...props} />
+function SelectValue({ className, ...props }: SelectPrimitive.Value.Props) {
+  return (
+    <SelectPrimitive.Value
+      data-slot="select-value"
+      className={cn("min-w-0 truncate", className)}
+      {...props}
+    />
+  )
 }
 
 function SelectContent({
