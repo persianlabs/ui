@@ -52,6 +52,7 @@ import {
   PopoverPreview,
   PriceInputPreview,
   ProgressPreview,
+  QrCodePreview,
   RadioGroupPreview,
   ReceiptPrinterPreview,
   ResizablePreview,
@@ -899,6 +900,19 @@ const components = [
     thumbnail: (
       <ThumbnailFrame>
         <PasswordInputPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "QR Code",
+    href: "/docs/components/qr-code" as const,
+    description:
+      "A flexible QR code generator with square/dotted module shapes, solid or gradient fills, and a center logo overlay.",
+    badge: "New",
+    createdAt: "2026-08-16",
+    thumbnail: (
+      <ThumbnailFrame>
+        <QrCodePreview />
       </ThumbnailFrame>
     ),
   },

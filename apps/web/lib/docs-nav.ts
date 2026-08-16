@@ -118,6 +118,11 @@ export const docsNav: DocsNavGroup[] = [
         badge: "New",
       },
       { title: "Progress", href: "/docs/components/progress" },
+      {
+        title: "QR Code",
+        href: "/docs/components/qr-code",
+        badge: "New",
+      },
       { title: "Radio Group", href: "/docs/components/radio-group" },
       {
         title: "Receipt Printer",
