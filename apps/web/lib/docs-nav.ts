@@ -106,6 +106,11 @@ export const docsNav: DocsNavGroup[] = [
       },
       { title: "Native Select", href: "/docs/components/native-select" },
       { title: "Pagination", href: "/docs/components/pagination" },
+      {
+        title: "Password Input",
+        href: "/docs/components/password-input",
+        badge: "New",
+      },
       { title: "Popover", href: "/docs/components/popover" },
       {
         title: "Price Input",
