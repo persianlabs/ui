@@ -1,5 +1,5 @@
 import { Analytics } from "@vercel/analytics/next"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono, Vazirmatn } from "next/font/google"
 
 import "@workspace/ui/globals.css"
@@ -56,6 +56,18 @@ export const metadata: Metadata = {
     description:
       "An open-source, RTL-first component library you copy, paste, and own.",
   },
+}
+
+// Matches the `--background` token in packages/ui/src/styles/globals.css
+// for light and dark (`.dark`) themes.
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "oklch(1 0 0)" },
+    {
+      media: "(prefers-color-scheme: dark)",
+      color: "oklch(0.191 0 89.9)",
+    },
+  ],
 }
 
 export default function RootLayout({

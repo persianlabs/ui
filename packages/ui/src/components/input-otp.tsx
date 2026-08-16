@@ -21,6 +21,8 @@ import { cn } from "@workspace/ui/lib/utils"
 function InputOTP({
   className,
   containerClassName,
+  autoComplete = "one-time-code",
+  spellCheck = false,
   ...props
 }: React.ComponentProps<typeof OTPInput>) {
   return (
@@ -31,6 +33,8 @@ function InputOTP({
           containerClassName
         )}
         className={cn("disabled:cursor-not-allowed", className)}
+        autoComplete={autoComplete}
+        spellCheck={spellCheck}
         {...props}
       />
     </div>
@@ -60,7 +64,7 @@ function InputOTPSlot({
       data-slot="input-otp-slot"
       data-active={isActive || undefined}
       className={cn(
-        "relative flex h-9 w-9 items-center justify-center border-y border-e border-input text-sm outline-none first:rounded-s-lg first:border-s last:rounded-e-lg aria-invalid:border-destructive data-[active]:z-10 data-[active]:border-ring data-[active]:ring-3 data-[active]:ring-ring/50 dark:bg-input/30",
+        "relative flex h-9 w-9 items-center justify-center border-y border-e border-input text-base outline-none first:rounded-s-lg first:border-s last:rounded-e-lg aria-invalid:border-destructive data-[active]:z-10 data-[active]:border-ring data-[active]:ring-3 data-[active]:ring-ring/50 md:text-sm dark:bg-input/30",
         className
       )}
       {...props}

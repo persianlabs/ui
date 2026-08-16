@@ -23,7 +23,6 @@ import { ButtonGroupDemoExample } from "@/components/examples/button-group-demo"
 import { ButtonIconExample } from "@/components/examples/button-icon"
 import { ButtonLinkExample } from "@/components/examples/button-link"
 import { ButtonLoadingExample } from "@/components/examples/button-loading"
-import { ButtonLoadingHideContentExample } from "@/components/examples/button-loading-hide-content"
 import { ButtonOutlineExample } from "@/components/examples/button-outline"
 import { ButtonRenderExample } from "@/components/examples/button-render"
 import { ButtonRoundedExample } from "@/components/examples/button-rounded"
@@ -97,7 +96,7 @@ export const buttonMarkdown = [
   "",
   "## Loading",
   "",
-  "Pass `loading` to show a spinner alongside the button's content and disable interaction. Pass `hideContentOnLoading` too to hide the content and show only a centered spinner instead.",
+  "Pass `loading` to show a spinner alongside the button's content and disable interaction. The content always stays visible — the button never hides its label while loading.",
   "",
   "## Installation",
   "",
@@ -434,25 +433,6 @@ export default function ButtonDocPage() {
               code={
                 <CodeBlock
                   code={getExampleSource("button-loading")}
-                  lang="tsx"
-                />
-              }
-            />
-          </div>
-
-          <p className="mt-6 leading-relaxed text-muted-foreground">
-            Add{" "}
-            <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-              hideContentOnLoading
-            </code>{" "}
-            to hide the content instead and show only a centered spinner.
-          </p>
-          <div className="mt-3">
-            <ComponentPreview
-              preview={<ButtonLoadingHideContentExample />}
-              code={
-                <CodeBlock
-                  code={getExampleSource("button-loading-hide-content")}
                   lang="tsx"
                 />
               }

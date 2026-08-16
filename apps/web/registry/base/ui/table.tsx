@@ -2,6 +2,7 @@ import { mergeProps } from "@base-ui/react/merge-props"
 import { useRender } from "@base-ui/react/use-render"
 import type * as React from "react"
 
+import { Empty } from "@/components/ui/empty"
 import { cn } from "@/lib/utils"
 
 export type TableVariant = "default" | "card"
@@ -56,8 +57,7 @@ function TableBody({ className, ...props }: React.ComponentProps<"tbody">) {
     <tbody
       data-slot="table-body"
       className={cn(
-        "relative in-data-[variant=card]:rounded-xl in-data-[variant=card]:shadow-xs/5",
-        "before:pointer-events-none before:absolute before:inset-px before:rounded-[calc(var(--radius-xl)-1px)] before:shadow-[0_1px_rgba(0,0,0,0.04)] not-in-data-[variant=card]:before:hidden dark:before:shadow-[0_-1px_rgba(255,255,255,0.08)]",
+        "relative in-data-[variant=card]:rounded-xl in-data-[variant=card]:shadow-[var(--shadow-elevation-sm)]",
         "[&_tr:last-child]:border-0",
         "in-data-[variant=card]:*:[tr]:border-0",
         "in-data-[variant=card]:*:[tr]:*:[td]:border-b in-data-[variant=card]:*:[tr]:*:[td]:bg-card",
@@ -125,6 +125,36 @@ function TableCell({ className, ...props }: React.ComponentProps<"td">) {
   )
 }
 
+function TableEmpty({
+  colSpan,
+  className,
+  children,
+  ...props
+}: React.ComponentProps<"tr"> & {
+  /** Number of columns for the empty row's cell to span. */
+  colSpan: number
+}) {
+  return (
+    <TableRow
+      data-slot="table-empty"
+      className={cn(
+        "not-in-data-[variant=card]:hover:bg-transparent dark:not-in-data-[variant=card]:hover:bg-transparent",
+        className
+      )}
+      {...props}
+    >
+      <TableCell
+        colSpan={colSpan}
+        className="h-auto p-0 whitespace-normal in-data-[variant=card]:first:ps-0 in-data-[variant=card]:last:pe-0"
+      >
+        <Empty className="rounded-none border-none p-6 md:p-10">
+          {children}
+        </Empty>
+      </TableCell>
+    </TableRow>
+  )
+}
+
 function TableCaption({
   className,
   ...props
@@ -149,5 +179,6 @@ export {
   TableHead,
   TableRow,
   TableCell,
+  TableEmpty,
   TableCaption,
 }

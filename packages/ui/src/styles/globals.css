@@ -77,9 +77,30 @@ html.preview-loading body {
   --color-line: color-mix(in oklab, var(--border) 64%, var(--background));
 }
 
+/*
+ * Shared layered (ambient + direct) shadow tokens for raised surfaces —
+ * card-like rows/panels (sm), floating panels like toasts (md), and heavier
+ * "always-elevated" surfaces like the toast `x` variant (lg). Each combines
+ * a soft, wide-blur ambient layer with a tighter 1px direct edge highlight,
+ * so surfaces read as lit from above rather than just blurred. Values are
+ * carried over from the hand-rolled shadows they replace in table.tsx and
+ * toast.tsx, not new numbers, so migrating to them shouldn't shift anything
+ * visually. Consume via `shadow-[var(--shadow-elevation-sm)]` etc. — these
+ * are intentionally NOT named `--shadow-sm/md/lg`, which would silently
+ * redefine Tailwind's own default `shadow-sm/md/lg` utilities used
+ * elsewhere (popover, dialog, sheet, dropdown-menu, and more).
+ */
+
 :root,
 .light {
+  color-scheme: light;
   --radius: 0.625rem;
+  --shadow-elevation-sm: 0 1px 2px 0 rgb(0 0 0 / 5%), 0 1px 0 0 rgb(0 0 0 / 4%);
+  --shadow-elevation-md:
+    0 10px 15px -3px rgb(0 0 0 / 5%), 0 4px 6px -4px rgb(0 0 0 / 5%),
+    0 1px 0 0 rgb(0 0 0 / 4%);
+  --shadow-elevation-lg:
+    0 20px 25px -5px rgb(0 0 0 / 25%), 0 8px 10px -6px rgb(0 0 0 / 25%);
   --background: var(--color-white);
   --foreground: var(--color-neutral-800);
   --card: var(--color-white);
@@ -129,6 +150,12 @@ html.preview-loading body {
 }
 
 .dark {
+  color-scheme: dark;
+  --shadow-elevation-sm:
+    0 1px 2px 0 rgb(0 0 0 / 5%), 0 -1px 0 0 rgb(255 255 255 / 8%);
+  --shadow-elevation-md:
+    0 10px 15px -3px rgb(0 0 0 / 5%), 0 4px 6px -4px rgb(0 0 0 / 5%),
+    0 -1px 0 0 rgb(255 255 255 / 6%);
   --background: oklch(0.191 0 89.9);
   --foreground: oklch(0.917 0.013 82.4);
   --card: oklch(0.226 0 89.9);
@@ -196,6 +223,17 @@ html.preview-loading body {
   }
   ::selection {
     @apply bg-foreground text-background;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
