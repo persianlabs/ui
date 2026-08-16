@@ -48,6 +48,7 @@ import {
   MessageScrollerPreview,
   NativeSelectPreview,
   PaginationPreview,
+  PasswordInputPreview,
   PopoverPreview,
   PriceInputPreview,
   ProgressPreview,
@@ -885,6 +886,19 @@ const components = [
     thumbnail: (
       <ThumbnailFrame>
         <PriceInputPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Password Input",
+    href: "/docs/components/password-input" as const,
+    description:
+      "A password input with a show/hide toggle that always renders LTR, regardless of the surrounding document direction.",
+    badge: "New",
+    createdAt: "2026-08-16",
+    thumbnail: (
+      <ThumbnailFrame>
+        <PasswordInputPreview />
       </ThumbnailFrame>
     ),
   },

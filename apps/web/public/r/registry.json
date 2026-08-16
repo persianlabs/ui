@@ -959,6 +959,24 @@
       ]
     },
     {
+      "name": "password-input",
+      "type": "registry:ui",
+      "title": "Password Input",
+      "description": "A password input with a show/hide toggle that always renders LTR, regardless of the surrounding document direction.",
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/button.json",
+        "https://ui.persian-labs.ir/r/input-group.json"
+      ],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "registry/base/ui/password-input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "toast",
       "type": "registry:ui",
       "title": "Toast",
