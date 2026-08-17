@@ -30,9 +30,12 @@
 
 ## What is PersianLabs/ui?
 
-PersianLabs/ui is a small component library built RTL-first for Persian interfaces — logical properties, mirrored icons, and a Vazirmatn font fallback for Persian text in this project's docs site, with full LTR support too.
+PersianLabs/ui is an RTL-first component registry for Persian interfaces — logical properties and mirrored icons by default, with full LTR support too. It's built on [Base UI](https://base-ui.com) and Tailwind v4, and ships as plain React source through a [shadcn-compatible registry](https://ui.shadcn.com/docs/registry), not an npm package. There's no version to chase — components land straight in your codebase, so you can read, extend, and refactor every line.
 
-Every component ships as plain React and Tailwind, distributed through a [shadcn-compatible registry](https://ui.shadcn.com/docs/registry). There's no package to install and no version to chase — components land straight in your codebase, so you can read, extend, and refactor every line.
+The registry currently covers **75+ components**, **10 utilities**, and **6 hooks**, split across two kinds of coverage:
+
+- **Most of the shadcn/Base UI catalog** — Accordion, Dialog, Command, Select, Slider, Tabs, Toast, and most everything else you'd expect from a general-purpose registry, RTL-converted where it matters (directional spacing, mirrored icons, logical properties) and left untouched where it doesn't. A handful of newer shadcn components (Carousel, Data Table, Navigation Menu, Sidebar) aren't ported yet — their docs pages link out to shadcn's own in the meantime.
+- **Iranian/Persian-specific pieces you won't find upstream** — Bank Input and the Iranian Bank utility (card/Shaba validation and bank detection), City Selector (province → city), Calendar/Date Picker/Time Picker on the Jalali calendar, Toman Icon, Receipt Printer, QR Code, Mobile Number Input, and validators/formatters for National ID, Postal Code, Persian Date, Persian Holidays, Persian Slug, and Persian Reshape (fixes Persian text rendering in `next/og` OG images, which don't shape Arabic/Persian script on their own).
 
 ## Install a component
 
@@ -69,12 +72,26 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Checks
 
+Run these before pushing — resolve any errors and include Prettier's formatting changes in the same commit.
+
 ```bash
 bun run typecheck
 bun run lint
+bun run format
 bun run build
 ```
 
+## Project structure
+
+This is a Turborepo monorepo (bun workspaces). Every component and utility is maintained in **two parallel copies**, kept in sync by design:
+
+| Path | What it is |
+| --- | --- |
+| `packages/ui/src/components`, `packages/ui/src/lib` | The internal `@workspace/ui` package — used by `apps/web` itself for the docs site's own previews and examples. |
+| `apps/web/registry/base/ui`, `apps/web/registry/base/lib` | The consumer-ready source — what `registry.json` points at, what `shadcn build` compiles into `apps/web/public/r/*.json`, and what actually ships when someone runs the install command. |
+| `apps/web/registry.json` | The registry manifest — source of truth for what's installable and its dependency graph. |
+| `apps/web/app/docs` | The docs site (Next.js 16) — component pages, live previews, and the registry JSON server. |
+
 ## Contributing
 
-Components live in `packages/ui/src/components`, docs and examples in `apps/web`, and registry entries in `apps/web/registry.json`.
+PRs are welcome. See [CLAUDE.md](./CLAUDE.md) for the full checklist on adding or editing a registry component end-to-end (both source copies, registry entry, docs page, examples, RTL section, credits), naming conventions, and repo-specific pitfalls worth knowing before you start.

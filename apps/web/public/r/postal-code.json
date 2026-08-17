@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "postal-code",
+  "title": "Postal Code",
+  "description": "Validates the structural format of Iranian postal codes (کد پستی).",
+  "registryDependencies": [
+    "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+  ],
+  "files": [
+    {
+      "path": "registry/base/lib/postal-code.ts",
+      "content": "import { normalizePersianDigits } from \"@/lib/normalize-persian-digits\"\n\n/**\n * Validates the basic shape of an Iranian postal code (کد پستی): exactly 10\n * digits, not starting with 0, and not a single digit repeated 10 times\n * (a common placeholder/typo pattern rejected by most Iranian postal-code\n * forms). This is a structural check only — Iran Post does not publish a\n * checksum algorithm for postal codes, so no stricter digit-checksum rule\n * is applied here.\n */\nexport function isValidPostalCode(value: string | null | undefined) {\n  const digits = normalizePersianDigits(value ?? \"\").replace(/\\D/g, \"\")\n\n  if (!/^[1-9]\\d{9}$/.test(digits)) return false\n  if (/^(\\d)\\1{9}$/.test(digits)) return false\n\n  return true\n}\n",
+      "type": "registry:lib"
+    }
+  ],
+  "type": "registry:lib"
+}
