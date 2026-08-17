@@ -5,6 +5,8 @@
  * thumbnails on /docs/components).
  */
 
+import { reshapePersian } from "@workspace/ui/lib/persian-reshape"
+
 function ChevronDownGlyph({ size = 16 }: { size?: number }) {
   return (
     <svg
@@ -864,6 +866,58 @@ export function ProgressPreview() {
           height: "100%",
           backgroundColor: "#f2f0ee",
           borderRadius: "999px",
+        }}
+      />
+    </div>
+  )
+}
+
+export function SliderPreview() {
+  // Unfilled track on the left, filled portion on the right, thumb sitting
+  // right at the far edge of the fill — not at the fill/unfilled boundary.
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        width: "220px",
+        height: "16px",
+        position: "relative",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "flex-end",
+          width: "100%",
+          height: "6px",
+          borderRadius: "999px",
+          backgroundColor: "rgba(242,240,238,0.16)",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            width: "72%",
+            height: "100%",
+            backgroundColor: "#f2f0ee",
+            borderRadius: "999px",
+          }}
+        />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          position: "absolute",
+          top: "1px",
+          left: "34%",
+          marginLeft: "-16px",
+          width: "16px",
+          height: "16px",
+          borderRadius: "999px",
+          backgroundColor: "#191817",
+          border: "2px solid #f2f0ee",
         }}
       />
     </div>
@@ -2832,6 +2886,43 @@ export function NormalizePersianDigitsPreview() {
   )
 }
 
+export function PersianSlugPreview() {
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
+      <div
+        dir="rtl"
+        style={{
+          display: "flex",
+          fontSize: "24px",
+          color: "rgba(242,240,238,0.5)",
+        }}
+      >
+        {reshapePersian("راهنمای خرید")}
+      </div>
+      <div
+        style={{
+          display: "flex",
+          fontSize: "24px",
+          color: "rgba(242,240,238,0.4)",
+        }}
+      >
+        →
+      </div>
+      <div
+        dir="rtl"
+        style={{
+          display: "flex",
+          fontSize: "22px",
+          fontWeight: 700,
+          color: "#f2f0ee",
+        }}
+      >
+        {reshapePersian("راهنمای-خرید")}
+      </div>
+    </div>
+  )
+}
+
 export function UseControllableStatePreview() {
   return (
     <div
@@ -3496,6 +3587,45 @@ export function PasswordInputPreview() {
   )
 }
 
+export function MobileNumberInputPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        width: "100%",
+        maxWidth: "440px",
+        alignItems: "center",
+        gap: "14px",
+        padding: "22px 28px",
+        border: "1px solid rgba(242,240,238,0.16)",
+        borderRadius: "16px",
+        color: "#f2f0ee",
+        fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
+        fontSize: "28px",
+        letterSpacing: "0.04em",
+      }}
+    >
+      <div style={{ display: "flex", flex: 1, justifyContent: "flex-start" }}>
+        0912 123 4567
+      </div>
+      <svg
+        aria-hidden="true"
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#10b981"
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{ display: "flex", flexShrink: 0 }}
+      >
+        <path d="M20 6 9 17l-5-5" />
+      </svg>
+    </div>
+  )
+}
+
 export function QrCodePreview() {
   return (
     <div
@@ -3535,6 +3665,81 @@ export function QrCodePreview() {
         <path d="M21 12v.01" />
         <path d="M12 21v-1" />
       </svg>
+    </div>
+  )
+}
+
+export function QuestionnairePreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "22px",
+        width: "260px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          height: "8px",
+          width: "100%",
+          borderRadius: "999px",
+          backgroundColor: "rgba(242,240,238,0.16)",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            width: "60%",
+            borderRadius: "999px",
+            backgroundColor: "#f2f0ee",
+          }}
+        />
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+        {["Developer", "Designer"].map((label, i) => (
+          <div
+            key={label}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "12px",
+              borderRadius: "16px",
+              border: `2px solid ${i === 0 ? "#f2f0ee" : "rgba(242,240,238,0.16)"}`,
+              padding: "12px 16px",
+              fontSize: "19px",
+              color: "#f2f0ee",
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "20px",
+                height: "20px",
+                borderRadius: "999px",
+                border: `2px solid ${i === 0 ? "#f2f0ee" : "rgba(242,240,238,0.4)"}`,
+                backgroundColor: i === 0 ? "#f2f0ee" : "transparent",
+              }}
+            >
+              {i === 0 && (
+                <div
+                  style={{
+                    display: "flex",
+                    width: "8px",
+                    height: "8px",
+                    borderRadius: "999px",
+                    backgroundColor: "#191817",
+                  }}
+                />
+              )}
+            </div>
+            {label}
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

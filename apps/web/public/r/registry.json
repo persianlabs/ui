@@ -999,6 +999,23 @@
       ]
     },
     {
+      "name": "questionnaire",
+      "type": "registry:ui",
+      "title": "Questionnaire",
+      "description": "A multi-step questionnaire with single-choice, multiple-choice, freeform, and skippable questions, built on @shadcn/react.",
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/button.json"
+      ],
+      "dependencies": ["@shadcn/react"],
+      "files": [
+        {
+          "path": "registry/base/ui/questionnaire.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "toast",
       "type": "registry:ui",
       "title": "Toast",
@@ -1150,6 +1167,34 @@
         },
         {
           "path": "registry/base/lib/persian-holidays-data.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "persian-slug",
+      "type": "registry:lib",
+      "title": "Persian Slug",
+      "description": "Converts Persian/mixed Persian+English text into a URL-safe slug, keeping Persian script by default or transliterating to Latin/ASCII.",
+      "registryDependencies": [
+        "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+      ],
+      "files": [
+        {
+          "path": "registry/base/lib/persian-slug.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "persian-reshape",
+      "type": "registry:lib",
+      "title": "Persian Reshape",
+      "description": "Pre-shapes Persian/Arabic text into joined Unicode presentation-form codepoints so it renders correctly in Satori/next-og images, which don't shape connected scripts on their own.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/base/lib/persian-reshape.ts",
           "type": "registry:lib"
         }
       ]
@@ -1317,6 +1362,87 @@
         {
           "path": "registry/base/hooks/use-media-query.ts",
           "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "An input where the user selects a value from within a given range, built on Base UI.",
+      "registryDependencies": ["utils"],
+      "dependencies": ["@base-ui/react"],
+      "files": [
+        {
+          "path": "registry/base/ui/slider.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "iranian-mobile",
+      "type": "registry:lib",
+      "title": "Iranian Mobile",
+      "description": "Iranian mobile phone number normalization, validation, and masking.",
+      "registryDependencies": [
+        "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+      ],
+      "files": [
+        {
+          "path": "registry/base/lib/iranian-mobile.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "mobile-number-input",
+      "type": "registry:ui",
+      "title": "Mobile Number Input",
+      "description": "An Iranian mobile number input that normalizes mixed paste formats and Persian digits, with a redundant validity indicator.",
+      "registryDependencies": [
+        "utils",
+        "https://ui.persian-labs.ir/r/input-group.json",
+        "https://ui.persian-labs.ir/r/iranian-mobile.json"
+      ],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "registry/base/ui/mobile-number-input.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base/hooks/use-controllable-state.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "national-id",
+      "type": "registry:lib",
+      "title": "National ID",
+      "description": "Validates Iranian national ID (کد ملی) numbers using the standard 10-digit checksum.",
+      "registryDependencies": [
+        "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+      ],
+      "files": [
+        {
+          "path": "registry/base/lib/national-id.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "postal-code",
+      "type": "registry:lib",
+      "title": "Postal Code",
+      "description": "Validates the structural format of Iranian postal codes (کد پستی).",
+      "registryDependencies": [
+        "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+      ],
+      "files": [
+        {
+          "path": "registry/base/lib/postal-code.ts",
+          "type": "registry:lib"
         }
       ]
     }

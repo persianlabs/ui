@@ -46,6 +46,7 @@ import {
   MenubarPreview,
   MessagePreview,
   MessageScrollerPreview,
+  MobileNumberInputPreview,
   NativeSelectPreview,
   PaginationPreview,
   PasswordInputPreview,
@@ -53,6 +54,7 @@ import {
   PriceInputPreview,
   ProgressPreview,
   QrCodePreview,
+  QuestionnairePreview,
   RadioGroupPreview,
   ReceiptPrinterPreview,
   ResizablePreview,
@@ -64,6 +66,7 @@ import {
   SeparatorPreview,
   SheetPreview,
   SkeletonPreview,
+  SliderPreview,
   SpinnerPreview,
   SwitchPreview,
   TablePreview,
@@ -753,6 +756,19 @@ const components = [
     ),
   },
   {
+    title: "Mobile Number Input",
+    href: "/docs/components/mobile-number-input" as const,
+    description:
+      "An Iranian mobile number input that normalizes mixed paste formats and Persian digits, with a redundant validity indicator.",
+    badge: "New",
+    createdAt: "2026-08-17",
+    thumbnail: (
+      <ThumbnailFrame>
+        <MobileNumberInputPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
     title: "Pagination",
     href: "/docs/components/pagination" as const,
     description: "Navigation for paginated content, built on Button.",
@@ -917,6 +933,19 @@ const components = [
     ),
   },
   {
+    title: "Questionnaire",
+    href: "/docs/components/questionnaire" as const,
+    description:
+      "A multi-step questionnaire with single-choice, multiple-choice, freeform, and skippable questions, built on @shadcn/react.",
+    badge: "New",
+    createdAt: "2026-08-17",
+    thumbnail: (
+      <ThumbnailFrame>
+        <QuestionnairePreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
     title: "Toman Icon",
     href: "/docs/components/toman-icon" as const,
     description: "The Toman currency symbol, as a standalone icon component.",
@@ -951,6 +980,19 @@ const components = [
     thumbnail: (
       <ThumbnailFrame>
         <CopyButtonPreview />
+      </ThumbnailFrame>
+    ),
+  },
+  {
+    title: "Slider",
+    href: "/docs/components/slider" as const,
+    description:
+      "An input where the user selects a value from within a given range, built on Base UI.",
+    badge: "New",
+    createdAt: "2026-08-17",
+    thumbnail: (
+      <ThumbnailFrame>
+        <SliderPreview />
       </ThumbnailFrame>
     ),
   },

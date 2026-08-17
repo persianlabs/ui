@@ -8,6 +8,7 @@ import { ArrowRightIcon, CopyIcon, SearchIcon } from "lucide-react"
 import { Input } from "@workspace/ui/components/input"
 import { Checkbox } from "@workspace/ui/components/checkbox"
 import { Hitbox } from "@workspace/ui/components/hitbox"
+import { reshapePersian } from "@workspace/ui/lib/persian-reshape"
 
 import { docsNav, type DocsNavItem } from "@/lib/docs-nav"
 
@@ -32,6 +33,12 @@ const utilityDescriptions: Record<string, string> = {
     "Zod schemas that coerce and validate dates and reservation-style ranges.",
   "Persian Holidays":
     "Looks up official, religious, and cultural Iranian holidays.",
+  "Persian Slug": "Converts Persian/mixed text into a URL-safe slug.",
+  "Persian Reshape":
+    "Pre-shapes Persian text so it renders correctly in Satori/OG images.",
+  "National ID":
+    "Validates Iranian national ID checksums and issuance prefixes.",
+  "Postal Code": "Validates the structural format of Iranian postal codes.",
   useDate: "A reactive current date/time hook with calendar support.",
   useTimeAgo: 'A reactive relative-time formatter, like "۲ روز پیش".',
 }
@@ -187,6 +194,94 @@ export function UtilityPreview({ item }: { item: DocsNavItem }) {
                 }`}
               />
             ))}
+          </div>
+        </div>
+      )
+    case "Persian Slug":
+      return (
+        <div className="flex h-full items-center justify-center gap-3 bg-card font-mono">
+          <span dir="rtl" className="rounded-md bg-muted px-2 py-1 text-sm">
+            راهنمای خرید
+          </span>
+          <ArrowRightIcon className="size-3.5 text-muted-foreground" />
+          <span
+            dir="ltr"
+            className="rounded-md border border-border bg-background px-2 py-1 text-sm"
+          >
+            راهنمای-خرید
+          </span>
+        </div>
+      )
+    case "Persian Reshape":
+      return (
+        <div className="flex h-full items-center justify-center gap-3 bg-card p-5">
+          <div className="w-24 rounded-lg border border-border bg-background p-3 text-center shadow-sm">
+            <p className="text-[9px] font-medium tracking-wide text-muted-foreground uppercase">
+              Before
+            </p>
+            <p
+              dir="rtl"
+              className="mt-1.5 text-sm text-muted-foreground"
+              style={{
+                fontFeatureSettings: '"liga" 0, "clig" 0, "calt" 0, "rlig" 0',
+                fontVariantLigatures: "none",
+              }}
+            >
+              خرید
+            </p>
+          </div>
+          <ArrowRightIcon className="size-3.5 text-muted-foreground" />
+          <div className="w-24 rounded-lg border border-border bg-background p-3 text-center shadow-sm">
+            <p className="text-[9px] font-medium tracking-wide text-muted-foreground uppercase">
+              After
+            </p>
+            <p dir="rtl" className="mt-1.5 text-sm font-medium">
+              {reshapePersian("خرید")}
+            </p>
+          </div>
+        </div>
+      )
+    case "National ID":
+      return (
+        <div className="flex h-full items-center justify-center bg-card p-5">
+          <div className="w-52 rounded-xl border border-border bg-background p-4 shadow-sm">
+            <p className="text-[10px] font-medium tracking-wide text-muted-foreground uppercase">
+              کد ملی
+            </p>
+            <code
+              dir="ltr"
+              className="mt-3 block font-mono text-sm tracking-wide"
+            >
+              0499370899
+            </code>
+            <p
+              className="mt-3 text-right text-xs font-medium text-emerald-600 dark:text-emerald-400"
+              dir="rtl"
+            >
+              کد ملی معتبر
+            </p>
+          </div>
+        </div>
+      )
+    case "Postal Code":
+      return (
+        <div className="flex h-full items-center justify-center bg-card p-5">
+          <div className="w-52 rounded-xl border border-border bg-background p-4 shadow-sm">
+            <p className="text-[10px] font-medium tracking-wide text-muted-foreground uppercase">
+              کد پستی
+            </p>
+            <code
+              dir="ltr"
+              className="mt-3 block font-mono text-sm tracking-wide"
+            >
+              1985813151
+            </code>
+            <p
+              className="mt-3 text-right text-xs font-medium text-emerald-600 dark:text-emerald-400"
+              dir="rtl"
+            >
+              کد پستی معتبر
+            </p>
           </div>
         </div>
       )

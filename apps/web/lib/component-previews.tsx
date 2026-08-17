@@ -881,6 +881,54 @@ export function ProgressPreview() {
   )
 }
 
+export function SliderPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        width: "220px",
+        height: "16px",
+        position: "relative",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          width: "100%",
+          height: "6px",
+          borderRadius: "999px",
+          backgroundColor: preview.muted,
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            width: "40%",
+            height: "100%",
+            backgroundColor: preview.primary,
+            borderRadius: "999px",
+          }}
+        />
+      </div>
+      <div
+        style={{
+          display: "flex",
+          position: "absolute",
+          top: "1px",
+          left: "calc(40% - 7px)",
+          width: "16px",
+          height: "16px",
+          borderRadius: "999px",
+          backgroundColor: preview.background,
+          border: `2px solid ${preview.primary}`,
+        }}
+      />
+    </div>
+  )
+}
+
 export function CollapsiblePreview() {
   return (
     <div
@@ -2978,6 +3026,45 @@ export function PasswordInputPreview() {
   )
 }
 
+export function MobileNumberInputPreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        width: "100%",
+        maxWidth: "220px",
+        alignItems: "center",
+        gap: "8px",
+        padding: "10px 14px",
+        border: `1px solid ${preview.border}`,
+        borderRadius: "9px",
+        color: preview.foreground,
+        fontFamily: "monospace",
+        fontSize: "13px",
+        letterSpacing: "0.04em",
+      }}
+    >
+      <div style={{ display: "flex", flex: 1, justifyContent: "flex-start" }}>
+        0912 123 4567
+      </div>
+      <svg
+        aria-hidden="true"
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke={preview.success}
+        strokeWidth={2}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        style={{ display: "flex", flexShrink: 0 }}
+      >
+        <path d="M20 6 9 17l-5-5" />
+      </svg>
+    </div>
+  )
+}
+
 export function QrCodePreview() {
   return (
     <div
@@ -3017,6 +3104,81 @@ export function QrCodePreview() {
         <path d="M21 12v.01" />
         <path d="M12 21v-1" />
       </svg>
+    </div>
+  )
+}
+
+export function QuestionnairePreview() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "14px",
+        width: "160px",
+      }}
+    >
+      <div
+        style={{
+          display: "flex",
+          height: "5px",
+          width: "100%",
+          borderRadius: "999px",
+          backgroundColor: preview.muted,
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            width: "60%",
+            borderRadius: "999px",
+            backgroundColor: preview.primary,
+          }}
+        />
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+        {["Developer", "Designer"].map((label, i) => (
+          <div
+            key={label}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              borderRadius: "10px",
+              border: `1px solid ${i === 0 ? preview.primary : preview.border}`,
+              padding: "7px 10px",
+              fontSize: "12px",
+              color: preview.foreground,
+            }}
+          >
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "13px",
+                height: "13px",
+                borderRadius: "999px",
+                border: `1px solid ${i === 0 ? preview.primary : preview.border}`,
+                backgroundColor: i === 0 ? preview.primary : "transparent",
+              }}
+            >
+              {i === 0 && (
+                <div
+                  style={{
+                    display: "flex",
+                    width: "5px",
+                    height: "5px",
+                    borderRadius: "999px",
+                    backgroundColor: preview.background,
+                  }}
+                />
+              )}
+            </div>
+            {label}
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
