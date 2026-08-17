@@ -153,7 +153,7 @@ export function ComponentPreview({
         ? "min-h-0 flex-1 [align-items:safe_center] justify-center overflow-auto p-6 pb-28 sm:p-12 sm:pb-28"
         : "min-h-0 flex-1 items-stretch justify-stretch overflow-auto p-0"
       : kind === "component"
-        ? "min-h-56 items-center justify-center p-8"
+        ? "min-h-56 items-center justify-center p-8 pt-12"
         : "min-h-56 items-stretch justify-stretch p-0"
   )
 
