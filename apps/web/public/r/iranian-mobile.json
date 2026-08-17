@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "iranian-mobile",
+  "title": "Iranian Mobile",
+  "description": "Iranian mobile phone number normalization, validation, and masking.",
+  "registryDependencies": [
+    "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+  ],
+  "files": [
+    {
+      "path": "registry/base/lib/iranian-mobile.ts",
+      "content": "import { normalizePersianDigits } from \"@/lib/normalize-persian-digits\"\n\n/**\n * Normalizes an Iranian mobile phone number to the standard 11-digit local\n * format: 09xxxxxxxxx. Accepts +989121234567, 989121234567, 09121234567,\n * 9121234567, Persian/Arabic-Indic digits, and separators like spaces,\n * dashes, dots, or parentheses. Falls back to the cleaned numeric digits\n * when the value can't be shaped into a valid Iranian mobile number.\n */\nexport function normalizeIranPhone(phone: string | null | undefined) {\n  let value = normalizePersianDigits(phone ?? \"\").trim()\n  value = value.replace(/[\\s\\-().]/g, \"\")\n  if (value.startsWith(\"+98\")) value = value.slice(3)\n  else if (value.startsWith(\"0098\")) value = value.slice(4)\n  else if (value.startsWith(\"98\")) value = value.slice(2)\n  if (/^09\\d{9}$/.test(value)) return value\n  if (/^9\\d{9}$/.test(value)) return `0${value}`\n  return value.replace(/\\D/g, \"\")\n}\n\n/** Validates that the normalized value matches the 09xxxxxxxxx shape. */\nexport function isValidIranPhone(phone: string | null | undefined) {\n  return /^09\\d{9}$/.test(normalizeIranPhone(phone))\n}\n\n/** Masks a phone number, showing only the first 3 and last 4 digits. */\nexport function maskIranPhone(phone: string | null | undefined) {\n  const normalized = normalizeIranPhone(phone)\n  if (!normalized) return phone ?? \"\"\n  return `${normalized.slice(0, 3)}***${normalized.slice(-4)}`\n}\n",
+      "type": "registry:lib"
+    }
+  ],
+  "type": "registry:lib"
+}
