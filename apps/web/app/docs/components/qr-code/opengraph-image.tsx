@@ -8,7 +8,7 @@ export const contentType = "image/png"
 export default function OpengraphImage() {
   return buildOgImage(
     "QR Code",
-    "A flexible QR code builder with shape variants, gradient fills, and a center logo overlay.",
+    "QR code generator with rounded finder patterns and dot-style data modules.",
     <QrCodePreview />,
     { previewScale: 1 }
   )

@@ -1,21 +1,11 @@
 "use client"
 
-import { DownloadIcon } from "lucide-react"
-
-import {
-  QrCode,
-  QrCodeDownload,
-  QrCodeFrame,
-} from "@workspace/ui/components/qr-code"
+import { QrCode } from "@workspace/ui/components/qr-code"
 
 export function QrCodeDemoExample() {
   return (
-    <QrCode value="https://ui.persian-labs.ir">
-      <QrCodeFrame />
-      <QrCodeDownload fileName="qr-code.png" mimeType="image/png">
-        <DownloadIcon className="size-3.5" aria-hidden="true" />
-        Download
-      </QrCodeDownload>
-    </QrCode>
+    <div className="w-[140px] rounded-lg p-2 shadow-[0_0_0_1px_rgba(0,0,0,.08),_0px_2px_2px_rgba(0,0,0,.04)] dark:border dark:border-input [&_svg]:h-auto [&_svg]:w-full">
+      <QrCode value="https://ui.persian-labs.ir" size={140} />
+    </div>
   )
 }
