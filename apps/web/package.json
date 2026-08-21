@@ -12,7 +12,7 @@
     "format": "prettier --write \"**/*.{ts,tsx}\"",
     "typecheck": "bunx --package @typescript/native tsc --noEmit",
     "registry:build": "shadcn build",
-    "update": "npx npm-check-updates"
+    "update": "npx npm-check-updates -u"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
@@ -20,12 +20,12 @@
     "@ncdai/react-wheel-picker": "^1.2.2",
     "@vercel/analytics": "^2.0.1",
     "@workspace/ui": "workspace:*",
-    "input-otp": "^1.4.2",
-    "lucide": "^1.31.0",
-    "lucide-react": "^1.31.0",
-    "morphicons": "^1.6.0",
-    "motion": "^13.0.0",
-    "next": "16.3.0",
+    "input-otp": "^1.5.0",
+    "lucide": "^1.33.0",
+    "lucide-react": "^1.33.0",
+    "morphicons": "^1.7.0",
+    "motion": "^13.1.1",
+    "next": "16.3.2",
     "next-themes": "^0.4.6",
     "react": "19.2.8",
     "react-day-picker": "^10.0.1",
@@ -48,7 +48,7 @@
     "@workspace/eslint-config": "workspace:^",
     "@workspace/typescript-config": "workspace:*",
     "eslint": "^9.39.1",
-    "shadcn": "^4.16.2",
+    "shadcn": "^4.19.0",
     "typescript": "^6.0.2"
   }
 }
