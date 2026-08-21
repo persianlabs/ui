@@ -1,4 +1,4 @@
-import { QrCodePreview } from "@/lib/component-opengraph-previews"
+import { QRCodePreview } from "@/lib/component-opengraph-previews"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "QR Code — PersianLabs UI"
@@ -9,7 +9,7 @@ export default function OpengraphImage() {
   return buildOgImage(
     "QR Code",
     "QR code generator with rounded finder patterns and dot-style data modules.",
-    <QrCodePreview />,
+    <QRCodePreview />,
     { previewScale: 1 }
   )
 }

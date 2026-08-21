@@ -3065,7 +3065,7 @@ export function MobileNumberInputPreview() {
   )
 }
 
-export function QrCodePreview() {
+export function QRCodePreview() {
   return (
     <div
       style={{

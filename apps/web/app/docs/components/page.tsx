@@ -53,7 +53,7 @@ import {
   PopoverPreview,
   PriceInputPreview,
   ProgressPreview,
-  QrCodePreview,
+  QRCodePreview,
   QuestionnairePreview,
   RadioGroupPreview,
   ReceiptPrinterPreview,
@@ -923,7 +923,7 @@ const components = [
     createdAt: "2026-08-16",
     thumbnail: (
       <ThumbnailFrame>
-        <QrCodePreview />
+        <QRCodePreview />
       </ThumbnailFrame>
     ),
   },
