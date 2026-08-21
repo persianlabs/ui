@@ -9,8 +9,8 @@
   ],
   "registryDependencies": [
     "utils",
-    "https://ui.persian-labs.ir/r/alert-dialog.json",
-    "https://ui.persian-labs.ir/r/drawer.json"
+    "@persianlabsui/alert-dialog",
+    "@persianlabsui/drawer"
   ],
   "files": [
     {

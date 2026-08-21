@@ -8,7 +8,7 @@
   ],
   "registryDependencies": [
     "utils",
-    "https://ui.persian-labs.ir/r/combobox.json"
+    "@persianlabsui/combobox"
   ],
   "files": [
     {

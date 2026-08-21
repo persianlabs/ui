@@ -89,7 +89,7 @@ export const useMediaQueryMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/use-media-query.json",
+  "npx shadcn@latest add @persianlabsui/use-media-query",
   CODE_FENCE,
   "",
   "## Usage",
@@ -215,7 +215,7 @@ export default function UseMediaQueryDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/use-media-query.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/use-media-query" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

@@ -55,7 +55,7 @@ export const passwordInputMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/password-input.json",
+  "npx shadcn@latest add @persianlabsui/password-input",
   CODE_FENCE,
   "",
   "## Usage",
@@ -133,7 +133,7 @@ export default function PasswordInputDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/password-input.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/password-input" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

@@ -52,7 +52,7 @@ export const normalizePersianDigitsMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/normalize-persian-digits.json",
+  "npx shadcn@latest add @persianlabsui/normalize-persian-digits",
   CODE_FENCE,
   "",
   "## Usage",
@@ -129,7 +129,7 @@ export default function NormalizePersianDigitsDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/normalize-persian-digits.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/normalize-persian-digits" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

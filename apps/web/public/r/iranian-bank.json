@@ -4,7 +4,7 @@
   "title": "Iranian Bank",
   "description": "Iranian card and Shaba normalization, checksum validation, and bank detection.",
   "registryDependencies": [
-    "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+    "@persianlabsui/normalize-persian-digits"
   ],
   "files": [
     {

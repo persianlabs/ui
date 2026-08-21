@@ -4,7 +4,7 @@
   "title": "Persian Slug",
   "description": "Converts Persian/mixed Persian+English text into a URL-safe slug, keeping Persian script by default or transliterating to Latin/ASCII.",
   "registryDependencies": [
-    "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+    "@persianlabsui/normalize-persian-digits"
   ],
   "files": [
     {

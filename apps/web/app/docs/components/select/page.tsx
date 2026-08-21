@@ -104,7 +104,7 @@ export const selectMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/select.json",
+  "npx shadcn@latest add @persianlabsui/select",
   CODE_FENCE,
   "",
   "## Usage",
@@ -198,7 +198,7 @@ export default function SelectDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/select.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/select" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

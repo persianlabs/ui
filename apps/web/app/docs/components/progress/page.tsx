@@ -64,7 +64,7 @@ export const progressMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/progress.json",
+  "npx shadcn@latest add @persianlabsui/progress",
   CODE_FENCE,
   "",
   "## Usage",
@@ -131,7 +131,7 @@ export default function ProgressDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/progress.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/progress" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

@@ -114,7 +114,7 @@ export const toastMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/toast.json",
+  "npx shadcn@latest add @persianlabsui/toast",
   CODE_FENCE,
   "",
   "Add the providers to your root layout:",
@@ -216,7 +216,7 @@ export default function ToastDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/toast.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/toast" />
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               Add the providers to your root layout so either manager can render
               its toasts.

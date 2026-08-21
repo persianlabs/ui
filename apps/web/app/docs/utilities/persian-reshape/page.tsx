@@ -58,7 +58,7 @@ export const persianReshapeMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/persian-reshape.json",
+  "npx shadcn@latest add @persianlabsui/persian-reshape",
   CODE_FENCE,
   "",
   "## Usage",
@@ -150,7 +150,7 @@ export default function PersianReshapeDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/persian-reshape.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/persian-reshape" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

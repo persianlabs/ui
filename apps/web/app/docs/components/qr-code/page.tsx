@@ -80,7 +80,7 @@ export const qrCodeMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/qr-code.json",
+  "npx shadcn@latest add @persianlabsui/qr-code",
   `npm install qrcode`,
   CODE_FENCE,
   "",
@@ -162,7 +162,7 @@ export default function QrCodeDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/qr-code.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/qr-code" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

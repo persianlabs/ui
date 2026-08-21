@@ -83,7 +83,7 @@ export const sheetMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/sheet.json",
+  "npx shadcn@latest add @persianlabsui/sheet",
   CODE_FENCE,
   "",
   "## Usage",
@@ -159,7 +159,7 @@ export default function SheetDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/sheet.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/sheet" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

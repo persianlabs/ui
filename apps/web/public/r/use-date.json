@@ -4,8 +4,8 @@
   "title": "useDate",
   "description": "A reactive current date/time hook with Jalali/Gregorian support, formatted output, and optional holiday flagging.",
   "registryDependencies": [
-    "https://ui.persian-labs.ir/r/persian-date.json",
-    "https://ui.persian-labs.ir/r/persian-holidays.json"
+    "@persianlabsui/persian-date",
+    "@persianlabsui/persian-holidays"
   ],
   "files": [
     {

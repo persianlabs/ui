@@ -8,8 +8,8 @@
   ],
   "registryDependencies": [
     "utils",
-    "https://ui.persian-labs.ir/r/input-group.json",
-    "https://ui.persian-labs.ir/r/iranian-mobile.json"
+    "@persianlabsui/input-group",
+    "@persianlabsui/iranian-mobile"
   ],
   "files": [
     {

@@ -69,7 +69,7 @@ export const hoverCardMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/hover-card.json",
+  "npx shadcn@latest add @persianlabsui/hover-card",
   CODE_FENCE,
   "",
   "## Usage",
@@ -143,7 +143,7 @@ export default function HoverCardDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/hover-card.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/hover-card" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

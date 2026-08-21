@@ -61,8 +61,7 @@ const usageSnippet = `import { Hitbox } from "@/components/ui/hitbox"
   <Button />
 </Hitbox>`
 
-const installCommand =
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/hitbox.json"
+const installCommand = "npx shadcn@latest add @persianlabsui/hitbox"
 
 export const hitboxMarkdown = [
   "# Hitbox",

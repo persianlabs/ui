@@ -90,7 +90,7 @@ export const alertDialogMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/alert-dialog.json",
+  "npx shadcn@latest add @persianlabsui/alert-dialog",
   CODE_FENCE,
   "",
   "## Usage",
@@ -198,7 +198,7 @@ export default function AlertDialogDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/alert-dialog.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/alert-dialog" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

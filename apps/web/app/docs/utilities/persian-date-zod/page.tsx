@@ -69,7 +69,7 @@ export const zPersianDateMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/persian-date-zod.json",
+  "npx shadcn@latest add @persianlabsui/persian-date-zod",
   CODE_FENCE,
   "",
   "## Usage",
@@ -158,7 +158,7 @@ export default function PersianDateZodDocPage() {
             <TabsTrigger value="manual">Manual</TabsTrigger>
           </TabsList>
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/persian-date-zod.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/persian-date-zod" />
           </TabsContent>
           <TabsContent value="manual" className="mt-4">
             <Steps>

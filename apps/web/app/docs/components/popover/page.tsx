@@ -72,7 +72,7 @@ export const popoverMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/popover.json",
+  "npx shadcn@latest add @persianlabsui/popover",
   CODE_FENCE,
   "",
   "## Usage",
@@ -143,7 +143,7 @@ export default function PopoverDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/popover.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/popover" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

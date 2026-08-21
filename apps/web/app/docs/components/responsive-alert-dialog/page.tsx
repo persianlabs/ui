@@ -89,7 +89,7 @@ export const responsiveAlertDialogMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/responsive-alert-dialog.json",
+  "npx shadcn@latest add @persianlabsui/responsive-alert-dialog",
   CODE_FENCE,
   "",
   "## Usage",
@@ -182,7 +182,7 @@ export default function ResponsiveAlertDialogDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/responsive-alert-dialog.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/responsive-alert-dialog" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

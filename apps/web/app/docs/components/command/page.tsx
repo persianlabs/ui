@@ -120,7 +120,7 @@ export const commandMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/command.json",
+  "npx shadcn@latest add @persianlabsui/command",
   CODE_FENCE,
   "",
   "## Usage",
@@ -231,7 +231,7 @@ export default function CommandDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/command.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/command" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

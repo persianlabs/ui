@@ -83,7 +83,7 @@ export const messageMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/message.json",
+  "npx shadcn@latest add @persianlabsui/message",
   CODE_FENCE,
   "",
   "## Usage",
@@ -154,7 +154,7 @@ export default function MessageDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/message.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/message" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

@@ -65,7 +65,7 @@ export const persianSlugMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/persian-slug.json",
+  "npx shadcn@latest add @persianlabsui/persian-slug",
   CODE_FENCE,
   "",
   "## Usage",
@@ -145,7 +145,7 @@ export default function PersianSlugDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/persian-slug.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/persian-slug" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

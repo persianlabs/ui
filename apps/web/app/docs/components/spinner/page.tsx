@@ -63,7 +63,7 @@ export const spinnerMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/spinner.json",
+  "npx shadcn@latest add @persianlabsui/spinner",
   CODE_FENCE,
   "",
   "## Usage",
@@ -129,7 +129,7 @@ export default function SpinnerDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/spinner.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/spinner" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

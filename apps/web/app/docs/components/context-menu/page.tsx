@@ -78,7 +78,7 @@ export const contextMenuMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/context-menu.json",
+  "npx shadcn@latest add @persianlabsui/context-menu",
   CODE_FENCE,
   "",
   "## Usage",
@@ -161,7 +161,7 @@ export default function ContextMenuDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/context-menu.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/context-menu" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

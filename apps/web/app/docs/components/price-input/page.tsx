@@ -70,7 +70,7 @@ export const priceInputMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/price-input.json",
+  "npx shadcn@latest add @persianlabsui/price-input",
   CODE_FENCE,
   "",
   "## Usage",
@@ -148,7 +148,7 @@ export default function PriceInputDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/price-input.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/price-input" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

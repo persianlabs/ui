@@ -42,13 +42,13 @@ The registry currently covers **75+ components**, **10 utilities**, and **6 hook
 Open any component page and copy the install command.
 
 ```bash
-npx shadcn@latest add https://ui.persian-labs.ir/r/city-selector.json
+npx shadcn@latest add @persianlabsui/city-selector
 ```
 
-Once the `@persianlabsui` namespace is accepted into shadcn's registry directory, the shorter form will also work:
+The full URL form works too:
 
 ```bash
-npx shadcn@latest add @persianlabsui/city-selector
+npx shadcn@latest add https://ui.persian-labs.ir/r/city-selector.json
 ```
 
 You can also copy the source directly from the component page.
@@ -85,12 +85,12 @@ bun run build
 
 This is a Turborepo monorepo (bun workspaces). Every component and utility is maintained in **two parallel copies**, kept in sync by design:
 
-| Path | What it is |
-| --- | --- |
-| `packages/ui/src/components`, `packages/ui/src/lib` | The internal `@workspace/ui` package — used by `apps/web` itself for the docs site's own previews and examples. |
+| Path                                                      | What it is                                                                                                                                                                               |
+| --------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `packages/ui/src/components`, `packages/ui/src/lib`       | The internal `@workspace/ui` package — used by `apps/web` itself for the docs site's own previews and examples.                                                                          |
 | `apps/web/registry/base/ui`, `apps/web/registry/base/lib` | The consumer-ready source — what `registry.json` points at, what `shadcn build` compiles into `apps/web/public/r/*.json`, and what actually ships when someone runs the install command. |
-| `apps/web/registry.json` | The registry manifest — source of truth for what's installable and its dependency graph. |
-| `apps/web/app/docs` | The docs site (Next.js 16) — component pages, live previews, and the registry JSON server. |
+| `apps/web/registry.json`                                  | The registry manifest — source of truth for what's installable and its dependency graph.                                                                                                 |
+| `apps/web/app/docs`                                       | The docs site (Next.js 16) — component pages, live previews, and the registry JSON server.                                                                                               |
 
 ## Contributing
 

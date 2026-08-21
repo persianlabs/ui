@@ -9,7 +9,7 @@
   ],
   "registryDependencies": [
     "utils",
-    "https://ui.persian-labs.ir/r/separator.json"
+    "@persianlabsui/separator"
   ],
   "files": [
     {

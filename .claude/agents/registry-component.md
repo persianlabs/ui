@@ -12,8 +12,8 @@ You add and edit components in the PersianLabs/ui registry (see `/CLAUDE.md` at 
 1. **Two source copies, kept identical except import aliases**:
    - `packages/ui/src/components/<name>.tsx` — imports via `@workspace/ui/lib/utils`, `@workspace/ui/components/*`.
    - `apps/web/registry/base/ui/<name>.tsx` — imports via `@/lib/utils`, `@/components/ui/*`.
-   Write the `packages/ui` copy first, then derive the second by swapping only the import specifiers — never let the logic drift between them.
-2. **`apps/web/registry.json`**: add an entry (name, type `registry:ui`, title, description, `registryDependencies` — always includes `"utils"`, plus `https://ui.persian-labs.ir/r/<dep>.json` for same-registry component deps — `dependencies` for npm packages, `files`).
+     Write the `packages/ui` copy first, then derive the second by swapping only the import specifiers — never let the logic drift between them.
+2. **`apps/web/registry.json`**: add an entry (name, type `registry:ui`, title, description, `registryDependencies` — always includes `"utils"`, plus `"@persianlabsui/<dep>"` for same-registry component deps — `dependencies` for npm packages, `files`).
 3. **`apps/web/lib/docs-nav.ts`**: sidebar entry under "Components". This file is also the ⌘K search index — nothing else to wire up for search.
 4. **Doc page**: `apps/web/app/docs/components/<name>/page.tsx` + `api-data.ts`. Copy the structure of an existing page in that directory (e.g. `toggle` for a simple one, `empty` or `bubble` for one with many example sections) rather than inventing a new layout. Required sections: Overview, Installation (CLI tab + Manual tab with `InstallCommand` + `getComponentSource`), Usage, any variant sections, **RTL** (real Farsi content, `<ComponentPreview dir="rtl">`, not just relying on the preview's built-in direction toggle), API Reference.
 5. **Example files**: `apps/web/components/examples/<name>-<variant>.tsx`, importing from `@workspace/ui/components/*` (never `@/components/ui/*` — that alias only resolves in a consumer project, not inside this repo). Naming: `<name>-demo.tsx` → `<Name>DemoExample`, `<name>-rtl.tsx` → `<Name>RtlExample`.

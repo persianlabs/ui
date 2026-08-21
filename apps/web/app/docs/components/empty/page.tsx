@@ -90,7 +90,7 @@ export const emptyMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/empty.json",
+  "npx shadcn@latest add @persianlabsui/empty",
   CODE_FENCE,
   "",
   "## Usage",
@@ -157,7 +157,7 @@ export default function EmptyDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/empty.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/empty" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

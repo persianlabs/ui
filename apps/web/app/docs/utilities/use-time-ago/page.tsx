@@ -78,7 +78,7 @@ export const useTimeAgoMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/use-time-ago.json",
+  "npx shadcn@latest add @persianlabsui/use-time-ago",
   CODE_FENCE,
   "",
   "## Usage",
@@ -157,7 +157,7 @@ export default function UseTimeAgoDocPage() {
             <TabsTrigger value="manual">Manual</TabsTrigger>
           </TabsList>
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/use-time-ago.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/use-time-ago" />
           </TabsContent>
           <TabsContent value="manual" className="mt-4">
             <Steps>

@@ -78,7 +78,7 @@ export const resizableMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/resizable.json",
+  "npx shadcn@latest add @persianlabsui/resizable",
   CODE_FENCE,
   "",
   "## Usage",
@@ -156,7 +156,7 @@ export default function ResizableDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/resizable.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/resizable" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

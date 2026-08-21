@@ -9,9 +9,9 @@
   ],
   "registryDependencies": [
     "utils",
-    "https://ui.persian-labs.ir/r/button.json",
-    "https://ui.persian-labs.ir/r/tooltip.json",
-    "https://ui.persian-labs.ir/r/toast.json"
+    "@persianlabsui/button",
+    "@persianlabsui/tooltip",
+    "@persianlabsui/toast"
   ],
   "files": [
     {

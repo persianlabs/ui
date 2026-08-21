@@ -123,7 +123,7 @@ export const inputGroupMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/input-group.json",
+  "npx shadcn@latest add @persianlabsui/input-group",
   CODE_FENCE,
   "",
   "## Usage",
@@ -208,7 +208,7 @@ export default function InputGroupDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/input-group.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/input-group" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

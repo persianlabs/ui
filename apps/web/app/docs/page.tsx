@@ -28,7 +28,7 @@ export const introMarkdown = [
   "From there, add any component by its registry URL. The CLI fetches it from the @persianlabsui registry, copies the source straight into your project, and wires up its dependencies automatically.",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/tabs.json",
+  "npx shadcn@latest add @persianlabsui/tabs",
   CODE_FENCE,
   "",
   "## Why copy-paste",
@@ -121,7 +121,7 @@ export default function DocsIntroductionPage() {
         </p>
 
         <div className="mt-6">
-          <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/tabs.json" />
+          <CopyCommand command="npx shadcn@latest add @persianlabsui/tabs" />
         </div>
 
         <h2

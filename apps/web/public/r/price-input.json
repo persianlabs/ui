@@ -5,8 +5,8 @@
   "description": "A text input that live-formats digits as a grouped price as you type, with support for Persian/Arabic-Indic numerals.",
   "registryDependencies": [
     "utils",
-    "https://ui.persian-labs.ir/r/input.json",
-    "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+    "@persianlabsui/input",
+    "@persianlabsui/normalize-persian-digits"
   ],
   "files": [
     {

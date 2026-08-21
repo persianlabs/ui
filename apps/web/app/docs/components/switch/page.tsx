@@ -64,7 +64,7 @@ export const switchMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/switch.json",
+  "npx shadcn@latest add @persianlabsui/switch",
   CODE_FENCE,
   "",
   "## Usage",
@@ -134,7 +134,7 @@ export default function SwitchDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/switch.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/switch" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

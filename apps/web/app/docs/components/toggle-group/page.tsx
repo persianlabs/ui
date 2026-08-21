@@ -73,7 +73,7 @@ export const toggleGroupMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/toggle-group.json",
+  "npx shadcn@latest add @persianlabsui/toggle-group",
   CODE_FENCE,
   "",
   "## Usage",
@@ -150,7 +150,7 @@ export default function ToggleGroupDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/toggle-group.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/toggle-group" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

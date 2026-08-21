@@ -63,7 +63,7 @@ export const badgeMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/badge.json",
+  "npx shadcn@latest add @persianlabsui/badge",
   CODE_FENCE,
   "",
   "## Usage",
@@ -129,7 +129,7 @@ export default function BadgeDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/badge.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/badge" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

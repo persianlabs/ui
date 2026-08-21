@@ -9,7 +9,7 @@
     "zod"
   ],
   "registryDependencies": [
-    "https://ui.persian-labs.ir/r/persian-date.json"
+    "@persianlabsui/persian-date"
   ],
   "files": [
     {

@@ -134,7 +134,7 @@ export const questionnaireMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/questionnaire.json",
+  "npx shadcn@latest add @persianlabsui/questionnaire",
   CODE_FENCE,
   "",
   "## Usage",
@@ -237,7 +237,7 @@ export default function QuestionnaireDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/questionnaire.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/questionnaire" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

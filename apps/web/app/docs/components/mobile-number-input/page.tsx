@@ -60,7 +60,7 @@ export const mobileNumberInputMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/mobile-number-input.json",
+  "npx shadcn@latest add @persianlabsui/mobile-number-input",
   CODE_FENCE,
   "",
   "## Usage",
@@ -135,7 +135,7 @@ export default function MobileNumberInputDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/mobile-number-input.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/mobile-number-input" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

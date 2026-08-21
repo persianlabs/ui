@@ -99,7 +99,7 @@ export const dateWheelPickerMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/date-wheel-picker.json",
+  "npx shadcn@latest add @persianlabsui/date-wheel-picker",
   CODE_FENCE,
   "",
   "## Usage",
@@ -183,7 +183,7 @@ export default function DateWheelPickerDocPage() {
             <TabsTrigger value="manual">Manual</TabsTrigger>
           </TabsList>
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/date-wheel-picker.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/date-wheel-picker" />
           </TabsContent>
           <TabsContent value="manual" className="mt-4">
             <Steps>

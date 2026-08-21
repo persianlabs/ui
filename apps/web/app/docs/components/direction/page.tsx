@@ -64,7 +64,7 @@ export const directionMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/direction.json",
+  "npx shadcn@latest add @persianlabsui/direction",
   CODE_FENCE,
   "",
   "## Usage",
@@ -136,7 +136,7 @@ export default function DirectionDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/direction.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/direction" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

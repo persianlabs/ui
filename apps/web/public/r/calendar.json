@@ -10,12 +10,12 @@
   ],
   "registryDependencies": [
     "utils",
-    "https://ui.persian-labs.ir/r/button.json",
-    "https://ui.persian-labs.ir/r/select.json",
-    "https://ui.persian-labs.ir/r/badge.json",
-    "https://ui.persian-labs.ir/r/tooltip.json",
-    "https://ui.persian-labs.ir/r/persian-date.json",
-    "https://ui.persian-labs.ir/r/persian-holidays.json"
+    "@persianlabsui/button",
+    "@persianlabsui/select",
+    "@persianlabsui/badge",
+    "@persianlabsui/tooltip",
+    "@persianlabsui/persian-date",
+    "@persianlabsui/persian-holidays"
   ],
   "files": [
     {

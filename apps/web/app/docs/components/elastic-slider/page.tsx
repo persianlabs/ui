@@ -78,7 +78,7 @@ export const elasticSliderMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/elastic-slider.json",
+  "npx shadcn@latest add @persianlabsui/elastic-slider",
   CODE_FENCE,
   "",
   "## Usage",
@@ -167,7 +167,7 @@ export default function ElasticSliderDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/elastic-slider.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/elastic-slider" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

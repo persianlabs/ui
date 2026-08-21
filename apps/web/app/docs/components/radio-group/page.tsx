@@ -69,7 +69,7 @@ export const radioGroupMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/radio-group.json",
+  "npx shadcn@latest add @persianlabsui/radio-group",
   CODE_FENCE,
   "",
   "## Usage",
@@ -143,7 +143,7 @@ export default function RadioGroupDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/radio-group.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/radio-group" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

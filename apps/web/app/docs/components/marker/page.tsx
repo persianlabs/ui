@@ -73,7 +73,7 @@ export const markerMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/marker.json",
+  "npx shadcn@latest add @persianlabsui/marker",
   CODE_FENCE,
   "",
   "## Usage",
@@ -144,7 +144,7 @@ export default function MarkerDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/marker.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/marker" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

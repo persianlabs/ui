@@ -77,7 +77,7 @@ export const alertMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/alert.json",
+  "npx shadcn@latest add @persianlabsui/alert",
   CODE_FENCE,
   "",
   "## Usage",
@@ -147,7 +147,7 @@ export default function AlertDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/alert.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/alert" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

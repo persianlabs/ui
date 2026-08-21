@@ -67,7 +67,7 @@ export const scrollAreaMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/scroll-area.json",
+  "npx shadcn@latest add @persianlabsui/scroll-area",
   CODE_FENCE,
   "",
   "## Usage",
@@ -137,7 +137,7 @@ export default function ScrollAreaDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/scroll-area.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/scroll-area" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

@@ -79,7 +79,7 @@ export const useDateMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/use-date.json",
+  "npx shadcn@latest add @persianlabsui/use-date",
   CODE_FENCE,
   "",
   "## Usage",
@@ -153,7 +153,7 @@ export default function UseDateDocPage() {
             <TabsTrigger value="manual">Manual</TabsTrigger>
           </TabsList>
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/use-date.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/use-date" />
           </TabsContent>
           <TabsContent value="manual" className="mt-4">
             <Steps>

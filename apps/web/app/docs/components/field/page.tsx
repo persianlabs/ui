@@ -76,7 +76,7 @@ export const fieldMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/field.json",
+  "npx shadcn@latest add @persianlabsui/field",
   CODE_FENCE,
   "",
   "## Usage",
@@ -147,7 +147,7 @@ export default function FieldDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/field.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/field" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

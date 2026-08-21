@@ -76,7 +76,7 @@ export default function NationalIdPage() {
             <TabsTrigger value="manual">Manual</TabsTrigger>
           </TabsList>
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/national-id.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/national-id" />
           </TabsContent>
           <TabsContent value="manual" className="mt-4">
             <CodeBlock

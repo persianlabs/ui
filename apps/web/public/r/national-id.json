@@ -4,7 +4,7 @@
   "title": "National ID",
   "description": "Validates Iranian national ID (کد ملی) numbers using the standard 10-digit checksum.",
   "registryDependencies": [
-    "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+    "@persianlabsui/normalize-persian-digits"
   ],
   "files": [
     {

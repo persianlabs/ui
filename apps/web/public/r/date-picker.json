@@ -9,12 +9,12 @@
   ],
   "registryDependencies": [
     "utils",
-    "https://ui.persian-labs.ir/r/button.json",
-    "https://ui.persian-labs.ir/r/calendar.json",
-    "https://ui.persian-labs.ir/r/popover.json",
-    "https://ui.persian-labs.ir/r/drawer.json",
-    "https://ui.persian-labs.ir/r/time-picker.json",
-    "https://ui.persian-labs.ir/r/persian-date.json"
+    "@persianlabsui/button",
+    "@persianlabsui/calendar",
+    "@persianlabsui/popover",
+    "@persianlabsui/drawer",
+    "@persianlabsui/time-picker",
+    "@persianlabsui/persian-date"
   ],
   "files": [
     {

@@ -74,7 +74,7 @@ export const useCopyToClipboardMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/use-copy-to-clipboard.json",
+  "npx shadcn@latest add @persianlabsui/use-copy-to-clipboard",
   CODE_FENCE,
   "",
   "## Usage",
@@ -161,7 +161,7 @@ export default function UseCopyToClipboardDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/use-copy-to-clipboard.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/use-copy-to-clipboard" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

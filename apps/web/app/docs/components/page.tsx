@@ -81,10 +81,21 @@ import {
   TooltipPreview,
 } from "@/lib/component-previews"
 import registry from "@/registry.json"
+import { docsNav } from "@/lib/docs-nav"
+
+// Badges ("New", "Special") have a single source of truth: the sidebar in
+// lib/docs-nav.ts. This page copies them from there instead of maintaining
+// its own list, so the gallery can never drift out of sync with the nav.
+const badgeByHref = new Map(
+  docsNav
+    .flatMap((group) => group.items)
+    .filter((item) => item.badge)
+    .map((item) => [item.href, item.badge])
+)
 
 const installAllCommand = `npx shadcn@latest add ${registry.items
   .filter((item) => item.type === "registry:ui")
-  .map((item) => `https://ui.persian-labs.ir/r/${item.name}.json`)
+  .map((item) => `@persianlabsui/${item.name}`)
   .join(" ")}`
 
 export const metadata: Metadata = {
@@ -106,7 +117,6 @@ const components = [
     href: "/docs/components/receipt-printer" as const,
     description:
       "A tactile checkout printer with processing stages and a composable thermal-paper receipt.",
-    badge: "New",
     createdAt: "2026-08-13",
     thumbnail: (
       <ThumbnailFrame>
@@ -119,7 +129,6 @@ const components = [
     href: "/docs/components/wheel-picker" as const,
     description:
       "An iOS-like wheel picker with smooth inertia, infinite scrolling, and keyboard navigation.",
-    badge: "New",
     createdAt: "2026-08-10",
     thumbnail: (
       <ThumbnailFrame>
@@ -132,7 +141,6 @@ const components = [
     href: "/docs/components/time-picker" as const,
     description:
       "An hour/minute/second wheel-based time picker, with a responsive Popover-on-desktop, Drawer-on-mobile composition.",
-    badge: "New",
     createdAt: "2026-08-10",
     thumbnail: (
       <ThumbnailFrame>
@@ -145,7 +153,6 @@ const components = [
     href: "/docs/components/bank-input" as const,
     description:
       "Iranian card-number and Shaba fields with paste normalization, checksums, and bank detection.",
-    badge: "New",
     createdAt: "2026-08-11",
     thumbnail: (
       <ThumbnailFrame>
@@ -158,7 +165,6 @@ const components = [
     href: "/docs/components/date-picker" as const,
     description:
       "Responsive Shamsi/Gregorian date and date-time fields with SSR-safe defaults and confirmation flows.",
-    badge: "New",
     createdAt: "2026-08-10",
     thumbnail: (
       <ThumbnailFrame>
@@ -173,7 +179,6 @@ const components = [
     href: "/docs/components/date-wheel-picker" as const,
     description:
       "An iOS-style year/month/day wheel-based date picker, switchable between the Shamsi and Gregorian calendars, with a responsive Popover-on-desktop, Drawer-on-mobile composition.",
-    badge: "New",
     createdAt: "2026-08-10",
     thumbnail: (
       <ThumbnailFrame>
@@ -209,7 +214,6 @@ const components = [
     href: "/docs/components/calendar" as const,
     description:
       "A date-grid calendar built on react-day-picker, switchable between the Jalali (Shamsi) and Gregorian (Miladi) calendars via a calendarType prop.",
-    badge: "New",
     createdAt: "2026-08-10",
     thumbnail: (
       <ThumbnailFrame>
@@ -316,7 +320,6 @@ const components = [
     href: "/docs/components/city-selector" as const,
     description:
       "A province & city picker for Iran, built on Combobox and bundled with all 31 provinces and 1,119 cities.",
-    badge: "Special",
     createdAt: "2026-08-06",
     thumbnail: (
       <ThumbnailFrame>
@@ -483,7 +486,6 @@ const components = [
     href: "/docs/components/elastic-range-slider" as const,
     description:
       "A single-track, dual-thumb range slider in the same visual language as Elastic Slider.",
-    badge: "New",
     createdAt: "2026-08-07",
     thumbnail: (
       <ThumbnailFrame>
@@ -592,7 +594,6 @@ const components = [
     href: "/docs/components/responsive-dialog" as const,
     description:
       "Renders a Dialog on desktop and a bottom Drawer on mobile from one shared set of components.",
-    badge: "New",
     createdAt: "2026-08-08",
     thumbnail: (
       <ThumbnailFrame>
@@ -605,7 +606,6 @@ const components = [
     href: "/docs/components/responsive-menu" as const,
     description:
       "Renders a Dropdown Menu on desktop and a bottom Drawer menu on mobile from one shared set of components.",
-    badge: "New",
     createdAt: "2026-08-08",
     thumbnail: (
       <ThumbnailFrame>
@@ -618,7 +618,6 @@ const components = [
     href: "/docs/components/responsive-alert-dialog" as const,
     description:
       "Renders an Alert Dialog on desktop and a bottom Drawer on mobile from one shared set of components.",
-    badge: "New",
     createdAt: "2026-08-08",
     thumbnail: (
       <ThumbnailFrame>
@@ -760,7 +759,6 @@ const components = [
     href: "/docs/components/mobile-number-input" as const,
     description:
       "An Iranian mobile number input that normalizes mixed paste formats and Persian digits, with a redundant validity indicator.",
-    badge: "New",
     createdAt: "2026-08-17",
     thumbnail: (
       <ThumbnailFrame>
@@ -898,7 +896,6 @@ const components = [
     href: "/docs/components/price-input" as const,
     description:
       "A text input that formats digits as a grouped price as you type, with support for Persian/Arabic-Indic numerals.",
-    badge: "New",
     createdAt: "2026-08-09",
     thumbnail: (
       <ThumbnailFrame>
@@ -911,7 +908,6 @@ const components = [
     href: "/docs/components/password-input" as const,
     description:
       "A password input with a show/hide toggle that always renders LTR, regardless of the surrounding document direction.",
-    badge: "New",
     createdAt: "2026-08-16",
     thumbnail: (
       <ThumbnailFrame>
@@ -924,7 +920,6 @@ const components = [
     href: "/docs/components/qr-code" as const,
     description:
       "A rounded QR code generator with dot modules, custom foreground/background colors, and a center logo slot.",
-    badge: "New",
     createdAt: "2026-08-16",
     thumbnail: (
       <ThumbnailFrame>
@@ -937,7 +932,6 @@ const components = [
     href: "/docs/components/questionnaire" as const,
     description:
       "A multi-step questionnaire with single-choice, multiple-choice, freeform, and skippable questions, built on @shadcn/react.",
-    badge: "New",
     createdAt: "2026-08-17",
     thumbnail: (
       <ThumbnailFrame>
@@ -949,7 +943,6 @@ const components = [
     title: "Toman Icon",
     href: "/docs/components/toman-icon" as const,
     description: "The Toman currency symbol, as a standalone icon component.",
-    badge: "New",
     createdAt: "2026-08-09",
     thumbnail: (
       <ThumbnailFrame>
@@ -962,7 +955,6 @@ const components = [
     href: "/docs/components/toast" as const,
     description:
       "A temporary notification that stacks in a corner of the screen or anchors to an element, built on Base UI.",
-    badge: "New",
     createdAt: "2026-08-09",
     thumbnail: (
       <ThumbnailFrame>
@@ -975,7 +967,6 @@ const components = [
     href: "/docs/components/copy-button" as const,
     description:
       "An icon button that copies text to the clipboard, morphs its icon to reflect the result, and anchors a confirmation toast to itself.",
-    badge: "New",
     createdAt: "2026-08-09",
     thumbnail: (
       <ThumbnailFrame>
@@ -988,7 +979,6 @@ const components = [
     href: "/docs/components/slider" as const,
     description:
       "An input where the user selects a value from within a given range, built on Base UI.",
-    badge: "New",
     createdAt: "2026-08-17",
     thumbnail: (
       <ThumbnailFrame>
@@ -996,10 +986,15 @@ const components = [
       </ThumbnailFrame>
     ),
   },
-].sort((a, b) => a.title.localeCompare(b.title))
+]
+  .map((component) => ({
+    ...component,
+    badge: badgeByHref.get(component.href),
+  }))
+  .sort((a, b) => a.title.localeCompare(b.title))
 
-const featuredComponents = components.filter((c) => "badge" in c && c.badge)
-const restComponents = components.filter((c) => !("badge" in c && c.badge))
+const featuredComponents = components.filter((c) => c.badge)
+const restComponents = components.filter((c) => !c.badge)
 
 const tocItems = [
   { id: "installation", title: "Installation" },

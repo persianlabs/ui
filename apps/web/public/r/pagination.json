@@ -8,7 +8,7 @@
   ],
   "registryDependencies": [
     "utils",
-    "https://ui.persian-labs.ir/r/button.json"
+    "@persianlabsui/button"
   ],
   "files": [
     {

@@ -91,7 +91,7 @@ export const dialogMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/dialog.json",
+  "npx shadcn@latest add @persianlabsui/dialog",
   CODE_FENCE,
   "",
   "## Usage",
@@ -167,7 +167,7 @@ export default function DialogDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/dialog.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/dialog" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

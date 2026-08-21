@@ -71,7 +71,7 @@ const markdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/receipt-printer.json",
+  "npx shadcn@latest add @persianlabsui/receipt-printer",
   CODE_FENCE,
   "",
   "## Usage",
@@ -132,7 +132,7 @@ export default function ReceiptPrinterDocPage() {
               <TabsTrigger value="manual">Manual</TabsTrigger>
             </TabsList>
             <TabsContent value="cli" className="mt-4">
-              <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/receipt-printer.json" />
+              <CopyCommand command="npx shadcn@latest add @persianlabsui/receipt-printer" />
             </TabsContent>
             <TabsContent value="manual" className="mt-4">
               <Steps>

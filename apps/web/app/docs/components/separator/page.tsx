@@ -73,7 +73,7 @@ export const separatorMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/separator.json",
+  "npx shadcn@latest add @persianlabsui/separator",
   CODE_FENCE,
   "",
   "## Usage",
@@ -143,7 +143,7 @@ export default function SeparatorDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/separator.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/separator" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

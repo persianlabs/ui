@@ -63,7 +63,7 @@ export const copyButtonMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/copy-button.json",
+  "npx shadcn@latest add @persianlabsui/copy-button",
   CODE_FENCE,
   "",
   "## Usage",
@@ -137,7 +137,7 @@ export default function CopyButtonDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/copy-button.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/copy-button" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

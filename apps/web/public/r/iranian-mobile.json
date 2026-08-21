@@ -4,7 +4,7 @@
   "title": "Iranian Mobile",
   "description": "Iranian mobile phone number normalization, validation, and masking.",
   "registryDependencies": [
-    "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+    "@persianlabsui/normalize-persian-digits"
   ],
   "files": [
     {

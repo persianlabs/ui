@@ -4,7 +4,7 @@
   "title": "useTimeAgo",
   "description": "A reactive relative-time formatter (\"۲ روز پیش\" / \"2 days ago\") with built-in Persian and English message tables.",
   "registryDependencies": [
-    "https://ui.persian-labs.ir/r/persian-date.json"
+    "@persianlabsui/persian-date"
   ],
   "files": [
     {

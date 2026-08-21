@@ -4,7 +4,7 @@
   "title": "Postal Code",
   "description": "Validates the structural format of Iranian postal codes (کد پستی).",
   "registryDependencies": [
-    "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+    "@persianlabsui/normalize-persian-digits"
   ],
   "files": [
     {

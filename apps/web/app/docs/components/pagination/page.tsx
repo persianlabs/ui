@@ -80,7 +80,7 @@ export const paginationMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/pagination.json",
+  "npx shadcn@latest add @persianlabsui/pagination",
   CODE_FENCE,
   "",
   "## Usage",
@@ -157,7 +157,7 @@ export default function PaginationDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/pagination.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/pagination" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

@@ -97,7 +97,7 @@ export const cardMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/card.json",
+  "npx shadcn@latest add @persianlabsui/card",
   CODE_FENCE,
   "",
   "## Usage",
@@ -174,7 +174,7 @@ export default function CardDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/card.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/card" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

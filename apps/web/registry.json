@@ -10,7 +10,7 @@
       "description": "A button built on Base UI with variant and size support.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/spinner.json"
+        "@persianlabsui/spinner"
       ],
       "dependencies": ["@base-ui/react", "class-variance-authority"],
       "files": [
@@ -82,7 +82,7 @@
       "description": "A searchable, accessible combobox built on Base UI.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/scroll-area.json"
+        "@persianlabsui/scroll-area"
       ],
       "dependencies": ["@base-ui/react", "react-virtuoso"],
       "files": [
@@ -99,7 +99,7 @@
       "description": "A command palette component built with Dialog and Autocomplete for searching and executing commands.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/scroll-area.json"
+        "@persianlabsui/scroll-area"
       ],
       "dependencies": ["@base-ui/react"],
       "files": [
@@ -116,7 +116,7 @@
       "description": "A province and city picker for Iran, built on Combobox and bundled with a full dataset of all 31 provinces and 1,119 cities.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/combobox.json"
+        "@persianlabsui/combobox"
       ],
       "dependencies": ["@base-ui/react"],
       "files": [
@@ -207,9 +207,9 @@
       "description": "Groups an input with addons, buttons, or text for complex input layouts.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/button.json",
-        "https://ui.persian-labs.ir/r/input.json",
-        "https://ui.persian-labs.ir/r/textarea.json"
+        "@persianlabsui/button",
+        "@persianlabsui/input",
+        "@persianlabsui/textarea"
       ],
       "dependencies": ["@base-ui/react", "class-variance-authority"],
       "files": [
@@ -434,7 +434,7 @@
       "description": "A set of two-state buttons that can be toggled on or off, built on Base UI.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/toggle.json"
+        "@persianlabsui/toggle"
       ],
       "dependencies": ["@base-ui/react", "class-variance-authority"],
       "files": [
@@ -529,7 +529,7 @@
       "description": "A panel that slides in from an edge of the screen to complement the main content, built on Base UI.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/button.json"
+        "@persianlabsui/button"
       ],
       "dependencies": ["@base-ui/react", "lucide-react"],
       "files": [
@@ -574,8 +574,8 @@
       "description": "A modal window layered over the page for focused tasks or confirmations, built on Base UI.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/button.json",
-        "https://ui.persian-labs.ir/r/scroll-area.json"
+        "@persianlabsui/button",
+        "@persianlabsui/scroll-area"
       ],
       "dependencies": ["@base-ui/react", "lucide-react"],
       "files": [
@@ -592,7 +592,7 @@
       "description": "A modal dialog that interrupts the user with important content and expects a response, built on Base UI.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/button.json"
+        "@persianlabsui/button"
       ],
       "dependencies": ["@base-ui/react"],
       "files": [
@@ -609,7 +609,7 @@
       "description": "A swipeable panel that slides in from an edge of the screen, built on Base UI.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/scroll-area.json"
+        "@persianlabsui/scroll-area"
       ],
       "dependencies": ["@base-ui/react", "lucide-react"],
       "files": [
@@ -626,8 +626,8 @@
       "description": "Renders a Dialog on desktop and a bottom Drawer on mobile from one shared set of components.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/dialog.json",
-        "https://ui.persian-labs.ir/r/drawer.json"
+        "@persianlabsui/dialog",
+        "@persianlabsui/drawer"
       ],
       "dependencies": ["@base-ui/react", "lucide-react"],
       "files": [
@@ -648,8 +648,8 @@
       "description": "Renders a Dropdown Menu on desktop and a bottom Drawer menu on mobile from one shared set of components.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/dropdown-menu.json",
-        "https://ui.persian-labs.ir/r/drawer.json"
+        "@persianlabsui/dropdown-menu",
+        "@persianlabsui/drawer"
       ],
       "dependencies": ["@base-ui/react", "lucide-react"],
       "files": [
@@ -670,8 +670,8 @@
       "description": "Renders an Alert Dialog on desktop and a bottom Drawer on mobile from one shared set of components.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/alert-dialog.json",
-        "https://ui.persian-labs.ir/r/drawer.json"
+        "@persianlabsui/alert-dialog",
+        "@persianlabsui/drawer"
       ],
       "dependencies": ["@base-ui/react", "lucide-react"],
       "files": [
@@ -774,7 +774,7 @@
       "description": "A flexible layout for a piece of content, media, or action, often used in lists.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/separator.json"
+        "@persianlabsui/separator"
       ],
       "dependencies": ["@base-ui/react", "class-variance-authority"],
       "files": [
@@ -832,7 +832,7 @@
       "description": "An auto-scrolling viewport for chat messages, with scroll-to-start/end buttons, built on @shadcn/react.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/button.json"
+        "@persianlabsui/button"
       ],
       "dependencies": ["@shadcn/react", "lucide-react"],
       "files": [
@@ -849,7 +849,7 @@
       "description": "Navigation for paginated content, built on Button.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/button.json"
+        "@persianlabsui/button"
       ],
       "dependencies": ["lucide-react"],
       "files": [
@@ -906,7 +906,7 @@
       "title": "Iranian Bank",
       "description": "Iranian card and Shaba normalization, checksum validation, and bank detection.",
       "registryDependencies": [
-        "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+        "@persianlabsui/normalize-persian-digits"
       ],
       "files": [
         {
@@ -922,8 +922,8 @@
       "description": "Iranian card-number and Shaba inputs with paste normalization, checksum validation, and bank detection.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/input-group.json",
-        "https://ui.persian-labs.ir/r/iranian-bank.json"
+        "@persianlabsui/input-group",
+        "@persianlabsui/iranian-bank"
       ],
       "dependencies": ["@persianlabs/icons"],
       "files": [
@@ -944,8 +944,8 @@
       "description": "A text input that live-formats digits as a grouped price as you type, with support for Persian/Arabic-Indic numerals.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/input.json",
-        "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+        "@persianlabsui/input",
+        "@persianlabsui/normalize-persian-digits"
       ],
       "files": [
         {
@@ -965,8 +965,8 @@
       "description": "A password input with a show/hide toggle that always renders LTR, regardless of the surrounding document direction.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/button.json",
-        "https://ui.persian-labs.ir/r/input-group.json"
+        "@persianlabsui/button",
+        "@persianlabsui/input-group"
       ],
       "dependencies": ["lucide-react"],
       "files": [
@@ -997,7 +997,7 @@
       "description": "A multi-step questionnaire with single-choice, multiple-choice, freeform, and skippable questions, built on @shadcn/react.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/button.json"
+        "@persianlabsui/button"
       ],
       "dependencies": ["@shadcn/react"],
       "files": [
@@ -1014,7 +1014,7 @@
       "description": "A temporary notification that stacks in a corner of the screen or anchors to an element, built on Base UI, with success/error/warning/info/loading and X-style variants.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/button.json"
+        "@persianlabsui/button"
       ],
       "dependencies": ["@base-ui/react", "lucide-react"],
       "files": [
@@ -1031,9 +1031,9 @@
       "description": "An icon button that copies text to the clipboard, morphs its icon to reflect the result, and anchors a confirmation toast to itself.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/button.json",
-        "https://ui.persian-labs.ir/r/tooltip.json",
-        "https://ui.persian-labs.ir/r/toast.json"
+        "@persianlabsui/button",
+        "@persianlabsui/tooltip",
+        "@persianlabsui/toast"
       ],
       "dependencies": ["lucide", "morphicons"],
       "files": [
@@ -1117,7 +1117,7 @@
       "title": "Persian Date",
       "description": "Jalali/Gregorian date utilities built on date-fns and date-fns-jalali: formatting, parsing, conversion, ranges, and digit conversion, switchable with a calendarType prop.",
       "registryDependencies": [
-        "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+        "@persianlabsui/normalize-persian-digits"
       ],
       "dependencies": ["date-fns", "date-fns-jalali"],
       "files": [
@@ -1133,7 +1133,7 @@
       "title": "Persian Date (Zod)",
       "description": "zod schemas for persian-date: zPersianDate coerces an ISO string, a shamsi yyyy/MM/dd string, an epoch number, or a Date into a Date with optional min/max bounds; zPersianDateRange validates a from/to reservation-style range.",
       "registryDependencies": [
-        "https://ui.persian-labs.ir/r/persian-date.json"
+        "@persianlabsui/persian-date"
       ],
       "dependencies": ["date-fns", "date-fns-jalali", "zod"],
       "files": [
@@ -1149,7 +1149,7 @@
       "title": "Persian Holidays",
       "description": "Official/religious/cultural Iranian holiday lookup for a date, range, or year, resolving Jalali, Gregorian, and tabular-Hijri entries.",
       "registryDependencies": [
-        "https://ui.persian-labs.ir/r/persian-date.json"
+        "@persianlabsui/persian-date"
       ],
       "dependencies": ["date-fns", "date-fns-jalali"],
       "files": [
@@ -1169,7 +1169,7 @@
       "title": "Persian Slug",
       "description": "Converts Persian/mixed Persian+English text into a URL-safe slug, keeping Persian script by default or transliterating to Latin/ASCII.",
       "registryDependencies": [
-        "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+        "@persianlabsui/normalize-persian-digits"
       ],
       "files": [
         {
@@ -1197,8 +1197,8 @@
       "title": "useDate",
       "description": "A reactive current date/time hook with Jalali/Gregorian support, formatted output, and optional holiday flagging.",
       "registryDependencies": [
-        "https://ui.persian-labs.ir/r/persian-date.json",
-        "https://ui.persian-labs.ir/r/persian-holidays.json"
+        "@persianlabsui/persian-date",
+        "@persianlabsui/persian-holidays"
       ],
       "files": [
         {
@@ -1213,7 +1213,7 @@
       "title": "useTimeAgo",
       "description": "A reactive relative-time formatter (\"۲ روز پیش\" / \"2 days ago\") with built-in Persian and English message tables.",
       "registryDependencies": [
-        "https://ui.persian-labs.ir/r/persian-date.json"
+        "@persianlabsui/persian-date"
       ],
       "files": [
         {
@@ -1243,12 +1243,12 @@
       "description": "A date-grid calendar built on react-day-picker, switchable between the Jalali (Shamsi) and Gregorian (Miladi) calendars via a calendarType prop, with an optional showHolidays prop for Iranian holiday highlighting.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/button.json",
-        "https://ui.persian-labs.ir/r/select.json",
-        "https://ui.persian-labs.ir/r/badge.json",
-        "https://ui.persian-labs.ir/r/tooltip.json",
-        "https://ui.persian-labs.ir/r/persian-date.json",
-        "https://ui.persian-labs.ir/r/persian-holidays.json"
+        "@persianlabsui/button",
+        "@persianlabsui/select",
+        "@persianlabsui/badge",
+        "@persianlabsui/tooltip",
+        "@persianlabsui/persian-date",
+        "@persianlabsui/persian-holidays"
       ],
       "dependencies": ["react-day-picker", "@daypicker/persian", "date-fns"],
       "files": [
@@ -1279,12 +1279,12 @@
       "description": "An opinionated, responsive Shamsi/Gregorian date and date-time picker with SSR-safe today defaults, draft state, and Popover-to-Drawer presentation.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/button.json",
-        "https://ui.persian-labs.ir/r/calendar.json",
-        "https://ui.persian-labs.ir/r/popover.json",
-        "https://ui.persian-labs.ir/r/drawer.json",
-        "https://ui.persian-labs.ir/r/time-picker.json",
-        "https://ui.persian-labs.ir/r/persian-date.json"
+        "@persianlabsui/button",
+        "@persianlabsui/calendar",
+        "@persianlabsui/popover",
+        "@persianlabsui/drawer",
+        "@persianlabsui/time-picker",
+        "@persianlabsui/persian-date"
       ],
       "dependencies": ["@base-ui/react", "lucide-react"],
       "files": [
@@ -1301,11 +1301,11 @@
       "description": "An hour/minute/second wheel-based time picker, with a responsive Popover-on-desktop, Drawer-on-mobile composition.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/button.json",
-        "https://ui.persian-labs.ir/r/wheel-picker.json",
-        "https://ui.persian-labs.ir/r/popover.json",
-        "https://ui.persian-labs.ir/r/drawer.json",
-        "https://ui.persian-labs.ir/r/persian-date.json"
+        "@persianlabsui/button",
+        "@persianlabsui/wheel-picker",
+        "@persianlabsui/popover",
+        "@persianlabsui/drawer",
+        "@persianlabsui/persian-date"
       ],
       "dependencies": ["@ncdai/react-wheel-picker", "@base-ui/react"],
       "files": [
@@ -1340,10 +1340,10 @@
       "description": "An iOS-style year/month/day wheel-based date picker, switchable between the Shamsi and Gregorian calendars, with a responsive Popover-on-desktop, Drawer-on-mobile composition.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/wheel-picker.json",
-        "https://ui.persian-labs.ir/r/popover.json",
-        "https://ui.persian-labs.ir/r/drawer.json",
-        "https://ui.persian-labs.ir/r/persian-date.json"
+        "@persianlabsui/wheel-picker",
+        "@persianlabsui/popover",
+        "@persianlabsui/drawer",
+        "@persianlabsui/persian-date"
       ],
       "dependencies": ["@ncdai/react-wheel-picker", "@base-ui/react"],
       "files": [
@@ -1377,7 +1377,7 @@
       "title": "Iranian Mobile",
       "description": "Iranian mobile phone number normalization, validation, and masking.",
       "registryDependencies": [
-        "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+        "@persianlabsui/normalize-persian-digits"
       ],
       "files": [
         {
@@ -1393,8 +1393,8 @@
       "description": "An Iranian mobile number input that normalizes mixed paste formats and Persian digits, with a redundant validity indicator.",
       "registryDependencies": [
         "utils",
-        "https://ui.persian-labs.ir/r/input-group.json",
-        "https://ui.persian-labs.ir/r/iranian-mobile.json"
+        "@persianlabsui/input-group",
+        "@persianlabsui/iranian-mobile"
       ],
       "dependencies": ["lucide-react"],
       "files": [
@@ -1414,7 +1414,7 @@
       "title": "National ID",
       "description": "Validates Iranian national ID (کد ملی) numbers using the standard 10-digit checksum.",
       "registryDependencies": [
-        "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+        "@persianlabsui/normalize-persian-digits"
       ],
       "files": [
         {
@@ -1429,7 +1429,7 @@
       "title": "Postal Code",
       "description": "Validates the structural format of Iranian postal codes (کد پستی).",
       "registryDependencies": [
-        "https://ui.persian-labs.ir/r/normalize-persian-digits.json"
+        "@persianlabsui/normalize-persian-digits"
       ],
       "files": [
         {

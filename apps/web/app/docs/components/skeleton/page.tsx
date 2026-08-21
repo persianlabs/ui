@@ -62,7 +62,7 @@ export const skeletonMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/skeleton.json",
+  "npx shadcn@latest add @persianlabsui/skeleton",
   CODE_FENCE,
   "",
   "## Usage",
@@ -128,7 +128,7 @@ export default function SkeletonDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/skeleton.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/skeleton" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

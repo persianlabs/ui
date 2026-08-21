@@ -95,7 +95,7 @@ export const breadcrumbMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/breadcrumb.json",
+  "npx shadcn@latest add @persianlabsui/breadcrumb",
   CODE_FENCE,
   "",
   "## Usage",
@@ -171,7 +171,7 @@ export default function BreadcrumbDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/breadcrumb.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/breadcrumb" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

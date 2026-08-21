@@ -71,7 +71,7 @@ export const collapsibleMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/collapsible.json",
+  "npx shadcn@latest add @persianlabsui/collapsible",
   CODE_FENCE,
   "",
   "## Usage",
@@ -141,7 +141,7 @@ export default function CollapsibleDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/collapsible.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/collapsible" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

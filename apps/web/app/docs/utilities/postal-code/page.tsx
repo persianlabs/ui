@@ -71,7 +71,7 @@ export default function PostalCodePage() {
             <TabsTrigger value="manual">Manual</TabsTrigger>
           </TabsList>
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/postal-code.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/postal-code" />
           </TabsContent>
           <TabsContent value="manual" className="mt-4">
             <CodeBlock

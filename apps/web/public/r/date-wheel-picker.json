@@ -9,10 +9,10 @@
   ],
   "registryDependencies": [
     "utils",
-    "https://ui.persian-labs.ir/r/wheel-picker.json",
-    "https://ui.persian-labs.ir/r/popover.json",
-    "https://ui.persian-labs.ir/r/drawer.json",
-    "https://ui.persian-labs.ir/r/persian-date.json"
+    "@persianlabsui/wheel-picker",
+    "@persianlabsui/popover",
+    "@persianlabsui/drawer",
+    "@persianlabsui/persian-date"
   ],
   "files": [
     {

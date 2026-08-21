@@ -94,7 +94,7 @@ export const datePickerMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/date-picker.json",
+  "npx shadcn@latest add @persianlabsui/date-picker",
   CODE_FENCE,
   "",
   "## Usage",
@@ -187,7 +187,7 @@ export default function DatePickerDocPage() {
           </TabsList>
 
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/date-picker.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/date-picker" />
           </TabsContent>
 
           <TabsContent value="manual" className="mt-4">

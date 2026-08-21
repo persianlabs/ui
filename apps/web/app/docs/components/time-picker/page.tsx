@@ -95,7 +95,7 @@ export const timePickerMarkdown = [
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
-  "npx shadcn@latest add https://ui.persian-labs.ir/r/time-picker.json",
+  "npx shadcn@latest add @persianlabsui/time-picker",
   CODE_FENCE,
   "",
   "## Usage",
@@ -183,7 +183,7 @@ export default function TimePickerDocPage() {
             <TabsTrigger value="manual">Manual</TabsTrigger>
           </TabsList>
           <TabsContent value="cli" className="mt-4">
-            <CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/time-picker.json" />
+            <CopyCommand command="npx shadcn@latest add @persianlabsui/time-picker" />
           </TabsContent>
           <TabsContent value="manual" className="mt-4">
             <Steps>
