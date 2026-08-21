@@ -19,6 +19,7 @@ import {
   ButtonPreview,
   CalendarPreview,
   CardPreview,
+  CarouselPreview,
   CheckboxPreview,
   CitySelectorPreview,
   CollapsiblePreview,
@@ -113,6 +114,17 @@ function ThumbnailFrame({ children }: { children: React.ReactNode }) {
 }
 
 const components = [
+  {
+    title: "Carousel",
+    href: "/docs/components/carousel" as const,
+    description: "A carousel with motion and swipe built using Embla.",
+    createdAt: "2026-08-22",
+    thumbnail: (
+      <ThumbnailFrame>
+        <CarouselPreview />
+      </ThumbnailFrame>
+    ),
+  },
   {
     title: "Attachment",
     href: "/docs/components/attachment" as const,

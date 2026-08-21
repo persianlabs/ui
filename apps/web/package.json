@@ -20,6 +20,7 @@
     "@ncdai/react-wheel-picker": "^1.2.2",
     "@vercel/analytics": "^2.0.1",
     "@workspace/ui": "workspace:*",
+    "embla-carousel-autoplay": "^8.6.0",
     "input-otp": "^1.5.0",
     "lucide": "^1.33.0",
     "lucide-react": "^1.33.0",

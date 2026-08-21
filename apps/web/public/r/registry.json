@@ -522,6 +522,20 @@
       ]
     },
     {
+      "name": "carousel",
+      "type": "registry:ui",
+      "title": "Carousel",
+      "description": "A carousel with motion and swipe built using Embla.",
+      "registryDependencies": ["utils", "@persianlabsui/button"],
+      "dependencies": ["embla-carousel-react"],
+      "files": [
+        {
+          "path": "registry/base/ui/carousel.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "context-menu",
       "type": "registry:ui",
       "title": "Context Menu",
