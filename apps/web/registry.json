@@ -980,21 +980,13 @@
       "name": "qr-code",
       "type": "registry:ui",
       "title": "QR Code",
-      "description": "A flexible QR code generator with square/dotted module shapes, solid or gradient fills, a center logo overlay, a download trigger, and a matching skeleton.",
-      "registryDependencies": [
-        "utils",
-        "https://ui.persian-labs.ir/r/button.json",
-        "https://ui.persian-labs.ir/r/skeleton.json"
-      ],
-      "dependencies": ["qrcode-generator"],
+      "description": "A rounded QR code generator with dot modules, custom foreground/background colors, configurable error correction, and a matching loading skeleton.",
+      "registryDependencies": ["utils"],
+      "dependencies": ["qrcode"],
       "files": [
         {
           "path": "registry/base/ui/qr-code.tsx",
           "type": "registry:ui"
-        },
-        {
-          "path": "registry/base/hooks/use-controllable-state.ts",
-          "type": "registry:hook"
         }
       ]
     },
