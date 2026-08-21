@@ -45,7 +45,11 @@ export const docsNav: DocsNavGroup[] = [
       { title: "Carousel", href: "/docs/components/carousel" },
       { title: "Charts", href: "/docs/charts" },
       { title: "Checkbox", href: "/docs/components/checkbox" },
-      { title: "City Selector", href: "/docs/components/city-selector" },
+      {
+        title: "City Selector",
+        href: "/docs/components/city-selector",
+        badge: "Special",
+      },
       { title: "Collapsible", href: "/docs/components/collapsible" },
       { title: "Combobox", href: "/docs/components/combobox" },
       { title: "Command", href: "/docs/components/command" },
