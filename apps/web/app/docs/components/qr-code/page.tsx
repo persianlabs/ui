@@ -12,9 +12,8 @@ import { ComponentPreview } from "@/components/component-preview"
 import { CopyCommand } from "@/components/copy-command"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
 import { DocsPageFooter } from "@/components/docs-page-footer"
+import { QrCodeColorsExample } from "@/components/examples/qr-code-colors"
 import { QrCodeDemoExample } from "@/components/examples/qr-code-demo"
-import { QrCodeDottedExample } from "@/components/examples/qr-code-dotted"
-import { QrCodeGradientExample } from "@/components/examples/qr-code-gradient"
 import { QrCodeLogoExample } from "@/components/examples/qr-code-logo"
 import { QrCodeRtlExample } from "@/components/examples/qr-code-rtl"
 import { QrCodeSkeletonExample } from "@/components/examples/qr-code-skeleton"
@@ -27,61 +26,62 @@ import { getExampleSource } from "@/lib/example-source"
 import { getLastEditedDate } from "@/lib/last-edited"
 import { CODE_FENCE, apiRowsToMarkdownTable } from "@/lib/markdown"
 
-import {
-  qrCodeApi,
-  qrCodeDownloadApi,
-  qrCodeFrameApi,
-  qrCodeOverlayApi,
-  qrCodeSkeletonApi,
-} from "./api-data"
+import { qrCodeApi, qrCodeSkeletonApi } from "./api-data"
 
 const SOURCE_PATH = "apps/web/app/docs/components/qr-code/page.tsx"
 
 export const metadata: Metadata = {
   title: "QR Code",
   description:
-    "A flexible, Telegram-style QR code builder with square/dotted module shapes, solid or gradient fills, and a center logo overlay.",
+    "QR code generator with rounded finder patterns and dot-style data modules.",
 }
 
 const tocItems = [
   { id: "overview", title: "Overview" },
   { id: "installation", title: "Installation" },
   { id: "usage", title: "Usage" },
-  { id: "variant", title: "Variant" },
-  { id: "gradient", title: "Gradient Color" },
+  { id: "custom-colors", title: "Custom Colors" },
   { id: "logo", title: "Center Logo" },
   { id: "skeleton", title: "Loading Skeleton" },
-  { id: "download", title: "Download" },
   { id: "rtl", title: "RTL" },
   { id: "api-reference", title: "API Reference" },
 ]
 
-const usageSnippet = `import {
-  QrCode,
-  QrCodeDownload,
-  QrCodeFrame,
-} from "@/components/ui/qr-code"
+const usageSnippet = `import { QrCode } from "@/components/ui/qr-code"
 
 export function Example() {
   return (
-    <QrCode value="https://ui.persian-labs.ir">
-      <QrCodeFrame />
-      <QrCodeDownload fileName="qr-code.png" mimeType="image/png">
-        Download
-      </QrCodeDownload>
-    </QrCode>
+    <div className="dark:border-input w-[140px] rounded-lg p-2 shadow-[0_0_0_1px_rgba(0,0,0,.08),_0px_2px_2px_rgba(0,0,0,.04)] dark:border [&_svg]:h-auto [&_svg]:w-full">
+      <QrCode value="https://ui.persian-labs.ir" size={140} />
+    </div>
   )
 }`
+
+const logoSnippet = `<QrCode
+  value="https://ui.persian-labs.ir"
+  size={140}
+  errorCorrectionLevel="H"
+  logo={<AppLogo className="size-8 text-foreground" />}
+/>`
+
+const skeletonSnippet = `import { QrCode, QrCodeSkeleton } from "@/components/ui/qr-code"
+
+{loaded ? (
+  <QrCode value="https://ui.persian-labs.ir" />
+) : (
+  <QrCodeSkeleton />
+)}`
 
 export const qrCodeMarkdown = [
   "# QR Code",
   "",
-  "A flexible, Telegram-style QR code builder with square/dotted module shapes, solid or gradient fills, and a center logo overlay.",
+  "QR code generator with rounded finder patterns and dot-style data modules.",
   "",
   "## Installation",
   "",
   `${CODE_FENCE}bash`,
   "npx shadcn@latest add https://ui.persian-labs.ir/r/qr-code.json",
+  `npm install qrcode`,
   CODE_FENCE,
   "",
   "## Usage",
@@ -90,23 +90,25 @@ export const qrCodeMarkdown = [
   usageSnippet,
   CODE_FENCE,
   "",
+  "## Examples",
+  "",
+  "### Center Logo",
+  "",
+  `${CODE_FENCE}tsx`,
+  logoSnippet,
+  CODE_FENCE,
+  "",
+  "### Loading Skeleton",
+  "",
+  `${CODE_FENCE}tsx`,
+  skeletonSnippet,
+  CODE_FENCE,
+  "",
   "## API Reference",
   "",
   "### QrCode",
   "",
   apiRowsToMarkdownTable(qrCodeApi),
-  "",
-  "### QrCodeFrame",
-  "",
-  apiRowsToMarkdownTable(qrCodeFrameApi),
-  "",
-  "### QrCodeOverlay",
-  "",
-  apiRowsToMarkdownTable(qrCodeOverlayApi),
-  "",
-  "### QrCodeDownload",
-  "",
-  apiRowsToMarkdownTable(qrCodeDownloadApi),
   "",
   "### QrCodeSkeleton",
   "",
@@ -126,9 +128,8 @@ export default function QrCodeDocPage() {
           <CopyMarkdownButton markdown={qrCodeMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
-          A flexible QR code generator with square/dotted module shapes, solid
-          or gradient fills, and a center logo overlay slot — the same building
-          blocks as Telegram&apos;s QR share sheet.
+          A QR code generator with rounded finder patterns and dot-style data
+          modules, plus an optional center logo slot.
         </p>
         <LastUpdated date={lastEdited} />
 
@@ -168,7 +169,7 @@ export default function QrCodeDocPage() {
             <Steps>
               <Step>Install the component dependencies</Step>
               <div className="mt-2">
-                <InstallCommand packages="qrcode-generator" />
+                <InstallCommand packages="qrcode" />
               </div>
               <Step>Copy the component source</Step>
               <div className="mt-2">
@@ -185,73 +186,41 @@ export default function QrCodeDocPage() {
         <h2 id="usage" className="mt-12 text-xl font-semibold tracking-tight">
           Usage
         </h2>
+        <p className="mt-3 leading-relaxed text-muted-foreground">
+          The SVG renders at{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+            size
+          </code>{" "}
+          pixels by default, but scales to its container when CSS sizes it — the
+          wrapper below gives it a card frame and full-width scaling.
+        </p>
         <div className="mt-4">
           <CodeBlock code={usageSnippet} lang="tsx" />
         </div>
 
-        <h2 id="variant" className="mt-12 text-xl font-semibold tracking-tight">
-          Variant
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          The encoded matrix is traced into a single SVG{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            {"<path>"}
-          </code>
-          , one dark module at a time. The{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            dotted
-          </code>{" "}
-          variant is built by rendering that path invisibly inside an SVG{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            {"<mask>"}
-          </code>
-          , which turns it into a reusable stencil — the actual visible fill (a
-          tiled dot pattern here) is painted through the mask, so it&apos;s
-          clipped to exactly the QR module shape without needing per-cell
-          coordinates.
-        </p>
-        <div className="mt-3">
-          <ComponentPreview
-            preview={<QrCodeDottedExample />}
-            code={
-              <CodeBlock code={getExampleSource("qr-code-dotted")} lang="tsx" />
-            }
-          />
-        </div>
-
         <h2
-          id="gradient"
+          id="custom-colors"
           className="mt-12 text-xl font-semibold tracking-tight"
         >
-          Gradient Color
+          Custom Colors
         </h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
-          The same masking technique lets{" "}
+          Override{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            color
+            fgColor
           </code>{" "}
-          accept a gradient config instead of a solid CSS color, rendered as an
-          SVG{" "}
+          and{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            {"<linearGradient>"}
+            bgColor
           </code>{" "}
-          /{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            {"<radialGradient>"}
-          </code>{" "}
-          painted through the same mask. Keep enough contrast between the
-          pattern and the frame&apos;s white background — a low-contrast
-          gradient (e.g. light-on-light) makes the code unreliable or impossible
-          to scan.
+          to fit branded tickets, packaging, or event cards. Keep enough
+          contrast between the two for the code to stay scannable.
         </p>
         <div className="mt-3">
           <ComponentPreview
-            preview={<QrCodeGradientExample />}
+            preview={<QrCodeColorsExample />}
             code={
-              <CodeBlock
-                code={getExampleSource("qr-code-gradient")}
-                lang="tsx"
-              />
+              <CodeBlock code={getExampleSource("qr-code-colors")} lang="tsx" />
             }
           />
         </div>
@@ -260,15 +229,19 @@ export default function QrCodeDocPage() {
           Center Logo
         </h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
+          Pass any element as{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            QrCodeOverlay
+            logo
           </code>{" "}
-          renders any content — an image, an icon, a brand mark — centered over
-          the code, independent of the variant/color system above. It&apos;s{" "}
+          to render it centered over the code on an opaque chip matching{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            aria-hidden
+            bgColor
+          </code>
+          . The logo covers data modules, so raise the error correction level —{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+            errorCorrectionLevel=&quot;H&quot;
           </code>{" "}
-          by default since the QR code itself carries the meaning, not the logo.
+          recovers from up to 30% obscured area.
         </p>
         <div className="mt-3">
           <ComponentPreview
@@ -289,12 +262,17 @@ export default function QrCodeDocPage() {
           <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
             QrCodeSkeleton
           </code>{" "}
-          matches{" "}
+          mirrors{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            QrCodeFrame
+            QrCode
           </code>
-          &apos;s default footprint exactly, so swapping between the two while
-          the encoded value loads causes zero layout shift.
+          &apos;s{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+            size
+          </code>{" "}
+          prop, so swapping between the two while the encoded value loads causes
+          zero layout shift. The example simulates a 3-second load — press the
+          reload button to replay it.
         </p>
         <div className="mt-3">
           <ComponentPreview
@@ -308,35 +286,13 @@ export default function QrCodeDocPage() {
           />
         </div>
 
-        <h2
-          id="download"
-          className="mt-12 text-xl font-semibold tracking-tight"
-        >
-          Download
-        </h2>
-        <p className="mt-3 leading-relaxed text-muted-foreground">
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            QrCodeDownload
-          </code>{" "}
-          exports the frame as an image client-side — the SVG frame is
-          serialized, drawn onto an offscreen canvas, and saved as a PNG/JPEG/
-          WebP through a temporary download link. It renders as a styled button
-          by default — pass an icon and visible text as children (as in the
-          examples above), or an{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            aria-label
-          </code>{" "}
-          if you render it icon-only.
-        </p>
-
         <h2 id="rtl" className="mt-12 text-xl font-semibold tracking-tight">
           RTL
         </h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
           QR data itself is direction-agnostic visual data, so the code renders
-          identically regardless of the surrounding document direction — the
-          labels and download button around it are what need to follow the
-          page&apos;s direction.
+          identically regardless of the surrounding document direction — any
+          captions around it are what follow the page&apos;s direction.
         </p>
         <div className="mt-3">
           <ComponentPreview
@@ -355,9 +311,6 @@ export default function QrCodeDocPage() {
           API Reference
         </h2>
         <ApiReference title="QrCode" rows={qrCodeApi} />
-        <ApiReference title="QrCodeFrame" rows={qrCodeFrameApi} />
-        <ApiReference title="QrCodeOverlay" rows={qrCodeOverlayApi} />
-        <ApiReference title="QrCodeDownload" rows={qrCodeDownloadApi} />
         <ApiReference title="QrCodeSkeleton" rows={qrCodeSkeletonApi} />
 
         <DocsPageFooter

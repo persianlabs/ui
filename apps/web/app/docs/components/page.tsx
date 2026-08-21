@@ -923,7 +923,7 @@ const components = [
     title: "QR Code",
     href: "/docs/components/qr-code" as const,
     description:
-      "A flexible QR code generator with square/dotted module shapes, solid or gradient fills, and a center logo overlay.",
+      "A rounded QR code generator with dot modules, custom foreground/background colors, and a center logo slot.",
     badge: "New",
     createdAt: "2026-08-16",
     thumbnail: (
