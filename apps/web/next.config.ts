@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
         hostname: "github.com",
         pathname: "/shadcn.png",
       },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
     ],
   },
   async rewrites() {

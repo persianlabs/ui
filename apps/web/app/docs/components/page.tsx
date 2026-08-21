@@ -9,6 +9,7 @@ import {
   AlertDialogPreview,
   AlertPreview,
   AspectRatioPreview,
+  AttachmentPreview,
   AvatarPreview,
   BankInputPreview,
   BadgePreview,
@@ -112,6 +113,18 @@ function ThumbnailFrame({ children }: { children: React.ReactNode }) {
 }
 
 const components = [
+  {
+    title: "Attachment",
+    href: "/docs/components/attachment" as const,
+    description:
+      "Displays a file or image attachment with media, metadata, upload state, and actions.",
+    createdAt: "2026-08-22",
+    thumbnail: (
+      <ThumbnailFrame>
+        <AttachmentPreview />
+      </ThumbnailFrame>
+    ),
+  },
   {
     title: "Receipt Printer",
     href: "/docs/components/receipt-printer" as const,

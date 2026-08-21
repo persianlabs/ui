@@ -1,0 +1,73 @@
+"use client"
+
+import Image from "next/image"
+
+import { XIcon } from "lucide-react"
+
+import {
+  Attachment,
+  AttachmentAction,
+  AttachmentActions,
+  AttachmentContent,
+  AttachmentDescription,
+  AttachmentGroup,
+  AttachmentMedia,
+  AttachmentTitle,
+  AttachmentTrigger,
+} from "@workspace/ui/components/attachment"
+
+const images = [
+  {
+    name: "workspace.png",
+    meta: "PNG · 820 KB",
+    src: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=900&auto=format&fit=crop&q=80",
+    alt: "Workspace",
+  },
+  {
+    name: "desk-reference.jpg",
+    meta: "JPG · 1.1 MB",
+    src: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=900&auto=format&fit=crop&q=80",
+    alt: "Desk",
+  },
+  {
+    name: "office-reference.jpg",
+    meta: "JPG · 940 KB",
+    src: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=900&auto=format&fit=crop&q=80",
+    alt: "Office",
+  },
+]
+
+export function AttachmentImageExample() {
+  return (
+    <div className="mx-auto w-full max-w-sm">
+      <AttachmentGroup className="w-full">
+        {images.map((image) => (
+          <Attachment key={image.name} orientation="vertical">
+            <AttachmentMedia variant="image">
+              <Image src={image.src} alt={image.alt} width={460} height={460} />
+            </AttachmentMedia>
+            <AttachmentContent>
+              <AttachmentTitle>{image.name}</AttachmentTitle>
+              <AttachmentDescription>{image.meta}</AttachmentDescription>
+            </AttachmentContent>
+            <AttachmentActions>
+              <AttachmentAction aria-label={`Remove ${image.name}`}>
+                <XIcon />
+              </AttachmentAction>
+            </AttachmentActions>
+            <AttachmentTrigger
+              render={
+                <a
+                  href={image.src}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Open ${image.name}`}
+                />
+              }
+            />
+          </Attachment>
+        ))}
+      </AttachmentGroup>
+    </div>
+  )
+}
