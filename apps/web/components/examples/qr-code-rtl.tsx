@@ -1,32 +1,17 @@
 "use client"
 
-import { DownloadIcon } from "lucide-react"
-
-import {
-  QrCode,
-  QrCodeDownload,
-  QrCodeFrame,
-  QrCodeOverlay,
-} from "@workspace/ui/components/qr-code"
-
-import { AppLogo } from "@/components/app-logo"
+import { QrCode } from "@workspace/ui/components/qr-code"
 
 export function QrCodeRtlExample() {
   return (
     <div className="flex flex-col items-center gap-3">
-      <QrCode
-        value="https://persian-labs.ir/card/sara-ahmadi"
-        color={{ type: "linear", from: "#059669", to: "#0ea5e9", angle: 45 }}
-      >
-        <QrCodeFrame />
-        <QrCodeOverlay>
-          <AppLogo />
-        </QrCodeOverlay>
-        <QrCodeDownload fileName="کارت-ویزیت.png" mimeType="image/png">
-          <DownloadIcon className="size-3.5" aria-hidden="true" />
-          دانلود
-        </QrCodeDownload>
-      </QrCode>
+      <div className="w-[140px] rounded-lg p-2 shadow-[0_0_0_1px_rgba(0,0,0,.08),_0px_2px_2px_rgba(0,0,0,.04)] dark:border dark:border-input [&_svg]:h-auto [&_svg]:w-full">
+        <QrCode
+          value="https://persian-labs.ir/card/sara-ahmadi"
+          size={140}
+          errorCorrectionLevel="H"
+        />
+      </div>
       <p className="text-center text-sm text-muted-foreground">
         کارت ویزیت دیجیتال سارا احمدی
       </p>
