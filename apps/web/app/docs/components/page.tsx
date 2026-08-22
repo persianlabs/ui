@@ -50,6 +50,7 @@ import {
   MessageScrollerPreview,
   MobileNumberInputPreview,
   NativeSelectPreview,
+  NavigationMenuPreview,
   PaginationPreview,
   PasswordInputPreview,
   PopoverPreview,
@@ -114,6 +115,17 @@ function ThumbnailFrame({ children }: { children: React.ReactNode }) {
 }
 
 const components = [
+  {
+    title: "Navigation Menu",
+    href: "/docs/components/navigation-menu" as const,
+    description: "A collection of links for navigating websites.",
+    createdAt: "2026-08-22",
+    thumbnail: (
+      <ThumbnailFrame>
+        <NavigationMenuPreview />
+      </ThumbnailFrame>
+    ),
+  },
   {
     title: "Carousel",
     href: "/docs/components/carousel" as const,

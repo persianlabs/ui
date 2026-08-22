@@ -72,8 +72,7 @@ function Carousel({
     const node = rootRef.current
     if (!node) return
     const inherited = getComputedStyle(node).direction === "rtl" ? "rtl" : "ltr"
-    // Mirroring the ambient dir attribute — an external-system sync.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+    // Mirrors the ambient dir attribute — an external-system sync.
     setDirection((current) => (current === inherited ? current : inherited))
   }, [opts?.direction])
 
