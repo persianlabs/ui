@@ -18,6 +18,7 @@
     "@base-ui/react": "^1.7.0",
     "@daypicker/persian": "^10.0.1",
     "@ncdai/react-wheel-picker": "^1.2.2",
+    "@tanstack/react-table": "^9.1.2",
     "@vercel/analytics": "^2.0.1",
     "@workspace/ui": "workspace:*",
     "embla-carousel-autoplay": "^8.6.0",
