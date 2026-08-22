@@ -1,5 +1,6 @@
 import * as React from "react"
 import { NavigationMenu as NavigationMenuPrimitive } from "@base-ui/react/navigation-menu"
+import { useDirection } from "@base-ui/react/direction-provider"
 import { cva } from "class-variance-authority"
 import { ChevronDownIcon } from "lucide-react"
 
@@ -12,27 +13,14 @@ function NavigationMenu({
   ...props
 }: NavigationMenuPrimitive.Root.Props &
   Pick<NavigationMenuPrimitive.Positioner.Props, "align">) {
-  const rootRef = React.useRef<HTMLElement | null>(null)
-
-  // Panel placement is computed in JS (floating-ui coordinates), so `align`
-  // cannot be expressed with CSS classes. Mirror its default from the
-  // rendered writing direction instead: start opens rightward in LTR and
-  // leftward in RTL. An explicit align prop still wins.
-  const [isRtl, setIsRtl] = React.useState(false)
-
-  React.useLayoutEffect(() => {
-    const node = rootRef.current
-    const rtl =
-      getComputedStyle(node ?? document.documentElement).direction === "rtl"
-    setIsRtl(rtl)
-  }, [])
-
-  const align: "start" | "center" | "end" =
-    alignProp ?? (isRtl ? "end" : "start")
+  // Base UI resolves `side` logically against the direction context but
+  // passes `align` through to floating-ui physically, so mirror the default
+  // alignment here; an explicit align prop still wins.
+  const direction = useDirection()
+  const align = alignProp ?? (direction === "rtl" ? "end" : "start")
 
   return (
     <NavigationMenuPrimitive.Root
-      ref={rootRef}
       data-slot="navigation-menu"
       className={cn(
         "group/navigation-menu relative flex max-w-max flex-1 items-center justify-center",

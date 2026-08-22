@@ -123,7 +123,7 @@ export default function NavigationMenuDocPage() {
           changes={[
             "Replaced the multi-icon-library IconPlaceholder abstraction with a plain lucide-react ChevronDownIcon",
             "Converted the trigger chevron's ml-1 spacing to logical ms-1 so the gap sits between label and icon in both directions",
-            "Added rtl: variants mirroring the panel's enter/exit slide translations and the indicator arrow, so animation direction follows the writing direction without any dir plumbing",
+            "Added rtl: variants mirroring the panel's enter/exit slide translations and the indicator arrow, so animation direction follows the writing direction",
           ]}
         />
 
@@ -213,30 +213,37 @@ export default function NavigationMenuDocPage() {
           RTL
         </h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
-          Content panels render in a portal at{" "}
+          Wrap your application — or just the menu — in Base UI&apos;s{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            document.body
-          </code>
-          , so on a site that isn&apos;t RTL by default they need the direction
-          passed explicitly — set{" "}
-          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            dir=&quot;rtl&quot;
+            DirectionProvider
           </code>{" "}
-          on the menu root and on each{" "}
+          with{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
-            NavigationMenuContent
-          </code>
-          . Panel alignment mirrors automatically from the rendered direction
-          (start in LTR opens rightward, end in RTL opens leftward); an explicit{" "}
+            direction=&quot;rtl&quot;
+          </code>{" "}
+          and the menu follows the reading direction automatically: panel
+          alignment mirrors (the default{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
             align
           </code>{" "}
-          prop overrides it. The panel&apos;s enter/exit slides mirror through
-          Tailwind{" "}
+          opens panels along the reading flow; pass one explicitly to override),
+          and enter/exit slides mirror through Tailwind{" "}
           <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
             rtl:
           </code>{" "}
-          variants in the component itself.
+          variants. Content panels render in a portal at{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+            document.body
+          </code>
+          , so on a site that isn&apos;t RTL by default also pass{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+            dir=&quot;rtl&quot;
+          </code>{" "}
+          to the menu root and each{" "}
+          <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">
+            NavigationMenuContent
+          </code>{" "}
+          for correct text layout inside the panel.
         </p>
         <div className="mt-3">
           <ComponentPreview

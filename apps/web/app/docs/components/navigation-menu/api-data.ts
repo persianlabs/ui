@@ -6,7 +6,7 @@ export const navigationMenuApi: ApiReferenceRow[] = [
     type: '"start" | "center" | "end"',
     default: "mirrors with direction",
     description:
-      "How the content popup aligns to the trigger. Defaults to start in LTR and automatically mirrors to end in RTL based on the rendered direction; pass an explicit value to override.",
+      "How the content popup aligns to the trigger. Defaults to start in LTR and end in RTL, read from Base UI's DirectionProvider context; pass an explicit value to override.",
   },
   {
     prop: "class",

@@ -9,6 +9,7 @@ import {
   CircleDashedIcon,
 } from "lucide-react"
 
+import { DirectionProvider } from "@workspace/ui/components/direction"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -39,80 +40,82 @@ const components: { title: string; href: Route; description: string }[] = [
 
 export function NavigationMenuRtlExample() {
   return (
-    <NavigationMenu dir="rtl">
-      <NavigationMenuList>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>شروع</NavigationMenuTrigger>
-          <NavigationMenuContent dir="rtl">
-            <ul className="w-96">
-              <ListItem href="/docs" title="معرفی">
-                کامپوننت‌های آماده برای رابط‌های فارسی.
-              </ListItem>
-              <ListItem href="/docs/theming" title="پوسته">
-                چطور کامپوننت‌ها را شخصی‌سازی کنید.
-              </ListItem>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem className="hidden md:flex">
-          <NavigationMenuTrigger>کامپوننت‌ها</NavigationMenuTrigger>
-          <NavigationMenuContent dir="rtl">
-            <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-              {components.map((component) => (
-                <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
-                >
-                  {component.description}
+    <DirectionProvider direction="rtl">
+      <NavigationMenu dir="rtl">
+        <NavigationMenuList>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>شروع</NavigationMenuTrigger>
+            <NavigationMenuContent dir="rtl">
+              <ul className="w-96">
+                <ListItem href="/docs" title="معرفی">
+                  کامپوننت‌های آماده برای رابط‌های فارسی.
                 </ListItem>
-              ))}
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>با آیکون</NavigationMenuTrigger>
-          <NavigationMenuContent dir="rtl">
-            <ul className="grid w-[200px]">
-              <li>
-                <NavigationMenuLink
-                  render={
-                    <Link href="#" className="flex-row items-center gap-2" />
-                  }
-                >
-                  <CircleAlertIcon />
-                  در انتظار
-                </NavigationMenuLink>
-                <NavigationMenuLink
-                  render={
-                    <Link href="#" className="flex-row items-center gap-2" />
-                  }
-                >
-                  <CircleDashedIcon />
-                  در حال انجام
-                </NavigationMenuLink>
-                <NavigationMenuLink
-                  render={
-                    <Link href="#" className="flex-row items-center gap-2" />
-                  }
-                >
-                  <CircleCheckIcon />
-                  انجام شد
-                </NavigationMenuLink>
-              </li>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuLink
-            render={<Link href="/docs" />}
-            className={navigationMenuTriggerStyle()}
-          >
-            مستندات
-          </NavigationMenuLink>
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
+                <ListItem href="/docs/theming" title="پوسته">
+                  چطور کامپوننت‌ها را شخصی‌سازی کنید.
+                </ListItem>
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem className="hidden md:flex">
+            <NavigationMenuTrigger>کامپوننت‌ها</NavigationMenuTrigger>
+            <NavigationMenuContent dir="rtl">
+              <ul className="grid w-[400px] gap-2 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                {components.map((component) => (
+                  <ListItem
+                    key={component.title}
+                    title={component.title}
+                    href={component.href}
+                  >
+                    {component.description}
+                  </ListItem>
+                ))}
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuTrigger>با آیکون</NavigationMenuTrigger>
+            <NavigationMenuContent dir="rtl">
+              <ul className="grid w-[200px]">
+                <li>
+                  <NavigationMenuLink
+                    render={
+                      <Link href="#" className="flex-row items-center gap-2" />
+                    }
+                  >
+                    <CircleAlertIcon />
+                    در انتظار
+                  </NavigationMenuLink>
+                  <NavigationMenuLink
+                    render={
+                      <Link href="#" className="flex-row items-center gap-2" />
+                    }
+                  >
+                    <CircleDashedIcon />
+                    در حال انجام
+                  </NavigationMenuLink>
+                  <NavigationMenuLink
+                    render={
+                      <Link href="#" className="flex-row items-center gap-2" />
+                    }
+                  >
+                    <CircleCheckIcon />
+                    انجام شد
+                  </NavigationMenuLink>
+                </li>
+              </ul>
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink
+              render={<Link href="/docs" />}
+              className={navigationMenuTriggerStyle()}
+            >
+              مستندات
+            </NavigationMenuLink>
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+    </DirectionProvider>
   )
 }
 
