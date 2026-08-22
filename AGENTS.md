@@ -9,6 +9,10 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 Every new component or utility must include both a gallery preview image and an Open Graph image. Follow the repository workflow in `CLAUDE.md`: add the inline-style thumbnail preview, wire it into the gallery when applicable, and add the component's `opengraph-image.tsx` route with its matching OG preview.
 
+## Copyable page and .md endpoint
+
+Every new component or utility doc page must be copyable as markdown: export a `<name>Markdown` string from `page.tsx`, render it via `CopyMarkdownButton`, and serve it at the `.md` URL — either a `markdown/route.ts` next to the page (utilities) or an entry in `apps/web/app/docs/components/[slug]/markdown/route.ts` (components). Verify `<url>.md` returns 200 with the page content before pushing. See CLAUDE.md step 4.
+
 ## Before pushing
 
 Before every push, run `bun run lint` and `bun run format`. Resolve any errors and include Prettier's formatting changes in the same commit before pushing.
