@@ -1,0 +1,107 @@
+---
+title: "City Selector"
+description: "A province and city picker for Iran, built on Combobox and bundled with a full dataset of all 31 provinces and 1,119 cities."
+badge: "Special"
+---
+
+import { citySelectorApi, citySelectorCityApi, citySelectorProvinceApi } from "@/lib/api-data/city-selector"
+
+A ready-made province and city picker for Iran. Built on [Combobox](/docs/components/combobox), and bundled with all 31 provinces and 1,119 cities — the city field stays disabled until a province is chosen, and both are searchable.
+
+<LastEdited path="apps/web/content/docs/components/city-selector.mdx" />
+
+<Credits
+          sources={[
+            { label: "shadcn/ui", href: "https://ui.shadcn.com" },
+            {
+              label: "mahdi-eth/Iran-Cities-Data",
+              href: "https://github.com/mahdi-eth/Iran-Cities-Data/blob/main/JSON/cities.json",
+            },
+          ]}
+          changed
+          changes={[
+            "Combined shadcn's Combobox with Persian/English city data from Iran-Cities-Data",
+          ]}
+        />
+
+## Overview
+
+<ComponentPreview name="city-selector-basic" />
+
+## Installation
+
+<InstallTabs command="npx shadcn@latest add @persianlabsui/city-selector" packages="@base-ui/react" sourceName="combobox" sourceTitle="lib/persian-provinces.ts" sourceStep="Copy the Combobox source" />
+
+## Usage
+
+```tsx
+import { CitySelector } from "@/components/ui/city-selector"
+
+export function Example() {
+  return <CitySelector />
+}
+```
+
+Or compose the parts yourself for full control over layout, labels, and placeholders:
+
+```tsx
+import { Label } from "@/components/ui/label"
+
+import {
+
+  CitySelector,
+  CitySelectorCity,
+  CitySelectorProvince,
+} from "@/components/ui/city-selector"
+
+export function Example() {
+  return (
+    <CitySelector locale="en" className="flex-col gap-4 sm:flex-col">
+      <div className="flex flex-col gap-1.5">
+        <Label>Province</Label>
+        <CitySelectorProvince placeholder="Choose a province…" />
+      </div>
+      <div className="flex flex-col gap-1.5">
+        <Label>City</Label>
+        <CitySelectorCity placeholder="Choose a city…" />
+      </div>
+    </CitySelector>
+  )
+}
+```
+
+## Examples
+
+### Controlled (English)
+
+<ComponentPreview name="city-selector-controlled" />
+
+### Controlled (Persian)
+
+<ComponentPreview name="city-selector-controlled-fa" />
+
+### Locale
+
+By default, labels follow the document's text direction — Persian in RTL, English in LTR. Pass `locale` to force one regardless of direction — it flips the text direction of the picker too.
+
+<ComponentPreview name="city-selector-locale" />
+
+### Custom layout
+
+Compose `CitySelectorProvince` and `CitySelectorCity` yourself as children of `CitySelector` for full control over layout, labels, and placeholders.
+
+<ComponentPreview name="city-selector-custom" />
+
+### Form
+
+CitySelector is a plain controlled component — its `value` / `onValueChange` pair binds directly into any state or validator, no adapter needed. Here it's validated with Zod alongside a plain text field.
+
+<ComponentPreview name="city-selector-form" />
+
+## API Reference
+
+<ApiReference title="CitySelector" rows={citySelectorApi} />
+
+<ApiReference title="CitySelectorProvince" rows={citySelectorProvinceApi} />
+
+<ApiReference title="CitySelectorCity" rows={citySelectorCityApi} />

@@ -1,0 +1,85 @@
+---
+title: "Wheel Picker"
+description: "An iOS-like wheel picker with smooth inertia, infinite scrolling, and keyboard navigation."
+---
+
+import { wheelPickerApi, wheelPickerWrapperApi } from "@/lib/api-data/wheel-picker"
+
+A touch-friendly picker with natural momentum scrolling, infinite options, keyboard navigation, and type-ahead search.
+
+<LastEdited path="apps/web/content/docs/components/wheel-picker.mdx" />
+
+<Credits
+          sources={[
+            {
+              label: "Chánh Đại's React Wheel Picker",
+              href: "https://chanhdai.com/components/react-wheel-picker",
+            },
+          ]}
+          changed
+          changes={[
+            "Adds a gesture boundary that stops touch events from reaching a containing Drawer, so the picker's inertial scroll is not cancelled by swipe-to-dismiss",
+            "Uses a direction-isolated LTR picker surface so numeric wheels remain naturally ordered inside RTL interfaces",
+          ]}
+        />
+
+## Overview
+
+<ComponentPreview name="wheel-picker-demo" />
+
+## Installation
+
+<InstallTabs command="npx shadcn@latest add @persianlabsui/wheel-picker" packages="@ncdai/react-wheel-picker" sourceName="wheel-picker" sourceTitle="components/ui/wheel-picker.tsx" />
+
+## Usage
+
+```tsx
+import {
+
+  WheelPicker,
+  WheelPickerWrapper,
+  type WheelPickerOption,
+} from "@/components/ui/wheel-picker"
+
+const options: WheelPickerOption[] = [
+  { label: "React", value: "react" },
+  { label: "Vue", value: "vue" },
+  { label: "Svelte", value: "svelte" },
+]
+
+export function Example() {
+  return (
+    <WheelPickerWrapper>
+      <WheelPicker options={options} defaultValue="react" />
+    </WheelPickerWrapper>
+  )
+}
+```
+
+## Examples
+
+<ExampleSection id="dialog"
+  title="Inside a Dialog"
+  description="The wheel works normally when placed in a focus-trapped Dialog."
+  name="wheel-picker-dialog" />
+<ExampleSection id="drawer"
+  title="Inside a Drawer"
+  description="The wrapper isolates the wheel's touch gesture, preventing the Drawer from cancelling inertial scrolling."
+  name="wheel-picker-drawer" />
+<ExampleSection id="responsive-dialog"
+  title="Inside a Responsive Dialog"
+  description="On mobile this composition becomes a Drawer and retains the same protected wheel gesture."
+  name="wheel-picker-responsive-dialog" />
+<ExampleSection id="rtl"
+  title="RTL"
+  description="Persian labels work in RTL layouts while the wheel's scrolling surface keeps a predictable numeric direction."
+  name="wheel-picker-rtl"
+  direction="rtl" />
+
+## API Reference
+
+For option types, data attributes, and the complete upstream guide, see [React Wheel Picker documentation](https://react-wheel-picker.chanhdai.com/docs/getting-started).
+
+<ApiReference title="WheelPickerWrapper" rows={wheelPickerWrapperApi} />
+
+<ApiReference title="WheelPicker" rows={wheelPickerApi} />

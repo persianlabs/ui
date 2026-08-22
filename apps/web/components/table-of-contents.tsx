@@ -6,7 +6,7 @@ import * as React from "react"
 import { ScrollArea } from "@workspace/ui/components/scroll-area"
 import { cn } from "@workspace/ui/lib/utils"
 
-interface TocItem {
+export interface TocItem {
   id: string
   title: string
   children?: TocItem[]

@@ -1,0 +1,87 @@
+---
+title: "Persian Date"
+description: "Jalali/Gregorian date utilities built on date-fns and date-fns-jalali: formatting, parsing, conversion, ranges, and digit conversion, switchable with a calendarType prop."
+---
+
+import { arithmeticApi, comparisonsRangesApi, conversionApi, dateOptionsApi, digitsApi, formattingParsingApi } from "@/lib/api-data/persian-date"
+
+A single set of date utilities that works across the Jalali (Solar Hijri) and Gregorian calendars: format and parse dates, convert between calendars, do calendar-aware arithmetic, and validate reservation-style ranges — all built on `date-fns` and `date-fns-jalali`.
+
+<LastEdited path="apps/web/content/docs/utilities/persian-date.mdx" />
+
+## Overview
+
+<ComponentPreview name="persian-date-demo" />
+
+## Installation
+
+<InstallTabs command="npx shadcn@latest add @persianlabsui/persian-date" sourceName="persian-date" sourceKind="lib" sourceTitle="lib/persian-date.ts" sourceStep="Copy the source into your project" />
+
+## Usage
+
+Every function that reads or manipulates calendar fields (months, years, week boundaries) accepts an optional `calendarType` — the Jalali calendar is the default, since this library is Iran-first.
+
+```tsx
+import { formatDate, addDays, today } from "@/lib/persian-date"
+
+const checkIn = today()
+const checkOut = addDays(checkIn, 3)
+
+formatDate(checkIn, "yyyy/MM/dd") // "1404/06/01" (Jalali by default)
+formatDate(checkOut, "d MMMM", { calendarType: "miladi" }) // Gregorian
+```
+
+## Examples
+
+<ExampleSection id="parsing"
+  title="Parsing"
+  description="parseDate normalizes Persian/Arabic-Indic digits before parsing, and returns null instead of an invalid Date on failure."
+  name="persian-date-parsing" />
+<ExampleSection id="conversion"
+  title="Shamsi ↔ Miladi conversion"
+  description="toParts/fromParts (and their toShamsi/toMiladi/fromShamsi/fromMiladi shorthands) round-trip a Date through calendar fields without losing precision."
+  name="persian-date-conversion" />
+<ExampleSection id="arithmetic"
+  title="Calendar-aware arithmetic"
+  description="addMonths and addYears respect the active calendar's month lengths — adding a month to the end of Esfand behaves differently than adding one to the Gregorian February."
+  name="persian-date-arithmetic" />
+<ExampleSection id="boundaries"
+  title="Start / end of week, month, year"
+  description="startOfWeek/endOfWeek default to a Saturday-start week for shamsi (Sunday for miladi); startOfMonth/endOfMonth and startOfYear/endOfYear follow the same calendar-aware pattern."
+  name="persian-date-boundaries" />
+<ExampleSection id="leap-year"
+  title="Leap year & days in month"
+  description="isLeapYear and daysInMonth resolve Esfand's 29 vs. 30 days for the Jalali calendar."
+  name="persian-date-leap-year" />
+<ExampleSection id="comparisons"
+  title="Comparisons"
+  description="isToday, isPast, and isFuture classify a date relative to the current moment."
+  name="persian-date-comparisons" />
+<ExampleSection id="range"
+  title="Date range"
+  description="eachDayOfRange lists every day in an inclusive range; isWithinRange checks whether a given date falls inside it."
+  name="persian-date-range" />
+<ExampleSection id="reservation"
+  title="Range validation (reservation form)"
+  description="validateRange is built for hospital/hotel-style booking forms: it checks ordering, minimum/maximum stay length, past dates, and specific blocked dates, returning a machine-readable reason you can map to a message."
+  name="persian-date-reservation" />
+
+### RTL
+
+formatDate already outputs Persian digits and Persian month/weekday names by default in the shamsi calendar, so the formatted string reads naturally inside right-to-left content with no extra direction handling.
+
+<ComponentPreview name="persian-date-rtl" direction="rtl" />
+
+## API Reference
+
+<ApiReference title="Formatting & Parsing" rows={formattingParsingApi} />
+
+<ApiReference title="Conversion" rows={conversionApi} />
+
+<ApiReference title="Arithmetic" rows={arithmeticApi} />
+
+<ApiReference title="Comparisons & Ranges" rows={comparisonsRangesApi} />
+
+<ApiReference title="Digits" rows={digitsApi} />
+
+<ApiReference title="DateOptions" rows={dateOptionsApi} />

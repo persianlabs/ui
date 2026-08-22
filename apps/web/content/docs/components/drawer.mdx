@@ -1,0 +1,123 @@
+---
+title: "Drawer"
+description: "A swipeable panel that slides in from an edge of the screen, built on Base UI."
+---
+
+import { drawerPopupApi, drawerRootApi } from "@/lib/api-data/drawer"
+
+A swipeable panel that slides in from an edge of the screen — dismiss it by swiping, dragging the handle, or tapping outside. Built on Base UI's drawer primitive.
+
+<LastEdited path="apps/web/content/docs/components/drawer.mdx" />
+
+<Credits
+          sources={[
+            { label: "shadcn/ui", href: "https://ui.shadcn.com" },
+            {
+              label: "coss ui",
+              href: "https://coss.com/ui/docs/components/drawer",
+            },
+          ]}
+          changed
+          changes={[
+            'Adds a logical position="start"/"end" on top of the physical top/right/bottom/left, resolved from the ambient direction measured at the trigger, and used to derive swipeDirection automatically',
+            "DrawerMenuTrigger's chevron flips with rtl:-scale-x-100, and menu item padding/checkbox thumb travel use logical pe-/ps- and a rtl:-translate-x flip instead of physical left/right values",
+            "Guards against a spurious open-then-instant-dismiss: in re-render-heavy apps, the interaction that opens the drawer can produce a follow-up click Base UI reads as an outside-press in the same tick. Any outside-press within 200ms of opening is treated as that ghost press and cancelled",
+            "Fixed two positioning bugs: justify-[right]/justify-[left] silently failed to generate any CSS (those keywords aren't part of Tailwind's justify-content value scale for the shorthand form), so every non-bottom/top drawer rendered on the physical left regardless of position — replaced with the [justify-content:right]/[justify-content:left] arbitrary-property form. Separately, DrawerPopup reserves space for the drag bar via padding on itself when showBar is set, which inset every child including DrawerFooter's own background — DrawerFooter now cancels that inset with a matching negative margin so its background reaches the handle edge",
+          ]}
+        />
+
+## Overview
+
+<ComponentPreview name="drawer-demo" />
+
+## Installation
+
+<InstallTabs command="npx shadcn@latest add @persianlabsui/drawer" packages="@base-ui/react" sourceName="drawer" sourceTitle="components/ui/drawer.tsx" />
+
+## Usage
+
+```tsx
+import {
+
+  Drawer,
+  DrawerClose,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerPanel,
+  DrawerPopup,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"
+
+export function Example() {
+  return (
+    <Drawer>
+      <DrawerTrigger render={<Button variant="outline">Open</Button>} />
+      <DrawerPopup showBar>
+        <DrawerHeader>
+          <DrawerTitle>Edit profile</DrawerTitle>
+          <DrawerDescription>
+            Make changes to your profile here.
+          </DrawerDescription>
+        </DrawerHeader>
+        <DrawerPanel>{/* content */}</DrawerPanel>
+        <DrawerFooter>
+          <Button type="submit">Save changes</Button>
+          <DrawerClose render={<Button variant="outline">Cancel</Button>} />
+        </DrawerFooter>
+      </DrawerPopup>
+    </Drawer>
+  )
+}
+```
+
+## Examples
+
+### No footer
+
+`DrawerFooter` is optional — skip it for a purely informational sheet that only needs to be swiped away.
+
+<ComponentPreview name="drawer-no-footer" />
+
+### Positions
+
+Pass `position` to control which edge the drawer slides in from.
+
+<ComponentPreview name="drawer-positions" />
+
+### Variants
+
+`default` rounds the corners touching the screen edge, `straight` has no rounding and skips the nested-drawer scale-down effect, and `inset` floats with a margin from the edge on larger screens.
+
+<ComponentPreview name="drawer-variants" />
+
+### Scrollable content
+
+`DrawerHeader` and `DrawerFooter` stay fixed outside the scroll container — `DrawerPanel` is the only part that scrolls.
+
+<ComponentPreview name="drawer-scrollable" />
+
+### Snap points
+
+Pass `snapPoints` to have the drawer settle at preset heights instead of following the drag freely. Numbers between 0 and 1 are fractions of the viewport height. Snap points only apply to `position="bottom"` drawers.
+
+<ComponentPreview name="drawer-snap-points" />
+
+### Nested drawers
+
+A drawer opened from inside another already-open drawer stacks on top of it, scaling the one behind it down slightly. Pass `modal="trap-focus"` on the inner drawer — the outer one already owns the page-level scroll lock, so the inner one should only trap focus.
+
+<ComponentPreview name="drawer-nested" />
+
+### RTL
+
+`position="start"` opens from the reading-start edge — the right in RTL, the left in LTR — instead of a hardcoded side.
+
+<ComponentPreview name="drawer-rtl" direction="rtl" />
+
+## API Reference
+
+<ApiReference title="Drawer" rows={drawerRootApi} />
+
+<ApiReference title="DrawerPopup" rows={drawerPopupApi} />

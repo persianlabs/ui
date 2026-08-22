@@ -1,0 +1,71 @@
+---
+title: "Message"
+description: "Composable layout for a chat message with an avatar, header, content, and footer."
+---
+
+import { messageApi } from "@/lib/api-data/message"
+
+Composable layout for a chat message row: an avatar, an optional header/footer (name, timestamp), and `Bubble` content.
+
+<LastEdited path="apps/web/content/docs/components/message.mdx" />
+
+<Credits
+          sources={[{ label: "shadcn/ui", href: "https://ui.shadcn.com" }]}
+          changed={false}
+        />
+
+## Overview
+
+<ComponentPreview name="message-demo" />
+
+## Installation
+
+<InstallTabs command="npx shadcn@latest add @persianlabsui/message" sourceName="message" sourceTitle="components/ui/message.tsx" />
+
+## Usage
+
+```tsx
+import {
+
+  Message,
+  MessageAvatar,
+  MessageContent,
+  MessageGroup,
+  MessageHeader,
+} from "@/components/ui/message"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
+
+import { Bubble, BubbleContent } from "@/components/ui/bubble"
+
+export function Example() {
+  return (
+    <MessageGroup>
+      <Message align="start">
+        <MessageAvatar>
+          <Avatar>
+            <AvatarFallback>AI</AvatarFallback>
+          </Avatar>
+        </MessageAvatar>
+        <MessageContent>
+          <MessageHeader>Assistant</MessageHeader>
+          <Bubble variant="muted">
+            <BubbleContent>How can I help you today?</BubbleContent>
+          </Bubble>
+        </MessageContent>
+      </Message>
+    </MessageGroup>
+  )
+}
+```
+
+## Examples
+
+### RTL
+
+`align` uses `flex-row-reverse` rather than a physical side, so it already reads correctly under RTL.
+
+<ComponentPreview name="message-rtl" direction="rtl" />
+
+## API Reference
+
+<ApiReference title="Message" rows={messageApi} />

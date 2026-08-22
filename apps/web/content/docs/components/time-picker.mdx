@@ -1,0 +1,74 @@
+---
+title: "Time Picker"
+description: "An hour/minute/second wheel-based time picker, with a responsive Popover-on-desktop, Drawer-on-mobile composition."
+---
+
+import { responsiveTimePickerApi, responsiveTimePickerContentApi, timePickerApi } from "@/lib/api-data/time-picker"
+
+An hour/minute/second wheel-based clock, composed on top of Wheel Picker, with a Popover-on-desktop and Drawer-on-mobile trigger for use inside a form field. To pick a date and time together, see [Date Picker's With Time example](/docs/components/date-picker#with-time).
+
+<LastEdited path="apps/web/content/docs/components/time-picker.mdx" />
+
+<Credits
+          sources={[{ label: "shadcn/ui", href: "https://ui.shadcn.com" }]}
+          changed
+          changes={[
+            "Not a shadcn/ui component — shadcn's own Time Picker guide uses a native <input type=\"time\"> in a popover; this is an original composition of this registry's own Wheel Picker, Popover, and Drawer instead, following the same Popover-on-desktop/Drawer-on-mobile pattern as Responsive Dialog and Responsive Menu",
+            "Time-of-day is represented as a plain { hour, minute, second? } object rather than a Date, so it never needs a calendar date and stays free of SSR/hydration timing issues",
+          ]}
+        />
+
+## Overview
+
+<ComponentPreview name="time-picker-demo" />
+
+## Installation
+
+<InstallTabs command="npx shadcn@latest add @persianlabsui/time-picker" packages="@ncdai/react-wheel-picker @base-ui/react" sourceName="time-picker" sourceTitle="components/ui/time-picker.tsx" sourceStep="Copy the Wheel Picker, Popover, and Drawer first" />
+
+## Usage
+
+```tsx
+import { TimePicker } from "@/components/ui/time-picker"
+
+export function Example() {
+  return <TimePicker defaultValue={{ hour: 9, minute: 30 }} />
+}
+```
+
+## Examples
+
+<ExampleSection id="seconds"
+  title="Seconds"
+  description="Set showSeconds to add a third wheel column."
+  name="time-picker-seconds" />
+<ExampleSection id="12-hour"
+  title="12-Hour Format"
+  name="time-picker-12-hour" />
+<ExampleSection id="popover"
+  title="Popover"
+  name="time-picker-popover" />
+
+### Responsive
+
+ResponsiveTimePicker renders a Popover on desktop and a Drawer on mobile from one shared API. Resize the viewport (or use your browser devtools' device toolbar) below md to see the trigger switch from opening a popover to opening a bottom drawer.
+
+<ComponentPreview name="time-picker-responsive" />
+
+<ExampleSection id="range"
+  title="Range"
+  description="Two Time Pickers for a business-hours style range, with the from-time capped so it can't exceed the to-time."
+  name="time-picker-range" />
+<ExampleSection id="rtl"
+  title="RTL"
+  description="Persian labels and AM/PM abbreviations (ق.ظ / ب.ظ) work naturally in RTL layouts."
+  name="time-picker-rtl"
+  direction="rtl" />
+
+## API Reference
+
+<ApiReference title="TimePicker" rows={timePickerApi} />
+
+<ApiReference title="ResponsiveTimePicker" rows={responsiveTimePickerApi} />
+
+<ApiReference title="ResponsiveTimePickerContent" rows={responsiveTimePickerContentApi} />

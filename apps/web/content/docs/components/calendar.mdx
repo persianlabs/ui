@@ -1,0 +1,105 @@
+---
+title: "Calendar"
+description: "A date-grid calendar built on react-day-picker, switchable between the Jalali (Shamsi) and Gregorian (Miladi) calendars via a calendarType prop."
+---
+
+import { calendarApi } from "@/lib/api-data/calendar"
+
+A date-grid calendar built on [react-day-picker](https://daypicker.dev), with a `calendarType` prop that switches between the Jalali (Shamsi) and Gregorian (Miladi) calendars.
+
+<LastEdited path="apps/web/content/docs/components/calendar.mdx" />
+
+<Credits
+          sources={[
+            { label: "shadcn/ui", href: "https://ui.shadcn.com" },
+            {
+              label: "coss/ui",
+              href: "https://coss.com/ui/docs/components/calendar",
+            },
+          ]}
+          changed
+          changes={[
+            'Adds a calendarType prop ("shamsi" | "miladi") that switches between @daypicker/persian (faIR locale, RTL, Persian numerals) and react-day-picker (enUS locale, LTR, Latin numerals), defaulting to "shamsi"',
+            "Replaces pr-/pl- and rounded-l-/rounded-r- with pe-/ps- and rounded-e-/rounded-s- (logical properties) throughout",
+          ]}
+        />
+
+## Overview
+
+<ComponentPreview name="calendar-demo" />
+
+## Installation
+
+<InstallTabs command="npx shadcn@latest add @persianlabsui/calendar" packages="react-day-picker @daypicker/persian date-fns" sourceName="calendar" sourceTitle="components/ui/calendar.tsx" />
+
+## Usage
+
+```tsx
+import { Calendar } from "@/components/ui/calendar"
+
+export function Example() {
+  const [date, setDate] = React.useState<Date | undefined>()
+
+  return (
+    <Calendar
+      mode="single"
+      selected={date}
+      onSelect={setDate}
+      className="rounded-lg border"
+    />
+  )
+}
+```
+
+## Examples
+
+<ExampleSection id="calendar-type"
+  title="Calendar Type"
+  description="Set calendarType to switch between the Jalali (Shamsi, the default) and Gregorian (Miladi) calendars. Shamsi renders via @daypicker/persian with the faIR locale, RTL direction, and Persian numerals; Miladi renders via react-day-picker with the enUS locale, LTR direction, and Latin numerals."
+  name="calendar-calendar-type" />
+
+<ExampleSection id="range"
+  title="Range Calendar"
+  description={"Use `mode=\"range\"` with a controlled `selected` value and `onSelect`. One responsive calendar handles both endpoints."}
+  name="calendar-range" />
+
+<ExampleSection id="dropdown"
+  title="Month and Year Selector"
+  description={"Use `captionLayout=\"dropdown\"`."}
+  name="calendar-dropdown" />
+
+<ExampleSection id="presets"
+  title="Presets"
+  description="A calendar with a scrollable preset sidebar on desktop and a compact Drawer trigger above the month on smaller screens."
+  name="calendar-presets" />
+
+<ExampleSection id="booked"
+  title="Booked Dates"
+  description="Combine `disabled` with a `booked` modifier to strike through unavailable dates."
+  name="calendar-booked" />
+
+<ExampleSection id="week-numbers"
+  title="Week Numbers"
+  description="Use `showWeekNumber` to display the ISO week number."
+  name="calendar-week-numbers" />
+
+<ExampleSection id="holidays"
+  title="Holidays"
+  description="Pass `showHolidays` to highlight Iranian holidays (red text) for the visible month, using [persian-holidays](/docs/utilities/persian-holidays) internally. Hover a holiday to see its title and whether it's an official day off or just a commemorative occasion."
+  name="calendar-holidays" />
+
+### RTL
+
+The Shamsi calendar (the default) is already RTL, with the faIR locale and Persian numerals. Override `locale` and `dir` directly if you need a different locale in an RTL layout.
+
+<ComponentPreview name="calendar-rtl" direction="rtl" />
+
+## Date Picker
+
+Calendar is the day-grid building block. A Date Picker page, composing it with Popover for a compact single-field input (presets, range picker, reservation form), is coming soon.
+
+## API Reference
+
+<ApiReference title="Calendar" rows={calendarApi} />
+
+For the complete underlying prop reference (matchers, formatters, labels), see the [react-day-picker documentation](https://daypicker.dev/docs/props).

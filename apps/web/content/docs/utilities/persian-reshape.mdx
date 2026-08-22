@@ -1,0 +1,45 @@
+---
+title: "Persian Reshape"
+description: "Pre-shapes Persian/Arabic text for Satori/next-og images, which don't shape connected scripts on their own."
+badge: "New"
+---
+
+import { persianReshapeApi } from "@/lib/api-data/persian-reshape"
+
+Renderers that don't perform text shaping themselves — most notably Satori, which powers every OG image in this repo via Next's `ImageResponse` — draw Persian/Arabic letters as isolated glyphs instead of joining them into connected script. This utility pre-shapes the text into the correct joined codepoints before you hand it to `ImageResponse`, so no runtime shaping is required.
+
+<LastEdited path="apps/web/content/docs/utilities/persian-reshape.mdx" />
+
+## Overview
+
+Type Persian text above; the left panel simulates how Satori renders it untouched (ligatures/joining disabled via CSS — no image is actually generated), the right panel shows the same text through `reshapePersian`.
+
+<ComponentPreview name="persian-reshape-demo" />
+
+## Why this exists
+
+Satori draws each character as its isolated glyph and never joins Arabic/Persian letters, and it doesn't apply the Unicode Bidi Algorithm either — so raw Persian text handed to `ImageResponse` comes out both disconnected and backwards. `reshapePersian` fixes both: it selects the correct isolated/initial/medial/final presentation-form codepoint for each letter based on its neighbors, then reorders the shaped runs so the result draws correctly without any further processing. Mixed Persian + Latin/digit content (like a hyphenated slug) is preserved correctly — only the Persian run is reshaped and reversed, everything else keeps its own order.
+
+## Installation
+
+<InstallTabs command="npx shadcn@latest add @persianlabsui/persian-reshape" sourceName="persian-reshape" sourceKind="lib" sourceTitle="lib/persian-reshape.ts" sourceStep="Copy the source into your project" />
+
+## Usage
+
+```tsx
+import { ImageResponse } from "next/og"
+
+import { reshapePersian } from "@/lib/persian-reshape"
+
+export default function OpengraphImage() {
+  return new ImageResponse(
+    <div dir="rtl" style={{ display: "flex", fontSize: 48, color: "#fff" }}>
+      {reshapePersian("راهنمای خرید")}
+    </div>
+  )
+}
+```
+
+## API Reference
+
+<ApiReference title="persian-reshape" rows={persianReshapeApi} />

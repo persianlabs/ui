@@ -1,0 +1,43 @@
+---
+title: "Mobile Number Input"
+description: "An Iranian mobile number input that normalizes mixed paste formats and Persian digits, with a redundant validity indicator."
+badge: "New"
+---
+
+import { mobileNumberInputApi } from "@/lib/api-data/mobile-number-input"
+
+A plain Iranian mobile number field — no carrier logo, no carrier detection. It normalizes +989121234567, 989121234567, 09121234567, 9121234567, and Persian/Arabic-Indic digits to the standard 09xxxxxxxxx form as you type or paste, using [Normalize Persian Digits](/docs/utilities/normalize-persian-digits), and shows a shape-based (not color-only) checkmark or alert icon once the value looks complete.
+
+<LastEdited path="apps/web/content/docs/components/mobile-number-input.mdx" />
+
+## Overview
+
+<ComponentPreview name="mobile-number-input-demo" />
+
+## Installation
+
+Install the input, its normalization/validation utility, and the input-group primitives in one step.
+
+<InstallTabs command="npx shadcn@latest add @persianlabsui/mobile-number-input" packages="lucide-react" sourceName="mobile-number-input" sourceTitle="components/ui/mobile-number-input.tsx" />
+
+## Usage
+
+```tsx
+import { MobileNumberInput } from "@/components/ui/mobile-number-input"
+
+export function Example() {
+  return <MobileNumberInput />
+}
+```
+
+## Examples
+
+<ExampleSection id="rtl"
+  title="RTL"
+  description="Labels and helper text follow the surrounding RTL interface while the phone value remains intentionally LTR. Persian digits and +98/98/0098 prefixes are normalized as you type or paste."
+  name="mobile-number-input-rtl"
+  direction="rtl" />
+
+## API Reference
+
+<ApiReference title="MobileNumberInput" rows={mobileNumberInputApi} />

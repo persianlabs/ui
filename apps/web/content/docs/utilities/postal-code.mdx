@@ -1,0 +1,49 @@
+---
+title: "Postal Code"
+description: "Validates the structural format of Iranian postal codes (کد پستی)."
+badge: "New"
+---
+
+import { postalCodeApi } from "@/lib/api-data/postal-code"
+
+Validate the structural format of an Iranian postal code (کد پستی): 10 digits, not starting with zero, and not a single digit repeated 10 times — after normalizing Persian/Arabic-Indic digits.
+
+<LastEdited path="apps/web/content/docs/utilities/postal-code.mdx" />
+
+## Overview
+
+<LegacyPreview
+  preview={
+    <div className="font-mono text-sm">
+      1985813151{" "}
+      <span className="text-muted-foreground">→ معتبر ✓</span>
+    </div>
+  }
+  code={
+    <CodeBlock
+      code={`import { isValidPostalCode } from "@/lib/postal-code"
+
+isValidPostalCode("1985813151") // true
+isValidPostalCode("0000000000") // false`}
+      lang="ts"
+    />
+  }
+/>
+
+## Installation
+
+        <InstallTabs command="npx shadcn@latest add @persianlabsui/postal-code" sourceName="postal-code" sourceKind="lib" sourceTitle="lib/postal-code.ts" sourceStep="Copy the source" />
+        
+## Usage
+
+```tsx
+import { isValidPostalCode } from "@/lib/postal-code"
+
+isValidPostalCode("1985813151") // true
+isValidPostalCode("0000000000") // false
+```
+
+        
+## API Reference
+
+<ApiReference title="postal-code" rows={postalCodeApi} />
