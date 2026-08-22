@@ -1,0 +1,66 @@
+---
+title: "Field"
+description: "Groups a label, control, and description into an accessible form field, built on Base UI."
+---
+
+import { fieldApi, fieldErrorApi } from "@/lib/api-data/field"
+
+Groups a label, control, and description into an accessible form field. Built on Base UI's field primitive.
+
+<LastEdited path="apps/web/content/docs/components/field.mdx" />
+
+<Credits
+          sources={[{ label: "shadcn/ui", href: "https://ui.shadcn.com" }]}
+          changed={false}
+        />
+
+## Overview
+
+<ComponentPreview name="field-demo" />
+
+## Installation
+
+<InstallTabs command="npx shadcn@latest add @persianlabsui/field" packages="@base-ui/react class-variance-authority" sourceName="field" sourceTitle="components/ui/field.tsx" />
+
+## Usage
+
+```tsx
+import {
+
+  Field,
+  FieldDescription,
+  FieldLabel,
+} from "@/components/ui/field"
+
+export function Example() {
+  return (
+    <Field>
+      <FieldLabel htmlFor="email">Email</FieldLabel>
+      <Input id="email" type="email" />
+      <FieldDescription>We'll never share your email.</FieldDescription>
+    </Field>
+  )
+}
+```
+
+## Examples
+
+### Horizontal
+
+Set `orientation="horizontal"` to place the label and control side by side, e.g. for a settings-style toggle row.
+
+<ComponentPreview name="field-horizontal" />
+
+### Error
+
+<ComponentPreview name="field-error" />
+
+### RTL
+
+<ComponentPreview name="field-rtl" direction="rtl" />
+
+## API Reference
+
+<ApiReference title="Field" rows={fieldApi} />
+
+<ApiReference title="FieldError" rows={fieldErrorApi} />

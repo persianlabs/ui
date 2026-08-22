@@ -1,0 +1,180 @@
+---
+title: "Questionnaire"
+description: "A multi-step questionnaire with single-choice, multiple-choice, freeform, and skippable questions, built on @shadcn/react."
+badge: "New"
+---
+
+import { questionnaireApi, questionnaireChoiceApi, questionnaireInputApi, questionnaireItemApi, questionnaireNavigationApi, questionnaireProgressApi } from "@/lib/api-data/questionnaire"
+
+A multi-step questionnaire with single-choice, multiple-choice, freeform, and skippable questions. Built on `@shadcn/react`, which handles focus management, keyboard navigation, and validation — this repo only supplies the styling.
+
+<LastEdited path="apps/web/content/docs/components/questionnaire.mdx" />
+
+<Credits
+          sources={[{ label: "shadcn/ui", href: "https://ui.shadcn.com" }]}
+          changed={true}
+          changes={[
+            "Swapped Previous/Next chevron placement and rtl:-scale-x-100 mirroring to match this repo's Pagination convention (ChevronLeftIcon for Previous, ChevronRightIcon for Next, both flipped under rtl:)",
+            "Replaced the upstream's icon-abstraction check/radio indicator with a plain lucide-react CheckIcon and a small filled dot, driven by this repo's group-data-* attribute styling convention",
+          ]}
+        />
+
+## Overview
+
+A single-choice question with a freeform "other" answer, followed by an optional multiple-choice question.
+
+<ComponentPreview name="questionnaire-demo" />
+
+## Installation
+
+<InstallTabs command="npx shadcn@latest add @persianlabsui/questionnaire" packages="@shadcn/react" sourceName="questionnaire" sourceTitle="components/ui/questionnaire.tsx" />
+
+## Usage
+
+```tsx
+import {
+
+  Questionnaire,
+  QuestionnaireActions,
+  QuestionnaireChoice,
+  QuestionnaireChoices,
+  QuestionnaireDescription,
+  QuestionnaireError,
+  QuestionnaireInput,
+  QuestionnaireItem,
+  QuestionnaireNext,
+  QuestionnairePrevious,
+  QuestionnaireProgress,
+  QuestionnaireSkip,
+  QuestionnaireSubmit,
+  QuestionnaireTitle,
+} from "@/components/ui/questionnaire"
+
+export function Example() {
+  return (
+    <Questionnaire>
+      <QuestionnaireProgress />
+
+      <QuestionnaireItem name="role" required>
+        <QuestionnaireTitle>What is your role?</QuestionnaireTitle>
+        <QuestionnaireChoices>
+          <QuestionnaireChoice value="developer">Developer</QuestionnaireChoice>
+          <QuestionnaireChoice value="designer">Designer</QuestionnaireChoice>
+          <QuestionnaireChoice value="other">Other</QuestionnaireChoice>
+          <QuestionnaireInput aria-label="Your role" placeholder="Your role..." />
+        </QuestionnaireChoices>
+        <QuestionnaireError />
+      </QuestionnaireItem>
+
+      <QuestionnaireActions>
+        <QuestionnairePrevious />
+        <div className="flex items-center gap-2">
+          <QuestionnaireSkip />
+          <QuestionnaireNext />
+          <QuestionnaireSubmit />
+        </div>
+      </QuestionnaireActions>
+    </Questionnaire>
+  )
+}
+```
+
+## Examples
+
+### Multiple Selection
+
+Pass `multiple` on `QuestionnaireItem` to render checkboxes and allow more than one answer.
+
+<ComponentPreview name="questionnaire-multiple" />
+
+### Freeform Answer
+
+Compose `QuestionnaireInput` alongside fixed `QuestionnaireChoice` items for an "other, please specify" pattern.
+
+<ComponentPreview name="questionnaire-freeform" />
+
+### Explicit Skip
+
+`QuestionnaireSkip` only renders for items that aren't `required`, letting the user move on without answering.
+
+<ComponentPreview name="questionnaire-skip" />
+
+### Shortcuts
+
+Pass `shortcuts="letters"` (or `"numbers"`) on `Questionnaire` to assign a keyboard shortcut to each choice.
+
+<ComponentPreview name="questionnaire-shortcuts" />
+
+### Custom Validation
+
+Drive `QuestionnaireItem`'s `invalid` prop from an external schema — here, a [zod](https://zod.dev) schema validates the phone number on submit.
+
+<ComponentPreview name="questionnaire-validation" />
+
+### Controlled
+
+Pass `item` and `onItemChange` to drive the active question from outside, such as an external step indicator.
+
+<ComponentPreview name="questionnaire-controlled" />
+
+### Resume
+
+Use `defaultItem` together with `defaultChecked` on each choice to restore a previously saved session.
+
+<ComponentPreview name="questionnaire-resume" />
+
+### Conditional Items
+
+Toggle `disabled` on a later `QuestionnaireItem` based on an earlier answer to skip it from navigation entirely.
+
+<ComponentPreview name="questionnaire-conditional" />
+
+### Navigation State
+
+Every navigation part accepts a render function that receives `state` (`status`, `disabled`, `visible`, `shortcut`) for fully custom styling.
+
+<ComponentPreview name="questionnaire-navigation-state" />
+
+### Custom Progress
+
+`QuestionnaireProgress` also accepts a render function with `current`/`total` state, used here to build a segmented dot indicator instead of a bar.
+
+<ComponentPreview name="questionnaire-custom-progress" />
+
+### Animated Items
+
+The active item's `data-active` attribute toggles on each step change, which can retrigger an `animate-in` entrance — animating only `opacity`/ `transform`, and respecting `prefers-reduced-motion` globally.
+
+<ComponentPreview name="questionnaire-animated" />
+
+### Card
+
+Compose `Questionnaire` inside [Card](/docs/components/card) slots for a self-contained survey widget.
+
+<ComponentPreview name="questionnaire-card" />
+
+### Dialog
+
+Inside a [Dialog](/docs/components/dialog), the host owns Cancel/Close — the questionnaire's own Submit closes the dialog through the host's controlled `open` state.
+
+<ComponentPreview name="questionnaire-dialog" />
+
+### RTL
+
+Navigation chevrons mirror, the progress bar fills from the reading start, and the choice indicator sits correctly regardless of direction.
+
+<ComponentPreview name="questionnaire-rtl" direction="rtl" />
+
+## API Reference
+
+<ApiReference title="Questionnaire" rows={questionnaireApi} />
+
+<ApiReference title="QuestionnaireItem" rows={questionnaireItemApi} />
+
+<ApiReference title="QuestionnaireChoice" rows={questionnaireChoiceApi} />
+
+<ApiReference title="QuestionnaireInput" rows={questionnaireInputApi} />
+
+<ApiReference title="QuestionnaireProgress" rows={questionnaireProgressApi} />
+
+<ApiReference title="Navigation (Previous / Skip / Next / Submit)" rows={questionnaireNavigationApi} />

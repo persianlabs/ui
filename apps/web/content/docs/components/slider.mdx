@@ -1,0 +1,80 @@
+---
+title: "Slider"
+description: "An input where the user selects a value from within a given range, built on Base UI."
+badge: "New"
+---
+
+import { sliderRootApi } from "@/lib/api-data/slider"
+
+An input where the user selects a value from within a given range. Built on Base UI's slider primitive.
+
+<LastEdited path="apps/web/content/docs/components/slider.mdx" />
+
+<Credits
+          sources={[
+            { label: "shadcn/ui", href: "https://ui.shadcn.com" },
+            { label: "Base UI", href: "https://base-ui.com" },
+          ]}
+          changed={true}
+          changes={[
+            "Replaced the translucent bg-muted track fill with bg-primary/20 so the track stays visibly opaque against the page background instead of the near-invisible ~4% overlay bg-muted renders as on its own.",
+            "Wrapped the slider in Base UI's own DirectionProvider, fed from the ambient computed dir, for RTL — Base UI's Slider resolves drag and keyboard direction through its own DirectionContext (default ltr), not the DOM dir attribute, so it otherwise drags and responds to arrow keys backwards under an RTL page.",
+            "Normalized onValueChange's argument shape for single-thumb array-controlled sliders — Base UI's pointer-drag path reports a bare number instead of number[] in that case (a different internal code path than keyboard input, which gets it right), silently breaking consumers that assume value[0] stays defined while dragging.",
+          ]}
+        />
+
+## Overview
+
+<ComponentPreview name="slider-demo" />
+
+## Installation
+
+<InstallTabs command="npx shadcn@latest add @persianlabsui/slider" packages="@base-ui/react" sourceName="slider" sourceTitle="components/ui/slider.tsx" />
+
+## Usage
+
+```tsx
+import { Slider } from "@/components/ui/slider"
+
+export function Example() {
+  return <Slider defaultValue={[33]} max={100} step={1} />
+}
+```
+
+## Examples
+
+### Range
+
+Pass an array with two values to render a range slider with a start and end thumb.
+
+<ComponentPreview name="slider-range" />
+
+### Multiple Thumbs
+
+Pass an array with more than two values to render additional thumbs.
+
+<ComponentPreview name="slider-multiple" />
+
+### Vertical
+
+Set `orientation="vertical"` and give the slider an explicit height.
+
+<ComponentPreview name="slider-vertical" />
+
+### Controlled
+
+Pass `value` and `onValueChange` to control the slider's value.
+
+<ComponentPreview name="slider-controlled" />
+
+### Disabled
+
+<ComponentPreview name="slider-disabled" />
+
+### RTL
+
+<ComponentPreview name="slider-rtl" direction="rtl" />
+
+## API Reference
+
+<ApiReference title="Slider" rows={sliderRootApi} />

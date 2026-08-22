@@ -1,0 +1,23 @@
+{
+  "title": "Utilities",
+  "pages": [
+    "iranian-bank",
+    "hitbox",
+    "national-id",
+    "normalize-persian-digits",
+    "persian-date",
+    "persian-date-zod",
+    "persian-holidays",
+    "persian-reshape",
+    "persian-slug",
+    "postal-code",
+    "scroll-fade",
+    "shimmer",
+    "use-controllable-state",
+    "use-copy-to-clipboard",
+    "use-countdown",
+    "use-date",
+    "use-media-query",
+    "use-time-ago"
+  ]
+}
