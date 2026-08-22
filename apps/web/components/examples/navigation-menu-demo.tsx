@@ -1,7 +1,8 @@
 "use client"
 
-import * as React from "react"
 import type { Route } from "next"
+
+import * as React from "react"
 import Link from "next/link"
 import {
   CircleAlertIcon,
@@ -19,7 +20,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@workspace/ui/components/navigation-menu"
 
-const components: { title: string; href: Route; description: string }[] = [
+const components: { title: string; href: string; description: string }[] = [
   {
     title: "Alert Dialog",
     href: "/docs/components/alert-dialog",
@@ -144,10 +145,10 @@ function ListItem({
   children,
   href,
   ...props
-}: React.ComponentPropsWithoutRef<"li"> & { href: Route }) {
+}: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
   return (
     <li {...props}>
-      <NavigationMenuLink render={<Link href={href} />}>
+      <NavigationMenuLink render={<Link href={href as Route} />}>
         <div className="flex flex-col gap-1 text-sm">
           <div className="leading-none font-medium">{title}</div>
           <div className="line-clamp-2 text-muted-foreground">{children}</div>
