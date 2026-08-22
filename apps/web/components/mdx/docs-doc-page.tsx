@@ -108,7 +108,7 @@ export default async function DocsDocPage({ slug }: { slug?: string[] }) {
   const contentPath = `apps/web/${doc.info.path.replace(/^\.\//, "")}.mdx`
 
   const h1Row = (
-    <div className="flex flex-col  justify-between gap-3 sm:flex-row sm:items-center">
+    <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
       <h1 className="text-3xl font-semibold tracking-tight">{doc.title}</h1>
       <CopyMarkdownButton markdown={markdown} />
     </div>

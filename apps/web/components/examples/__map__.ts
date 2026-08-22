@@ -2,2148 +2,902 @@
 // Run `bun scripts/generate-example-map.mts` after adding/removing examples.
 import type * as React from "react"
 
-export const exampleLoaders: Record<
-  string,
-  () => Promise<React.ComponentType>
-> = {
-  "accordion-demo": () =>
-    import("@/components/examples/accordion-demo").then(
-      (m) => m.AccordionDemoExample
-    ),
-  "accordion-rtl": () =>
-    import("@/components/examples/accordion-rtl").then(
-      (m) => m.AccordionRtlExample
-    ),
-  "alert-action": () =>
-    import("@/components/examples/alert-action").then(
-      (m) => m.AlertActionExample
-    ),
-  "alert-demo": () =>
-    import("@/components/examples/alert-demo").then((m) => m.AlertDemoExample),
-  "alert-destructive": () =>
-    import("@/components/examples/alert-destructive").then(
-      (m) => m.AlertDestructiveExample
-    ),
-  "alert-dialog-demo": () =>
-    import("@/components/examples/alert-dialog-demo").then(
-      (m) => m.AlertDialogDemoExample
-    ),
-  "alert-dialog-no-footer": () =>
-    import("@/components/examples/alert-dialog-no-footer").then(
-      (m) => m.AlertDialogNoFooterExample
-    ),
-  "alert-dialog-rtl": () =>
-    import("@/components/examples/alert-dialog-rtl").then(
-      (m) => m.AlertDialogRtlExample
-    ),
-  "alert-rtl": () =>
-    import("@/components/examples/alert-rtl").then((m) => m.AlertRtlExample),
-  "aspect-ratio-demo": () =>
-    import("@/components/examples/aspect-ratio-demo").then(
-      (m) => m.AspectRatioDemoExample
-    ),
-  "aspect-ratio-rtl": () =>
-    import("@/components/examples/aspect-ratio-rtl").then(
-      (m) => m.AspectRatioRtlExample
-    ),
-  "aspect-ratio-square": () =>
-    import("@/components/examples/aspect-ratio-square").then(
-      (m) => m.AspectRatioSquareExample
-    ),
-  "attachment-demo": () =>
-    import("@/components/examples/attachment-demo").then(
-      (m) => m.AttachmentDemoExample
-    ),
-  "attachment-group": () =>
-    import("@/components/examples/attachment-group").then(
-      (m) => m.AttachmentGroupExample
-    ),
-  "attachment-image": () =>
-    import("@/components/examples/attachment-image").then(
-      (m) => m.AttachmentImageExample
-    ),
-  "attachment-rtl": () =>
-    import("@/components/examples/attachment-rtl").then(
-      (m) => m.AttachmentRtlExample
-    ),
-  "attachment-sizes": () =>
-    import("@/components/examples/attachment-sizes").then(
-      (m) => m.AttachmentSizesExample
-    ),
-  "attachment-states": () =>
-    import("@/components/examples/attachment-states").then(
-      (m) => m.AttachmentStatesExample
-    ),
-  "attachment-trigger": () =>
-    import("@/components/examples/attachment-trigger").then(
-      (m) => m.AttachmentTriggerExample
-    ),
-  "avatar-badge": () =>
-    import("@/components/examples/avatar-badge").then(
-      (m) => m.AvatarBadgeExample
-    ),
-  "avatar-demo": () =>
-    import("@/components/examples/avatar-demo").then(
-      (m) => m.AvatarDemoExample
-    ),
-  "avatar-group": () =>
-    import("@/components/examples/avatar-group").then(
-      (m) => m.AvatarGroupExample
-    ),
-  "avatar-rtl": () =>
-    import("@/components/examples/avatar-rtl").then((m) => m.AvatarRtlExample),
-  "avatar-size": () =>
-    import("@/components/examples/avatar-size").then(
-      (m) => m.AvatarSizeExample
-    ),
-  "badge-demo": () =>
-    import("@/components/examples/badge-demo").then((m) => m.BadgeDemoExample),
-  "badge-icon": () =>
-    import("@/components/examples/badge-icon").then((m) => m.BadgeIconExample),
-  "badge-rtl": () =>
-    import("@/components/examples/badge-rtl").then((m) => m.BadgeRtlExample),
-  "bank-input-demo": () =>
-    import("@/components/examples/bank-input-demo").then(
-      (m) => m.BankInputDemoExample
-    ),
-  "bank-input-rtl": () =>
-    import("@/components/examples/bank-input-rtl").then(
-      (m) => m.BankInputRtlExample
-    ),
-  "bank-input-separator": () =>
-    import("@/components/examples/bank-input-separator").then(
-      (m) => m.BankInputSeparatorExample
-    ),
-  "bank-input-shaba": () =>
-    import("@/components/examples/bank-input-shaba").then(
-      (m) => m.BankInputShabaExample
-    ),
-  "bank-input-supported-banks": () =>
-    import("@/components/examples/bank-input-supported-banks").then(
-      (m) => m.BankInputSupportedBanksExample
-    ),
-  "bank-input-zod": () =>
-    import("@/components/examples/bank-input-zod").then(
-      (m) => m.BankInputZodExample
-    ),
-  "breadcrumb-basic": () =>
-    import("@/components/examples/breadcrumb-basic").then(
-      (m) => m.BreadcrumbBasicExample
-    ),
-  "breadcrumb-city": () =>
-    import("@/components/examples/breadcrumb-city").then(
-      (m) => m.BreadcrumbCityExample
-    ),
-  "breadcrumb-dropdown": () =>
-    import("@/components/examples/breadcrumb-dropdown").then(
-      (m) => m.BreadcrumbDropdownExample
-    ),
-  "breadcrumb-ellipsis": () =>
-    import("@/components/examples/breadcrumb-ellipsis").then(
-      (m) => m.BreadcrumbEllipsisExample
-    ),
-  "breadcrumb-link": () =>
-    import("@/components/examples/breadcrumb-link").then(
-      (m) => m.BreadcrumbLinkExample
-    ),
-  "breadcrumb-rtl": () =>
-    import("@/components/examples/breadcrumb-rtl").then(
-      (m) => m.BreadcrumbRtlExample
-    ),
-  "breadcrumb-separator": () =>
-    import("@/components/examples/breadcrumb-separator").then(
-      (m) => m.BreadcrumbSeparatorExample
-    ),
-  "bubble-alignment": () =>
-    import("@/components/examples/bubble-alignment").then(
-      (m) => m.BubbleAlignmentExample
-    ),
-  "bubble-collapsible": () =>
-    import("@/components/examples/bubble-collapsible").then(
-      (m) => m.BubbleCollapsibleExample
-    ),
-  "bubble-demo": () =>
-    import("@/components/examples/bubble-demo").then(
-      (m) => m.BubbleDemoExample
-    ),
-  "bubble-group": () =>
-    import("@/components/examples/bubble-group").then(
-      (m) => m.BubbleGroupExample
-    ),
-  "bubble-link-button": () =>
-    import("@/components/examples/bubble-link-button").then(
-      (m) => m.BubbleLinkButtonExample
-    ),
-  "bubble-popover": () =>
-    import("@/components/examples/bubble-popover").then(
-      (m) => m.BubblePopoverExample
-    ),
-  "bubble-reactions": () =>
-    import("@/components/examples/bubble-reactions").then(
-      (m) => m.BubbleReactionsExample
-    ),
-  "bubble-rtl": () =>
-    import("@/components/examples/bubble-rtl").then((m) => m.BubbleRtlExample),
-  "bubble-tooltip": () =>
-    import("@/components/examples/bubble-tooltip").then(
-      (m) => m.BubbleTooltipExample
-    ),
-  "bubble-variants": () =>
-    import("@/components/examples/bubble-variants").then(
-      (m) => m.BubbleVariantsExample
-    ),
-  "button-blue": () =>
-    import("@/components/examples/button-blue").then(
-      (m) => m.ButtonBlueExample
-    ),
-  "button-default": () =>
-    import("@/components/examples/button-default").then(
-      (m) => m.ButtonDefaultExample
-    ),
-  "button-demo": () =>
-    import("@/components/examples/button-demo").then(
-      (m) => m.ButtonDemoExample
-    ),
-  "button-destructive": () =>
-    import("@/components/examples/button-destructive").then(
-      (m) => m.ButtonDestructiveExample
-    ),
-  "button-ghost": () =>
-    import("@/components/examples/button-ghost").then(
-      (m) => m.ButtonGhostExample
-    ),
-  "button-group-demo": () =>
-    import("@/components/examples/button-group-demo").then(
-      (m) => m.ButtonGroupDemoExample
-    ),
-  "button-group-dropdown": () =>
-    import("@/components/examples/button-group-dropdown").then(
-      (m) => m.ButtonGroupDropdownExample
-    ),
-  "button-group-input-group": () =>
-    import("@/components/examples/button-group-input-group").then(
-      (m) => m.ButtonGroupInputGroupExample
-    ),
-  "button-group-input": () =>
-    import("@/components/examples/button-group-input").then(
-      (m) => m.ButtonGroupInputExample
-    ),
-  "button-group-nested": () =>
-    import("@/components/examples/button-group-nested").then(
-      (m) => m.ButtonGroupNestedExample
-    ),
-  "button-group-orientation": () =>
-    import("@/components/examples/button-group-orientation").then(
-      (m) => m.ButtonGroupOrientationExample
-    ),
-  "button-group-popover": () =>
-    import("@/components/examples/button-group-popover").then(
-      (m) => m.ButtonGroupPopoverExample
-    ),
-  "button-group-rtl": () =>
-    import("@/components/examples/button-group-rtl").then(
-      (m) => m.ButtonGroupRtlExample
-    ),
-  "button-group-select": () =>
-    import("@/components/examples/button-group-select").then(
-      (m) => m.ButtonGroupSelectExample
-    ),
-  "button-group-separator": () =>
-    import("@/components/examples/button-group-separator").then(
-      (m) => m.ButtonGroupSeparatorExample
-    ),
-  "button-group-size": () =>
-    import("@/components/examples/button-group-size").then(
-      (m) => m.ButtonGroupSizeExample
-    ),
-  "button-group-split": () =>
-    import("@/components/examples/button-group-split").then(
-      (m) => m.ButtonGroupSplitExample
-    ),
-  "button-icon": () =>
-    import("@/components/examples/button-icon").then(
-      (m) => m.ButtonIconExample
-    ),
-  "button-link": () =>
-    import("@/components/examples/button-link").then(
-      (m) => m.ButtonLinkExample
-    ),
-  "button-loading": () =>
-    import("@/components/examples/button-loading").then(
-      (m) => m.ButtonLoadingExample
-    ),
-  "button-outline": () =>
-    import("@/components/examples/button-outline").then(
-      (m) => m.ButtonOutlineExample
-    ),
-  "button-render": () =>
-    import("@/components/examples/button-render").then(
-      (m) => m.ButtonRenderExample
-    ),
-  "button-rounded": () =>
-    import("@/components/examples/button-rounded").then(
-      (m) => m.ButtonRoundedExample
-    ),
-  "button-rtl": () =>
-    import("@/components/examples/button-rtl").then((m) => m.ButtonRtlExample),
-  "button-secondary": () =>
-    import("@/components/examples/button-secondary").then(
-      (m) => m.ButtonSecondaryExample
-    ),
-  "button-size": () =>
-    import("@/components/examples/button-size").then(
-      (m) => m.ButtonSizeExample
-    ),
-  "button-with-icon": () =>
-    import("@/components/examples/button-with-icon").then(
-      (m) => m.ButtonWithIconExample
-    ),
-  "calendar-booked": () =>
-    import("@/components/examples/calendar-booked").then(
-      (m) => m.CalendarBookedExample
-    ),
-  "calendar-calendar-type": () =>
-    import("@/components/examples/calendar-calendar-type").then(
-      (m) => m.CalendarCalendarTypeExample
-    ),
-  "calendar-demo": () =>
-    import("@/components/examples/calendar-demo").then(
-      (m) => m.CalendarDemoExample
-    ),
-  "calendar-dropdown": () =>
-    import("@/components/examples/calendar-dropdown").then(
-      (m) => m.CalendarDropdownExample
-    ),
-  "calendar-holidays": () =>
-    import("@/components/examples/calendar-holidays").then(
-      (m) => m.CalendarHolidaysExample
-    ),
-  "calendar-presets": () =>
-    import("@/components/examples/calendar-presets").then(
-      (m) => m.CalendarPresetsExample
-    ),
-  "calendar-range": () =>
-    import("@/components/examples/calendar-range").then(
-      (m) => m.CalendarRangeExample
-    ),
-  "calendar-rtl": () =>
-    import("@/components/examples/calendar-rtl").then(
-      (m) => m.CalendarRtlExample
-    ),
-  "calendar-week-numbers": () =>
-    import("@/components/examples/calendar-week-numbers").then(
-      (m) => m.CalendarWeekNumbersExample
-    ),
-  "card-demo": () =>
-    import("@/components/examples/card-demo").then((m) => m.CardDemoExample),
-  "card-image": () =>
-    import("@/components/examples/card-image").then((m) => m.CardImageExample),
-  "card-product": () =>
-    import("@/components/examples/card-product").then(
-      (m) => m.CardProductExample
-    ),
-  "card-rtl": () =>
-    import("@/components/examples/card-rtl").then((m) => m.CardRtlExample),
-  "card-small": () =>
-    import("@/components/examples/card-small").then((m) => m.CardSmallExample),
-  "carousel-api": () =>
-    import("@/components/examples/carousel-api").then(
-      (m) => m.CarouselApiExample
-    ),
-  "carousel-demo": () =>
-    import("@/components/examples/carousel-demo").then(
-      (m) => m.CarouselDemoExample
-    ),
-  "carousel-orientation": () =>
-    import("@/components/examples/carousel-orientation").then(
-      (m) => m.CarouselOrientationExample
-    ),
-  "carousel-plugin": () =>
-    import("@/components/examples/carousel-plugin").then(
-      (m) => m.CarouselPluginExample
-    ),
-  "carousel-rtl": () =>
-    import("@/components/examples/carousel-rtl").then(
-      (m) => m.CarouselRtlExample
-    ),
-  "carousel-size": () =>
-    import("@/components/examples/carousel-size").then(
-      (m) => m.CarouselSizeExample
-    ),
-  "carousel-spacing": () =>
-    import("@/components/examples/carousel-spacing").then(
-      (m) => m.CarouselSpacingExample
-    ),
-  "checkbox-demo": () =>
-    import("@/components/examples/checkbox-demo").then(
-      (m) => m.CheckboxDemoExample
-    ),
-  "checkbox-disabled": () =>
-    import("@/components/examples/checkbox-disabled").then(
-      (m) => m.CheckboxDisabledExample
-    ),
-  "checkbox-rtl": () =>
-    import("@/components/examples/checkbox-rtl").then(
-      (m) => m.CheckboxRtlExample
-    ),
-  "city-selector-basic": () =>
-    import("@/components/examples/city-selector-basic").then(
-      (m) => m.CitySelectorBasicExample
-    ),
-  "city-selector-controlled-fa": () =>
-    import("@/components/examples/city-selector-controlled-fa").then(
-      (m) => m.CitySelectorControlledFaExample
-    ),
-  "city-selector-controlled": () =>
-    import("@/components/examples/city-selector-controlled").then(
-      (m) => m.CitySelectorControlledExample
-    ),
-  "city-selector-custom": () =>
-    import("@/components/examples/city-selector-custom").then(
-      (m) => m.CitySelectorCustomExample
-    ),
-  "city-selector-form": () =>
-    import("@/components/examples/city-selector-form").then(
-      (m) => m.CitySelectorFormExample
-    ),
-  "city-selector-locale": () =>
-    import("@/components/examples/city-selector-locale").then(
-      (m) => m.CitySelectorLocaleExample
-    ),
-  "collapsible-demo": () =>
-    import("@/components/examples/collapsible-demo").then(
-      (m) => m.CollapsibleDemoExample
-    ),
-  "collapsible-rtl": () =>
-    import("@/components/examples/collapsible-rtl").then(
-      (m) => m.CollapsibleRtlExample
-    ),
-  "combobox-basic": () =>
-    import("@/components/examples/combobox-basic").then(
-      (m) => m.ComboboxBasicExample
-    ),
-  "combobox-clear": () =>
-    import("@/components/examples/combobox-clear").then(
-      (m) => m.ComboboxClearExample
-    ),
-  "combobox-disabled": () =>
-    import("@/components/examples/combobox-disabled").then(
-      (m) => m.ComboboxDisabledExample
-    ),
-  "combobox-groups": () =>
-    import("@/components/examples/combobox-groups").then(
-      (m) => m.ComboboxGroupsExample
-    ),
-  "combobox-multiple": () =>
-    import("@/components/examples/combobox-multiple").then(
-      (m) => m.ComboboxMultipleExample
-    ),
-  "command-basic": () =>
-    import("@/components/examples/command-basic").then(
-      (m) => m.CommandBasicExample
-    ),
-  "command-groups": () =>
-    import("@/components/examples/command-groups").then(
-      (m) => m.CommandGroupsExample
-    ),
-  "command-panel": () =>
-    import("@/components/examples/command-panel").then(
-      (m) => m.CommandPanelExample
-    ),
-  "command-rtl": () =>
-    import("@/components/examples/command-rtl").then(
-      (m) => m.CommandRtlExample
-    ),
-  "context-menu-demo": () =>
-    import("@/components/examples/context-menu-demo").then(
-      (m) => m.ContextMenuDemoExample
-    ),
-  "context-menu-rtl": () =>
-    import("@/components/examples/context-menu-rtl").then(
-      (m) => m.ContextMenuRtlExample
-    ),
-  "copy-button-demo": () =>
-    import("@/components/examples/copy-button-demo").then(
-      (m) => m.CopyButtonDemoExample
-    ),
-  "copy-button-rtl": () =>
-    import("@/components/examples/copy-button-rtl").then(
-      (m) => m.CopyButtonRtlExample
-    ),
-  "copy-button-with-text": () =>
-    import("@/components/examples/copy-button-with-text").then(
-      (m) => m.CopyButtonWithTextExample
-    ),
-  "data-table-demo": () =>
-    import("@/components/examples/data-table-demo").then(
-      (m) => m.DataTableDemoExample
-    ),
-  "data-table-rtl": () =>
-    import("@/components/examples/data-table-rtl").then(
-      (m) => m.DataTableRtlExample
-    ),
-  "date-picker-calendar-type": () =>
-    import("@/components/examples/date-picker-calendar-type").then(
-      (m) => m.DatePickerCalendarTypeExample
-    ),
-  "date-picker-close-on-select": () =>
-    import("@/components/examples/date-picker-close-on-select").then(
-      (m) => m.DatePickerCloseOnSelectExample
-    ),
-  "date-picker-confirmation": () =>
-    import("@/components/examples/date-picker-confirmation").then(
-      (m) => m.DatePickerConfirmationExample
-    ),
-  "date-picker-constrained": () =>
-    import("@/components/examples/date-picker-constrained").then(
-      (m) => m.DatePickerConstrainedExample
-    ),
-  "date-picker-controlled": () =>
-    import("@/components/examples/date-picker-controlled").then(
-      (m) => m.DatePickerControlledExample
-    ),
-  "date-picker-custom-trigger": () =>
-    import("@/components/examples/date-picker-custom-trigger").then(
-      (m) => m.DatePickerCustomTriggerExample
-    ),
-  "date-picker-demo": () =>
-    import("@/components/examples/date-picker-demo").then(
-      (m) => m.DatePickerDemoExample
-    ),
-  "date-picker-dob": () =>
-    import("@/components/examples/date-picker-dob").then(
-      (m) => m.DatePickerDobExample
-    ),
-  "date-picker-input": () =>
-    import("@/components/examples/date-picker-input").then(
-      (m) => m.DatePickerInputExample
-    ),
-  "date-picker-miladi": () =>
-    import("@/components/examples/date-picker-miladi").then(
-      (m) => m.DatePickerMiladiExample
-    ),
-  "date-picker-presets-responsive": () =>
-    import("@/components/examples/date-picker-presets-responsive").then(
-      (m) => m.DatePickerPresetsResponsiveExample
-    ),
-  "date-picker-range": () =>
-    import("@/components/examples/date-picker-range").then(
-      (m) => m.DatePickerRangeExample
-    ),
-  "date-picker-reservation": () =>
-    import("@/components/examples/date-picker-reservation").then(
-      (m) => m.DatePickerReservationExample
-    ),
-  "date-picker-responsive": () =>
-    import("@/components/examples/date-picker-responsive").then(
-      (m) => m.DatePickerResponsiveExample
-    ),
-  "date-picker-rtl": () =>
-    import("@/components/examples/date-picker-rtl").then(
-      (m) => m.DatePickerRtlExample
-    ),
-  "date-picker-time-advanced": () =>
-    import("@/components/examples/date-picker-time-advanced").then(
-      (m) => m.DatePickerTimeAdvancedExample
-    ),
-  "date-picker-with-time": () =>
-    import("@/components/examples/date-picker-with-time").then(
-      (m) => m.DatePickerWithTimeExample
-    ),
-  "date-picker-zod": () =>
-    import("@/components/examples/date-picker-zod").then(
-      (m) => m.DatePickerZodExample
-    ),
-  "date-wheel-picker-calendar-type": () =>
-    import("@/components/examples/date-wheel-picker-calendar-type").then(
-      (m) => m.DateWheelPickerCalendarTypeExample
-    ),
-  "date-wheel-picker-demo": () =>
-    import("@/components/examples/date-wheel-picker-demo").then(
-      (m) => m.DateWheelPickerDemoExample
-    ),
-  "date-wheel-picker-loop": () =>
-    import("@/components/examples/date-wheel-picker-loop").then(
-      (m) => m.DateWheelPickerLoopExample
-    ),
-  "date-wheel-picker-range": () =>
-    import("@/components/examples/date-wheel-picker-range").then(
-      (m) => m.DateWheelPickerRangeExample
-    ),
-  "date-wheel-picker-responsive-dialog": () =>
-    import("@/components/examples/date-wheel-picker-responsive-dialog").then(
-      (m) => m.DateWheelPickerResponsiveDialogExample
-    ),
-  "date-wheel-picker-responsive-menu": () =>
-    import("@/components/examples/date-wheel-picker-responsive-menu").then(
-      (m) => m.DateWheelPickerResponsiveMenuExample
-    ),
-  "date-wheel-picker-responsive": () =>
-    import("@/components/examples/date-wheel-picker-responsive").then(
-      (m) => m.DateWheelPickerResponsiveExample
-    ),
-  "date-wheel-picker-rtl": () =>
-    import("@/components/examples/date-wheel-picker-rtl").then(
-      (m) => m.DateWheelPickerRtlExample
-    ),
-  "date-wheel-picker-step": () =>
-    import("@/components/examples/date-wheel-picker-step").then(
-      (m) => m.DateWheelPickerStepExample
-    ),
-  "dialog-demo": () =>
-    import("@/components/examples/dialog-demo").then(
-      (m) => m.DialogDemoExample
-    ),
-  "dialog-no-footer": () =>
-    import("@/components/examples/dialog-no-footer").then(
-      (m) => m.DialogNoFooterExample
-    ),
-  "dialog-rtl": () =>
-    import("@/components/examples/dialog-rtl").then((m) => m.DialogRtlExample),
-  "direction-demo": () =>
-    import("@/components/examples/direction-demo").then(
-      (m) => m.DirectionDemoExample
-    ),
-  "direction-hook": () =>
-    import("@/components/examples/direction-hook").then(
-      (m) => m.DirectionHookExample
-    ),
-  "drawer-demo": () =>
-    import("@/components/examples/drawer-demo").then(
-      (m) => m.DrawerDemoExample
-    ),
-  "drawer-nested": () =>
-    import("@/components/examples/drawer-nested").then(
-      (m) => m.DrawerNestedExample
-    ),
-  "drawer-no-footer": () =>
-    import("@/components/examples/drawer-no-footer").then(
-      (m) => m.DrawerNoFooterExample
-    ),
-  "drawer-positions": () =>
-    import("@/components/examples/drawer-positions").then(
-      (m) => m.DrawerPositionsExample
-    ),
-  "drawer-rtl": () =>
-    import("@/components/examples/drawer-rtl").then((m) => m.DrawerRtlExample),
-  "drawer-scrollable": () =>
-    import("@/components/examples/drawer-scrollable").then(
-      (m) => m.DrawerScrollableExample
-    ),
-  "drawer-snap-points": () =>
-    import("@/components/examples/drawer-snap-points").then(
-      (m) => m.DrawerSnapPointsExample
-    ),
-  "drawer-variants": () =>
-    import("@/components/examples/drawer-variants").then(
-      (m) => m.DrawerVariantsExample
-    ),
-  "dropdown-menu-checkboxes": () =>
-    import("@/components/examples/dropdown-menu-checkboxes").then(
-      (m) => m.DropdownMenuCheckboxesExample
-    ),
-  "dropdown-menu-demo": () =>
-    import("@/components/examples/dropdown-menu-demo").then(
-      (m) => m.DropdownMenuDemoExample
-    ),
-  "dropdown-menu-rtl": () =>
-    import("@/components/examples/dropdown-menu-rtl").then(
-      (m) => m.DropdownMenuRtlExample
-    ),
-  "elastic-slider-demo": () =>
-    import("@/components/examples/elastic-slider-demo").then(
-      (m) => m.ElasticSliderDemoExample
-    ),
-  "elastic-slider-price-range": () =>
-    import("@/components/examples/elastic-slider-price-range").then(
-      (m) => m.ElasticSliderPriceRangeExample
-    ),
-  "elastic-slider-range-percent": () =>
-    import("@/components/examples/elastic-slider-range-percent").then(
-      (m) => m.ElasticSliderRangePercentExample
-    ),
-  "elastic-slider-range-toman": () =>
-    import("@/components/examples/elastic-slider-range-toman").then(
-      (m) => m.ElasticSliderRangeTomanExample
-    ),
-  "elastic-slider-rtl": () =>
-    import("@/components/examples/elastic-slider-rtl").then(
-      (m) => m.ElasticSliderRtlExample
-    ),
-  "empty-background": () =>
-    import("@/components/examples/empty-background").then(
-      (m) => m.EmptyBackgroundExample
-    ),
-  "empty-city": () =>
-    import("@/components/examples/empty-city").then((m) => m.EmptyCityExample),
-  "empty-demo": () =>
-    import("@/components/examples/empty-demo").then((m) => m.EmptyDemoExample),
-  "empty-input-group": () =>
-    import("@/components/examples/empty-input-group").then(
-      (m) => m.EmptyInputGroupExample
-    ),
-  "empty-outline": () =>
-    import("@/components/examples/empty-outline").then(
-      (m) => m.EmptyOutlineExample
-    ),
-  "empty-rtl": () =>
-    import("@/components/examples/empty-rtl").then((m) => m.EmptyRtlExample),
-  "field-demo": () =>
-    import("@/components/examples/field-demo").then((m) => m.FieldDemoExample),
-  "field-error": () =>
-    import("@/components/examples/field-error").then(
-      (m) => m.FieldErrorExample
-    ),
-  "field-horizontal": () =>
-    import("@/components/examples/field-horizontal").then(
-      (m) => m.FieldHorizontalExample
-    ),
-  "field-rtl": () =>
-    import("@/components/examples/field-rtl").then((m) => m.FieldRtlExample),
-  "hitbox-debug": () =>
-    import("@/components/examples/hitbox-debug").then(
-      (m) => m.HitboxDebugExample
-    ),
-  "hitbox-demo": () =>
-    import("@/components/examples/hitbox-demo").then(
-      (m) => m.HitboxDemoExample
-    ),
-  "hitbox-positions": () =>
-    import("@/components/examples/hitbox-positions").then(
-      (m) => m.HitboxPositionsExample
-    ),
-  "hitbox-radii": () =>
-    import("@/components/examples/hitbox-radii").then(
-      (m) => m.HitboxRadiiExample
-    ),
-  "hitbox-sizes": () =>
-    import("@/components/examples/hitbox-sizes").then(
-      (m) => m.HitboxSizesExample
-    ),
-  "hover-card-demo": () =>
-    import("@/components/examples/hover-card-demo").then(
-      (m) => m.HoverCardDemoExample
-    ),
-  "hover-card-rtl": () =>
-    import("@/components/examples/hover-card-rtl").then(
-      (m) => m.HoverCardRtlExample
-    ),
-  "input-badge": () =>
-    import("@/components/examples/input-badge").then(
-      (m) => m.InputBadgeExample
-    ),
-  "input-basic": () =>
-    import("@/components/examples/input-basic").then(
-      (m) => m.InputBasicExample
-    ),
-  "input-button-group": () =>
-    import("@/components/examples/input-button-group").then(
-      (m) => m.InputButtonGroupExample
-    ),
-  "input-demo": () =>
-    import("@/components/examples/input-demo").then((m) => m.InputDemoExample),
-  "input-disabled": () =>
-    import("@/components/examples/input-disabled").then(
-      (m) => m.InputDisabledExample
-    ),
-  "input-field": () =>
-    import("@/components/examples/input-field").then(
-      (m) => m.InputFieldExample
-    ),
-  "input-fieldgroup": () =>
-    import("@/components/examples/input-fieldgroup").then(
-      (m) => m.InputFieldGroupExample
-    ),
-  "input-file": () =>
-    import("@/components/examples/input-file").then((m) => m.InputFileExample),
-  "input-form": () =>
-    import("@/components/examples/input-form").then((m) => m.InputFormExample),
-  "input-grid": () =>
-    import("@/components/examples/input-grid").then((m) => m.InputGridExample),
-  "input-group-block-end": () =>
-    import("@/components/examples/input-group-block-end").then(
-      (m) => m.InputGroupBlockEndExample
-    ),
-  "input-group-block-start": () =>
-    import("@/components/examples/input-group-block-start").then(
-      (m) => m.InputGroupBlockStartExample
-    ),
-  "input-group-button": () =>
-    import("@/components/examples/input-group-button").then(
-      (m) => m.InputGroupButtonExample
-    ),
-  "input-group-custom": () =>
-    import("@/components/examples/input-group-custom").then(
-      (m) => m.InputGroupCustomExample
-    ),
-  "input-group-demo": () =>
-    import("@/components/examples/input-group-demo").then(
-      (m) => m.InputGroupDemoExample
-    ),
-  "input-group-dropdown": () =>
-    import("@/components/examples/input-group-dropdown").then(
-      (m) => m.InputGroupDropdownExample
-    ),
-  "input-group-icon": () =>
-    import("@/components/examples/input-group-icon").then(
-      (m) => m.InputGroupIconExample
-    ),
-  "input-group-inline-end": () =>
-    import("@/components/examples/input-group-inline-end").then(
-      (m) => m.InputGroupInlineEndExample
-    ),
-  "input-group-inline-start": () =>
-    import("@/components/examples/input-group-inline-start").then(
-      (m) => m.InputGroupInlineStartExample
-    ),
-  "input-group-kbd": () =>
-    import("@/components/examples/input-group-kbd").then(
-      (m) => m.InputGroupKbdExample
-    ),
-  "input-group-rtl": () =>
-    import("@/components/examples/input-group-rtl").then(
-      (m) => m.InputGroupRtlExample
-    ),
-  "input-group-spinner": () =>
-    import("@/components/examples/input-group-spinner").then(
-      (m) => m.InputGroupSpinnerExample
-    ),
-  "input-group-text": () =>
-    import("@/components/examples/input-group-text").then(
-      (m) => m.InputGroupTextExample
-    ),
-  "input-group-textarea": () =>
-    import("@/components/examples/input-group-textarea").then(
-      (m) => m.InputGroupTextareaExample
-    ),
-  "input-inline": () =>
-    import("@/components/examples/input-inline").then(
-      (m) => m.InputInlineExample
-    ),
-  "input-input-group": () =>
-    import("@/components/examples/input-input-group").then(
-      (m) => m.InputInputGroupExample
-    ),
-  "input-invalid": () =>
-    import("@/components/examples/input-invalid").then(
-      (m) => m.InputInvalidExample
-    ),
-  "input-otp-alphanumeric": () =>
-    import("@/components/examples/input-otp-alphanumeric").then(
-      (m) => m.InputOTPAlphanumericExample
-    ),
-  "input-otp-controlled": () =>
-    import("@/components/examples/input-otp-controlled").then(
-      (m) => m.InputOTPControlledExample
-    ),
-  "input-otp-demo": () =>
-    import("@/components/examples/input-otp-demo").then(
-      (m) => m.InputOTPDemoExample
-    ),
-  "input-otp-disabled": () =>
-    import("@/components/examples/input-otp-disabled").then(
-      (m) => m.InputOTPDisabledExample
-    ),
-  "input-otp-form": () =>
-    import("@/components/examples/input-otp-form").then(
-      (m) => m.InputOTPFormExample
-    ),
-  "input-otp-four-digits": () =>
-    import("@/components/examples/input-otp-four-digits").then(
-      (m) => m.InputOTPFourDigitsExample
-    ),
-  "input-otp-invalid": () =>
-    import("@/components/examples/input-otp-invalid").then(
-      (m) => m.InputOTPInvalidExample
-    ),
-  "input-otp-pattern": () =>
-    import("@/components/examples/input-otp-pattern").then(
-      (m) => m.InputOTPPatternExample
-    ),
-  "input-otp-separator": () =>
-    import("@/components/examples/input-otp-separator").then(
-      (m) => m.InputOTPSeparatorExample
-    ),
-  "input-required": () =>
-    import("@/components/examples/input-required").then(
-      (m) => m.InputRequiredExample
-    ),
-  "input-rtl": () =>
-    import("@/components/examples/input-rtl").then((m) => m.InputRtlExample),
-  "item-demo": () =>
-    import("@/components/examples/item-demo").then((m) => m.ItemDemoExample),
-  "item-image": () =>
-    import("@/components/examples/item-image").then((m) => m.ItemImageExample),
-  "item-outline": () =>
-    import("@/components/examples/item-outline").then(
-      (m) => m.ItemOutlineExample
-    ),
-  "item-rtl": () =>
-    import("@/components/examples/item-rtl").then((m) => m.ItemRtlExample),
-  "kbd-demo": () =>
-    import("@/components/examples/kbd-demo").then((m) => m.KbdDemoExample),
-  "kbd-inline": () =>
-    import("@/components/examples/kbd-inline").then((m) => m.KbdInlineExample),
-  "kbd-rtl": () =>
-    import("@/components/examples/kbd-rtl").then((m) => m.KbdRtlExample),
-  "label-demo": () =>
-    import("@/components/examples/label-demo").then((m) => m.LabelDemoExample),
-  "label-input": () =>
-    import("@/components/examples/label-input").then(
-      (m) => m.LabelInputExample
-    ),
-  "label-rtl": () =>
-    import("@/components/examples/label-rtl").then((m) => m.LabelRtlExample),
-  "marker-border": () =>
-    import("@/components/examples/marker-border").then(
-      (m) => m.MarkerBorderExample
-    ),
-  "marker-demo": () =>
-    import("@/components/examples/marker-demo").then(
-      (m) => m.MarkerDemoExample
-    ),
-  "marker-rtl": () =>
-    import("@/components/examples/marker-rtl").then((m) => m.MarkerRtlExample),
-  "marker-separator": () =>
-    import("@/components/examples/marker-separator").then(
-      (m) => m.MarkerSeparatorExample
-    ),
-  "menubar-demo": () =>
-    import("@/components/examples/menubar-demo").then(
-      (m) => m.MenubarDemoExample
-    ),
-  "menubar-rtl": () =>
-    import("@/components/examples/menubar-rtl").then(
-      (m) => m.MenubarRtlExample
-    ),
-  "message-demo": () =>
-    import("@/components/examples/message-demo").then(
-      (m) => m.MessageDemoExample
-    ),
-  "message-rtl": () =>
-    import("@/components/examples/message-rtl").then(
-      (m) => m.MessageRtlExample
-    ),
-  "message-scroller-demo": () =>
-    import("@/components/examples/message-scroller-demo").then(
-      (m) => m.MessageScrollerDemoExample
-    ),
-  "message-scroller-rtl": () =>
-    import("@/components/examples/message-scroller-rtl").then(
-      (m) => m.MessageScrollerRtlExample
-    ),
-  "mobile-number-input-demo": () =>
-    import("@/components/examples/mobile-number-input-demo").then(
-      (m) => m.MobileNumberInputDemoExample
-    ),
-  "mobile-number-input-rtl": () =>
-    import("@/components/examples/mobile-number-input-rtl").then(
-      (m) => m.MobileNumberInputRtlExample
-    ),
-  "native-select-demo": () =>
-    import("@/components/examples/native-select-demo").then(
-      (m) => m.NativeSelectDemoExample
-    ),
-  "native-select-rtl": () =>
-    import("@/components/examples/native-select-rtl").then(
-      (m) => m.NativeSelectRtlExample
-    ),
-  "native-select-size": () =>
-    import("@/components/examples/native-select-size").then(
-      (m) => m.NativeSelectSizeExample
-    ),
-  "navigation-menu-demo": () =>
-    import("@/components/examples/navigation-menu-demo").then(
-      (m) => m.NavigationMenuDemoExample
-    ),
-  "navigation-menu-rtl": () =>
-    import("@/components/examples/navigation-menu-rtl").then(
-      (m) => m.NavigationMenuRtlExample
-    ),
-  "normalize-persian-digits-demo": () =>
-    import("@/components/examples/normalize-persian-digits-demo").then(
-      (m) => m.NormalizePersianDigitsDemoExample
-    ),
-  "pagination-demo": () =>
-    import("@/components/examples/pagination-demo").then(
-      (m) => m.PaginationDemoExample
-    ),
-  "pagination-rtl": () =>
-    import("@/components/examples/pagination-rtl").then(
-      (m) => m.PaginationRtlExample
-    ),
-  "password-input-demo": () =>
-    import("@/components/examples/password-input-demo").then(
-      (m) => m.PasswordInputDemoExample
-    ),
-  "password-input-rtl": () =>
-    import("@/components/examples/password-input-rtl").then(
-      (m) => m.PasswordInputRtlExample
-    ),
-  "persian-date-arithmetic": () =>
-    import("@/components/examples/persian-date-arithmetic").then(
-      (m) => m.PersianDateArithmeticExample
-    ),
-  "persian-date-boundaries": () =>
-    import("@/components/examples/persian-date-boundaries").then(
-      (m) => m.PersianDateBoundariesExample
-    ),
-  "persian-date-comparisons": () =>
-    import("@/components/examples/persian-date-comparisons").then(
-      (m) => m.PersianDateComparisonsExample
-    ),
-  "persian-date-conversion": () =>
-    import("@/components/examples/persian-date-conversion").then(
-      (m) => m.PersianDateConversionExample
-    ),
-  "persian-date-demo": () =>
-    import("@/components/examples/persian-date-demo").then(
-      (m) => m.PersianDateDemoExample
-    ),
-  "persian-date-leap-year": () =>
-    import("@/components/examples/persian-date-leap-year").then(
-      (m) => m.PersianDateLeapYearExample
-    ),
-  "persian-date-parsing": () =>
-    import("@/components/examples/persian-date-parsing").then(
-      (m) => m.PersianDateParsingExample
-    ),
-  "persian-date-range": () =>
-    import("@/components/examples/persian-date-range").then(
-      (m) => m.PersianDateRangeExample
-    ),
-  "persian-date-reservation": () =>
-    import("@/components/examples/persian-date-reservation").then(
-      (m) => m.PersianDateReservationExample
-    ),
-  "persian-date-rtl": () =>
-    import("@/components/examples/persian-date-rtl").then(
-      (m) => m.PersianDateRtlExample
-    ),
-  "persian-date-zod-demo": () =>
-    import("@/components/examples/persian-date-zod-demo").then(
-      (m) => m.PersianDateZodDemoExample
-    ),
-  "persian-date-zod-range": () =>
-    import("@/components/examples/persian-date-zod-range").then(
-      (m) => m.PersianDateZodRangeExample
-    ),
-  "persian-holidays-approximate": () =>
-    import("@/components/examples/persian-holidays-approximate").then(
-      (m) => m.PersianHolidaysApproximateExample
-    ),
-  "persian-holidays-calendar": () =>
-    import("@/components/examples/persian-holidays-calendar").then(
-      (m) => m.PersianHolidaysCalendarExample
-    ),
-  "persian-holidays-demo": () =>
-    import("@/components/examples/persian-holidays-demo").then(
-      (m) => m.PersianHolidaysDemoExample
-    ),
-  "persian-holidays-lookup": () =>
-    import("@/components/examples/persian-holidays-lookup").then(
-      (m) => m.PersianHolidaysLookupExample
-    ),
-  "persian-holidays-rtl": () =>
-    import("@/components/examples/persian-holidays-rtl").then(
-      (m) => m.PersianHolidaysRtlExample
-    ),
-  "persian-holidays-unofficial": () =>
-    import("@/components/examples/persian-holidays-unofficial").then(
-      (m) => m.PersianHolidaysUnofficialExample
-    ),
-  "persian-reshape-demo": () =>
-    import("@/components/examples/persian-reshape-demo").then(
-      (m) => m.PersianReshapeDemoExample
-    ),
-  "persian-slug-demo": () =>
-    import("@/components/examples/persian-slug-demo").then(
-      (m) => m.PersianSlugDemoExample
-    ),
-  "persian-slug-rtl": () =>
-    import("@/components/examples/persian-slug-rtl").then(
-      (m) => m.PersianSlugRtlExample
-    ),
-  "persian-slug-transliterate": () =>
-    import("@/components/examples/persian-slug-transliterate").then(
-      (m) => m.PersianSlugTransliterateExample
-    ),
-  "popover-demo": () =>
-    import("@/components/examples/popover-demo").then(
-      (m) => m.PopoverDemoExample
-    ),
-  "popover-form": () =>
-    import("@/components/examples/popover-form").then(
-      (m) => m.PopoverFormExample
-    ),
-  "popover-rtl": () =>
-    import("@/components/examples/popover-rtl").then(
-      (m) => m.PopoverRtlExample
-    ),
-  "price-input-demo": () =>
-    import("@/components/examples/price-input-demo").then(
-      (m) => m.PriceInputDemoExample
-    ),
-  "price-input-group-abbreviation": () =>
-    import("@/components/examples/price-input-group-abbreviation").then(
-      (m) => m.PriceInputGroupAbbreviationExample
-    ),
-  "price-input-group-icon": () =>
-    import("@/components/examples/price-input-group-icon").then(
-      (m) => m.PriceInputGroupIconExample
-    ),
-  "price-input-group-text": () =>
-    import("@/components/examples/price-input-group-text").then(
-      (m) => m.PriceInputGroupTextExample
-    ),
-  "price-input-negative": () =>
-    import("@/components/examples/price-input-negative").then(
-      (m) => m.PriceInputNegativeExample
-    ),
-  "price-input-rtl": () =>
-    import("@/components/examples/price-input-rtl").then(
-      (m) => m.PriceInputRtlExample
-    ),
-  "progress-animated": () =>
-    import("@/components/examples/progress-animated").then(
-      (m) => m.ProgressAnimatedExample
-    ),
-  "progress-demo": () =>
-    import("@/components/examples/progress-demo").then(
-      (m) => m.ProgressDemoExample
-    ),
-  "progress-rtl": () =>
-    import("@/components/examples/progress-rtl").then(
-      (m) => m.ProgressRtlExample
-    ),
-  "qr-code-colors": () =>
-    import("@/components/examples/qr-code-colors").then(
-      (m) => m.QrCodeColorsExample
-    ),
-  "qr-code-demo": () =>
-    import("@/components/examples/qr-code-demo").then(
-      (m) => m.QrCodeDemoExample
-    ),
-  "qr-code-logo": () =>
-    import("@/components/examples/qr-code-logo").then(
-      (m) => m.QrCodeLogoExample
-    ),
-  "qr-code-rtl": () =>
-    import("@/components/examples/qr-code-rtl").then((m) => m.QrCodeRtlExample),
-  "qr-code-skeleton": () =>
-    import("@/components/examples/qr-code-skeleton").then(
-      (m) => m.QrCodeSkeletonExample
-    ),
-  "questionnaire-animated": () =>
-    import("@/components/examples/questionnaire-animated").then(
-      (m) => m.QuestionnaireAnimatedExample
-    ),
-  "questionnaire-card": () =>
-    import("@/components/examples/questionnaire-card").then(
-      (m) => m.QuestionnaireCardExample
-    ),
-  "questionnaire-conditional": () =>
-    import("@/components/examples/questionnaire-conditional").then(
-      (m) => m.QuestionnaireConditionalExample
-    ),
-  "questionnaire-controlled": () =>
-    import("@/components/examples/questionnaire-controlled").then(
-      (m) => m.QuestionnaireControlledExample
-    ),
-  "questionnaire-custom-progress": () =>
-    import("@/components/examples/questionnaire-custom-progress").then(
-      (m) => m.QuestionnaireCustomProgressExample
-    ),
-  "questionnaire-demo": () =>
-    import("@/components/examples/questionnaire-demo").then(
-      (m) => m.QuestionnaireDemoExample
-    ),
-  "questionnaire-dialog": () =>
-    import("@/components/examples/questionnaire-dialog").then(
-      (m) => m.QuestionnaireDialogExample
-    ),
-  "questionnaire-freeform": () =>
-    import("@/components/examples/questionnaire-freeform").then(
-      (m) => m.QuestionnaireFreeformExample
-    ),
-  "questionnaire-multiple": () =>
-    import("@/components/examples/questionnaire-multiple").then(
-      (m) => m.QuestionnaireMultipleExample
-    ),
-  "questionnaire-navigation-state": () =>
-    import("@/components/examples/questionnaire-navigation-state").then(
-      (m) => m.QuestionnaireNavigationStateExample
-    ),
-  "questionnaire-resume": () =>
-    import("@/components/examples/questionnaire-resume").then(
-      (m) => m.QuestionnaireResumeExample
-    ),
-  "questionnaire-rtl": () =>
-    import("@/components/examples/questionnaire-rtl").then(
-      (m) => m.QuestionnaireRtlExample
-    ),
-  "questionnaire-shortcuts": () =>
-    import("@/components/examples/questionnaire-shortcuts").then(
-      (m) => m.QuestionnaireShortcutsExample
-    ),
-  "questionnaire-skip": () =>
-    import("@/components/examples/questionnaire-skip").then(
-      (m) => m.QuestionnaireSkipExample
-    ),
-  "questionnaire-validation": () =>
-    import("@/components/examples/questionnaire-validation").then(
-      (m) => m.QuestionnaireValidationExample
-    ),
-  "radio-group-demo": () =>
-    import("@/components/examples/radio-group-demo").then(
-      (m) => m.RadioGroupDemoExample
-    ),
-  "radio-group-disabled": () =>
-    import("@/components/examples/radio-group-disabled").then(
-      (m) => m.RadioGroupDisabledExample
-    ),
-  "radio-group-rtl": () =>
-    import("@/components/examples/radio-group-rtl").then(
-      (m) => m.RadioGroupRtlExample
-    ),
-  "receipt-printer-demo": () =>
-    import("@/components/examples/receipt-printer-demo").then(
-      (m) => m.ReceiptPrinterDemoExample
-    ),
-  "receipt-printer-rtl": () =>
-    import("@/components/examples/receipt-printer-rtl").then(
-      (m) => m.ReceiptPrinterRtlExample
-    ),
-  "receipt-printer-subscription": () =>
-    import("@/components/examples/receipt-printer-subscription").then(
-      (m) => m.ReceiptPrinterSubscriptionExample
-    ),
-  "resizable-demo": () =>
-    import("@/components/examples/resizable-demo").then(
-      (m) => m.ResizableDemoExample
-    ),
-  "resizable-rtl": () =>
-    import("@/components/examples/resizable-rtl").then(
-      (m) => m.ResizableRtlExample
-    ),
-  "resizable-vertical": () =>
-    import("@/components/examples/resizable-vertical").then(
-      (m) => m.ResizableVerticalExample
-    ),
-  "responsive-alert-dialog-demo": () =>
-    import("@/components/examples/responsive-alert-dialog-demo").then(
-      (m) => m.ResponsiveAlertDialogDemoExample
-    ),
-  "responsive-alert-dialog-rtl": () =>
-    import("@/components/examples/responsive-alert-dialog-rtl").then(
-      (m) => m.ResponsiveAlertDialogRtlExample
-    ),
-  "responsive-dialog-demo": () =>
-    import("@/components/examples/responsive-dialog-demo").then(
-      (m) => m.ResponsiveDialogDemoExample
-    ),
-  "responsive-dialog-desktop-only": () =>
-    import("@/components/examples/responsive-dialog-desktop-only").then(
-      (m) => m.ResponsiveDialogDesktopOnlyExample
-    ),
-  "responsive-dialog-no-footer": () =>
-    import("@/components/examples/responsive-dialog-no-footer").then(
-      (m) => m.ResponsiveDialogNoFooterExample
-    ),
-  "responsive-dialog-rtl": () =>
-    import("@/components/examples/responsive-dialog-rtl").then(
-      (m) => m.ResponsiveDialogRtlExample
-    ),
-  "responsive-menu-demo": () =>
-    import("@/components/examples/responsive-menu-demo").then(
-      (m) => m.ResponsiveMenuDemoExample
-    ),
-  "responsive-menu-rtl": () =>
-    import("@/components/examples/responsive-menu-rtl").then(
-      (m) => m.ResponsiveMenuRtlExample
-    ),
-  "scroll-area-demo": () =>
-    import("@/components/examples/scroll-area-demo").then(
-      (m) => m.ScrollAreaDemoExample
-    ),
-  "scroll-area-horizontal": () =>
-    import("@/components/examples/scroll-area-horizontal").then(
-      (m) => m.ScrollAreaHorizontalExample
-    ),
-  "scroll-area-rtl": () =>
-    import("@/components/examples/scroll-area-rtl").then(
-      (m) => m.ScrollAreaRtlExample
-    ),
-  "select-align-item": () =>
-    import("@/components/examples/select-align-item").then(
-      (m) => m.SelectAlignItemExample
-    ),
-  "select-demo": () =>
-    import("@/components/examples/select-demo").then(
-      (m) => m.SelectDemoExample
-    ),
-  "select-disabled": () =>
-    import("@/components/examples/select-disabled").then(
-      (m) => m.SelectDisabledExample
-    ),
-  "select-groups": () =>
-    import("@/components/examples/select-groups").then(
-      (m) => m.SelectGroupsExample
-    ),
-  "select-invalid": () =>
-    import("@/components/examples/select-invalid").then(
-      (m) => m.SelectInvalidExample
-    ),
-  "select-mixed-direction": () =>
-    import("@/components/examples/select-mixed-direction").then(
-      (m) => m.SelectMixedDirectionExample
-    ),
-  "select-rtl": () =>
-    import("@/components/examples/select-rtl").then((m) => m.SelectRtlExample),
-  "select-scrollable": () =>
-    import("@/components/examples/select-scrollable").then(
-      (m) => m.SelectScrollableExample
-    ),
-  "separator-demo": () =>
-    import("@/components/examples/separator-demo").then(
-      (m) => m.SeparatorDemoExample
-    ),
-  "separator-list": () =>
-    import("@/components/examples/separator-list").then(
-      (m) => m.SeparatorListExample
-    ),
-  "separator-menu": () =>
-    import("@/components/examples/separator-menu").then(
-      (m) => m.SeparatorMenuExample
-    ),
-  "separator-receipt": () =>
-    import("@/components/examples/separator-receipt").then(
-      (m) => m.SeparatorReceiptExample
-    ),
-  "separator-rtl": () =>
-    import("@/components/examples/separator-rtl").then(
-      (m) => m.SeparatorRtlExample
-    ),
-  "separator-vertical": () =>
-    import("@/components/examples/separator-vertical").then(
-      (m) => m.SeparatorVerticalExample
-    ),
-  "sheet-demo": () =>
-    import("@/components/examples/sheet-demo").then((m) => m.SheetDemoExample),
-  "sheet-rtl": () =>
-    import("@/components/examples/sheet-rtl").then((m) => m.SheetRtlExample),
-  "sheet-side": () =>
-    import("@/components/examples/sheet-side").then((m) => m.SheetSideExample),
-  "skeleton-card": () =>
-    import("@/components/examples/skeleton-card").then(
-      (m) => m.SkeletonCardExample
-    ),
-  "skeleton-demo": () =>
-    import("@/components/examples/skeleton-demo").then(
-      (m) => m.SkeletonDemoExample
-    ),
-  "skeleton-rtl": () =>
-    import("@/components/examples/skeleton-rtl").then(
-      (m) => m.SkeletonRtlExample
-    ),
-  "slider-controlled": () =>
-    import("@/components/examples/slider-controlled").then(
-      (m) => m.SliderControlledExample
-    ),
-  "slider-demo": () =>
-    import("@/components/examples/slider-demo").then(
-      (m) => m.SliderDemoExample
-    ),
-  "slider-disabled": () =>
-    import("@/components/examples/slider-disabled").then(
-      (m) => m.SliderDisabledExample
-    ),
-  "slider-multiple": () =>
-    import("@/components/examples/slider-multiple").then(
-      (m) => m.SliderMultipleExample
-    ),
-  "slider-range": () =>
-    import("@/components/examples/slider-range").then(
-      (m) => m.SliderRangeExample
-    ),
-  "slider-rtl": () =>
-    import("@/components/examples/slider-rtl").then((m) => m.SliderRtlExample),
-  "slider-vertical": () =>
-    import("@/components/examples/slider-vertical").then(
-      (m) => m.SliderVerticalExample
-    ),
-  "spinner-button": () =>
-    import("@/components/examples/spinner-button").then(
-      (m) => m.SpinnerButtonExample
-    ),
-  "spinner-demo": () =>
-    import("@/components/examples/spinner-demo").then(
-      (m) => m.SpinnerDemoExample
-    ),
-  "spinner-rtl": () =>
-    import("@/components/examples/spinner-rtl").then(
-      (m) => m.SpinnerRtlExample
-    ),
-  "switch-demo": () =>
-    import("@/components/examples/switch-demo").then(
-      (m) => m.SwitchDemoExample
-    ),
-  "switch-rtl": () =>
-    import("@/components/examples/switch-rtl").then((m) => m.SwitchRtlExample),
-  "switch-size": () =>
-    import("@/components/examples/switch-size").then(
-      (m) => m.SwitchSizeExample
-    ),
-  "table-actions": () =>
-    import("@/components/examples/table-actions").then(
-      (m) => m.TableActionsExample
-    ),
-  "table-card": () =>
-    import("@/components/examples/table-card").then((m) => m.TableCardExample),
-  "table-demo": () =>
-    import("@/components/examples/table-demo").then((m) => m.TableDemoExample),
-  "table-rtl": () =>
-    import("@/components/examples/table-rtl").then((m) => m.TableRtlExample),
-  "table-team": () =>
-    import("@/components/examples/table-team").then((m) => m.TableTeamExample),
-  "tabs-controlled": () =>
-    import("@/components/examples/tabs-controlled").then(
-      (m) => m.TabsControlledExample
-    ),
-  "tabs-default": () =>
-    import("@/components/examples/tabs-default").then(
-      (m) => m.TabsDefaultExample
-    ),
-  "tabs-disabled": () =>
-    import("@/components/examples/tabs-disabled").then(
-      (m) => m.TabsDisabledExample
-    ),
-  "tabs-icons": () =>
-    import("@/components/examples/tabs-icons").then((m) => m.TabsIconsExample),
-  "tabs-scrollable": () =>
-    import("@/components/examples/tabs-scrollable").then(
-      (m) => m.TabsScrollableExample
-    ),
-  "tabs-variants": () =>
-    import("@/components/examples/tabs-variants").then(
-      (m) => m.TabsVariantsExample
-    ),
-  "tabs-vertical": () =>
-    import("@/components/examples/tabs-vertical").then(
-      (m) => m.TabsVerticalExample
-    ),
-  "textarea-button": () =>
-    import("@/components/examples/textarea-button").then(
-      (m) => m.TextareaButtonExample
-    ),
-  "textarea-demo": () =>
-    import("@/components/examples/textarea-demo").then(
-      (m) => m.TextareaDemoExample
-    ),
-  "textarea-disabled": () =>
-    import("@/components/examples/textarea-disabled").then(
-      (m) => m.TextareaDisabledExample
-    ),
-  "textarea-field": () =>
-    import("@/components/examples/textarea-field").then(
-      (m) => m.TextareaFieldExample
-    ),
-  "textarea-invalid": () =>
-    import("@/components/examples/textarea-invalid").then(
-      (m) => m.TextareaInvalidExample
-    ),
-  "textarea-rtl": () =>
-    import("@/components/examples/textarea-rtl").then(
-      (m) => m.TextareaRtlExample
-    ),
-  "time-picker-12-hour": () =>
-    import("@/components/examples/time-picker-12-hour").then(
-      (m) => m.TimePicker12HourExample
-    ),
-  "time-picker-demo": () =>
-    import("@/components/examples/time-picker-demo").then(
-      (m) => m.TimePickerDemoExample
-    ),
-  "time-picker-popover": () =>
-    import("@/components/examples/time-picker-popover").then(
-      (m) => m.TimePickerPopoverExample
-    ),
-  "time-picker-range": () =>
-    import("@/components/examples/time-picker-range").then(
-      (m) => m.TimePickerRangeExample
-    ),
-  "time-picker-responsive": () =>
-    import("@/components/examples/time-picker-responsive").then(
-      (m) => m.TimePickerResponsiveExample
-    ),
-  "time-picker-rtl": () =>
-    import("@/components/examples/time-picker-rtl").then(
-      (m) => m.TimePickerRtlExample
-    ),
-  "time-picker-seconds": () =>
-    import("@/components/examples/time-picker-seconds").then(
-      (m) => m.TimePickerSecondsExample
-    ),
-  "toast-anchored-dialog": () =>
-    import("@/components/examples/toast-anchored-dialog").then(
-      (m) => m.ToastAnchoredDialogExample
-    ),
-  "toast-anchored-drawer": () =>
-    import("@/components/examples/toast-anchored-drawer").then(
-      (m) => m.ToastAnchoredDrawerExample
-    ),
-  "toast-anchored": () =>
-    import("@/components/examples/toast-anchored").then(
-      (m) => m.ToastAnchoredExample
-    ),
-  "toast-demo": () =>
-    import("@/components/examples/toast-demo").then((m) => m.ToastDemoExample),
-  "toast-rtl": () =>
-    import("@/components/examples/toast-rtl").then((m) => m.ToastRtlExample),
-  "toast-statuses": () =>
-    import("@/components/examples/toast-statuses").then(
-      (m) => m.ToastStatusesExample
-    ),
-  "toast-x": () =>
-    import("@/components/examples/toast-x").then((m) => m.ToastXExample),
-  "toggle-demo": () =>
-    import("@/components/examples/toggle-demo").then(
-      (m) => m.ToggleDemoExample
-    ),
-  "toggle-group-demo": () =>
-    import("@/components/examples/toggle-group-demo").then(
-      (m) => m.ToggleGroupDemoExample
-    ),
-  "toggle-group-outline": () =>
-    import("@/components/examples/toggle-group-outline").then(
-      (m) => m.ToggleGroupOutlineExample
-    ),
-  "toggle-group-rtl": () =>
-    import("@/components/examples/toggle-group-rtl").then(
-      (m) => m.ToggleGroupRtlExample
-    ),
-  "toggle-outline": () =>
-    import("@/components/examples/toggle-outline").then(
-      (m) => m.ToggleOutlineExample
-    ),
-  "toggle-rtl": () =>
-    import("@/components/examples/toggle-rtl").then((m) => m.ToggleRtlExample),
-  "toman-icon-badge": () =>
-    import("@/components/examples/toman-icon-badge").then(
-      (m) => m.TomanIconBadgeExample
-    ),
-  "toman-icon-demo": () =>
-    import("@/components/examples/toman-icon-demo").then(
-      (m) => m.TomanIconDemoExample
-    ),
-  "toman-icon-inline": () =>
-    import("@/components/examples/toman-icon-inline").then(
-      (m) => m.TomanIconInlineExample
-    ),
-  "toman-icon-rtl": () =>
-    import("@/components/examples/toman-icon-rtl").then(
-      (m) => m.TomanIconRtlExample
-    ),
-  "toman-icon-sizes": () =>
-    import("@/components/examples/toman-icon-sizes").then(
-      (m) => m.TomanIconSizesExample
-    ),
-  "tooltip-demo": () =>
-    import("@/components/examples/tooltip-demo").then(
-      (m) => m.TooltipDemoExample
-    ),
-  "tooltip-rtl": () =>
-    import("@/components/examples/tooltip-rtl").then(
-      (m) => m.TooltipRtlExample
-    ),
-  "use-controllable-state-demo": () =>
-    import("@/components/examples/use-controllable-state-demo").then(
-      (m) => m.UseControllableStateDemoExample
-    ),
-  "use-copy-to-clipboard-callback": () =>
-    import("@/components/examples/use-copy-to-clipboard-callback").then(
-      (m) => m.UseCopyToClipboardCallbackExample
-    ),
-  "use-copy-to-clipboard-demo": () =>
-    import("@/components/examples/use-copy-to-clipboard-demo").then(
-      (m) => m.UseCopyToClipboardDemoExample
-    ),
-  "use-copy-to-clipboard-rtl": () =>
-    import("@/components/examples/use-copy-to-clipboard-rtl").then(
-      (m) => m.UseCopyToClipboardRtlExample
-    ),
-  "use-copy-to-clipboard-timeout": () =>
-    import("@/components/examples/use-copy-to-clipboard-timeout").then(
-      (m) => m.UseCopyToClipboardTimeoutExample
-    ),
-  "use-countdown-demo": () =>
-    import("@/components/examples/use-countdown-demo").then(
-      (m) => m.UseCountdownDemoExample
-    ),
-  "use-countdown-otp-rtl": () =>
-    import("@/components/examples/use-countdown-otp-rtl").then(
-      (m) => m.UseCountdownOtpRtlExample
-    ),
-  "use-countdown-otp": () =>
-    import("@/components/examples/use-countdown-otp").then(
-      (m) => m.UseCountdownOtpExample
-    ),
-  "use-countdown-overdue": () =>
-    import("@/components/examples/use-countdown-overdue").then(
-      (m) => m.UseCountdownOverdueExample
-    ),
-  "use-countdown-parts": () =>
-    import("@/components/examples/use-countdown-parts").then(
-      (m) => m.UseCountdownPartsExample
-    ),
-  "use-countdown-reset": () =>
-    import("@/components/examples/use-countdown-reset").then(
-      (m) => m.UseCountdownResetExample
-    ),
-  "use-date-demo": () =>
-    import("@/components/examples/use-date-demo").then(
-      (m) => m.UseDateDemoExample
-    ),
-  "use-date-holiday": () =>
-    import("@/components/examples/use-date-holiday").then(
-      (m) => m.UseDateHolidayExample
-    ),
-  "use-date-miladi": () =>
-    import("@/components/examples/use-date-miladi").then(
-      (m) => m.UseDateMiladiExample
-    ),
-  "use-date-navigator": () =>
-    import("@/components/examples/use-date-navigator").then(
-      (m) => m.UseDateNavigatorExample
-    ),
-  "use-date-pattern": () =>
-    import("@/components/examples/use-date-pattern").then(
-      (m) => m.UseDatePatternExample
-    ),
-  "use-date-rtl": () =>
-    import("@/components/examples/use-date-rtl").then(
-      (m) => m.UseDateRtlExample
-    ),
-  "use-date-static": () =>
-    import("@/components/examples/use-date-static").then(
-      (m) => m.UseDateStaticExample
-    ),
-  "use-media-query-breakpoints": () =>
-    import("@/components/examples/use-media-query-breakpoints").then(
-      (m) => m.UseMediaQueryBreakpointsExample
-    ),
-  "use-media-query-demo": () =>
-    import("@/components/examples/use-media-query-demo").then(
-      (m) => m.UseMediaQueryDemoExample
-    ),
-  "use-media-query-device": () =>
-    import("@/components/examples/use-media-query-device").then(
-      (m) => m.UseMediaQueryDeviceExample
-    ),
-  "use-media-query-ranges": () =>
-    import("@/components/examples/use-media-query-ranges").then(
-      (m) => m.UseMediaQueryRangesExample
-    ),
-  "use-media-query-rtl": () =>
-    import("@/components/examples/use-media-query-rtl").then(
-      (m) => m.UseMediaQueryRtlExample
-    ),
-  "use-time-ago-demo": () =>
-    import("@/components/examples/use-time-ago-demo").then(
-      (m) => m.UseTimeAgoDemoExample
-    ),
-  "use-time-ago-en": () =>
-    import("@/components/examples/use-time-ago-en").then(
-      (m) => m.UseTimeAgoEnExample
-    ),
-  "use-time-ago-interval": () =>
-    import("@/components/examples/use-time-ago-interval").then(
-      (m) => m.UseTimeAgoIntervalExample
-    ),
-  "use-time-ago-max": () =>
-    import("@/components/examples/use-time-ago-max").then(
-      (m) => m.UseTimeAgoMaxExample
-    ),
-  "use-time-ago-messages": () =>
-    import("@/components/examples/use-time-ago-messages").then(
-      (m) => m.UseTimeAgoMessagesExample
-    ),
-  "use-time-ago-rtl": () =>
-    import("@/components/examples/use-time-ago-rtl").then(
-      (m) => m.UseTimeAgoRtlExample
-    ),
-  "use-time-ago-second": () =>
-    import("@/components/examples/use-time-ago-second").then(
-      (m) => m.UseTimeAgoSecondExample
-    ),
-  "wheel-picker-demo": () =>
-    import("@/components/examples/wheel-picker-demo").then(
-      (m) => m.WheelPickerDemoExample
-    ),
-  "wheel-picker-dialog": () =>
-    import("@/components/examples/wheel-picker-dialog").then(
-      (m) => m.WheelPickerDialogExample
-    ),
-  "wheel-picker-drawer": () =>
-    import("@/components/examples/wheel-picker-drawer").then(
-      (m) => m.WheelPickerDrawerExample
-    ),
-  "wheel-picker-responsive-dialog": () =>
-    import("@/components/examples/wheel-picker-responsive-dialog").then(
-      (m) => m.WheelPickerResponsiveDialogExample
-    ),
-  "wheel-picker-rtl": () =>
-    import("@/components/examples/wheel-picker-rtl").then(
-      (m) => m.WheelPickerRtlExample
-    ),
+export const exampleLoaders: Record<string, () => Promise<React.ComponentType>> = {
+  "accordion-demo": () => import("@/components/examples/accordion-demo").then((m) => m.AccordionDemoExample),
+  "accordion-rtl": () => import("@/components/examples/accordion-rtl").then((m) => m.AccordionRtlExample),
+  "alert-action": () => import("@/components/examples/alert-action").then((m) => m.AlertActionExample),
+  "alert-demo": () => import("@/components/examples/alert-demo").then((m) => m.AlertDemoExample),
+  "alert-destructive": () => import("@/components/examples/alert-destructive").then((m) => m.AlertDestructiveExample),
+  "alert-dialog-demo": () => import("@/components/examples/alert-dialog-demo").then((m) => m.AlertDialogDemoExample),
+  "alert-dialog-no-footer": () => import("@/components/examples/alert-dialog-no-footer").then((m) => m.AlertDialogNoFooterExample),
+  "alert-dialog-rtl": () => import("@/components/examples/alert-dialog-rtl").then((m) => m.AlertDialogRtlExample),
+  "alert-rtl": () => import("@/components/examples/alert-rtl").then((m) => m.AlertRtlExample),
+  "aspect-ratio-demo": () => import("@/components/examples/aspect-ratio-demo").then((m) => m.AspectRatioDemoExample),
+  "aspect-ratio-rtl": () => import("@/components/examples/aspect-ratio-rtl").then((m) => m.AspectRatioRtlExample),
+  "aspect-ratio-square": () => import("@/components/examples/aspect-ratio-square").then((m) => m.AspectRatioSquareExample),
+  "attachment-demo": () => import("@/components/examples/attachment-demo").then((m) => m.AttachmentDemoExample),
+  "attachment-group": () => import("@/components/examples/attachment-group").then((m) => m.AttachmentGroupExample),
+  "attachment-image": () => import("@/components/examples/attachment-image").then((m) => m.AttachmentImageExample),
+  "attachment-rtl": () => import("@/components/examples/attachment-rtl").then((m) => m.AttachmentRtlExample),
+  "attachment-sizes": () => import("@/components/examples/attachment-sizes").then((m) => m.AttachmentSizesExample),
+  "attachment-states": () => import("@/components/examples/attachment-states").then((m) => m.AttachmentStatesExample),
+  "attachment-trigger": () => import("@/components/examples/attachment-trigger").then((m) => m.AttachmentTriggerExample),
+  "avatar-badge": () => import("@/components/examples/avatar-badge").then((m) => m.AvatarBadgeExample),
+  "avatar-demo": () => import("@/components/examples/avatar-demo").then((m) => m.AvatarDemoExample),
+  "avatar-group": () => import("@/components/examples/avatar-group").then((m) => m.AvatarGroupExample),
+  "avatar-rtl": () => import("@/components/examples/avatar-rtl").then((m) => m.AvatarRtlExample),
+  "avatar-size": () => import("@/components/examples/avatar-size").then((m) => m.AvatarSizeExample),
+  "badge-demo": () => import("@/components/examples/badge-demo").then((m) => m.BadgeDemoExample),
+  "badge-icon": () => import("@/components/examples/badge-icon").then((m) => m.BadgeIconExample),
+  "badge-rtl": () => import("@/components/examples/badge-rtl").then((m) => m.BadgeRtlExample),
+  "bank-input-demo": () => import("@/components/examples/bank-input-demo").then((m) => m.BankInputDemoExample),
+  "bank-input-rtl": () => import("@/components/examples/bank-input-rtl").then((m) => m.BankInputRtlExample),
+  "bank-input-separator": () => import("@/components/examples/bank-input-separator").then((m) => m.BankInputSeparatorExample),
+  "bank-input-shaba": () => import("@/components/examples/bank-input-shaba").then((m) => m.BankInputShabaExample),
+  "bank-input-supported-banks": () => import("@/components/examples/bank-input-supported-banks").then((m) => m.BankInputSupportedBanksExample),
+  "bank-input-zod": () => import("@/components/examples/bank-input-zod").then((m) => m.BankInputZodExample),
+  "breadcrumb-basic": () => import("@/components/examples/breadcrumb-basic").then((m) => m.BreadcrumbBasicExample),
+  "breadcrumb-city": () => import("@/components/examples/breadcrumb-city").then((m) => m.BreadcrumbCityExample),
+  "breadcrumb-dropdown": () => import("@/components/examples/breadcrumb-dropdown").then((m) => m.BreadcrumbDropdownExample),
+  "breadcrumb-ellipsis": () => import("@/components/examples/breadcrumb-ellipsis").then((m) => m.BreadcrumbEllipsisExample),
+  "breadcrumb-link": () => import("@/components/examples/breadcrumb-link").then((m) => m.BreadcrumbLinkExample),
+  "breadcrumb-rtl": () => import("@/components/examples/breadcrumb-rtl").then((m) => m.BreadcrumbRtlExample),
+  "breadcrumb-separator": () => import("@/components/examples/breadcrumb-separator").then((m) => m.BreadcrumbSeparatorExample),
+  "bubble-alignment": () => import("@/components/examples/bubble-alignment").then((m) => m.BubbleAlignmentExample),
+  "bubble-collapsible": () => import("@/components/examples/bubble-collapsible").then((m) => m.BubbleCollapsibleExample),
+  "bubble-demo": () => import("@/components/examples/bubble-demo").then((m) => m.BubbleDemoExample),
+  "bubble-group": () => import("@/components/examples/bubble-group").then((m) => m.BubbleGroupExample),
+  "bubble-link-button": () => import("@/components/examples/bubble-link-button").then((m) => m.BubbleLinkButtonExample),
+  "bubble-popover": () => import("@/components/examples/bubble-popover").then((m) => m.BubblePopoverExample),
+  "bubble-reactions": () => import("@/components/examples/bubble-reactions").then((m) => m.BubbleReactionsExample),
+  "bubble-rtl": () => import("@/components/examples/bubble-rtl").then((m) => m.BubbleRtlExample),
+  "bubble-tooltip": () => import("@/components/examples/bubble-tooltip").then((m) => m.BubbleTooltipExample),
+  "bubble-variants": () => import("@/components/examples/bubble-variants").then((m) => m.BubbleVariantsExample),
+  "button-blue": () => import("@/components/examples/button-blue").then((m) => m.ButtonBlueExample),
+  "button-default": () => import("@/components/examples/button-default").then((m) => m.ButtonDefaultExample),
+  "button-demo": () => import("@/components/examples/button-demo").then((m) => m.ButtonDemoExample),
+  "button-destructive": () => import("@/components/examples/button-destructive").then((m) => m.ButtonDestructiveExample),
+  "button-ghost": () => import("@/components/examples/button-ghost").then((m) => m.ButtonGhostExample),
+  "button-group-demo": () => import("@/components/examples/button-group-demo").then((m) => m.ButtonGroupDemoExample),
+  "button-group-dropdown": () => import("@/components/examples/button-group-dropdown").then((m) => m.ButtonGroupDropdownExample),
+  "button-group-input-group": () => import("@/components/examples/button-group-input-group").then((m) => m.ButtonGroupInputGroupExample),
+  "button-group-input": () => import("@/components/examples/button-group-input").then((m) => m.ButtonGroupInputExample),
+  "button-group-nested": () => import("@/components/examples/button-group-nested").then((m) => m.ButtonGroupNestedExample),
+  "button-group-orientation": () => import("@/components/examples/button-group-orientation").then((m) => m.ButtonGroupOrientationExample),
+  "button-group-popover": () => import("@/components/examples/button-group-popover").then((m) => m.ButtonGroupPopoverExample),
+  "button-group-rtl": () => import("@/components/examples/button-group-rtl").then((m) => m.ButtonGroupRtlExample),
+  "button-group-select": () => import("@/components/examples/button-group-select").then((m) => m.ButtonGroupSelectExample),
+  "button-group-separator": () => import("@/components/examples/button-group-separator").then((m) => m.ButtonGroupSeparatorExample),
+  "button-group-size": () => import("@/components/examples/button-group-size").then((m) => m.ButtonGroupSizeExample),
+  "button-group-split": () => import("@/components/examples/button-group-split").then((m) => m.ButtonGroupSplitExample),
+  "button-icon": () => import("@/components/examples/button-icon").then((m) => m.ButtonIconExample),
+  "button-link": () => import("@/components/examples/button-link").then((m) => m.ButtonLinkExample),
+  "button-loading": () => import("@/components/examples/button-loading").then((m) => m.ButtonLoadingExample),
+  "button-outline": () => import("@/components/examples/button-outline").then((m) => m.ButtonOutlineExample),
+  "button-render": () => import("@/components/examples/button-render").then((m) => m.ButtonRenderExample),
+  "button-rounded": () => import("@/components/examples/button-rounded").then((m) => m.ButtonRoundedExample),
+  "button-rtl": () => import("@/components/examples/button-rtl").then((m) => m.ButtonRtlExample),
+  "button-secondary": () => import("@/components/examples/button-secondary").then((m) => m.ButtonSecondaryExample),
+  "button-size": () => import("@/components/examples/button-size").then((m) => m.ButtonSizeExample),
+  "button-with-icon": () => import("@/components/examples/button-with-icon").then((m) => m.ButtonWithIconExample),
+  "calendar-booked": () => import("@/components/examples/calendar-booked").then((m) => m.CalendarBookedExample),
+  "calendar-calendar-type": () => import("@/components/examples/calendar-calendar-type").then((m) => m.CalendarCalendarTypeExample),
+  "calendar-demo": () => import("@/components/examples/calendar-demo").then((m) => m.CalendarDemoExample),
+  "calendar-dropdown": () => import("@/components/examples/calendar-dropdown").then((m) => m.CalendarDropdownExample),
+  "calendar-holidays": () => import("@/components/examples/calendar-holidays").then((m) => m.CalendarHolidaysExample),
+  "calendar-presets": () => import("@/components/examples/calendar-presets").then((m) => m.CalendarPresetsExample),
+  "calendar-range": () => import("@/components/examples/calendar-range").then((m) => m.CalendarRangeExample),
+  "calendar-rtl": () => import("@/components/examples/calendar-rtl").then((m) => m.CalendarRtlExample),
+  "calendar-week-numbers": () => import("@/components/examples/calendar-week-numbers").then((m) => m.CalendarWeekNumbersExample),
+  "card-demo": () => import("@/components/examples/card-demo").then((m) => m.CardDemoExample),
+  "card-image": () => import("@/components/examples/card-image").then((m) => m.CardImageExample),
+  "card-product": () => import("@/components/examples/card-product").then((m) => m.CardProductExample),
+  "card-rtl": () => import("@/components/examples/card-rtl").then((m) => m.CardRtlExample),
+  "card-small": () => import("@/components/examples/card-small").then((m) => m.CardSmallExample),
+  "carousel-api": () => import("@/components/examples/carousel-api").then((m) => m.CarouselApiExample),
+  "carousel-demo": () => import("@/components/examples/carousel-demo").then((m) => m.CarouselDemoExample),
+  "carousel-orientation": () => import("@/components/examples/carousel-orientation").then((m) => m.CarouselOrientationExample),
+  "carousel-plugin": () => import("@/components/examples/carousel-plugin").then((m) => m.CarouselPluginExample),
+  "carousel-rtl": () => import("@/components/examples/carousel-rtl").then((m) => m.CarouselRtlExample),
+  "carousel-size": () => import("@/components/examples/carousel-size").then((m) => m.CarouselSizeExample),
+  "carousel-spacing": () => import("@/components/examples/carousel-spacing").then((m) => m.CarouselSpacingExample),
+  "checkbox-demo": () => import("@/components/examples/checkbox-demo").then((m) => m.CheckboxDemoExample),
+  "checkbox-disabled": () => import("@/components/examples/checkbox-disabled").then((m) => m.CheckboxDisabledExample),
+  "checkbox-rtl": () => import("@/components/examples/checkbox-rtl").then((m) => m.CheckboxRtlExample),
+  "city-selector-basic": () => import("@/components/examples/city-selector-basic").then((m) => m.CitySelectorBasicExample),
+  "city-selector-controlled-fa": () => import("@/components/examples/city-selector-controlled-fa").then((m) => m.CitySelectorControlledFaExample),
+  "city-selector-controlled": () => import("@/components/examples/city-selector-controlled").then((m) => m.CitySelectorControlledExample),
+  "city-selector-custom": () => import("@/components/examples/city-selector-custom").then((m) => m.CitySelectorCustomExample),
+  "city-selector-form": () => import("@/components/examples/city-selector-form").then((m) => m.CitySelectorFormExample),
+  "city-selector-locale": () => import("@/components/examples/city-selector-locale").then((m) => m.CitySelectorLocaleExample),
+  "collapsible-demo": () => import("@/components/examples/collapsible-demo").then((m) => m.CollapsibleDemoExample),
+  "collapsible-rtl": () => import("@/components/examples/collapsible-rtl").then((m) => m.CollapsibleRtlExample),
+  "combobox-basic": () => import("@/components/examples/combobox-basic").then((m) => m.ComboboxBasicExample),
+  "combobox-clear": () => import("@/components/examples/combobox-clear").then((m) => m.ComboboxClearExample),
+  "combobox-disabled": () => import("@/components/examples/combobox-disabled").then((m) => m.ComboboxDisabledExample),
+  "combobox-groups": () => import("@/components/examples/combobox-groups").then((m) => m.ComboboxGroupsExample),
+  "combobox-multiple": () => import("@/components/examples/combobox-multiple").then((m) => m.ComboboxMultipleExample),
+  "command-basic": () => import("@/components/examples/command-basic").then((m) => m.CommandBasicExample),
+  "command-groups": () => import("@/components/examples/command-groups").then((m) => m.CommandGroupsExample),
+  "command-panel": () => import("@/components/examples/command-panel").then((m) => m.CommandPanelExample),
+  "command-rtl": () => import("@/components/examples/command-rtl").then((m) => m.CommandRtlExample),
+  "context-menu-demo": () => import("@/components/examples/context-menu-demo").then((m) => m.ContextMenuDemoExample),
+  "context-menu-rtl": () => import("@/components/examples/context-menu-rtl").then((m) => m.ContextMenuRtlExample),
+  "copy-button-demo": () => import("@/components/examples/copy-button-demo").then((m) => m.CopyButtonDemoExample),
+  "copy-button-rtl": () => import("@/components/examples/copy-button-rtl").then((m) => m.CopyButtonRtlExample),
+  "copy-button-with-text": () => import("@/components/examples/copy-button-with-text").then((m) => m.CopyButtonWithTextExample),
+  "data-table-demo": () => import("@/components/examples/data-table-demo").then((m) => m.DataTableDemoExample),
+  "data-table-rtl": () => import("@/components/examples/data-table-rtl").then((m) => m.DataTableRtlExample),
+  "date-picker-calendar-type": () => import("@/components/examples/date-picker-calendar-type").then((m) => m.DatePickerCalendarTypeExample),
+  "date-picker-close-on-select": () => import("@/components/examples/date-picker-close-on-select").then((m) => m.DatePickerCloseOnSelectExample),
+  "date-picker-confirmation": () => import("@/components/examples/date-picker-confirmation").then((m) => m.DatePickerConfirmationExample),
+  "date-picker-constrained": () => import("@/components/examples/date-picker-constrained").then((m) => m.DatePickerConstrainedExample),
+  "date-picker-controlled": () => import("@/components/examples/date-picker-controlled").then((m) => m.DatePickerControlledExample),
+  "date-picker-custom-trigger": () => import("@/components/examples/date-picker-custom-trigger").then((m) => m.DatePickerCustomTriggerExample),
+  "date-picker-demo": () => import("@/components/examples/date-picker-demo").then((m) => m.DatePickerDemoExample),
+  "date-picker-dob": () => import("@/components/examples/date-picker-dob").then((m) => m.DatePickerDobExample),
+  "date-picker-input": () => import("@/components/examples/date-picker-input").then((m) => m.DatePickerInputExample),
+  "date-picker-miladi": () => import("@/components/examples/date-picker-miladi").then((m) => m.DatePickerMiladiExample),
+  "date-picker-presets-responsive": () => import("@/components/examples/date-picker-presets-responsive").then((m) => m.DatePickerPresetsResponsiveExample),
+  "date-picker-range": () => import("@/components/examples/date-picker-range").then((m) => m.DatePickerRangeExample),
+  "date-picker-reservation": () => import("@/components/examples/date-picker-reservation").then((m) => m.DatePickerReservationExample),
+  "date-picker-responsive": () => import("@/components/examples/date-picker-responsive").then((m) => m.DatePickerResponsiveExample),
+  "date-picker-rtl": () => import("@/components/examples/date-picker-rtl").then((m) => m.DatePickerRtlExample),
+  "date-picker-time-advanced": () => import("@/components/examples/date-picker-time-advanced").then((m) => m.DatePickerTimeAdvancedExample),
+  "date-picker-with-time": () => import("@/components/examples/date-picker-with-time").then((m) => m.DatePickerWithTimeExample),
+  "date-picker-zod": () => import("@/components/examples/date-picker-zod").then((m) => m.DatePickerZodExample),
+  "date-wheel-picker-calendar-type": () => import("@/components/examples/date-wheel-picker-calendar-type").then((m) => m.DateWheelPickerCalendarTypeExample),
+  "date-wheel-picker-demo": () => import("@/components/examples/date-wheel-picker-demo").then((m) => m.DateWheelPickerDemoExample),
+  "date-wheel-picker-loop": () => import("@/components/examples/date-wheel-picker-loop").then((m) => m.DateWheelPickerLoopExample),
+  "date-wheel-picker-range": () => import("@/components/examples/date-wheel-picker-range").then((m) => m.DateWheelPickerRangeExample),
+  "date-wheel-picker-responsive-dialog": () => import("@/components/examples/date-wheel-picker-responsive-dialog").then((m) => m.DateWheelPickerResponsiveDialogExample),
+  "date-wheel-picker-responsive-menu": () => import("@/components/examples/date-wheel-picker-responsive-menu").then((m) => m.DateWheelPickerResponsiveMenuExample),
+  "date-wheel-picker-responsive": () => import("@/components/examples/date-wheel-picker-responsive").then((m) => m.DateWheelPickerResponsiveExample),
+  "date-wheel-picker-rtl": () => import("@/components/examples/date-wheel-picker-rtl").then((m) => m.DateWheelPickerRtlExample),
+  "date-wheel-picker-step": () => import("@/components/examples/date-wheel-picker-step").then((m) => m.DateWheelPickerStepExample),
+  "dialog-demo": () => import("@/components/examples/dialog-demo").then((m) => m.DialogDemoExample),
+  "dialog-no-footer": () => import("@/components/examples/dialog-no-footer").then((m) => m.DialogNoFooterExample),
+  "dialog-rtl": () => import("@/components/examples/dialog-rtl").then((m) => m.DialogRtlExample),
+  "direction-demo": () => import("@/components/examples/direction-demo").then((m) => m.DirectionDemoExample),
+  "direction-hook": () => import("@/components/examples/direction-hook").then((m) => m.DirectionHookExample),
+  "drawer-demo": () => import("@/components/examples/drawer-demo").then((m) => m.DrawerDemoExample),
+  "drawer-nested": () => import("@/components/examples/drawer-nested").then((m) => m.DrawerNestedExample),
+  "drawer-no-footer": () => import("@/components/examples/drawer-no-footer").then((m) => m.DrawerNoFooterExample),
+  "drawer-positions": () => import("@/components/examples/drawer-positions").then((m) => m.DrawerPositionsExample),
+  "drawer-rtl": () => import("@/components/examples/drawer-rtl").then((m) => m.DrawerRtlExample),
+  "drawer-scrollable": () => import("@/components/examples/drawer-scrollable").then((m) => m.DrawerScrollableExample),
+  "drawer-snap-points": () => import("@/components/examples/drawer-snap-points").then((m) => m.DrawerSnapPointsExample),
+  "drawer-variants": () => import("@/components/examples/drawer-variants").then((m) => m.DrawerVariantsExample),
+  "dropdown-menu-checkboxes": () => import("@/components/examples/dropdown-menu-checkboxes").then((m) => m.DropdownMenuCheckboxesExample),
+  "dropdown-menu-demo": () => import("@/components/examples/dropdown-menu-demo").then((m) => m.DropdownMenuDemoExample),
+  "dropdown-menu-rtl": () => import("@/components/examples/dropdown-menu-rtl").then((m) => m.DropdownMenuRtlExample),
+  "elastic-slider-demo": () => import("@/components/examples/elastic-slider-demo").then((m) => m.ElasticSliderDemoExample),
+  "elastic-slider-price-range": () => import("@/components/examples/elastic-slider-price-range").then((m) => m.ElasticSliderPriceRangeExample),
+  "elastic-slider-range-percent": () => import("@/components/examples/elastic-slider-range-percent").then((m) => m.ElasticSliderRangePercentExample),
+  "elastic-slider-range-toman": () => import("@/components/examples/elastic-slider-range-toman").then((m) => m.ElasticSliderRangeTomanExample),
+  "elastic-slider-rtl": () => import("@/components/examples/elastic-slider-rtl").then((m) => m.ElasticSliderRtlExample),
+  "empty-background": () => import("@/components/examples/empty-background").then((m) => m.EmptyBackgroundExample),
+  "empty-city": () => import("@/components/examples/empty-city").then((m) => m.EmptyCityExample),
+  "empty-demo": () => import("@/components/examples/empty-demo").then((m) => m.EmptyDemoExample),
+  "empty-input-group": () => import("@/components/examples/empty-input-group").then((m) => m.EmptyInputGroupExample),
+  "empty-outline": () => import("@/components/examples/empty-outline").then((m) => m.EmptyOutlineExample),
+  "empty-rtl": () => import("@/components/examples/empty-rtl").then((m) => m.EmptyRtlExample),
+  "field-demo": () => import("@/components/examples/field-demo").then((m) => m.FieldDemoExample),
+  "field-error": () => import("@/components/examples/field-error").then((m) => m.FieldErrorExample),
+  "field-horizontal": () => import("@/components/examples/field-horizontal").then((m) => m.FieldHorizontalExample),
+  "field-rtl": () => import("@/components/examples/field-rtl").then((m) => m.FieldRtlExample),
+  "hitbox-debug": () => import("@/components/examples/hitbox-debug").then((m) => m.HitboxDebugExample),
+  "hitbox-demo": () => import("@/components/examples/hitbox-demo").then((m) => m.HitboxDemoExample),
+  "hitbox-positions": () => import("@/components/examples/hitbox-positions").then((m) => m.HitboxPositionsExample),
+  "hitbox-radii": () => import("@/components/examples/hitbox-radii").then((m) => m.HitboxRadiiExample),
+  "hitbox-sizes": () => import("@/components/examples/hitbox-sizes").then((m) => m.HitboxSizesExample),
+  "hover-card-demo": () => import("@/components/examples/hover-card-demo").then((m) => m.HoverCardDemoExample),
+  "hover-card-rtl": () => import("@/components/examples/hover-card-rtl").then((m) => m.HoverCardRtlExample),
+  "input-badge": () => import("@/components/examples/input-badge").then((m) => m.InputBadgeExample),
+  "input-basic": () => import("@/components/examples/input-basic").then((m) => m.InputBasicExample),
+  "input-button-group": () => import("@/components/examples/input-button-group").then((m) => m.InputButtonGroupExample),
+  "input-demo": () => import("@/components/examples/input-demo").then((m) => m.InputDemoExample),
+  "input-disabled": () => import("@/components/examples/input-disabled").then((m) => m.InputDisabledExample),
+  "input-field": () => import("@/components/examples/input-field").then((m) => m.InputFieldExample),
+  "input-fieldgroup": () => import("@/components/examples/input-fieldgroup").then((m) => m.InputFieldGroupExample),
+  "input-file": () => import("@/components/examples/input-file").then((m) => m.InputFileExample),
+  "input-form": () => import("@/components/examples/input-form").then((m) => m.InputFormExample),
+  "input-grid": () => import("@/components/examples/input-grid").then((m) => m.InputGridExample),
+  "input-group-block-end": () => import("@/components/examples/input-group-block-end").then((m) => m.InputGroupBlockEndExample),
+  "input-group-block-start": () => import("@/components/examples/input-group-block-start").then((m) => m.InputGroupBlockStartExample),
+  "input-group-button": () => import("@/components/examples/input-group-button").then((m) => m.InputGroupButtonExample),
+  "input-group-custom": () => import("@/components/examples/input-group-custom").then((m) => m.InputGroupCustomExample),
+  "input-group-demo": () => import("@/components/examples/input-group-demo").then((m) => m.InputGroupDemoExample),
+  "input-group-dropdown": () => import("@/components/examples/input-group-dropdown").then((m) => m.InputGroupDropdownExample),
+  "input-group-icon": () => import("@/components/examples/input-group-icon").then((m) => m.InputGroupIconExample),
+  "input-group-inline-end": () => import("@/components/examples/input-group-inline-end").then((m) => m.InputGroupInlineEndExample),
+  "input-group-inline-start": () => import("@/components/examples/input-group-inline-start").then((m) => m.InputGroupInlineStartExample),
+  "input-group-kbd": () => import("@/components/examples/input-group-kbd").then((m) => m.InputGroupKbdExample),
+  "input-group-rtl": () => import("@/components/examples/input-group-rtl").then((m) => m.InputGroupRtlExample),
+  "input-group-spinner": () => import("@/components/examples/input-group-spinner").then((m) => m.InputGroupSpinnerExample),
+  "input-group-text": () => import("@/components/examples/input-group-text").then((m) => m.InputGroupTextExample),
+  "input-group-textarea": () => import("@/components/examples/input-group-textarea").then((m) => m.InputGroupTextareaExample),
+  "input-inline": () => import("@/components/examples/input-inline").then((m) => m.InputInlineExample),
+  "input-input-group": () => import("@/components/examples/input-input-group").then((m) => m.InputInputGroupExample),
+  "input-invalid": () => import("@/components/examples/input-invalid").then((m) => m.InputInvalidExample),
+  "input-otp-alphanumeric": () => import("@/components/examples/input-otp-alphanumeric").then((m) => m.InputOTPAlphanumericExample),
+  "input-otp-controlled": () => import("@/components/examples/input-otp-controlled").then((m) => m.InputOTPControlledExample),
+  "input-otp-demo": () => import("@/components/examples/input-otp-demo").then((m) => m.InputOTPDemoExample),
+  "input-otp-disabled": () => import("@/components/examples/input-otp-disabled").then((m) => m.InputOTPDisabledExample),
+  "input-otp-form": () => import("@/components/examples/input-otp-form").then((m) => m.InputOTPFormExample),
+  "input-otp-four-digits": () => import("@/components/examples/input-otp-four-digits").then((m) => m.InputOTPFourDigitsExample),
+  "input-otp-invalid": () => import("@/components/examples/input-otp-invalid").then((m) => m.InputOTPInvalidExample),
+  "input-otp-pattern": () => import("@/components/examples/input-otp-pattern").then((m) => m.InputOTPPatternExample),
+  "input-otp-separator": () => import("@/components/examples/input-otp-separator").then((m) => m.InputOTPSeparatorExample),
+  "input-required": () => import("@/components/examples/input-required").then((m) => m.InputRequiredExample),
+  "input-rtl": () => import("@/components/examples/input-rtl").then((m) => m.InputRtlExample),
+  "item-demo": () => import("@/components/examples/item-demo").then((m) => m.ItemDemoExample),
+  "item-image": () => import("@/components/examples/item-image").then((m) => m.ItemImageExample),
+  "item-outline": () => import("@/components/examples/item-outline").then((m) => m.ItemOutlineExample),
+  "item-rtl": () => import("@/components/examples/item-rtl").then((m) => m.ItemRtlExample),
+  "kbd-demo": () => import("@/components/examples/kbd-demo").then((m) => m.KbdDemoExample),
+  "kbd-inline": () => import("@/components/examples/kbd-inline").then((m) => m.KbdInlineExample),
+  "kbd-rtl": () => import("@/components/examples/kbd-rtl").then((m) => m.KbdRtlExample),
+  "label-demo": () => import("@/components/examples/label-demo").then((m) => m.LabelDemoExample),
+  "label-input": () => import("@/components/examples/label-input").then((m) => m.LabelInputExample),
+  "label-rtl": () => import("@/components/examples/label-rtl").then((m) => m.LabelRtlExample),
+  "marker-border": () => import("@/components/examples/marker-border").then((m) => m.MarkerBorderExample),
+  "marker-demo": () => import("@/components/examples/marker-demo").then((m) => m.MarkerDemoExample),
+  "marker-rtl": () => import("@/components/examples/marker-rtl").then((m) => m.MarkerRtlExample),
+  "marker-separator": () => import("@/components/examples/marker-separator").then((m) => m.MarkerSeparatorExample),
+  "menubar-demo": () => import("@/components/examples/menubar-demo").then((m) => m.MenubarDemoExample),
+  "menubar-rtl": () => import("@/components/examples/menubar-rtl").then((m) => m.MenubarRtlExample),
+  "message-demo": () => import("@/components/examples/message-demo").then((m) => m.MessageDemoExample),
+  "message-rtl": () => import("@/components/examples/message-rtl").then((m) => m.MessageRtlExample),
+  "message-scroller-demo": () => import("@/components/examples/message-scroller-demo").then((m) => m.MessageScrollerDemoExample),
+  "message-scroller-rtl": () => import("@/components/examples/message-scroller-rtl").then((m) => m.MessageScrollerRtlExample),
+  "mobile-number-input-demo": () => import("@/components/examples/mobile-number-input-demo").then((m) => m.MobileNumberInputDemoExample),
+  "mobile-number-input-rtl": () => import("@/components/examples/mobile-number-input-rtl").then((m) => m.MobileNumberInputRtlExample),
+  "native-select-demo": () => import("@/components/examples/native-select-demo").then((m) => m.NativeSelectDemoExample),
+  "native-select-rtl": () => import("@/components/examples/native-select-rtl").then((m) => m.NativeSelectRtlExample),
+  "native-select-size": () => import("@/components/examples/native-select-size").then((m) => m.NativeSelectSizeExample),
+  "navigation-menu-demo": () => import("@/components/examples/navigation-menu-demo").then((m) => m.NavigationMenuDemoExample),
+  "navigation-menu-rtl": () => import("@/components/examples/navigation-menu-rtl").then((m) => m.NavigationMenuRtlExample),
+  "normalize-persian-digits-demo": () => import("@/components/examples/normalize-persian-digits-demo").then((m) => m.NormalizePersianDigitsDemoExample),
+  "pagination-demo": () => import("@/components/examples/pagination-demo").then((m) => m.PaginationDemoExample),
+  "pagination-rtl": () => import("@/components/examples/pagination-rtl").then((m) => m.PaginationRtlExample),
+  "password-input-demo": () => import("@/components/examples/password-input-demo").then((m) => m.PasswordInputDemoExample),
+  "password-input-rtl": () => import("@/components/examples/password-input-rtl").then((m) => m.PasswordInputRtlExample),
+  "persian-date-arithmetic": () => import("@/components/examples/persian-date-arithmetic").then((m) => m.PersianDateArithmeticExample),
+  "persian-date-boundaries": () => import("@/components/examples/persian-date-boundaries").then((m) => m.PersianDateBoundariesExample),
+  "persian-date-comparisons": () => import("@/components/examples/persian-date-comparisons").then((m) => m.PersianDateComparisonsExample),
+  "persian-date-conversion": () => import("@/components/examples/persian-date-conversion").then((m) => m.PersianDateConversionExample),
+  "persian-date-demo": () => import("@/components/examples/persian-date-demo").then((m) => m.PersianDateDemoExample),
+  "persian-date-leap-year": () => import("@/components/examples/persian-date-leap-year").then((m) => m.PersianDateLeapYearExample),
+  "persian-date-parsing": () => import("@/components/examples/persian-date-parsing").then((m) => m.PersianDateParsingExample),
+  "persian-date-range": () => import("@/components/examples/persian-date-range").then((m) => m.PersianDateRangeExample),
+  "persian-date-reservation": () => import("@/components/examples/persian-date-reservation").then((m) => m.PersianDateReservationExample),
+  "persian-date-rtl": () => import("@/components/examples/persian-date-rtl").then((m) => m.PersianDateRtlExample),
+  "persian-date-zod-demo": () => import("@/components/examples/persian-date-zod-demo").then((m) => m.PersianDateZodDemoExample),
+  "persian-date-zod-range": () => import("@/components/examples/persian-date-zod-range").then((m) => m.PersianDateZodRangeExample),
+  "persian-holidays-approximate": () => import("@/components/examples/persian-holidays-approximate").then((m) => m.PersianHolidaysApproximateExample),
+  "persian-holidays-calendar": () => import("@/components/examples/persian-holidays-calendar").then((m) => m.PersianHolidaysCalendarExample),
+  "persian-holidays-demo": () => import("@/components/examples/persian-holidays-demo").then((m) => m.PersianHolidaysDemoExample),
+  "persian-holidays-lookup": () => import("@/components/examples/persian-holidays-lookup").then((m) => m.PersianHolidaysLookupExample),
+  "persian-holidays-rtl": () => import("@/components/examples/persian-holidays-rtl").then((m) => m.PersianHolidaysRtlExample),
+  "persian-holidays-unofficial": () => import("@/components/examples/persian-holidays-unofficial").then((m) => m.PersianHolidaysUnofficialExample),
+  "persian-reshape-demo": () => import("@/components/examples/persian-reshape-demo").then((m) => m.PersianReshapeDemoExample),
+  "persian-slug-demo": () => import("@/components/examples/persian-slug-demo").then((m) => m.PersianSlugDemoExample),
+  "persian-slug-rtl": () => import("@/components/examples/persian-slug-rtl").then((m) => m.PersianSlugRtlExample),
+  "persian-slug-transliterate": () => import("@/components/examples/persian-slug-transliterate").then((m) => m.PersianSlugTransliterateExample),
+  "popover-demo": () => import("@/components/examples/popover-demo").then((m) => m.PopoverDemoExample),
+  "popover-form": () => import("@/components/examples/popover-form").then((m) => m.PopoverFormExample),
+  "popover-rtl": () => import("@/components/examples/popover-rtl").then((m) => m.PopoverRtlExample),
+  "price-input-demo": () => import("@/components/examples/price-input-demo").then((m) => m.PriceInputDemoExample),
+  "price-input-group-abbreviation": () => import("@/components/examples/price-input-group-abbreviation").then((m) => m.PriceInputGroupAbbreviationExample),
+  "price-input-group-icon": () => import("@/components/examples/price-input-group-icon").then((m) => m.PriceInputGroupIconExample),
+  "price-input-group-text": () => import("@/components/examples/price-input-group-text").then((m) => m.PriceInputGroupTextExample),
+  "price-input-negative": () => import("@/components/examples/price-input-negative").then((m) => m.PriceInputNegativeExample),
+  "price-input-rtl": () => import("@/components/examples/price-input-rtl").then((m) => m.PriceInputRtlExample),
+  "progress-animated": () => import("@/components/examples/progress-animated").then((m) => m.ProgressAnimatedExample),
+  "progress-demo": () => import("@/components/examples/progress-demo").then((m) => m.ProgressDemoExample),
+  "progress-rtl": () => import("@/components/examples/progress-rtl").then((m) => m.ProgressRtlExample),
+  "qr-code-colors": () => import("@/components/examples/qr-code-colors").then((m) => m.QrCodeColorsExample),
+  "qr-code-demo": () => import("@/components/examples/qr-code-demo").then((m) => m.QrCodeDemoExample),
+  "qr-code-logo": () => import("@/components/examples/qr-code-logo").then((m) => m.QrCodeLogoExample),
+  "qr-code-rtl": () => import("@/components/examples/qr-code-rtl").then((m) => m.QrCodeRtlExample),
+  "qr-code-skeleton": () => import("@/components/examples/qr-code-skeleton").then((m) => m.QrCodeSkeletonExample),
+  "questionnaire-animated": () => import("@/components/examples/questionnaire-animated").then((m) => m.QuestionnaireAnimatedExample),
+  "questionnaire-card": () => import("@/components/examples/questionnaire-card").then((m) => m.QuestionnaireCardExample),
+  "questionnaire-conditional": () => import("@/components/examples/questionnaire-conditional").then((m) => m.QuestionnaireConditionalExample),
+  "questionnaire-controlled": () => import("@/components/examples/questionnaire-controlled").then((m) => m.QuestionnaireControlledExample),
+  "questionnaire-custom-progress": () => import("@/components/examples/questionnaire-custom-progress").then((m) => m.QuestionnaireCustomProgressExample),
+  "questionnaire-demo": () => import("@/components/examples/questionnaire-demo").then((m) => m.QuestionnaireDemoExample),
+  "questionnaire-dialog": () => import("@/components/examples/questionnaire-dialog").then((m) => m.QuestionnaireDialogExample),
+  "questionnaire-freeform": () => import("@/components/examples/questionnaire-freeform").then((m) => m.QuestionnaireFreeformExample),
+  "questionnaire-multiple": () => import("@/components/examples/questionnaire-multiple").then((m) => m.QuestionnaireMultipleExample),
+  "questionnaire-navigation-state": () => import("@/components/examples/questionnaire-navigation-state").then((m) => m.QuestionnaireNavigationStateExample),
+  "questionnaire-resume": () => import("@/components/examples/questionnaire-resume").then((m) => m.QuestionnaireResumeExample),
+  "questionnaire-rtl": () => import("@/components/examples/questionnaire-rtl").then((m) => m.QuestionnaireRtlExample),
+  "questionnaire-shortcuts": () => import("@/components/examples/questionnaire-shortcuts").then((m) => m.QuestionnaireShortcutsExample),
+  "questionnaire-skip": () => import("@/components/examples/questionnaire-skip").then((m) => m.QuestionnaireSkipExample),
+  "questionnaire-validation": () => import("@/components/examples/questionnaire-validation").then((m) => m.QuestionnaireValidationExample),
+  "radio-group-demo": () => import("@/components/examples/radio-group-demo").then((m) => m.RadioGroupDemoExample),
+  "radio-group-disabled": () => import("@/components/examples/radio-group-disabled").then((m) => m.RadioGroupDisabledExample),
+  "radio-group-rtl": () => import("@/components/examples/radio-group-rtl").then((m) => m.RadioGroupRtlExample),
+  "receipt-printer-demo": () => import("@/components/examples/receipt-printer-demo").then((m) => m.ReceiptPrinterDemoExample),
+  "receipt-printer-rtl": () => import("@/components/examples/receipt-printer-rtl").then((m) => m.ReceiptPrinterRtlExample),
+  "receipt-printer-subscription": () => import("@/components/examples/receipt-printer-subscription").then((m) => m.ReceiptPrinterSubscriptionExample),
+  "resizable-demo": () => import("@/components/examples/resizable-demo").then((m) => m.ResizableDemoExample),
+  "resizable-rtl": () => import("@/components/examples/resizable-rtl").then((m) => m.ResizableRtlExample),
+  "resizable-vertical": () => import("@/components/examples/resizable-vertical").then((m) => m.ResizableVerticalExample),
+  "responsive-alert-dialog-demo": () => import("@/components/examples/responsive-alert-dialog-demo").then((m) => m.ResponsiveAlertDialogDemoExample),
+  "responsive-alert-dialog-rtl": () => import("@/components/examples/responsive-alert-dialog-rtl").then((m) => m.ResponsiveAlertDialogRtlExample),
+  "responsive-dialog-demo": () => import("@/components/examples/responsive-dialog-demo").then((m) => m.ResponsiveDialogDemoExample),
+  "responsive-dialog-desktop-only": () => import("@/components/examples/responsive-dialog-desktop-only").then((m) => m.ResponsiveDialogDesktopOnlyExample),
+  "responsive-dialog-no-footer": () => import("@/components/examples/responsive-dialog-no-footer").then((m) => m.ResponsiveDialogNoFooterExample),
+  "responsive-dialog-rtl": () => import("@/components/examples/responsive-dialog-rtl").then((m) => m.ResponsiveDialogRtlExample),
+  "responsive-menu-demo": () => import("@/components/examples/responsive-menu-demo").then((m) => m.ResponsiveMenuDemoExample),
+  "responsive-menu-rtl": () => import("@/components/examples/responsive-menu-rtl").then((m) => m.ResponsiveMenuRtlExample),
+  "scroll-area-demo": () => import("@/components/examples/scroll-area-demo").then((m) => m.ScrollAreaDemoExample),
+  "scroll-area-horizontal": () => import("@/components/examples/scroll-area-horizontal").then((m) => m.ScrollAreaHorizontalExample),
+  "scroll-area-rtl": () => import("@/components/examples/scroll-area-rtl").then((m) => m.ScrollAreaRtlExample),
+  "select-align-item": () => import("@/components/examples/select-align-item").then((m) => m.SelectAlignItemExample),
+  "select-demo": () => import("@/components/examples/select-demo").then((m) => m.SelectDemoExample),
+  "select-disabled": () => import("@/components/examples/select-disabled").then((m) => m.SelectDisabledExample),
+  "select-groups": () => import("@/components/examples/select-groups").then((m) => m.SelectGroupsExample),
+  "select-invalid": () => import("@/components/examples/select-invalid").then((m) => m.SelectInvalidExample),
+  "select-mixed-direction": () => import("@/components/examples/select-mixed-direction").then((m) => m.SelectMixedDirectionExample),
+  "select-rtl": () => import("@/components/examples/select-rtl").then((m) => m.SelectRtlExample),
+  "select-scrollable": () => import("@/components/examples/select-scrollable").then((m) => m.SelectScrollableExample),
+  "separator-demo": () => import("@/components/examples/separator-demo").then((m) => m.SeparatorDemoExample),
+  "separator-list": () => import("@/components/examples/separator-list").then((m) => m.SeparatorListExample),
+  "separator-menu": () => import("@/components/examples/separator-menu").then((m) => m.SeparatorMenuExample),
+  "separator-receipt": () => import("@/components/examples/separator-receipt").then((m) => m.SeparatorReceiptExample),
+  "separator-rtl": () => import("@/components/examples/separator-rtl").then((m) => m.SeparatorRtlExample),
+  "separator-vertical": () => import("@/components/examples/separator-vertical").then((m) => m.SeparatorVerticalExample),
+  "sheet-demo": () => import("@/components/examples/sheet-demo").then((m) => m.SheetDemoExample),
+  "sheet-rtl": () => import("@/components/examples/sheet-rtl").then((m) => m.SheetRtlExample),
+  "sheet-side": () => import("@/components/examples/sheet-side").then((m) => m.SheetSideExample),
+  "skeleton-card": () => import("@/components/examples/skeleton-card").then((m) => m.SkeletonCardExample),
+  "skeleton-demo": () => import("@/components/examples/skeleton-demo").then((m) => m.SkeletonDemoExample),
+  "skeleton-rtl": () => import("@/components/examples/skeleton-rtl").then((m) => m.SkeletonRtlExample),
+  "slider-controlled": () => import("@/components/examples/slider-controlled").then((m) => m.SliderControlledExample),
+  "slider-demo": () => import("@/components/examples/slider-demo").then((m) => m.SliderDemoExample),
+  "slider-disabled": () => import("@/components/examples/slider-disabled").then((m) => m.SliderDisabledExample),
+  "slider-multiple": () => import("@/components/examples/slider-multiple").then((m) => m.SliderMultipleExample),
+  "slider-range": () => import("@/components/examples/slider-range").then((m) => m.SliderRangeExample),
+  "slider-rtl": () => import("@/components/examples/slider-rtl").then((m) => m.SliderRtlExample),
+  "slider-vertical": () => import("@/components/examples/slider-vertical").then((m) => m.SliderVerticalExample),
+  "spinner-button": () => import("@/components/examples/spinner-button").then((m) => m.SpinnerButtonExample),
+  "spinner-demo": () => import("@/components/examples/spinner-demo").then((m) => m.SpinnerDemoExample),
+  "spinner-rtl": () => import("@/components/examples/spinner-rtl").then((m) => m.SpinnerRtlExample),
+  "switch-demo": () => import("@/components/examples/switch-demo").then((m) => m.SwitchDemoExample),
+  "switch-rtl": () => import("@/components/examples/switch-rtl").then((m) => m.SwitchRtlExample),
+  "switch-size": () => import("@/components/examples/switch-size").then((m) => m.SwitchSizeExample),
+  "table-actions": () => import("@/components/examples/table-actions").then((m) => m.TableActionsExample),
+  "table-card": () => import("@/components/examples/table-card").then((m) => m.TableCardExample),
+  "table-demo": () => import("@/components/examples/table-demo").then((m) => m.TableDemoExample),
+  "table-rtl": () => import("@/components/examples/table-rtl").then((m) => m.TableRtlExample),
+  "table-team": () => import("@/components/examples/table-team").then((m) => m.TableTeamExample),
+  "tabs-controlled": () => import("@/components/examples/tabs-controlled").then((m) => m.TabsControlledExample),
+  "tabs-default": () => import("@/components/examples/tabs-default").then((m) => m.TabsDefaultExample),
+  "tabs-disabled": () => import("@/components/examples/tabs-disabled").then((m) => m.TabsDisabledExample),
+  "tabs-icons": () => import("@/components/examples/tabs-icons").then((m) => m.TabsIconsExample),
+  "tabs-scrollable": () => import("@/components/examples/tabs-scrollable").then((m) => m.TabsScrollableExample),
+  "tabs-variants": () => import("@/components/examples/tabs-variants").then((m) => m.TabsVariantsExample),
+  "tabs-vertical": () => import("@/components/examples/tabs-vertical").then((m) => m.TabsVerticalExample),
+  "textarea-button": () => import("@/components/examples/textarea-button").then((m) => m.TextareaButtonExample),
+  "textarea-demo": () => import("@/components/examples/textarea-demo").then((m) => m.TextareaDemoExample),
+  "textarea-disabled": () => import("@/components/examples/textarea-disabled").then((m) => m.TextareaDisabledExample),
+  "textarea-field": () => import("@/components/examples/textarea-field").then((m) => m.TextareaFieldExample),
+  "textarea-invalid": () => import("@/components/examples/textarea-invalid").then((m) => m.TextareaInvalidExample),
+  "textarea-rtl": () => import("@/components/examples/textarea-rtl").then((m) => m.TextareaRtlExample),
+  "time-picker-12-hour": () => import("@/components/examples/time-picker-12-hour").then((m) => m.TimePicker12HourExample),
+  "time-picker-demo": () => import("@/components/examples/time-picker-demo").then((m) => m.TimePickerDemoExample),
+  "time-picker-popover": () => import("@/components/examples/time-picker-popover").then((m) => m.TimePickerPopoverExample),
+  "time-picker-range": () => import("@/components/examples/time-picker-range").then((m) => m.TimePickerRangeExample),
+  "time-picker-responsive": () => import("@/components/examples/time-picker-responsive").then((m) => m.TimePickerResponsiveExample),
+  "time-picker-rtl": () => import("@/components/examples/time-picker-rtl").then((m) => m.TimePickerRtlExample),
+  "time-picker-seconds": () => import("@/components/examples/time-picker-seconds").then((m) => m.TimePickerSecondsExample),
+  "toast-anchored-dialog": () => import("@/components/examples/toast-anchored-dialog").then((m) => m.ToastAnchoredDialogExample),
+  "toast-anchored-drawer": () => import("@/components/examples/toast-anchored-drawer").then((m) => m.ToastAnchoredDrawerExample),
+  "toast-anchored": () => import("@/components/examples/toast-anchored").then((m) => m.ToastAnchoredExample),
+  "toast-demo": () => import("@/components/examples/toast-demo").then((m) => m.ToastDemoExample),
+  "toast-rtl": () => import("@/components/examples/toast-rtl").then((m) => m.ToastRtlExample),
+  "toast-statuses": () => import("@/components/examples/toast-statuses").then((m) => m.ToastStatusesExample),
+  "toast-x": () => import("@/components/examples/toast-x").then((m) => m.ToastXExample),
+  "toggle-demo": () => import("@/components/examples/toggle-demo").then((m) => m.ToggleDemoExample),
+  "toggle-group-demo": () => import("@/components/examples/toggle-group-demo").then((m) => m.ToggleGroupDemoExample),
+  "toggle-group-outline": () => import("@/components/examples/toggle-group-outline").then((m) => m.ToggleGroupOutlineExample),
+  "toggle-group-rtl": () => import("@/components/examples/toggle-group-rtl").then((m) => m.ToggleGroupRtlExample),
+  "toggle-outline": () => import("@/components/examples/toggle-outline").then((m) => m.ToggleOutlineExample),
+  "toggle-rtl": () => import("@/components/examples/toggle-rtl").then((m) => m.ToggleRtlExample),
+  "toman-icon-badge": () => import("@/components/examples/toman-icon-badge").then((m) => m.TomanIconBadgeExample),
+  "toman-icon-demo": () => import("@/components/examples/toman-icon-demo").then((m) => m.TomanIconDemoExample),
+  "toman-icon-inline": () => import("@/components/examples/toman-icon-inline").then((m) => m.TomanIconInlineExample),
+  "toman-icon-rtl": () => import("@/components/examples/toman-icon-rtl").then((m) => m.TomanIconRtlExample),
+  "toman-icon-sizes": () => import("@/components/examples/toman-icon-sizes").then((m) => m.TomanIconSizesExample),
+  "tooltip-demo": () => import("@/components/examples/tooltip-demo").then((m) => m.TooltipDemoExample),
+  "tooltip-rtl": () => import("@/components/examples/tooltip-rtl").then((m) => m.TooltipRtlExample),
+  "use-controllable-state-demo": () => import("@/components/examples/use-controllable-state-demo").then((m) => m.UseControllableStateDemoExample),
+  "use-copy-to-clipboard-callback": () => import("@/components/examples/use-copy-to-clipboard-callback").then((m) => m.UseCopyToClipboardCallbackExample),
+  "use-copy-to-clipboard-demo": () => import("@/components/examples/use-copy-to-clipboard-demo").then((m) => m.UseCopyToClipboardDemoExample),
+  "use-copy-to-clipboard-rtl": () => import("@/components/examples/use-copy-to-clipboard-rtl").then((m) => m.UseCopyToClipboardRtlExample),
+  "use-copy-to-clipboard-timeout": () => import("@/components/examples/use-copy-to-clipboard-timeout").then((m) => m.UseCopyToClipboardTimeoutExample),
+  "use-countdown-demo": () => import("@/components/examples/use-countdown-demo").then((m) => m.UseCountdownDemoExample),
+  "use-countdown-otp-rtl": () => import("@/components/examples/use-countdown-otp-rtl").then((m) => m.UseCountdownOtpRtlExample),
+  "use-countdown-otp": () => import("@/components/examples/use-countdown-otp").then((m) => m.UseCountdownOtpExample),
+  "use-countdown-overdue": () => import("@/components/examples/use-countdown-overdue").then((m) => m.UseCountdownOverdueExample),
+  "use-countdown-parts": () => import("@/components/examples/use-countdown-parts").then((m) => m.UseCountdownPartsExample),
+  "use-countdown-reset": () => import("@/components/examples/use-countdown-reset").then((m) => m.UseCountdownResetExample),
+  "use-date-demo": () => import("@/components/examples/use-date-demo").then((m) => m.UseDateDemoExample),
+  "use-date-holiday": () => import("@/components/examples/use-date-holiday").then((m) => m.UseDateHolidayExample),
+  "use-date-miladi": () => import("@/components/examples/use-date-miladi").then((m) => m.UseDateMiladiExample),
+  "use-date-navigator": () => import("@/components/examples/use-date-navigator").then((m) => m.UseDateNavigatorExample),
+  "use-date-pattern": () => import("@/components/examples/use-date-pattern").then((m) => m.UseDatePatternExample),
+  "use-date-rtl": () => import("@/components/examples/use-date-rtl").then((m) => m.UseDateRtlExample),
+  "use-date-static": () => import("@/components/examples/use-date-static").then((m) => m.UseDateStaticExample),
+  "use-media-query-breakpoints": () => import("@/components/examples/use-media-query-breakpoints").then((m) => m.UseMediaQueryBreakpointsExample),
+  "use-media-query-demo": () => import("@/components/examples/use-media-query-demo").then((m) => m.UseMediaQueryDemoExample),
+  "use-media-query-device": () => import("@/components/examples/use-media-query-device").then((m) => m.UseMediaQueryDeviceExample),
+  "use-media-query-ranges": () => import("@/components/examples/use-media-query-ranges").then((m) => m.UseMediaQueryRangesExample),
+  "use-media-query-rtl": () => import("@/components/examples/use-media-query-rtl").then((m) => m.UseMediaQueryRtlExample),
+  "use-time-ago-demo": () => import("@/components/examples/use-time-ago-demo").then((m) => m.UseTimeAgoDemoExample),
+  "use-time-ago-en": () => import("@/components/examples/use-time-ago-en").then((m) => m.UseTimeAgoEnExample),
+  "use-time-ago-interval": () => import("@/components/examples/use-time-ago-interval").then((m) => m.UseTimeAgoIntervalExample),
+  "use-time-ago-max": () => import("@/components/examples/use-time-ago-max").then((m) => m.UseTimeAgoMaxExample),
+  "use-time-ago-messages": () => import("@/components/examples/use-time-ago-messages").then((m) => m.UseTimeAgoMessagesExample),
+  "use-time-ago-rtl": () => import("@/components/examples/use-time-ago-rtl").then((m) => m.UseTimeAgoRtlExample),
+  "use-time-ago-second": () => import("@/components/examples/use-time-ago-second").then((m) => m.UseTimeAgoSecondExample),
+  "wheel-picker-demo": () => import("@/components/examples/wheel-picker-demo").then((m) => m.WheelPickerDemoExample),
+  "wheel-picker-dialog": () => import("@/components/examples/wheel-picker-dialog").then((m) => m.WheelPickerDialogExample),
+  "wheel-picker-drawer": () => import("@/components/examples/wheel-picker-drawer").then((m) => m.WheelPickerDrawerExample),
+  "wheel-picker-responsive-dialog": () => import("@/components/examples/wheel-picker-responsive-dialog").then((m) => m.WheelPickerResponsiveDialogExample),
+  "wheel-picker-rtl": () => import("@/components/examples/wheel-picker-rtl").then((m) => m.WheelPickerRtlExample),
 }
 
 export type ExampleMap = {
-  "accordion-demo": React.ComponentType
-  "accordion-rtl": React.ComponentType
-  "alert-action": React.ComponentType
-  "alert-demo": React.ComponentType
-  "alert-destructive": React.ComponentType
-  "alert-dialog-demo": React.ComponentType
-  "alert-dialog-no-footer": React.ComponentType
-  "alert-dialog-rtl": React.ComponentType
-  "alert-rtl": React.ComponentType
-  "aspect-ratio-demo": React.ComponentType
-  "aspect-ratio-rtl": React.ComponentType
-  "aspect-ratio-square": React.ComponentType
-  "attachment-demo": React.ComponentType
-  "attachment-group": React.ComponentType
-  "attachment-image": React.ComponentType
-  "attachment-rtl": React.ComponentType
-  "attachment-sizes": React.ComponentType
-  "attachment-states": React.ComponentType
-  "attachment-trigger": React.ComponentType
-  "avatar-badge": React.ComponentType
-  "avatar-demo": React.ComponentType
-  "avatar-group": React.ComponentType
-  "avatar-rtl": React.ComponentType
-  "avatar-size": React.ComponentType
-  "badge-demo": React.ComponentType
-  "badge-icon": React.ComponentType
-  "badge-rtl": React.ComponentType
-  "bank-input-demo": React.ComponentType
-  "bank-input-rtl": React.ComponentType
-  "bank-input-separator": React.ComponentType
-  "bank-input-shaba": React.ComponentType
-  "bank-input-supported-banks": React.ComponentType
-  "bank-input-zod": React.ComponentType
-  "breadcrumb-basic": React.ComponentType
-  "breadcrumb-city": React.ComponentType
-  "breadcrumb-dropdown": React.ComponentType
-  "breadcrumb-ellipsis": React.ComponentType
-  "breadcrumb-link": React.ComponentType
-  "breadcrumb-rtl": React.ComponentType
-  "breadcrumb-separator": React.ComponentType
-  "bubble-alignment": React.ComponentType
-  "bubble-collapsible": React.ComponentType
-  "bubble-demo": React.ComponentType
-  "bubble-group": React.ComponentType
-  "bubble-link-button": React.ComponentType
-  "bubble-popover": React.ComponentType
-  "bubble-reactions": React.ComponentType
-  "bubble-rtl": React.ComponentType
-  "bubble-tooltip": React.ComponentType
-  "bubble-variants": React.ComponentType
-  "button-blue": React.ComponentType
-  "button-default": React.ComponentType
-  "button-demo": React.ComponentType
-  "button-destructive": React.ComponentType
-  "button-ghost": React.ComponentType
-  "button-group-demo": React.ComponentType
-  "button-group-dropdown": React.ComponentType
-  "button-group-input-group": React.ComponentType
-  "button-group-input": React.ComponentType
-  "button-group-nested": React.ComponentType
-  "button-group-orientation": React.ComponentType
-  "button-group-popover": React.ComponentType
-  "button-group-rtl": React.ComponentType
-  "button-group-select": React.ComponentType
-  "button-group-separator": React.ComponentType
-  "button-group-size": React.ComponentType
-  "button-group-split": React.ComponentType
-  "button-icon": React.ComponentType
-  "button-link": React.ComponentType
-  "button-loading": React.ComponentType
-  "button-outline": React.ComponentType
-  "button-render": React.ComponentType
-  "button-rounded": React.ComponentType
-  "button-rtl": React.ComponentType
-  "button-secondary": React.ComponentType
-  "button-size": React.ComponentType
-  "button-with-icon": React.ComponentType
-  "calendar-booked": React.ComponentType
-  "calendar-calendar-type": React.ComponentType
-  "calendar-demo": React.ComponentType
-  "calendar-dropdown": React.ComponentType
-  "calendar-holidays": React.ComponentType
-  "calendar-presets": React.ComponentType
-  "calendar-range": React.ComponentType
-  "calendar-rtl": React.ComponentType
-  "calendar-week-numbers": React.ComponentType
-  "card-demo": React.ComponentType
-  "card-image": React.ComponentType
-  "card-product": React.ComponentType
-  "card-rtl": React.ComponentType
-  "card-small": React.ComponentType
-  "carousel-api": React.ComponentType
-  "carousel-demo": React.ComponentType
-  "carousel-orientation": React.ComponentType
-  "carousel-plugin": React.ComponentType
-  "carousel-rtl": React.ComponentType
-  "carousel-size": React.ComponentType
-  "carousel-spacing": React.ComponentType
-  "checkbox-demo": React.ComponentType
-  "checkbox-disabled": React.ComponentType
-  "checkbox-rtl": React.ComponentType
-  "city-selector-basic": React.ComponentType
-  "city-selector-controlled-fa": React.ComponentType
-  "city-selector-controlled": React.ComponentType
-  "city-selector-custom": React.ComponentType
-  "city-selector-form": React.ComponentType
-  "city-selector-locale": React.ComponentType
-  "collapsible-demo": React.ComponentType
-  "collapsible-rtl": React.ComponentType
-  "combobox-basic": React.ComponentType
-  "combobox-clear": React.ComponentType
-  "combobox-disabled": React.ComponentType
-  "combobox-groups": React.ComponentType
-  "combobox-multiple": React.ComponentType
-  "command-basic": React.ComponentType
-  "command-groups": React.ComponentType
-  "command-panel": React.ComponentType
-  "command-rtl": React.ComponentType
-  "context-menu-demo": React.ComponentType
-  "context-menu-rtl": React.ComponentType
-  "copy-button-demo": React.ComponentType
-  "copy-button-rtl": React.ComponentType
-  "copy-button-with-text": React.ComponentType
-  "data-table-demo": React.ComponentType
-  "data-table-rtl": React.ComponentType
-  "date-picker-calendar-type": React.ComponentType
-  "date-picker-close-on-select": React.ComponentType
-  "date-picker-confirmation": React.ComponentType
-  "date-picker-constrained": React.ComponentType
-  "date-picker-controlled": React.ComponentType
-  "date-picker-custom-trigger": React.ComponentType
-  "date-picker-demo": React.ComponentType
-  "date-picker-dob": React.ComponentType
-  "date-picker-input": React.ComponentType
-  "date-picker-miladi": React.ComponentType
-  "date-picker-presets-responsive": React.ComponentType
-  "date-picker-range": React.ComponentType
-  "date-picker-reservation": React.ComponentType
-  "date-picker-responsive": React.ComponentType
-  "date-picker-rtl": React.ComponentType
-  "date-picker-time-advanced": React.ComponentType
-  "date-picker-with-time": React.ComponentType
-  "date-picker-zod": React.ComponentType
-  "date-wheel-picker-calendar-type": React.ComponentType
-  "date-wheel-picker-demo": React.ComponentType
-  "date-wheel-picker-loop": React.ComponentType
-  "date-wheel-picker-range": React.ComponentType
-  "date-wheel-picker-responsive-dialog": React.ComponentType
-  "date-wheel-picker-responsive-menu": React.ComponentType
-  "date-wheel-picker-responsive": React.ComponentType
-  "date-wheel-picker-rtl": React.ComponentType
-  "date-wheel-picker-step": React.ComponentType
-  "dialog-demo": React.ComponentType
-  "dialog-no-footer": React.ComponentType
-  "dialog-rtl": React.ComponentType
-  "direction-demo": React.ComponentType
-  "direction-hook": React.ComponentType
-  "drawer-demo": React.ComponentType
-  "drawer-nested": React.ComponentType
-  "drawer-no-footer": React.ComponentType
-  "drawer-positions": React.ComponentType
-  "drawer-rtl": React.ComponentType
-  "drawer-scrollable": React.ComponentType
-  "drawer-snap-points": React.ComponentType
-  "drawer-variants": React.ComponentType
-  "dropdown-menu-checkboxes": React.ComponentType
-  "dropdown-menu-demo": React.ComponentType
-  "dropdown-menu-rtl": React.ComponentType
-  "elastic-slider-demo": React.ComponentType
-  "elastic-slider-price-range": React.ComponentType
-  "elastic-slider-range-percent": React.ComponentType
-  "elastic-slider-range-toman": React.ComponentType
-  "elastic-slider-rtl": React.ComponentType
-  "empty-background": React.ComponentType
-  "empty-city": React.ComponentType
-  "empty-demo": React.ComponentType
-  "empty-input-group": React.ComponentType
-  "empty-outline": React.ComponentType
-  "empty-rtl": React.ComponentType
-  "field-demo": React.ComponentType
-  "field-error": React.ComponentType
-  "field-horizontal": React.ComponentType
-  "field-rtl": React.ComponentType
-  "hitbox-debug": React.ComponentType
-  "hitbox-demo": React.ComponentType
-  "hitbox-positions": React.ComponentType
-  "hitbox-radii": React.ComponentType
-  "hitbox-sizes": React.ComponentType
-  "hover-card-demo": React.ComponentType
-  "hover-card-rtl": React.ComponentType
-  "input-badge": React.ComponentType
-  "input-basic": React.ComponentType
-  "input-button-group": React.ComponentType
-  "input-demo": React.ComponentType
-  "input-disabled": React.ComponentType
-  "input-field": React.ComponentType
-  "input-fieldgroup": React.ComponentType
-  "input-file": React.ComponentType
-  "input-form": React.ComponentType
-  "input-grid": React.ComponentType
-  "input-group-block-end": React.ComponentType
-  "input-group-block-start": React.ComponentType
-  "input-group-button": React.ComponentType
-  "input-group-custom": React.ComponentType
-  "input-group-demo": React.ComponentType
-  "input-group-dropdown": React.ComponentType
-  "input-group-icon": React.ComponentType
-  "input-group-inline-end": React.ComponentType
-  "input-group-inline-start": React.ComponentType
-  "input-group-kbd": React.ComponentType
-  "input-group-rtl": React.ComponentType
-  "input-group-spinner": React.ComponentType
-  "input-group-text": React.ComponentType
-  "input-group-textarea": React.ComponentType
-  "input-inline": React.ComponentType
-  "input-input-group": React.ComponentType
-  "input-invalid": React.ComponentType
-  "input-otp-alphanumeric": React.ComponentType
-  "input-otp-controlled": React.ComponentType
-  "input-otp-demo": React.ComponentType
-  "input-otp-disabled": React.ComponentType
-  "input-otp-form": React.ComponentType
-  "input-otp-four-digits": React.ComponentType
-  "input-otp-invalid": React.ComponentType
-  "input-otp-pattern": React.ComponentType
-  "input-otp-separator": React.ComponentType
-  "input-required": React.ComponentType
-  "input-rtl": React.ComponentType
-  "item-demo": React.ComponentType
-  "item-image": React.ComponentType
-  "item-outline": React.ComponentType
-  "item-rtl": React.ComponentType
-  "kbd-demo": React.ComponentType
-  "kbd-inline": React.ComponentType
-  "kbd-rtl": React.ComponentType
-  "label-demo": React.ComponentType
-  "label-input": React.ComponentType
-  "label-rtl": React.ComponentType
-  "marker-border": React.ComponentType
-  "marker-demo": React.ComponentType
-  "marker-rtl": React.ComponentType
-  "marker-separator": React.ComponentType
-  "menubar-demo": React.ComponentType
-  "menubar-rtl": React.ComponentType
-  "message-demo": React.ComponentType
-  "message-rtl": React.ComponentType
-  "message-scroller-demo": React.ComponentType
-  "message-scroller-rtl": React.ComponentType
-  "mobile-number-input-demo": React.ComponentType
-  "mobile-number-input-rtl": React.ComponentType
-  "native-select-demo": React.ComponentType
-  "native-select-rtl": React.ComponentType
-  "native-select-size": React.ComponentType
-  "navigation-menu-demo": React.ComponentType
-  "navigation-menu-rtl": React.ComponentType
-  "normalize-persian-digits-demo": React.ComponentType
-  "pagination-demo": React.ComponentType
-  "pagination-rtl": React.ComponentType
-  "password-input-demo": React.ComponentType
-  "password-input-rtl": React.ComponentType
-  "persian-date-arithmetic": React.ComponentType
-  "persian-date-boundaries": React.ComponentType
-  "persian-date-comparisons": React.ComponentType
-  "persian-date-conversion": React.ComponentType
-  "persian-date-demo": React.ComponentType
-  "persian-date-leap-year": React.ComponentType
-  "persian-date-parsing": React.ComponentType
-  "persian-date-range": React.ComponentType
-  "persian-date-reservation": React.ComponentType
-  "persian-date-rtl": React.ComponentType
-  "persian-date-zod-demo": React.ComponentType
-  "persian-date-zod-range": React.ComponentType
-  "persian-holidays-approximate": React.ComponentType
-  "persian-holidays-calendar": React.ComponentType
-  "persian-holidays-demo": React.ComponentType
-  "persian-holidays-lookup": React.ComponentType
-  "persian-holidays-rtl": React.ComponentType
-  "persian-holidays-unofficial": React.ComponentType
-  "persian-reshape-demo": React.ComponentType
-  "persian-slug-demo": React.ComponentType
-  "persian-slug-rtl": React.ComponentType
-  "persian-slug-transliterate": React.ComponentType
-  "popover-demo": React.ComponentType
-  "popover-form": React.ComponentType
-  "popover-rtl": React.ComponentType
-  "price-input-demo": React.ComponentType
-  "price-input-group-abbreviation": React.ComponentType
-  "price-input-group-icon": React.ComponentType
-  "price-input-group-text": React.ComponentType
-  "price-input-negative": React.ComponentType
-  "price-input-rtl": React.ComponentType
-  "progress-animated": React.ComponentType
-  "progress-demo": React.ComponentType
-  "progress-rtl": React.ComponentType
-  "qr-code-colors": React.ComponentType
-  "qr-code-demo": React.ComponentType
-  "qr-code-logo": React.ComponentType
-  "qr-code-rtl": React.ComponentType
-  "qr-code-skeleton": React.ComponentType
-  "questionnaire-animated": React.ComponentType
-  "questionnaire-card": React.ComponentType
-  "questionnaire-conditional": React.ComponentType
-  "questionnaire-controlled": React.ComponentType
-  "questionnaire-custom-progress": React.ComponentType
-  "questionnaire-demo": React.ComponentType
-  "questionnaire-dialog": React.ComponentType
-  "questionnaire-freeform": React.ComponentType
-  "questionnaire-multiple": React.ComponentType
-  "questionnaire-navigation-state": React.ComponentType
-  "questionnaire-resume": React.ComponentType
-  "questionnaire-rtl": React.ComponentType
-  "questionnaire-shortcuts": React.ComponentType
-  "questionnaire-skip": React.ComponentType
-  "questionnaire-validation": React.ComponentType
-  "radio-group-demo": React.ComponentType
-  "radio-group-disabled": React.ComponentType
-  "radio-group-rtl": React.ComponentType
-  "receipt-printer-demo": React.ComponentType
-  "receipt-printer-rtl": React.ComponentType
-  "receipt-printer-subscription": React.ComponentType
-  "resizable-demo": React.ComponentType
-  "resizable-rtl": React.ComponentType
-  "resizable-vertical": React.ComponentType
-  "responsive-alert-dialog-demo": React.ComponentType
-  "responsive-alert-dialog-rtl": React.ComponentType
-  "responsive-dialog-demo": React.ComponentType
-  "responsive-dialog-desktop-only": React.ComponentType
-  "responsive-dialog-no-footer": React.ComponentType
-  "responsive-dialog-rtl": React.ComponentType
-  "responsive-menu-demo": React.ComponentType
-  "responsive-menu-rtl": React.ComponentType
-  "scroll-area-demo": React.ComponentType
-  "scroll-area-horizontal": React.ComponentType
-  "scroll-area-rtl": React.ComponentType
-  "select-align-item": React.ComponentType
-  "select-demo": React.ComponentType
-  "select-disabled": React.ComponentType
-  "select-groups": React.ComponentType
-  "select-invalid": React.ComponentType
-  "select-mixed-direction": React.ComponentType
-  "select-rtl": React.ComponentType
-  "select-scrollable": React.ComponentType
-  "separator-demo": React.ComponentType
-  "separator-list": React.ComponentType
-  "separator-menu": React.ComponentType
-  "separator-receipt": React.ComponentType
-  "separator-rtl": React.ComponentType
-  "separator-vertical": React.ComponentType
-  "sheet-demo": React.ComponentType
-  "sheet-rtl": React.ComponentType
-  "sheet-side": React.ComponentType
-  "skeleton-card": React.ComponentType
-  "skeleton-demo": React.ComponentType
-  "skeleton-rtl": React.ComponentType
-  "slider-controlled": React.ComponentType
-  "slider-demo": React.ComponentType
-  "slider-disabled": React.ComponentType
-  "slider-multiple": React.ComponentType
-  "slider-range": React.ComponentType
-  "slider-rtl": React.ComponentType
-  "slider-vertical": React.ComponentType
-  "spinner-button": React.ComponentType
-  "spinner-demo": React.ComponentType
-  "spinner-rtl": React.ComponentType
-  "switch-demo": React.ComponentType
-  "switch-rtl": React.ComponentType
-  "switch-size": React.ComponentType
-  "table-actions": React.ComponentType
-  "table-card": React.ComponentType
-  "table-demo": React.ComponentType
-  "table-rtl": React.ComponentType
-  "table-team": React.ComponentType
-  "tabs-controlled": React.ComponentType
-  "tabs-default": React.ComponentType
-  "tabs-disabled": React.ComponentType
-  "tabs-icons": React.ComponentType
-  "tabs-scrollable": React.ComponentType
-  "tabs-variants": React.ComponentType
-  "tabs-vertical": React.ComponentType
-  "textarea-button": React.ComponentType
-  "textarea-demo": React.ComponentType
-  "textarea-disabled": React.ComponentType
-  "textarea-field": React.ComponentType
-  "textarea-invalid": React.ComponentType
-  "textarea-rtl": React.ComponentType
-  "time-picker-12-hour": React.ComponentType
-  "time-picker-demo": React.ComponentType
-  "time-picker-popover": React.ComponentType
-  "time-picker-range": React.ComponentType
-  "time-picker-responsive": React.ComponentType
-  "time-picker-rtl": React.ComponentType
-  "time-picker-seconds": React.ComponentType
-  "toast-anchored-dialog": React.ComponentType
-  "toast-anchored-drawer": React.ComponentType
-  "toast-anchored": React.ComponentType
-  "toast-demo": React.ComponentType
-  "toast-rtl": React.ComponentType
-  "toast-statuses": React.ComponentType
-  "toast-x": React.ComponentType
-  "toggle-demo": React.ComponentType
-  "toggle-group-demo": React.ComponentType
-  "toggle-group-outline": React.ComponentType
-  "toggle-group-rtl": React.ComponentType
-  "toggle-outline": React.ComponentType
-  "toggle-rtl": React.ComponentType
-  "toman-icon-badge": React.ComponentType
-  "toman-icon-demo": React.ComponentType
-  "toman-icon-inline": React.ComponentType
-  "toman-icon-rtl": React.ComponentType
-  "toman-icon-sizes": React.ComponentType
-  "tooltip-demo": React.ComponentType
-  "tooltip-rtl": React.ComponentType
-  "use-controllable-state-demo": React.ComponentType
-  "use-copy-to-clipboard-callback": React.ComponentType
-  "use-copy-to-clipboard-demo": React.ComponentType
-  "use-copy-to-clipboard-rtl": React.ComponentType
-  "use-copy-to-clipboard-timeout": React.ComponentType
-  "use-countdown-demo": React.ComponentType
-  "use-countdown-otp-rtl": React.ComponentType
-  "use-countdown-otp": React.ComponentType
-  "use-countdown-overdue": React.ComponentType
-  "use-countdown-parts": React.ComponentType
-  "use-countdown-reset": React.ComponentType
-  "use-date-demo": React.ComponentType
-  "use-date-holiday": React.ComponentType
-  "use-date-miladi": React.ComponentType
-  "use-date-navigator": React.ComponentType
-  "use-date-pattern": React.ComponentType
-  "use-date-rtl": React.ComponentType
-  "use-date-static": React.ComponentType
-  "use-media-query-breakpoints": React.ComponentType
-  "use-media-query-demo": React.ComponentType
-  "use-media-query-device": React.ComponentType
-  "use-media-query-ranges": React.ComponentType
-  "use-media-query-rtl": React.ComponentType
-  "use-time-ago-demo": React.ComponentType
-  "use-time-ago-en": React.ComponentType
-  "use-time-ago-interval": React.ComponentType
-  "use-time-ago-max": React.ComponentType
-  "use-time-ago-messages": React.ComponentType
-  "use-time-ago-rtl": React.ComponentType
-  "use-time-ago-second": React.ComponentType
-  "wheel-picker-demo": React.ComponentType
-  "wheel-picker-dialog": React.ComponentType
-  "wheel-picker-drawer": React.ComponentType
-  "wheel-picker-responsive-dialog": React.ComponentType
-  "wheel-picker-rtl": React.ComponentType
+  "accordion-demo": React.ComponentType;
+  "accordion-rtl": React.ComponentType;
+  "alert-action": React.ComponentType;
+  "alert-demo": React.ComponentType;
+  "alert-destructive": React.ComponentType;
+  "alert-dialog-demo": React.ComponentType;
+  "alert-dialog-no-footer": React.ComponentType;
+  "alert-dialog-rtl": React.ComponentType;
+  "alert-rtl": React.ComponentType;
+  "aspect-ratio-demo": React.ComponentType;
+  "aspect-ratio-rtl": React.ComponentType;
+  "aspect-ratio-square": React.ComponentType;
+  "attachment-demo": React.ComponentType;
+  "attachment-group": React.ComponentType;
+  "attachment-image": React.ComponentType;
+  "attachment-rtl": React.ComponentType;
+  "attachment-sizes": React.ComponentType;
+  "attachment-states": React.ComponentType;
+  "attachment-trigger": React.ComponentType;
+  "avatar-badge": React.ComponentType;
+  "avatar-demo": React.ComponentType;
+  "avatar-group": React.ComponentType;
+  "avatar-rtl": React.ComponentType;
+  "avatar-size": React.ComponentType;
+  "badge-demo": React.ComponentType;
+  "badge-icon": React.ComponentType;
+  "badge-rtl": React.ComponentType;
+  "bank-input-demo": React.ComponentType;
+  "bank-input-rtl": React.ComponentType;
+  "bank-input-separator": React.ComponentType;
+  "bank-input-shaba": React.ComponentType;
+  "bank-input-supported-banks": React.ComponentType;
+  "bank-input-zod": React.ComponentType;
+  "breadcrumb-basic": React.ComponentType;
+  "breadcrumb-city": React.ComponentType;
+  "breadcrumb-dropdown": React.ComponentType;
+  "breadcrumb-ellipsis": React.ComponentType;
+  "breadcrumb-link": React.ComponentType;
+  "breadcrumb-rtl": React.ComponentType;
+  "breadcrumb-separator": React.ComponentType;
+  "bubble-alignment": React.ComponentType;
+  "bubble-collapsible": React.ComponentType;
+  "bubble-demo": React.ComponentType;
+  "bubble-group": React.ComponentType;
+  "bubble-link-button": React.ComponentType;
+  "bubble-popover": React.ComponentType;
+  "bubble-reactions": React.ComponentType;
+  "bubble-rtl": React.ComponentType;
+  "bubble-tooltip": React.ComponentType;
+  "bubble-variants": React.ComponentType;
+  "button-blue": React.ComponentType;
+  "button-default": React.ComponentType;
+  "button-demo": React.ComponentType;
+  "button-destructive": React.ComponentType;
+  "button-ghost": React.ComponentType;
+  "button-group-demo": React.ComponentType;
+  "button-group-dropdown": React.ComponentType;
+  "button-group-input-group": React.ComponentType;
+  "button-group-input": React.ComponentType;
+  "button-group-nested": React.ComponentType;
+  "button-group-orientation": React.ComponentType;
+  "button-group-popover": React.ComponentType;
+  "button-group-rtl": React.ComponentType;
+  "button-group-select": React.ComponentType;
+  "button-group-separator": React.ComponentType;
+  "button-group-size": React.ComponentType;
+  "button-group-split": React.ComponentType;
+  "button-icon": React.ComponentType;
+  "button-link": React.ComponentType;
+  "button-loading": React.ComponentType;
+  "button-outline": React.ComponentType;
+  "button-render": React.ComponentType;
+  "button-rounded": React.ComponentType;
+  "button-rtl": React.ComponentType;
+  "button-secondary": React.ComponentType;
+  "button-size": React.ComponentType;
+  "button-with-icon": React.ComponentType;
+  "calendar-booked": React.ComponentType;
+  "calendar-calendar-type": React.ComponentType;
+  "calendar-demo": React.ComponentType;
+  "calendar-dropdown": React.ComponentType;
+  "calendar-holidays": React.ComponentType;
+  "calendar-presets": React.ComponentType;
+  "calendar-range": React.ComponentType;
+  "calendar-rtl": React.ComponentType;
+  "calendar-week-numbers": React.ComponentType;
+  "card-demo": React.ComponentType;
+  "card-image": React.ComponentType;
+  "card-product": React.ComponentType;
+  "card-rtl": React.ComponentType;
+  "card-small": React.ComponentType;
+  "carousel-api": React.ComponentType;
+  "carousel-demo": React.ComponentType;
+  "carousel-orientation": React.ComponentType;
+  "carousel-plugin": React.ComponentType;
+  "carousel-rtl": React.ComponentType;
+  "carousel-size": React.ComponentType;
+  "carousel-spacing": React.ComponentType;
+  "checkbox-demo": React.ComponentType;
+  "checkbox-disabled": React.ComponentType;
+  "checkbox-rtl": React.ComponentType;
+  "city-selector-basic": React.ComponentType;
+  "city-selector-controlled-fa": React.ComponentType;
+  "city-selector-controlled": React.ComponentType;
+  "city-selector-custom": React.ComponentType;
+  "city-selector-form": React.ComponentType;
+  "city-selector-locale": React.ComponentType;
+  "collapsible-demo": React.ComponentType;
+  "collapsible-rtl": React.ComponentType;
+  "combobox-basic": React.ComponentType;
+  "combobox-clear": React.ComponentType;
+  "combobox-disabled": React.ComponentType;
+  "combobox-groups": React.ComponentType;
+  "combobox-multiple": React.ComponentType;
+  "command-basic": React.ComponentType;
+  "command-groups": React.ComponentType;
+  "command-panel": React.ComponentType;
+  "command-rtl": React.ComponentType;
+  "context-menu-demo": React.ComponentType;
+  "context-menu-rtl": React.ComponentType;
+  "copy-button-demo": React.ComponentType;
+  "copy-button-rtl": React.ComponentType;
+  "copy-button-with-text": React.ComponentType;
+  "data-table-demo": React.ComponentType;
+  "data-table-rtl": React.ComponentType;
+  "date-picker-calendar-type": React.ComponentType;
+  "date-picker-close-on-select": React.ComponentType;
+  "date-picker-confirmation": React.ComponentType;
+  "date-picker-constrained": React.ComponentType;
+  "date-picker-controlled": React.ComponentType;
+  "date-picker-custom-trigger": React.ComponentType;
+  "date-picker-demo": React.ComponentType;
+  "date-picker-dob": React.ComponentType;
+  "date-picker-input": React.ComponentType;
+  "date-picker-miladi": React.ComponentType;
+  "date-picker-presets-responsive": React.ComponentType;
+  "date-picker-range": React.ComponentType;
+  "date-picker-reservation": React.ComponentType;
+  "date-picker-responsive": React.ComponentType;
+  "date-picker-rtl": React.ComponentType;
+  "date-picker-time-advanced": React.ComponentType;
+  "date-picker-with-time": React.ComponentType;
+  "date-picker-zod": React.ComponentType;
+  "date-wheel-picker-calendar-type": React.ComponentType;
+  "date-wheel-picker-demo": React.ComponentType;
+  "date-wheel-picker-loop": React.ComponentType;
+  "date-wheel-picker-range": React.ComponentType;
+  "date-wheel-picker-responsive-dialog": React.ComponentType;
+  "date-wheel-picker-responsive-menu": React.ComponentType;
+  "date-wheel-picker-responsive": React.ComponentType;
+  "date-wheel-picker-rtl": React.ComponentType;
+  "date-wheel-picker-step": React.ComponentType;
+  "dialog-demo": React.ComponentType;
+  "dialog-no-footer": React.ComponentType;
+  "dialog-rtl": React.ComponentType;
+  "direction-demo": React.ComponentType;
+  "direction-hook": React.ComponentType;
+  "drawer-demo": React.ComponentType;
+  "drawer-nested": React.ComponentType;
+  "drawer-no-footer": React.ComponentType;
+  "drawer-positions": React.ComponentType;
+  "drawer-rtl": React.ComponentType;
+  "drawer-scrollable": React.ComponentType;
+  "drawer-snap-points": React.ComponentType;
+  "drawer-variants": React.ComponentType;
+  "dropdown-menu-checkboxes": React.ComponentType;
+  "dropdown-menu-demo": React.ComponentType;
+  "dropdown-menu-rtl": React.ComponentType;
+  "elastic-slider-demo": React.ComponentType;
+  "elastic-slider-price-range": React.ComponentType;
+  "elastic-slider-range-percent": React.ComponentType;
+  "elastic-slider-range-toman": React.ComponentType;
+  "elastic-slider-rtl": React.ComponentType;
+  "empty-background": React.ComponentType;
+  "empty-city": React.ComponentType;
+  "empty-demo": React.ComponentType;
+  "empty-input-group": React.ComponentType;
+  "empty-outline": React.ComponentType;
+  "empty-rtl": React.ComponentType;
+  "field-demo": React.ComponentType;
+  "field-error": React.ComponentType;
+  "field-horizontal": React.ComponentType;
+  "field-rtl": React.ComponentType;
+  "hitbox-debug": React.ComponentType;
+  "hitbox-demo": React.ComponentType;
+  "hitbox-positions": React.ComponentType;
+  "hitbox-radii": React.ComponentType;
+  "hitbox-sizes": React.ComponentType;
+  "hover-card-demo": React.ComponentType;
+  "hover-card-rtl": React.ComponentType;
+  "input-badge": React.ComponentType;
+  "input-basic": React.ComponentType;
+  "input-button-group": React.ComponentType;
+  "input-demo": React.ComponentType;
+  "input-disabled": React.ComponentType;
+  "input-field": React.ComponentType;
+  "input-fieldgroup": React.ComponentType;
+  "input-file": React.ComponentType;
+  "input-form": React.ComponentType;
+  "input-grid": React.ComponentType;
+  "input-group-block-end": React.ComponentType;
+  "input-group-block-start": React.ComponentType;
+  "input-group-button": React.ComponentType;
+  "input-group-custom": React.ComponentType;
+  "input-group-demo": React.ComponentType;
+  "input-group-dropdown": React.ComponentType;
+  "input-group-icon": React.ComponentType;
+  "input-group-inline-end": React.ComponentType;
+  "input-group-inline-start": React.ComponentType;
+  "input-group-kbd": React.ComponentType;
+  "input-group-rtl": React.ComponentType;
+  "input-group-spinner": React.ComponentType;
+  "input-group-text": React.ComponentType;
+  "input-group-textarea": React.ComponentType;
+  "input-inline": React.ComponentType;
+  "input-input-group": React.ComponentType;
+  "input-invalid": React.ComponentType;
+  "input-otp-alphanumeric": React.ComponentType;
+  "input-otp-controlled": React.ComponentType;
+  "input-otp-demo": React.ComponentType;
+  "input-otp-disabled": React.ComponentType;
+  "input-otp-form": React.ComponentType;
+  "input-otp-four-digits": React.ComponentType;
+  "input-otp-invalid": React.ComponentType;
+  "input-otp-pattern": React.ComponentType;
+  "input-otp-separator": React.ComponentType;
+  "input-required": React.ComponentType;
+  "input-rtl": React.ComponentType;
+  "item-demo": React.ComponentType;
+  "item-image": React.ComponentType;
+  "item-outline": React.ComponentType;
+  "item-rtl": React.ComponentType;
+  "kbd-demo": React.ComponentType;
+  "kbd-inline": React.ComponentType;
+  "kbd-rtl": React.ComponentType;
+  "label-demo": React.ComponentType;
+  "label-input": React.ComponentType;
+  "label-rtl": React.ComponentType;
+  "marker-border": React.ComponentType;
+  "marker-demo": React.ComponentType;
+  "marker-rtl": React.ComponentType;
+  "marker-separator": React.ComponentType;
+  "menubar-demo": React.ComponentType;
+  "menubar-rtl": React.ComponentType;
+  "message-demo": React.ComponentType;
+  "message-rtl": React.ComponentType;
+  "message-scroller-demo": React.ComponentType;
+  "message-scroller-rtl": React.ComponentType;
+  "mobile-number-input-demo": React.ComponentType;
+  "mobile-number-input-rtl": React.ComponentType;
+  "native-select-demo": React.ComponentType;
+  "native-select-rtl": React.ComponentType;
+  "native-select-size": React.ComponentType;
+  "navigation-menu-demo": React.ComponentType;
+  "navigation-menu-rtl": React.ComponentType;
+  "normalize-persian-digits-demo": React.ComponentType;
+  "pagination-demo": React.ComponentType;
+  "pagination-rtl": React.ComponentType;
+  "password-input-demo": React.ComponentType;
+  "password-input-rtl": React.ComponentType;
+  "persian-date-arithmetic": React.ComponentType;
+  "persian-date-boundaries": React.ComponentType;
+  "persian-date-comparisons": React.ComponentType;
+  "persian-date-conversion": React.ComponentType;
+  "persian-date-demo": React.ComponentType;
+  "persian-date-leap-year": React.ComponentType;
+  "persian-date-parsing": React.ComponentType;
+  "persian-date-range": React.ComponentType;
+  "persian-date-reservation": React.ComponentType;
+  "persian-date-rtl": React.ComponentType;
+  "persian-date-zod-demo": React.ComponentType;
+  "persian-date-zod-range": React.ComponentType;
+  "persian-holidays-approximate": React.ComponentType;
+  "persian-holidays-calendar": React.ComponentType;
+  "persian-holidays-demo": React.ComponentType;
+  "persian-holidays-lookup": React.ComponentType;
+  "persian-holidays-rtl": React.ComponentType;
+  "persian-holidays-unofficial": React.ComponentType;
+  "persian-reshape-demo": React.ComponentType;
+  "persian-slug-demo": React.ComponentType;
+  "persian-slug-rtl": React.ComponentType;
+  "persian-slug-transliterate": React.ComponentType;
+  "popover-demo": React.ComponentType;
+  "popover-form": React.ComponentType;
+  "popover-rtl": React.ComponentType;
+  "price-input-demo": React.ComponentType;
+  "price-input-group-abbreviation": React.ComponentType;
+  "price-input-group-icon": React.ComponentType;
+  "price-input-group-text": React.ComponentType;
+  "price-input-negative": React.ComponentType;
+  "price-input-rtl": React.ComponentType;
+  "progress-animated": React.ComponentType;
+  "progress-demo": React.ComponentType;
+  "progress-rtl": React.ComponentType;
+  "qr-code-colors": React.ComponentType;
+  "qr-code-demo": React.ComponentType;
+  "qr-code-logo": React.ComponentType;
+  "qr-code-rtl": React.ComponentType;
+  "qr-code-skeleton": React.ComponentType;
+  "questionnaire-animated": React.ComponentType;
+  "questionnaire-card": React.ComponentType;
+  "questionnaire-conditional": React.ComponentType;
+  "questionnaire-controlled": React.ComponentType;
+  "questionnaire-custom-progress": React.ComponentType;
+  "questionnaire-demo": React.ComponentType;
+  "questionnaire-dialog": React.ComponentType;
+  "questionnaire-freeform": React.ComponentType;
+  "questionnaire-multiple": React.ComponentType;
+  "questionnaire-navigation-state": React.ComponentType;
+  "questionnaire-resume": React.ComponentType;
+  "questionnaire-rtl": React.ComponentType;
+  "questionnaire-shortcuts": React.ComponentType;
+  "questionnaire-skip": React.ComponentType;
+  "questionnaire-validation": React.ComponentType;
+  "radio-group-demo": React.ComponentType;
+  "radio-group-disabled": React.ComponentType;
+  "radio-group-rtl": React.ComponentType;
+  "receipt-printer-demo": React.ComponentType;
+  "receipt-printer-rtl": React.ComponentType;
+  "receipt-printer-subscription": React.ComponentType;
+  "resizable-demo": React.ComponentType;
+  "resizable-rtl": React.ComponentType;
+  "resizable-vertical": React.ComponentType;
+  "responsive-alert-dialog-demo": React.ComponentType;
+  "responsive-alert-dialog-rtl": React.ComponentType;
+  "responsive-dialog-demo": React.ComponentType;
+  "responsive-dialog-desktop-only": React.ComponentType;
+  "responsive-dialog-no-footer": React.ComponentType;
+  "responsive-dialog-rtl": React.ComponentType;
+  "responsive-menu-demo": React.ComponentType;
+  "responsive-menu-rtl": React.ComponentType;
+  "scroll-area-demo": React.ComponentType;
+  "scroll-area-horizontal": React.ComponentType;
+  "scroll-area-rtl": React.ComponentType;
+  "select-align-item": React.ComponentType;
+  "select-demo": React.ComponentType;
+  "select-disabled": React.ComponentType;
+  "select-groups": React.ComponentType;
+  "select-invalid": React.ComponentType;
+  "select-mixed-direction": React.ComponentType;
+  "select-rtl": React.ComponentType;
+  "select-scrollable": React.ComponentType;
+  "separator-demo": React.ComponentType;
+  "separator-list": React.ComponentType;
+  "separator-menu": React.ComponentType;
+  "separator-receipt": React.ComponentType;
+  "separator-rtl": React.ComponentType;
+  "separator-vertical": React.ComponentType;
+  "sheet-demo": React.ComponentType;
+  "sheet-rtl": React.ComponentType;
+  "sheet-side": React.ComponentType;
+  "skeleton-card": React.ComponentType;
+  "skeleton-demo": React.ComponentType;
+  "skeleton-rtl": React.ComponentType;
+  "slider-controlled": React.ComponentType;
+  "slider-demo": React.ComponentType;
+  "slider-disabled": React.ComponentType;
+  "slider-multiple": React.ComponentType;
+  "slider-range": React.ComponentType;
+  "slider-rtl": React.ComponentType;
+  "slider-vertical": React.ComponentType;
+  "spinner-button": React.ComponentType;
+  "spinner-demo": React.ComponentType;
+  "spinner-rtl": React.ComponentType;
+  "switch-demo": React.ComponentType;
+  "switch-rtl": React.ComponentType;
+  "switch-size": React.ComponentType;
+  "table-actions": React.ComponentType;
+  "table-card": React.ComponentType;
+  "table-demo": React.ComponentType;
+  "table-rtl": React.ComponentType;
+  "table-team": React.ComponentType;
+  "tabs-controlled": React.ComponentType;
+  "tabs-default": React.ComponentType;
+  "tabs-disabled": React.ComponentType;
+  "tabs-icons": React.ComponentType;
+  "tabs-scrollable": React.ComponentType;
+  "tabs-variants": React.ComponentType;
+  "tabs-vertical": React.ComponentType;
+  "textarea-button": React.ComponentType;
+  "textarea-demo": React.ComponentType;
+  "textarea-disabled": React.ComponentType;
+  "textarea-field": React.ComponentType;
+  "textarea-invalid": React.ComponentType;
+  "textarea-rtl": React.ComponentType;
+  "time-picker-12-hour": React.ComponentType;
+  "time-picker-demo": React.ComponentType;
+  "time-picker-popover": React.ComponentType;
+  "time-picker-range": React.ComponentType;
+  "time-picker-responsive": React.ComponentType;
+  "time-picker-rtl": React.ComponentType;
+  "time-picker-seconds": React.ComponentType;
+  "toast-anchored-dialog": React.ComponentType;
+  "toast-anchored-drawer": React.ComponentType;
+  "toast-anchored": React.ComponentType;
+  "toast-demo": React.ComponentType;
+  "toast-rtl": React.ComponentType;
+  "toast-statuses": React.ComponentType;
+  "toast-x": React.ComponentType;
+  "toggle-demo": React.ComponentType;
+  "toggle-group-demo": React.ComponentType;
+  "toggle-group-outline": React.ComponentType;
+  "toggle-group-rtl": React.ComponentType;
+  "toggle-outline": React.ComponentType;
+  "toggle-rtl": React.ComponentType;
+  "toman-icon-badge": React.ComponentType;
+  "toman-icon-demo": React.ComponentType;
+  "toman-icon-inline": React.ComponentType;
+  "toman-icon-rtl": React.ComponentType;
+  "toman-icon-sizes": React.ComponentType;
+  "tooltip-demo": React.ComponentType;
+  "tooltip-rtl": React.ComponentType;
+  "use-controllable-state-demo": React.ComponentType;
+  "use-copy-to-clipboard-callback": React.ComponentType;
+  "use-copy-to-clipboard-demo": React.ComponentType;
+  "use-copy-to-clipboard-rtl": React.ComponentType;
+  "use-copy-to-clipboard-timeout": React.ComponentType;
+  "use-countdown-demo": React.ComponentType;
+  "use-countdown-otp-rtl": React.ComponentType;
+  "use-countdown-otp": React.ComponentType;
+  "use-countdown-overdue": React.ComponentType;
+  "use-countdown-parts": React.ComponentType;
+  "use-countdown-reset": React.ComponentType;
+  "use-date-demo": React.ComponentType;
+  "use-date-holiday": React.ComponentType;
+  "use-date-miladi": React.ComponentType;
+  "use-date-navigator": React.ComponentType;
+  "use-date-pattern": React.ComponentType;
+  "use-date-rtl": React.ComponentType;
+  "use-date-static": React.ComponentType;
+  "use-media-query-breakpoints": React.ComponentType;
+  "use-media-query-demo": React.ComponentType;
+  "use-media-query-device": React.ComponentType;
+  "use-media-query-ranges": React.ComponentType;
+  "use-media-query-rtl": React.ComponentType;
+  "use-time-ago-demo": React.ComponentType;
+  "use-time-ago-en": React.ComponentType;
+  "use-time-ago-interval": React.ComponentType;
+  "use-time-ago-max": React.ComponentType;
+  "use-time-ago-messages": React.ComponentType;
+  "use-time-ago-rtl": React.ComponentType;
+  "use-time-ago-second": React.ComponentType;
+  "wheel-picker-demo": React.ComponentType;
+  "wheel-picker-dialog": React.ComponentType;
+  "wheel-picker-drawer": React.ComponentType;
+  "wheel-picker-responsive-dialog": React.ComponentType;
+  "wheel-picker-rtl": React.ComponentType;
 }
