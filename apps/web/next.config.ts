@@ -1,3 +1,4 @@
+import { createMDX } from "fumadocs-mdx/next"
 import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
@@ -20,22 +21,10 @@ const nextConfig: NextConfig = {
   },
   async rewrites() {
     return [
-      { source: "/docs.md", destination: "/docs/markdown" },
-      { source: "/docs/theming.md", destination: "/docs/theming/markdown" },
-      {
-        source: "/docs/components.md",
-        destination: "/docs/components/markdown",
-      },
-      {
-        source: "/docs/components/:slug.md",
-        destination: "/docs/components/:slug/markdown",
-      },
-      {
-        source: "/docs/utilities/:slug.md",
-        destination: "/docs/utilities/:slug/markdown",
-      },
+      { source: "/docs.md", destination: "/markdown" },
+      { source: "/docs/:path*.md", destination: "/markdown/:path*" },
     ]
   },
 }
 
-export default nextConfig
+export default createMDX()(nextConfig)
