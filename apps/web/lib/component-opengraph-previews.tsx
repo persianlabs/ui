@@ -3619,7 +3619,18 @@ export function DataTablePreview() {
               fontSize: "12px",
             }}
           >
-            ✓
+            <svg
+              viewBox="0 0 24 24"
+              width={12}
+              height={12}
+              fill="none"
+              stroke={row.selected ? "#18181b" : "#f2f0ee"}
+              strokeWidth={3}
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
           </div>
           <div style={{ flex: 1 }}>{row.cells[0]}</div>
           <div style={{ fontWeight: 600 }}>{row.cells[1]}</div>
