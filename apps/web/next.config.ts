@@ -6,6 +6,16 @@ const nextConfig: NextConfig = {
   cacheComponents: true,
   partialPrefetching: true,
   typedRoutes: true,
+  // Doc pages read their .mdx sources at request time (getText("raw") for
+  // the markdown endpoint and the copy-page button) - without tracing them
+  // into the build output, deployments miss the files and throw ENOENT.
+  outputFileTracingIncludes: {
+    // Keys are picomatch globs against the route path - bracket segments
+    // must be escaped (see Next docs example).
+    "/docs": ["./content/docs/**/*"],
+    "/docs/\\[...slug\\]": ["./content/docs/**/*"],
+    "/markdown/\\[\\[...slug\\]\\]": ["./content/docs/**/*"],
+  },
   images: {
     remotePatterns: [
       {
