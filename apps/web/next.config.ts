@@ -30,6 +30,10 @@ const nextConfig: NextConfig = {
         source: "/docs/components/:slug.md",
         destination: "/docs/components/:slug/markdown",
       },
+      {
+        source: "/docs/utilities/:slug.md",
+        destination: "/docs/utilities/:slug/markdown",
+      },
     ]
   },
 }

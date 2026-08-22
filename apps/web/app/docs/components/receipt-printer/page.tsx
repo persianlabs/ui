@@ -63,7 +63,7 @@ const tocItems = [
   },
   { id: "api-reference", title: "API Reference" },
 ]
-const markdown = [
+export const receiptPrinterMarkdown = [
   "# Receipt Printer",
   "",
   "A tactile checkout experience that turns payment processing into a printed receipt.",
@@ -94,7 +94,7 @@ export default function ReceiptPrinterDocPage() {
           <h1 className="self-start text-3xl font-semibold tracking-tight sm:self-auto">
             Receipt Printer
           </h1>
-          <CopyMarkdownButton markdown={markdown} />
+          <CopyMarkdownButton markdown={receiptPrinterMarkdown} />
         </div>
         <p className="mt-3 max-w-2xl leading-relaxed text-muted-foreground">
           A tactile checkout experience that turns payment processing into a
