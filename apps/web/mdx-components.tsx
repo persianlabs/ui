@@ -45,6 +45,16 @@ function headingId(children: React.ReactNode, id?: string) {
   return id ?? getNodeText(children).trim().toLowerCase().replace(/\s+/g, "-")
 }
 
+/** Standalone copy-command blocks in markdown flow need breathing room on
+ * both sides - the old hand-written pages wrapped each one in an mt-6 div. */
+function DocCopyCommand(props: React.ComponentProps<typeof CopyCommand>) {
+  return (
+    <div className="my-6">
+      <CopyCommand {...props} />
+    </div>
+  )
+}
+
 const h2Classes = "mt-12 text-xl font-semibold tracking-tight"
 const h3Classes = "mt-8 text-sm font-medium text-muted-foreground"
 
@@ -184,7 +194,7 @@ export const mdxComponents = {
   // ---- Islands used across doc pages -------------------------------------
 
   Link,
-  CopyCommand,
+  CopyCommand: DocCopyCommand,
   InstallCommand,
   InstallTabs,
   CodeBlock,
