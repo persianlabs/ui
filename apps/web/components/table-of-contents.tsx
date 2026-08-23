@@ -343,7 +343,7 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
                     className={cn(
                       "relative block py-1 pl-4 transition-colors",
                       isActiveOrParentOfActive(item)
-                        ? "font-medium text-foreground"
+                        ? "text-foreground"
                         : "text-muted-foreground hover:text-foreground"
                     )}
                   >
@@ -365,7 +365,7 @@ export function TableOfContents({ items }: { items: TocItem[] }) {
                       className={cn(
                         "relative block py-1 pl-7 text-[13px] transition-colors",
                         activeIds.includes(child.id)
-                          ? "font-medium text-foreground"
+                          ? "text-foreground"
                           : "text-muted-foreground hover:text-foreground"
                       )}
                     >
