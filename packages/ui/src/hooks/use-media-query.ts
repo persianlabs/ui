@@ -26,7 +26,10 @@ function resolveMax(value: Breakpoint | number): string {
   return `(max-width: ${px - 1}px)`
 }
 
-function parseQuery(
+/**
+ * @internal exported for unit tests; not part of the public API.
+ */
+export function parseQuery(
   query: BreakpointQuery | MediaQueryInput | (string & {})
 ): string {
   if (typeof query !== "string") {
