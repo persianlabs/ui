@@ -5,8 +5,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "predev": "bun scripts/generate-example-map.mts",
-    "prebuild": "bun scripts/generate-example-map.mts && shadcn build",
+    "predev": "bun scripts/generate-example-map.mts && bun scripts/generate-preview-map.mts",
+    "prebuild": "bun scripts/generate-example-map.mts && bun scripts/generate-preview-map.mts && shadcn build",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",

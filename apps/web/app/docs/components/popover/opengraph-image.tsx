@@ -1,4 +1,4 @@
-import { PopoverPreview } from "@/lib/component-opengraph-previews"
+import { PopoverPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Popover — PersianLabs UI"

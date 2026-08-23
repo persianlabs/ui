@@ -1,4 +1,4 @@
-import { NormalizePersianDigitsPreview } from "@/lib/component-opengraph-previews"
+import { NormalizePersianDigitsPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Normalize Persian Digits — PersianLabs UI"

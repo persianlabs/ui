@@ -1,4 +1,4 @@
-import { SliderPreview } from "@/lib/component-opengraph-previews"
+import { SliderPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Slider — PersianLabs UI"

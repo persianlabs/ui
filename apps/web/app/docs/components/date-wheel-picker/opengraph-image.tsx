@@ -1,4 +1,4 @@
-import { DateWheelPickerPreview } from "@/lib/component-opengraph-previews"
+import { DateWheelPickerPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Date Wheel Picker — PersianLabs UI"

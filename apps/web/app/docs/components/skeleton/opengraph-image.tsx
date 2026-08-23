@@ -1,4 +1,4 @@
-import { SkeletonPreview } from "@/lib/component-opengraph-previews"
+import { SkeletonPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Skeleton — PersianLabs UI"

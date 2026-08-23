@@ -1,4 +1,4 @@
-import { ResponsiveAlertDialogPreview } from "@/lib/component-opengraph-previews"
+import { ResponsiveAlertDialogPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Responsive Alert Dialog — PersianLabs UI"

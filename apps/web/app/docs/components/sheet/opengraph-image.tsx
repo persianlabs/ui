@@ -1,4 +1,4 @@
-import { SheetPreview } from "@/lib/component-opengraph-previews"
+import { SheetPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Sheet — PersianLabs UI"

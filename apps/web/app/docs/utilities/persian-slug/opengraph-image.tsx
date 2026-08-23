@@ -1,4 +1,4 @@
-import { PersianSlugPreview } from "@/lib/component-opengraph-previews"
+import { PersianSlugPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Persian Slug — PersianLabs UI"

@@ -1,4 +1,4 @@
-import { BankInputPreview } from "@/lib/component-opengraph-previews"
+import { BankInputPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Bank Input — PersianLabs UI"

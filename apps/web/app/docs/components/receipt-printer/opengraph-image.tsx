@@ -1,4 +1,4 @@
-import { ReceiptPrinterPreview } from "@/lib/component-opengraph-previews"
+import { ReceiptPrinterPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Receipt Printer — PersianLabs UI"

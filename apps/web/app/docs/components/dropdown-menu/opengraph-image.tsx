@@ -1,4 +1,4 @@
-import { DropdownMenuPreview } from "@/lib/component-opengraph-previews"
+import { DropdownMenuPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Dropdown Menu — PersianLabs UI"

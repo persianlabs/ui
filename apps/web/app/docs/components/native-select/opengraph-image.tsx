@@ -1,4 +1,4 @@
-import { NativeSelectPreview } from "@/lib/component-opengraph-previews"
+import { NativeSelectPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Native Select — PersianLabs UI"

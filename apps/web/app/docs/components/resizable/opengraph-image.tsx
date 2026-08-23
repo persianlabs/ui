@@ -1,4 +1,4 @@
-import { ResizablePreview } from "@/lib/component-opengraph-previews"
+import { ResizablePreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Resizable — PersianLabs UI"

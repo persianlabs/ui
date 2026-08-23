@@ -1,4 +1,4 @@
-import { QRCodePreview } from "@/lib/component-opengraph-previews"
+import { QRCodePreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "QR Code — PersianLabs UI"

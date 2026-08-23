@@ -1,4 +1,4 @@
-import { TomanIconPreview } from "@/lib/component-opengraph-previews"
+import { TomanIconPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Toman Icon — PersianLabs UI"
