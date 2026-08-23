@@ -42,6 +42,7 @@ function ReceiptPrinterRoot({
     </ReceiptPrinterContext.Provider>
   )
 }
+
 function ReceiptPrinterMachine({
   children,
   className,
@@ -66,6 +67,7 @@ function ReceiptPrinterMachine({
     </div>
   )
 }
+
 function ReceiptPrinterHeader({
   className,
   ...props
@@ -81,6 +83,7 @@ function ReceiptPrinterHeader({
     />
   )
 }
+
 function ReceiptPrinterStatus({
   className,
   children,
@@ -109,6 +112,7 @@ function ReceiptPrinterStatus({
     </div>
   )
 }
+
 function ReceiptPrinterScreen({
   className,
   ...props
@@ -124,6 +128,7 @@ function ReceiptPrinterScreen({
     />
   )
 }
+
 function ReceiptPrinterOutput({
   children,
   className,
@@ -178,6 +183,7 @@ function ReceiptPrinterOutput({
     </div>
   )
 }
+
 function ReceiptPrinterPaper({
   className,
   style,
@@ -195,6 +201,7 @@ function ReceiptPrinterPaper({
     />
   )
 }
+
 export {
   ReceiptPrinterHeader,
   ReceiptPrinterMachine,
