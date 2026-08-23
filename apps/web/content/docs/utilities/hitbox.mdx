@@ -10,9 +10,9 @@ Wrap an interactive element to extend its clickable area without changing its vi
 <LastEdited path="apps/web/content/docs/utilities/hitbox.mdx" />
 
 <Credits
-          sources={[{ label: "Dice UI", href: "https://diceui.com/" }]}
-          changed={false}
-        />
+  sources={[{ label: "Dice UI", href: "https://diceui.com/" }]}
+  changed={false}
+/>
 
 ## Overview
 
@@ -29,7 +29,7 @@ Hitbox preserves the child's semantics while adding an invisible touch target ar
 </TabsList>
 
 <TabsContent value="cli" className="mt-4">
-<CopyCommand command="npx shadcn@latest add @persianlabsui/hitbox" />
+  <CopyCommand command="npx shadcn@latest add @persianlabsui/hitbox" />
 </TabsContent>
 
 <TabsContent value="manual" className="mt-4">
@@ -53,29 +53,33 @@ Import Hitbox and wrap it around any interactive element.
 ```tsx
 import { Hitbox } from "@/components/ui/hitbox"
 
-<Hitbox>
+;<Hitbox>
   <Button />
 </Hitbox>
 ```
 
 ## Examples
 
-<ExampleSection id="sizes"
-  title="Sizes"
-  description="Control how far the hitbox extends. Use sm, default, lg, or a custom CSS value."
-  name="hitbox-sizes" />
-<ExampleSection id="positions"
-  title="Positions"
-  description="Limit the extended hitbox to one or more sides of the element."
-  name="hitbox-positions" />
-<ExampleSection id="radii"
-  title="Radii"
-  description="Match the extended area to the child’s corner radius."
-  name="hitbox-radii" />
-<ExampleSection id="debug"
-  title="Debug mode"
-  description="Enable debug to visualize the normally invisible hitbox while developing."
-  name="hitbox-debug" />
+### Sizes [#sizes]
+
+Control how far the hitbox extends. Use sm, default, lg, or a custom CSS value.
+
+<ComponentPreview name="hitbox-sizes" />
+### Positions [#positions]
+
+Limit the extended hitbox to one or more sides of the element.
+
+<ComponentPreview name="hitbox-positions" />
+### Radii [#radii]
+
+Match the extended area to the child’s corner radius.
+
+<ComponentPreview name="hitbox-radii" />
+### Debug mode [#debug]
+
+Enable debug to visualize the normally invisible hitbox while developing.
+
+<ComponentPreview name="hitbox-debug" />
 
 ## API Reference
 

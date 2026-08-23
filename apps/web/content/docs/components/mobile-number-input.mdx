@@ -18,7 +18,12 @@ A plain Iranian mobile number field — no carrier logo, no carrier detection. I
 
 Install the input, its normalization/validation utility, and the input-group primitives in one step.
 
-<InstallTabs command="npx shadcn@latest add @persianlabsui/mobile-number-input" packages="lucide-react" sourceName="mobile-number-input" sourceTitle="components/ui/mobile-number-input.tsx" />
+<InstallTabs
+  command="npx shadcn@latest add @persianlabsui/mobile-number-input"
+  packages="lucide-react"
+  sourceName="mobile-number-input"
+  sourceTitle="components/ui/mobile-number-input.tsx"
+/>
 
 ## Usage
 
@@ -32,11 +37,11 @@ export function Example() {
 
 ## Examples
 
-<ExampleSection id="rtl"
-  title="RTL"
-  description="Labels and helper text follow the surrounding RTL interface while the phone value remains intentionally LTR. Persian digits and +98/98/0098 prefixes are normalized as you type or paste."
-  name="mobile-number-input-rtl"
-  direction="rtl" />
+### RTL [#rtl]
+
+Labels and helper text follow the surrounding RTL interface while the phone value remains intentionally LTR. Persian digits and +98/98/0098 prefixes are normalized as you type or paste.
+
+<ComponentPreview name="mobile-number-input-rtl" direction="rtl" />
 
 ## API Reference
 

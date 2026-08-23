@@ -15,7 +15,13 @@ A ticking clock hook built on `persian-date` and `persian-holidays`. Returns the
 
 ## Installation
 
-<InstallTabs command="npx shadcn@latest add @persianlabsui/use-date" sourceName="use-date" sourceKind="hook" sourceTitle="hooks/use-date.ts" sourceStep="Copy the source into your project" />
+<InstallTabs
+  command="npx shadcn@latest add @persianlabsui/use-date"
+  sourceName="use-date"
+  sourceKind="hook"
+  sourceTitle="hooks/use-date.ts"
+  sourceStep="Copy the source into your project"
+/>
 
 ## Usage
 
@@ -31,32 +37,42 @@ function Clock() {
 
   const { formatted, isHoliday } = date
 
-  return <span>{formatted}{isHoliday ? " (تعطیل)" : ""}</span>
+  return (
+    <span>
+      {formatted}
+      {isHoliday ? " (تعطیل)" : ""}
+    </span>
+  )
 }
 ```
 
 ## Examples
 
-<ExampleSection id="miladi"
-  title="Gregorian mode"
-  description={"Set calendarType: \"miladi\" to switch the formatted output and returned fields to the Gregorian calendar."}
-  name="use-date-miladi" />
-<ExampleSection id="pattern"
-  title="Custom pattern & digits"
-  description="pattern accepts any date-fns token, and digits lets you force Latin digits even in the shamsi calendar."
-  name="use-date-pattern" />
-<ExampleSection id="static"
-  title="Disabling the tick"
-  description="Pass interval: 0 to read the time once on mount without setting up a timer — useful for a one-shot timestamp."
-  name="use-date-static" />
-<ExampleSection id="holiday"
-  title="Holiday flagging"
-  description="checkHoliday: true flags the current date against the built-in Iranian holiday dataset and lists any matching entries."
-  name="use-date-holiday" />
-<ExampleSection id="navigator"
-  title="Day/week/month/year navigator"
-  description="A selected-date navigator built from persian-date's addDays/addWeeks/addMonths/addYears -- a common pattern for calendar/agenda UIs that step through time by different units."
-  name="use-date-navigator" />
+### Gregorian mode [#miladi]
+
+Set calendarType: "miladi" to switch the formatted output and returned fields to the Gregorian calendar.
+
+<ComponentPreview name="use-date-miladi" />
+### Custom pattern & digits [#pattern]
+
+pattern accepts any date-fns token, and digits lets you force Latin digits even in the shamsi calendar.
+
+<ComponentPreview name="use-date-pattern" />
+### Disabling the tick [#static]
+
+Pass interval: 0 to read the time once on mount without setting up a timer — useful for a one-shot timestamp.
+
+<ComponentPreview name="use-date-static" />
+### Holiday flagging [#holiday]
+
+checkHoliday: true flags the current date against the built-in Iranian holiday dataset and lists any matching entries.
+
+<ComponentPreview name="use-date-holiday" />
+### Day/week/month/year navigator [#navigator]
+
+A selected-date navigator built from persian-date's addDays/addWeeks/addMonths/addYears -- a common pattern for calendar/agenda UIs that step through time by different units.
+
+<ComponentPreview name="use-date-navigator" />
 
 ### RTL
 
