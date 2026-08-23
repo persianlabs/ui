@@ -35,6 +35,41 @@ const nextConfig: NextConfig = {
       { source: "/docs/:path*.md", destination: "/markdown/:path*" },
     ]
   },
+  // Baseline hardening for the public site. CSP ships report-only first:
+  // shiki emits inline styles and Next injects inline bootstrap scripts, so
+  // 'unsafe-inline' is required today; enforce (and tighten with nonces)
+  // after the report-only phase collects violations without noise.
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
+          // Preview frames iframe same-origin pages (components/preview-frame.tsx).
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          {
+            key: "Content-Security-Policy-Report-Only",
+            value: [
+              "default-src 'self'",
+              "script-src 'self' 'unsafe-inline' https://va.vercel-scripts.com",
+              "style-src 'self' 'unsafe-inline'",
+              "img-src 'self' data: https://images.unsplash.com https://github.com",
+              "font-src 'self' data:",
+              "connect-src 'self' https://va.vercel-scripts.com",
+              "frame-ancestors 'self'",
+              "object-src 'none'",
+              "base-uri 'self'",
+            ].join("; "),
+          },
+        ],
+      },
+    ]
+  },
 }
 
 export default createMDX()(nextConfig)
