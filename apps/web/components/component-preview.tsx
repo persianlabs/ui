@@ -153,8 +153,8 @@ export function ComponentPreview({
         ? "min-h-0 flex-1 [align-items:safe_center] justify-center overflow-auto p-6 pb-28 sm:p-12 sm:pb-28"
         : "min-h-0 flex-1 items-stretch justify-stretch overflow-auto p-0"
       : kind === "component"
-        ? "min-h-56 items-center justify-center p-8 pt-12"
-        : "min-h-56 items-stretch justify-stretch p-0"
+        ? "min-h-56 items-center justify-center p-8"
+        : "h-[440px] min-h-56 items-stretch justify-stretch p-0"
   )
 
   return (
@@ -165,34 +165,37 @@ export function ComponentPreview({
         "relative flex w-full flex-col overflow-hidden rounded-2xl border border-border",
         fullscreen &&
           "fixed inset-0 z-50 min-h-svh rounded-none border-0 bg-background",
-        className
+        // Page-level spacing (mt-4) belongs to the embedded card only --
+        // carrying it into the fixed fullscreen layer offsets the viewport.
+        !fullscreen && className
       )}
     >
-      {!fullscreen && !forcedDir && (
-        <button
-          type="button"
-          onClick={toggleDirection}
-          aria-label="Toggle preview direction"
-          className="absolute end-12 top-3 z-10 inline-flex h-7 w-18 shrink-0 items-center justify-center gap-1.5 rounded-md border border-border bg-background text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground active:scale-[0.97]"
-        >
-          {resolvedDir === "ltr" ? (
-            <TextAlignStart className="size-3.5" />
-          ) : (
-            <TextAlignEnd className="size-3.5" />
-          )}
-          {resolvedDir.toUpperCase()}
-        </button>
-      )}
-
       {!fullscreen && (
-        <button
-          type="button"
-          onClick={openFullscreen}
-          aria-label="Open fullscreen preview"
-          className="absolute end-3 top-3 z-10 inline-flex size-7 items-center justify-center rounded-md border border-border bg-background text-muted-foreground transition-colors hover:bg-muted hover:text-foreground active:scale-[0.97]"
-        >
-          <Expand className="size-3.5" />
-        </button>
+        <div className="flex items-center justify-end gap-1 border-b border-border px-3 py-2">
+          {!forcedDir && (
+            <button
+              type="button"
+              onClick={toggleDirection}
+              aria-label="Toggle preview direction"
+              className="inline-flex h-7 items-center justify-center gap-1.5 rounded-md border border-border bg-background px-2 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground active:scale-[0.97]"
+            >
+              {resolvedDir === "ltr" ? (
+                <TextAlignStart className="size-3.5" />
+              ) : (
+                <TextAlignEnd className="size-3.5" />
+              )}
+              {resolvedDir.toUpperCase()}
+            </button>
+          )}
+          <button
+            type="button"
+            onClick={openFullscreen}
+            aria-label="Open fullscreen preview"
+            className="inline-flex size-7 items-center justify-center rounded-md border border-border bg-background text-muted-foreground transition-colors hover:bg-muted hover:text-foreground active:scale-[0.97]"
+          >
+            <Expand className="size-3.5" />
+          </button>
+        </div>
       )}
 
       <div
@@ -240,8 +243,8 @@ export function ComponentPreview({
 
       {fullscreen && (
         <>
-          <div className="fixed inset-x-0 bottom-5 z-10 flex justify-center px-4">
-            <div className="flex items-center gap-1 rounded-lg border border-border bg-popover/95 p-1 text-xs text-muted-foreground shadow-lg backdrop-blur-sm">
+          <div className="pointer-events-none fixed inset-x-0 bottom-5 z-10 flex justify-center px-4">
+            <div className="pointer-events-auto flex items-center gap-1 rounded-lg border border-border bg-popover/95 p-1 text-xs text-muted-foreground shadow-lg backdrop-blur-sm">
               <PreviewControl
                 onClick={closeFullscreen}
                 shortcut="Esc"
