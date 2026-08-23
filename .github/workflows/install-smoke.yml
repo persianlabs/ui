@@ -1,0 +1,83 @@
+# Install smoke — plays the real consumer flow against the built registry.
+#
+# Jobs:
+#   1. artifacts-fresh    regenerates public/r/*.json and fails if the
+#                         committed artifacts were stale (source edits without
+#                         a registry rebuild).
+#   2. consumer-install   scaffolds a throwaway Next app, installs EVERY
+#                         registry item through the real CLI from a local
+#                         server, then typechecks the result — catching
+#                         unresolved imports, bad manifest deps, schema drift.
+#
+# Promotion criteria: informational until three consecutive green daily runs;
+# afterwards a maintainer may move `consumer-install` into ci.yml to make
+# installs blocking on PRs.
+
+name: Install smoke
+
+on:
+  schedule:
+    - cron: "0 3 * * *" # daily 03:00 UTC
+  workflow_dispatch:
+
+concurrency:
+  group: install-smoke
+  cancel-in-progress: true
+
+jobs:
+  artifacts-fresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.0
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Regenerate registry artifacts
+        run: cd apps/web && bun run registry:build
+      - name: Fail if committed artifacts were stale
+        run: git diff --exit-code -- apps/web/public/r
+
+  consumer-install:
+    runs-on: ubuntu-latest
+    needs: artifacts-fresh
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.0
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Regenerate registry artifacts
+        run: cd apps/web && bun run registry:build
+      - name: Export item names
+        run: |
+          cd apps/web
+          bun -e "const j = JSON.parse(require('fs').readFileSync('registry.json', 'utf8')); require('fs').writeFileSync('/tmp/names.txt', j.items.map((i) => i.name).join('\n'))"
+      - name: Serve registry locally
+        run: |
+          npx -y serve apps/web/public -l 4173 &
+          sleep 3
+          curl -sf http://localhost:4173/r/button.json > /dev/null
+      - name: Scaffold consumer project
+        run: |
+          cd "$RUNNER_TEMP"
+          bunx create-next-app@latest probe --ts --tailwind --eslint --app --import-alias "@/*" --use-bun --yes
+          cd probe
+          bunx shadcn@latest init -d -f
+      - name: Install every registry item
+        run: |
+          cd "$RUNNER_TEMP/probe"
+          fail=0
+          while IFS= read -r n; do
+            echo "::group::add $n"
+            bunx shadcn@latest add "http://localhost:4173/r/$n.json" -y -o || fail=1
+            echo "::endgroup::"
+          done < /tmp/names.txt
+          exit $fail
+      - name: Typecheck the consumer project
+        run: |
+          cd "$RUNNER_TEMP/probe"
+          bunx tsc --noEmit
