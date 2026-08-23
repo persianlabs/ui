@@ -1359,7 +1359,7 @@ export function SidebarPreview() {
                 width: "8px",
                 height: "8px",
                 borderRadius: "999px",
-                marginLeft:'4px',
+                marginLeft: "4px",
                 backgroundColor: row.active
                   ? "#1a1a1a"
                   : "rgba(242,240,238,0.5)",
