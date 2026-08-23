@@ -83,6 +83,7 @@ export const exampleLoaders: Record<string, () => Promise<React.ComponentType>> 
   "calendar-booked": () => import("@/components/examples/calendar-booked").then((m) => m.CalendarBookedExample),
   "calendar-calendar-type": () => import("@/components/examples/calendar-calendar-type").then((m) => m.CalendarCalendarTypeExample),
   "calendar-demo": () => import("@/components/examples/calendar-demo").then((m) => m.CalendarDemoExample),
+  "calendar-dropdown-miladi": () => import("@/components/examples/calendar-dropdown-miladi").then((m) => m.CalendarDropdownMiladiExample),
   "calendar-dropdown": () => import("@/components/examples/calendar-dropdown").then((m) => m.CalendarDropdownExample),
   "calendar-holidays": () => import("@/components/examples/calendar-holidays").then((m) => m.CalendarHolidaysExample),
   "calendar-presets": () => import("@/components/examples/calendar-presets").then((m) => m.CalendarPresetsExample),
@@ -533,6 +534,7 @@ export type ExampleMap = {
   "calendar-booked": React.ComponentType;
   "calendar-calendar-type": React.ComponentType;
   "calendar-demo": React.ComponentType;
+  "calendar-dropdown-miladi": React.ComponentType;
   "calendar-dropdown": React.ComponentType;
   "calendar-holidays": React.ComponentType;
   "calendar-presets": React.ComponentType;

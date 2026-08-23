@@ -10,19 +10,19 @@ A date-grid calendar built on [react-day-picker](https://daypicker.dev), with a 
 <LastEdited path="apps/web/content/docs/components/calendar.mdx" />
 
 <Credits
-          sources={[
-            { label: "shadcn/ui", href: "https://ui.shadcn.com" },
-            {
-              label: "coss/ui",
-              href: "https://coss.com/ui/docs/components/calendar",
-            },
-          ]}
-          changed
-          changes={[
-            'Adds a calendarType prop ("shamsi" | "miladi") that switches between @daypicker/persian (faIR locale, RTL, Persian numerals) and react-day-picker (enUS locale, LTR, Latin numerals), defaulting to "shamsi"',
-            "Replaces pr-/pl- and rounded-l-/rounded-r- with pe-/ps- and rounded-e-/rounded-s- (logical properties) throughout",
-          ]}
-        />
+  sources={[
+    { label: "shadcn/ui", href: "https://ui.shadcn.com" },
+    {
+      label: "coss/ui",
+      href: "https://coss.com/ui/docs/components/calendar",
+    },
+  ]}
+  changed
+  changes={[
+    'Adds a calendarType prop ("shamsi" | "miladi") that switches between @daypicker/persian (faIR locale, RTL, Persian numerals) and react-day-picker (enUS locale, LTR, Latin numerals), defaulting to "shamsi"',
+    "Replaces pr-/pl- and rounded-l-/rounded-r- with pe-/ps- and rounded-e-/rounded-s- (logical properties) throughout",
+  ]}
+/>
 
 ## Overview
 
@@ -30,7 +30,12 @@ A date-grid calendar built on [react-day-picker](https://daypicker.dev), with a 
 
 ## Installation
 
-<InstallTabs command="npx shadcn@latest add @persianlabsui/calendar" packages="react-day-picker @daypicker/persian date-fns" sourceName="calendar" sourceTitle="components/ui/calendar.tsx" />
+<InstallTabs
+  command="npx shadcn@latest add @persianlabsui/calendar"
+  packages="react-day-picker @daypicker/persian date-fns"
+  sourceName="calendar"
+  sourceTitle="components/ui/calendar.tsx"
+/>
 
 ## Usage
 
@@ -53,40 +58,53 @@ export function Example() {
 
 ## Examples
 
-<ExampleSection id="calendar-type"
-  title="Calendar Type"
-  description="Set calendarType to switch between the Jalali (Shamsi, the default) and Gregorian (Miladi) calendars. Shamsi renders via @daypicker/persian with the faIR locale, RTL direction, and Persian numerals; Miladi renders via react-day-picker with the enUS locale, LTR direction, and Latin numerals."
-  name="calendar-calendar-type" />
+### Calendar Type
 
-<ExampleSection id="range"
-  title="Range Calendar"
-  description={"Use `mode=\"range\"` with a controlled `selected` value and `onSelect`. One responsive calendar handles both endpoints."}
-  name="calendar-range" />
+Set calendarType to switch between the Jalali (Shamsi, the default) and Gregorian (Miladi) calendars. Shamsi renders via @daypicker/persian with the faIR locale, RTL direction, and Persian numerals; Miladi renders via react-day-picker with the enUS locale, LTR direction, and Latin numerals.
 
-<ExampleSection id="dropdown"
-  title="Month and Year Selector"
-  description={"Use `captionLayout=\"dropdown\"`."}
-  name="calendar-dropdown" />
+<ComponentPreview name="calendar-calendar-type" />
 
-<ExampleSection id="presets"
-  title="Presets"
-  description="A calendar with a scrollable preset sidebar on desktop and a compact Drawer trigger above the month on smaller screens."
-  name="calendar-presets" />
+### Range Calendar
 
-<ExampleSection id="booked"
-  title="Booked Dates"
-  description="Combine `disabled` with a `booked` modifier to strike through unavailable dates."
-  name="calendar-booked" />
+Use `mode="range"` with a controlled `selected` value and `onSelect`. One responsive calendar handles both endpoints.
 
-<ExampleSection id="week-numbers"
-  title="Week Numbers"
-  description="Use `showWeekNumber` to display the ISO week number."
-  name="calendar-week-numbers" />
+<ComponentPreview name="calendar-range" />
 
-<ExampleSection id="holidays"
-  title="Holidays"
-  description="Pass `showHolidays` to highlight Iranian holidays (red text) for the visible month, using [persian-holidays](/docs/utilities/persian-holidays) internally. Hover a holiday to see its title and whether it's an official day off or just a commemorative occasion."
-  name="calendar-holidays" />
+### Month and Year Selector
+
+Use `captionLayout="dropdown"`. The dropdown labels come from each picker's own date library, so Shamsi shows Jalali month names (فروردین، اردیبهشت، …) and Miladi shows Gregorian ones.
+
+<ComponentPreview name="calendar-dropdown" />
+
+### Month and Year Selector (Miladi)
+
+Use `captionLayout="dropdown"` with `calendarType="miladi"` for Gregorian month/year labels.
+
+<ComponentPreview name="calendar-dropdown-miladi" />
+
+### Presets
+
+A calendar with a scrollable preset sidebar on desktop and a compact Drawer trigger above the month on smaller screens.
+
+<ComponentPreview name="calendar-presets" />
+
+### Booked Dates
+
+Combine `disabled` with a `booked` modifier to strike through unavailable dates.
+
+<ComponentPreview name="calendar-booked" />
+
+### Week Numbers
+
+Use `showWeekNumber` to display the ISO week number.
+
+<ComponentPreview name="calendar-week-numbers" />
+
+### Holidays
+
+Pass `showHolidays` to highlight Iranian holidays (red text) for the visible month, using [persian-holidays](/docs/utilities/persian-holidays) internally. Hover a holiday to see its title and whether it's an official day off or just a commemorative occasion.
+
+<ComponentPreview name="calendar-holidays" />
 
 ### RTL
 

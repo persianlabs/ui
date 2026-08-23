@@ -196,8 +196,14 @@ function Calendar({
     dir: resolvedDir,
     numerals: resolvedNumerals,
     formatters: {
-      formatMonthDropdown: (date: Date) =>
-        date.toLocaleString("default", { month: "short" }),
+      // Shortening the dropdown label via the underlying Date's Gregorian
+      // month only makes sense for miladi -- for shamsi that leaks English
+      // month names ("Aug") into the Jalali picker, so @daypicker/persian's
+      // own Jalali-aware default formatter (e.g. "مرداد") is kept instead.
+      ...(calendarType === "miladi" && {
+        formatMonthDropdown: (date: Date) =>
+          date.toLocaleString("default", { month: "short" }),
+      }),
       ...formatters,
     },
     classNames: {
