@@ -13,11 +13,14 @@ export async function ComponentPreviewDoc({
   name,
   direction,
   className,
+  kind,
 }: {
   name: string
   /** Locks the preview direction, like the old dir="rtl" prop. */
   direction?: "ltr" | "rtl"
   className?: string
+  /** Blocks/edge-to-edge examples fill the canvas with no padding. */
+  kind?: "component" | "block"
 }) {
   const loader = exampleLoaders[name]
 
@@ -35,6 +38,7 @@ export async function ComponentPreviewDoc({
       // between section headings/prose and the card.
       className={className ?? "mt-4"}
       dir={direction}
+      kind={kind}
       preview={<Example />}
       code={<CodeBlock code={getExampleSource(name)} lang="tsx" />}
     />

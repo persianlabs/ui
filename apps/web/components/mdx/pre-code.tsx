@@ -53,3 +53,64 @@ export function PreCode({ children }: { children?: ReactNode }) {
     </div>
   )
 }
+
+/**
+ * rehype-pretty-code wraps fences carrying `title="..."` meta in a
+ * <figure> whose figcaption holds the title. Without this mapper the
+ * title leaks in as bare text above an untitled card, and stacked
+ * titled fences run together with no separation. Mapping figure here
+ * routes the fence through CodeBlock's own title header instead.
+ */
+function findTitle(node: ReactNode): string | null {
+  if (Array.isArray(node)) {
+    for (const child of node) {
+      const found = findTitle(child)
+      if (found !== null) return found
+    }
+    return null
+  }
+  if (
+    isValidElement<Record<string, unknown>>(node) &&
+    "data-rehype-pretty-code-title" in node.props
+  ) {
+    return extractText(node)
+  }
+  if (isValidElement<{ children?: ReactNode }>(node)) {
+    return findTitle(node.props.children)
+  }
+  return null
+}
+
+/** Strips the title-carrying figcaption, leaving the raw pre behind. */
+function withoutTitle(node: ReactNode): ReactNode {
+  if (Array.isArray(node)) {
+    return node.map((child) => withoutTitle(child))
+  }
+  if (
+    isValidElement<Record<string, unknown>>(node) &&
+    "data-rehype-pretty-code-title" in node.props
+  ) {
+    return null
+  }
+  return node
+}
+
+export function PreFigure({ children }: { children?: ReactNode }) {
+  const title = findTitle(children)
+
+  // No pretty-code title: not a titled code fence — render as-is.
+  if (title === null) {
+    return <figure>{children}</figure>
+  }
+
+  const rest = extractText(withoutTitle(children))
+    .replace(/^\n/, "")
+    .replace(/\n$/, "")
+  const lang = extractLanguage(children) ?? "tsx"
+
+  return (
+    <div className="mt-4">
+      <CodeBlock code={rest} lang={lang} title={title} />
+    </div>
+  )
+}
