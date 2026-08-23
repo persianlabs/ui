@@ -12,7 +12,51 @@ import {
   validateIranianShaba,
 } from "./iranian-bank.js"
 
+/** Code pairs that intentionally share an IBAN code (same banking rails). */
+const SHARED_IBAN_CODES = new Set(["056"])
+
 describe("iranian bank utilities", () => {
+  it("resolves every bank from its own Shaba codes", () => {
+    const ownersByCode = new Map<string, Set<string>>()
+    for (const bank of iranianBanks) {
+      for (const code of bank.ibanCodes) {
+        if (!ownersByCode.has(code)) ownersByCode.set(code, new Set())
+        ownersByCode.get(code)!.add(bank.id)
+      }
+    }
+
+    for (const bank of iranianBanks) {
+      for (const code of bank.ibanCodes) {
+        const shaba = `12${code}${"0".repeat(19)}`
+        const resolvedId = getIranianBankByShaba(shaba)?.id
+
+        if (SHARED_IBAN_CODES.has(code)) {
+          expect(
+            ownersByCode.get(code)?.has(resolvedId ?? ""),
+            `${bank.name}: ${code} resolved to ${resolvedId}`
+          ).toBe(true)
+        } else {
+          expect(resolvedId, bank.name).toBe(bank.id)
+        }
+      }
+    }
+  })
+
+  it("has no undocumented duplicate IBAN codes across banks", () => {
+    const ownerByCode = new Map<string, string>()
+    for (const bank of iranianBanks) {
+      for (const code of bank.ibanCodes) {
+        if (SHARED_IBAN_CODES.has(code)) continue
+
+        expect(
+          ownerByCode.has(code),
+          `${code} already claimed by ${ownerByCode.get(code)}`
+        ).toBe(false)
+        ownerByCode.set(code, bank.id)
+      }
+    }
+  })
+
   it("detects every supported bank from a valid sample card", () => {
     for (const bank of iranianBanks) {
       const stem = bank.cardPrefixes[0]!.padEnd(15, "0").slice(0, 15)
