@@ -47,9 +47,7 @@ describe("useCountdown", () => {
   it("does not cap hours at 24 for multi-day targets", () => {
     const now = new Date(2026, 7, 10, 12, 0, 0)
     const target = new Date(now.getTime() + 48 * 3600_000 + 30_000)
-    const { result } = renderHook(() =>
-      useCountdown(target.toISOString())
-    )
+    const { result } = renderHook(() => useCountdown(target.toISOString()))
 
     expect(result.current?.hours).toBeGreaterThanOrEqual(48)
     expect(result.current?.totalSeconds).toBeGreaterThan(0)

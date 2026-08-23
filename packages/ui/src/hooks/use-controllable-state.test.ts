@@ -23,7 +23,9 @@ describe("useControllableState", () => {
   })
 
   it("supports functional updates when uncontrolled", () => {
-    const { result } = renderHook(() => useControllableState({ defaultProp: 1 }))
+    const { result } = renderHook(() =>
+      useControllableState({ defaultProp: 1 })
+    )
 
     act(() => {
       result.current[1]((prev) => prev + 1)
@@ -35,7 +37,8 @@ describe("useControllableState", () => {
   it("invokes onChange on the setter and follows the prop when controlled", () => {
     const onChange = vi.fn()
     const { result, rerender } = renderHook(
-      ({ value }) => useControllableState({ prop: value, defaultProp: "a", onChange }),
+      ({ value }) =>
+        useControllableState({ prop: value, defaultProp: "a", onChange }),
       { initialProps: { value: "a" } }
     )
 
@@ -57,7 +60,8 @@ describe("useControllableState", () => {
   it("warns exactly once when switching between controlled and uncontrolled", () => {
     const warnSpy = vi.spyOn(console, "warn").mockImplementation(() => {})
     const { rerender } = renderHook(
-      ({ value }) => useControllableState({ prop: value, defaultProp: "a", caller: "Test" }),
+      ({ value }) =>
+        useControllableState({ prop: value, defaultProp: "a", caller: "Test" }),
       { initialProps: { value: undefined as string | undefined } }
     )
 
