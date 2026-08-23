@@ -19,11 +19,15 @@ bun run build       # runs `shadcn build` (prebuild) then `next build` in apps/w
 bun run lint
 bun run format
 bun run typecheck
+bun run test
 ```
 
 Scope to one workspace with turbo filters, e.g. `bunx turbo build --filter=web`, or `cd` into `apps/web` / `packages/ui` and run the same script names directly (`bun run lint`, etc.) — each workspace's `package.json` defines the same script set.
 
-There is no test suite configured in this repo.
+Tests live in `packages/ui` (vitest + Testing Library) and run from the
+repo root with `bun run test`. Run them before pushing whenever your
+change touches `packages/ui/src/lib/**` or `packages/ui/src/hooks/**`,
+and add tests for new utilities there.
 
 ## Before pushing
 
