@@ -536,6 +536,32 @@
       ]
     },
     {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "title": "Sidebar",
+      "description": "A composable, collapsible application sidebar with mobile drawer, tooltips, and RTL support, built on Base UI.",
+      "registryDependencies": [
+        "utils",
+        "@persianlabsui/button",
+        "@persianlabsui/input",
+        "@persianlabsui/separator",
+        "@persianlabsui/sheet",
+        "@persianlabsui/skeleton",
+        "@persianlabsui/tooltip"
+      ],
+      "dependencies": [
+        "@base-ui/react",
+        "class-variance-authority",
+        "lucide-react"
+      ],
+      "files": [
+        {
+          "path": "registry/base/ui/sidebar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "carousel",
       "type": "registry:ui",
       "title": "Carousel",
