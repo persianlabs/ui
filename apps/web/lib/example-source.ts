@@ -1,7 +1,10 @@
 import fs from "node:fs"
 import path from "node:path"
 
+import { assertSafeName } from "./source-name"
+
 export function getExampleSource(name: string) {
+  assertSafeName(name, "example")
   const filePath = path.join(
     process.cwd(),
     "components",
