@@ -64,6 +64,7 @@ import {
   SelectPreview,
   SeparatorPreview,
   SheetPreview,
+  SidebarPreview,
   SkeletonPreview,
   SliderPreview,
   SpinnerPreview,
@@ -556,6 +557,18 @@ export function ComponentsCatalog() {
       thumbnail: (
         <ThumbnailFrame>
           <SheetPreview />
+        </ThumbnailFrame>
+      ),
+    },
+    {
+      title: "Sidebar",
+      href: "/docs/components/sidebar" as const,
+      description:
+        "A composable, collapsible application sidebar with mobile drawer, tooltips, and RTL support, built on Base UI.",
+      createdAt: "2026-08-22",
+      thumbnail: (
+        <ThumbnailFrame>
+          <SidebarPreview />
         </ThumbnailFrame>
       ),
     },

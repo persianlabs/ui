@@ -355,6 +355,8 @@ export const exampleLoaders: Record<string, () => Promise<React.ComponentType>> 
   "sheet-demo": () => import("@/components/examples/sheet-demo").then((m) => m.SheetDemoExample),
   "sheet-rtl": () => import("@/components/examples/sheet-rtl").then((m) => m.SheetRtlExample),
   "sheet-side": () => import("@/components/examples/sheet-side").then((m) => m.SheetSideExample),
+  "sidebar-demo": () => import("@/components/examples/sidebar-demo").then((m) => m.SidebarDemoExample),
+  "sidebar-rtl": () => import("@/components/examples/sidebar-rtl").then((m) => m.SidebarRtlExample),
   "skeleton-card": () => import("@/components/examples/skeleton-card").then((m) => m.SkeletonCardExample),
   "skeleton-demo": () => import("@/components/examples/skeleton-demo").then((m) => m.SkeletonDemoExample),
   "skeleton-rtl": () => import("@/components/examples/skeleton-rtl").then((m) => m.SkeletonRtlExample),
@@ -806,6 +808,8 @@ export type ExampleMap = {
   "sheet-demo": React.ComponentType;
   "sheet-rtl": React.ComponentType;
   "sheet-side": React.ComponentType;
+  "sidebar-demo": React.ComponentType;
+  "sidebar-rtl": React.ComponentType;
   "skeleton-card": React.ComponentType;
   "skeleton-demo": React.ComponentType;
   "skeleton-rtl": React.ComponentType;
