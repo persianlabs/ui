@@ -91,6 +91,49 @@ describe("isHoliday / getHolidayInfo", () => {
   })
 })
 
+describe("single-day helpers with time-of-day", () => {
+  const midnight = fromShamsi({ year: 1405, month: 1, day: 1 })
+
+  it("matches a holiday when given a mid-morning timestamp", () => {
+    const noon = new Date(
+      midnight.getFullYear(),
+      midnight.getMonth(),
+      midnight.getDate(),
+      10,
+      30
+    )
+    expect(isHoliday(noon)).toBe(true)
+  })
+
+  it("matches a holiday at the last minute of the day and resolves its info", () => {
+    const lastMinute = new Date(
+      midnight.getFullYear(),
+      midnight.getMonth(),
+      midnight.getDate(),
+      23,
+      59
+    )
+    expect(isHoliday(lastMinute)).toBe(true)
+    expect(getHolidayInfo(lastMinute).length).toBeGreaterThanOrEqual(1)
+  })
+
+  it("still matches a local-midnight date", () => {
+    expect(isHoliday(midnight)).toBe(true)
+  })
+
+  it("does not flag a non-holiday date at noon", () => {
+    const day = fromShamsi({ year: 1405, month: 5, day: 19 })
+    const noon = new Date(
+      day.getFullYear(),
+      day.getMonth(),
+      day.getDate(),
+      12,
+      0
+    )
+    expect(isHoliday(noon)).toBe(false)
+  })
+})
+
 describe("getHolidaysInRange", () => {
   it("returns holidays sorted chronologically", () => {
     const from = fromShamsi({ year: 1405, month: 1, day: 1 })
