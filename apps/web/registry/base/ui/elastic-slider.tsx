@@ -380,13 +380,17 @@ export function ElasticSlider({
           case forwardKey:
           case "ArrowUp":
             return value + arrowStep
+
           case backwardKey:
           case "ArrowDown":
             return value - arrowStep
+
           case "Home":
             return min
+
           case "End":
             return max
+
           default:
             return null
         }

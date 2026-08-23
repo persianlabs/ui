@@ -34,3 +34,5 @@ jobs:
       # after a build on a fresh checkout.
       - name: Typecheck
         run: bun run typecheck
+      - name: Registry mirror parity
+        run: cd apps/web && bun scripts/check-mirror-parity.mts
