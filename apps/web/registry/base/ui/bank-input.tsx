@@ -2,7 +2,6 @@
 
 import type * as React from "react"
 import * as BankIcons from "@persianlabs/icons/react"
-import * as ReactRuntime from "react"
 
 import {
   InputGroup,
@@ -75,12 +74,23 @@ const iconNames: Record<IranianBankId, string> = {
   tosee_taavon: "BankToseeTaavon",
 }
 function offsetAfterDigits(value: string, count: number) {
+  if (count <= 0) return 0
   let seen = 0
   for (let i = 0; i < value.length; i++) {
     if (/\d/.test(value[i]!)) seen++
     if (seen === count) return i + 1
   }
   return value.length
+}
+function restoreCaret(
+  input: HTMLInputElement,
+  formatted: string,
+  digitsBeforeCaret: number
+) {
+  requestAnimationFrame(() => {
+    const offset = offsetAfterDigits(formatted, digitsBeforeCaret)
+    input.setSelectionRange(offset, offset)
+  })
 }
 function BankIdentity({
   bank,
@@ -95,7 +105,7 @@ function BankIdentity({
   ] as React.ComponentType<React.SVGProps<SVGSVGElement>>
   return (
     <InputGroupAddon align="inline-end" className="pe-2">
-      <Logo className="size-5 shrink-0" />
+      <Logo className="size-5 shrink-0" aria-hidden="true" />
     </InputGroupAddon>
   )
 }
@@ -134,12 +144,7 @@ function CardNumberInput({
           const next = normalizeCardNumber(event.target.value)
           setNumber(next)
           onBankChange?.(getIranianBankByCardNumber(next))
-          requestAnimationFrame(() =>
-            event.target.setSelectionRange(
-              offsetAfterDigits(formatCardNumber(next, separator), count),
-              offsetAfterDigits(formatCardNumber(next, separator), count)
-            )
-          )
+          restoreCaret(event.target, formatCardNumber(next, separator), count)
         }}
         placeholder={`1234${separator}1234${separator}1234${separator}1234`}
         className="font-mono text-sm tracking-wide md:text-base"
@@ -188,12 +193,7 @@ function ShabaInput({
           const next = normalizeShaba(event.target.value)
           setAccount(next)
           onBankChange?.(getIranianBankByShaba(next))
-          requestAnimationFrame(() =>
-            event.target.setSelectionRange(
-              offsetAfterDigits(formatShaba(next, separator), count),
-              offsetAfterDigits(formatShaba(next, separator), count)
-            )
-          )
+          restoreCaret(event.target, formatShaba(next, separator), count)
         }}
         placeholder={`1234${separator}1234${separator}1234${separator}1234${separator}1234${separator}1234`}
         className="font-mono text-sm tracking-wide md:text-base"
