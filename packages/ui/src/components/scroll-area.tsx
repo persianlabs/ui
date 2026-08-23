@@ -33,7 +33,7 @@ function ScrollArea({
         // Safe to apply unconditionally: scroll-fade shows nothing when the
         // content doesn't overflow, so every ScrollArea gets the effect for
         // free without needing to check per-usage whether it scrolls.
-        className="min-h-0 flex-1 scroll-fade-y overscroll-contain rounded-[inherit] outline-none"
+        className="min-h-0 flex-1 scroll-fade-y overscroll-x-contain rounded-[inherit] outline-none"
       >
         <ScrollAreaPrimitive.Content data-slot="scroll-area-content">
           {children}
