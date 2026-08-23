@@ -20,7 +20,6 @@ describe("useCopyToClipboard", () => {
     if (originalClipboard) {
       Object.defineProperty(navigator, "clipboard", originalClipboard)
     } else {
-      // @ts-expect-error delete a property jsdom does not define itself
       delete (navigator as { clipboard?: unknown }).clipboard
     }
     vi.useRealTimers()

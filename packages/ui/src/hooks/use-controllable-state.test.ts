@@ -69,7 +69,7 @@ describe("useControllableState", () => {
     rerender({ value: "controlled" })
 
     expect(warnSpy).toHaveBeenCalledTimes(1)
-    expect(warnSpy.mock.calls[0][0]).toContain(
+    expect(warnSpy.mock.calls[0]?.[0]).toContain(
       "Test is changing from uncontrolled to controlled"
     )
   })
