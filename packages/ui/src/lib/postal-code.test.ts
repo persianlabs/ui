@@ -16,7 +16,6 @@ describe("isValidPostalCode", () => {
   })
 
   it.each([null, undefined, ""])("rejects %p", (input) => {
-    // @ts-expect-error characterization of runtime null/undefined handling
     expect(isValidPostalCode(input)).toBe(false)
   })
 

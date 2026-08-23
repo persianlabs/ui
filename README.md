@@ -34,7 +34,7 @@ PersianLabs/ui is an RTL-first component registry for Persian interfaces — log
 
 The registry currently covers **75+ components**, **10 utilities**, and **6 hooks**, split across two kinds of coverage:
 
-- **Most of the shadcn/Base UI catalog** — Accordion, Dialog, Command, Select, Slider, Tabs, Toast, and most everything else you'd expect from a general-purpose registry, RTL-converted where it matters (directional spacing, mirrored icons, logical properties) and left untouched where it doesn't. A handful of newer shadcn components (Carousel, Data Table, Navigation Menu, Sidebar) aren't ported yet — their docs pages link out to shadcn's own in the meantime.
+- **Most of the shadcn/Base UI catalog** — Accordion, Dialog, Command, Select, Slider, Tabs, Toast, and most everything else you'd expect from a general-purpose registry, RTL-converted where it matters (directional spacing, mirrored icons, logical properties) and left untouched where it doesn't. Data Table is not shipped as an installable component yet — its docs page is a guide linking out to shadcn's own in the meantime.
 - **Iranian/Persian-specific pieces you won't find upstream** — Bank Input and the Iranian Bank utility (card/Shaba validation and bank detection), City Selector (province → city), Calendar/Date Picker/Time Picker on the Jalali calendar, Toman Icon, Receipt Printer, QR Code, Mobile Number Input, and validators/formatters for National ID, Postal Code, Persian Date, Persian Holidays, Persian Slug, and Persian Reshape (fixes Persian text rendering in `next/og` OG images, which don't shape Arabic/Persian script on their own).
 
 ## Install a component

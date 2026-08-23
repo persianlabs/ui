@@ -63,7 +63,6 @@ describe("isValidNationalId", () => {
   })
 
   it.each([null, undefined, "", "abc"])("rejects %p", (input) => {
-    // @ts-expect-error characterization of runtime null/undefined handling
     expect(isValidNationalId(input)).toBe(false)
   })
 

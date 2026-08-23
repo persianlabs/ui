@@ -44,7 +44,6 @@
     "@tailwindcss/postcss": "^4",
     "@testing-library/react": "^16.3.2",
     "@typescript/native": "npm:typescript@^7.0.2",
-    "@turbo/gen": "^2.10.11",
     "@types/node": "^26",
     "@types/react": "^19",
     "@types/react-dom": "^19",

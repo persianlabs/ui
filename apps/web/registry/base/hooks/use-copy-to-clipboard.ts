@@ -13,7 +13,7 @@ export function useCopyToClipboard({
   const timeoutIdRef = React.useRef<NodeJS.Timeout | null>(null)
 
   const copyToClipboard = (value: string): void => {
-    if (typeof window === "undefined" || !navigator.clipboard.writeText) {
+    if (typeof window === "undefined" || !navigator.clipboard?.writeText) {
       return
     }
 

@@ -33,7 +33,6 @@ describe("normalizeIranPhone", () => {
   })
 
   it.each([null, undefined])("returns an empty string for %p", (input) => {
-    // @ts-expect-error characterization of runtime null/undefined handling
     expect(normalizeIranPhone(input)).toBe("")
   })
 })
@@ -67,7 +66,6 @@ describe("isValidIranPhone", () => {
   })
 
   it.each([null, undefined, "", "not a phone"])("rejects %p", (input) => {
-    // @ts-expect-error characterization of runtime null/undefined handling
     expect(isValidIranPhone(input)).toBe(false)
   })
 })
@@ -84,7 +82,6 @@ describe("maskIranPhone", () => {
   it("falls back to the raw value when normalization yields nothing", () => {
     expect(maskIranPhone(null)).toBe("")
     expect(maskIranPhone("")).toBe("")
-    // @ts-expect-error characterization of runtime null/undefined handling
     expect(maskIranPhone(undefined)).toBe("")
   })
 

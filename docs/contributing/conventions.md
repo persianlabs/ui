@@ -31,3 +31,14 @@ If a component or utility is adapted from upstream (shadcn/ui, coss/ui, …), sa
 - Markdown/MDX only — no per-page TSX files. Shared islands: `<ComponentPreview>`, `<ComponentSource>`, `<InstallTabs>`, `<ApiReference>`, `<Credits>`, `<LastEdited>`.
 - Persian demo content belongs inside a `dir="rtl"` container when alignment matters.
 - Run `bun scripts/check-mdx-components.mts` after editing any page — it catches undefined component references before they hit the browser.
+
+## TypeScript versions
+
+Two compilers coexist in this repo, on purpose:
+
+- `typescript@^6` exists to host the typescript-eslint parser (lint-time type awareness).
+- The typecheck gate of record is **TypeScript 7 native**, installed as the `@typescript/native` alias and invoked via `bunx --package @typescript/native tsc --noEmit` in each workspace's `typecheck` script.
+
+The two can disagree (a construct may pass typed lint rules but fail native typecheck, or vice versa), so both `bun run lint` and `bun run typecheck` must run before pushing.
+
+**Removal trigger**: once typescript-eslint officially supports TS7, drop the `typescript` dependency and the alias and standardize on a single compiler.
