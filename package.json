@@ -8,6 +8,7 @@
     "lint": "turbo lint",
     "format": "turbo format",
     "typecheck": "turbo typecheck",
+    "test": "turbo test",
     "update-check": "npx npm-check-updates --workspaces",
     "update": "npx npm-check-updates --workspaces -u"
   },
