@@ -23,7 +23,7 @@ import { DocLastEdited } from "@/components/mdx/doc-last-edited"
 import { ComponentsCatalog } from "@/components/mdx/components-catalog"
 import { DocExampleSection } from "@/components/mdx/example-section"
 import { InstallTabs } from "@/components/mdx/install-tabs"
-import { PreCode } from "@/components/mdx/pre-code"
+import { PreCode, PreFigure } from "@/components/mdx/pre-code"
 import { ThemePreview, ThemeVariablesCode } from "@/components/mdx/theme-doc"
 
 /**
@@ -153,6 +153,7 @@ export const mdxComponents = {
       />
     )
   },
+  figure: PreFigure,
   pre: PreCode,
   table: ({ children, ...props }: React.ComponentProps<"table">) => (
     <div className="mt-4 overflow-hidden rounded-lg border border-border">
