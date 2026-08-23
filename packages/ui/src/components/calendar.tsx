@@ -167,10 +167,9 @@ function Calendar({
   const resolvedDir = dir ?? (calendarType === "shamsi" ? "rtl" : "ltr")
   const resolvedNumerals =
     numerals ?? (calendarType === "shamsi" ? "arabext" : "latn")
-  // With multiple months shown side by side, each month's leading/trailing
-  // "outside days" bleed into the adjacent month's grid, so the shared
-  // boundary date (e.g. the 31st) visually appears twice. Defaulting outside
-  // days off for multi-month layouts avoids that -- still overridable.
+  // Outside days render by default (showOutsideDays ?? true). Multi-month
+  // layouts can pass false to avoid outside days bleeding across adjacent
+  // month grids.
   const resolvedShowOutsideDays = showOutsideDays ?? true
 
   const dayPickerProps = {
