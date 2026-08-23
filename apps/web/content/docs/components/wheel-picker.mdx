@@ -3,25 +3,28 @@ title: "Wheel Picker"
 description: "An iOS-like wheel picker with smooth inertia, infinite scrolling, and keyboard navigation."
 ---
 
-import { wheelPickerApi, wheelPickerWrapperApi } from "@/lib/api-data/wheel-picker"
+import {
+  wheelPickerApi,
+  wheelPickerWrapperApi,
+} from "@/lib/api-data/wheel-picker"
 
 A touch-friendly picker with natural momentum scrolling, infinite options, keyboard navigation, and type-ahead search.
 
 <LastEdited path="apps/web/content/docs/components/wheel-picker.mdx" />
 
 <Credits
-          sources={[
-            {
-              label: "Chánh Đại's React Wheel Picker",
-              href: "https://chanhdai.com/components/react-wheel-picker",
-            },
-          ]}
-          changed
-          changes={[
-            "Adds a gesture boundary that stops touch events from reaching a containing Drawer, so the picker's inertial scroll is not cancelled by swipe-to-dismiss",
-            "Uses a direction-isolated LTR picker surface so numeric wheels remain naturally ordered inside RTL interfaces",
-          ]}
-        />
+  sources={[
+    {
+      label: "Chánh Đại's React Wheel Picker",
+      href: "https://chanhdai.com/components/react-wheel-picker",
+    },
+  ]}
+  changed
+  changes={[
+    "Adds a gesture boundary that stops touch events from reaching a containing Drawer, so the picker's inertial scroll is not cancelled by swipe-to-dismiss",
+    "Uses a direction-isolated LTR picker surface so numeric wheels remain naturally ordered inside RTL interfaces",
+  ]}
+/>
 
 ## Overview
 
@@ -29,13 +32,17 @@ A touch-friendly picker with natural momentum scrolling, infinite options, keybo
 
 ## Installation
 
-<InstallTabs command="npx shadcn@latest add @persianlabsui/wheel-picker" packages="@ncdai/react-wheel-picker" sourceName="wheel-picker" sourceTitle="components/ui/wheel-picker.tsx" />
+<InstallTabs
+  command="npx shadcn@latest add @persianlabsui/wheel-picker"
+  packages="@ncdai/react-wheel-picker"
+  sourceName="wheel-picker"
+  sourceTitle="components/ui/wheel-picker.tsx"
+/>
 
 ## Usage
 
 ```tsx
 import {
-
   WheelPicker,
   WheelPickerWrapper,
   type WheelPickerOption,
@@ -58,23 +65,26 @@ export function Example() {
 
 ## Examples
 
-<ExampleSection id="dialog"
-  title="Inside a Dialog"
-  description="The wheel works normally when placed in a focus-trapped Dialog."
-  name="wheel-picker-dialog" />
-<ExampleSection id="drawer"
-  title="Inside a Drawer"
-  description="The wrapper isolates the wheel's touch gesture, preventing the Drawer from cancelling inertial scrolling."
-  name="wheel-picker-drawer" />
-<ExampleSection id="responsive-dialog"
-  title="Inside a Responsive Dialog"
-  description="On mobile this composition becomes a Drawer and retains the same protected wheel gesture."
-  name="wheel-picker-responsive-dialog" />
-<ExampleSection id="rtl"
-  title="RTL"
-  description="Persian labels work in RTL layouts while the wheel's scrolling surface keeps a predictable numeric direction."
-  name="wheel-picker-rtl"
-  direction="rtl" />
+### Inside a Dialog [#dialog]
+
+The wheel works normally when placed in a focus-trapped Dialog.
+
+<ComponentPreview name="wheel-picker-dialog" />
+### Inside a Drawer [#drawer]
+
+The wrapper isolates the wheel's touch gesture, preventing the Drawer from cancelling inertial scrolling.
+
+<ComponentPreview name="wheel-picker-drawer" />
+### Inside a Responsive Dialog [#responsive-dialog]
+
+On mobile this composition becomes a Drawer and retains the same protected wheel gesture.
+
+<ComponentPreview name="wheel-picker-responsive-dialog" />
+### RTL [#rtl]
+
+Persian labels work in RTL layouts while the wheel's scrolling surface keeps a predictable numeric direction.
+
+<ComponentPreview name="wheel-picker-rtl" direction="rtl" />
 
 ## API Reference
 

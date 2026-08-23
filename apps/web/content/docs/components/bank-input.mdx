@@ -17,7 +17,12 @@ Payment-ready Iranian card and Shaba fields. They normalize mixed paste formats,
 
 Install the inputs, their bank utility, input-group primitives, and the PersianLabs icon package in one step.
 
-<InstallTabs command="npx shadcn@latest add @persianlabsui/bank-input" packages="@persianlabs/icons" sourceName="bank-input" sourceTitle="components/ui/bank-input.tsx" />
+<InstallTabs
+  command="npx shadcn@latest add @persianlabsui/bank-input"
+  packages="@persianlabs/icons"
+  sourceName="bank-input"
+  sourceTitle="components/ui/bank-input.tsx"
+/>
 
 ## Usage
 
@@ -31,27 +36,31 @@ export function Example() {
 
 ## Examples
 
-<ExampleSection id="shaba"
-  title="Shaba"
-  description="The IR prefix is presented as an input-group prefix. Pasting an entire IBAN, with or without separators, removes IR and normalizes the remaining 24 digits."
-  name="bank-input-shaba" />
-<ExampleSection id="zod"
-  title="Zod Validation"
-  description="Use the exported checksum validators in Zod refinements, while the inputs surface invalid complete values immediately."
-  name="bank-input-zod" />
-<ExampleSection id="separator"
-  title="Separator"
-  description="Card numbers use spaces by default (1234 1234 1234 1234). Pass separator to use any other display delimiter; the stored value always stays as 16 plain digits."
-  name="bank-input-separator" />
-<ExampleSection id="supported-banks"
-  title="Supported Banks"
-  description="هر ورودی یک شماره کارت معتبر نمونه دارد؛ لوگوی انتهایی نشان می‌دهد که تشخیص بانک برای همه بانک‌های پشتیبانی‌شده فعال است."
-  name="bank-input-supported-banks" />
-<ExampleSection id="rtl"
-  title="RTL"
-  description="Labels, descriptions, and bank names follow the surrounding RTL interface while the card and Shaba values remain intentionally LTR. Persian digits are normalized during input."
-  name="bank-input-rtl"
-  direction="rtl" />
+### Shaba [#shaba]
+
+The IR prefix is presented as an input-group prefix. Pasting an entire IBAN, with or without separators, removes IR and normalizes the remaining 24 digits.
+
+<ComponentPreview name="bank-input-shaba" />
+### Zod Validation [#zod]
+
+Use the exported checksum validators in Zod refinements, while the inputs surface invalid complete values immediately.
+
+<ComponentPreview name="bank-input-zod" />
+### Separator [#separator]
+
+Card numbers use spaces by default (1234 1234 1234 1234). Pass separator to use any other display delimiter; the stored value always stays as 16 plain digits.
+
+<ComponentPreview name="bank-input-separator" />
+### Supported Banks [#supported-banks]
+
+هر ورودی یک شماره کارت معتبر نمونه دارد؛ لوگوی انتهایی نشان می‌دهد که تشخیص بانک برای همه بانک‌های پشتیبانی‌شده فعال است.
+
+<ComponentPreview name="bank-input-supported-banks" />
+### RTL [#rtl]
+
+Labels, descriptions, and bank names follow the surrounding RTL interface while the card and Shaba values remain intentionally LTR. Persian digits are normalized during input.
+
+<ComponentPreview name="bank-input-rtl" direction="rtl" />
 
 ## API Reference
 

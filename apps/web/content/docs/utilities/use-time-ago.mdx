@@ -1,9 +1,14 @@
 ---
 title: "useTimeAgo"
-description: "A reactive relative-time formatter (\"۲ روز پیش\" / \"2 days ago\") with built-in Persian and English message tables."
+description: 'A reactive relative-time formatter ("۲ روز پیش" / "2 days ago") with built-in Persian and English message tables.'
 ---
 
-import { builtInTablesApi, formatTimeAgoApi, timeAgoMessagesApi, useTimeAgoApi } from "@/lib/api-data/use-time-ago"
+import {
+  builtInTablesApi,
+  formatTimeAgoApi,
+  timeAgoMessagesApi,
+  useTimeAgoApi,
+} from "@/lib/api-data/use-time-ago"
 
 Formats the distance between a timestamp and now — &ldquo;همین الان&rdquo;, &ldquo;۵ دقیقه پیش&rdquo;, &ldquo;دیروز&rdquo; — and keeps that string current by re-rendering on an interval. Works with Persian or English messages, and can fall back to an absolute date past a threshold.
 
@@ -15,7 +20,13 @@ Formats the distance between a timestamp and now — &ldquo;همین الان&rd
 
 ## Installation
 
-<InstallTabs command="npx shadcn@latest add @persianlabsui/use-time-ago" sourceName="use-time-ago" sourceKind="hook" sourceTitle="hooks/use-time-ago.ts" sourceStep="Copy the source into your project" />
+<InstallTabs
+  command="npx shadcn@latest add @persianlabsui/use-time-ago"
+  sourceName="use-time-ago"
+  sourceKind="hook"
+  sourceTitle="hooks/use-time-ago.ts"
+  sourceStep="Copy the source into your project"
+/>
 
 ## Usage
 
@@ -31,26 +42,31 @@ function LastSeen({ at }: { at: string }) {
 
 ## Examples
 
-<ExampleSection id="en"
-  title="English locale"
-  description={"Pass locale: \"en\" to switch to the built-in English message table."}
-  name="use-time-ago-en" />
-<ExampleSection id="interval"
-  title="Custom update interval"
-  description={"updateInterval controls how often the string re-renders — shorten it for a live-feeling \"seconds ago\" counter."}
-  name="use-time-ago-interval" />
-<ExampleSection id="max"
-  title="Falling back to a full date"
-  description="max caps how far back the relative format goes; beyond it, fullDateFormatter renders an absolute date instead."
-  name="use-time-ago-max" />
-<ExampleSection id="second"
-  title="Showing seconds"
-  description={"By default, anything under a minute collapses to \"just now\". showSecond keeps the seconds unit instead."}
-  name="use-time-ago-second" />
-<ExampleSection id="messages"
-  title="Custom messages"
-  description="Supply your own TimeAgoMessages table to fully control the wording for every unit."
-  name="use-time-ago-messages" />
+### English locale [#en]
+
+Pass locale: "en" to switch to the built-in English message table.
+
+<ComponentPreview name="use-time-ago-en" />
+### Custom update interval [#interval]
+
+updateInterval controls how often the string re-renders — shorten it for a live-feeling "seconds ago" counter.
+
+<ComponentPreview name="use-time-ago-interval" />
+### Falling back to a full date [#max]
+
+max caps how far back the relative format goes; beyond it, fullDateFormatter renders an absolute date instead.
+
+<ComponentPreview name="use-time-ago-max" />
+### Showing seconds [#second]
+
+By default, anything under a minute collapses to "just now". showSecond keeps the seconds unit instead.
+
+<ComponentPreview name="use-time-ago-second" />
+### Custom messages [#messages]
+
+Supply your own TimeAgoMessages table to fully control the wording for every unit.
+
+<ComponentPreview name="use-time-ago-messages" />
 
 ### RTL
 

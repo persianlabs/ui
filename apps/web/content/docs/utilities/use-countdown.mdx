@@ -3,27 +3,30 @@ title: "useCountdown"
 description: "A timer-aligned React countdown hook for ISO-8601 target dates, with formatted output and overdue state."
 ---
 
-import { countdownResultApi, useCountdownApi } from "@/lib/api-data/use-countdown"
+import {
+  countdownResultApi,
+  useCountdownApi,
+} from "@/lib/api-data/use-countdown"
 
 A countdown hook for deadlines, launches, reservations, and temporary offers. It updates on the next clock-second boundary, returns a display-ready value, and continues tracking elapsed time after a deadline passes.
 
 <LastEdited path="apps/web/content/docs/utilities/use-countdown.mdx" />
 
 <Credits
-          sources={[
-            {
-              label: "initial implementation supplied by a project contributor",
-              href: "https://github.com/persianlabs/ui",
-            },
-          ]}
-          changed
-          changes={[
-            "Replaced a drifting interval with second-boundary-aligned timeouts.",
-            "Added invalid-date handling so null and malformed targets safely return null.",
-            "Changed rounded remaining time to ceiling semantics so a future target does not show zero early.",
-            "Added documented result types and examples for formatted, segmented, paused, overdue, and RTL countdowns.",
-          ]}
-        />
+  sources={[
+    {
+      label: "initial implementation supplied by a project contributor",
+      href: "https://github.com/persianlabs/ui",
+    },
+  ]}
+  changed
+  changes={[
+    "Replaced a drifting interval with second-boundary-aligned timeouts.",
+    "Added invalid-date handling so null and malformed targets safely return null.",
+    "Changed rounded remaining time to ceiling semantics so a future target does not show zero early.",
+    "Added documented result types and examples for formatted, segmented, paused, overdue, and RTL countdowns.",
+  ]}
+/>
 
 ## Overview
 
@@ -31,7 +34,13 @@ A countdown hook for deadlines, launches, reservations, and temporary offers. It
 
 ## Installation
 
-<InstallTabs command="npx shadcn@latest add @persianlabsui/use-countdown" sourceName="use-countdown" sourceKind="hook" sourceTitle="hooks/use-countdown.ts" sourceStep="Copy the source into your project" />
+<InstallTabs
+  command="npx shadcn@latest add @persianlabsui/use-countdown"
+  sourceName="use-countdown"
+  sourceKind="hook"
+  sourceTitle="hooks/use-countdown.ts"
+  sourceStep="Copy the source into your project"
+/>
 
 ## Usage
 
@@ -64,22 +73,26 @@ const countdown = useCountdown(isTimerActive ? endsAt : null)
 
 ## Examples
 
-<ExampleSection id="parts"
-  title="Time units"
-  description="Use the individual units when each part needs its own visual treatment. Hours can exceed 24."
-  name="use-countdown-parts" />
-<ExampleSection id="reset"
-  title="Pause and play"
-  description="Pause a countdown without losing its remaining duration, then resume it from exactly where it stopped."
-  name="use-countdown-reset" />
-<ExampleSection id="overdue"
-  title="Overdue targets"
-  description="After the target passes, formatted remains absolute while totalSeconds is negative and isOverdue becomes true."
-  name="use-countdown-overdue" />
-<ExampleSection id="otp"
-  title="OTP resend"
-  description="Keep the resend action unavailable until the cooldown expires, then start a fresh countdown whenever another code is sent."
-  name="use-countdown-otp" />
+### Time units [#parts]
+
+Use the individual units when each part needs its own visual treatment. Hours can exceed 24.
+
+<ComponentPreview name="use-countdown-parts" />
+### Pause and play [#reset]
+
+Pause a countdown without losing its remaining duration, then resume it from exactly where it stopped.
+
+<ComponentPreview name="use-countdown-reset" />
+### Overdue targets [#overdue]
+
+After the target passes, formatted remains absolute while totalSeconds is negative and isOverdue becomes true.
+
+<ComponentPreview name="use-countdown-overdue" />
+### OTP resend [#otp]
+
+Keep the resend action unavailable until the cooldown expires, then start a fresh countdown whenever another code is sent.
+
+<ComponentPreview name="use-countdown-otp" />
 
 ### RTL
 
