@@ -1,7 +1,10 @@
 import fs from "node:fs"
 import path from "node:path"
 
+import { assertSafeName } from "./source-name"
+
 export function getComponentSource(name: string) {
+  assertSafeName(name, "component")
   const filePath = path.join(
     process.cwd(),
     "registry",
@@ -14,6 +17,7 @@ export function getComponentSource(name: string) {
 }
 
 export function getLibSource(name: string) {
+  assertSafeName(name, "lib")
   const filePath = path.join(
     process.cwd(),
     "registry",
@@ -26,6 +30,7 @@ export function getLibSource(name: string) {
 }
 
 export function getHookSource(name: string) {
+  assertSafeName(name, "hook")
   const filePath = path.join(
     process.cwd(),
     "registry",
