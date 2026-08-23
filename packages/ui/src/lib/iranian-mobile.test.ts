@@ -29,9 +29,7 @@ describe("normalizeIranPhone", () => {
   it("falls back to cleaned numeric digits when shaping is impossible", () => {
     expect(normalizeIranPhone("12345")).toBe("12345")
     expect(normalizeIranPhone("abc")).toBe("")
-    expect(normalizeIranPhone("call 0912-123-4567 now")).toBe(
-      "09121234567"
-    )
+    expect(normalizeIranPhone("call 0912-123-4567 now")).toBe("09121234567")
   })
 
   it.each([null, undefined])("returns an empty string for %p", (input) => {

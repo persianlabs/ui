@@ -60,9 +60,12 @@ describe("toPersianSlug", () => {
     expect(toPersianSlug("خرید iPhone")).toBe("خرید-iphone")
   })
 
-  it.each(["", "   ", "!!!", "___"])("reduces %p to an empty string", (input) => {
-    expect(toPersianSlug(input)).toBe("")
-  })
+  it.each(["", "   ", "!!!", "___"])(
+    "reduces %p to an empty string",
+    (input) => {
+      expect(toPersianSlug(input)).toBe("")
+    }
+  )
 })
 
 describe("toLatinSlug", () => {
@@ -72,9 +75,7 @@ describe("toLatinSlug", () => {
 
   it("produces fully ASCII output for mixed input and supports options", () => {
     expect(toLatinSlug("گوشی ۱۲")).toBe("gvshy-12")
-    expect(toLatinSlug("سلام دنیا", { separator: "+" })).toBe(
-      "slam+dnya"
-    )
+    expect(toLatinSlug("سلام دنیا", { separator: "+" })).toBe("slam+dnya")
   })
 
   it("drops characters with no transliteration target instead of keeping them", () => {
