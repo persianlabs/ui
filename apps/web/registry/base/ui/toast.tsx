@@ -487,7 +487,7 @@ function AnchoredToasts({
                 className={cn(ANCHORED_ROOT_BASE, toastAppearance(variant))}
                 {...data?.rootProps}
               >
-                <ToastBody toast={toastItem} variant={variant} />
+                <AnchoredToastBody toast={toastItem} variant={variant} />
               </ToastPrimitive.Root>
             </ToastPrimitive.Positioner>
           )
