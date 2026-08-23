@@ -1,4 +1,4 @@
-import { QuestionnairePreview } from "@/lib/component-opengraph-previews"
+import { QuestionnairePreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Questionnaire — PersianLabs UI"

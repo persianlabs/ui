@@ -1,4 +1,4 @@
-import { PersianDatePreview } from "@/lib/component-opengraph-previews"
+import { PersianDatePreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Persian Date — PersianLabs UI"

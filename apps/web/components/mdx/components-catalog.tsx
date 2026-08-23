@@ -79,7 +79,7 @@ import {
   TogglePreview,
   TomanIconPreview,
   TooltipPreview,
-} from "@/lib/component-previews"
+} from "@/components/previews"
 import registry from "@/registry.json"
 import { getFlatDocsNav } from "@/lib/docs-nav"
 

@@ -1,4 +1,4 @@
-import { MessageScrollerPreview } from "@/lib/component-opengraph-previews"
+import { MessageScrollerPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Message Scroller — PersianLabs UI"

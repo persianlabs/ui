@@ -1,4 +1,4 @@
-import { WheelPickerPreview } from "@/lib/component-opengraph-previews"
+import { WheelPickerPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Wheel Picker — PersianLabs UI"

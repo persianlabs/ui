@@ -1,4 +1,4 @@
-import { FieldPreview } from "@/lib/component-opengraph-previews"
+import { FieldPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Field — PersianLabs UI"

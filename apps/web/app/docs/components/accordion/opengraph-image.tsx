@@ -1,4 +1,4 @@
-import { AccordionPreview } from "@/lib/component-opengraph-previews"
+import { AccordionPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Accordion — PersianLabs UI"

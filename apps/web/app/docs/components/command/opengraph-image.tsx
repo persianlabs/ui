@@ -1,4 +1,4 @@
-import { CommandPreview } from "@/lib/component-opengraph-previews"
+import { CommandPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Command — PersianLabs UI"

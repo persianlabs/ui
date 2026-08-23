@@ -1,4 +1,4 @@
-import { SelectPreview } from "@/lib/component-opengraph-previews"
+import { SelectPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Select — PersianLabs UI"

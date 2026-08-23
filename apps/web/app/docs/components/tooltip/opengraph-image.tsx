@@ -1,4 +1,4 @@
-import { TooltipPreview } from "@/lib/component-opengraph-previews"
+import { TooltipPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Tooltip — PersianLabs UI"

@@ -1,4 +1,4 @@
-import { ItemPreview } from "@/lib/component-opengraph-previews"
+import { ItemPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Item — PersianLabs UI"

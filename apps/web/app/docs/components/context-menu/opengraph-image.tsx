@@ -1,4 +1,4 @@
-import { ContextMenuPreview } from "@/lib/component-opengraph-previews"
+import { ContextMenuPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Context Menu — PersianLabs UI"

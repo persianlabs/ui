@@ -1,4 +1,4 @@
-import { DirectionPreview } from "@/lib/component-opengraph-previews"
+import { DirectionPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Direction — PersianLabs UI"

@@ -1,4 +1,4 @@
-import { ButtonGroupPreview } from "@/lib/component-opengraph-previews"
+import { ButtonGroupPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Button Group — PersianLabs UI"

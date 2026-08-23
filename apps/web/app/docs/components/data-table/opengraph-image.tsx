@@ -1,4 +1,4 @@
-import { DataTablePreview } from "@/lib/component-opengraph-previews"
+import { DataTablePreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Data Table — PersianLabs UI"

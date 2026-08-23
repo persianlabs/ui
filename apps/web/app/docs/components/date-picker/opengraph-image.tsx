@@ -1,4 +1,4 @@
-import { DatePickerPreview } from "@/lib/component-opengraph-previews"
+import { DatePickerPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Date Picker — PersianLabs UI"

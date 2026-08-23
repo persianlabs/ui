@@ -1,4 +1,4 @@
-import { NavigationMenuPreview } from "@/lib/component-opengraph-previews"
+import { NavigationMenuPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Navigation Menu — PersianLabs UI"

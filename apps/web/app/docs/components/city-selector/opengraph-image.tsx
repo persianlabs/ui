@@ -1,4 +1,4 @@
-import { CitySelectorPreview } from "@/lib/component-opengraph-previews"
+import { CitySelectorPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "City Selector — PersianLabs UI"

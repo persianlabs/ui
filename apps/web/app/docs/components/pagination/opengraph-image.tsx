@@ -1,4 +1,4 @@
-import { PaginationPreview } from "@/lib/component-opengraph-previews"
+import { PaginationPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Pagination — PersianLabs UI"

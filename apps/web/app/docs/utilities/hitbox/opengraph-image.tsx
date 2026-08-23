@@ -1,4 +1,4 @@
-import { HitboxPreview } from "@/lib/component-opengraph-previews"
+import { HitboxPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Hitbox — PersianLabs UI"

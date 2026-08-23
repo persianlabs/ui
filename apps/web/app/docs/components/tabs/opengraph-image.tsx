@@ -1,4 +1,4 @@
-import { TabsPreview } from "@/lib/component-opengraph-previews"
+import { TabsPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Tabs — PersianLabs UI"

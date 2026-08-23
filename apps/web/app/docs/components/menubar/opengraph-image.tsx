@@ -1,4 +1,4 @@
-import { MenubarPreview } from "@/lib/component-opengraph-previews"
+import { MenubarPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Menubar — PersianLabs UI"

@@ -1,4 +1,4 @@
-import { DialogPreview } from "@/lib/component-opengraph-previews"
+import { DialogPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Dialog — PersianLabs UI"

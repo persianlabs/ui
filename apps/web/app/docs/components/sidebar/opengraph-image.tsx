@@ -1,4 +1,4 @@
-import { SidebarPreview } from "@/lib/component-opengraph-previews"
+import { SidebarPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Sidebar - PersianLabs UI"

@@ -1,4 +1,4 @@
-import { InputOTPPreview } from "@/lib/component-opengraph-previews"
+import { InputOTPPreview } from "@/components/previews/og"
 import { buildOgImage, ogImageSize } from "@/lib/og-image"
 
 export const alt = "Input OTP — PersianLabs UI"

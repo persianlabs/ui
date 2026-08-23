@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation"
 import { Badge } from "@/components/badge"
 import { UtilityPreview } from "@/components/home-catalog"
 import { docsNav, type DocsNavItem } from "@/lib/docs-nav"
-import * as ComponentPreviews from "@/lib/component-previews"
+import * as ComponentPreviews from "@/components/previews"
 import {
   Tooltip,
   TooltipContent,
