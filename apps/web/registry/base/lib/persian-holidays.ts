@@ -143,10 +143,7 @@ export function getHolidays(
  * timestamped inputs (e.g. `new Date()`) match their whole calendar day.
  */
 function dayBounds(date: Date): [Date, Date] {
-  return [
-    new Date(date.getFullYear(), date.getMonth(), date.getDate()),
-    date,
-  ]
+  return [new Date(date.getFullYear(), date.getMonth(), date.getDate()), date]
 }
 
 /** True if `date` matches any (official, by default) holiday, at day granularity — a time-of-day timestamp matches its whole calendar day. */
