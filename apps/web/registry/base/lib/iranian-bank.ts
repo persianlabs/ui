@@ -55,9 +55,10 @@ export const iranianBanks: IranianBank[] = [
     id: "blubank",
     name: "بلوبانک",
     cardPrefixes: ["62198618", "62198619"],
+    // Shares 056 with Saman (Blu is a digital branch of Saman Bank; Blu IBANs use Saman's 056 code)
     ibanCodes: ["056"],
   },
-  { id: "dey", name: "بانک دی", cardPrefixes: ["502938"], ibanCodes: ["017"] },
+  { id: "dey", name: "بانک دی", cardPrefixes: ["502938"], ibanCodes: ["066"] },
   {
     id: "eghtesad_novin",
     name: "بانک اقتصادنوین",
@@ -206,7 +207,7 @@ export const iranianBanks: IranianBank[] = [
     id: "resalat",
     name: "بانک قرض الحسنه رسالت",
     cardPrefixes: ["504172"],
-    ibanCodes: ["060"],
+    ibanCodes: ["070"],
   },
 ]
 
