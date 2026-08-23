@@ -935,6 +935,20 @@
       ]
     },
     {
+      "name": "utils",
+      "type": "registry:lib",
+      "title": "Utils",
+      "description": "The cn() class-merging helper built on clsx and tailwind-merge.",
+      "registryDependencies": [],
+      "dependencies": ["clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "registry/base/lib/utils.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "iranian-bank",
       "type": "registry:lib",
       "title": "Iranian Bank",
