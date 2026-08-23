@@ -137,18 +137,32 @@ export function getHolidays(
   return getHolidaysInRange(from, to, options)
 }
 
-/** True if `date` matches any (official, by default) holiday. */
+/**
+ * `[startOfDay, date]`: holiday entries are resolved at local midnight, so
+ * anchoring the lower bound at the start of the caller's day makes
+ * timestamped inputs (e.g. `new Date()`) match their whole calendar day.
+ */
+function dayBounds(date: Date): [Date, Date] {
+  return [
+    new Date(date.getFullYear(), date.getMonth(), date.getDate()),
+    date,
+  ]
+}
+
+/** True if `date` matches any (official, by default) holiday, at day granularity — a time-of-day timestamp matches its whole calendar day. */
 export function isHoliday(
   date: Date,
   options: GetHolidaysOptions = {}
 ): boolean {
-  return getHolidaysInRange(date, date, options).length > 0
+  const [from] = dayBounds(date)
+  return getHolidaysInRange(from, date, options).length > 0
 }
 
-/** Every holiday/occasion that falls on `date`. */
+/** Every holiday/occasion that falls on `date`, matched at day granularity (time-of-day timestamps included). */
 export function getHolidayInfo(
   date: Date,
   options: GetHolidaysOptions = {}
 ): ResolvedHoliday[] {
-  return getHolidaysInRange(date, date, options)
+  const [from] = dayBounds(date)
+  return getHolidaysInRange(from, date, options)
 }
