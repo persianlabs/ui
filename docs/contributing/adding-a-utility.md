@@ -9,7 +9,7 @@ Utilities are pure functions or React hooks distributed through the same registr
 
 ## 2. Doc page location
 
-The markdown page goes to `apps/web/content/docs/utilities/<name>.mdx`, and its slug is registered in `content/docs/utilities/meta.json` plus the Utilities group of `apps/web/lib/docs-nav.ts`.
+The markdown page goes to `apps/web/content/docs/utilities/<name>.mdx`, and its slug is registered in three places: `content/docs/utilities/meta.json`, the Utilities group of `apps/web/lib/docs-nav.ts`, and `UTILITY_GROUPS` in `apps/web/app/llms.txt/route.ts` (that index is generated only from those arrays).
 
 Manual installation on the page shows the lib/hook source directly:
 
@@ -33,10 +33,11 @@ Utilities get live examples too — a hook demo component lives in `components/e
 
 ## Verification
 
-Same checklist as components:
+Same checklist as components, plus the api-data registration: if the page uses `<ApiReference>`, add the module to `apps/web/lib/api-data/index.ts` (`export * as <camelName> from "./<name>"`) or the markdown tables come out empty.
 
 ```bash
 bun run build && bun run lint && bun run typecheck
 cd apps/web && bun scripts/check-mdx-components.mts
-curl https://localhost:3000/docs/utilities/<name>.md
+curl https://localhost:3000/docs/utilities/<name>.md   # 200, and API tables contain rows
+curl https://localhost:3000/llms.txt                   # slug appears in its group
 ```

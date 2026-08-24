@@ -13,7 +13,9 @@ Docs are markdown compiled by fumadocs-mdx — there are no per-page TSX files a
 2. Register in `apps/web/registry.json`.
 3. Add example variants in `apps/web/components/examples/<name>-<variant>.tsx` (the examples map regenerates on predev/prebuild).
 4. Write the doc page as MDX at `apps/web/content/docs/components/<name>.mdx` using the shared islands (`<ComponentPreview name>`, `<InstallTabs>`, `<ApiReference>`), and add the slug to that folder's `meta.json` plus an entry in `apps/web/lib/docs-nav.ts`.
-5. Utilities: source in `registry/base/lib|hooks`, page in `content/docs/utilities/`.
+5. Register the api-data module in `apps/web/lib/api-data/index.ts` (`export * as <camelName> from "./<name>"`) — the `.md`/copy-page endpoint resolves `<ApiReference>` rows through it; a missing entry renders tables with headers but no rows.
+6. Add the slug to `apps/web/app/llms.txt/route.ts`'s hand-maintained group lists (`COMPONENT_GROUPS` / `UTILITY_GROUPS`) — `/llms.txt` silently omits anything not listed.
+7. Utilities: source in `registry/base/lib|hooks`, page in `content/docs/utilities/`.
 
 Full English walkthroughs live in `docs/contributing/` ([adding-a-component.md](docs/contributing/adding-a-component.md), [adding-a-utility.md](docs/contributing/adding-a-utility.md), [conventions.md](docs/contributing/conventions.md)); an agent-facing handbook is at [docs/agents/README.md](docs/agents/README.md).
 
@@ -23,7 +25,7 @@ Every new component or utility must include both a gallery preview image and an 
 
 ## Copyable page and .md endpoint
 
-Automatic. Every doc page serves its markdown at `<url>.md` via `apps/web/app/markdown/[[...slug]]/route.ts` — no per-page strings or route maps to maintain. Verify `<url>.md` returns 200 with the page content before pushing. Site-wide index: `/llms.txt`.
+Automatic. Every doc page serves its markdown at `<url>.md` via `apps/web/app/markdown/[[...slug]]/route.ts` — no per-page strings or route maps to maintain. Verify `<url>.md` returns 200 **and that every API Reference table actually contains rows** (they resolve through `lib/api-data/index.ts`; see step 5 above). Site-wide index: `/llms.txt` — confirm the new slug appears there too.
 
 ## Guard script
 

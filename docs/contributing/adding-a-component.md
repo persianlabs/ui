@@ -65,14 +65,21 @@ import { buttonRootApi } from "@/lib/api-data/button"
 <ApiReference title="Button" rows={buttonRootApi} />
 ```
 
-Then register it in two places:
+Then register it in three places:
 
 - `content/docs/components/meta.json` — page-tree order.
 - `apps/web/lib/docs-nav.ts` — this file powers the sidebar, the ⌘K search, and the sitemap.
+- `apps/web/app/llms.txt/route.ts` — add the slug to the matching group in `COMPONENT_GROUPS`; `/llms.txt` is generated only from those arrays and silently omits anything else.
 
 ## 6. API reference data
 
-Add typed table rows to `apps/web/lib/api-data/<name>.ts`. The same module feeds the on-page `<ApiReference>` table and the markdown endpoint's generated table.
+Add typed table rows to `apps/web/lib/api-data/<name>.ts`. The same module feeds the on-page `<ApiReference>` table and the markdown endpoint's generated table — so also register it in `apps/web/lib/api-data/index.ts`:
+
+```ts
+export * as <camelName> from "./<name>"
+```
+
+Without that namespace entry, `.md`/copy-page versions render API tables with headers but zero rows (this bit Status Button, Plate Input, and Sidebar at launch).
 
 ## 7. Images
 
@@ -84,3 +91,12 @@ Never use Persian characters inside OG previews except when the Persian glyph is
 ## 8. Credits
 
 If the component is adapted from upstream (shadcn/ui, coss/ui, …), say so via the `<Credits>` island and list exactly what changed — especially RTL-motivated diffs, worded as diffs ("Replaced `pl-6` with `ps-6`"). Never fabricate attribution.
+
+## 9. Verify
+
+```bash
+bun run build && bun run lint && bun run typecheck
+cd apps/web && bun scripts/check-mdx-components.mts
+curl https://localhost:3000/docs/components/<name>.md   # 200, and every API table contains rows
+curl https://localhost:3000/llms.txt                    # slug appears in its group
+```
