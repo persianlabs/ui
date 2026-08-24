@@ -6,7 +6,7 @@
 - **Display names**: Title Case in `registry.json` `title`, doc frontmatter, and headings ("Hover Card", "useTimeAgo").
 - **Exports**: PascalCase matching the display name (`HoverCard`, `MessageScroller`).
 - **Examples**: `<name>-<variant>.tsx` exporting `<Name><Variant>Example`. Default demo is `-demo`; every component ships an `-rtl` example with real Farsi content.
-- **Branches**: `feat/<slug>`, `fix/<slug>`, `docs/<slug>`, `chore/<slug>`.
+- **Branches**: new components use the scoped form `feat/component/<slug>` (e.g. `feat/component/plate-input`); everything else is `feat/<slug>`, `fix/<slug>`, `docs/<slug>`, `chore/<slug>`. Git forbids `:` in branch names, so conventional-commit-style colons can't appear there.
 - **Commits**: conventional prefixes — `feat:`, `fix:`, `docs:`, `chore:` — optionally scoped (`fix(bubble): …`). Body explains _why_, not what.
 
 ## RTL-first
