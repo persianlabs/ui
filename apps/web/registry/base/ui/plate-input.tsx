@@ -308,7 +308,7 @@ export function PlateInput({
             aria-label="حرف پلاک"
             aria-invalid={(invalid && !value.letter) || undefined}
             className={cn(
-              "w-16 rounded-md border-0 bg-muted/60 px-1.5 shadow-none focus-visible:ring-3 focus-visible:ring-ring/50 data-[popup-open]:ring-3 data-[popup-open]:ring-ring/50 aria-invalid:ring-destructive/20 [&_svg:not([class*='size-'])]:size-3",
+              "w-16 rounded-md border-0 bg-muted/60 px-1.5 shadow-none focus-visible:ring-3 focus-visible:ring-ring/50 aria-invalid:ring-destructive/20 data-[popup-open]:ring-3 data-[popup-open]:ring-ring/50 [&_svg:not([class*='size-'])]:size-3",
               "aria-invalid:bg-destructive/10 aria-invalid:text-destructive"
             )}
           >
@@ -387,9 +387,7 @@ export function PlateInput({
           value={value.serial}
           maxLength={2}
           disabled={disabled}
-          invalidEmpty={
-            (invalid && value.serial.length === 0) || undefined
-          }
+          invalidEmpty={(invalid && value.serial.length === 0) || undefined}
           aria-label="کد ایران"
           placeholder="55"
           className={cn(
@@ -406,11 +404,10 @@ export function PlateInput({
     </InputGroup>
   )
 }
-interface PlateSegmentProps
-  extends Omit<
-    React.ComponentProps<typeof InputGroupInput>,
-    "value" | "onChange"
-  > {
+interface PlateSegmentProps extends Omit<
+  React.ComponentProps<typeof InputGroupInput>,
+  "value" | "onChange"
+> {
   value: string
   maxLength: number
   /** When marking failures, this segment is one of the empty culprits. */
