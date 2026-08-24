@@ -49,12 +49,21 @@ export const metadata: Metadata = {
     description:
       "An open-source, RTL-first component library you copy, paste, and own. Ships with a shadcn registry — install any component straight into your codebase.",
     siteName: "PersianLabs/ui",
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+        alt: "PersianLabs UI - Copy-paste components for Persian interfaces",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "PersianLabs/ui — Copy-paste components for Persian interfaces",
     description:
       "An open-source, RTL-first component library you copy, paste, and own.",
+    images: ["/api/og"],
   },
 }
 

@@ -7,6 +7,7 @@ import { DocsPageFooter } from "@/components/docs-page-footer"
 import { TableOfContents } from "@/components/table-of-contents"
 import { processMarkdownForLlms } from "@/lib/markdown-docs"
 import { source } from "@/lib/source"
+import { SITE_URL } from "@/lib/site"
 import { mdxComponents } from "@/mdx-components"
 import type { TocItem } from "@/components/table-of-contents"
 
@@ -29,9 +30,38 @@ export async function docsGenerateMetadata({
     return {}
   }
 
+  // Unique social card per page, served by app/docs/og/[...slug]/route.tsx.
+  // (File-convention opengraph-image can't live after the [...slug] segment
+  // in Turbopack, and the root file would override config metadata anyway.)
+  const url = `${SITE_URL}/docs${slug?.length ? `/${slug.join("/")}` : ""}`
+  const image =
+    slug && slug.length > 0
+      ? {
+          url: `${SITE_URL}/docs/og/${slug.join("/")}`,
+          width: 1200,
+          height: 630,
+          type: "image/png" as const,
+          alt: page.data.title,
+        }
+      : undefined
+
   return {
     title: page.data.title,
     description: page.data.description,
+    openGraph: {
+      type: "website",
+      url,
+      siteName: "PersianLabs/ui",
+      title: page.data.title,
+      description: page.data.description,
+      ...(image ? { images: [image] } : {}),
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: page.data.title,
+      description: page.data.description,
+      ...(image ? { images: [image.url] } : {}),
+    },
   }
 }
 

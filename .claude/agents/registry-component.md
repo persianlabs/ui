@@ -20,7 +20,7 @@ You add and edit components in the PersianLabs/ui registry (see `/CLAUDE.md` at 
 6. **Gallery + search surfacing** (frequently missed — the doc page works without these, but the component won't show up anywhere):
    - `apps/web/lib/component-previews.tsx`: add a `<Name>Preview()` function using plain inline `style={}` objects (not Tailwind classes — this file's preview components render through both regular React DOM and Satori for OG images, and Satori doesn't support Tailwind).
    - `apps/web/app/docs/components/page.tsx`: import the preview and add a card to the `components` array.
-   - `apps/web/app/docs/components/<name>/opengraph-image.tsx`: copy an existing one and swap the preview component / title / description.
+   - `apps/web/components/previews/og/<name>.tsx`: add a `<Name>Preview()` function (Satori-safe, hex colors). The dynamic route `app/docs/og/[...slug]/route.tsx` serves its OG card via the generated slug map — no per-page route file.
 7. **Credits** (`apps/web/components/credits.tsx`) directly under `LastUpdated` on the doc page. `sources` names where the component was copied from. Set `changed={true}` with a `changes` array of diff-worded bullets ("Replaced X with Y for RTL") only for things you actually changed — if you ported it byte-for-byte, use `changed={false}`. **Never invent a source or a change** — if genuinely unclear, stop and ask rather than guess.
 8. After any `registry.json` or `registry/base/**` edit, run `bun run build` (or `cd apps/web && bunx shadcn build`) to regenerate `apps/web/public/r/*.json`.
 

@@ -21,7 +21,7 @@ Full English walkthroughs live in `docs/contributing/` ([adding-a-component.md](
 
 ## Component and utility previews
 
-Every new component or utility must include both a gallery preview image and an Open Graph image: add a themed preview to `apps/web/components/previews/<name>.tsx` and a Satori-safe (hex colors) twin to `apps/web/components/previews/og/<name>.tsx` (barrels regenerate on predev/prebuild), wire the themed name into `components/mdx/components-catalog.tsx`, and add `<name>/opengraph-image.tsx` beside the other routes.
+Every new component or utility must include both a gallery preview image and an Open Graph image: add a themed preview to `apps/web/components/previews/<name>.tsx` and a Satori-safe (hex colors) twin to `apps/web/components/previews/og/<name>.tsx` (barrels and the slug→preview map regenerate on predev/prebuild), wire the themed name into `components/mdx/components-catalog.tsx`. OG images need no per-page route: `app/docs/og/[...slug]/route.tsx` serves a unique card for every docs page from the frontmatter title/description plus the matching `og/<name>` preview.
 
 ## Copyable page and .md endpoint
 

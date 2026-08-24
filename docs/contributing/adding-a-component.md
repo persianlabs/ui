@@ -83,7 +83,7 @@ Without that namespace entry, `.md`/copy-page versions render API tables with he
 
 ## 7. Images
 
-- OG image route: copy an existing `apps/web/app/docs/components/<name>/opengraph-image.tsx` and swap preview/title/description.
+- OG image: add an inline-styled `<Name>Preview` (Satori-safe, hex colors) to `apps/web/components/previews/og/<name>.tsx`. No route needed — `app/docs/og/[...slug]/route.tsx` picks it up through the generated slug map and serves a unique card built from the page's frontmatter title/description.
 - Gallery thumbnail: add an inline-styled `<Name>Preview` to `apps/web/lib/component-previews.tsx`, then wire it into the catalog island `components/mdx/components-catalog.tsx`.
 
 Never use Persian characters inside OG previews except when the Persian glyph is itself the subject being demonstrated.
