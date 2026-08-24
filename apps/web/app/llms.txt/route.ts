@@ -123,6 +123,7 @@ const COMPONENT_GROUPS: { group: string; slugs: string[] }[] = [
       "progress",
       "skeleton",
       "spinner",
+      "status-button",
       "toast",
     ],
   },
