@@ -39,6 +39,7 @@
     "react-textarea-autosize": "^8.5.9",
     "rehype-pretty-code": "^0.14.5",
     "rehype-stringify": "^10.0.1",
+    "reicon": "^1.2.1",
     "remark-gfm": "^4.0.1",
     "remark-parse": "^11.0.0",
     "remark-rehype": "^11.1.2",

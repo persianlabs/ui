@@ -8,13 +8,10 @@ import {
   ArrowDownIcon,
   ArrowUpIcon,
   BoxIcon,
-  CompassIcon,
   CornerDownLeftIcon,
-  LayoutGridIcon,
-  PackageIcon,
   SearchIcon,
-  type LucideIcon,
 } from "lucide-react"
+import { DocText, MainComponent2, type IconFunction } from "reicon"
 
 import { Button } from "@workspace/ui/components/button"
 import {
@@ -44,11 +41,25 @@ interface SearchItem {
   badge?: string
 }
 
-/** Every item under a group shares its icon — one glyph per category, not per page. */
-const groupIcons: Record<string, LucideIcon> = {
-  "Getting Started": CompassIcon,
-  Components: LayoutGridIcon,
-  Resources: PackageIcon,
+/**
+ * Reicon ships imperative icon factories (DOM nodes / SVG strings), not React
+ * components, so the markup is injected through a span. The inner svg picks up
+ * CommandItem's `[&_svg]` sizing and muted color automatically.
+ */
+function ReiconGlyph({ icon }: { icon: IconFunction }) {
+  return (
+    <span
+      aria-hidden
+      className="inline-flex"
+      dangerouslySetInnerHTML={{ __html: icon.toSvg({ size: 16 }) }}
+    />
+  )
+}
+
+/** Per-item glyphs — one per category, not per page. Group labels stay text-only. */
+const groupIcons: Record<string, React.ReactNode> = {
+  "Getting Started": <ReiconGlyph icon={DocText} />,
+  Components: <ReiconGlyph icon={MainComponent2} />,
 }
 
 /**
@@ -58,7 +69,7 @@ const groupIcons: Record<string, LucideIcon> = {
 const searchGroups = docsNav
   .map((group) => ({
     value: group.title,
-    icon: groupIcons[group.title] ?? BoxIcon,
+    icon: groupIcons[group.title] ?? <BoxIcon />,
     items: group.items
       .filter((item) => !item.disabled)
       .map((item): SearchItem => ({
@@ -121,10 +132,7 @@ export function SiteSearch() {
             {(group: (typeof searchGroups)[number], index: number) => (
               <React.Fragment key={group.value}>
                 <CommandGroup items={group.items}>
-                  <CommandGroupLabel className="flex items-center gap-1.5">
-                    <group.icon className="size-3.5" />
-                    {group.value}
-                  </CommandGroupLabel>
+                  <CommandGroupLabel>{group.value}</CommandGroupLabel>
                   <CommandCollection>
                     {(item: SearchItem) => (
                       <CommandItem
@@ -132,7 +140,7 @@ export function SiteSearch() {
                         value={item.value}
                         onClick={() => handleSelect(item.href)}
                       >
-                        <group.icon />
+                        {group.icon}
                         {item.label}
                         {item.badge && (
                           <Badge className="ms-auto">{item.badge}</Badge>
