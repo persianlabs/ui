@@ -89,9 +89,12 @@ function SelectContent({
   className,
   sideOffset = 6,
   children,
+  finalFocus,
   ...props
 }: SelectPrimitive.Positioner.Props & {
   sideOffset?: number
+  /** Forwarded to Popup: the element to focus once the popup closes. */
+  finalFocus?: SelectPrimitive.Popup.Props["finalFocus"]
 }) {
   const { dir } = React.useContext(SelectDirContext)
 
@@ -116,6 +119,7 @@ function SelectContent({
       >
         <SelectPrimitive.Popup
           data-slot="select-content"
+          finalFocus={finalFocus}
           className={cn(
             "flex max-h-80 w-[var(--anchor-width)] min-w-40 origin-[var(--transform-origin)] flex-col overflow-hidden rounded-lg border border-border bg-popover text-popover-foreground shadow-md duration-150 data-open:animate-in data-open:fade-in-0 data-open:zoom-in-95 data-closed:animate-out data-closed:fade-out-0 data-closed:zoom-out-95",
             className
