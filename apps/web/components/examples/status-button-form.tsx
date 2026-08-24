@@ -41,7 +41,7 @@ export function StatusButtonFormExample() {
       className="flex w-full max-w-xs flex-col gap-4"
       onSubmit={handleSubmit}
     >
-      <Field data-invalid={error !== null}>
+      <Field data-invalid={error !== null || undefined}>
         <FieldLabel htmlFor={id}>Email</FieldLabel>
         <Input
           id={id}
