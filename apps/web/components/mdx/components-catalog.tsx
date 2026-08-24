@@ -49,6 +49,7 @@ import {
   NavigationMenuPreview,
   PaginationPreview,
   PasswordInputPreview,
+  PlateInputPreview,
   PopoverPreview,
   PriceInputPreview,
   ProgressPreview,
@@ -1039,6 +1040,20 @@ export function ComponentsCatalog() {
       thumbnail: (
         <ThumbnailFrame>
           <StatusButtonPreview />
+        </ThumbnailFrame>
+      ),
+    },
+    {
+      title: "Plate Input",
+      href: "/docs/components/plate-input" as const,
+      description:
+        "An Iranian vehicle license plate input with digit segments, a letter picker including wheelchair plates, and the Iran serial tab.",
+      createdAt: "2026-08-24",
+      thumbnail: (
+        <ThumbnailFrame>
+          <div style={{ transform: "scale(0.85)" }}>
+            <PlateInputPreview />
+          </div>
         </ThumbnailFrame>
       ),
     },

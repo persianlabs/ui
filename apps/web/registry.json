@@ -1483,6 +1483,25 @@
           "type": "registry:hook"
         }
       ]
+    },
+    {
+      "name": "plate-input",
+      "type": "registry:ui",
+      "title": "Plate Input",
+      "description": "An Iranian vehicle license plate input with digit segments, a letter picker including wheelchair plates, and the Iran serial tab.",
+      "registryDependencies": [
+        "utils",
+        "@persianlabsui/input-group",
+        "@persianlabsui/select",
+        "@persianlabsui/normalize-persian-digits"
+      ],
+      "dependencies": ["@base-ui/react", "lucide-react"],
+      "files": [
+        {
+          "path": "registry/base/ui/plate-input.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
