@@ -1100,6 +1100,26 @@ export const exampleLoaders: Record<
     import("@/components/examples/persian-slug-transliterate").then(
       (m) => m.PersianSlugTransliterateExample
     ),
+  "plate-input-controlled": () =>
+    import("@/components/examples/plate-input-controlled").then(
+      (m) => m.PlateInputControlledExample
+    ),
+  "plate-input-demo": () =>
+    import("@/components/examples/plate-input-demo").then(
+      (m) => m.PlateInputDemoExample
+    ),
+  "plate-input-paste": () =>
+    import("@/components/examples/plate-input-paste").then(
+      (m) => m.PlateInputPasteExample
+    ),
+  "plate-input-rtl": () =>
+    import("@/components/examples/plate-input-rtl").then(
+      (m) => m.PlateInputRtlExample
+    ),
+  "plate-input-wheelchair": () =>
+    import("@/components/examples/plate-input-wheelchair").then(
+      (m) => m.PlateInputWheelchairExample
+    ),
   "popover-demo": () =>
     import("@/components/examples/popover-demo").then(
       (m) => m.PopoverDemoExample
@@ -2041,6 +2061,11 @@ export type ExampleMap = {
   "persian-slug-demo": React.ComponentType
   "persian-slug-rtl": React.ComponentType
   "persian-slug-transliterate": React.ComponentType
+  "plate-input-controlled": React.ComponentType
+  "plate-input-demo": React.ComponentType
+  "plate-input-paste": React.ComponentType
+  "plate-input-rtl": React.ComponentType
+  "plate-input-wheelchair": React.ComponentType
   "popover-demo": React.ComponentType
   "popover-form": React.ComponentType
   "popover-rtl": React.ComponentType

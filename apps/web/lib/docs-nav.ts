@@ -101,6 +101,11 @@ export const docsNav: DocsNavGroup[] = [
         title: "Password Input",
         href: "/docs/components/password-input",
       },
+      {
+        title: "Plate Input",
+        href: "/docs/components/plate-input",
+        badge: "New",
+      },
       { title: "Popover", href: "/docs/components/popover" },
       { title: "Price Input", href: "/docs/components/price-input" },
       { title: "Progress", href: "/docs/components/progress" },
