@@ -68,6 +68,7 @@ import {
   SkeletonPreview,
   SliderPreview,
   SpinnerPreview,
+  StatusButtonPreview,
   SwitchPreview,
   TablePreview,
   TabsPreview,
@@ -1026,6 +1027,18 @@ export function ComponentsCatalog() {
       thumbnail: (
         <ThumbnailFrame>
           <SliderPreview />
+        </ThumbnailFrame>
+      ),
+    },
+    {
+      title: "Status Button",
+      href: "/docs/components/status-button" as const,
+      description:
+        "A button that swaps between idle, loading, and success feedback for async actions.",
+      createdAt: "2026-08-24",
+      thumbnail: (
+        <ThumbnailFrame>
+          <StatusButtonPreview />
         </ThumbnailFrame>
       ),
     },

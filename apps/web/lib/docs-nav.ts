@@ -140,6 +140,11 @@ export const docsNav: DocsNavGroup[] = [
         badge: "New",
       },
       { title: "Spinner", href: "/docs/components/spinner" },
+      {
+        title: "Status Button",
+        href: "/docs/components/status-button",
+        badge: "New",
+      },
       { title: "Switch", href: "/docs/components/switch" },
       { title: "Table", href: "/docs/components/table" },
       { title: "Tabs", href: "/docs/components/tabs" },

@@ -41,6 +41,16 @@ function FieldGroup({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+function FieldItem({ className, ...props }: FieldPrimitive.Item.Props) {
+  return (
+    <FieldPrimitive.Item
+      data-slot="field-item"
+      className={cn("flex", className)}
+      {...props}
+    />
+  )
+}
+
 function FieldLabel({ className, ...props }: FieldPrimitive.Label.Props) {
   return (
     <FieldPrimitive.Label
@@ -80,4 +90,19 @@ function FieldError({ className, ...props }: FieldPrimitive.Error.Props) {
   )
 }
 
-export { Field, FieldDescription, FieldError, FieldGroup, FieldLabel }
+// Aliases for Base UI parts that need no extra styling, exposed so custom or
+// third-party controls can register with the field context and so validity
+// state is reachable via render props.
+const FieldControl: typeof FieldPrimitive.Control = FieldPrimitive.Control
+const FieldValidity: typeof FieldPrimitive.Validity = FieldPrimitive.Validity
+
+export {
+  Field,
+  FieldControl,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldItem,
+  FieldLabel,
+  FieldValidity,
+}
