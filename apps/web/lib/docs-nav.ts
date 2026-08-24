@@ -134,11 +134,7 @@ export const docsNav: DocsNavGroup[] = [
       { title: "Sheet", href: "/docs/components/sheet" },
       { title: "Sidebar", href: "/docs/components/sidebar" },
       { title: "Skeleton", href: "/docs/components/skeleton" },
-      {
-        title: "Slider",
-        href: "/docs/components/slider",
-        badge: "New",
-      },
+      { title: "Slider", href: "/docs/components/slider" },
       { title: "Spinner", href: "/docs/components/spinner" },
       {
         title: "Status Button",
