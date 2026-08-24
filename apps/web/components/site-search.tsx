@@ -84,6 +84,16 @@ const searchGroups = docsNav
 export function SiteSearch() {
   const router = useRouter()
   const [open, setOpen] = React.useState(false)
+  // Server render assumes the non-Apple label so Windows/Linux — the common
+  // case here — get the right glyph on first paint; Apple devices swap to
+  // the Command glyph after mount once the user agent is readable.
+  const [isApple, setIsApple] = React.useState(false)
+
+  React.useEffect(() => {
+    const init = () =>
+      setIsApple(/mac|iphone|ipad|ipod/i.test(window.navigator.userAgent))
+    init()
+  }, [])
 
   React.useEffect(() => {
     function down(event: KeyboardEvent) {
@@ -117,7 +127,9 @@ export function SiteSearch() {
               <SearchIcon />
               <span className="hidden lg:inline">Search...</span>
             </span>
-            <Kbd className="hidden lg:inline-flex">⌘K</Kbd>
+            <Kbd className="hidden lg:inline-flex">
+              {isApple ? "⌘K" : "Ctrl K"}
+            </Kbd>
           </Button>
         }
       />
