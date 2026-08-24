@@ -692,8 +692,16 @@ export const exampleLoaders: Record<
     ),
   "empty-rtl": () =>
     import("@/components/examples/empty-rtl").then((m) => m.EmptyRtlExample),
+  "field-checkbox": () =>
+    import("@/components/examples/field-checkbox").then(
+      (m) => m.FieldCheckboxExample
+    ),
   "field-demo": () =>
     import("@/components/examples/field-demo").then((m) => m.FieldDemoExample),
+  "field-disabled": () =>
+    import("@/components/examples/field-disabled").then(
+      (m) => m.FieldDisabledExample
+    ),
   "field-error": () =>
     import("@/components/examples/field-error").then(
       (m) => m.FieldErrorExample
@@ -702,8 +710,28 @@ export const exampleLoaders: Record<
     import("@/components/examples/field-horizontal").then(
       (m) => m.FieldHorizontalExample
     ),
+  "field-input-group": () =>
+    import("@/components/examples/field-input-group").then(
+      (m) => m.FieldInputGroupExample
+    ),
+  "field-required": () =>
+    import("@/components/examples/field-required").then(
+      (m) => m.FieldRequiredExample
+    ),
   "field-rtl": () =>
     import("@/components/examples/field-rtl").then((m) => m.FieldRtlExample),
+  "field-switch": () =>
+    import("@/components/examples/field-switch").then(
+      (m) => m.FieldSwitchExample
+    ),
+  "field-textarea": () =>
+    import("@/components/examples/field-textarea").then(
+      (m) => m.FieldTextareaExample
+    ),
+  "field-validity": () =>
+    import("@/components/examples/field-validity").then(
+      (m) => m.FieldValidityExample
+    ),
   "hitbox-debug": () =>
     import("@/components/examples/hitbox-debug").then(
       (m) => m.HitboxDebugExample
@@ -1396,6 +1424,18 @@ export const exampleLoaders: Record<
     import("@/components/examples/spinner-rtl").then(
       (m) => m.SpinnerRtlExample
     ),
+  "status-button-demo": () =>
+    import("@/components/examples/status-button-demo").then(
+      (m) => m.StatusButtonDemoExample
+    ),
+  "status-button-form": () =>
+    import("@/components/examples/status-button-form").then(
+      (m) => m.StatusButtonFormExample
+    ),
+  "status-button-rtl": () =>
+    import("@/components/examples/status-button-rtl").then(
+      (m) => m.StatusButtonRtlExample
+    ),
   "switch-demo": () =>
     import("@/components/examples/switch-demo").then(
       (m) => m.SwitchDemoExample
@@ -1891,10 +1931,17 @@ export type ExampleMap = {
   "empty-input-group": React.ComponentType
   "empty-outline": React.ComponentType
   "empty-rtl": React.ComponentType
+  "field-checkbox": React.ComponentType
   "field-demo": React.ComponentType
+  "field-disabled": React.ComponentType
   "field-error": React.ComponentType
   "field-horizontal": React.ComponentType
+  "field-input-group": React.ComponentType
+  "field-required": React.ComponentType
   "field-rtl": React.ComponentType
+  "field-switch": React.ComponentType
+  "field-textarea": React.ComponentType
+  "field-validity": React.ComponentType
   "hitbox-debug": React.ComponentType
   "hitbox-demo": React.ComponentType
   "hitbox-positions": React.ComponentType
@@ -2078,6 +2125,9 @@ export type ExampleMap = {
   "spinner-button": React.ComponentType
   "spinner-demo": React.ComponentType
   "spinner-rtl": React.ComponentType
+  "status-button-demo": React.ComponentType
+  "status-button-form": React.ComponentType
+  "status-button-rtl": React.ComponentType
   "switch-demo": React.ComponentType
   "switch-rtl": React.ComponentType
   "switch-size": React.ComponentType
