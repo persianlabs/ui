@@ -94,6 +94,11 @@ export const docsNav: DocsNavGroup[] = [
         href: "/docs/components/mobile-number-input",
         badge: "New",
       },
+      {
+        title: "National ID Input",
+        href: "/docs/components/national-id-input",
+        badge: "New",
+      },
       { title: "Native Select", href: "/docs/components/native-select" },
       { title: "Navigation Menu", href: "/docs/components/navigation-menu" },
       { title: "Pagination", href: "/docs/components/pagination" },

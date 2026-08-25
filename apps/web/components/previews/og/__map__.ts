@@ -15,6 +15,7 @@ import { ButtonPreview } from "./button"
 import { CalendarPreview } from "./calendar"
 import { CardPreview } from "./card"
 import { CarouselPreview } from "./carousel"
+import { ChartsPreview } from "./charts"
 import { CheckboxPreview } from "./checkbox"
 import { CitySelectorPreview } from "./city-selector"
 import { CollapsiblePreview } from "./collapsible"
@@ -47,6 +48,7 @@ import { MenubarPreview } from "./menubar"
 import { MessageScrollerPreview } from "./message-scroller"
 import { MessagePreview } from "./message"
 import { MobileNumberInputPreview } from "./mobile-number-input"
+import { NationalIDInputPreview } from "./national-id-input"
 import { NationalIdPreview } from "./national-id"
 import { NativeSelectPreview } from "./native-select"
 import { NavigationMenuPreview } from "./navigation-menu"
@@ -115,6 +117,7 @@ export const OG_PREVIEWS: Record<string, ComponentType> = {
   calendar: CalendarPreview,
   card: CardPreview,
   carousel: CarouselPreview,
+  charts: ChartsPreview,
   checkbox: CheckboxPreview,
   "city-selector": CitySelectorPreview,
   collapsible: CollapsiblePreview,
@@ -147,6 +150,7 @@ export const OG_PREVIEWS: Record<string, ComponentType> = {
   "message-scroller": MessageScrollerPreview,
   message: MessagePreview,
   "mobile-number-input": MobileNumberInputPreview,
+  "national-id-input": NationalIDInputPreview,
   "national-id": NationalIdPreview,
   "native-select": NativeSelectPreview,
   "navigation-menu": NavigationMenuPreview,
