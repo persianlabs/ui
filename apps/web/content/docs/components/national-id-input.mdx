@@ -1,0 +1,50 @@
+---
+title: "National ID Input"
+description: "An Iranian national ID (کد ملی) input that normalizes Persian digits as you type or paste and validates the checksum live, with a redundant validity indicator."
+badge: "New"
+---
+
+import { nationalIdInputApi } from "@/lib/api-data/national-id-input"
+
+A plain Iranian national ID (کد ملی) field built on [Input Group](/docs/components/input-group), validated through the [National ID](/docs/utilities/national-id) utility. It normalizes Persian and Arabic-Indic digits to Latin as you type or paste, using [Normalize Persian Digits](/docs/utilities/normalize-persian-digits), caps the value at 10 digits, and shows a shape-based (not color-only) checkmark or alert icon once the value looks complete.
+
+<LastEdited path="apps/web/content/docs/components/national-id-input.mdx" />
+
+## Overview
+
+<ComponentPreview name="national-id-input-demo" />
+
+## Installation
+
+Install the input, its validation utility, and the input-group primitives in one step.
+
+<InstallTabs
+  command="npx shadcn@latest add @persianlabsui/national-id-input"
+  packages="lucide-react"
+  sourceName="national-id-input"
+  sourceTitle="components/ui/national-id-input.tsx"
+/>
+
+## Usage
+
+```tsx
+import { NationalIdInput } from "@/components/ui/national-id-input"
+
+export function Example() {
+  return <NationalIdInput />
+}
+```
+
+The value is the typed digits only — Latin `0`–`9`, at most 10 characters, leading zeros preserved exactly as typed. The component reports validity only once all 10 digits are present; shorter values stay neutral while typing. If your backend stores codes without leading zeros, the [National ID](/docs/utilities/national-id) utility's `isValidNationalId` also accepts 8–9 digit values and zero-pads them internally.
+
+## Examples
+
+### RTL [#rtl]
+
+Labels and helper text follow the surrounding RTL interface while the digit value remains intentionally LTR. Persian digits are normalized as you type or paste.
+
+<ComponentPreview name="national-id-input-rtl" direction="rtl" />
+
+## API Reference
+
+<ApiReference title="NationalIdInput" rows={nationalIdInputApi} />

@@ -1,7 +1,22 @@
 import { ImageResponse } from "next/og"
 import type * as React from "react"
 
+import { reshapePersian } from "@workspace/ui/lib/persian-reshape"
+
 export const ogImageSize = { width: 1200, height: 630 }
+
+/**
+ * Contiguous Arabic-script runs (inner spaces and ZWNJ included), used to
+ * reshape only the Persian fragments embedded in otherwise-English titles
+ * and descriptions — reshapePersian itself assumes a predominantly RTL
+ * paragraph and would mirror the whole sentence.
+ */
+const RTL_SEGMENT =
+  /[\u0600-\u06FF\uFB50-\uFDFF\uFE70-\uFEFF]+(?:[\s\u200c]+[\u0600-\u06FF\uFB50-\uFDFF\uFE70-\uFEFF]+)*/g
+
+function reshapeMixed(text: string) {
+  return text.replace(RTL_SEGMENT, (segment) => reshapePersian(segment))
+}
 
 const compactDescriptions: Record<string, string> = {
   Accordion: "Expandable content sections.",
@@ -150,7 +165,7 @@ export function buildOgImage(
             color: "#f2f0ee",
           }}
         >
-          {title}
+          {reshapeMixed(title)}
         </div>
 
         <div
@@ -164,7 +179,7 @@ export function buildOgImage(
             color: "rgba(242,240,238,0.6)",
           }}
         >
-          {compactDescription}
+          {reshapeMixed(compactDescription)}
         </div>
       </div>
 

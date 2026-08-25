@@ -972,6 +972,14 @@ export const exampleLoaders: Record<
     import("@/components/examples/mobile-number-input-rtl").then(
       (m) => m.MobileNumberInputRtlExample
     ),
+  "national-id-input-demo": () =>
+    import("@/components/examples/national-id-input-demo").then(
+      (m) => m.NationalIdInputDemoExample
+    ),
+  "national-id-input-rtl": () =>
+    import("@/components/examples/national-id-input-rtl").then(
+      (m) => m.NationalIdInputRtlExample
+    ),
   "native-select-demo": () =>
     import("@/components/examples/native-select-demo").then(
       (m) => m.NativeSelectDemoExample
@@ -2029,6 +2037,8 @@ export type ExampleMap = {
   "message-scroller-rtl": React.ComponentType
   "mobile-number-input-demo": React.ComponentType
   "mobile-number-input-rtl": React.ComponentType
+  "national-id-input-demo": React.ComponentType
+  "national-id-input-rtl": React.ComponentType
   "native-select-demo": React.ComponentType
   "native-select-rtl": React.ComponentType
   "native-select-size": React.ComponentType

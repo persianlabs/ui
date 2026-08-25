@@ -83,8 +83,12 @@ Without that namespace entry, `.md`/copy-page versions render API tables with he
 
 ## 7. Images
 
-- OG image: add an inline-styled `<Name>Preview` (Satori-safe, hex colors) to `apps/web/components/previews/og/<name>.tsx`. No route needed — `app/docs/og/[...slug]/route.tsx` picks it up through the generated slug map and serves a unique card built from the page's frontmatter title/description.
-- Gallery thumbnail: add an inline-styled `<Name>Preview` to `apps/web/lib/component-previews.tsx`, then wire it into the catalog island `components/mdx/components-catalog.tsx`.
+Every component page gets both images — installable components and guide pages alike (Charts ships one too); a missing or misnamed preview shows up as "No preview available" in the sidebar hover.
+
+- Gallery thumbnail: add an inline-styled `<Name>Preview` (colors via the `preview` token const from `./shared`) to `apps/web/components/previews/<name>.tsx`, then wire it into the catalog island `components/mdx/components-catalog.tsx`. The export name is mechanical: exactly the `docs-nav.ts` title with spaces removed + `Preview`, acronyms included — "Input OTP" → `InputOTPPreview`, "National ID Input" → `NationalIDInputPreview`.
+- OG image: add the Satori-safe twin (same layout, hardcoded hex colors) to `apps/web/components/previews/og/<name>.tsx`. No route needed — `app/docs/og/[...slug]/route.tsx` picks it up through the generated slug map and serves a unique card built from the page's frontmatter title/description.
+
+The barrels and the slug→preview map regenerate on `predev`/`prebuild`; never edit them by hand.
 
 Never use Persian characters inside OG previews except when the Persian glyph is itself the subject being demonstrated.
 

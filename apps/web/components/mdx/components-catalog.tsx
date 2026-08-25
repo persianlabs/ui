@@ -45,6 +45,7 @@ import {
   MessagePreview,
   MessageScrollerPreview,
   MobileNumberInputPreview,
+  NationalIDInputPreview,
   NativeSelectPreview,
   NavigationMenuPreview,
   PaginationPreview,
@@ -808,6 +809,18 @@ export function ComponentsCatalog() {
       thumbnail: (
         <ThumbnailFrame>
           <MobileNumberInputPreview />
+        </ThumbnailFrame>
+      ),
+    },
+    {
+      title: "National ID Input",
+      href: "/docs/components/national-id-input" as const,
+      description:
+        "An Iranian national ID (کد ملی) input that normalizes Persian digits as you type or paste and validates the checksum live, with a redundant validity indicator.",
+      createdAt: "2026-08-26",
+      thumbnail: (
+        <ThumbnailFrame>
+          <NationalIDInputPreview />
         </ThumbnailFrame>
       ),
     },

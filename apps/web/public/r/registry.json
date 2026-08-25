@@ -1502,6 +1502,29 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "national-id-input",
+      "type": "registry:ui",
+      "title": "National ID Input",
+      "description": "An Iranian national ID (کد ملی) input that normalizes Persian digits as you type or paste and validates the checksum live, with a redundant validity indicator.",
+      "registryDependencies": [
+        "utils",
+        "@persianlabsui/input-group",
+        "@persianlabsui/national-id",
+        "@persianlabsui/normalize-persian-digits"
+      ],
+      "dependencies": ["lucide-react"],
+      "files": [
+        {
+          "path": "registry/base/ui/national-id-input.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base/hooks/use-controllable-state.ts",
+          "type": "registry:hook"
+        }
+      ]
     }
   ]
 }
