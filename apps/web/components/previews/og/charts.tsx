@@ -4,13 +4,13 @@ export function ChartsPreview() {
     <div
       style={{
         display: "flex",
-        width: "440px",
-        height: "240px",
+        width: "220px",
+        height: "120px",
         alignItems: "flex-end",
-        gap: "18px",
-        padding: "28px",
+        gap: "9px",
+        padding: "14px",
         border: "1px solid rgba(242,240,238,0.16)",
-        borderRadius: "16px",
+        borderRadius: "8px",
       }}
     >
       {bars.map((height, index) => (
@@ -19,7 +19,7 @@ export function ChartsPreview() {
           style={{
             flex: 1,
             height: `${height}%`,
-            borderRadius: "6px 6px 0 0",
+            borderRadius: "3px 3px 0 0",
             backgroundColor: "#f2f0ee",
             opacity: index === 3 ? 1 : 0.32,
           }}

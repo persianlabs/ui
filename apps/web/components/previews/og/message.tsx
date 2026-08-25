@@ -4,15 +4,15 @@ export function MessagePreview() {
       style={{
         display: "flex",
         alignItems: "flex-end",
-        gap: "24px",
-        width: "380px",
+        gap: "16px",
+        width: "253px",
       }}
     >
       <div
         style={{
           display: "flex",
-          width: "84px",
-          height: "84px",
+          width: "56px",
+          height: "56px",
           borderRadius: "9999px",
           backgroundColor: "rgba(242,240,238,0.14)",
         }}
@@ -20,11 +20,11 @@ export function MessagePreview() {
       <div
         style={{
           display: "flex",
-          borderRadius: "32px",
+          borderRadius: "21px",
           backgroundColor: "rgba(242,240,238,0.1)",
           color: "#f2f0ee",
-          fontSize: "36px",
-          padding: "24px 36px",
+          fontSize: "24px",
+          padding: "16px 24px",
         }}
       >
         Got it, thanks!

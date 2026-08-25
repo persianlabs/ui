@@ -4,10 +4,10 @@ export function PasswordInputPreview() {
       style={{
         display: "flex",
         alignItems: "center",
-        gap: "14px",
-        width: "440px",
-        padding: "22px 28px",
-        borderRadius: "16px",
+        gap: "7px",
+        width: "220px",
+        padding: "11px 14px",
+        borderRadius: "8px",
         backgroundColor: "#191817",
         border: "1px solid rgba(242,240,238,0.16)",
       }}
@@ -16,7 +16,7 @@ export function PasswordInputPreview() {
         style={{
           display: "flex",
           flex: 1,
-          fontSize: "32px",
+          fontSize: "16px",
           letterSpacing: "0.12em",
           color: "#f2f0ee",
         }}
@@ -25,8 +25,8 @@ export function PasswordInputPreview() {
       </div>
       <svg
         aria-hidden="true"
-        width="28"
-        height="28"
+        width="14"
+        height="14"
         viewBox="0 0 24 24"
         fill="none"
         stroke="rgba(242,240,238,0.5)"

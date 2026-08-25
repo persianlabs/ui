@@ -6,9 +6,9 @@ export function NavigationMenuPreview() {
       style={{
         display: "flex",
         alignItems: "center",
-        gap: "8px",
-        padding: "10px",
-        borderRadius: "20px",
+        gap: "4px",
+        padding: "5px",
+        borderRadius: "10px",
         border: "1px solid rgba(242,240,238,0.18)",
         backgroundColor: "rgba(242,240,238,0.07)",
       }}
@@ -19,10 +19,10 @@ export function NavigationMenuPreview() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "6px",
-            padding: "12px 22px",
-            borderRadius: "14px",
-            fontSize: "24px",
+            gap: "3px",
+            padding: "6px 11px",
+            borderRadius: "7px",
+            fontSize: "12px",
             fontWeight: index === 1 ? 600 : 400,
             color: index === 1 ? "#f2f0ee" : "rgba(242,240,238,0.55)",
             backgroundColor:
@@ -33,8 +33,8 @@ export function NavigationMenuPreview() {
           {index === 1 && (
             <svg
               aria-hidden="true"
-              width="20"
-              height="20"
+              width="10"
+              height="10"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"

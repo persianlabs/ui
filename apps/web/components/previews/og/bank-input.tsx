@@ -4,15 +4,15 @@ export function BankInputPreview() {
       style={{
         display: "flex",
         width: "100%",
-        maxWidth: "500px",
+        maxWidth: "250px",
         alignItems: "center",
-        gap: "8px",
-        padding: "24px 28px",
+        gap: "4px",
+        padding: "12px 14px",
         border: "1px solid rgba(242,240,238,0.16)",
-        borderRadius: "9px",
+        borderRadius: "5px",
         color: "#f2f0ee",
         fontFamily: "ui-monospace, SFMono-Regular, Menlo, monospace",
-        fontSize: "24px",
+        fontSize: "12px",
         letterSpacing: "0.06em",
       }}
     >
@@ -23,12 +23,12 @@ export function BankInputPreview() {
         aria-label="Blubank"
         role="img"
         viewBox="0 0 48 48"
-        width="36"
-        height="36"
+        width="18"
+        height="18"
         style={{
           display: "flex",
-          width: "36px",
-          height: "36px",
+          width: "18px",
+          height: "18px",
           flexShrink: 0,
         }}
       >
