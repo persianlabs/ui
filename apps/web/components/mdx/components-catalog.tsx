@@ -1,6 +1,12 @@
 import { CopyCommand } from "@/components/copy-command"
 import { ComponentsGrid } from "@/components/components-grid"
 import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@workspace/ui/components/tabs"
+import {
   AccordionPreview,
   AlertDialogPreview,
   AlertPreview,
@@ -94,6 +100,16 @@ function ThumbnailFrame({ children }: { children: React.ReactNode }) {
   )
 }
 
+/** Builds an install-all CLI command from registry items. Reads straight from
+ * registry.json so newly registered components/utilities appear automatically.
+ */
+function toInstallCommand(items: typeof registry.items) {
+  if (items.length === 0) return ""
+  return `npx shadcn@latest add ${items
+    .map((item) => `@persianlabsui/${item.name}`)
+    .join(" ")}`
+}
+
 /** The /docs/components catalog, extracted from the old page.tsx so the page
  * itself can be a markdown file. Badges come straight from docs-nav so the
  * gallery can never drift out of sync with the sidebar.
@@ -105,10 +121,17 @@ export function ComponentsCatalog() {
       .map((item) => [item.href, item.badge])
   )
 
-  const installAllCommand = `npx shadcn@latest add ${registry.items
-    .filter((item) => item.type === "registry:ui")
-    .map((item) => `@persianlabsui/${item.name}`)
-    .join(" ")}`
+  const installCommands = {
+    components: toInstallCommand(
+      registry.items.filter((item) => item.type === "registry:ui")
+    ),
+    utilities: toInstallCommand(
+      registry.items.filter(
+        (item) => item.type === "registry:lib" || item.type === "registry:hook"
+      )
+    ),
+    all: toInstallCommand(registry.items),
+  }
 
   const components = [
     {
@@ -1083,7 +1106,22 @@ export function ComponentsCatalog() {
   return (
     <>
       <div id="installation" className="mt-6 max-w-2xl">
-        <CopyCommand command={installAllCommand} />
+        <Tabs defaultValue="components">
+          <TabsList>
+            <TabsTrigger value="components">Components</TabsTrigger>
+            <TabsTrigger value="utilities">Utilities</TabsTrigger>
+            <TabsTrigger value="all">All</TabsTrigger>
+          </TabsList>
+          <TabsContent value="components" className="mt-3">
+            <CopyCommand command={installCommands.components} />
+          </TabsContent>
+          <TabsContent value="utilities" className="mt-3">
+            <CopyCommand command={installCommands.utilities} />
+          </TabsContent>
+          <TabsContent value="all" className="mt-3">
+            <CopyCommand command={installCommands.all} />
+          </TabsContent>
+        </Tabs>
       </div>
 
       <div id="catalog">
