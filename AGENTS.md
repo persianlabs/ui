@@ -21,7 +21,9 @@ Full English walkthroughs live in `docs/contributing/` ([adding-a-component.md](
 
 ## Component and utility previews
 
-Every new component or utility must include both a gallery preview image and an Open Graph image: add a themed preview to `apps/web/components/previews/<name>.tsx` and a Satori-safe (hex colors) twin to `apps/web/components/previews/og/<name>.tsx` (barrels and the slug→preview map regenerate on predev/prebuild), wire the themed name into `components/mdx/components-catalog.tsx`. OG images need no per-page route: `app/docs/og/[...slug]/route.tsx` serves a unique card for every docs page from the frontmatter title/description plus the matching `og/<name>` preview.
+Every component page must include both a gallery preview image and an Open Graph image — installable components and guide pages alike (Charts ships one too); nothing in the Components nav group may fall back to "No preview available" in the sidebar hover. Add a themed preview to `apps/web/components/previews/<name>.tsx` and a Satori-safe (hex colors) twin to `apps/web/components/previews/og/<name>.tsx` (barrels and the slug→preview map regenerate on predev/prebuild), wire the themed name into `components/mdx/components-catalog.tsx`. OG images need no per-page route: `app/docs/og/[...slug]/route.tsx` serves a unique card for every docs page from the frontmatter title/description plus the matching `og/<name>` preview.
+
+The themed export name is load-bearing: `components/docs-sidebar.tsx` resolves each sidebar hover preview mechanically as `${nav title with spaces removed}Preview`, so match the `docs-nav.ts` title's exact casing — "Input OTP" exports `InputOTPPreview`, "National ID Input" exports `NationalIDInputPreview` (not `NationalIdInputPreview`).
 
 ## Copyable page and .md endpoint
 
