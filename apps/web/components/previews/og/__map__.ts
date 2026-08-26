@@ -53,6 +53,7 @@ import { NationalIdPreview } from "./national-id"
 import { NativeSelectPreview } from "./native-select"
 import { NavigationMenuPreview } from "./navigation-menu"
 import { NormalizePersianDigitsPreview } from "./normalize-persian-digits"
+import { NumberToPersianWordsPreview } from "./number-to-persian-words"
 import { PaginationPreview } from "./pagination"
 import { PasswordInputPreview } from "./password-input"
 import { PersianDateZodPreview } from "./persian-date-zod"
@@ -155,6 +156,7 @@ export const OG_PREVIEWS: Record<string, ComponentType> = {
   "native-select": NativeSelectPreview,
   "navigation-menu": NavigationMenuPreview,
   "normalize-persian-digits": NormalizePersianDigitsPreview,
+  "number-to-persian-words": NumberToPersianWordsPreview,
   pagination: PaginationPreview,
   "password-input": PasswordInputPreview,
   "persian-date-zod": PersianDateZodPreview,

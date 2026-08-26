@@ -179,6 +179,11 @@ export const docsNav: DocsNavGroup[] = [
         title: "Normalize Persian Digits",
         href: "/docs/utilities/normalize-persian-digits",
       },
+      {
+        title: "Number to Persian Words",
+        href: "/docs/utilities/number-to-persian-words",
+        badge: "New",
+      },
       { title: "Persian Date", href: "/docs/utilities/persian-date" },
       {
         title: "Persian Date (Zod)",

@@ -59,6 +59,7 @@ const compactDescriptions: Record<string, string> = {
   "Message Scroller": "Auto-scrolling chat messages.",
   "Native Select": "A styled native select.",
   "Normalize Persian Digits": "Converts Persian digits to 0–9.",
+  "Number to Persian Words": "Spells numbers out in Persian words.",
   Pagination: "Page navigation controls.",
   "Persian Date": "Jalali/Gregorian date utilities.",
   "Persian Date (Zod)": "Zod schemas for dates and ranges.",

@@ -1101,6 +1101,19 @@
       ]
     },
     {
+      "name": "number-to-persian-words",
+      "type": "registry:lib",
+      "title": "Number to Persian Words",
+      "description": "Spells numbers out in Persian words, accepting Latin or Persian digits with signs, decimals, and thousands separators.",
+      "registryDependencies": ["@persianlabsui/normalize-persian-digits"],
+      "files": [
+        {
+          "path": "registry/base/lib/number-to-persian-words.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "use-controllable-state",
       "type": "registry:hook",
       "title": "useControllableState",

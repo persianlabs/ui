@@ -20,6 +20,8 @@ const utilityDescriptions: Record<string, string> = {
   Hitbox: "Expands touch targets without changing the visible control.",
   "Normalize Persian Digits":
     "Converts Persian and Arabic numerals into a consistent format.",
+  "Number to Persian Words":
+    "Spells amounts out in Persian words, with a compact banking style and rial-to-toman conversion.",
   useControllableState:
     "Synchronizes controlled and uncontrolled component state.",
   useCopyToClipboard:
@@ -195,6 +197,18 @@ export function UtilityPreview({ item }: { item: DocsNavItem }) {
               />
             ))}
           </div>
+        </div>
+      )
+    case "Number to Persian Words":
+      return (
+        <div className="flex h-full flex-col items-center justify-center gap-2 bg-card p-5">
+          <span className="rounded-md bg-muted px-2 py-1 font-mono text-sm">
+            12,500,000
+          </span>
+          <ArrowRightIcon className="size-3.5 rotate-90 text-muted-foreground" />
+          <span className="max-w-52 rounded-md border border-border bg-background px-2 py-1 text-center text-xs leading-5 font-medium">
+            12 میلیون و 500 هزار تومان
+          </span>
         </div>
       )
     case "Persian Slug":
