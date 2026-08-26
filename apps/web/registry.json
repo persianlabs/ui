@@ -811,6 +811,23 @@
       ]
     },
     {
+      "name": "iran-map-picker",
+      "type": "registry:ui",
+      "title": "Iran Map Picker",
+      "description": "An interactive SVG map of Iran's provinces for picking a province, with hover previews, keyboard selection, and shadcn-style controlled state.",
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/base/ui/iran-map-picker.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/base/ui/iran-map-data.ts",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "item",
       "type": "registry:ui",
       "title": "Item",
