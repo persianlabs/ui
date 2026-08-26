@@ -226,7 +226,8 @@ export function numberToPersianWords(
     return ""
   }
 
-  let { integer, negative } = parsed
+  const { negative } = parsed
+  let integer = parsed.integer
   const significantFraction = parsed.fraction.replace(/0+$/, "")
   let suffix = options?.suffix?.trim()
 
