@@ -172,6 +172,7 @@ const UTILITY_GROUPS: { group: string; slugs: string[] }[] = [
       "iranian-bank",
       "national-id",
       "normalize-persian-digits",
+      "normalize-persian-text",
       "number-to-persian-words",
       "persian-date",
       "persian-date-zod",

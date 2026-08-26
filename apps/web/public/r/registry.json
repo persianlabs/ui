@@ -1101,6 +1101,19 @@
       ]
     },
     {
+      "name": "normalize-persian-text",
+      "type": "registry:lib",
+      "title": "Normalize Persian Text",
+      "description": "Unifies Arabic-codepage letters onto Persian ones (ي→ی, ك→ک, …) with opt-in digit folding, diacritic stripping, half-space repair, and space tidying.",
+      "registryDependencies": ["@persianlabsui/normalize-persian-digits"],
+      "files": [
+        {
+          "path": "registry/base/lib/normalize-persian-text.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "number-to-persian-words",
       "type": "registry:lib",
       "title": "Number to Persian Words",

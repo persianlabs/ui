@@ -20,6 +20,8 @@ const utilityDescriptions: Record<string, string> = {
   Hitbox: "Expands touch targets without changing the visible control.",
   "Normalize Persian Digits":
     "Converts Persian and Arabic numerals into a consistent format.",
+  "Normalize Persian Text":
+    "Unifies Arabic-codepage letters onto Persian ones, with opt-in digit folding, diacritic stripping, half-space repair, and space tidying.",
   "Number to Persian Words":
     "Spells amounts out in Persian words, with a compact banking style and rial-to-toman conversion.",
   useControllableState:
@@ -99,6 +101,24 @@ export function UtilityPreview({ item }: { item: DocsNavItem }) {
           <ArrowRightIcon className="size-3.5 text-muted-foreground" />
           <span className="rounded-md border border-border bg-background px-2 py-1 text-sm">
             12345
+          </span>
+        </div>
+      )
+    case "Normalize Persian Text":
+      return (
+        <div className="flex h-full flex-col items-center justify-center gap-2 bg-card p-5">
+          <span
+            dir="rtl"
+            className="rounded-md bg-muted px-2 py-1 font-mono text-sm line-through decoration-red-400/60"
+          >
+            كتاب‌‌هاي خواندني
+          </span>
+          <ArrowRightIcon className="size-3.5 rotate-180 text-muted-foreground" />
+          <span
+            dir="rtl"
+            className="rounded-md border border-border bg-background px-2 py-1 text-xs leading-5 font-medium"
+          >
+            کتاب‌های خواندنی
           </span>
         </div>
       )
