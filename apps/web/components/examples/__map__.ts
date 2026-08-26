@@ -1004,6 +1004,14 @@ export const exampleLoaders: Record<
     import("@/components/examples/normalize-persian-digits-demo").then(
       (m) => m.NormalizePersianDigitsDemoExample
     ),
+  "normalize-persian-text-demo": () =>
+    import("@/components/examples/normalize-persian-text-demo").then(
+      (m) => m.NormalizePersianTextDemoExample
+    ),
+  "normalize-persian-text-search": () =>
+    import("@/components/examples/normalize-persian-text-search").then(
+      (m) => m.NormalizePersianTextSearchExample
+    ),
   "number-to-persian-words-demo": () =>
     import("@/components/examples/number-to-persian-words-demo").then(
       (m) => m.NumberToPersianWordsDemoExample
@@ -2057,6 +2065,8 @@ export type ExampleMap = {
   "navigation-menu-demo": React.ComponentType
   "navigation-menu-rtl": React.ComponentType
   "normalize-persian-digits-demo": React.ComponentType
+  "normalize-persian-text-demo": React.ComponentType
+  "normalize-persian-text-search": React.ComponentType
   "number-to-persian-words-demo": React.ComponentType
   "number-to-persian-words-ltr": React.ComponentType
   "number-to-persian-words-unit": React.ComponentType
