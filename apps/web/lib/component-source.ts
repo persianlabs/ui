@@ -5,15 +5,11 @@ import { assertSafeName } from "./source-name"
 
 export function getComponentSource(name: string) {
   assertSafeName(name, "component")
-  const filePath = path.join(
-    process.cwd(),
-    "registry",
-    "base",
-    "ui",
-    `${name}.tsx`
-  )
-
-  return fs.readFileSync(filePath, "utf8").trim()
+  const base = path.join(process.cwd(), "registry", "base", "ui")
+  const tsx = path.join(base, `${name}.tsx`)
+  if (fs.existsSync(tsx)) return fs.readFileSync(tsx, "utf8").trim()
+  const ts = path.join(base, `${name}.ts`)
+  return fs.readFileSync(ts, "utf8").trim()
 }
 
 export function getLibSource(name: string) {

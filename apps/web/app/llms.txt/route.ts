@@ -65,6 +65,7 @@ const COMPONENT_GROUPS: { group: string; slugs: string[] }[] = [
       "input",
       "input-group",
       "input-otp",
+      "iran-map-picker",
       "label",
       "mobile-number-input",
       "national-id-input",

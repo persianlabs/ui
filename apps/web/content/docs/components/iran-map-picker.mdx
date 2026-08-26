@@ -1,0 +1,57 @@
+---
+title: "Iran Map Picker"
+description: "An interactive SVG map of Iran's provinces for picking a province, with hover previews, keyboard selection, and shadcn-style controlled state."
+---
+
+import { iranMapPickerApi } from "@/lib/api-data/iran-map-picker"
+
+Renders all 31 provinces as a single responsive SVG. Click a province to select it, click again to clear — or navigate with <kbd>Tab</kbd> and press <kbd>Enter</kbd>. The value is the province's ISO 3166-2 code (e.g. `IR-23` for Tehran).
+
+<LastEdited path="apps/web/content/docs/components/iran-map-picker.mdx" />
+
+## Overview
+
+Click or keyboard-navigate the map; the selected province shows below.
+
+<ComponentPreview name="iran-map-picker-demo" />
+
+## Installation
+
+<InstallTabs
+  command="npx shadcn@latest add @persianlabsui/iran-map-picker"
+  sourceName="iran-map-picker"
+  sourceTitle="components/ui/iran-map-picker.tsx"
+  sourceStep="Copy the component into your project"
+  extraSources={[{ name: "iran-map-data", title: "components/ui/iran-map-data.ts", label: "Copy the province data file into your project" }]}
+/>
+
+## Usage
+
+```tsx
+import { IranMapPicker } from "@/components/ui/iran-map-picker"
+
+const [province, setProvince] = useState<string | null>(null)
+
+<IranMapPicker value={province} onValueChange={setProvince} />
+```
+
+## Examples
+
+### Form integration
+
+Pair the picker with any control — the read-only input mirrors the selection:
+
+<ComponentPreview name="iran-map-picker-form" />
+
+## Behavior
+
+- **Value** — ISO 3166-2 codes (`IR-01` … `IR-30`), stable across renames. `IRAN_PROVINCE_SHAPES` is re-exported when you need the full list for legends or selects.
+- **Selection** — clicking a selected province clears it (`null`); uncontrolled usage works via `defaultValue`.
+- **Keyboard** — each province is focusable (<kbd>Tab</kbd>) and toggles with <kbd>Enter</kbd> or <kbd>Space</kbd>; focused provinces get a visible outline.
+- **Hover** — a zero-delay tooltip follows the cursor showing the province name, and the hovered province fills with the primary color.
+- **Data** — boundaries are simplified OpenStreetMap polygons (~25 KB) projected into a fixed 814×748 viewBox, so no mapping library is required.
+- **RTL** — fully RTL-safe; labels render in Persian by default alongside English in tooltips and aria-labels.
+
+## API Reference
+
+<ApiReference title="Iran Map Picker" rows={iranMapPickerApi} />
