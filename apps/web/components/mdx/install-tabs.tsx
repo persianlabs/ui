@@ -22,6 +22,7 @@ export function InstallTabs({
   sourceKind = "component",
   sourceTitle,
   sourceStep = "Copy the component source",
+  extraSources,
 }: {
   /** e.g. "npx shadcn@latest add @persianlabsui/alert" */
   command: string
@@ -33,6 +34,16 @@ export function InstallTabs({
   /** Filename shown above the source block. */
   sourceTitle?: string
   sourceStep?: string
+  /**
+   * Additional source files shown before the primary one in the manual tab,
+   * each with its own Step heading.
+   */
+  extraSources?: Array<{
+    name: string
+    title: string
+    kind?: "component" | "hook" | "lib"
+    label: string
+  }>
 }) {
   return (
     <Tabs defaultValue="cli" className="mt-4">
@@ -47,17 +58,27 @@ export function InstallTabs({
 
       <TabsContent value="manual" className="mt-4">
         <Steps>
-          {packages ? (
+          {packages && (
             <>
               <Step>Install the dependencies</Step>
               <div className="mt-2">
                 <InstallCommand packages={packages} />
               </div>
-              <Step>{sourceStep}</Step>
             </>
-          ) : (
-            <Step>{sourceStep}</Step>
           )}
+          {extraSources?.map((src) => (
+            <div key={src.name}>
+              <Step>{src.label}</Step>
+              <div className="mt-2">
+                <ComponentSourceDoc
+                  kind={src.kind ?? sourceKind}
+                  name={src.name}
+                  title={src.title}
+                />
+              </div>
+            </div>
+          ))}
+          <Step>{sourceStep}</Step>
           {sourceName && (
             <div className="mt-2">
               <ComponentSourceDoc

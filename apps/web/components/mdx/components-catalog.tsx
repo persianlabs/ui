@@ -43,6 +43,7 @@ import {
   InputGroupPreview,
   InputOTPPreview,
   InputPreview,
+  IranMapPickerPreview,
   ItemPreview,
   KbdPreview,
   LabelPreview,
@@ -1090,6 +1091,18 @@ export function ComponentsCatalog() {
           <div style={{ transform: "scale(0.85)" }}>
             <PlateInputPreview />
           </div>
+        </ThumbnailFrame>
+      ),
+    },
+    {
+      title: "Iran Map Picker",
+      href: "/docs/components/iran-map-picker" as const,
+      description:
+        "An interactive SVG map of Iran's provinces for picking a province, with hover previews, keyboard selection, and shadcn-style controlled state.",
+      createdAt: "2026-08-26",
+      thumbnail: (
+        <ThumbnailFrame>
+          <IranMapPickerPreview />
         </ThumbnailFrame>
       ),
     },

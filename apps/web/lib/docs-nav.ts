@@ -79,6 +79,11 @@ export const docsNav: DocsNavGroup[] = [
       { title: "Input", href: "/docs/components/input" },
       { title: "Input Group", href: "/docs/components/input-group" },
       { title: "Input OTP", href: "/docs/components/input-otp" },
+      {
+        title: "Iran Map Picker",
+        href: "/docs/components/iran-map-picker",
+        badge: "New",
+      },
       { title: "Item", href: "/docs/components/item" },
       { title: "Kbd", href: "/docs/components/kbd" },
       { title: "Label", href: "/docs/components/label" },
