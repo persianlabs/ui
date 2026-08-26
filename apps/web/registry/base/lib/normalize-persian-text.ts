@@ -14,6 +14,7 @@ const LETTER_MAP: Record<string, string> = {
 const LETTER_PATTERN = /[يىكٱأإة]/g
 
 /** Harakat, Quranic superscripts, and the kashida elongation character. */
+// eslint-disable-next-line no-misleading-character-class -- combining marks are stripped individually by design
 const DIACRITIC_PATTERN = /[\u064B-\u0655\u0670\u0640\u06D6-\u06ED]/g
 
 const ZWNJ = "\u200C"
