@@ -1,12 +1,12 @@
 import Link from "next/link"
 
 import { AppLogo } from "@/components/app-logo"
-import { GithubStars } from "@/components/github-stars"
-import { GithubIcon, XIcon } from "@/components/icons"
+import { GitHubStars } from "@/components/github-stars"
+import { XIcon } from "@/components/icons"
 import { MobileNav } from "@/components/mobile-nav"
 import { SiteSearch } from "@/components/site-search"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { GITHUB_URL } from "@/lib/github"
+import { GITHUB_REPO } from "@/lib/github"
 
 const navLinks = [
   { href: "/docs", label: "Docs" },
@@ -56,16 +56,7 @@ export function SiteHeader({
 
         <div className="flex items-center gap-3">
           <SiteSearch />
-          <a
-            href={GITHUB_URL}
-            target="_blank"
-            rel="noreferrer"
-            aria-label="View PersianLabs/ui on GitHub"
-            className="flex h-7 items-center gap-2 rounded-md border border-border px-2.5 transition-colors hover:bg-muted"
-          >
-            <GithubIcon className="size-4" />
-            <GithubStars />
-          </a>
+          <GitHubStars repo={GITHUB_REPO} />
           <a
             href="https://x.com/taymakz"
             target="_blank"
