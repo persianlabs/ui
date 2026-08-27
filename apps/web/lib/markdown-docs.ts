@@ -94,6 +94,13 @@ export function processMarkdownForLlms(raw: string): string {
     (_match, command: string) => `${FENCE}bash\n${command}\n${FENCE}`
   )
 
+  // 7b. Multi-manager install blocks collapse to their npm form, matching
+  //     what the on-site widget defaults to copying conceptually.
+  content = content.replace(
+    /<CodeBlockCommand[\s\S]*?\bnpm="([^"]+)"[\s\S]*?\/>/g,
+    (_match, command: string) => `${FENCE}bash\n${command}\n${FENCE}`
+  )
+
   // 8. API reference islands become GFM tables via the same rows the UI
   //    renders.
   content = content.replace(

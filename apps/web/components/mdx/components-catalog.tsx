@@ -1,5 +1,6 @@
-import { CopyCommand } from "@/components/copy-command"
+import { CodeBlockCommand } from "@/components/code-block-command"
 import { ComponentsGrid } from "@/components/components-grid"
+import { convertNpmCommand } from "@/lib/convert-npm-command"
 import {
   Tabs,
   TabsContent,
@@ -1126,13 +1127,22 @@ export function ComponentsCatalog() {
             <TabsTrigger value="all">All</TabsTrigger>
           </TabsList>
           <TabsContent value="components" className="mt-3">
-            <CopyCommand command={installCommands.components} />
+            <CodeBlockCommand
+              prompt="Install every PersianLabs UI component with the shadcn CLI. The full agent-facing catalog lives at https://ui.persian-labs.ir/llms.txt"
+              {...convertNpmCommand(installCommands.components)}
+            />
           </TabsContent>
           <TabsContent value="utilities" className="mt-3">
-            <CopyCommand command={installCommands.utilities} />
+            <CodeBlockCommand
+              prompt="Install every PersianLabs UI utility with the shadcn CLI. The full agent-facing catalog lives at https://ui.persian-labs.ir/llms.txt"
+              {...convertNpmCommand(installCommands.utilities)}
+            />
           </TabsContent>
           <TabsContent value="all" className="mt-3">
-            <CopyCommand command={installCommands.all} />
+            <CodeBlockCommand
+              prompt="Install the whole PersianLabs UI registry — components and utilities — with the shadcn CLI. Browse what ships at https://ui.persian-labs.ir/llms.txt"
+              {...convertNpmCommand(installCommands.all)}
+            />
           </TabsContent>
         </Tabs>
       </div>

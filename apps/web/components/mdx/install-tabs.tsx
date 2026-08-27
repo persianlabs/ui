@@ -1,7 +1,8 @@
-import { CopyCommand } from "@/components/copy-command"
+import { CodeBlockCommand } from "@/components/code-block-command"
 import { InstallCommand } from "@/components/install-command"
 import { ComponentSourceDoc } from "@/components/mdx/component-source-doc"
 import { Step, Steps } from "@/components/steps"
+import { convertNpmCommand } from "@/lib/convert-npm-command"
 import {
   Tabs,
   TabsContent,
@@ -53,7 +54,7 @@ export function InstallTabs({
       </TabsList>
 
       <TabsContent value="cli" className="mt-4">
-        <CopyCommand command={command} />
+        <CodeBlockCommand {...convertNpmCommand(command)} />
       </TabsContent>
 
       <TabsContent value="manual" className="mt-4">

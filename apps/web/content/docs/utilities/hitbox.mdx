@@ -29,7 +29,13 @@ Hitbox preserves the child's semantics while adding an invisible touch target ar
 </TabsList>
 
 <TabsContent value="cli" className="mt-4">
-  <CopyCommand command="npx shadcn@latest add @persianlabsui/hitbox" />
+  <CodeBlockCommand
+    prompt="Add the Hitbox utility to my project. It extends any element's clickable area — see https://ui.persian-labs.ir/llms.txt for the full agent catalog"
+    pnpm="pnpm dlx shadcn@latest add @persianlabsui/hitbox"
+    yarn="yarn dlx shadcn@latest add @persianlabsui/hitbox"
+    npm="npx shadcn@latest add @persianlabsui/hitbox"
+    bun="bunx --bun shadcn@latest add @persianlabsui/hitbox"
+  />
 </TabsContent>
 
 <TabsContent value="manual" className="mt-4">
