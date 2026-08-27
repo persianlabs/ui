@@ -67,10 +67,10 @@ export function SiteHeader({
             <GithubStars />
           </a>
           <a
-            href="https://x.com/persianlabs"
+            href="https://x.com/taymakz"
             target="_blank"
             rel="noreferrer"
-            aria-label="Follow PersianLabs on X"
+            aria-label="Follow taymakz on X"
             className="inline-flex size-7 shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
           >
             <XIcon className="size-3.5" />
