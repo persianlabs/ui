@@ -902,6 +902,14 @@ export const exampleLoaders: Record<
     ),
   "input-rtl": () =>
     import("@/components/examples/input-rtl").then((m) => m.InputRtlExample),
+  "iran-map-picker-demo": () =>
+    import("@/components/examples/iran-map-picker-demo").then(
+      (m) => m.IranMapPickerDemoExample
+    ),
+  "iran-map-picker-form": () =>
+    import("@/components/examples/iran-map-picker-form").then(
+      (m) => m.IranMapPickerFormExample
+    ),
   "item-demo": () =>
     import("@/components/examples/item-demo").then((m) => m.ItemDemoExample),
   "item-image": () =>
@@ -2035,6 +2043,8 @@ export type ExampleMap = {
   "input-otp-separator": React.ComponentType
   "input-required": React.ComponentType
   "input-rtl": React.ComponentType
+  "iran-map-picker-demo": React.ComponentType
+  "iran-map-picker-form": React.ComponentType
   "item-demo": React.ComponentType
   "item-image": React.ComponentType
   "item-outline": React.ComponentType
