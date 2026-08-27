@@ -1128,19 +1128,19 @@ export function ComponentsCatalog() {
           </TabsList>
           <TabsContent value="components" className="mt-3">
             <CodeBlockCommand
-              prompt="Add every PersianLabs UI component to my project"
+              prompt="Install every PersianLabs UI component with the shadcn CLI. The full agent-facing catalog lives at https://ui.persian-labs.ir/llms.txt"
               {...convertNpmCommand(installCommands.components)}
             />
           </TabsContent>
           <TabsContent value="utilities" className="mt-3">
             <CodeBlockCommand
-              prompt="Add every PersianLabs UI utility to my project"
+              prompt="Install every PersianLabs UI utility with the shadcn CLI. The full agent-facing catalog lives at https://ui.persian-labs.ir/llms.txt"
               {...convertNpmCommand(installCommands.utilities)}
             />
           </TabsContent>
           <TabsContent value="all" className="mt-3">
             <CodeBlockCommand
-              prompt="Install the whole PersianLabs UI registry at once"
+              prompt="Install the whole PersianLabs UI registry — components and utilities — with the shadcn CLI. Browse what ships at https://ui.persian-labs.ir/llms.txt"
               {...convertNpmCommand(installCommands.all)}
             />
           </TabsContent>

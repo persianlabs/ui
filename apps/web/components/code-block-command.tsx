@@ -16,6 +16,14 @@ import {
 
 import type { PackageManager } from "@/lib/convert-npm-command"
 
+// Package managers first; any other key (the AI prompt) always renders last.
+const TAB_ORDER: PackageManager[] = ["pnpm", "yarn", "npm", "bun"]
+
+function tabRank(key: string): number {
+  const index = TAB_ORDER.indexOf(key as PackageManager)
+  return index === -1 ? TAB_ORDER.length : index
+}
+
 const packageManagerAtom = atomWithStorage<PackageManager>(
   "packageManager",
   "pnpm"
@@ -55,8 +63,12 @@ export function CodeBlockCommand({
     () => ({ prompt, pnpm, yarn, npm, bun }),
     [prompt, pnpm, yarn, npm, bun]
   )
+  // The AI prompt tab always renders last, whatever the prop order.
   const tabsFiltered = useMemo(
-    () => Object.entries(tabs).filter(([, value]) => !!value),
+    () =>
+      Object.entries(tabs)
+        .filter(([, value]) => !!value)
+        .sort(([a], [b]) => tabRank(a) - tabRank(b)),
     [tabs]
   )
 
