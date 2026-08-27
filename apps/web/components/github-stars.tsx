@@ -71,6 +71,7 @@ export function GitHubStars({ repo, locales = "en-US" }: GitHubStarsProps) {
           <Button
             variant="ghost"
             size="sm"
+            nativeButton={false}
             className="gap-1.5 ps-2 pe-1.5"
             render={<a href={href} target="_blank" rel="noreferrer" />}
           >
