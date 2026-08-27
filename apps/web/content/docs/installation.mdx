@@ -1,0 +1,58 @@
+---
+title: "Installation"
+description: "Add PersianLabs/ui to a shadcn project - init once, then add any component by registry name or direct URL."
+---
+
+PersianLabs/ui is distributed as a [shadcn-compatible registry](https://ui.shadcn.com/docs/registry), so there's no package to install and no version to chase. If your project already has shadcn configured, skip to step 2.
+
+## 1. Initialize shadcn
+
+Run the standard shadcn init once — nothing about this step is specific to this registry.
+
+<CopyCommand command="npx shadcn@latest init" />
+
+You can also use the equivalent for your package manager (`pnpm dlx`, `yarn dlx`, `bunx --bun`), or point shadcn directly at this registry:
+
+<CopyCommand command="npx shadcn@latest init -r https://ui.persian-labs.ir/r/registry.json" />
+
+## 2. Add a component
+
+Add any component by its registry namespace — the CLI copies the source straight into your project and wires dependencies automatically.
+
+<CopyCommand command="npx shadcn@latest add @persianlabsui/tabs" />
+
+The direct-URL form also works:
+
+<CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/tabs.json" />
+
+To install everything the registry offers in one command, use the bundle endpoint:
+
+<CopyCommand command="npx shadcn@latest add https://ui.persian-labs.ir/r/registry.json" />
+
+## 3. Requirements
+
+| Requirement     | Notes                                                               |
+| --------------- | ------------------------------------------------------------------- |
+| React 19+       | Components are built against modern React.                          |
+| TypeScript 5+   | All source ships typed.                                             |
+| Tailwind CSS v4 | Uses the v4 CSS-first configuration.                                |
+| Base UI         | `@base-ui/react` — resolved automatically as a registry dependency. |
+| `lucide-react`  | Icons used across components.                                       |
+
+## 4. First render
+
+After adding a component, import it and drop it into your page:
+
+```tsx
+import { Button } from "@/components/ui/button"
+
+export function App() {
+  return <Button>ذخیره</Button>
+}
+```
+
+## Next steps
+
+- [Theming](/docs/theming) — copy the CSS color tokens into your `globals.css`.
+- [RTL](/docs/rtl) — confirm `dir="rtl"` and the logical-property conventions.
+- [Fonts](/docs/fonts) — pick a Persian font stack that pairs with the components.

@@ -1,4 +1,16 @@
 {
   "title": "Docs",
-  "pages": ["index", "components", "theming", "ai", "utilities"]
+  "pages": [
+    "index",
+    "components",
+    "installation",
+    "theming",
+    "rtl",
+    "fonts",
+    "persian-conventions",
+    "faq",
+    "ai",
+    "cli",
+    "utilities"
+  ]
 }
