@@ -5,7 +5,10 @@ import * as React from "react"
 import { useControllableState } from "@workspace/ui/hooks/use-controllable-state"
 import { cn } from "@workspace/ui/lib/utils"
 
-import { IRAN_MAP_VIEWBOX, IRAN_PROVINCE_SHAPES } from "./iran-map-data"
+import {
+  IRAN_MAP_VIEWBOX,
+  IRAN_PROVINCE_SHAPES,
+} from "@workspace/ui/lib/iran-map-data"
 
 export interface IranMapPickerProps {
   /** The selected province ISO code, e.g. "IR-23". Use when controlled. */
