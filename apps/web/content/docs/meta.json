@@ -1,9 +1,4 @@
 {
   "title": "Docs",
-  "pages": [
-    "index",
-    "components",
-    "theming",
-    "utilities"
-  ]
+  "pages": ["index", "components", "theming", "ai", "utilities"]
 }

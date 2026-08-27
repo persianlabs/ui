@@ -40,6 +40,12 @@ const overview: Entry[] = [
       "The CSS color variables the library ships with, light and dark, ready to copy.",
   },
   {
+    title: "AI",
+    href: "/docs/ai",
+    description:
+      "Agent-facing entry points - the llms.txt catalog, a markdown twin for every doc page, and installs through the shadcn CLI.",
+  },
+  {
     title: "Charts",
     href: "/docs/charts",
     description: "Chart components - pointers to dedicated collections.",
