@@ -39,6 +39,7 @@ import { HoverCardPreview } from "./hover-card"
 import { InputGroupPreview } from "./input-group"
 import { InputOTPPreview } from "./input-otp"
 import { InputPreview } from "./input"
+import { IranMapPickerPreview } from "./iran-map-picker"
 import { IranianBankPreview } from "./iranian-bank"
 import { ItemPreview } from "./item"
 import { KbdPreview } from "./kbd"
@@ -143,6 +144,7 @@ export const OG_PREVIEWS: Record<string, ComponentType> = {
   "input-group": InputGroupPreview,
   "input-otp": InputOTPPreview,
   input: InputPreview,
+  "iran-map-picker": IranMapPickerPreview,
   "iranian-bank": IranianBankPreview,
   item: ItemPreview,
   kbd: KbdPreview,

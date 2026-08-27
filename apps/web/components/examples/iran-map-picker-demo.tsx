@@ -4,7 +4,7 @@ import * as React from "react"
 
 import { Button } from "@workspace/ui/components/button"
 import { IranMapPicker } from "@workspace/ui/components/iran-map-picker"
-import { IRAN_PROVINCE_SHAPES } from "@workspace/ui/components/iran-map-data"
+import { IRAN_PROVINCE_SHAPES } from "@workspace/ui/lib/iran-map-data"
 
 export function IranMapPickerDemoExample() {
   const [value, setValue] = React.useState<string | null>("IR-23")

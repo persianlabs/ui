@@ -1,7 +1,7 @@
 import {
   IRAN_MAP_VIEWBOX,
   IRAN_PROVINCE_SHAPES,
-} from "@workspace/ui/components/iran-map-data"
+} from "@workspace/ui/lib/iran-map-data"
 import { preview } from "./shared"
 
 export function IranMapPickerPreview() {
