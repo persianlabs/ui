@@ -91,9 +91,7 @@ export function ComponentsGrid({
 
       {filteredFeatured.length > 0 && (
         <div className="mt-8">
-          <h2 className="text-sm font-medium text-muted-foreground">
-            New &amp; Special
-          </h2>
+          <h2 className="text-sm font-medium text-muted-foreground">New</h2>
           <div className="mt-4 grid gap-5 sm:grid-cols-2">
             {filteredFeatured.map((component) => (
               <ComponentCard key={component.href} component={component} />

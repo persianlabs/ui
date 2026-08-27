@@ -49,7 +49,7 @@ export const docsNav: DocsNavGroup[] = [
       {
         title: "City Selector",
         href: "/docs/components/city-selector",
-        badge: "Special",
+        badge: "New",
       },
       { title: "Collapsible", href: "/docs/components/collapsible" },
       { title: "Combobox", href: "/docs/components/combobox" },
@@ -98,12 +98,10 @@ export const docsNav: DocsNavGroup[] = [
       {
         title: "Mobile Number Input",
         href: "/docs/components/mobile-number-input",
-        badge: "New",
       },
       {
         title: "National ID Input",
         href: "/docs/components/national-id-input",
-        badge: "New",
       },
       { title: "Native Select", href: "/docs/components/native-select" },
       { title: "Navigation Menu", href: "/docs/components/navigation-menu" },
@@ -121,11 +119,7 @@ export const docsNav: DocsNavGroup[] = [
       { title: "Price Input", href: "/docs/components/price-input" },
       { title: "Progress", href: "/docs/components/progress" },
       { title: "QR Code", href: "/docs/components/qr-code" },
-      {
-        title: "Questionnaire",
-        href: "/docs/components/questionnaire",
-        badge: "New",
-      },
+      { title: "Questionnaire", href: "/docs/components/questionnaire" },
       { title: "Radio Group", href: "/docs/components/radio-group" },
       {
         title: "Receipt Printer",
@@ -176,11 +170,7 @@ export const docsNav: DocsNavGroup[] = [
     items: [
       { title: "Iranian Bank", href: "/docs/utilities/iranian-bank" },
       { title: "Hitbox", href: "/docs/utilities/hitbox" },
-      {
-        title: "National ID",
-        href: "/docs/utilities/national-id",
-        badge: "New",
-      },
+      { title: "National ID", href: "/docs/utilities/national-id" },
       {
         title: "Normalize Persian Digits",
         href: "/docs/utilities/normalize-persian-digits",
@@ -188,12 +178,10 @@ export const docsNav: DocsNavGroup[] = [
       {
         title: "Normalize Persian Text",
         href: "/docs/utilities/normalize-persian-text",
-        badge: "New",
       },
       {
         title: "Number to Persian Words",
         href: "/docs/utilities/number-to-persian-words",
-        badge: "New",
       },
       { title: "Persian Date", href: "/docs/utilities/persian-date" },
       {
@@ -204,21 +192,12 @@ export const docsNav: DocsNavGroup[] = [
         title: "Persian Holidays",
         href: "/docs/utilities/persian-holidays",
       },
-      {
-        title: "Persian Reshape",
-        href: "/docs/utilities/persian-reshape",
-        badge: "New",
-      },
+      { title: "Persian Reshape", href: "/docs/utilities/persian-reshape" },
       {
         title: "Persian Slug",
         href: "/docs/utilities/persian-slug",
-        badge: "New",
       },
-      {
-        title: "Postal Code",
-        href: "/docs/utilities/postal-code",
-        badge: "New",
-      },
+      { title: "Postal Code", href: "/docs/utilities/postal-code" },
       { title: "Scroll Fade", href: "/docs/utilities/scroll-fade" },
       { title: "Shimmer", href: "/docs/utilities/shimmer" },
       {
