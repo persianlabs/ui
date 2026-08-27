@@ -34,16 +34,52 @@ const overview: Entry[] = [
       "What PersianLabs UI is, and why there's no separate installation flow - it's built entirely on top of shadcn/ui.",
   },
   {
+    title: "Installation",
+    href: "/docs/installation",
+    description:
+      "Adding PersianLabs/ui to a shadcn project - init once, then add any component by registry name or direct URL.",
+  },
+  {
     title: "Theming",
     href: "/docs/theming",
     description:
       "The CSS color variables the library ships with, light and dark, ready to copy.",
   },
   {
+    title: "RTL",
+    href: "/docs/rtl",
+    description:
+      "Setting up right-to-left rendering - the dir attribute, the Direction provider, LTR islands, and logical properties.",
+  },
+  {
+    title: "Fonts",
+    href: "/docs/fonts",
+    description:
+      "Choosing a Persian font stack - Vazirmatn and friends via next/font, with tabular digits and mono fallbacks.",
+  },
+  {
+    title: "Persian Conventions",
+    href: "/docs/persian-conventions",
+    description:
+      "A practical guide to Persian digits, grouped prices, the Toman currency, and Shamsi dates.",
+  },
+  {
+    title: "FAQ",
+    href: "/docs/faq",
+    description:
+      "Common questions and troubleshooting - hydration mismatches, RTL confusion, Base UI versions, and the registry and .md endpoints.",
+  },
+  {
     title: "AI",
     href: "/docs/ai",
     description:
       "Agent-facing entry points - the llms.txt catalog, a markdown twin for every doc page, and installs through the shadcn CLI.",
+  },
+  {
+    title: "CLI",
+    href: "/docs/cli",
+    description:
+      "Project starter generator - coming soon. Scaffold a Turborepo or plain Next.js app with the PersianLabs components you need and Vazir preinstalled.",
   },
   {
     title: "Charts",

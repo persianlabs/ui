@@ -1,0 +1,114 @@
+---
+title: "Fonts"
+description: "Choose a Persian font stack - a Persian-first Vazir build with the ss01 feature setting, paired with Geist, plus local-font notes for Next.js."
+---
+
+Persian text renders best with a proper Arabic-script typeface. The resilient choice is a **Persian-first stack**: put a Persian font like _Vazir_ first, then a Latin font like Geist for Latin letters and digits.
+
+## 1. The stack we recommend
+
+Use a Persian font first, then Geist, so Persian glyphs come from the Persian family and Latin/digits fall through where they don't:
+
+```css
+:root {
+  --font-sans: "Vazir", "Vazirmatn", "Geist", system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+}
+```
+
+### Use a Vazir build without Latin and without Persian digits
+
+For the most flexible pairing, prefer a **Vazir build that ships no Latin glyphs and keeps Latin (0-9) digits** instead of forcing Persian digits:
+
+- Because it has no Latin, every Latin character automatically falls to Geist — so mixed Persian/English text and code look consistent.
+- Because digits stay Latin in the font, you aren't locked into ۰-۹ everywhere. Turn on Persian digits **only where you want them** with the digit utilities ([Normalize Persian Digits](/docs/utilities/normalize-persian-digits), `toPersianDigits` from [Persian Date](/docs/utilities/persian-date)), rather than having the base font decide for you.
+
+This keeps body copy, filenames, prices, and form values under your control instead of the font's.
+
+## 2. Persian fonts expose an `ss01` feature
+
+Many Persian/OpenType Persian fonts ship alternate glyphs behind the `ss01` font-feature-setting. Set it by default on your text so the preferred Persian forms render:
+
+```css
+body {
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01";
+}
+```
+
+You can also scope it narrowly:
+
+```css
+/* Example: enable the alternate Persian forms site-wide, off in inputs */
+body {
+  font-feature-settings: "ss01";
+}
+```
+
+PersianLabs/ui components don't override this, so whatever you set on your base keeps applying to them.
+
+## 3. Adding a local font in Next.js
+
+If you self-host the font files (recommended for offline/perf), load them with `next/font/local`. Set `adjustFontFallback: false` so Next.js doesn't generate a Latin metric fallback that can fight the Arabic metrics:
+
+```tsx
+// app/layout.tsx
+import localFont from "next/font/local"
+
+const vazir = localFont({
+  src: "./fonts/Vazir.woff2",
+  weight: "100 900",
+  style: "normal",
+  variable: "--font-vazir",
+  adjustFontFallback: false,
+})
+
+const geist = localFont({
+  src: "./fonts/Geist.woff2",
+  variable: "--font-geist",
+  adjustFontFallback: false,
+})
+```
+
+```css
+:root {
+  --font-sans: "Vazir", "Geist", system-ui, sans-serif;
+}
+```
+
+The same `adjustFontFallback: false` applies to Google-font loading through `next/font/google` when you're layering an Arabic script next to a Latin one — it prevents metric fallback mismatches between the two families.
+
+## 4. If you're not using `next/font`
+
+Load the CSS manually and set the same tokens:
+
+```html
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap"
+/>
+```
+
+```css
+body {
+  font-family: "Vazir", "Vazirmatn", "Geist", system-ui, sans-serif;
+  font-feature-settings: "ss01";
+}
+```
+
+## 5. Numerals and tabular alignment
+
+Values that must align numerically — prices, counts, tables — should use `tabular-nums`. The components already do:
+
+```tsx
+<span className="tabular-nums">۱۲۳٬۴۵۶</span>
+```
+
+## 6. Mixing Persian and code
+
+Commands, URLs, and code stay LTR and use your mono font (see [RTL → LTR islands](/docs/rtl#3-ltr-islands-in-an-rtl-page)). The install blocks across the docs set this up for you.
+
+## Next steps
+
+- [RTL](/docs/rtl) — wire up the text direction.
+- [Typography](/docs/components/typography) — the heading and paragraph styles the library expects.

@@ -16,8 +16,18 @@ export const docsNav: DocsNavGroup[] = [
     items: [
       { title: "Introduction", href: "/docs" },
       { title: "Components", href: "/docs/components" },
+      { title: "Installation", href: "/docs/installation" },
       { title: "Theming", href: "/docs/theming" },
+      { title: "RTL", href: "/docs/rtl" },
+      { title: "Fonts", href: "/docs/fonts" },
+      { title: "Persian Conventions", href: "/docs/persian-conventions" },
+      { title: "FAQ", href: "/docs/faq" },
       { title: "AI", href: "/docs/ai" },
+      {
+        title: "CLI",
+        href: "/docs/cli",
+        badge: "Coming soon",
+      },
       {
         title: "Skills",
         href: "/docs/skills",
@@ -217,18 +227,8 @@ export const docsNav: DocsNavGroup[] = [
   {
     title: "Resources",
     items: [
-      {
-        title: "Blocks",
-        href: "/docs/blocks",
-        badge: "Coming soon",
-        disabled: true,
-      },
-      {
-        title: "Templates",
-        href: "/docs/templates",
-        badge: "Coming soon",
-        disabled: true,
-      },
+      { title: "Blocks", href: "/blocks" },
+      { title: "Templates", href: "/templates" },
     ],
   },
 ]
@@ -244,7 +244,9 @@ export function getAdjacentDocsPages(href: string): {
   prev: DocsNavItem | null
   next: DocsNavItem | null
 } {
-  const flat = getFlatDocsNav()
+  // Only real doc pages participate in prev/next chaining — top-level
+  // roadmap pages (/blocks, /templates) live in the nav but aren't docs.
+  const flat = getFlatDocsNav().filter((item) => item.href.startsWith("/docs"))
   const index = flat.findIndex((item) => item.href === href)
 
   if (index === -1) {

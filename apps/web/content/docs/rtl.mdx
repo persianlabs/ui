@@ -1,0 +1,63 @@
+---
+title: "RTL"
+description: "Set up right-to-left rendering for a Persian interface - the dir attribute, the Direction provider, LTR islands, and logical properties."
+---
+
+Every PersianLabs/ui component is RTL-first: it reads and mirrors correctly under `dir="rtl"` with zero special handling. This page covers how to turn that on and the few places RTL still needs a deliberate choice.
+
+## 1. Set the document direction
+
+The simplest way is to set `dir="rtl"` on the `<html>` element (and `lang="fa"` for the language):
+
+```html
+<html lang="fa" dir="rtl"></html>
+```
+
+All components inherit this direction automatically. Newer browsers also expose a setting that reports the user's preferred direction, which you can honor:
+
+```tsx
+// app/layout.tsx
+export const viewport: Viewport = {
+  // Allow users to override app direction via their browser setting
+}
+```
+
+## 2. The Direction provider
+
+Sometimes you need a different direction in one subtree — a dashboard widget, an embedded LTR block, or a nested locale. Use the [Direction](/docs/components/direction) component to override direction for its children, independent of the document:
+
+```tsx
+<Direction direction="ltr">{/* this subtree renders LTR */}</Direction>
+```
+
+Base UI primitives used under the hood read direction from this provider, so popovers, tooltips, and menus anchor to the correct side automatically.
+
+## 3. LTR islands in an RTL page
+
+Content that is _inherently_ left-to-right — code, commands, URLs — should stay LTR even on a Persian page. Wrap it or pin `dir="ltr"` on the element so punctuation and alignment stay correct:
+
+```tsx
+<div dir="ltr" className="font-mono">
+  npx shadcn@latest add @persianlabsui/button
+</div>
+```
+
+The install command blocks across the docs do exactly this.
+
+## 4. Logical properties
+
+Components use logical CSS (start/end, inline/block) so they flip automatically. When you write your own styles, prefer logical utilities:
+
+- `ms-*` / `me-*` instead of `ml-*` / `mr-*`
+- `ps-*` / `pe-*` instead of `pl-*` / `pr-*`
+- `text-start` / `text-end` instead of `text-left` / `text-right`
+- `border-s-*` / `border-e-*` instead of `border-l-*` / `border-r-*`
+
+## 5. Verify once
+
+Load a component page, flip the built-in direction toggle on its preview, and confirm the layout mirrors and directional icons point the right way. Every component ships with an RTL example you can inspect.
+
+## Next steps
+
+- [Fonts](/docs/fonts) — pair a Persian typeface with the layout.
+- [Persian Numbers, Currency & Dates](/docs/persian-conventions) — get digits, prices, and Shamsi dates right alongside RTL.

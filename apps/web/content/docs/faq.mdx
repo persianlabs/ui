@@ -1,0 +1,36 @@
+---
+title: "FAQ"
+description: "Common questions and troubleshooting - hydration mismatches, RTL confusion, Base UI versions, and how the registry and .md endpoints work."
+---
+
+### Why did my page show a hydration mismatch or blank content?
+
+Reading the current time (`new Date()`, `Date.now()`) during render causes server/client differences. Defer time reads until after mount (e.g. `useEffect`), or use the hooks that already do — [useDate](/docs/utilities/use-date), [useTimeAgo](/docs/utilities/use-time-ago), [useCountdown](/docs/utilities/use-countdown).
+
+### Doesn't RTL "just work"?
+
+Yes — every component is RTL-first. But the document still needs `dir="rtl"` (see [RTL](/docs/rtl)). Mixed LTR/RTL content (code blocks, URLs) should stay LTR via the Direction provider or a `dir="ltr"` wrapper.
+
+### My Persian digits look wrong / aren't converting
+
+Make sure you normalize at the boundary: convert Arabic-Indic (٠-٩) _and_ Persian (۰-۹) to Latin for logic, then format back to Persian for display. [Normalize Persian Digits](/docs/utilities/normalize-persian-digits) and the inputs handle this for you.
+
+### Which Base UI version do I need?
+
+Components depend on `@base-ui/react` (Base UI) and use **no Radix**. Install via `npx shadcn@latest add @persianlabsui/<name>` and the CLI adds the correct dependency automatically. On manual installs, keep `@base-ui/react` recent.
+
+### I want the install command for a package manager other than npm
+
+Every install block on the site has pnpm/yarn/npm/bun tabs, and your choice is remembered. The markdown (`.md`) version shows the npm form.
+
+### Can I read these docs as plain markdown?
+
+Yes — append `.md` to any docs URL (e.g. `/docs/components/button.md`). The site-wide index is at [`/llms.txt`](/llms.txt).
+
+### A component seems to be missing a prop
+
+Check the API reference table on its page — it's generated from the actual source, so names and types there are authoritative.
+
+### Can I contribute?
+
+Yes. See the [contributing guide](https://github.com/persianlabs/ui/tree/main/docs/contributing) and the [agent guide](https://github.com/persianlabs/ui/tree/main/docs/agents).
