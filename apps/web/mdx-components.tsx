@@ -3,6 +3,7 @@ import type { Route } from "next"
 import * as React from "react"
 
 import { CopyCommand } from "@/components/copy-command"
+import { CodeBlockCommand } from "@/components/code-block-command"
 import { InstallCommand } from "@/components/install-command"
 import {
   Tabs,
@@ -196,6 +197,7 @@ export const mdxComponents = {
 
   Link,
   CopyCommand: DocCopyCommand,
+  CodeBlockCommand,
   InstallCommand,
   InstallTabs,
   CodeBlock,

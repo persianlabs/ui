@@ -8,15 +8,15 @@ Powerful tables and datagrids built with [TanStack Table](https://tanstack.com/t
 <LastEdited path="apps/web/content/docs/components/data-table.mdx" />
 
 <Credits
-          sources={[
-            { label: "shadcn/ui", href: "https://ui.shadcn.com" },
-            {
-              label: "TanStack Table",
-              href: "https://tanstack.com/table/latest/docs/introduction",
-            },
-          ]}
-          changed={false}
-        />
+  sources={[
+    { label: "shadcn/ui", href: "https://ui.shadcn.com" },
+    {
+      label: "TanStack Table",
+      href: "https://tanstack.com/table/latest/docs/introduction",
+    },
+  ]}
+  changed={false}
+/>
 
 Every data table or datagrid is unique: they behave differently, have specific sorting and filtering requirements, and work with different data sources. Rather than one rigid component, this guide shows how to build your own on top of the headless `@tanstack/react-table` library and our `<Table />` component.
 
@@ -29,7 +29,13 @@ Every data table or datagrid is unique: they behave differently, have specific s
 <Steps className="mt-4">
 <Step>Add the Table component to your project</Step>
 
-<CopyCommand command="npx shadcn@latest add @persianlabsui/table" />
+<CodeBlockCommand
+  prompt="Add the Table component to my project"
+  pnpm="pnpm dlx shadcn@latest add @persianlabsui/table"
+  yarn="yarn dlx shadcn@latest add @persianlabsui/table"
+  npm="npx shadcn@latest add @persianlabsui/table"
+  bun="bunx --bun shadcn@latest add @persianlabsui/table"
+/>
 
 <Step>Add the TanStack Table dependency. This guide uses v9:</Step>
 
@@ -72,7 +78,6 @@ TanStack Table v9 is feature-based: you opt into behavior — sorting, filtering
 
 ```tsx
 import {
-
   columnFilteringFeature,
   columnVisibilityFeature,
   createFilteredRowModel,
@@ -154,7 +159,6 @@ export const columns = columnHelper.columns([
 import { useTable } from "@tanstack/react-table"
 
 import {
-
   Table,
   TableBody,
   TableCell,
@@ -212,7 +216,7 @@ export function DataTable<TData extends RowData>({
                 ))}
               </TableRow>
             ))
-          ): (
+          ) : (
             <TableRow>
               <TableCell colSpan={columns.length} className="h-24 text-center">
                 No results.
@@ -393,8 +397,7 @@ Add a search input that filters the email column through the registered `include
 
 ```tsx
 const [sorting, setSorting] = React.useState<SortingState>([])
-const [columnFilters, setColumnFilters] =
-  React.useState<ColumnFiltersState>([])
+const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
 
 const table = useTable({
   features,
@@ -488,9 +491,9 @@ columnHelper.display({
   enableHiding: false,
 })
 ```
+
 ```tsx
-const [rowSelection, setRowSelection] =
-  React.useState<RowSelectionState>({})
+const [rowSelection, setRowSelection] = React.useState<RowSelectionState>({})
 
 const table = useTable({
   features,
@@ -502,6 +505,7 @@ const table = useTable({
   },
 })
 ```
+
 ```tsx
 <div className="flex-1 text-sm text-muted-foreground">
   {table.getFilteredSelectedRowModel().rows.length} of{" "}

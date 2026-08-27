@@ -1,5 +1,6 @@
-import { CopyCommand } from "@/components/copy-command"
+import { CodeBlockCommand } from "@/components/code-block-command"
 import { ComponentsGrid } from "@/components/components-grid"
+import { convertNpmCommand } from "@/lib/convert-npm-command"
 import {
   Tabs,
   TabsContent,
@@ -1126,13 +1127,22 @@ export function ComponentsCatalog() {
             <TabsTrigger value="all">All</TabsTrigger>
           </TabsList>
           <TabsContent value="components" className="mt-3">
-            <CopyCommand command={installCommands.components} />
+            <CodeBlockCommand
+              prompt="Add every PersianLabs UI component to my project"
+              {...convertNpmCommand(installCommands.components)}
+            />
           </TabsContent>
           <TabsContent value="utilities" className="mt-3">
-            <CopyCommand command={installCommands.utilities} />
+            <CodeBlockCommand
+              prompt="Add every PersianLabs UI utility to my project"
+              {...convertNpmCommand(installCommands.utilities)}
+            />
           </TabsContent>
           <TabsContent value="all" className="mt-3">
-            <CopyCommand command={installCommands.all} />
+            <CodeBlockCommand
+              prompt="Install the whole PersianLabs UI registry at once"
+              {...convertNpmCommand(installCommands.all)}
+            />
           </TabsContent>
         </Tabs>
       </div>
