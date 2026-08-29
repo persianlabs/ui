@@ -329,8 +329,12 @@ function DurationPicker({
     (v) => `${Math.min(OPEN_GAP, Math.max(0, v)) - (1 - openness(v))}px`
   )
   const innerRadius = useTransform(gap, (v) => CORNER_RADIUS * openness(v))
-  const innerPadRight = useTransform(gap, (v) => `${3 + 9 * openness(v)}px`)
-  const innerPadLeft = useTransform(gap, (v) => `${9 * openness(v)}px`)
+  // Gap-side clearance uses logical padding so it always lands on the inner
+  // (gap-facing) edge of each segment — flex reversal under dir=rtl swaps the
+  // physical side automatically, so no manual isRtl branching is needed here.
+  // The static outer breathing room is the logical `ps-2` on the hours segment,
+  // which likewise resolves to the physical outer edge in both directions.
+  const innerPad = useTransform(gap, (v) => `${Math.round(9 * openness(v))}px`)
   const gapVelocity = useVelocity(gap)
   const swayXRaw = useTransform(gapVelocity, [-70, 0, 70], [-3, 0, 3], {
     clamp: true,
@@ -376,13 +380,15 @@ function DurationPicker({
   }
 
   // Physical radii flip under RTL so the outer squircle corners always land on
-  // the extreme outer edges of the pill. Flex reverses the DOM order under
-  // dir=rtl, so the toggle becomes the leftmost segment (rounded outer start,
+  // the extreme outer edges of the pill. Flex reversal under dir=rtl swaps the
+  // DOM order, so the toggle becomes the leftmost segment (rounded outer start,
   // sharp inner end) and the hours segment the rightmost (sharp inner start,
   // rounded outer end); the middle minutes segment stays inner-radius on both.
-  const marginStart = isRtl
-    ? { marginRight: segmentSpacing }
-    : { marginLeft: segmentSpacing }
+  // Segment spacing uses a logical property so the inter-segment gap follows
+  // the inline direction automatically — no isRtl branching needed here. The
+  // gap margin lives on the trailing edge of the leading segments (hours and
+  // minutes), whose inline-end side is always the gap side in both LTR and RTL.
+  const segmentMargin = { marginInlineEnd: segmentSpacing }
 
   return (
     <motion.div
@@ -400,10 +406,7 @@ function DurationPicker({
       <SquircleSegment
         leftRadius={isRtl ? innerRadius : CORNER_RADIUS}
         rightRadius={isRtl ? CORNER_RADIUS : innerRadius}
-        style={{
-          paddingLeft: isRtl ? innerPadRight : undefined,
-          paddingRight: isRtl ? undefined : innerPadRight,
-        }}
+        style={{ ...segmentMargin, paddingInlineEnd: innerPad }}
         className="flex h-12 items-center gap-1 bg-[#F4F4F9] ps-2 dark:bg-[#262626]"
       >
         <DurationField
@@ -428,9 +431,9 @@ function DurationPicker({
         leftRadius={innerRadius}
         rightRadius={innerRadius}
         style={{
-          ...marginStart,
-          paddingLeft: isRtl ? innerPadRight : innerPadLeft,
-          paddingRight: isRtl ? innerPadLeft : innerPadRight,
+          ...segmentMargin,
+          paddingInlineStart: innerPad,
+          paddingInlineEnd: innerPad,
         }}
         className="flex h-12 items-center gap-1 bg-[#F4F4F9] dark:bg-[#262626]"
       >
@@ -455,7 +458,6 @@ function DurationPicker({
         asChild
         leftRadius={isRtl ? CORNER_RADIUS : innerRadius}
         rightRadius={isRtl ? innerRadius : CORNER_RADIUS}
-        style={marginStart}
         className="h-12 w-12"
       >
         <button
