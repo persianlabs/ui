@@ -36,6 +36,7 @@ import {
   DialogPreview,
   DirectionPreview,
   DrawerPreview,
+  DurationPickerPreview,
   DropdownMenuPreview,
   ElasticRangeSliderPreview,
   ElasticSliderPreview,
@@ -1118,6 +1119,18 @@ export function ComponentsCatalog() {
       thumbnail: (
         <ThumbnailFrame>
           <BounceSidebarPreview />
+        </ThumbnailFrame>
+      ),
+    },
+    {
+      title: "Duration Picker",
+      href: "/docs/components/duration-picker" as const,
+      description:
+        "A gooey, spring-animated picker for entering a duration in hours and minutes.",
+      createdAt: "2026-08-29",
+      thumbnail: (
+        <ThumbnailFrame>
+          <DurationPickerPreview />
         </ThumbnailFrame>
       ),
     },

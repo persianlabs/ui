@@ -81,6 +81,11 @@ export const docsNav: DocsNavGroup[] = [
         href: "/docs/components/dropdown-menu",
       },
       {
+        title: "Duration Picker",
+        href: "/docs/components/duration-picker",
+        badge: "New",
+      },
+      {
         title: "Elastic Range Slider",
         href: "/docs/components/elastic-range-slider",
       },
