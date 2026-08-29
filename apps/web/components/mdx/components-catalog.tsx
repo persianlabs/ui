@@ -16,6 +16,7 @@ import {
   AvatarPreview,
   BankInputPreview,
   BadgePreview,
+  BounceSidebarPreview,
   BreadcrumbPreview,
   BubblePreview,
   ButtonGroupPreview,
@@ -62,6 +63,7 @@ import {
   PopoverPreview,
   PriceInputPreview,
   ProgressPreview,
+  ProximitySidebarPreview,
   QRCodePreview,
   QuestionnairePreview,
   RadioGroupPreview,
@@ -1104,6 +1106,30 @@ export function ComponentsCatalog() {
       thumbnail: (
         <ThumbnailFrame>
           <IranMapPickerPreview />
+        </ThumbnailFrame>
+      ),
+    },
+    {
+      title: "Bounce Sidebar",
+      href: "/docs/components/bounce-sidebar" as const,
+      description:
+        "A vertical navigation list with a bouncy, arc-animated active marker that springs between items.",
+      createdAt: "2026-08-29",
+      thumbnail: (
+        <ThumbnailFrame>
+          <BounceSidebarPreview />
+        </ThumbnailFrame>
+      ),
+    },
+    {
+      title: "Proximity Sidebar",
+      href: "/docs/components/proximity-sidebar" as const,
+      description:
+        "A document minimap of proximity-reactive dashes that tracks scroll position, expands near the pointer, and smooth-scrolls to sections on click.",
+      createdAt: "2026-08-29",
+      thumbnail: (
+        <ThumbnailFrame>
+          <ProximitySidebarPreview />
         </ThumbnailFrame>
       ),
     },

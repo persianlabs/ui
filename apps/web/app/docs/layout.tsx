@@ -28,7 +28,9 @@ const mainClassName = [
   "xl:[&>div>div:has(>aside)>aside]:min-h-0",
   "xl:[&>div>div:has(>aside)>aside]:flex-col",
   "xl:[&>div>div:has(>aside)>aside]:gap-4",
-  "xl:[&>div>div:has(>aside)>aside]:overflow-hidden",
+  // No overflow-hidden here: it would clip the BounceSidebar marker while it
+  // arcs between distant items. The dot's sway is capped inside the component,
+  // and the TOC ScrollArea manages its own scrolling.
   "xl:[&>div>div:has(>aside)>aside]:overscroll-none",
   "xl:[&>div>div:has(>aside)>aside]:pb-8",
   "xl:[&>div>div:has(>aside)>aside]:justify-self-end",

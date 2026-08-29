@@ -1568,6 +1568,34 @@
           "type": "registry:hook"
         }
       ]
+    },
+    {
+      "name": "bounce-sidebar",
+      "type": "registry:ui",
+      "title": "Bounce Sidebar",
+      "description": "A vertical navigation list with a bouncy, arc-animated active marker that springs between items.",
+      "registryDependencies": ["utils"],
+      "dependencies": ["motion"],
+      "files": [
+        {
+          "path": "registry/base/ui/bounce-sidebar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "proximity-sidebar",
+      "type": "registry:ui",
+      "title": "Proximity Sidebar",
+      "description": "A document minimap of proximity-reactive dashes that tracks scroll position, expands near the pointer, and smooth-scrolls to sections on click.",
+      "registryDependencies": ["utils"],
+      "dependencies": ["motion"],
+      "files": [
+        {
+          "path": "registry/base/ui/proximity-sidebar.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

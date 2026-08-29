@@ -5,6 +5,8 @@ import { notFound } from "next/navigation"
 import { CopyMarkdownButton } from "@/components/copy-markdown-button"
 import { DocsPageFooter } from "@/components/docs-page-footer"
 import { TableOfContents } from "@/components/table-of-contents"
+import { ProximityToc } from "@/components/mdx/proximity-toc"
+import { BounceToc } from "@/components/mdx/bounce-toc"
 import { processMarkdownForLlms } from "@/lib/markdown-docs"
 import { source } from "@/lib/source"
 import { SITE_URL } from "@/lib/site"
@@ -135,6 +137,8 @@ export default async function DocsDocPage({ slug }: { slug?: string[] }) {
   // catalog links to invisible anchors).
   const customToc = doc._exports?.tocItems as TocItem[] | undefined
   const tocItems = customToc ?? adaptToc(doc.toc)
+  // Pages can opt into rendering the TOC as the ProximitySidebar minimap.
+  const tocVariant = doc._exports?.tocVariant as string | undefined
   const contentPath = `apps/web/${doc.info.path.replace(/^\.\//, "")}.mdx`
 
   const h1Row = (
@@ -154,8 +158,14 @@ export default async function DocsDocPage({ slug }: { slug?: string[] }) {
         </article>
 
         <aside className="hidden w-44 shrink-0 xl:block">
-          <div className="sticky top-24">
-            <TableOfContents items={tocItems} />
+          <div className="sticky top-24 h-[calc(100vh-6rem)]">
+            {tocVariant === "proximity" ? (
+              <ProximityToc items={tocItems} />
+            ) : tocVariant === "bounce" ? (
+              <BounceToc items={tocItems} />
+            ) : (
+              <TableOfContents items={tocItems} />
+            )}
           </div>
         </aside>
       </div>
