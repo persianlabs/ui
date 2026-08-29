@@ -126,6 +126,14 @@ export const exampleLoaders: Record<
     import("@/components/examples/bank-input-zod").then(
       (m) => m.BankInputZodExample
     ),
+  "bounce-sidebar-demo": () =>
+    import("@/components/examples/bounce-sidebar-demo").then(
+      (m) => m.BounceSidebarDemoExample
+    ),
+  "bounce-sidebar-rtl": () =>
+    import("@/components/examples/bounce-sidebar-rtl").then(
+      (m) => m.BounceSidebarRtlExample
+    ),
   "breadcrumb-basic": () =>
     import("@/components/examples/breadcrumb-basic").then(
       (m) => m.BreadcrumbBasicExample
@@ -1204,6 +1212,14 @@ export const exampleLoaders: Record<
     import("@/components/examples/progress-rtl").then(
       (m) => m.ProgressRtlExample
     ),
+  "proximity-sidebar-demo": () =>
+    import("@/components/examples/proximity-sidebar-demo").then(
+      (m) => m.ProximitySidebarDemoExample
+    ),
+  "proximity-sidebar-rtl": () =>
+    import("@/components/examples/proximity-sidebar-rtl").then(
+      (m) => m.ProximitySidebarRtlExample
+    ),
   "qr-code-colors": () =>
     import("@/components/examples/qr-code-colors").then(
       (m) => m.QrCodeColorsExample
@@ -1840,6 +1856,8 @@ export type ExampleMap = {
   "bank-input-shaba": React.ComponentType
   "bank-input-supported-banks": React.ComponentType
   "bank-input-zod": React.ComponentType
+  "bounce-sidebar-demo": React.ComponentType
+  "bounce-sidebar-rtl": React.ComponentType
   "breadcrumb-basic": React.ComponentType
   "breadcrumb-city": React.ComponentType
   "breadcrumb-dropdown": React.ComponentType
@@ -2123,6 +2141,8 @@ export type ExampleMap = {
   "progress-animated": React.ComponentType
   "progress-demo": React.ComponentType
   "progress-rtl": React.ComponentType
+  "proximity-sidebar-demo": React.ComponentType
+  "proximity-sidebar-rtl": React.ComponentType
   "qr-code-colors": React.ComponentType
   "qr-code-demo": React.ComponentType
   "qr-code-logo": React.ComponentType

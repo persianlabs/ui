@@ -129,9 +129,11 @@ const COMPONENT_GROUPS: { group: string; slugs: string[] }[] = [
     group: "Layout & Navigation",
     slugs: [
       "accordion",
+      "bounce-sidebar",
       "breadcrumb",
       "item",
       "navigation-menu",
+      "proximity-sidebar",
       "resizable",
       "scroll-area",
       "separator",

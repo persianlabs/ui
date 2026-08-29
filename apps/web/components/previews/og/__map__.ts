@@ -8,6 +8,7 @@ import { AttachmentPreview } from "./attachment"
 import { AvatarPreview } from "./avatar"
 import { BadgePreview } from "./badge"
 import { BankInputPreview } from "./bank-input"
+import { BounceSidebarPreview } from "./bounce-sidebar"
 import { BreadcrumbPreview } from "./breadcrumb"
 import { BubblePreview } from "./bubble"
 import { ButtonGroupPreview } from "./button-group"
@@ -68,6 +69,7 @@ import { PopoverPreview } from "./popover"
 import { PostalCodePreview } from "./postal-code"
 import { PriceInputPreview } from "./price-input"
 import { ProgressPreview } from "./progress"
+import { ProximitySidebarPreview } from "./proximity-sidebar"
 import { QRCodePreview } from "./qr-code"
 import { QuestionnairePreview } from "./questionnaire"
 import { RadioGroupPreview } from "./radio-group"
@@ -113,6 +115,7 @@ export const OG_PREVIEWS: Record<string, ComponentType> = {
   avatar: AvatarPreview,
   badge: BadgePreview,
   "bank-input": BankInputPreview,
+  "bounce-sidebar": BounceSidebarPreview,
   breadcrumb: BreadcrumbPreview,
   bubble: BubblePreview,
   "button-group": ButtonGroupPreview,
@@ -173,6 +176,7 @@ export const OG_PREVIEWS: Record<string, ComponentType> = {
   "postal-code": PostalCodePreview,
   "price-input": PriceInputPreview,
   progress: ProgressPreview,
+  "proximity-sidebar": ProximitySidebarPreview,
   "qr-code": QRCodePreview,
   questionnaire: QuestionnairePreview,
   "radio-group": RadioGroupPreview,
