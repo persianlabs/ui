@@ -662,6 +662,14 @@ export const exampleLoaders: Record<
     import("@/components/examples/dropdown-menu-rtl").then(
       (m) => m.DropdownMenuRtlExample
     ),
+  "duration-picker-demo": () =>
+    import("@/components/examples/duration-picker-demo").then(
+      (m) => m.DurationPickerDemoExample
+    ),
+  "duration-picker-rtl": () =>
+    import("@/components/examples/duration-picker-rtl").then(
+      (m) => m.DurationPickerRtlExample
+    ),
   "elastic-slider-demo": () =>
     import("@/components/examples/elastic-slider-demo").then(
       (m) => m.ElasticSliderDemoExample
@@ -1994,6 +2002,8 @@ export type ExampleMap = {
   "dropdown-menu-checkboxes": React.ComponentType
   "dropdown-menu-demo": React.ComponentType
   "dropdown-menu-rtl": React.ComponentType
+  "duration-picker-demo": React.ComponentType
+  "duration-picker-rtl": React.ComponentType
   "elastic-slider-demo": React.ComponentType
   "elastic-slider-price-range": React.ComponentType
   "elastic-slider-range-percent": React.ComponentType

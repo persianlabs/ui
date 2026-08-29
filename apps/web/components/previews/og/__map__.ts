@@ -31,6 +31,7 @@ import { DialogPreview } from "./dialog"
 import { DirectionPreview } from "./direction"
 import { DrawerPreview } from "./drawer"
 import { DropdownMenuPreview } from "./dropdown-menu"
+import { DurationPickerPreview } from "./duration-picker"
 import { ElasticRangeSliderPreview } from "./elastic-range-slider"
 import { ElasticSliderPreview } from "./elastic-slider"
 import { EmptyPreview } from "./empty"
@@ -138,6 +139,7 @@ export const OG_PREVIEWS: Record<string, ComponentType> = {
   direction: DirectionPreview,
   drawer: DrawerPreview,
   "dropdown-menu": DropdownMenuPreview,
+  "duration-picker": DurationPickerPreview,
   "elastic-range-slider": ElasticRangeSliderPreview,
   "elastic-slider": ElasticSliderPreview,
   empty: EmptyPreview,

@@ -101,6 +101,7 @@ const COMPONENT_GROUPS: { group: string; slugs: string[] }[] = [
       "combobox",
       "date-picker",
       "date-wheel-picker",
+      "duration-picker",
       "elastic-range-slider",
       "elastic-slider",
       "field",

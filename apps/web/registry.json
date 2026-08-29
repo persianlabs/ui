@@ -1596,6 +1596,26 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "duration-picker",
+      "type": "registry:ui",
+      "title": "Duration Picker",
+      "description": "A gooey, spring-animated picker for entering a duration in hours and minutes.",
+      "registryDependencies": ["utils"],
+      "dependencies": [
+        "@base-ui/react",
+        "motion",
+        "figma-squircle",
+        "flubber",
+        "react-use-measure"
+      ],
+      "files": [
+        {
+          "path": "registry/base/ui/duration-picker.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

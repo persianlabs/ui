@@ -1,0 +1,14 @@
+﻿feat(component): add Duration Picker with gooey spring animation and RTL support
+
+- DurationPicker adapted from Rare UI: gooey squircle hour/minute picker that
+  splits into editable fields on the pen click and merges back on the tick.
+- Radix-free: replaced @radix-ui/react-slot with @base-ui/react/use-render
+  (Base UI disposable Slot equivalent) for the asChild toggle segment.
+- RTL: dir prop (auto-detected from the nearest [dir] ancestor); under RTL the
+  gooey gap opens on the inline-end side and squircle outer corners flip; inputs
+  are forced dir=ltr with centered digits (LTR in all languages).
+- Animation: snappier springs per design review (gap 380/30/0.9, width and icon
+  400/32, sway 320/26, error shake 700/14) and softened press feedback.
+- Wiring: registry entry + @base-ui/react dependency, demo and RTL examples,
+  doc page with overview preview, api-data, gallery preview and Satori-safe OG
+  twin, New badge, meta.json, llms.txt, and catalog entry.
