@@ -265,7 +265,8 @@ function DurationPicker({
   )
   // Auto-detect the direction from the nearest ancestor with a dir attribute
   // (so an RTL wrapper is respected, not just <html>); the explicit `dir`
-  // prop wins when given.
+  // prop wins when given. Re-detected on any dir attribute change — a
+  // mount-only check goes stale when the app toggles <html dir> at runtime.
   const [detectedDir, setDetectedDir] = useState<"ltr" | "rtl">("ltr")
   const isRtl = dir ? dir === "rtl" : detectedDir === "rtl"
 
@@ -284,6 +285,15 @@ function DurationPicker({
       setDetectedDir(root === "rtl" ? "rtl" : "ltr")
     }
     init()
+
+    const observer = new MutationObserver(init)
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["dir"],
+      subtree: true,
+    })
+
+    return () => observer.disconnect()
   }, [])
 
   useEffect(() => {
@@ -329,11 +339,6 @@ function DurationPicker({
     (v) => `${Math.min(OPEN_GAP, Math.max(0, v)) - (1 - openness(v))}px`
   )
   const innerRadius = useTransform(gap, (v) => CORNER_RADIUS * openness(v))
-  // Gap-side clearance uses logical padding so it always lands on the inner
-  // (gap-facing) edge of each segment — flex reversal under dir=rtl swaps the
-  // physical side automatically, so no manual isRtl branching is needed here.
-  // The static outer breathing room is the logical `ps-2` on the hours segment,
-  // which likewise resolves to the physical outer edge in both directions.
   const innerPad = useTransform(gap, (v) => `${Math.round(9 * openness(v))}px`)
   const gapVelocity = useVelocity(gap)
   const swayXRaw = useTransform(gapVelocity, [-70, 0, 70], [-3, 0, 3], {
@@ -380,14 +385,10 @@ function DurationPicker({
   }
 
   // Physical radii flip under RTL so the outer squircle corners always land on
-  // the extreme outer edges of the pill. Flex reversal under dir=rtl swaps the
-  // DOM order, so the toggle becomes the leftmost segment (rounded outer start,
+  // the extreme outer edges of the pill. Flex reverses the DOM order under
+  // dir=rtl, so the toggle becomes the leftmost segment (rounded outer start,
   // sharp inner end) and the hours segment the rightmost (sharp inner start,
   // rounded outer end); the middle minutes segment stays inner-radius on both.
-  // Segment spacing uses a logical property so the inter-segment gap follows
-  // the inline direction automatically — no isRtl branching needed here. The
-  // gap margin lives on the trailing edge of the leading segments (hours and
-  // minutes), whose inline-end side is always the gap side in both LTR and RTL.
   const segmentMargin = { marginInlineEnd: segmentSpacing }
 
   return (
@@ -421,6 +422,7 @@ function DurationPicker({
         />
         <motion.span
           style={{ x: swayX }}
+          dir="ltr"
           className="font-semibold text-[#868593]/70"
         >
           {hoursLabel}
@@ -448,6 +450,7 @@ function DurationPicker({
         />
         <motion.span
           style={{ x: swayX }}
+          dir="ltr"
           className="font-medium text-[#868593]/70"
         >
           {minutesLabel}
@@ -455,7 +458,6 @@ function DurationPicker({
       </SquircleSegment>
 
       <SquircleSegment
-        asChild
         leftRadius={isRtl ? CORNER_RADIUS : innerRadius}
         rightRadius={isRtl ? innerRadius : CORNER_RADIUS}
         className="h-12 w-12"
@@ -466,7 +468,7 @@ function DurationPicker({
           onClick={toggleEdit}
           disabled={disabled}
           aria-label={isEditing ? "Save duration" : "Edit duration"}
-          className="flex h-12 w-12 items-center justify-center rounded-[inherit] bg-[#F4F4F9] transition-transform duration-100 ease-out outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:scale-[0.96] disabled:active:scale-100 dark:bg-[#262626]"
+          className="flex h-full w-full items-center justify-center rounded-[inherit] bg-[#F4F4F9] transition-transform duration-100 ease-out outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:scale-[0.96] disabled:active:scale-100 dark:bg-[#262626]"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

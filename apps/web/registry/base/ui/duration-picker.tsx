@@ -265,7 +265,8 @@ function DurationPicker({
   )
   // Auto-detect the direction from the nearest ancestor with a dir attribute
   // (so an RTL wrapper is respected, not just <html>); the explicit `dir`
-  // prop wins when given.
+  // prop wins when given. Re-detected on any dir attribute change — a
+  // mount-only check goes stale when the app toggles <html dir> at runtime.
   const [detectedDir, setDetectedDir] = useState<"ltr" | "rtl">("ltr")
   const isRtl = dir ? dir === "rtl" : detectedDir === "rtl"
 
@@ -284,6 +285,15 @@ function DurationPicker({
       setDetectedDir(root === "rtl" ? "rtl" : "ltr")
     }
     init()
+
+    const observer = new MutationObserver(init)
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["dir"],
+      subtree: true,
+    })
+
+    return () => observer.disconnect()
   }, [])
 
   useEffect(() => {
@@ -412,6 +422,7 @@ function DurationPicker({
         />
         <motion.span
           style={{ x: swayX }}
+          dir="ltr"
           className="font-semibold text-[#868593]/70"
         >
           {hoursLabel}
@@ -439,6 +450,7 @@ function DurationPicker({
         />
         <motion.span
           style={{ x: swayX }}
+          dir="ltr"
           className="font-medium text-[#868593]/70"
         >
           {minutesLabel}
@@ -446,7 +458,6 @@ function DurationPicker({
       </SquircleSegment>
 
       <SquircleSegment
-        asChild
         leftRadius={isRtl ? CORNER_RADIUS : innerRadius}
         rightRadius={isRtl ? innerRadius : CORNER_RADIUS}
         className="h-12 w-12"
@@ -457,7 +468,7 @@ function DurationPicker({
           onClick={toggleEdit}
           disabled={disabled}
           aria-label={isEditing ? "Save duration" : "Edit duration"}
-          className="flex h-12 w-12 items-center justify-center rounded-[inherit] bg-[#F4F4F9] transition-transform duration-100 ease-out outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:scale-[0.96] disabled:active:scale-100 dark:bg-[#262626]"
+          className="flex h-full w-full items-center justify-center rounded-[inherit] bg-[#F4F4F9] transition-transform duration-100 ease-out outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:scale-[0.96] disabled:active:scale-100 dark:bg-[#262626]"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
