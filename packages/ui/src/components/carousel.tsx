@@ -55,25 +55,38 @@ function Carousel({
 
   // Embla scrolls according to its own direction option, which defaults to
   // "ltr" regardless of the surrounding dir attribute. Inherit the ambient
-  // writing direction so the carousel mirrors automatically in RTL contexts;
-  // an explicit opts.direction still wins.
-  const [direction, setDirection] = React.useState<"ltr" | "rtl">(() => {
-    if (opts?.direction) return opts.direction
-    if (typeof document !== "undefined") {
-      return getComputedStyle(document.documentElement).direction === "rtl"
+  // writing direction (reactive — `<html dir>` toggles at runtime must
+  // re-initialize Embla); an explicit opts.direction still wins.
+  const [direction, setDirection] = React.useState<"ltr" | "rtl">(
+    () =>
+      opts?.direction ??
+      (typeof document !== "undefined" &&
+      getComputedStyle(document.documentElement).direction === "rtl"
         ? "rtl"
-        : "ltr"
-    }
-    return "ltr"
-  })
+        : "ltr")
+  )
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     if (opts?.direction) return
-    const node = rootRef.current
-    if (!node) return
-    const inherited = getComputedStyle(node).direction === "rtl" ? "rtl" : "ltr"
-    // Mirrors the ambient dir attribute — an external-system sync.
-    setDirection((current) => (current === inherited ? current : inherited))
+    function update() {
+      const node = rootRef.current
+      if (!node) return
+      const inherited =
+        getComputedStyle(node).direction === "rtl" ? "rtl" : "ltr"
+      // Mirrors the ambient dir attribute — an external-system sync.
+      setDirection((current) => (current === inherited ? current : inherited))
+    }
+
+    update()
+
+    const observer = new MutationObserver(update)
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["dir"],
+      subtree: true,
+    })
+
+    return () => observer.disconnect()
   }, [opts?.direction])
 
   const [carouselRef, api] = useEmblaCarousel(
@@ -174,7 +187,7 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
       <div
         className={cn(
           "flex",
-          orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
+          orientation === "horizontal" ? "-ms-4" : "-mt-4 flex-col",
           className
         )}
         {...props}
@@ -193,7 +206,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="carousel-item"
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-full",
-        orientation === "horizontal" ? "pl-4" : "pt-4",
+        orientation === "horizontal" ? "ps-4" : "pt-4",
         className
       )}
       {...props}
@@ -220,7 +233,7 @@ function CarouselPrevious({
           ? "inset-y-0 -start-12 my-auto rtl:-scale-x-100"
           : // Pure centering has no writing direction, so this stays physical;
             // logical start-1/2 would re-anchor in RTL and shift the buttons.
-            "-top-12 left-1/2 -translate-x-1/2 rotate-90",
+            "start-1/2 -top-12 -translate-x-1/2 rotate-90 rtl:translate-x-1/2",
         className
       )}
       disabled={!canScrollPrev}
@@ -250,7 +263,7 @@ function CarouselNext({
         "absolute touch-manipulation rounded-full",
         orientation === "horizontal"
           ? "inset-y-0 -end-12 my-auto rtl:-scale-x-100"
-          : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
+          : "start-1/2 -bottom-12 -translate-x-1/2 rotate-90 rtl:translate-x-1/2",
         className
       )}
       disabled={!canScrollNext}
