@@ -71,10 +71,10 @@ export async function runInit(options: {
 export function resolveConfig(presetCode?: string): PresetConfig {
   if (!presetCode) {
     return {
-      style: "nova",
+      style: "taymaz",
       baseColor: "neutral",
       theme: "neutral",
-      font: "inter",
+      font: "geist",
       fontHeading: "inherit",
       faFont: "vazirmatn",
       faFontHeading: "vazirmatn",

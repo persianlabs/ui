@@ -1,22 +1,21 @@
 // Preset encoding/decoding utilities.
 // Bit-packs design system params into a single integer,
 // then encodes as base62 with a version prefix character.
-// Browser-safe: no Node.js dependencies.
+// Browser-safe: no Node.js dependencies, no relative imports — the /create
+// page imports this file directly from the source via the "./preset"
+// package export, so it must stay self-contained.
 //
 // Rules for backward compat:
 //   1. Never reorder existing value arrays — only append.
 //   2. New fields must have their default at index 0.
 //   3. Only append new fields to the end of PRESET_FIELDS.
 //   4. Stay under 53 bits total (JS safe integer limit).
-
-import {
-  EN_FONTS,
-  EN_FONT_HEADINGS,
-  FA_FONTS,
-} from "./fonts.js"
+//
+// The font value arrays below MUST stay in sync with src/preset/fonts.ts
+// (same order — preset.test.ts asserts it).
 
 // Value arrays — order matters for backward compat. Never reorder, only append.
-export const PRESET_STYLES = ["nova"] as const
+export const PRESET_STYLES = ["taymaz"] as const
 
 export const PRESET_BASE_COLORS = [
   "neutral",
@@ -57,6 +56,35 @@ export const PRESET_RADII = [
   "large",
 ] as const
 
+// Font VALUES in the exact order of src/preset/fonts.ts (append-only).
+export const PRESET_EN_FONTS = [
+  "geist",
+  "inter",
+  "ibm-plex-sans",
+  "manrope",
+  "space-grotesk",
+  "dm-sans",
+] as const
+
+export const PRESET_FA_FONTS = [
+  "vazirmatn",
+  "estedad",
+  "shabnam",
+  "sahel",
+  "samim",
+  "mikhak",
+  "azarmehr",
+  "parastoo",
+  "gandom",
+  "tanha",
+  "lalezar",
+  "markazi-text",
+  "noto-naskh-arabic",
+  "noto-sans-arabic",
+] as const
+
+export const PRESET_EN_FONT_HEADINGS = ["inherit", ...PRESET_EN_FONTS] as const
+
 // RTL is always on for this project — it is not a preset field.
 // Base UI is the only primitive library — it is not a preset field.
 // Charts are not part of the create system — no chart color field.
@@ -65,17 +93,17 @@ export type PresetStyle = (typeof PRESET_STYLES)[number]
 export type PresetBaseColor = (typeof PRESET_BASE_COLORS)[number]
 export type PresetTheme = (typeof PRESET_THEMES)[number]
 export type PresetRadius = (typeof PRESET_RADII)[number]
-export type PresetEnFont = (typeof EN_FONTS)[number]["value"]
-export type PresetEnFontHeading = (typeof EN_FONT_HEADINGS)[number]
-export type PresetFaFont = (typeof FA_FONTS)[number]["value"]
+export type PresetEnFont = (typeof PRESET_EN_FONTS)[number]
+export type PresetEnFontHeading = (typeof PRESET_EN_FONT_HEADINGS)[number]
+export type PresetFaFont = (typeof PRESET_FA_FONTS)[number]
 
 // V1 fields (version "a"), 37 bits. Defaults must stay at index 0.
 const PRESET_FIELDS_V1 = [
   { key: "radius", values: PRESET_RADII, bits: 3 },
-  { key: "faFontHeading", values: FA_FONTS.map((f) => f.value), bits: 5 },
-  { key: "faFont", values: FA_FONTS.map((f) => f.value), bits: 5 },
-  { key: "fontHeading", values: EN_FONT_HEADINGS, bits: 4 },
-  { key: "font", values: EN_FONTS.map((f) => f.value), bits: 4 },
+  { key: "faFontHeading", values: PRESET_FA_FONTS, bits: 5 },
+  { key: "faFont", values: PRESET_FA_FONTS, bits: 5 },
+  { key: "fontHeading", values: PRESET_EN_FONT_HEADINGS, bits: 4 },
+  { key: "font", values: PRESET_EN_FONTS, bits: 4 },
   { key: "theme", values: PRESET_THEMES, bits: 5 },
   { key: "baseColor", values: PRESET_BASE_COLORS, bits: 3 },
   { key: "style", values: PRESET_STYLES, bits: 2 },

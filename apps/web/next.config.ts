@@ -2,7 +2,7 @@ import { createMDX } from "fumadocs-mdx/next"
 import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
-  transpilePackages: ["@workspace/ui"],
+  transpilePackages: ["@workspace/ui", "persianlabsui"],
   cacheComponents: true,
   partialPrefetching: true,
   typedRoutes: true,

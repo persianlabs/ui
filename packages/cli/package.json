@@ -7,6 +7,10 @@
   "bin": {
     "persianlabsui": "./dist/index.js"
   },
+  "exports": {
+    ".": "./dist/index.js",
+    "./preset": "./src/preset/preset.ts"
+  },
   "files": [
     "dist"
   ],

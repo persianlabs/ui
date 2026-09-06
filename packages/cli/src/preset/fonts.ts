@@ -22,21 +22,21 @@ export type FontEntry = {
   license: string
 }
 
-// Latin fonts — the shadcn classic set, stored locally.
+// Latin fonts — stored locally. Geist is the default (index 0).
 export const EN_FONTS: FontEntry[] = [
-  {
-    value: "inter",
-    title: "Inter",
-    dir: "inter",
-    family: "Inter Variable",
-    weights: "100 900",
-    license: "OFL-1.1",
-  },
   {
     value: "geist",
     title: "Geist",
     dir: "geist",
     family: "Geist",
+    weights: "100 900",
+    license: "OFL-1.1",
+  },
+  {
+    value: "inter",
+    title: "Inter",
+    dir: "inter",
+    family: "Inter Variable",
     weights: "100 900",
     license: "OFL-1.1",
   },

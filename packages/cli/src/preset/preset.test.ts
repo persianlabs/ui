@@ -1,13 +1,21 @@
 import { describe, expect, it } from "vitest"
 
+import { EN_FONTS, FA_FONTS } from "./fonts.js"
 import {
   decodePreset,
   encodePreset,
   isPresetCode,
   DEFAULT_PRESET_CONFIG,
+  PRESET_EN_FONTS,
+  PRESET_FA_FONTS,
 } from "./preset.js"
 
 describe("preset codec", () => {
+  it("font value arrays stay in sync with the font catalog", () => {
+    expect(PRESET_EN_FONTS).toEqual(EN_FONTS.map((f) => f.value))
+    expect(PRESET_FA_FONTS).toEqual(FA_FONTS.map((f) => f.value))
+  })
+
   it("encodes the default config to a v1 code", () => {
     const code = encodePreset({})
     expect(code[0]).toBe("a")
@@ -16,7 +24,7 @@ describe("preset codec", () => {
 
   it("round-trips every field", () => {
     const config = {
-      style: "nova",
+      style: "taymaz",
       baseColor: "zinc",
       theme: "violet",
       font: "geist",
