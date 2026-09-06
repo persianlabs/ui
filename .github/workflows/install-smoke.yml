@@ -58,9 +58,23 @@ jobs:
           bun -e "const j = JSON.parse(require('fs').readFileSync('registry.json', 'utf8')); require('fs').writeFileSync('/tmp/names.txt', j.items.map((i) => i.name).join('\n'))"
       - name: Serve registry locally
         run: |
-          npx -y serve apps/web/public -l 4173 &
-          sleep 3
-          curl -sf http://localhost:4173/r/button.json > /dev/null
+          npx -y serve apps/web/public -l 4173 > "$RUNNER_TEMP/serve.log" 2>&1 &
+          # npx cold-starts by downloading `serve` first, so readiness is racy
+          # with a fixed sleep — poll until the registry actually answers.
+          ok=0
+          for i in $(seq 1 60); do
+            if curl -sf http://localhost:4173/r/button.json > /dev/null; then
+              echo "registry server ready after ${i}s"
+              ok=true
+              break
+            fi
+            sleep 1
+          done
+          if [ "$ok" != "true" ]; then
+            cat "$RUNNER_TEMP/serve.log"
+            echo "registry server did not come up within 60s"
+            exit 1
+          fi
       - name: Scaffold consumer project
         run: |
           cd "$RUNNER_TEMP"
