@@ -37,7 +37,7 @@ export const drawerRootApi: ApiReferenceRow[] = [
 export const drawerPopupApi: ApiReferenceRow[] = [
   {
     prop: "variant",
-    type: '"default" | "straight" | "inset"',
+    type: '"default" | "straight" | "inset" | "force-inset"',
     default: '"default"',
     description: "Controls the drawer's corner rounding and edge inset.",
   },

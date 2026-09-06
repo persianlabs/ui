@@ -11,7 +11,7 @@ import {
   DrawerTrigger,
 } from "@workspace/ui/components/drawer"
 
-const variants = ["default", "straight", "inset"] as const
+const variants = ["default", "straight", "inset", "force-inset"] as const
 
 export function DrawerVariantsExample() {
   return (
@@ -37,6 +37,8 @@ export function DrawerVariantsExample() {
                   "No rounded corners and no scale-down stacking effect."}
                 {variant === "inset" &&
                   "Floats with a margin from the screen edge on larger screens."}
+                {variant === "force-inset" &&
+                  "Same floating card, but the margin applies on mobile too."}
               </DrawerDescription>
             </DrawerHeader>
             <DrawerPanel>

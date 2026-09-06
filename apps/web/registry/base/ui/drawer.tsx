@@ -35,7 +35,7 @@ const DrawerPositionContext = React.createContext<{ position: DrawerPosition }>(
   { position: "bottom" }
 )
 const DrawerPopupVariantContext = React.createContext<
-  "default" | "straight" | "inset"
+  "default" | "straight" | "inset" | "force-inset"
 >("default")
 
 function resolvePosition(
@@ -205,7 +205,7 @@ function DrawerViewport({
   ...props
 }: DrawerPrimitive.Viewport.Props & {
   position?: DrawerPosition
-  variant?: "default" | "straight" | "inset"
+  variant?: "default" | "straight" | "inset" | "force-inset"
 }) {
   const { dir } = React.useContext(DrawerDirContext)
   const position = useResolvedDrawerPosition(positionProp)
@@ -242,9 +242,15 @@ function DrawerViewport({
         // property syntax below works.
         position === "left" && "flex [justify-content:left]",
         position === "right" && "flex [justify-content:right]",
-        variant === "inset" && "px-(--inset) sm:[--inset:--spacing(4)]",
-        variant === "inset" && position !== "bottom" && "pt-(--inset)",
-        variant === "inset" && position !== "top" && "pb-(--inset)",
+        (variant === "inset" || variant === "force-inset") && "px-(--inset)",
+        variant === "inset" && "sm:[--inset:--spacing(4)]",
+        variant === "force-inset" && "[--inset:--spacing(4)]",
+        (variant === "inset" || variant === "force-inset") &&
+          position !== "bottom" &&
+          "pt-(--inset)",
+        (variant === "inset" || variant === "force-inset") &&
+          position !== "top" &&
+          "pb-(--inset)",
         className
       )}
       {...props}
@@ -263,7 +269,7 @@ function DrawerPopup({
   ...props
 }: DrawerPrimitive.Popup.Props & {
   position?: DrawerPosition
-  variant?: "default" | "straight" | "inset"
+  variant?: "default" | "straight" | "inset" | "force-inset"
   showCloseButton?: boolean
   showBar?: boolean
   portalProps?: DrawerPrimitive.Portal.Props
@@ -318,6 +324,11 @@ function DrawerPopup({
                 // bottom corner as a stray patch of color. Kill it here the
                 // same way the popup's own bleed is killed below.
                 "before:hidden sm:rounded-2xl sm:border sm:border-border sm:before:rounded-[calc(var(--radius-2xl)-1px)] sm:after:bg-transparent sm:**:data-[slot=drawer-footer]:rounded-b-[calc(var(--radius-2xl)-1px)] sm:**:data-[slot=drawer-footer]:after:border-transparent sm:**:data-[slot=drawer-footer]:after:bg-transparent",
+              variant === "force-inset" &&
+                // Same floating-card treatment as "inset", but without the
+                // sm: gates — the margin, rounding, and border apply at every
+                // viewport size, including mobile.
+                "rounded-2xl border border-border before:hidden before:rounded-[calc(var(--radius-2xl)-1px)] after:bg-transparent **:data-[slot=drawer-footer]:rounded-b-[calc(var(--radius-2xl)-1px)] **:data-[slot=drawer-footer]:after:border-transparent **:data-[slot=drawer-footer]:after:bg-transparent",
               variant === "straight" && "[--stack-step:0]",
               (position === "bottom" || position === "top") &&
                 // max-h-full is a no-op here: the viewport lays these two
