@@ -57,6 +57,13 @@ const designSystemSearchParams = {
     "inherit",
     ...FA_FONTS.map((f) => f.value),
   ]).withDefault("vazirmatn"),
+  menuAccent: parseAsStringLiteral(["subtle", "bold"]).withDefault("subtle"),
+  menuColor: parseAsStringLiteral([
+    "default",
+    "inverted",
+    "default-translucent",
+    "inverted-translucent",
+  ]).withDefault("default"),
 }
 
 // Design system param keys that get encoded into the preset code.
@@ -68,6 +75,8 @@ export const DESIGN_SYSTEM_KEYS = [
   "fontHeading",
   "faFont",
   "faFontHeading",
+  "menuAccent",
+  "menuColor",
 ] as const
 
 // Non-design-system keys that get passed through as-is.
@@ -117,6 +126,8 @@ function resolvePresetParams(
         fontHeading: decoded.fontHeading,
         faFont: decoded.faFont,
         faFontHeading: decoded.faFontHeading,
+        menuAccent: decoded.menuAccent,
+        menuColor: decoded.menuColor,
       }
 
       return normalizeDesignSystemParams({

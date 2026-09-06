@@ -1,5 +1,6 @@
 import { Suspense } from "react"
 import type { Metadata } from "next"
+import { connection } from "next/server"
 
 import { CreateApp } from "@/components/create/create-app"
 import { SiteHeader } from "@/components/site-header"
@@ -18,9 +19,18 @@ export default function CreatePage() {
       <SiteHeader />
       <main className="flex min-h-0 flex-1 flex-col">
         <Suspense fallback={null}>
-          <CreateApp />
+          <CreateDynamic />
         </Suspense>
       </main>
     </div>
   )
+}
+
+// The designer syncs URL params (baseColor, theme, …) into a preset code on
+// first render — that needs REAL searchParams at hydration, not the empty
+// values a static prerender provides. connection() opts this subtree into
+// dynamic rendering (inside the Suspense boundary).
+async function CreateDynamic() {
+  await connection()
+  return <CreateApp />
 }

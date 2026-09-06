@@ -2,7 +2,6 @@ import { Suspense } from "react"
 
 import { decodePreset, isPresetCode } from "persianlabsui/preset"
 
-import { PREVIEW_ITEMS, type PreviewItemName } from "@/components/create/forward-types"
 import { PreviewClient } from "@/components/create/previews/preview-client"
 import type { DesignSystemSearchParams } from "@/lib/create/search-params"
 
@@ -12,22 +11,17 @@ export const metadata = {
 }
 
 type PageProps = {
-  params: Promise<{ item: string }>
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
-// The searchParams read is runtime data (cacheComponents) — the prerendered
-// shell renders the Suspense fallback, the params-resolved content streams in.
-export default function CreatePreviewPage({ params, searchParams }: PageProps) {
+export default function CreatePreviewPage({ searchParams }: PageProps) {
   return (
     <Suspense fallback={null}>
-      <CreatePreviewContent params={params} searchParams={searchParams} />
+      <CreatePreviewContent searchParams={searchParams} />
     </Suspense>
   )
 }
 
-// Server-safe resolution (no nuqs loader — it's client-only): mirror
-// search-params.ts — decode ?preset=CODE, then overlay explicitly-set params.
 const DEFAULTS = {
   preset: "a0",
   baseColor: "neutral",
@@ -37,6 +31,8 @@ const DEFAULTS = {
   fontHeading: "inherit",
   faFont: "vazirmatn",
   faFontHeading: "vazirmatn",
+  menuAccent: "subtle",
+  menuColor: "default",
 } as const
 
 const DESIGN_KEYS = [
@@ -47,28 +43,21 @@ const DESIGN_KEYS = [
   "fontHeading",
   "faFont",
   "faFontHeading",
+  "menuAccent",
+  "menuColor",
 ] as const
 
-async function CreatePreviewContent({ params, searchParams }: PageProps) {
-  const { item: routeItem } = await params
+async function CreatePreviewContent({ searchParams }: PageProps) {
   const resolved = await searchParams
-
   const url = new URLSearchParams()
   for (const [key, value] of Object.entries(resolved)) {
     if (typeof value === "string") url.set(key, value)
   }
 
-  const raw = {
-    preset: url.get("preset") ?? DEFAULTS.preset,
-    item: url.get("item"),
-  }
-
-  let design: DesignSystemSearchParams = {
-    ...DEFAULTS,
-    item: "fa-dashboard",
-  }
-  if (isPresetCode(raw.preset)) {
-    const decoded = decodePreset(raw.preset)
+  const preset = url.get("preset") ?? DEFAULTS.preset
+  let design: DesignSystemSearchParams = { ...DEFAULTS, item: "fa-dashboard" }
+  if (isPresetCode(preset)) {
+    const decoded = decodePreset(preset)
     if (decoded) {
       design = {
         ...design,
@@ -79,6 +68,8 @@ async function CreatePreviewContent({ params, searchParams }: PageProps) {
         fontHeading: decoded.fontHeading as DesignSystemSearchParams["fontHeading"],
         faFont: decoded.faFont as DesignSystemSearchParams["faFont"],
         faFontHeading: decoded.faFontHeading as DesignSystemSearchParams["faFontHeading"],
+        menuAccent: decoded.menuAccent as DesignSystemSearchParams["menuAccent"],
+        menuColor: decoded.menuColor as DesignSystemSearchParams["menuColor"],
       }
     }
   }
@@ -89,19 +80,10 @@ async function CreatePreviewContent({ params, searchParams }: PageProps) {
     }
   }
 
-  // Route segment is authoritative for the item when it names a known one.
-  const routeMatch = PREVIEW_ITEMS.find((preview) => preview.name === routeItem)
-  const searchMatch = PREVIEW_ITEMS.find(
-    (preview) => preview.name === raw.item
-  )
-  const item: PreviewItemName =
-    routeMatch?.name ?? searchMatch?.name ?? "fa-dashboard"
-
   const initialParams: DesignSystemSearchParams = {
     ...design,
-    item,
-    preset: raw.preset,
+    preset,
   }
 
-  return <PreviewClient initialParams={initialParams} item={item} />
+  return <PreviewClient initialParams={initialParams} />
 }

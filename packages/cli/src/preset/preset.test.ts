@@ -24,7 +24,7 @@ describe("preset codec", () => {
 
   it("round-trips every field", () => {
     const config = {
-      style: "taymaz",
+      style: "nova",
       baseColor: "zinc",
       theme: "violet",
       font: "geist",
@@ -32,6 +32,8 @@ describe("preset codec", () => {
       faFont: "estedad",
       faFontHeading: "mikhak",
       radius: "large",
+      menuAccent: "bold",
+      menuColor: "inverted-translucent",
     } as const
 
     const code = encodePreset(config)

@@ -19,32 +19,15 @@ export const FONTS: FontOption[] = [
   { value: "dm-sans", title: "DM Sans" },
 ]
 
-export const FONT_HEADING_OPTIONS: FontOption[] = [
-  { value: "inherit", title: "Same as body" },
-  ...FONTS,
-]
+// Shadcn-style: heading lists show fonts only — "same as body" is the
+// internal default, the picker shows the body font when nothing is set.
+export const FONT_HEADING_OPTIONS: FontOption[] = [...FONTS]
 
 export const FA_FONTS: FontOption[] = [
-  { value: "vazirmatn", title: "وزیرمتن (Taymaz cut)" },
-  { value: "estedad", title: "استعداد" },
-  { value: "shabnam", title: "شبنم" },
-  { value: "sahel", title: "ساحل" },
-  { value: "samim", title: "صمیم" },
-  { value: "mikhak", title: "میخک" },
-  { value: "azarmehr", title: "آذرمهر" },
-  { value: "parastoo", title: "پرستو" },
-  { value: "gandom", title: "گندم" },
-  { value: "tanha", title: "تنها" },
-  { value: "lalezar", title: "لاله‌زار" },
-  { value: "markazi-text", title: "مركزی" },
-  { value: "noto-naskh-arabic", title: "نوتو نسخ" },
-  { value: "noto-sans-arabic", title: "نوتو سنس عربی" },
+  { value: "vazirmatn", title: "وزیرمتن" },
 ]
 
-export const FA_FONT_HEADING_OPTIONS: FontOption[] = [
-  { value: "inherit", title: "همان متن اصلی" },
-  ...FA_FONTS,
-]
+export const FA_FONT_HEADING_OPTIONS: FontOption[] = [...FA_FONTS]
 
 export function getFontTitle(list: FontOption[], value: string) {
   return list.find((f) => f.value === value)?.title ?? value

@@ -94,11 +94,24 @@ export function buildPreviewStyle(
   baseColor: BaseColorName,
   theme: ThemeName,
   radius: RadiusName,
-  mode: "light" | "dark"
+  mode: "light" | "dark",
+  menuAccent: "subtle" | "bold" = "subtle"
 ): React.CSSProperties {
   const base = BASE_COLOR_VARS[baseColor]?.[mode] ?? {}
   const themeOverride = THEME_VARS[theme]?.[mode] ?? {}
   const merged = { ...base, ...themeOverride }
+
+  // Bold menu accent: the accent tokens take the primary color, like
+  // shadcn's buildRegistryTheme menuAccent transformation.
+  if (menuAccent === "bold" && merged.primary) {
+    if (merged.accent) {
+      merged.accent = merged.primary
+      const primaryFg = merged["primary-foreground"]
+      if (primaryFg) {
+        merged["accent-foreground"] = primaryFg
+      }
+    }
+  }
 
   const style: Record<string, string> = {
     "--radius": getRadiusCss(radius),

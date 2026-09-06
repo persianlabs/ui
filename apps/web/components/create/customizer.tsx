@@ -25,6 +25,9 @@ import { FontPicker } from "@/components/create/font-picker"
 import { MainMenu } from "@/components/create/main-menu"
 import { OpenPreset } from "@/components/create/open-preset"
 import { RadiusPicker } from "@/components/create/radius-picker"
+import { StylePicker } from "@/components/create/style-picker"
+import { MenuColorPicker } from "@/components/create/menu-picker"
+import { MenuAccentPicker } from "@/components/create/accent-picker"
 import { RandomButton } from "@/components/create/random-button"
 import { ResetDialog } from "@/components/create/reset-button"
 import { ThemePicker } from "@/components/create/theme-picker"
@@ -80,6 +83,7 @@ export function Customizer() {
       </CardHeader>
       <CardContent className="no-scrollbar min-h-0 flex-1 overflow-x-auto overflow-y-hidden md:overflow-y-auto">
         <FieldGroup className="flex-row gap-2.5 py-px **:data-[slot=field-separator]:-mx-4 **:data-[slot=field-separator]:w-auto md:flex-col md:gap-3.25">
+          <StylePicker />
           <BaseColorPicker isMobile={isMobile} anchorRef={anchorRef} />
           <ThemePicker isMobile={isMobile} anchorRef={anchorRef} />
           <FieldSeparator className="hidden md:block" />
@@ -114,6 +118,9 @@ export function Customizer() {
           />
           <FieldSeparator className="hidden md:block" />
           <RadiusPicker isMobile={isMobile} anchorRef={anchorRef} />
+          <FieldSeparator className="hidden md:block" />
+          <MenuColorPicker isMobile={isMobile} anchorRef={anchorRef} />
+          <MenuAccentPicker isMobile={isMobile} anchorRef={anchorRef} />
         </FieldGroup>
       </CardContent>
       <CardFooter className="flex min-w-0 gap-2 md:flex-col md:rounded-b-none md:**:[button,a]:w-full">

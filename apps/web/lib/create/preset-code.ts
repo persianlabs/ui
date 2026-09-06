@@ -11,11 +11,13 @@ type PresetCodeConfig = Pick<
   | "fontHeading"
   | "faFont"
   | "faFontHeading"
-> & { style?: "taymaz" }
+  | "menuAccent"
+  | "menuColor"
+> & { style?: "nova" }
 
 export function getPresetCode(config: PresetCodeConfig) {
   const presetConfig: Partial<PresetConfig> = {
-    style: "taymaz",
+    style: "nova",
     baseColor: config.baseColor as PresetConfig["baseColor"],
     theme: config.theme as PresetConfig["theme"],
     radius: config.radius as PresetConfig["radius"],
@@ -23,6 +25,8 @@ export function getPresetCode(config: PresetCodeConfig) {
     fontHeading: config.fontHeading as PresetConfig["fontHeading"],
     faFont: config.faFont as PresetConfig["faFont"],
     faFontHeading: config.faFontHeading as PresetConfig["faFontHeading"],
+    menuAccent: config.menuAccent as PresetConfig["menuAccent"],
+    menuColor: config.menuColor as PresetConfig["menuColor"],
   }
 
   return encodePreset(presetConfig)

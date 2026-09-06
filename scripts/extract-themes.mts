@@ -42,17 +42,35 @@ const ACCENTS = [
   "yellow",
 ]
 
-const pick = (t: (typeof THEMES)[number]) => ({
+// Themes only override the ACCENT-ish tokens. The base palette keys belong
+// to the base color — if a theme (e.g. "neutral") carried --background etc.,
+// it would mask the user's base color choice entirely.
+// Base colors carry the FULL palette; themes only override accent-ish
+// tokens (a theme carrying --background would mask the base color).
+const THEME_KEYS = [
+  "primary",
+  "primary-foreground",
+  "secondary",
+  "secondary-foreground",
+  "ring",
+]
+const pickBase = (t: (typeof THEMES)[number]) => ({
   light: Object.fromEntries(KEYS.map((k) => [k, t.cssVars!.light![k]!])),
   dark: Object.fromEntries(KEYS.map((k) => [k, t.cssVars!.dark![k]!])),
+})
+const pickTheme = (t: (typeof THEMES)[number]) => ({
+  light: Object.fromEntries(
+    THEME_KEYS.map((k) => [k, t.cssVars!.light![k]!])
+  ),
+  dark: Object.fromEntries(THEME_KEYS.map((k) => [k, t.cssVars!.dark![k]!])),
 })
 
 const baseColors: Record<string, unknown> = {}
 const themes: Record<string, unknown> = {}
 for (const t of THEMES) {
-  if (BASE.includes(t.name)) baseColors[t.name] = pick(t)
-  if (t.name === "neutral") themes.neutral = pick(t)
-  if (ACCENTS.includes(t.name)) themes[t.name] = pick(t)
+  if (BASE.includes(t.name)) baseColors[t.name] = pickBase(t)
+  if (t.name === "neutral") themes.neutral = pickTheme(t)
+  if (ACCENTS.includes(t.name)) themes[t.name] = pickTheme(t)
 }
 // gray has no dedicated shadcn v4 theme — reuse zinc (visually closest).
 baseColors.gray = baseColors.zinc

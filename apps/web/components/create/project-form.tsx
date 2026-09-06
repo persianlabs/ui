@@ -15,6 +15,8 @@ import {
 } from "@workspace/ui/components/dialog"
 import { cn } from "@workspace/ui/lib/utils"
 
+import { CopyCommand } from "@/components/copy-command"
+
 import { usePresetCode } from "@/components/create/hooks/use-preset-code"
 
 const TEMPLATES = [
@@ -112,7 +114,7 @@ export function ProjectForm({
           ))}
         </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-3">
           <div className="bg-muted flex items-center gap-0.5 rounded-lg p-1">
             {PACKAGE_MANAGERS.map((pm) => (
               <button
@@ -126,29 +128,8 @@ export function ProjectForm({
               </button>
             ))}
           </div>
-          <div className="flex min-w-0 items-center gap-2 rounded-lg bg-neutral-950 p-3 ring-1 ring-foreground/10">
-            <code
-              dir="ltr"
-              className="min-w-0 flex-1 truncate font-mono text-xs text-neutral-100"
-            >
-              {command}
-            </code>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleCopy}
-              className="shrink-0"
-            >
-              {hasCopied ? "Copied" : "Copy"}
-            </Button>
-          </div>
+          <CopyCommand command={command} />
         </div>
-
-        <DialogFooter>
-          <Button onClick={handleCopy} className="w-full">
-            {hasCopied ? "Copied" : "Copy Command"}
-          </Button>
-        </DialogFooter>
       </DialogPopup>
     </Dialog>
   )

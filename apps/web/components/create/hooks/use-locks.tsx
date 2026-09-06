@@ -12,6 +12,8 @@ export type LockableParam =
   | "faFont"
   | "faFontHeading"
   | "radius"
+  | "menuAccent"
+  | "menuColor"
 
 type LocksContextValue = {
   locks: Set<LockableParam>

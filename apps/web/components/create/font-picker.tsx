@@ -9,7 +9,6 @@ import {
   PickerGroup,
   PickerRadioGroup,
   PickerRadioItem,
-  PickerSeparator,
   PickerTrigger,
 } from "@/components/create/picker"
 import { usePreviewOverride } from "@/components/create/preview-override"
@@ -96,7 +95,7 @@ export function FontPicker({
           onMouseLeave={clearOverride}
         >
           <PickerRadioGroup
-            value={currentValue}
+            value={currentValue === "inherit" ? bodyFontValue : currentValue}
             onValueChange={handleFontChange}
             onItemPreview={
               isMobile
@@ -107,21 +106,6 @@ export function FontPicker({
                     } as Partial<DesignSystemSearchParams>)
             }
           >
-            {options
-              .filter((option) => option.value === "inherit")
-              .map((option) => (
-                <React.Fragment key={option.value}>
-                  <PickerGroup>
-                    <PickerRadioItem
-                      value={option.value}
-                      closeOnClick={isMobile}
-                    >
-                      {option.title}
-                    </PickerRadioItem>
-                  </PickerGroup>
-                  <PickerSeparator />
-                </React.Fragment>
-              ))}
             <PickerGroup>
               {options
                 .filter((option) => option.value !== "inherit")

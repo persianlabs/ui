@@ -39,6 +39,13 @@ const THEMES = [
   "yellow",
 ] as const
 const RADII_NAMES = ["default", "none", "small", "medium", "large"] as const
+const MENU_ACCENTS = ["subtle", "bold"] as const
+const MENU_COLORS = [
+  "default",
+  "inverted",
+  "default-translucent",
+  "inverted-translucent",
+] as const
 const REGISTRY_BASE_PARTS = ["theme", "font"] as const
 
 function pick<T extends readonly string[]>(
@@ -122,10 +129,15 @@ export async function GET(request: NextRequest) {
 
     const registryDependencies: string[] = []
     const cssVars: Record<string, unknown> = {}
+    const menuAccent = pick(searchParams, "menuAccent", MENU_ACCENTS, "subtle")
+    const menuColor = pick(searchParams, "menuColor", MENU_COLORS, "default")
+
     const config: Record<string, unknown> = {
-      style: "taymaz",
+      style: "nova",
       rtl: true,
       iconLibrary: "lucide",
+      menuAccent,
+      menuColor,
     }
 
     if (wantTheme) {
@@ -146,9 +158,7 @@ export async function GET(request: NextRequest) {
 
     const item = {
       $schema: "https://ui.persian-labs.ir/schema/registry-item.json",
-      name: only.parts.length
-        ? `taymaz-${only.parts.join("-")}`
-        : "taymaz",
+      name: only.parts.length ? `nova-${only.parts.join("-")}` : "nova",
       type: "registry:base",
       extends: "none",
       config,

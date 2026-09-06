@@ -71,7 +71,7 @@ export async function runInit(options: {
 export function resolveConfig(presetCode?: string): PresetConfig {
   if (!presetCode) {
     return {
-      style: "taymaz",
+      style: "nova",
       baseColor: "neutral",
       theme: "neutral",
       font: "geist",
@@ -79,6 +79,8 @@ export function resolveConfig(presetCode?: string): PresetConfig {
       faFont: "vazirmatn",
       faFontHeading: "vazirmatn",
       radius: "default",
+      menuAccent: "subtle",
+      menuColor: "default",
     }
   }
 

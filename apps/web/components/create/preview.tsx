@@ -14,7 +14,6 @@ import {
   RESET_FORWARD_TYPE,
   UNDO_FORWARD_TYPE,
 } from "@/components/create/forward-types"
-import { PreviewSwitcher } from "@/components/create/preview-switcher"
 import { usePreviewOverrideValue } from "@/components/create/preview-override"
 import { sendToIframe } from "@/components/create/hooks/use-iframe-sync"
 import {
@@ -155,7 +154,7 @@ export function Preview() {
     // Further updates of the search params will be sent to the iframe
     // via a postMessage channel, for it to sync its own history onto the host's.
     return serializeDesignSystemSearchParams(
-      `/create/preview/${params.item}`,
+      "/create/preview",
       params
     )
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -166,14 +165,13 @@ export function Preview() {
       <div className="relative z-0 mx-auto flex w-full flex-1 flex-col overflow-hidden">
         <div className="absolute inset-0 bg-muted dark:bg-muted/30" />
         <iframe
-          key={params.item}
+          
           ref={iframeRef}
           src={iframeSrc}
           className="z-10 size-full flex-1"
           title="Preview"
         />
       </div>
-      <PreviewSwitcher />
     </div>
   )
 }

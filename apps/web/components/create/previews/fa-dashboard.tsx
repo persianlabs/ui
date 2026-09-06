@@ -16,7 +16,18 @@ import {
   TrendingUpIcon,
   UsersIcon,
   WalletIcon,
+  LogOutIcon,
+  UserIcon,
 } from "lucide-react"
+
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuGroupLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@workspace/ui/components/dropdown-menu"
 
 import { Avatar, AvatarFallback } from "@workspace/ui/components/avatar"
 import { Badge } from "@workspace/ui/components/badge"
@@ -144,7 +155,7 @@ const ACTIVITY = [
 
 export function FaDashboard() {
   return (
-    <div dir="rtl" className="min-h-svh bg-background text-foreground">
+    <div dir="rtl" className="bg-background text-foreground">
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 p-4 md:p-8">
         {/* Header */}
         <header className="flex flex-wrap items-center justify-between gap-3">
@@ -172,6 +183,31 @@ export function FaDashboard() {
             <Button variant="outline" size="icon" aria-label="تنظیمات">
               <SettingsIcon />
             </Button>
+            <DropdownMenu>
+              <DropdownMenuTrigger
+                render={<Button variant="outline" size="icon" aria-label="حساب کاربری" />}
+              >
+                <Avatar>
+                  <AvatarFallback className="text-xs">پ‌ن</AvatarFallback>
+                </Avatar>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuGroupLabel>حساب کاربری</DropdownMenuGroupLabel>
+                <DropdownMenuItem>
+                  <UserIcon className="size-4" />
+                  پروفایل
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <CreditCardIcon className="size-4" />
+                  صورتحساب
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem variant="destructive">
+                  <LogOutIcon className="size-4" />
+                  خروج
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <Button>
               <PackageIcon data-icon="inline-start" />
               سفارش جدید

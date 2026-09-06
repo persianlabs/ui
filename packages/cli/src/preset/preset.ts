@@ -15,7 +15,7 @@
 // (same order — preset.test.ts asserts it).
 
 // Value arrays — order matters for backward compat. Never reorder, only append.
-export const PRESET_STYLES = ["taymaz"] as const
+export const PRESET_STYLES = ["nova"] as const
 
 export const PRESET_BASE_COLORS = [
   "neutral",
@@ -56,6 +56,14 @@ export const PRESET_RADII = [
   "large",
 ] as const
 
+export const PRESET_MENU_ACCENTS = ["subtle", "bold"] as const
+export const PRESET_MENU_COLORS = [
+  "default",
+  "inverted",
+  "default-translucent",
+  "inverted-translucent",
+] as const
+
 // Font VALUES in the exact order of src/preset/fonts.ts (append-only).
 export const PRESET_EN_FONTS = [
   "geist",
@@ -93,12 +101,16 @@ export type PresetStyle = (typeof PRESET_STYLES)[number]
 export type PresetBaseColor = (typeof PRESET_BASE_COLORS)[number]
 export type PresetTheme = (typeof PRESET_THEMES)[number]
 export type PresetRadius = (typeof PRESET_RADII)[number]
+export type PresetMenuAccent = (typeof PRESET_MENU_ACCENTS)[number]
+export type PresetMenuColor = (typeof PRESET_MENU_COLORS)[number]
 export type PresetEnFont = (typeof PRESET_EN_FONTS)[number]
 export type PresetEnFontHeading = (typeof PRESET_EN_FONT_HEADINGS)[number]
 export type PresetFaFont = (typeof PRESET_FA_FONTS)[number]
 
-// V1 fields (version "a"), 37 bits. Defaults must stay at index 0.
+// V1 fields (version "a"), 43 bits. Defaults must stay at index 0.
 const PRESET_FIELDS_V1 = [
+  { key: "menuColor", values: PRESET_MENU_COLORS, bits: 3 },
+  { key: "menuAccent", values: PRESET_MENU_ACCENTS, bits: 3 },
   { key: "radius", values: PRESET_RADII, bits: 3 },
   { key: "faFontHeading", values: PRESET_FA_FONTS, bits: 5 },
   { key: "faFont", values: PRESET_FA_FONTS, bits: 5 },
@@ -118,6 +130,8 @@ export type PresetConfig = {
   faFont: PresetFaFont
   faFontHeading: PresetFaFont
   radius: PresetRadius
+  menuAccent: PresetMenuAccent
+  menuColor: PresetMenuColor
 }
 
 export const DEFAULT_PRESET_CONFIG: PresetConfig = Object.fromEntries(

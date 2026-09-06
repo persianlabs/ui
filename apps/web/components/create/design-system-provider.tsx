@@ -2,8 +2,8 @@
 
 // Adapted from the shadcn create app's design-system-provider. Instead of
 // shadcn's registry theme builder it paints the iframe with
-// buildPreviewStyle(baseColor, theme, radius, mode) rendered into a
-// :root style element, applies the fixed "style-taymaz" body class, and
+// buildPreviewStyle(baseColor, theme, radius, mode, params.menuAccent) rendered into a
+// :root style element, applies the fixed "style-nova" body class, and
 // wires the Geist/Vazirmatn CSS variables (other fonts are not bundled yet,
 // so every selection falls back to those two families).
 //
@@ -71,11 +71,12 @@ function buildThemeCssText(
   baseColor: BaseColorName,
   theme: ThemeName,
   radius: RadiusName,
-  mode: Mode
+  mode: Mode,
+  menuAccent: "subtle" | "bold"
 ) {
   return buildCssRule(
     ":root",
-    buildPreviewStyle(baseColor, theme, radius, mode) as Record<
+    buildPreviewStyle(baseColor, theme, radius, mode, menuAccent) as Record<
       string,
       string | number
     >
@@ -181,7 +182,7 @@ export function DesignSystemProvider({
 
     // Iterate over a snapshot so removals do not affect traversal.
     removeManagedBodyClasses(body)
-    body.classList.add("style-taymaz", `base-color-${params.baseColor}`)
+    body.classList.add("style-nova", `base-color-${params.baseColor}`)
 
     // Update fonts. Only Geist and Vazirmatn are bundled, so any selection
     // falls back to those families; the value is metadata for the CLI.
@@ -225,9 +226,94 @@ export function DesignSystemProvider({
       params.baseColor,
       params.theme,
       params.radius,
-      mode
+      mode,
+      params.menuAccent
     )
-  }, [params.baseColor, params.theme, params.radius, mode])
+  }, [params.baseColor, params.theme, params.radius, mode, params.menuAccent])
+
+  // Handle menu color inversion by adding/removing the dark class on
+  // .cn-menu-target elements, and translucency via cn-menu-translucent.
+  // Ported from the shadcn design-system-provider.
+  React.useLayoutEffect(() => {
+    if (!isReady) {
+      return
+    }
+    const menuColor = params.menuColor
+    if (!menuColor) {
+      return
+    }
+
+    const isInvertedMenu =
+      menuColor === "inverted" || menuColor === "inverted-translucent"
+    const isTranslucentMenu =
+      menuColor === "default-translucent" ||
+      menuColor === "inverted-translucent"
+    let frameId = 0
+
+    const updateMenuElements = () => {
+      const allElements = document.querySelectorAll<HTMLElement>(
+        ".cn-menu-target, [data-menu-translucent]"
+      )
+
+      if (allElements.length === 0) {
+        return
+      }
+
+      allElements.forEach((element) => {
+        element.style.transition = "none"
+      })
+
+      allElements.forEach((element) => {
+        if (element.classList.contains("cn-menu-target")) {
+          if (isInvertedMenu) {
+            element.classList.add("dark")
+          } else {
+            element.classList.remove("dark")
+          }
+        }
+
+        if (isTranslucentMenu) {
+          element.classList.add("cn-menu-translucent")
+          element.removeAttribute("data-menu-translucent")
+        } else if (element.classList.contains("cn-menu-translucent")) {
+          element.classList.remove("cn-menu-translucent")
+          element.setAttribute("data-menu-translucent", "")
+        }
+      })
+
+      void document.body.offsetHeight
+      allElements.forEach((element) => {
+        element.style.transition = ""
+      })
+    }
+
+    const scheduleMenuUpdate = () => {
+      if (frameId) {
+        return
+      }
+      frameId = window.requestAnimationFrame(() => {
+        frameId = 0
+        updateMenuElements()
+      })
+    }
+
+    updateMenuElements()
+
+    const observer = new MutationObserver(() => {
+      scheduleMenuUpdate()
+    })
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    })
+
+    return () => {
+      observer.disconnect()
+      if (frameId) {
+        window.cancelAnimationFrame(frameId)
+      }
+    }
+  }, [isReady, params.menuColor])
 
   if (!isReady) {
     return null
