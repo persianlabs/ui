@@ -12,8 +12,8 @@ export default function Page() {
       <SiteHeader />
 
       <main className="flex flex-1 flex-col">
-        <section className="border-b border-border/60">
-          <div className="mx-auto flex max-w-4xl flex-col items-center gap-4 px-6 py-16 text-center md:py-24">
+        <section>
+          <div className="mx-auto flex max-w-4xl flex-col items-center gap-4 px-6 py-20 text-center md:py-32">
             <Link
               href={GITHUB_URL}
               target="_blank"
