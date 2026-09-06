@@ -422,6 +422,11 @@ function DrawerFooter({
         // this is declared later in the DOM. Without an explicit z-index
         // this fix is invisible: the popup's own solid bleed just paints
         // over it.
+        //
+        // On a TOP drawer this bleed hangs below the popup into the page,
+        // where a bottom drawer's is off-screen — so only there it fades
+        // with the drag via the popup's inherited --drawer-swipe-progress
+        // (0 at rest). Every other position keeps it always painted.
         "relative border-t border-border bg-muted/72 pt-4 pb-[calc(env(safe-area-inset-bottom,0px)+--spacing(4))] after:pointer-events-none after:absolute after:z-10 after:bg-muted/72",
       // Bottom and top drawers leave space below the footer, so their bleed
       // continues downward.
@@ -429,6 +434,10 @@ function DrawerFooter({
         position !== "right" &&
         position !== "left" &&
         "after:inset-x-0 after:top-full after:h-[200px]",
+      // Only the top drawer must hide its bleed while idle (see above).
+      variant === "default" &&
+        position === "top" &&
+        "after:opacity-[clamp(0,var(--drawer-swipe-progress,0),1)]",
       // Side drawers stretch sideways. Continue the footer into the gap on
       // the outer edge, including its top border, so the muted footer color
       // does not cut back to the popup color while dragging. Offset by the
@@ -720,7 +729,7 @@ function DrawerMenuCheckboxItem({
             className="col-start-2 inline-flex h-[calc(var(--thumb-size)+2px)] w-[calc(var(--thumb-size)*2-2px)] shrink-0 items-center rounded-full p-px transition-[background-color,box-shadow] duration-200 outline-none [--thumb-size:--spacing(4)] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background data-[checked]:bg-primary data-[disabled]:opacity-50 data-[unchecked]:bg-input sm:[--thumb-size:--spacing(3)]"
             keepMounted
           >
-            <span className="pointer-events-none block aspect-square h-full origin-left rounded-(--thumb-size) bg-background shadow-sm transition-transform group-data-[checked]:translate-x-[calc(var(--thumb-size)-4px)] rtl:group-data-[checked]:-translate-x-[calc(var(--thumb-size)-4px)]" />
+            <span className="origin-start pointer-events-none block aspect-square h-full rounded-(--thumb-size) bg-background shadow-sm transition-transform group-data-[checked]:translate-x-[calc(var(--thumb-size)-4px)] rtl:group-data-[checked]:-translate-x-[calc(var(--thumb-size)-4px)]" />
           </CheckboxPrimitive.Indicator>
         </>
       ) : (
