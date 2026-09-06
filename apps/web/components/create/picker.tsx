@@ -32,6 +32,7 @@ function PickerContent({
   alignOffset = 0,
   side = "bottom",
   sideOffset = 20,
+  anchor,
   className,
   ...props
 }: MenuPrimitive.Popup.Props &
@@ -47,6 +48,7 @@ function PickerContent({
         alignOffset={alignOffset}
         side={side}
         sideOffset={sideOffset}
+        anchor={anchor}
       >
         <MenuPrimitive.Popup
           data-slot="dropdown-menu-content"
@@ -65,6 +67,46 @@ function PickerGroup({ ...props }: MenuPrimitive.Group.Props) {
   return <MenuPrimitive.Group data-slot="dropdown-menu-group" {...props} />
 }
 
+function PickerLabel({
+  className,
+  inset,
+  ...props
+}: MenuPrimitive.GroupLabel.Props & {
+  inset?: boolean
+}) {
+  return (
+    <MenuPrimitive.GroupLabel
+      data-slot="dropdown-menu-label"
+      data-inset={inset}
+      className={cn(
+        "px-2 py-1.5 text-xs font-medium text-neutral-400 data-inset:pl-8",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function PickerItem({
+  className,
+  inset,
+  ...props
+}: MenuPrimitive.Item.Props & {
+  inset?: boolean
+}) {
+  return (
+    <MenuPrimitive.Item
+      data-slot="dropdown-menu-item"
+      data-inset={inset}
+      className={cn(
+        "group/dropdown-menu-item relative flex cursor-default items-center gap-2 rounded-lg px-2 py-1.5 text-sm font-medium outline-hidden select-none **:text-neutral-100 focus:bg-neutral-600 focus:text-neutral-100 focus:**:text-neutral-100 data-inset:pl-8 dark:focus:bg-neutral-700/80 pointer-coarse:gap-3 pointer-coarse:py-2.5 pointer-coarse:pl-3 pointer-coarse:text-base data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
 function PickerRadioGroup({
   onItemPreview,
   ...props
@@ -72,10 +114,12 @@ function PickerRadioGroup({
   onItemPreview?: (value: string) => void
 }) {
   return (
-    <MenuPrimitive.RadioGroup
-      data-slot="dropdown-menu-radio-group"
-      {...props}
-    />
+    <PickerPreviewContext.Provider value={onItemPreview ?? null}>
+      <MenuPrimitive.RadioGroup
+        data-slot="dropdown-menu-radio-group"
+        {...props}
+      />
+    </PickerPreviewContext.Provider>
   )
 }
 
@@ -83,12 +127,26 @@ function PickerRadioItem({
   className,
   children,
   value,
+  onMouseMove,
+  onFocus,
   ...props
 }: MenuPrimitive.RadioItem.Props) {
+  const onItemPreview = React.useContext(PickerPreviewContext)
+
   return (
     <MenuPrimitive.RadioItem
       data-slot="dropdown-menu-radio-item"
       value={value}
+      // Previews apply when the pointer settles: Base UI moves DOM focus to
+      // the highlighted item, so onFocus covers keyboard (arrow key) browsing.
+      onMouseMove={(event) => {
+        onMouseMove?.(event)
+        onItemPreview?.(value as string)
+      }}
+      onFocus={(event) => {
+        onFocus?.(event)
+        onItemPreview?.(value as string)
+      }}
       className={cn(
         "relative flex cursor-default items-center gap-2 rounded-lg py-1.5 pr-8 pl-2 text-sm font-medium outline-hidden select-none **:text-neutral-100 focus:bg-neutral-600 focus:text-neutral-100 focus:**:text-neutral-100 pointer-coarse:gap-3 pointer-coarse:py-2.5 pointer-coarse:pl-3 pointer-coarse:text-base data-disabled:pointer-events-none data-disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className
@@ -108,15 +166,40 @@ function PickerRadioItem({
   )
 }
 
-function PickerSeparator({ className, ...props }: MenuPrimitive.Separator.Props) {
+function PickerSeparator({
+  className,
+  ...props
+}: MenuPrimitive.Separator.Props) {
   return (
     <MenuPrimitive.Separator
       data-slot="dropdown-menu-separator"
-      className={cn("-mx-1.5 my-1.5 h-px bg-neutral-600 dark:bg-neutral-700", className)}
+      className={cn(
+        "-mx-1.5 my-1.5 h-px bg-neutral-600 dark:bg-neutral-700",
+        className
+      )}
       {...props}
     />
   )
 }
+
+function PickerShortcut({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="dropdown-menu-shortcut"
+      className={cn(
+        "ml-auto text-xs tracking-widest text-neutral-400! group-focus/dropdown-menu-item:text-neutral-100",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+// Lets pickers preview an item's value on hover/highlight by declaring a
+// single onItemPreview on the group instead of wiring every radio item.
+const PickerPreviewContext = React.createContext<
+  ((value: string) => void) | null
+>(null)
 
 function PickerSubTrigger({
   className,
@@ -143,8 +226,11 @@ export {
   PickerTrigger,
   PickerContent,
   PickerGroup,
+  PickerItem,
+  PickerLabel,
   PickerRadioGroup,
   PickerRadioItem,
   PickerSeparator,
+  PickerShortcut,
   PickerSubTrigger,
 }

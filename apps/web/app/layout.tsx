@@ -1,5 +1,6 @@
 import { Analytics } from "@vercel/analytics/next"
 import type { Metadata, Viewport } from "next"
+import { NuqsAdapter } from "nuqs/adapters/next/app"
 import { Geist, Geist_Mono, Vazirmatn } from "next/font/google"
 
 import "@workspace/ui/globals.css"
@@ -103,11 +104,13 @@ export default function RootLayout({
               'if(new URLSearchParams(location.search).get("embed")==="1")document.documentElement.classList.add("preview-loading")',
           }}
         />
-        <ThemeProvider>
-          <ToastProvider>
-            <AnchoredToastProvider>{children}</AnchoredToastProvider>
-          </ToastProvider>
-        </ThemeProvider>
+        <NuqsAdapter>
+          <ThemeProvider>
+            <ToastProvider>
+              <AnchoredToastProvider>{children}</AnchoredToastProvider>
+            </ToastProvider>
+          </ThemeProvider>
+        </NuqsAdapter>
         <Analytics />
       </body>
     </html>
