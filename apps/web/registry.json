@@ -955,9 +955,9 @@
       "name": "utils",
       "type": "registry:lib",
       "title": "Utils",
-      "description": "The cn() class-merging helper built on clsx and tailwind-merge.",
+      "description": "The cn() class-merging helper, powered by the cn package (a drop-in clsx + tailwind-merge engine).",
       "registryDependencies": [],
-      "dependencies": ["clsx", "tailwind-merge"],
+      "dependencies": ["cn"],
       "files": [
         {
           "path": "registry/base/lib/utils.ts",

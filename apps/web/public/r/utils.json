@@ -2,16 +2,15 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "utils",
   "title": "Utils",
-  "description": "The cn() class-merging helper built on clsx and tailwind-merge.",
+  "description": "The cn() class-merging helper, powered by the cn package (a drop-in clsx + tailwind-merge engine).",
   "dependencies": [
-    "clsx",
-    "tailwind-merge"
+    "cn"
   ],
   "registryDependencies": [],
   "files": [
     {
       "path": "registry/base/lib/utils.ts",
-      "content": "import { clsx, type ClassValue } from \"clsx\"\nimport { twMerge } from \"tailwind-merge\"\n\nexport function cn(...inputs: ClassValue[]) {\n  return twMerge(clsx(inputs))\n}\n",
+      "content": "export { cn } from \"cn\"\n",
       "type": "registry:lib"
     }
   ],
