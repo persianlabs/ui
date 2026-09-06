@@ -78,6 +78,12 @@ export const EN_FONT_HEADINGS = ["inherit", ...EN_FONTS.map((f) => f.value)]
 
 // Persian fonts — free (OFL/MIT) fonts with full Farsi glyph coverage.
 // Downloaded and committed to the registry repo under public/fonts/<dir>/.
+//
+// IMPORTANT: Persian fonts must be committed as arabic-script subsets
+// WITHOUT Latin glyphs (build once with pyftsubset, or use the prebuilt
+// arabic-subset files where upstream ships them). Latin letters AND ASCII
+// digits must fall through to the English font via the font stack —
+// the generated fonts.css puts the Persian family first.
 export const FA_FONTS: FontEntry[] = [
   {
     value: "vazirmatn",
