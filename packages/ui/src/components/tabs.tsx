@@ -180,7 +180,14 @@ function TabsList({ className, children, ...props }: TabsPrimitive.List.Props) {
         {rect && (
           <motion.span
             data-slot="tabs-indicator"
-            className={cn("absolute top-0 left-0", indicatorStyle.className)}
+            className={cn(
+              // Physical left anchor: rect.x comes from offsetLeft, which is
+              // always measured from the left border edge regardless of
+              // direction — a logical start-0 anchor would pin the right edge
+              // under RTL and throw the spring pill outside the list.
+              "absolute top-0 left-0",
+              indicatorStyle.className
+            )}
             style={{ borderRadius: indicatorStyle.radius }}
             initial={false}
             animate={{
