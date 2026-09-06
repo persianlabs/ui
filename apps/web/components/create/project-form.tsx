@@ -7,7 +7,6 @@ import { Button } from "@workspace/ui/components/button"
 import {
   Dialog,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogPopup,
   DialogTitle,
@@ -15,8 +14,7 @@ import {
 } from "@workspace/ui/components/dialog"
 import { cn } from "@workspace/ui/lib/utils"
 
-import { CopyCommand } from "@/components/copy-command"
-
+import { CodeBlockCommand } from "@/components/code-block-command"
 import { usePresetCode } from "@/components/create/hooks/use-preset-code"
 
 const TEMPLATES = [
@@ -39,44 +37,13 @@ const TEMPLATES = [
 
 type TemplateValue = (typeof TEMPLATES)[number]["value"]
 
-const PACKAGE_MANAGERS = [
-  { value: "pnpm", label: "pnpm" },
-  { value: "npm", label: "npm" },
-  { value: "yarn", label: "yarn" },
-  { value: "bun", label: "bun" },
-] as const
-
-type PackageManager = (typeof PACKAGE_MANAGERS)[number]["value"]
-
-const RUNNERS: Record<PackageManager, string> = {
-  pnpm: "pnpm dlx persianlabsui@latest",
-  npm: "npx persianlabsui@latest",
-  yarn: "yarn dlx persianlabsui@latest",
-  bun: "bunx --bun persianlabsui@latest",
-}
-
 export function ProjectForm({
   className,
 }: React.ComponentProps<typeof Button>) {
   const [template, setTemplate] = React.useState<TemplateValue>("next")
-  const [packageManager, setPackageManager] =
-    React.useState<PackageManager>("pnpm")
-  const [hasCopied, setHasCopied] = React.useState(false)
   const presetCode = usePresetCode()
 
-  const command = `${RUNNERS[packageManager]} init --preset ${presetCode} --template ${template}`
-
-  React.useEffect(() => {
-    if (hasCopied) {
-      const timer = setTimeout(() => setHasCopied(false), 2000)
-      return () => clearTimeout(timer)
-    }
-  }, [hasCopied])
-
-  const handleCopy = React.useCallback(() => {
-    navigator.clipboard.writeText(command).catch(() => {})
-    setHasCopied(true)
-  }, [command])
+  const command = `init --preset ${presetCode} --template ${template}`
 
   return (
     <Dialog>
@@ -114,22 +81,14 @@ export function ProjectForm({
           ))}
         </div>
 
-        <div className="flex flex-col gap-3">
-          <div className="bg-muted flex items-center gap-0.5 rounded-lg p-1">
-            {PACKAGE_MANAGERS.map((pm) => (
-              <button
-                key={pm.value}
-                type="button"
-                onClick={() => setPackageManager(pm.value)}
-                data-checked={packageManager === pm.value}
-                className="flex-1 rounded-md px-2 py-1.5 text-xs font-medium transition-colors outline-none select-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring/50 data-[checked=true]:bg-background data-[checked=true]:text-foreground data-[checked=true]:shadow-sm"
-              >
-                {pm.label}
-              </button>
-            ))}
-          </div>
-          <CopyCommand command={command} />
-        </div>
+        {/* Same component as the docs install blocks: pnpm/yarn/npm/bun tabs
+            with the selected manager persisted in localStorage. */}
+        <CodeBlockCommand
+          pnpm={`pnpm dlx persianlabsui@latest ${command}`}
+          yarn={`yarn dlx persianlabsui@latest ${command}`}
+          npm={`npx persianlabsui@latest ${command}`}
+          bun={`bunx --bun persianlabsui@latest ${command}`}
+        />
       </DialogPopup>
     </Dialog>
   )
