@@ -1,6 +1,12 @@
 "use client"
 
-import { useCallback, useEffect, useRef, useState } from "react"
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react"
 import {
   animate,
   motion,
@@ -146,7 +152,36 @@ export function ElasticRangeSlider({
     rubberStretch,
     (s) => `calc(100% + ${Math.abs(s)}px)`
   )
-  const rubberX = useTransform(rubberStretch, (s) => (s < 0 ? s : 0))
+  // Track is anchored at the reading start (inset-inline-start: 0), so the
+  // shift is direction-aware: LTR pins the track's physical left (overshoot
+  // left shifts: x = s, s < 0); RTL pins the physical right (overshoot right
+  // shifts: x = s, s > 0). Only the overshot edge stretches.
+  const dirRef = useRef<"ltr" | "rtl">("ltr")
+
+  useLayoutEffect(() => {
+    function updateDir() {
+      if (!wrapperRef.current) return
+      dirRef.current =
+        getComputedStyle(wrapperRef.current).direction === "rtl" ? "rtl" : "ltr"
+    }
+
+    updateDir()
+
+    const observer = new MutationObserver(updateDir)
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["dir"],
+      subtree: true,
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
+  const rubberX = useTransform(rubberStretch, (s) => {
+    if (s === 0) return 0
+    const overshootPastAnchor = dirRef.current === "rtl" ? s > 0 : s < 0
+    return overshootPastAnchor ? s : 0
+  })
 
   // Sync from props when not actively dragging that thumb.
   useEffect(() => {
@@ -460,7 +495,7 @@ export function ElasticRangeSlider({
         ref={trackRef}
         data-slot="elastic-slider-track"
         data-active={isActive}
-        className="group/elastic-slider absolute inset-y-0 left-0 touch-none overflow-hidden rounded-(--elastic-slider-radius) bg-(--elastic-slider-bg) select-none"
+        className="group/elastic-slider absolute inset-y-0 start-0 touch-none overflow-hidden rounded-(--elastic-slider-radius) bg-(--elastic-slider-bg) select-none"
         style={{ width: rubberWidth, x: rubberX }}
         onPointerDown={handleTrackPointerDown}
         onPointerMove={handlePointerMove}
@@ -536,7 +571,7 @@ export function ElasticRangeSlider({
         <span
           data-slot="elastic-slider-label"
           aria-hidden="true"
-          className="pointer-events-none absolute top-1/2 left-3 inline-flex -translate-y-1/2 items-center text-sm/none font-medium text-(--elastic-slider-label) transition-colors"
+          className="pointer-events-none absolute start-3 top-1/2 inline-flex -translate-y-1/2 items-center text-sm/none font-medium text-(--elastic-slider-label) transition-colors"
         >
           {label}
         </span>
@@ -544,7 +579,7 @@ export function ElasticRangeSlider({
         <span
           data-slot="elastic-slider-value"
           aria-hidden="true"
-          className="pointer-events-none absolute top-1/2 right-3 -translate-y-1/2 font-mono text-sm/none font-medium text-(--elastic-slider-label) transition-colors group-data-[active=true]/elastic-slider:text-(--elastic-slider-focus)"
+          className="pointer-events-none absolute end-3 top-1/2 -translate-y-1/2 font-mono text-sm/none font-medium text-(--elastic-slider-label) transition-colors group-data-[active=true]/elastic-slider:text-(--elastic-slider-focus)"
         >
           {displayMin} – {displayMax}
         </span>
