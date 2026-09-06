@@ -1,0 +1,30 @@
+{
+  "name": "persianlabsui",
+  "version": "0.1.0",
+  "description": "The CLI for Persian Labs UI — init, apply presets, and add RTL-first, Persian-typography components built on Base UI.",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "persianlabsui": "./dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "typescript": "^5.7.2",
+    "vitest": "^3.0.0"
+  }
+}
