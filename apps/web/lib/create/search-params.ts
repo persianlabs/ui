@@ -79,6 +79,14 @@ export const DESIGN_SYSTEM_KEYS = [
   "menuColor",
 ] as const
 
+export function isTranslucentMenuColor(
+  menuColor?: string | null
+): menuColor is "default-translucent" | "inverted-translucent" {
+  return (
+    menuColor === "default-translucent" || menuColor === "inverted-translucent"
+  )
+}
+
 // Non-design-system keys that get passed through as-is.
 const NON_DESIGN_SYSTEM_KEYS = ["item", "preset"] as const
 

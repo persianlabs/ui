@@ -1,25 +1,53 @@
 "use client"
 
 import * as React from "react"
+import { MenuIcon } from "lucide-react"
+import { useTheme } from "next-themes"
 
+import { useMounted } from "@/hooks/use-mounted"
 import { LockButton } from "@/components/create/lock-button"
 import {
   Picker,
   PickerContent,
   PickerGroup,
+  PickerLabel,
   PickerRadioGroup,
   PickerRadioItem,
+  PickerSeparator,
   PickerTrigger,
 } from "@/components/create/picker"
 import { usePreviewOverride } from "@/components/create/preview-override"
-import { useDesignSystemSearchParams } from "@/lib/create/search-params"
+import {
+  isTranslucentMenuColor,
+  useDesignSystemSearchParams,
+} from "@/lib/create/search-params"
 
-const MENU_OPTIONS: { value: string; label: string }[] = [
+type ColorChoice = "default" | "inverted"
+type SurfaceChoice = "solid" | "translucent"
+
+function getMenuColorValue(
+  color: ColorChoice,
+  translucent: boolean
+): DesignSystemMenuColor {
+  if (color === "default") {
+    return translucent ? "default-translucent" : "default"
+  }
+
+  return translucent ? "inverted-translucent" : "inverted"
+}
+
+const MENU_OPTIONS: { value: DesignSystemMenuColor; label: string }[] = [
   { value: "default", label: "Default / Solid" },
   { value: "default-translucent", label: "Default / Translucent" },
   { value: "inverted", label: "Inverted / Solid" },
   { value: "inverted-translucent", label: "Inverted / Translucent" },
 ]
+
+type DesignSystemMenuColor =
+  | "default"
+  | "inverted"
+  | "default-translucent"
+  | "inverted-translucent"
 
 export function MenuColorPicker({
   isMobile,
@@ -30,8 +58,76 @@ export function MenuColorPicker({
 }) {
   const [params, setParams] = useDesignSystemSearchParams()
   const { setOverride, clearOverride } = usePreviewOverride()
+  const { resolvedTheme } = useTheme()
+  const mounted = useMounted()
+  const lastSolidMenuAccentRef = React.useRef(params.menuAccent)
+  const isDark = mounted && resolvedTheme === "dark"
+  const currentMenu = MENU_OPTIONS.find(
+    (menu) => menu.value === params.menuColor
+  )
+  const colorChoice: ColorChoice =
+    params.menuColor === "inverted" ||
+    params.menuColor === "inverted-translucent"
+      ? "inverted"
+      : "default"
+  const surfaceChoice: SurfaceChoice =
+    params.menuColor === "default-translucent" ||
+    params.menuColor === "inverted-translucent"
+      ? "translucent"
+      : "solid"
 
-  const currentMenu = MENU_OPTIONS.find((menu) => menu.value === params.menuColor)
+  React.useEffect(() => {
+    if (surfaceChoice === "solid") {
+      lastSolidMenuAccentRef.current = params.menuAccent
+    }
+  }, [params.menuAccent, surfaceChoice])
+
+  const setColor = (color: ColorChoice) => {
+    const nextMenuColor = getMenuColorValue(
+      color,
+      surfaceChoice === "translucent"
+    )
+
+    setParams({
+      menuColor: nextMenuColor,
+      ...(isTranslucentMenuColor(nextMenuColor) && { menuAccent: "subtle" }),
+    })
+  }
+
+  const setSurface = (choice: SurfaceChoice) => {
+    const isTranslucent = choice === "translucent"
+    const nextMenuColor = getMenuColorValue(colorChoice, isTranslucent)
+
+    setParams({
+      menuColor: nextMenuColor,
+      menuAccent: isTranslucent ? "subtle" : lastSolidMenuAccentRef.current,
+    })
+  }
+
+  // Hover previews mirror setColor/setSurface, including the menuAccent
+  // coupling, so the previewed state matches what a click would commit.
+  const previewColor = (color: ColorChoice) => {
+    const nextMenuColor = getMenuColorValue(
+      color,
+      surfaceChoice === "translucent"
+    )
+
+    setOverride({
+      menuColor: nextMenuColor,
+      ...(isTranslucentMenuColor(nextMenuColor) && {
+        menuAccent: "subtle" as const,
+      }),
+    })
+  }
+
+  const previewSurface = (choice: SurfaceChoice) => {
+    const isTranslucent = choice === "translucent"
+
+    setOverride({
+      menuColor: getMenuColorValue(colorChoice, isTranslucent),
+      menuAccent: isTranslucent ? "subtle" : lastSolidMenuAccentRef.current,
+    })
+  }
 
   return (
     <div className="group/picker relative">
@@ -45,21 +141,13 @@ export function MenuColorPicker({
         <PickerTrigger>
           <div className="flex flex-col justify-start text-left">
             <div className="text-muted-foreground text-xs">Menu</div>
-            <div className="text-foreground text-sm font-medium">
+            <div className="line-clamp-1 max-w-[80%] truncate text-foreground text-sm font-medium">
               {currentMenu?.label}
             </div>
           </div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            className="text-foreground pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 select-none md:right-2.5"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-          >
-            <path d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
+          <div className="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center select-none md:right-2.5">
+            <MenuIcon className="size-4" />
+          </div>
         </PickerTrigger>
         <PickerContent
           anchor={isMobile ? anchorRef : undefined}
@@ -67,34 +155,51 @@ export function MenuColorPicker({
           align={isMobile ? "center" : "start"}
           onMouseLeave={clearOverride}
         >
-          <PickerRadioGroup
-            value={params.menuColor}
-            onValueChange={(value) => {
-              setParams({
-                menuColor: value as DesignSystemMenuColor,
-              })
-            }}
-            onItemPreview={
-              isMobile
-                ? undefined
-                : (value) =>
-                    setOverride({
-                      menuColor: value as DesignSystemMenuColor,
-                    })
-            }
-          >
-            <PickerGroup>
-              {MENU_OPTIONS.map((menu) => (
-                <PickerRadioItem
-                  key={menu.value}
-                  value={menu.value}
-                  closeOnClick={isMobile}
-                >
-                  {menu.label}
-                </PickerRadioItem>
-              ))}
-            </PickerGroup>
-          </PickerRadioGroup>
+          <PickerGroup>
+            <PickerLabel>Color</PickerLabel>
+            <PickerRadioGroup
+              value={colorChoice}
+              onValueChange={(value) => {
+                setColor(value as ColorChoice)
+              }}
+              onItemPreview={
+                isMobile ? undefined : (value) => previewColor(value as ColorChoice)
+              }
+            >
+              <PickerRadioItem value="default" closeOnClick={isMobile}>
+                Default
+              </PickerRadioItem>
+              <PickerRadioItem
+                value="inverted"
+                closeOnClick={isMobile}
+                disabled={isDark}
+              >
+                Inverted
+              </PickerRadioItem>
+            </PickerRadioGroup>
+          </PickerGroup>
+          <PickerSeparator />
+          <PickerGroup>
+            <PickerLabel>Appearance</PickerLabel>
+            <PickerRadioGroup
+              value={surfaceChoice}
+              onValueChange={(value) => {
+                setSurface(value as SurfaceChoice)
+              }}
+              onItemPreview={
+                isMobile
+                  ? undefined
+                  : (value) => previewSurface(value as SurfaceChoice)
+              }
+            >
+              <PickerRadioItem value="solid" closeOnClick={isMobile}>
+                Solid
+              </PickerRadioItem>
+              <PickerRadioItem value="translucent" closeOnClick={isMobile}>
+                Translucent
+              </PickerRadioItem>
+            </PickerRadioGroup>
+          </PickerGroup>
         </PickerContent>
       </Picker>
       <LockButton
@@ -104,9 +209,3 @@ export function MenuColorPicker({
     </div>
   )
 }
-
-type DesignSystemMenuColor =
-  | "default"
-  | "inverted"
-  | "default-translucent"
-  | "inverted-translucent"
