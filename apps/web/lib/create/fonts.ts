@@ -9,8 +9,11 @@
 // synthetic "<Face> Fallback" system face, which on Windows answers Persian
 // glyphs before Vazirmatn (the same reason the workspace theme names real
 // font-faces instead of composing variables).
-// All fonts are LOCAL ONLY: the create system installs woff2 files from our
-// registry, never Google Fonts at runtime.
+// All English fonts are Google Fonts: "local" installs the LATEST variable
+// woff2 downloaded fresh from Google Fonts at project-creation time (nothing
+// pre-stored); "next" loads the Google version via next/font/google (Vite:
+// a css2 @import). Vazirmatn is our custom local cut (local-only): nothing
+// on Google Fonts matches it.
 
 export type FontSource = "local" | "next"
 
@@ -27,9 +30,11 @@ export type FontOption = {
       fontFamily: string
     }
   }
-  // Where this font can be installed from. Vazirmatn is our custom local
-  // cut (local-only), Geist ships both ways, every other EN font loads
-  // through next/font (next-only) until its woff2 lands in the registry.
+  // Where this font can be installed from. Every English font (a Google
+  // Font) is downloadable locally (fresh from Google Fonts at init time)
+  // AND loadable via next/font — so all are toggleable local/next.
+  // Vazirmatn is our custom local cut (local-only): nothing on Google
+  // Fonts matches it.
   sources: { local: boolean; next: boolean }
 }
 
@@ -40,7 +45,7 @@ function createFontOption(
   face: string,
   generic: string,
   previewVariable: string,
-  sources: FontOption["sources"] = { local: false, next: true }
+  sources: FontOption["sources"] = { local: true, next: true }
 ): FontOption {
   const family = `"${face}", ${generic}`
   return {
@@ -271,9 +276,8 @@ export const FONTS: FontOption[] = [
 // internal default, the picker shows the body font when nothing is set.
 export const FONT_HEADING_OPTIONS: FontOption[] = [...FONTS]
 
-// Single English mono picker (matches the default template's
-// --font-mono: Geist Mono first). One entry for now — the codec field is
-// wider so more monos can append without breaking old preset codes.
+// Mono font picker (matches the default template's --font-mono: Geist Mono
+// first). Values mirror PRESET_MONO_FONTS order — append only.
 export const MONO_FONTS: FontOption[] = [
   createFontOption(
     "geist-mono",
@@ -282,6 +286,15 @@ export const MONO_FONTS: FontOption[] = [
     "Geist Mono",
     "monospace",
     "--font-geist-mono",
+    { ...LOCAL_AND_NEXT }
+  ),
+  createFontOption(
+    "jetbrains-mono",
+    "JetBrains Mono",
+    "mono",
+    "JetBrains Mono",
+    "monospace",
+    "--font-jetbrains-mono",
     { ...LOCAL_AND_NEXT }
   ),
 ]

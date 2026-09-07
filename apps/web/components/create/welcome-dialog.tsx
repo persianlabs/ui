@@ -46,19 +46,20 @@ export function WelcomeDialog() {
         </div>
         <DialogHeader className="gap-1 p-4">
           <DialogTitle className="text-start text-base">
-            به PersianLabs/ui خوش آمدید
+            Welcome to PersianLabs/ui
           </DialogTitle>
           <DialogDescription className="text-start leading-relaxed text-foreground">
-            رنگ پایه، تم، گردی گوشه‌ها و فونت‌های فارسی و انگلیسی را انتخاب کنید
-            و نتیجه را همان لحظه در پیش‌نمایش زنده ببینید.
+            Pick a base color, theme, corner radius, and your Persian and
+            English fonts — the live preview updates as you go.
           </DialogDescription>
           <DialogDescription className="mt-2 text-start leading-relaxed font-medium text-foreground">
-            در پایان، یک دستور کپی کنید تا پروژه‌تان با همین ظاهر ساخته شود.
+            At the end, copy one command to scaffold a project with the exact
+            same look.
           </DialogDescription>
         </DialogHeader>
         <DialogFooter className="m-0">
           <DialogClose render={<Button className="w-full" />}>
-            شروع کنید
+            Get started
           </DialogClose>
         </DialogFooter>
       </DialogPopup>

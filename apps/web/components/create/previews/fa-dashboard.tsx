@@ -23,6 +23,7 @@ import {
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuGroupLabel,
   DropdownMenuSeparator,
@@ -198,15 +199,17 @@ export function FaDashboard() {
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuGroupLabel>حساب کاربری</DropdownMenuGroupLabel>
-                <DropdownMenuItem>
-                  <UserIcon className="size-4" />
-                  پروفایل
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <CreditCardIcon className="size-4" />
-                  صورتحساب
-                </DropdownMenuItem>
+                <DropdownMenuGroup>
+                  <DropdownMenuGroupLabel>حساب کاربری</DropdownMenuGroupLabel>
+                  <DropdownMenuItem>
+                    <UserIcon className="size-4" />
+                    پروفایل
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <CreditCardIcon className="size-4" />
+                    صورتحساب
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem variant="destructive">
                   <LogOutIcon className="size-4" />

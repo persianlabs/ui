@@ -10,6 +10,7 @@ import { Suspense } from "react"
 import dynamic from "next/dynamic"
 
 import { Skeleton } from "@workspace/ui/components/skeleton"
+import { TooltipProvider } from "@workspace/ui/components/tooltip"
 
 import { Customizer } from "@/components/create/customizer"
 import { Preview } from "@/components/create/preview"
@@ -46,7 +47,9 @@ export function CreateApp() {
             <HistoryProvider>
               <Suspense fallback={<DesignerSkeleton />}>
                 <Preview />
-                <Customizer />
+                <TooltipProvider delay={0}>
+                  <Customizer />
+                </TooltipProvider>
               </Suspense>
             </HistoryProvider>
           </LocksProvider>

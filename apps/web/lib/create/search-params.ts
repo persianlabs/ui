@@ -309,20 +309,6 @@ export function useDesignSystemSearchParams(options: Options = {}) {
     paramsRef.current = params
   }, [params])
 
-  // Sync the initial state into a preset code on first visit (no ?preset=).
-  const hasSyncedPresetToUrlRef = React.useRef(false)
-  React.useEffect(() => {
-    if (hasSyncedPresetToUrlRef.current || searchParams.has("preset")) {
-      return
-    }
-    hasSyncedPresetToUrlRef.current = true
-
-    const merged = normalizeDesignSystemParams(paramsRef.current)
-    void rawSetParams(buildPresetUrlUpdate(merged) as RawSetParamsInput, {
-      history: "replace",
-    })
-  }, [rawSetParams, searchParams])
-
   type RawSetParamsInput = Parameters<typeof rawSetParams>[0]
 
   const setParams = React.useCallback(

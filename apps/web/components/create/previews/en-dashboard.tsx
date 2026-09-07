@@ -23,6 +23,7 @@ import {
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuGroupLabel,
   DropdownMenuSeparator,
@@ -194,15 +195,17 @@ export function EnDashboard() {
                 </Avatar>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuGroupLabel>Account</DropdownMenuGroupLabel>
-                <DropdownMenuItem>
-                  <UserIcon className="size-4" />
-                  Profile
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <CreditCardIcon className="size-4" />
-                  Billing
-                </DropdownMenuItem>
+                <DropdownMenuGroup>
+                  <DropdownMenuGroupLabel>Account</DropdownMenuGroupLabel>
+                  <DropdownMenuItem>
+                    <UserIcon className="size-4" />
+                    Profile
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <CreditCardIcon className="size-4" />
+                    Billing
+                  </DropdownMenuItem>
+                </DropdownMenuGroup>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem variant="destructive">
                   <LogOutIcon className="size-4" />

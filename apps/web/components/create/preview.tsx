@@ -152,15 +152,22 @@ export function Preview() {
     }
   }, [])
 
+  const [mounted, setMounted] = React.useState(false)
+  React.useEffect(() => setMounted(true), [])
+
   const iframeSrc = React.useMemo(() => {
     // The iframe src needs to include the serialized design system params
     // for the initial load, but not be reactive to them as it would cause
     // full-iframe reloads on every param change (flashes & loss of state).
     // Further updates of the search params will be sent to the iframe
     // via a postMessage channel, for it to sync its own history onto the host's.
+    // The src is only set after hydration: the server resolves default params
+    // without real searchParams, so a matching first client render must omit
+    // the src to avoid a hydration mismatch on ?preset= URLs.
+    if (!mounted) return undefined
     return serializeDesignSystemSearchParams("/create/preview", params)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [params.item])
+  }, [mounted, params.item])
 
   return (
     <div className="relative flex flex-1 flex-col justify-center overflow-hidden rounded-2xl ring ring-foreground/10 md:ring-muted dark:ring-foreground/10">
