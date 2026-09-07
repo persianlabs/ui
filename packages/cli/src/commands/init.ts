@@ -130,7 +130,6 @@ export async function runInit(options: {
   const rtlDoc = template === "vite" || template === "vite-monorepo"
     ? "https://ui.persian-labs.ir/docs/rtl/vite"
     : "https://ui.persian-labs.ir/docs/rtl/next"
-  const cdPath = path.relative(process.cwd(), target) || "."
   const doneLines = [
     `Preset: ${JSON.stringify(config)}`,
     "",
@@ -138,11 +137,6 @@ export async function runInit(options: {
     "",
     "Project initialization completed.",
     "You may now add components.",
-    "",
-    `Next steps:`,
-    `  cd ${cdPath}`,
-    `  bun install   # or npm install / pnpm install`,
-    `  bun dev       # or npm run dev`,
   ]
   if (silent) {
     logger.break()

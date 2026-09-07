@@ -126,7 +126,9 @@ export async function scaffoldTemplate(options: {
 
   // Normalize the copied root package: project name, pnpm-safe fields.
   // Flat bases drop the workspaces field (pnpm rejects it); monorepo bases
-  // KEEP it — bun needs it to resolve @workspace/* deps.
+  // KEEP it — bun needs it to resolve @workspace/* deps. Build approvals
+  // live in pnpm-workspace.yaml (allowBuilds) — pnpm >= 11 no longer reads
+  // the "pnpm" field from package.json and warns loudly when present.
   const pkgFile = path.join(target, "package.json")
   try {
     const pkg = JSON.parse(await readFile(pkgFile, "utf8"))
@@ -134,6 +136,7 @@ export async function scaffoldTemplate(options: {
     if (!isMonorepoTemplate(options.template)) {
       delete pkg.workspaces
     }
+    delete pkg.pnpm
     await writeFile(pkgFile, JSON.stringify(pkg, null, 2) + "\n")
   } catch {
     // Base without a root package.json — leave as-is.
