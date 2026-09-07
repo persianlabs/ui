@@ -50,7 +50,15 @@ export async function runPreset(
     }
 
     case "open": {
-      spawn("open", [url], { shell: true, stdio: "ignore" }).on("error", () => {
+      // Per-platform openers, no shell — spawn("open", [url], { shell: true })
+      // trips DEP0190 and "open" isn't a Windows command anyway.
+      const opener =
+        process.platform === "darwin"
+          ? { cmd: "open", args: [url] }
+          : process.platform === "win32"
+            ? { cmd: "cmd", args: ["/c", "start", "", url] }
+            : { cmd: "xdg-open", args: [url] }
+      spawn(opener.cmd, opener.args, { stdio: "ignore" }).on("error", () => {
         logger.log(`Open this URL in your browser: ${url}`)
       })
       return

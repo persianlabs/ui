@@ -1,0 +1,4 @@
+[install]
+# Next.js Turbopack cannot resolve native packages (tailwind oxide,
+# lightningcss) through bun's isolated .bun symlink layout in workspaces.
+linker = "hoisted"

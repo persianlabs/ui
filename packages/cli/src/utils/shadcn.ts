@@ -44,10 +44,11 @@ export async function runShadcnAdd(
 
   try {
     await new Promise<void>((resolve, reject) => {
-      const child = spawn("npx", args, {
+      const { command, commandArgs, shell } = resolveNpxCommand(args)
+      const child = spawn(command, commandArgs, {
         cwd,
         stdio: options.silent ? "ignore" : "inherit",
-        shell: process.platform === "win32",
+        shell,
       })
 
       child.on("error", reject)
@@ -63,5 +64,38 @@ export async function runShadcnAdd(
     if (didStage) {
       await rm(stageDir, { recursive: true, force: true })
     }
+  }
+}
+
+// npx is a .cmd shim on Windows, and spawning a .cmd requires shell:true —
+// which trips Node's DEP0190 warning when args are passed unescaped. When
+// running under Node, spawn npm's npx-cli.js directly instead (no shell, no
+// warning); fall back to the old behavior when the shim can't be located
+// (e.g. exotic Node installs).
+function resolveNpxCommand(args: string[]): {
+  command: string
+  commandArgs: string[]
+  shell: boolean
+} {
+  if (process.platform === "win32") {
+    const npxCli = path.join(
+      path.dirname(process.execPath),
+      "node_modules",
+      "npm",
+      "bin",
+      "npx-cli.js"
+    )
+    if (existsSync(npxCli)) {
+      return {
+        command: process.execPath,
+        commandArgs: [npxCli, ...args],
+        shell: false,
+      }
+    }
+  }
+  return {
+    command: "npx",
+    commandArgs: args,
+    shell: process.platform === "win32",
   }
 }
