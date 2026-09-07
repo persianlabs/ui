@@ -8,6 +8,7 @@ import {
   DEFAULT_PRESET_CONFIG,
   PRESET_EN_FONTS,
   PRESET_FA_FONTS,
+  type PresetConfig,
 } from "./preset.js"
 
 describe("preset codec", () => {
@@ -55,6 +56,18 @@ describe("preset codec", () => {
     })
   })
 
+  it("round-trips the appended mono (jetbrains-mono)", () => {
+    const config: PresetConfig = {
+      ...DEFAULT_PRESET_CONFIG,
+      fontMono: "jetbrains-mono",
+      fontMonoSource: "local",
+    }
+    const code = encodePreset(config)
+    expect(decodePreset(code)).toEqual(config)
+    // Old codes still resolve to the default mono.
+    expect(decodePreset("c0")?.fontMono).toBe("geist-mono")
+  })
+
   it("round-trips every field", () => {
     const config = {
       style: "nova",
@@ -97,7 +110,9 @@ describe("preset codec", () => {
     const longCode = "a" + "Z".repeat(8)
     const decoded = decodePreset(longCode)
     if (decoded) {
-      expect(Object.values(decoded).every((v) => typeof v === "string")).toBe(true)
+      expect(Object.values(decoded).every((v) => typeof v === "string")).toBe(
+        true
+      )
     }
   })
 })

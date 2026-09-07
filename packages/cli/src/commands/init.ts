@@ -5,8 +5,17 @@ import path from "node:path"
 
 import * as p from "@clack/prompts"
 
-import { decodePreset, isPresetCode, type PresetConfig } from "../preset/preset.js"
-import { buildInitUrl, fetchRegistryBase, installFontsOffline } from "../registry/fetch-base.js"
+import {
+  decodePreset,
+  isPresetCode,
+  type PresetConfig,
+} from "../preset/preset.js"
+import {
+  buildInitUrl,
+  fetchRegistryBase,
+  installFontsOffline,
+} from "../registry/fetch-base.js"
+import { installNextFonts } from "../registry/next-fonts.js"
 import { logger } from "../utils/logger.js"
 import {
   DEFAULT_PROJECT_NAMES,
@@ -121,11 +130,23 @@ export async function runInit(options: {
   }
 
   if (!silent) {
-    p.log.step("Downloading fonts for offline use.")
+    p.log.step("Setting up fonts.")
   } else {
-    logger.log("  Downloading fonts for offline use...")
+    logger.log("  Setting up fonts...")
   }
-  await installFontsOffline(config, appDir, { publicDir: "public" })
+  if (
+    template === "next" ||
+    template === "next-monorepo" ||
+    template === "next-turborepo"
+  ) {
+    // Next bases self-host fonts via next/font/local — rewrite lib/fonts.ts
+    // and globals.css for the picked fonts.
+    await installNextFonts(config, appDir)
+  } else {
+    // Vite has no next/font — self-host via fontsource packages and Google
+    // CDN css2 @imports, written into src/index.css.
+    await installFontsOffline(config, appDir, { publicDir: "public" })
+  }
 
   const doneLines = [
     "Project initialization completed.",
@@ -143,7 +164,10 @@ export async function runInit(options: {
 
 // Interactive template select, skipped when the flag is present. The
 // monorepo variant is a Get Code switch — reachable via --template.
-async function resolveTemplate(templateFlag: string | undefined, silent: boolean) {
+async function resolveTemplate(
+  templateFlag: string | undefined,
+  silent: boolean
+) {
   if (templateFlag) {
     if (!TEMPLATE_SOURCES[templateFlag]) {
       throw new Error(
@@ -153,7 +177,9 @@ async function resolveTemplate(templateFlag: string | undefined, silent: boolean
     return templateFlag
   }
   if (silent) {
-    throw new Error("--template is required in non-interactive mode (next | vite | next-monorepo).")
+    throw new Error(
+      "--template is required in non-interactive mode (next | vite | next-monorepo)."
+    )
   }
   const selected = await p.select({
     message: "Which template?",
@@ -194,7 +220,11 @@ async function resolveProjectName(
       if (v !== "." && !/^[^\\/]+$/.test(v)) {
         return "Use a single directory name (no path separators)."
       }
-      if (v !== "." && existsSync(path.resolve(baseCwd, v)) && !isDirEmpty(path.resolve(baseCwd, v))) {
+      if (
+        v !== "." &&
+        existsSync(path.resolve(baseCwd, v)) &&
+        !isDirEmpty(path.resolve(baseCwd, v))
+      ) {
         return "That directory already exists and is not empty."
       }
       return undefined
@@ -212,7 +242,9 @@ function validateName(name: string) {
     return "."
   }
   if (!/^[^\\/]+$/.test(name)) {
-    throw new Error(`Invalid project name "${name}" — use a single directory name.`)
+    throw new Error(
+      `Invalid project name "${name}" — use a single directory name.`
+    )
   }
   return name
 }

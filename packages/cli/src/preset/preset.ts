@@ -143,10 +143,9 @@ export type PresetEnFontHeading = (typeof PRESET_EN_FONT_HEADINGS)[number]
 export type PresetFaFont = (typeof PRESET_FA_FONTS)[number]
 export type PresetFontSource = (typeof PRESET_FONT_SOURCES)[number]
 
-// Mono font for code/numeric surfaces. Single English entry for now
-// (matches the default template's --font-mono: Geist Mono first); append
-// only if more monos ship.
-export const PRESET_MONO_FONTS = ["geist-mono"] as const
+// Mono font for code/numeric surfaces. Index 0 is the original default
+// (Geist Mono — matches the default template's --font-mono). Append-only.
+export const PRESET_MONO_FONTS = ["geist-mono", "jetbrains-mono"] as const
 
 export type PresetMonoFont = (typeof PRESET_MONO_FONTS)[number]
 

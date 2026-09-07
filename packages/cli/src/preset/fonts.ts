@@ -1,10 +1,14 @@
 // Font catalog for the preset system.
-// All fonts are served OFFLINE from our registry (stored in this repo) —
-// never from Google Fonts, which may be unreachable from Iran.
+// Persian fonts are served OFFLINE (arabic-subset woff2 files shipped with
+// the templates) — never Google Fonts. English Google fonts are NOT stored;
+// the CLI downloads the latest variable woff2 straight from Google Fonts at
+// init time, falling back to the Google CDN (next/font / css2 @import) when
+// a download fails. Geist / Geist Mono ship in the template bases.
 //
 // Every entry maps the preset value to:
 //   - display title
-//   - repo path to the woff2 files under the registry's public/fonts dir
+//   - directory name used for the woff2 asset (<dir>.woff2 in generated
+//     projects; the base ships it for non-Google fonts)
 //   - css family/weight metadata used to generate @font-face rules
 //
 // When adding a font: append to the end of the value array only.
@@ -13,7 +17,7 @@
 export type FontEntry = {
   value: string
   title: string
-  /** Directory name under public/fonts in the registry repo. */
+  /** Directory name for the woff2 file (<dir>.woff2 in generated projects). */
   dir: string
   /** CSS font-family value. */
   family: string
@@ -237,7 +241,8 @@ export const EN_FONTS: FontEntry[] = [
 export const EN_FONT_HEADINGS = ["inherit", ...EN_FONTS.map((f) => f.value)]
 
 // Persian fonts — free (OFL/MIT) fonts with full Farsi glyph coverage.
-// Downloaded and committed to the registry repo under public/fonts/<dir>/.
+// Shipped as arabic-script subsets in the template bases (the CLI renames
+// the base woff2 file to <dir>.woff2 at init time).
 //
 // IMPORTANT: Persian fonts must be committed as arabic-script subsets
 // WITHOUT Latin glyphs (build once with pyftsubset, or use the prebuilt
