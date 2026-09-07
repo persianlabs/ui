@@ -39,10 +39,7 @@ export function PreviewClient({
   return (
     <DesignSystemProvider initialParams={initialParams}>
       <div className="flex h-full w-full items-start overflow-auto">
-        <div
-          dir="rtl"
-          className="w-1/2 min-w-xl shrink-0 border-l border-border/60"
-        >
+        <div dir="rtl" className="w-1/2 min-w-xl shrink-0">
           <FaDashboard />
         </div>
         <div dir="ltr" className="w-1/2 min-w-xl shrink-0">

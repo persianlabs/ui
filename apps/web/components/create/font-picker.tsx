@@ -5,6 +5,7 @@ import * as React from "react"
 import { LockButton } from "@/components/create/lock-button"
 import {
   Picker,
+  PickerCheckboxItem,
   PickerContent,
   PickerGroup,
   PickerLabel,
@@ -47,11 +48,6 @@ const SOURCE_PARAM: Record<FontParam, FontSourceParam> = {
   faFont: "faFontSource",
   faFontHeading: "faFontHeadingSource",
 }
-
-const SOURCE_OPTIONS = [
-  { value: "local", title: "Local" },
-  { value: "next", title: "Next/font" },
-] as const
 
 type FontPickerOption = Pick<FontOption, "title" | "value" | "type" | "font">
 
@@ -198,24 +194,31 @@ export function FontPicker({
               </PickerGroup>
             ))}
           </PickerRadioGroup>
+          <PickerSeparator />
+          <PickerGroup>
+            <PickerLabel>Delivery</PickerLabel>
+            <FontDeliveryToggle
+              param={param}
+              currentValue={inheritsBodyFont ? bodyFontValue : currentValue}
+            />
+          </PickerGroup>
         </PickerContent>
       </Picker>
       <LockButton
         param={param}
         className="absolute top-1/2 right-8 -translate-y-1/2"
       />
-      <FontSourceSwitch
-        param={param}
-        currentValue={inheritsBodyFont ? bodyFontValue : currentValue}
-      />
     </div>
   )
 }
 
-// Install-source switch rendered below each font picker: "Local" installs
-// the offline woff2 from the registry, "Next/font" scaffolds a next/font
-// import instead. Options the selected font doesn't support stay disabled.
-function FontSourceSwitch({
+// Install-source toggle inside the font menu: checked = "Local" (offline
+// woff2 downloaded from the registry), unchecked = "CDN" (web font served
+// by the registry / next/font import in the template — one delivery, two
+// names for the same switch). Shown per selected font: only togglable when
+// the font supports both deliveries; single-delivery fonts render their
+// state disabled so availability stays visible.
+function FontDeliveryToggle({
   param,
   currentValue,
 }: {
@@ -232,29 +235,21 @@ function FontSourceSwitch({
         ? MONO_FONTS
         : FONTS
   const supported = getFontSources(list, currentValue)
+  const isLocal = currentSource === "local"
+  const togglable = supported.includes("local") && supported.includes("next")
 
   return (
-    <div className="mt-1 hidden justify-end gap-1 md:flex">
-      {SOURCE_OPTIONS.map((option) => {
-        const disabled = !supported.includes(option.value)
-        const active = currentSource === option.value
-        return (
-          <button
-            key={option.value}
-            type="button"
-            disabled={disabled}
-            data-active={active}
-            onClick={() =>
-              setParams({
-                [sourceParam]: option.value,
-              } as Partial<DesignSystemSearchParams>)
-            }
-            className="rounded-md px-1.5 py-0.5 text-[11px] font-medium text-muted-foreground transition-colors outline-none hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-40 data-[active=true]:bg-muted data-[active=true]:text-foreground"
-          >
-            {option.title}
-          </button>
-        )
-      })}
-    </div>
+    <PickerCheckboxItem
+      checked={isLocal}
+      disabled={!togglable}
+      closeOnClick={false}
+      onCheckedChange={(checked) =>
+        setParams({
+          [sourceParam]: checked ? "local" : "next",
+        } as Partial<DesignSystemSearchParams>)
+      }
+    >
+      Local
+    </PickerCheckboxItem>
   )
 }
