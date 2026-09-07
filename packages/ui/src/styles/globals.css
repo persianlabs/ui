@@ -18,16 +18,20 @@ html.preview-loading body {
 
 @theme inline {
   /*
-   * Literal font names on purpose: next/font's per-font CSS variables each
-   * bundle their own synthetic "<Font> Fallback" local system-font face,
-   * and on Windows that fallback has partial Arabic/Persian glyph coverage —
-   * so composing via var(--font-geist-sans), var(--font-vazir) let the Geist
-   * fallback face win over Vazirmatn for Persian text. Naming the real
-   * font-faces directly skips that middle fallback entirely.
+   * Self-referencing on purpose (same pattern as the generated templates):
+   * @theme inline resolves each utility to the var() expression itself, so
+   * .font-sans/.font-heading/.font-mono stay dynamic at runtime — the /create
+   * preview (and any template) can drive them through --font-* on :root.
+   * The real stacks live in the :root block below. Literal face names, NOT
+   * next/font variables: next/font's synthetic "<Face> Fallback" faces
+   * (local system fonts, no unicode-range) answer Persian glyphs before
+   * Vazirmatn on Windows, so composing via var(--font-geist-sans)… lets the
+   * fallback win over Vazirmatn for Persian text. Naming the real font-faces
+   * skips that middle fallback entirely.
    */
-  --font-heading: Geist, Vazirmatn, sans-serif;
-  --font-sans: Geist, Vazirmatn, sans-serif;
-  --font-mono: "Geist Mono", Vazirmatn, monospace;
+  --font-heading: var(--font-heading);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
   --font-vazir: Vazirmatn;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
@@ -90,6 +94,16 @@ html.preview-loading body {
  * redefine Tailwind's own default `shadow-sm/md/lg` utilities used
  * elsewhere (popover, dialog, sheet, dropdown-menu, and more).
  */
+
+:root {
+  /* Font stacks for the utilities above. Vazirmatn first: it owns Persian
+     glyphs (and digits via body ss01); Latin falls through to Geist. Mono
+     stays Geist Mono first so code/IDs keep their width. The /create
+     preview overrides these per script side via inline style. */
+  --font-sans: Geist, Vazirmatn, sans-serif;
+  --font-heading: Geist, Vazirmatn, sans-serif;
+  --font-mono: "Geist Mono", Vazirmatn, monospace;
+}
 
 :root,
 .light {
@@ -217,9 +231,8 @@ html.preview-loading body {
     @apply border-border outline-ring/50;
   }
   body {
-    font-family:
-      var(--font-sans),
-      @apply bg-background text-foreground;
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
   }
   ::selection {
     @apply bg-foreground text-background;

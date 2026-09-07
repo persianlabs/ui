@@ -4,8 +4,11 @@
 // (dir="rtl"), English dashboard below (dir="ltr"), 50/50. Mounts the
 // DesignSystemProvider and the D-key dark toggle inside the iframe.
 
+import * as React from "react"
+
 import { DesignSystemProvider } from "@/components/create/design-system-provider"
 import { useThemeToggle } from "@/components/create/hooks/use-theme-toggle"
+import { sendToParent } from "@/components/create/hooks/use-iframe-sync"
 import { EnDashboard } from "@/components/create/previews/en-dashboard"
 import { FaDashboard } from "@/components/create/previews/fa-dashboard"
 import type { DesignSystemSearchParams } from "@/lib/create/search-params"
@@ -18,6 +21,20 @@ export function PreviewClient({
   // Activates the D-key → dark-mode toggle (and its parent sync) inside the
   // iframe. Renders nothing itself.
   useThemeToggle()
+
+  // Clicks in here never reach the parent document, so Base UI's
+  // outside-press dismissal can't close the host's open pickers. Report the
+  // interaction and let the host close them itself.
+  React.useEffect(() => {
+    const handlePointerDown = () => {
+      sendToParent({ type: "preview-pointer-down" })
+    }
+
+    document.addEventListener("pointerdown", handlePointerDown, true)
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown, true)
+    }
+  }, [])
 
   return (
     <DesignSystemProvider initialParams={initialParams}>

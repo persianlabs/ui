@@ -3,9 +3,11 @@
 // Adapted from the shadcn create app's design-system-provider. Instead of
 // shadcn's registry theme builder it paints the iframe with
 // buildPreviewStyle(baseColor, theme, radius, mode, params.menuAccent) rendered into a
-// :root style element, applies the fixed "style-nova" body class, and
-// wires the Geist/Vazirmatn CSS variables (other fonts are not bundled yet,
-// so every selection falls back to those two families).
+// :root style element, applies the fixed "style-nova" body class, and wires
+// the font CSS variables from the lib/create/fonts.ts catalog (shadcn-style:
+// --font-sans / --font-heading on the root, composed EN stack first so Latin
+// glyphs visibly change, FA stack second so Persian glyphs fall through to
+// Vazirmatn — EN fonts ship no Arabic coverage).
 //
 // Params come from the iframe URL (via useDesignSystemSearchParams) so the
 // initial load is correct without waiting for postMessage, and stay in sync
@@ -22,22 +24,27 @@ import {
   type RadiusName,
   type ThemeName,
 } from "@/lib/create/config"
+import { FA_FONTS, FONTS, MONO_FONTS } from "@/lib/create/fonts"
 import {
   useDesignSystemSearchParams,
   type DesignSystemSearchParams,
 } from "@/lib/create/search-params"
 
 const THEME_STYLE_ELEMENT_ID = "design-system-theme-vars"
+const FONT_STYLE_ELEMENT_ID = "design-system-fonts"
 const MANAGED_BODY_CLASS_PREFIXES = ["style-", "base-color-"] as const
 const MANAGED_FONT_VARS = [
-  "--font-geist",
-  "--font-fa",
-  "--font-heading-geist",
-  "--font-heading-fa",
+  "--font-sans",
+  "--font-heading",
+  "--font-mono",
 ] as const
 
-const GEIST_FONT_VAR = "var(--font-geist-sans)"
-const VAZIRMATN_FONT_VAR = "var(--font-vazirmatn)"
+// Only Vazirmatn ships a real file yet — every other FA catalog entry is
+// metadata for the CLI until its woff2 lands in the registry. The FA side
+// always resolves to the Vazirmatn face so the stack stays loadable.
+function resolveFaFace(value: string) {
+  return FA_FONTS.find((font) => font.value === value)?.font.face ?? "Vazirmatn"
+}
 
 type Mode = "light" | "dark"
 
@@ -80,6 +87,52 @@ function buildThemeCssText(
       string,
       string | number
     >
+  )
+}
+
+// Explicit font-family rules for the preview, split BY SCRIPT SIDE. The
+// preview shows an RTL Persian half and an LTR English half; each must
+// follow its own font pickers:
+//   - FA side: the Persian font owns Persian glyphs AND everything else
+//     falls through to the selected EN font (the generated template's
+//     custom Vazirmatn cut has no Latin letters, so Latin lands on the EN
+//     font there; the preview's Google-cut Vazirmatn also serves Latin,
+//     which keeps the FA side visually "Vazirmatn" — intended).
+//   - EN side: the selected EN font alone.
+// Two things make plain stack composition wrong here, so the rules use
+// literal face names (font.face) instead of the next/font variables:
+//   1. `@theme inline` bakes font utilities into literals at build time,
+//      so --font-sans/--font-heading overrides alone never apply.
+//   2. next/font emits a synthetic "<Face> Fallback" system face per font;
+//      on Windows it (Arial) answers Persian glyphs before Vazirmatn when
+//      an EN variable comes first in the stack.
+// The vars are still set for var()-based consumers (mono in particular).
+function buildFontCssText(
+  enBodyFace: string,
+  enHeadingFace: string,
+  faBodyFace: string,
+  faHeadingFace: string,
+  monoFace: string
+) {
+  const enSans = `"${enBodyFace}", sans-serif`
+  const enHeading = `"${enHeadingFace}", sans-serif`
+  const faSans = `"${faBodyFace}", "${enBodyFace}", sans-serif`
+  const faHeading = `"${faHeadingFace}", "${enHeadingFace}", sans-serif`
+  const mono = `"${monoFace}", "${faBodyFace}", monospace`
+
+  // LTR rules first: <html dir="ltr"> is an ancestor of the RTL half too,
+  // so FA-side titles match both rules — RTL must come later to win
+  // that cascade tie. Body text is unaffected either way (it inherits from
+  // the nearest [dir] ancestor, its own half). The heading selector covers
+  // every component that ships with font-heading (shadcn's set).
+  const HEADING_SLOTS =
+    '[data-slot="card-title"], [data-slot="dialog-title"], [data-slot="alert-dialog-title"], [data-slot="sheet-title"], [data-slot="drawer-title"], [data-slot="empty-title"]'
+  return (
+    `[dir="ltr"] {\n  font-family: ${enSans};\n}\n` +
+    `[dir="ltr"] ${HEADING_SLOTS} {\n  font-family: ${enHeading};\n}\n` +
+    `[dir="rtl"] {\n  font-family: ${faSans};\n}\n` +
+    `[dir="rtl"] ${HEADING_SLOTS} {\n  font-family: ${faHeading};\n}\n` +
+    `:is(code, kbd, pre, samp, .font-mono) {\n  font-family: ${mono};\n}\n`
   )
 }
 
@@ -163,6 +216,7 @@ export function DesignSystemProvider({
     return () => {
       removeManagedBodyClasses(document.body)
       document.getElementById(THEME_STYLE_ELEMENT_ID)?.remove()
+      document.getElementById(FONT_STYLE_ELEMENT_ID)?.remove()
 
       const rootElement = document.documentElement
       for (const [name, value] of initialFontVarsRef.current) {
@@ -184,28 +238,60 @@ export function DesignSystemProvider({
     removeManagedBodyClasses(body)
     body.classList.add("style-nova", `base-color-${params.baseColor}`)
 
-    // Update fonts. Only Geist and Vazirmatn are bundled, so any selection
-    // falls back to those families; the value is metadata for the CLI.
-    root.style.setProperty("--font-geist", GEIST_FONT_VAR)
-    root.style.setProperty("--font-fa", VAZIRMATN_FONT_VAR)
+    // Update fonts per script side (see buildFontCssText): the EN pickers
+    // drive the LTR half, the FA pickers the RTL half, mono applies to
+    // code/mono surfaces on both. Vars stay set for var()-based consumers.
+    const bodyFont =
+      FONTS.find((font) => font.value === params.font) ?? FONTS[0]
+    const headingFont =
+      params.fontHeading === "inherit"
+        ? bodyFont
+        : (FONTS.find((font) => font.value === params.fontHeading) ?? bodyFont)
+    const monoFont =
+      MONO_FONTS.find((font) => font.value === params.fontMono) ?? MONO_FONTS[0]
+    const faBodyFace = resolveFaFace(params.faFont)
+    const faHeadingFace =
+      params.faFontHeading === "inherit"
+        ? faBodyFace
+        : resolveFaFace(params.faFontHeading)
 
-    if (params.fontHeading !== "inherit") {
-      root.style.setProperty("--font-heading-geist", GEIST_FONT_VAR)
-    } else {
-      root.style.removeProperty("--font-heading-geist")
+    root.style.setProperty(
+      "--font-sans",
+      `"${faBodyFace}", "${bodyFont?.font.face}", sans-serif`
+    )
+    root.style.setProperty(
+      "--font-heading",
+      `"${faHeadingFace}", "${headingFont?.font.face}", sans-serif`
+    )
+    root.style.setProperty(
+      "--font-mono",
+      `"${monoFont?.font.face}", "${faBodyFace}", monospace`
+    )
+
+    let fontStyleElement = document.getElementById(
+      FONT_STYLE_ELEMENT_ID
+    ) as HTMLStyleElement | null
+
+    if (!fontStyleElement) {
+      fontStyleElement = document.createElement("style")
+      fontStyleElement.id = FONT_STYLE_ELEMENT_ID
+      document.head.appendChild(fontStyleElement)
     }
 
-    if (params.faFontHeading !== "inherit") {
-      root.style.setProperty("--font-heading-fa", VAZIRMATN_FONT_VAR)
-    } else {
-      root.style.removeProperty("--font-heading-fa")
-    }
+    fontStyleElement.textContent = buildFontCssText(
+      bodyFont?.font.face ?? "Geist",
+      headingFont?.font.face ?? "Geist",
+      faBodyFace,
+      faHeadingFace,
+      monoFont?.font.face ?? "Geist Mono"
+    )
 
     setIsReady(true)
   }, [
     params.baseColor,
     params.font,
     params.fontHeading,
+    params.fontMono,
     params.faFont,
     params.faFontHeading,
   ])

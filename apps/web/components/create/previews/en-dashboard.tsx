@@ -184,7 +184,9 @@ export function EnDashboard() {
             </Button>
             <DropdownMenu>
               <DropdownMenuTrigger
-                render={<Button variant="outline" size="icon" aria-label="Account" />}
+                render={
+                  <Button variant="outline" size="icon" aria-label="Account" />
+                }
               >
                 <Avatar>
                   <AvatarFallback className="text-xs">PL</AvatarFallback>
@@ -336,7 +338,7 @@ export function EnDashboard() {
                 <TableBody>
                   {ORDERS.map((order) => (
                     <TableRow key={order.id}>
-                      <TableCell className="text-muted-foreground">
+                      <TableCell className="font-mono text-muted-foreground">
                         #{order.id}
                       </TableCell>
                       <TableCell className="font-medium">

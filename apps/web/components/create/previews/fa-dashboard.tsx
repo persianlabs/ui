@@ -185,7 +185,13 @@ export function FaDashboard() {
             </Button>
             <DropdownMenu>
               <DropdownMenuTrigger
-                render={<Button variant="outline" size="icon" aria-label="حساب کاربری" />}
+                render={
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    aria-label="حساب کاربری"
+                  />
+                }
               >
                 <Avatar>
                   <AvatarFallback className="text-xs">پ‌ن</AvatarFallback>
@@ -339,7 +345,7 @@ export function FaDashboard() {
                 <TableBody>
                   {ORDERS.map((order) => (
                     <TableRow key={order.id}>
-                      <TableCell className="text-muted-foreground">
+                      <TableCell className="num-en font-mono text-muted-foreground">
                         #{order.id}
                       </TableCell>
                       <TableCell className="font-medium">
