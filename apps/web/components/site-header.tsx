@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { PlusIcon } from "lucide-react"
 
 import { AppLogo } from "@/components/app-logo"
 import { GitHubStars } from "@/components/github-stars"
@@ -57,6 +58,14 @@ export function SiteHeader({
             <XIcon className="size-3.5" />
           </a>
           <ThemeToggle />
+          <span className="hidden h-4 w-px bg-border md:block" />
+          <Link
+            href="/create"
+            className="inline-flex h-[31px] items-center gap-1 rounded-lg bg-primary px-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            <PlusIcon className="size-4" />
+            New
+          </Link>
         </div>
       </div>
     </header>

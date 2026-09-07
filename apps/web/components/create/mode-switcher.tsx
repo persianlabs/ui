@@ -1,0 +1,53 @@
+"use client"
+
+// Ported from the shadcn create app's mode-switcher. DARK_MODE_FORWARD_TYPE
+// lives in forward-types.ts (shared with preview.tsx); the D-key forwarding
+// DarkModeScript is replaced by use-theme-toggle's own listener + broadcast.
+
+import * as React from "react"
+
+import { Button } from "@workspace/ui/components/button"
+import { cn } from "@workspace/ui/lib/utils"
+
+import { useThemeToggle } from "@/components/create/hooks/use-theme-toggle"
+
+export function ModeSwitcher({
+  variant = "ghost",
+  className,
+}: {
+  variant?: React.ComponentProps<typeof Button>["variant"]
+  className?: React.ComponentProps<typeof Button>["className"]
+}) {
+  const { toggleTheme } = useThemeToggle()
+
+  return (
+    <Button
+      variant={variant}
+      size="icon"
+      className={cn("group/toggle extend-touch-target", className)}
+      onClick={toggleTheme}
+      id="mode-switcher-button"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="size-4.5"
+      >
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" />
+        <path d="M12 3l0 18" />
+        <path d="M12 9l4.65 -4.65" />
+        <path d="M12 14.3l7.37 -7.37" />
+        <path d="M12 19.6l8.85 -8.85" />
+      </svg>
+      <span className="sr-only">Toggle theme</span>
+    </Button>
+  )
+}

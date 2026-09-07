@@ -7,6 +7,7 @@ import { useHydrateAtoms } from "jotai/react/utils"
 import { atomWithStorage } from "jotai/utils"
 
 import { CopyButton } from "@workspace/ui/components/copy-button"
+import { ScrollArea } from "@workspace/ui/components/scroll-area"
 import {
   Tabs,
   TabsContent,
@@ -104,21 +105,26 @@ export function CodeBlockCommand({
 
         {tabsFiltered.map(([key, value]) => (
           <TabsContent key={key} value={key}>
-            <pre
-              data-pm={key}
-              className="group/pm overscroll-x-contain p-4 leading-6 not-data-[pm=prompt]:overflow-x-auto"
+            <ScrollArea
+              scrollbarOrientation="horizontal"
+              className="group/sa [&_[data-slot=scroll-area-viewport]]:scroll-fade-x"
             >
-              <code
-                data-slot="code-block"
-                data-language="bash"
-                className="font-mono text-sm/none whitespace-pre text-muted-foreground group-data-[pm=prompt]/pm:whitespace-normal"
+              <pre
+                data-pm={key}
+                className="group/pm w-max max-w-none p-4 leading-6"
               >
-                <span className="select-none group-data-[pm=prompt]/pm:hidden">
-                  ${" "}
-                </span>
-                {value}
-              </code>
-            </pre>
+                <code
+                  data-slot="code-block"
+                  data-language="bash"
+                  className="font-mono text-sm/none whitespace-pre text-muted-foreground group-data-[pm=prompt]/pm:whitespace-normal"
+                >
+                  <span className="select-none group-data-[pm=prompt]/pm:hidden">
+                    ${" "}
+                  </span>
+                  {value}
+                </code>
+              </pre>
+            </ScrollArea>
           </TabsContent>
         ))}
       </Tabs>
@@ -126,6 +132,7 @@ export function CodeBlockCommand({
       <CopyButton
         className="absolute top-2 right-2 z-10 size-6 rounded-md border-none [&_svg:not([class*='size-'])]:size-3.5"
         size="icon-sm"
+        variant={"ghost"}
         text={tabs[packageManager] || ""}
         onCopySuccess={(copiedCommand) => {
           onCopySuccess?.({

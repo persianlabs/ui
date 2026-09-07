@@ -1,0 +1,71 @@
+{
+  "name": "persianlabsui",
+  "version": "0.1.0",
+  "description": "Scaffold and theme RTL-first, Persian-typography shadcn projects - init from a /create preset, add components from the Persian Labs registry.",
+  "license": "MIT",
+  "type": "module",
+  "bin": "./dist/index.js",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./preset": {
+      "types": "./dist/preset/preset.d.ts",
+      "default": "./dist/preset/preset.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=20.18.1"
+  },
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "start": "node dist/index.js",
+    "start:dev": "cross-env PERSIANLABSUI_REGISTRY_URL=http://localhost:3000 PERSIANLABSUI_TEMPLATE_DIR=../../templates node dist/index.js",
+    "start:prod": "node dist/index.js",
+    "pub:beta": "bun run build && npm publish --tag beta",
+    "pub:next": "bun run build && npm publish --tag next",
+    "pub:release": "bun run build && npm publish",
+    "prepack": "bun run typecheck && bun run test && bun run build"
+  },
+  "dependencies": {
+    "@clack/prompts": "^1.7.0",
+    "commander": "^12.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "cross-env": "^10.1.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.7.2",
+    "vitest": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/persianlabs/ui.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://ui.persian-labs.ir",
+  "bugs": {
+    "url": "https://github.com/persianlabs/ui/issues"
+  },
+  "keywords": [
+    "shadcn",
+    "tailwind",
+    "rtl",
+    "persian",
+    "farsi",
+    "components",
+    "registry",
+    "cli"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false
+}

@@ -47,6 +47,8 @@ body {
 
 PersianLabs/ui components don't override this, so whatever you set on your base keeps applying to them.
 
+> The stylistic set number is font-specific: Vazirmatn renders Farsi digits with `ss01`, while Estedad uses `ss20`. Projects scaffolded through [/create](/create) or the CLI get the right setting automatically.
+
 ## 3. Adding a local font in Next.js
 
 If you self-host the font files (recommended for offline/perf), load them with `next/font/local`. Set `adjustFontFallback: false` so Next.js doesn't generate a Latin metric fallback that can fight the Arabic metrics:

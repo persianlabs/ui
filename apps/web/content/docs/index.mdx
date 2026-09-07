@@ -7,11 +7,15 @@ PersianLabs/ui is a copy-paste component library built RTL-first for Persian int
 
 ## There's no separate installation
 
-This library is built entirely on top of [shadcn/ui](https://ui.shadcn.com), so it doesn't ship its own setup flow. If your project already has shadcn configured, skip straight to adding components. If it doesn't, initialize it once with the standard shadcn CLI — nothing about that step is specific to this registry.
+This library is built entirely on top of [shadcn/ui](https://ui.shadcn.com), so it doesn't ship its own package. For **new projects**, the fastest path is [/create](/create) — pick your theme, radius, and Persian/English fonts visually, then scaffold the project with one command (see [Installation](/docs/installation)).
+
+<CopyCommand command="npx persianlabsui@latest init -p <preset-code>" />
+
+If your project already has shadcn configured, skip straight to adding components. If it doesn't, initialize it once with the standard shadcn CLI — nothing about that step is specific to this registry.
 
 <CopyCommand command="npx shadcn@latest init" />
 
-From there, add any component by its registry URL. The CLI fetches it from the `@persianlabsui` registry, copies the source straight into your project, and wires up its dependencies automatically.
+From there, add any component by its registry name. The CLI fetches it from the `@persianlabsui` registry, copies the source straight into your project, and wires up its dependencies automatically.
 
 <CopyCommand command="npx shadcn@latest add @persianlabsui/tabs" />
 

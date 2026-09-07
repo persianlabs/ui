@@ -1,0 +1,118 @@
+import { describe, expect, it } from "vitest"
+
+import { EN_FONTS, FA_FONTS } from "./fonts.js"
+import {
+  decodePreset,
+  encodePreset,
+  isPresetCode,
+  DEFAULT_PRESET_CONFIG,
+  PRESET_EN_FONTS,
+  PRESET_FA_FONTS,
+  type PresetConfig,
+} from "./preset.js"
+
+describe("preset codec", () => {
+  it("font value arrays stay in sync with the font catalog", () => {
+    expect(PRESET_EN_FONTS).toEqual(EN_FONTS.map((f) => f.value))
+    expect(PRESET_FA_FONTS).toEqual(FA_FONTS.map((f) => f.value))
+  })
+
+  it("encodes the default config to a v3 code", () => {
+    const code = encodePreset({})
+    expect(code[0]).toBe("c")
+    expect(isPresetCode(code)).toBe(true)
+  })
+
+  it("decodes legacy v1 codes with local install sources and default mono", () => {
+    const decoded = decodePreset("a0")
+    expect(decoded).toMatchObject({
+      style: "nova",
+      baseColor: "neutral",
+      theme: "neutral",
+      font: "geist",
+      fontHeading: "inherit",
+      faFont: "vazirmatn",
+      faFontHeading: "vazirmatn",
+      radius: "default",
+      menuAccent: "subtle",
+      menuColor: "default",
+      fontSource: "local",
+      fontHeadingSource: "local",
+      faFontSource: "local",
+      faFontHeadingSource: "local",
+      fontMono: "geist-mono",
+      fontMonoSource: "local",
+    })
+  })
+
+  it("decodes legacy v2 codes with default mono fields", () => {
+    const decoded = decodePreset("b0")
+    expect(decoded).toMatchObject({
+      style: "nova",
+      font: "geist",
+      fontSource: "local",
+      fontMono: "geist-mono",
+      fontMonoSource: "local",
+    })
+  })
+
+  it("round-trips the appended mono (jetbrains-mono)", () => {
+    const config: PresetConfig = {
+      ...DEFAULT_PRESET_CONFIG,
+      fontMono: "jetbrains-mono",
+      fontMonoSource: "local",
+    }
+    const code = encodePreset(config)
+    expect(decodePreset(code)).toEqual(config)
+    // Old codes still resolve to the default mono.
+    expect(decodePreset("c0")?.fontMono).toBe("geist-mono")
+  })
+
+  it("round-trips every field", () => {
+    const config = {
+      style: "nova",
+      baseColor: "zinc",
+      theme: "violet",
+      font: "geist",
+      fontHeading: "space-grotesk",
+      faFont: "estedad",
+      faFontHeading: "mikhak",
+      radius: "large",
+      menuAccent: "bold",
+      menuColor: "inverted-translucent",
+      fontSource: "local",
+      fontHeadingSource: "next",
+      faFontSource: "local",
+      faFontHeadingSource: "local",
+      fontMono: "geist-mono",
+      fontMonoSource: "next",
+    } as const
+
+    const code = encodePreset(config)
+    expect(decodePreset(code)).toEqual(config)
+  })
+
+  it("round-trips the default config", () => {
+    const code = encodePreset(DEFAULT_PRESET_CONFIG)
+    expect(decodePreset(code)).toEqual(DEFAULT_PRESET_CONFIG)
+  })
+
+  it("rejects invalid codes", () => {
+    expect(decodePreset("")).toBeNull()
+    expect(decodePreset("a")).toBeNull()
+    expect(decodePreset("zzzz")).toBeNull()
+    expect(decodePreset("1a2b3c")).toBeNull()
+    expect(isPresetCode("not-a-code")).toBe(false)
+  })
+
+  it("clamps out-of-range indices to the default value", () => {
+    // Craft a code whose theme bits exceed the array length.
+    const longCode = "a" + "Z".repeat(8)
+    const decoded = decodePreset(longCode)
+    if (decoded) {
+      expect(Object.values(decoded).every((v) => typeof v === "string")).toBe(
+        true
+      )
+    }
+  })
+})

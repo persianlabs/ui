@@ -2,7 +2,7 @@ import { createMDX } from "fumadocs-mdx/next"
 import type { NextConfig } from "next"
 
 const nextConfig: NextConfig = {
-  transpilePackages: ["@workspace/ui"],
+  transpilePackages: ["@workspace/ui", "persianlabsui"],
   cacheComponents: true,
   partialPrefetching: true,
   typedRoutes: true,
@@ -41,6 +41,21 @@ const nextConfig: NextConfig = {
   // after the report-only phase collects violations without noise.
   async headers() {
     return [
+      // The create designer and its preview iframe resolve state from the
+      // URL at render time — a heuristically cached HTML response would serve
+      // a stale design system. Never cache them.
+      {
+        source: "/create",
+        headers: [{ key: "Cache-Control", value: "no-store" }],
+      },
+      {
+        source: "/create/preview",
+        headers: [{ key: "Cache-Control", value: "no-store" }],
+      },
+      {
+        source: "/init",
+        headers: [{ key: "Cache-Control", value: "no-store" }],
+      },
       {
         source: "/:path*",
         headers: [
