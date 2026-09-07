@@ -50,6 +50,16 @@ export async function fetchRegistryBase(url: string) {
   const response = await fetch(url)
   if (!response.ok) {
     const body = await response.text().catch(() => "")
+    // A 404 whose body is an HTML page means the server answered but has no
+    // /init route — a stale dev server (running `bun run build` while
+    // `next dev` is live corrupts its route manifest). Make that visible.
+    if (response.status === 404 && body.includes("<!DOCTYPE html")) {
+      throw new Error(
+        `The registry at ${new URL(url).origin} has no /init route (404, HTML page).\n` +
+          `The dev server is stale — restart it (bun dev in apps/web), or set\n` +
+          `PERSIANLABSUI_REGISTRY_URL to a server serving the latest code.`
+      )
+    }
     throw new Error(
       `Failed to fetch registry base (${response.status}): ${body.slice(0, 200)}`
     )
