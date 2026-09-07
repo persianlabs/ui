@@ -1,5 +1,6 @@
 import { Analytics } from "@vercel/analytics/next"
 import type { Metadata, Viewport } from "next"
+import localFont from "next/font/local"
 import { NuqsAdapter } from "nuqs/adapters/next/app"
 import {
   DM_Sans,
@@ -57,6 +58,18 @@ const fontMono = Geist_Mono({
 const vazirmatn = Vazirmatn({
   subsets: ["arabic"],
   variable: "--font-vazirmatn",
+  adjustFontFallback: false,
+  display: "swap",
+})
+
+// Estedad preview for the /create FA picker. Not on Google Fonts — loads
+// our Latin-free subset cut (same file the template bases ship), so the
+// preview renders exactly what generated projects render: Persian glyphs
+// from Estedad, Latin falling through to the EN font.
+const estedad = localFont({
+  src: "./_assets/fonts/Estedad.woff2",
+  weight: "100 900",
+  variable: "--font-estedad",
   adjustFontFallback: false,
   display: "swap",
 })
@@ -301,6 +314,7 @@ export default function RootLayout({
         "antialiased",
         fontMono.variable,
         vazirmatn.variable,
+        estedad.variable,
         geist.variable,
         inter.variable,
         ibmPlexSans.variable,

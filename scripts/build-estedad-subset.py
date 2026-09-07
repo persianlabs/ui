@@ -1,15 +1,15 @@
-# Builds our single local Vazirmatn cut:
+# Builds our single local Estedad cut:
 #   variable weights 100-900, digits (0-9) KEPT, Latin LETTERS removed,
 #   Arabic/Persian + punctuation kept, all OpenType features kept (ss01
 #   Farsi digits, tnum, full Arabic shaping).
 #
-# Result: one ~57KB woff2 that renders Farsi via `ss01` while English
-# falls through to the English font (Geist) because no Latin letters
+# Same cut as build-vazirmatn-subset.py: one woff2 that renders Farsi while
+# English falls through to the English font (Geist) because no Latin letters
 # exist. This is the font the create system marks as "local only".
 #
 # Usage (from repo root, needs fonttools + brotli):
 #   python -m pip install fonttools brotli
-#   python scripts/build-vazirmatn-subset.py <path-to-Vazirmatn[wght].ttf> <out.woff2>
+#   python scripts/build-estedad-subset.py <path-to-Estedad[wght].ttf> <out.woff2>
 
 import sys
 

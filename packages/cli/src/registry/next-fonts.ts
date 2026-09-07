@@ -101,7 +101,9 @@ export async function installNextFonts(config: PresetConfig, cwd: string) {
       ? getFontEntry(EN_FONTS, config.fontHeading)
       : undefined
   const enMono = getFontEntry(EN_FONTS, config.fontMono)
-  const vazir = getFontEntry(FA_FONTS, "vazirmatn")!
+  // The picked Persian font (Vazirmatn by default). FA cuts ship in the
+  // base as <Title>Variable.woff2 and are renamed per ensureBaseAsset.
+  const fa = getFontEntry(FA_FONTS, config.faFont) ?? getFontEntry(FA_FONTS, "vazirmatn")!
 
   // Monorepo-spot the base-shipped source file for a non-Google font and
   // rename it to the no-"-variable" convention in place.
@@ -145,10 +147,23 @@ export async function installNextFonts(config: PresetConfig, cwd: string) {
   }
 
   const faSlot: Slot = {
-    entry: vazir,
-    delivery: await ensureBaseAsset(vazir),
+    entry: fa,
+    delivery: await ensureBaseAsset(fa),
     variable: "font-fa",
   }
+  // A distinct FA heading pick (inherit / same-as-body resolves away in the
+  // web layer, so a differing value here always means a second font).
+  const faHeading =
+    config.faFontHeading !== "inherit" && config.faFontHeading !== config.faFont
+      ? getFontEntry(FA_FONTS, config.faFontHeading)
+      : undefined
+  const faHeadingSlot: Slot | undefined = faHeading
+    ? {
+        entry: faHeading,
+        delivery: await ensureBaseAsset(faHeading),
+        variable: "font-fa-heading",
+      }
+    : undefined
   const bodySlot = enBody
     ? { entry: enBody, delivery: await resolve(enBody, config.fontSource), variable: `font-${varName(enBody.title)}` }
     : undefined
@@ -161,10 +176,11 @@ export async function installNextFonts(config: PresetConfig, cwd: string) {
       ? { entry: enMono, delivery: await resolve(enMono, config.fontMonoSource), variable: `font-mono-${varName(enMono.title)}` }
       : undefined
 
-  // Keep exactly the assets the generated fonts.ts references (plus Vazirmatn).
-  const keep = new Set<string>(["Vazirmatn.woff2"])
-  if (faSlot.delivery.kind === "google") keep.delete("Vazirmatn.woff2")
-  for (const slot of [bodySlot, headingSlot, monoSlot]) {
+  // Keep exactly the assets the generated fonts.ts references (plus the
+  // picked FA fonts). The other base-shipped FA cut is removed.
+  const faFileName = `${constName(fa.title)}.woff2`
+  const keep = new Set<string>(faSlot.delivery.kind === "local" ? [faFileName] : [])
+  for (const slot of [faHeadingSlot, bodySlot, headingSlot, monoSlot]) {
     if (slot?.delivery.kind === "local") keep.add(slot.delivery.fileName)
   }
   let existing: string[] = []
@@ -177,16 +193,16 @@ export async function installNextFonts(config: PresetConfig, cwd: string) {
     if (!keep.has(file)) await rm(path.join(assetsDir, file), { force: true })
   }
 
-  const slots = [faSlot, bodySlot, headingSlot, monoSlot].filter(
+  const slots = [faSlot, faHeadingSlot, bodySlot, headingSlot, monoSlot].filter(
     (s): s is Slot => Boolean(s)
   )
-  const fontsTs = buildFontsTs(slots)
+  const fontsTs = buildFontsTs(slots, fa)
   await writeFile(path.join(appDir, "lib", "fonts.ts"), fontsTs + "\n")
 
-  await rewriteGlobalsCss(appDir, enBody, enHeading, enMono)
+  await rewriteGlobalsCss(appDir, enBody, enHeading, enMono, fa, faHeadingSlot)
 }
 
-function buildFontsTs(slots: Slot[]) {
+function buildFontsTs(slots: Slot[], fa: FontEntry) {
   const googleSlots = slots.filter((s) => s.delivery.kind === "google")
   const googleImports = googleSlots.length
     ? `import { ${googleSlots.map((s) => googleName(s.entry.title)).join(", ")} } from "next/font/google"\n`
@@ -203,11 +219,12 @@ function buildFontsTs(slots: Slot[]) {
   return `import localFont from "next/font/local"
 import { cn } from "cn"
 ${googleImports}
-// Persian: our custom Vazirmatn cut (built by scripts/build-vazirmatn-subset.py
-// from the upstream variable font). Variable weights 100–900, digits 0-9
+// Persian: our custom ${fa.title} cut (built by scripts/build-${fa.dir}-subset.py
+// from the upstream variable font). Variable weights ${fa.weights}, digits 0-9
 // kept, Arabic/Persian kept, Latin LETTERS removed — so English falls
-// through to the English font and body ss01 turns typed digits into Farsi.
-// This font is LOCAL ONLY: the file is ours, nothing on Google Fonts matches it.
+// through to the English font and body ${fa.digitsFeature ?? "ss01"} turns typed digits
+// into Farsi. This font is LOCAL ONLY: the file is ours, nothing on Google
+// Fonts matches it.
 ${decls.join("\n\n")}
 
 export const fontVariables = cn(
@@ -226,13 +243,16 @@ async function rewriteGlobalsCss(
   appDir: string,
   enBody: ReturnType<typeof getFontEntry>,
   enHeading: ReturnType<typeof getFontEntry>,
-  enMono: ReturnType<typeof getFontEntry>
+  enMono: ReturnType<typeof getFontEntry>,
+  fa: FontEntry,
+  faHeadingSlot?: Slot
 ) {
   const cssPath = path.join(appDir, "app", "globals.css")
   let css = await readFile(cssPath, "utf8")
 
   const bodyVar = enBody ? `var(--font-${varName(enBody.title)})` : null
   const faVar = "var(--font-fa)"
+  const faHeadingVar = faHeadingSlot ? "var(--font-fa-heading)" : null
   const headingVar =
     enHeading && enHeading.dir !== enBody?.dir
       ? `var(--font-heading-${varName(enHeading.title)})`
@@ -243,7 +263,9 @@ async function rewriteGlobalsCss(
       : null
 
   const sansStack = [faVar, bodyVar].filter(Boolean).join(", ")
-  const headingStack = [faVar, headingVar].filter(Boolean).join(", ")
+  const headingStack = [faHeadingVar ?? faVar, headingVar]
+    .filter(Boolean)
+    .join(", ")
   const monoStack = [monoVar, faVar].filter(Boolean).join(", ")
 
   // Scope edits to the :root block only — never the @theme inline block.
@@ -263,13 +285,17 @@ async function rewriteGlobalsCss(
   // accurately.
   const bodyTitle = enBody?.title ?? "Geist"
   const monoTitle = enMono?.title ?? "Geist Mono"
-  const fontComment = `    /* Our custom Vazirmatn cut first (variable, digits + Arabic, NO Latin
-       letters — built by scripts/build-vazirmatn-subset.py). It owns
-       Persian glyphs AND digits; body ss01 (below) turns typed 0-9 into
-       Farsi digits. English falls through to ${bodyTitle} — the cut has no
-       Latin letters. No system fallbacks by design. Mono stays
+  const digitsFeature = fa.digitsFeature ?? "ss01"
+  const fontComment = `    /* Our custom ${fa.title} cut first (variable, digits + Arabic, NO Latin
+       letters — built by scripts/build-${fa.dir}-subset.py). It owns
+       Persian glyphs AND digits; body ${digitsFeature} (below) turns typed 0-9
+       into Farsi digits. English falls through to ${bodyTitle} — the cut has
+       no Latin letters. No system fallbacks by design. Mono stays
        ${monoTitle} first so code numbers keep their width. */\n`
-  root = root.replace(/\/\* Our custom Vazirmatn cut first[\s\S]*?\*\/\n/, fontComment)
+  root = root.replace(
+    /\/\* Our custom \w+ cut first[\s\S]*?\*\/\n/,
+    fontComment
+  )
 
   root = root
     // Handle an already-set --font-heading line, else we insert one after --font-sans.
@@ -288,4 +314,12 @@ async function rewriteGlobalsCss(
   }
 
   await writeFile(cssPath, before + root + after)
+
+  // The digit utilities + body rule enable the FA font's Farsi-digits
+  // stylistic set — ss01 for Vazirmatn, ss20 for Estedad.
+  const globalsCss = await readFile(cssPath, "utf8")
+  await writeFile(
+    cssPath,
+    globalsCss.replaceAll('"ss01"', `"${fa.digitsFeature ?? "ss01"}"`)
+  )
 }

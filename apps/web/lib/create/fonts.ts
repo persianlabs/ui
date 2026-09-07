@@ -300,9 +300,11 @@ export const MONO_FONTS: FontOption[] = [
 ]
 
 export const FA_FONTS: FontOption[] = [
-  // Vazirmatn only for now — our custom variable cut (Latin-free arabic
-  // subset, built by scripts/build-vazirmatn-subset.py). Other Persian
-  // fonts stay codec-only until their woff2 files land in the registry.
+  // Both FA fonts are our custom variable cuts (Latin-free arabic subsets,
+  // built by scripts/build-{vazirmatn,estedad}-subset.py). Note Estedad's
+  // Farsi digits are ss20, not Vazirmatn's ss01 — the CLI templates swap
+  // the digit feature per pick. Other Persian fonts stay codec-only until
+  // their woff2 files land in the registry.
   createFontOption(
     "vazirmatn",
     "Vazirmatn",
@@ -310,6 +312,15 @@ export const FA_FONTS: FontOption[] = [
     "Vazirmatn",
     "sans-serif",
     "--font-vazirmatn",
+    { ...LOCAL_ONLY }
+  ),
+  createFontOption(
+    "estedad",
+    "Estedad",
+    "sans",
+    "Estedad",
+    "sans-serif",
+    "--font-estedad",
     { ...LOCAL_ONLY }
   ),
 ]

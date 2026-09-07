@@ -39,9 +39,9 @@ const MANAGED_FONT_VARS = [
   "--font-mono",
 ] as const
 
-// Only Vazirmatn ships a real file yet — every other FA catalog entry is
-// metadata for the CLI until its woff2 lands in the registry. The FA side
-// always resolves to the Vazirmatn face so the stack stays loadable.
+// The FA catalog entries with shipped woff2 files (Vazirmatn, Estedad) are
+// loaded in app/layout.tsx; any metadata-only entry falls back to the
+// Vazirmatn face so the stack stays loadable.
 function resolveFaFace(value: string) {
   return FA_FONTS.find((font) => font.value === value)?.font.face ?? "Vazirmatn"
 }

@@ -120,6 +120,13 @@ export const PRESET_FA_FONTS = [
   "noto-sans-arabic",
 ] as const
 
+// The FA heading picker also offers "same as body" (the inherit sentinel).
+// Appended AFTER the body list — the FA heading field shares its bit space
+// with PRESET_FA_FONTS, so prepending would re-meaning every old code.
+// (The EN heading list got "inherit" at index 0 in v1, before that field
+// was frozen — the FA one did not, so it can only append.)
+export const PRESET_FA_FONT_HEADINGS = [...PRESET_FA_FONTS, "inherit"] as const
+
 export const PRESET_EN_FONT_HEADINGS = ["inherit", ...PRESET_EN_FONTS] as const
 
 // Where a font is installed from: "local" (offline woff2 from the registry,
@@ -141,6 +148,8 @@ export type PresetMenuColor = (typeof PRESET_MENU_COLORS)[number]
 export type PresetEnFont = (typeof PRESET_EN_FONTS)[number]
 export type PresetEnFontHeading = (typeof PRESET_EN_FONT_HEADINGS)[number]
 export type PresetFaFont = (typeof PRESET_FA_FONTS)[number]
+export type PresetFaFontHeading =
+  (typeof PRESET_FA_FONT_HEADINGS)[number]
 export type PresetFontSource = (typeof PRESET_FONT_SOURCES)[number]
 
 // Mono font for code/numeric surfaces. Index 0 is the original default
@@ -185,9 +194,16 @@ const PRESET_FIELDS_V2 = [
 
 // V3 fields (version "c"), 46 bits: adds the English mono picker (single
 // Geist Mono entry for now) plus its install source. Same key order,
-// appended.
+// appended. V3 also widens the faFontHeading value list IN PLACE (same
+// offset + bits) with an "inherit" value at index 14 so "same as body"
+// round-trips — old c-codes only ever used indices 0-13 and 14+ fell back
+// to the default, so no existing link changes meaning.
 const PRESET_FIELDS_V3 = [
-  ...PRESET_FIELDS_V2,
+  ...PRESET_FIELDS_V2.map((field) =>
+    field.key === "faFontHeading"
+      ? { ...field, values: PRESET_FA_FONT_HEADINGS }
+      : field
+  ),
   { key: "fontMono", values: PRESET_MONO_FONTS, bits: 2 },
   { key: "fontMonoSource", values: PRESET_FONT_SOURCES, bits: 1 },
 ] as const
@@ -199,7 +215,7 @@ export type PresetConfig = {
   font: PresetEnFont
   fontHeading: PresetEnFontHeading
   faFont: PresetFaFont
-  faFontHeading: PresetFaFont
+  faFontHeading: PresetFaFontHeading
   radius: PresetRadius
   menuAccent: PresetMenuAccent
   menuColor: PresetMenuColor

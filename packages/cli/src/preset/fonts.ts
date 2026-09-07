@@ -24,6 +24,11 @@ export type FontEntry = {
   /** Weight range covered by the stored variable font, or "400" etc. */
   weights: string
   license: string
+  /**
+   * GSUB stylistic set that renders Farsi digits (the template body enables
+   * it globally). Persian-only; defaults to "ss01" (Vazirmatn).
+   */
+  digitsFeature?: string
 }
 
 // Latin fonts — stored locally. Geist is the default (index 0).
@@ -265,6 +270,8 @@ export const FA_FONTS: FontEntry[] = [
     family: "Estedad",
     weights: "100 900",
     license: "OFL-1.1",
+    // Estedad's Farsi digits live in ss20, not Vazirmatn's ss01.
+    digitsFeature: "ss20",
   },
   {
     value: "shabnam",

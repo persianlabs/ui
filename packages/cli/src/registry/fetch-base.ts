@@ -251,6 +251,7 @@ export async function installFontsOffline(
     slots.find((s) => s.lang === lang && s.role === role)
 
   const faBodySlot = slotFor("fa", "body")
+  const faHeadingSlot = slotFor("fa", "heading")
   const enBodySlot = slotFor("en", "body")
   const enHeadingSlot = slotFor("en", "heading")
   const enMonoSlot = slotFor("en", "mono")
@@ -264,7 +265,11 @@ export async function installFontsOffline(
     .join(", ")
 
   const headingStack = [
-    faBodySlot ? `'${slotFamily(faBodySlot)}'` : null,
+    faHeadingSlot
+      ? `'${slotFamily(faHeadingSlot)}'`
+      : faBodySlot
+        ? `'${slotFamily(faBodySlot)}'`
+        : null,
     enHeadingSlot
       ? `'${slotFamily(enHeadingSlot)}'`
       : enBodySlot
@@ -296,6 +301,45 @@ export async function installFontsOffline(
       new RegExp(`^([ \\t]*)${token}:[^\\r\\n]*`, "m"),
       `$1${token}: ${value};`
     )
+  }
+
+  // 4. Rewrite the base's Vazirmatn @font-face into @font-face blocks for
+  //    the picked FA font(s). The base hardcodes Vazirmatn (the default);
+  //    Estedad and future FA cuts reuse the same local-asset pattern.
+  const faAssetSlots = slots.filter((s) => s.delivery.kind === "asset")
+  if (faAssetSlots.length) {
+    const fontFaceBlocks = faAssetSlots
+      .map(
+        (s) => `@font-face {
+  font-family: "${s.entry.family}";
+  src: url("./assets/fonts/${s.entry.dir}.woff2") format("woff2");
+  font-weight: ${s.entry.weights};
+  font-style: normal;
+  font-display: swap;
+}`
+      )
+      .join("\n\n")
+    css = css.replace(
+      /@font-face\s*\{[^}]*"Vazirmatn"[^}]*\}/,
+      () => fontFaceBlocks
+    )
+
+    // The digit-script utilities + body rule enable the FA font's
+    // Farsi-digits stylistic set — ss01 for Vazirmatn, ss20 for Estedad.
+    const digitsFeature = faBodySlot?.entry.digitsFeature ?? "ss01"
+    css = css.replaceAll('"ss01"', `"${digitsFeature}"`)
+  }
+
+  // 5. Remove base-shipped FA assets the preset didn't pick, so generated
+  //    projects only carry the woff2 they reference.
+  const pickedFaDirs = new Set(faAssetSlots.map((s) => s.entry.dir))
+  for (const fa of FA_FONTS) {
+    if (!pickedFaDirs.has(fa.dir)) {
+      await rm(
+        path.resolve(appDir, "src", "assets", "fonts", `${fa.dir}.woff2`),
+        { force: true }
+      )
+    }
   }
 
   await writeFile(cssPath, css)

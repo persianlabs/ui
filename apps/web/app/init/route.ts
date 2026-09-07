@@ -16,11 +16,12 @@ import {
 // GET /init?baseColor=neutral&theme=violet&radius=default
 //          &rtl=true&base=base[&only=theme|font]
 //
-// Font params (font/fontHeading/faFont/…Source) are accepted for URL
-// compatibility but intentionally unused: scaffolded templates ship the
+// Font params (font/fontHeading/faFont/…Source) are mostly accepted for URL
+// compatibility: scaffolded templates ship the
 // fonts themselves (localFont base + fonts.css written by the CLI), and
 // registryDependencies would make shadcn resolve bare names against
-// ui.shadcn.com — which 404s and fails the install.
+// ui.shadcn.com — which 404s and fails the install. The one exception is
+// faFont: it picks the body's Farsi-digits stylistic set (ss01/ss20).
 
 const BASE_COLORS = [
   "neutral",
@@ -66,6 +67,14 @@ const MENU_COLORS = [
   "inverted-translucent",
 ] as const
 const REGISTRY_BASE_PARTS = ["theme", "font"] as const
+
+// Farsi-digits stylistic set per Persian font (must match digitsFeature in
+// packages/cli/src/preset/fonts.ts): the template body enables it globally.
+// Anything unknown falls back to Vazirmatn's ss01.
+const FA_DIGITS_FEATURES: Record<string, string> = {
+  vazirmatn: "ss01",
+  estedad: "ss20",
+}
 
 function pick<T extends readonly string[]>(
   params: URLSearchParams,
@@ -125,6 +134,11 @@ export async function GET(request: NextRequest) {
     }
 
     const menuAccent = pick(searchParams, "menuAccent", MENU_ACCENTS, "subtle")
+
+    // Farsi-digits stylistic set for the picked Persian font (vazirmatn is
+    // the default). Only used when wantTheme.
+    const faDigitsFeature =
+      FA_DIGITS_FEATURES[searchParams.get("faFont") ?? "vazirmatn"] ?? "ss01"
 
     // Merge base color + theme (theme wins), then apply menu accent and radius.
     const buildSide = (side: "light" | "dark") => {
@@ -189,7 +203,9 @@ export async function GET(request: NextRequest) {
               "*": { "@apply border-border outline-ring/50": {} },
               body: {
                 "@apply bg-background text-foreground": {},
-                'font-feature-settings: "ss01"': {},
+                // The picked FA font's Farsi-digits stylistic set (ss01
+                // Vazirmatn, ss20 Estedad).
+                [`font-feature-settings: "${faDigitsFeature}"`]: {},
               },
             },
           }
