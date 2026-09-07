@@ -1,6 +1,7 @@
 import { existsSync, readdirSync } from "node:fs"
 import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises"
 import path from "node:path"
+import { fileURLToPath } from "node:url"
 
 // Create-from-zero scaffolding: copies a full project base (the same
 // "default template" projects kept in the repo's _example/ dir) into the
@@ -55,8 +56,18 @@ export function templateAppDir(template: string) {
   return isMonorepoTemplate(template) ? "apps/web" : "."
 }
 
-// Walk up from `from` looking for the repo's _example/ dir (repo-local
-// development), then for the packaged templates dir (published CLI).
+// Templates shipped inside the published package (packages/cli/templates,
+// synced from _example by scripts/sync-templates.mjs). Both src/ and dist/
+// live two levels under the package root, so ../../templates resolves for
+// `bun packages/cli/src/index.ts` in the repo and for the installed dist.
+function packagedTemplateDir(sourceName: string) {
+  const here = path.dirname(fileURLToPath(import.meta.url))
+  return path.join(here, "..", "..", "templates", sourceName)
+}
+
+// Repo development resolves the live _example base first so the repo is
+// always the source of truth; the published CLI (no _example on disk)
+// falls back to the bundled copies.
 export function resolveTemplateDir(cwd: string, template: string) {
   const sourceName = TEMPLATE_SOURCES[template]
   if (!sourceName) {
@@ -76,8 +87,13 @@ export function resolveTemplateDir(cwd: string, template: string) {
     dir = parent
   }
 
+  const packaged = packagedTemplateDir(sourceName)
+  if (existsSync(packaged)) {
+    return packaged
+  }
+
   throw new Error(
-    `Template base "${sourceName}" not found (looked for _example/ while walking up from ${cwd}). Run persianlabsui from inside the persian-labs/ui repo for now.`
+    `Template base "${sourceName}" not found (looked for _example/ while walking up from ${cwd}, and the packaged templates dir). Reinstall the CLI if templates are missing.`
   )
 }
 

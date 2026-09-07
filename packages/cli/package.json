@@ -1,7 +1,7 @@
 {
   "name": "persianlabsui",
   "version": "0.1.0",
-  "description": "The CLI for Persian Labs UI — init, apply presets, and add RTL-first, Persian-typography components built on Base UI.",
+  "description": "Scaffold and theme RTL-first, Persian-typography shadcn projects - init from a /create preset, add components from the Persian Labs registry.",
   "license": "MIT",
   "type": "module",
   "bin": {
@@ -12,7 +12,9 @@
     "./preset": "./src/preset/preset.ts"
   },
   "files": [
-    "dist"
+    "dist",
+    "templates",
+    "src/preset"
   ],
   "engines": {
     "node": ">=18"
@@ -21,7 +23,9 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "test": "vitest run",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "sync-templates": "bun run scripts/sync-templates.mjs",
+    "prepack": "bun run typecheck && bun run test && bun run build && bun run sync-templates"
   },
   "dependencies": {
     "@clack/prompts": "^1.7.0",
@@ -31,5 +35,24 @@
     "@types/node": "^22.10.2",
     "typescript": "^5.7.2",
     "vitest": "^3.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/persianlabs/ui.git",
+    "directory": "packages/cli"
+  },
+  "homepage": "https://ui.persian-labs.ir",
+  "bugs": {
+    "url": "https://github.com/persianlabs/ui/issues"
+  },
+  "keywords": [
+    "shadcn",
+    "tailwind",
+    "rtl",
+    "persian",
+    "farsi",
+    "components",
+    "registry",
+    "cli"
+  ]
 }
