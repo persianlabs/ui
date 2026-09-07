@@ -1,10 +1,13 @@
 name: Publish CLI
 
-# Manual publish for the persianlabsui npm package. Bump the version in
-# packages/cli/package.json first (commit + push), then dispatch this
-# workflow. Set the NPM_TOKEN repo secret to an npm automation token for
-# the persianlabs account (npmjs.com → Access Tokens → Generate new
-# token → Automation).
+# Manual publish for the persianlabsui npm package, via npm's GitHub
+# Actions trusted publisher (OIDC) — no NPM_TOKEN secret involved.
+#
+# The package's trusted-publisher entry on npmjs.com must point at
+# persianlabs/ui, workflow publish-cli.yml, environment "npm".
+#
+# Release ritual: bump the version in packages/cli/package.json, commit,
+# push, then dispatch this workflow (dry-run first).
 
 on:
   workflow_dispatch:
@@ -16,7 +19,7 @@ on:
 
 permissions:
   contents: read
-  id-token: write # npm provenance
+  id-token: write # npm OIDC trusted publishing + provenance
 
 concurrency:
   group: publish-cli
@@ -25,6 +28,7 @@ concurrency:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    environment: npm
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
@@ -35,10 +39,13 @@ jobs:
       - name: Verify CLI
         working-directory: packages/cli
         run: bun run typecheck && bun run test
+      # OIDC trusted publishing needs npm >= 11.5.1; Node 22 ships npm 10.
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           registry-url: https://registry.npmjs.org
+      - name: Upgrade npm for OIDC trusted publishing
+        run: npm install -g npm@latest
       - name: Publish (dry run)
         if: ${{ inputs.dry-run }}
         working-directory: packages/cli
@@ -49,7 +56,6 @@ jobs:
         if: ${{ !inputs.dry-run }}
         working-directory: packages/cli
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_CONFIG_PROVENANCE: true
         run: npm publish
       - name: Published version
