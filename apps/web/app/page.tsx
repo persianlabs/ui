@@ -18,33 +18,32 @@ export default function Page() {
               href={GITHUB_URL}
               target="_blank"
               rel="noreferrer"
-              className="text-muted-foreground hover:text-foreground inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs transition-colors"
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-xs text-muted-foreground transition-colors hover:text-foreground"
             >
               <GithubIcon className="size-3.5" />
               Open source and free forever
             </Link>
 
-            <h1 className="text-3xl leading-tighter max-w-3xl font-semibold tracking-tight text-balance sm:text-5xl">
+            <h1 className="leading-tighter max-w-3xl text-3xl font-semibold tracking-tight text-balance sm:text-5xl">
               The foundation for your Persian design system
             </h1>
 
-            <p className="text-muted-foreground max-w-2xl text-base text-balance sm:text-lg">
+            <p className="max-w-2xl text-base text-balance text-muted-foreground sm:text-lg">
               RTL-first, copy-paste components built on Base UI — with Persian
-              typography, offline fonts and Farsi digits baked in. Own the
-              code.
+              typography, offline fonts and Farsi digits baked in. Own the code.
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-2 pt-2">
               <Link
                 href="/create"
-                className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex h-[35px] items-center gap-1.5 rounded-lg px-4 text-sm font-medium transition-colors"
+                className="inline-flex h-[35px] items-center gap-1.5 rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
               >
                 <PlusIcon className="size-4" />
                 New Project
               </Link>
               <Link
                 href="/docs/components"
-                className="border-border hover:bg-muted inline-flex h-[35px] items-center rounded-lg border px-4 text-sm font-medium transition-colors"
+                className="inline-flex h-[35px] items-center rounded-lg border border-border px-4 text-sm font-medium transition-colors hover:bg-muted"
               >
                 View Components
               </Link>

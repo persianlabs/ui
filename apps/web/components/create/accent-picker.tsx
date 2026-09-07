@@ -44,8 +44,8 @@ export function MenuAccentPicker({
       >
         <PickerTrigger>
           <div className="flex flex-col justify-start text-left">
-            <div className="text-muted-foreground text-xs">Menu Accent</div>
-            <div className="text-foreground text-sm font-medium">
+            <div className="text-xs text-muted-foreground">Menu Accent</div>
+            <div className="text-sm font-medium text-foreground">
               {currentAccent?.label}
             </div>
           </div>
@@ -55,7 +55,7 @@ export function MenuAccentPicker({
             height="24"
             viewBox="0 0 24 24"
             fill="none"
-            className="text-foreground pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 select-none md:right-2.5"
+            className="pointer-events-none absolute top-1/2 right-4 size-4 -translate-y-1/2 text-foreground select-none md:right-2.5"
           >
             <path
               d="M19 12.1294L12.9388 18.207C11.1557 19.9949 10.2641 20.8889 9.16993 20.9877C8.98904 21.0041 8.80705 21.0041 8.62616 20.9877C7.53195 20.8889 6.64039 19.9949 4.85726 18.207L2.83687 16.1811C1.72104 15.0622 1.72104 13.2482 2.83687 12.1294M19 12.1294L10.9184 4.02587M19 12.1294H2.83687M10.9184 4.02587L2.83687 12.1294M10.9184 4.02587L8.89805 2"

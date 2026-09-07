@@ -58,10 +58,10 @@ export function SiteHeader({
             <XIcon className="size-3.5" />
           </a>
           <ThemeToggle />
-          <span className="bg-border hidden h-4 w-px md:block" />
+          <span className="hidden h-4 w-px bg-border md:block" />
           <Link
             href="/create"
-            className="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex h-[31px] items-center gap-1 rounded-lg px-3 text-sm font-medium transition-colors"
+            className="inline-flex h-[31px] items-center gap-1 rounded-lg bg-primary px-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
             <PlusIcon className="size-4" />
             New

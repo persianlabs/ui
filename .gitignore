@@ -49,3 +49,6 @@ _example/
 _registry.md
 plans
 _fonts
+
+# local template matrix test projects (scripts/test-templates.mts)
+_templates/

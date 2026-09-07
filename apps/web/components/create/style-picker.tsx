@@ -22,8 +22,8 @@ export function StylePicker() {
     <Picker>
       <PickerTrigger disabled>
         <div className="flex flex-col justify-start text-left">
-          <div className="text-muted-foreground text-xs">Style</div>
-          <div className="text-foreground text-sm font-medium">
+          <div className="text-xs text-muted-foreground">Style</div>
+          <div className="text-sm font-medium text-foreground">
             {STYLES[0]?.title}
           </div>
         </div>

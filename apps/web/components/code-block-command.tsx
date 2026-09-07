@@ -132,6 +132,7 @@ export function CodeBlockCommand({
       <CopyButton
         className="absolute top-2 right-2 z-10 size-6 rounded-md border-none [&_svg:not([class*='size-'])]:size-3.5"
         size="icon-sm"
+        variant={"ghost"}
         text={tabs[packageManager] || ""}
         onCopySuccess={(copiedCommand) => {
           onCopySuccess?.({

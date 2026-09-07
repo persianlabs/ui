@@ -44,10 +44,7 @@ const MENU_OPTIONS: { value: DesignSystemMenuColor; label: string }[] = [
 ]
 
 type DesignSystemMenuColor =
-  | "default"
-  | "inverted"
-  | "default-translucent"
-  | "inverted-translucent"
+  "default" | "inverted" | "default-translucent" | "inverted-translucent"
 
 export function MenuColorPicker({
   isMobile,
@@ -140,12 +137,12 @@ export function MenuColorPicker({
       >
         <PickerTrigger>
           <div className="flex flex-col justify-start text-left">
-            <div className="text-muted-foreground text-xs">Menu</div>
-            <div className="line-clamp-1 max-w-[80%] truncate text-foreground text-sm font-medium">
+            <div className="text-xs text-muted-foreground">Menu</div>
+            <div className="line-clamp-1 max-w-[80%] truncate text-sm font-medium text-foreground">
               {currentMenu?.label}
             </div>
           </div>
-          <div className="text-foreground pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center select-none md:right-2.5">
+          <div className="pointer-events-none absolute top-1/2 right-4 flex size-4 -translate-y-1/2 items-center justify-center text-foreground select-none md:right-2.5">
             <MenuIcon className="size-4" />
           </div>
         </PickerTrigger>
@@ -163,7 +160,9 @@ export function MenuColorPicker({
                 setColor(value as ColorChoice)
               }}
               onItemPreview={
-                isMobile ? undefined : (value) => previewColor(value as ColorChoice)
+                isMobile
+                  ? undefined
+                  : (value) => previewColor(value as ColorChoice)
               }
             >
               <PickerRadioItem value="default" closeOnClick={isMobile}>
