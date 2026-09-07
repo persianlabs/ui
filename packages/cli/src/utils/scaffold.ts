@@ -1,24 +1,25 @@
 import { existsSync, readdirSync } from "node:fs"
-import { cp, mkdir, readFile, rm, writeFile } from "node:fs/promises"
+import { cp, mkdir, readFile, rename, rm, writeFile } from "node:fs/promises"
+import os from "node:os"
 import path from "node:path"
-import { fileURLToPath } from "node:url"
+import { exec } from "node:child_process"
+import { promisify } from "node:util"
 
-// Create-from-zero scaffolding: copies a full project base (the same
-// "default template" projects kept in the repo's _example/ dir) into the
-// user's target directory, then init applies the preset on top.
-//
-// The bases are repo assets for now — when the CLI is published they ship
-// inside the package (templates/<name>/) and resolveTemplateDir falls back
-// to that location first.
+const execAsync = promisify(exec)
+
+// Create-from-zero scaffolding, modeled on the shadcn CLI: the published
+// package does NOT bundle templates — it sparse-clones templates/<dir> from
+// GitHub at init time. For development, PERSIANLABSUI_TEMPLATE_DIR points at
+// the repo's templates/ dir so local edits are picked up without a clone.
 
 export const TEMPLATE_SOURCES: Record<string, string> = {
-  next: "nextjs-base",
-  vite: "vite-base",
+  next: "next-app",
+  vite: "vite-app",
   // Monorepo variants (Get Code "Create a monorepo" switch). The legacy
   // next-turborepo name stays accepted for old links/commands.
-  "next-monorepo": "turbonextjs-base",
-  "next-turborepo": "turbonextjs-base",
-  "vite-monorepo": "turbovite-base",
+  "next-monorepo": "next-monorepo",
+  "next-turborepo": "next-monorepo",
+  "vite-monorepo": "vite-monorepo",
 }
 
 // shadcn-style default project names per template.
@@ -56,19 +57,21 @@ export function templateAppDir(template: string) {
   return isMonorepoTemplate(template) ? "apps/web" : "."
 }
 
-// Templates shipped inside the published package (packages/cli/templates,
-// synced from _example by scripts/sync-templates.mjs). Both src/ and dist/
-// live two levels under the package root, so ../../templates resolves for
-// `bun packages/cli/src/index.ts` in the repo and for the installed dist.
-function packagedTemplateDir(sourceName: string) {
-  const here = path.dirname(fileURLToPath(import.meta.url))
-  return path.join(here, "..", "..", "templates", sourceName)
-}
+// The repo the templates are sparse-cloned from. The GitHub URL override
+// mirrors SHADCN_GITHUB_URL (forks/private mirrors), the template-dir
+// override mirrors SHADCN_TEMPLATE_DIR (repo development).
+const GITHUB_REPO_URL =
+  process.env.PERSIANLABSUI_GITHUB_URL ?? "https://github.com/persianlabs/ui.git"
 
-// Repo development resolves the live _example base first so the repo is
-// always the source of truth; the published CLI (no _example on disk)
-// falls back to the bundled copies.
-export function resolveTemplateDir(cwd: string, template: string) {
+// Sparse-clone templates/<dir> from GitHub (blobless, depth 1) and move it
+// into place — the same strategy the shadcn CLI uses, so the npm package
+// stays small and templates are always current with the default branch.
+// With PERSIANLABSUI_TEMPLATE_DIR set (repo development), resolve from the
+// local checkout instead and skip the cleanup in scaffoldTemplate.
+export async function resolveTemplate(
+  cwd: string,
+  template: string
+): Promise<string> {
   const sourceName = TEMPLATE_SOURCES[template]
   if (!sourceName) {
     throw new Error(
@@ -76,36 +79,35 @@ export function resolveTemplateDir(cwd: string, template: string) {
     )
   }
 
-  let dir = path.resolve(cwd)
-  while (true) {
-    const candidate = path.join(dir, "_example", sourceName)
-    if (existsSync(candidate)) {
-      return candidate
+  const localDir = process.env.PERSIANLABSUI_TEMPLATE_DIR
+  if (localDir) {
+    const local = path.resolve(localDir, sourceName)
+    if (!existsSync(local)) {
+      throw new Error(
+        `Template "${sourceName}" not found in PERSIANLABSUI_TEMPLATE_DIR (${localDir}).`
+      )
     }
-    const parent = path.dirname(dir)
-    if (parent === dir) break
-    dir = parent
+    return local
   }
 
-  const packaged = packagedTemplateDir(sourceName)
-  if (existsSync(packaged)) {
-    return packaged
-  }
-
-  throw new Error(
-    `Template base "${sourceName}" not found (looked for _example/ while walking up from ${cwd}, and the packaged templates dir). Reinstall the CLI if templates are missing.`
+  const tmp = path.join(os.tmpdir(), `persianlabsui-template-${Date.now()}`)
+  await execAsync(
+    `git clone --depth 1 --filter=blob:none --sparse "${GITHUB_REPO_URL}" "${tmp}"`
   )
-}
-
-async function copyTree(from: string, to: string) {
-  await mkdir(path.dirname(to), { recursive: true })
-  await cp(from, to, {
-    recursive: true,
-    filter: (src) => {
-      const base = path.basename(src)
-      return !COPY_IGNORE.has(base)
-    },
-  })
+  await execAsync(
+    `git -C "${tmp}" sparse-checkout set templates/${sourceName}`
+  )
+  const extracted = path.join(tmp, "templates", sourceName)
+  if (!existsSync(extracted)) {
+    await rm(tmp, { recursive: true, force: true })
+    throw new Error(
+      `Template "${sourceName}" not found in ${GITHUB_REPO_URL} (templates/${sourceName}).`
+    )
+  }
+  const target = path.join(tmp, "template")
+  await rename(extracted, target)
+  await rm(tmp, { recursive: true, force: true })
+  return target
 }
 
 export function isDirEmpty(dir: string) {
@@ -137,8 +139,12 @@ export async function scaffoldTemplate(options: {
     await rm(target, { recursive: true, force: true })
   }
 
-  const source = resolveTemplateDir(process.cwd(), options.template)
+  const source = await resolveTemplate(process.cwd(), options.template)
   await copyTree(source, target)
+  // The clone/copy is scratch — remove it after use.
+  if (!process.env.PERSIANLABSUI_TEMPLATE_DIR) {
+    await rm(source, { recursive: true, force: true })
+  }
 
   // Normalize the copied root package: project name, pnpm-safe fields.
   // Flat bases drop the workspaces field (pnpm rejects it); monorepo bases
@@ -174,4 +180,15 @@ export async function scaffoldTemplate(options: {
   }
 
   return { target, appDir: path.join(target, appDirRel), appDirRel }
+}
+
+async function copyTree(from: string, to: string) {
+  await mkdir(path.dirname(to), { recursive: true })
+  await cp(from, to, {
+    recursive: true,
+    filter: (src) => {
+      const base = path.basename(src)
+      return !COPY_IGNORE.has(base)
+    },
+  })
 }

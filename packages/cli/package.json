@@ -4,28 +4,35 @@
   "description": "Scaffold and theme RTL-first, Persian-typography shadcn projects - init from a /create preset, add components from the Persian Labs registry.",
   "license": "MIT",
   "type": "module",
-  "bin": {
-    "persianlabsui": "./dist/index.js"
-  },
+  "bin": "./dist/index.js",
   "exports": {
-    ".": "./dist/index.js",
-    "./preset": "./src/preset/preset.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./preset": {
+      "types": "./dist/preset/preset.d.ts",
+      "default": "./dist/preset/preset.js"
+    }
   },
   "files": [
-    "dist",
-    "templates",
-    "src/preset"
+    "dist"
   ],
   "engines": {
-    "node": ">=18"
+    "node": ">=20.18.1"
   },
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc --watch",
-    "test": "vitest run",
+    "dev": "tsup --watch",
+    "build": "tsup",
     "typecheck": "tsc --noEmit",
-    "sync-templates": "bun run scripts/sync-templates.mjs",
-    "prepack": "bun run typecheck && bun run test && bun run build && bun run sync-templates"
+    "test": "vitest run",
+    "start": "node dist/index.js",
+    "start:dev": "cross-env PERSIANLABSUI_REGISTRY_URL=http://localhost:3000 PERSIANLABSUI_TEMPLATE_DIR=../../templates node dist/index.js",
+    "start:prod": "node dist/index.js",
+    "pub:beta": "bun run build && npm publish --tag beta",
+    "pub:next": "bun run build && npm publish --tag next",
+    "pub:release": "bun run build && npm publish",
+    "prepack": "bun run typecheck && bun run test && bun run build"
   },
   "dependencies": {
     "@clack/prompts": "^1.7.0",
@@ -33,6 +40,8 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
+    "cross-env": "^10.1.0",
+    "tsup": "^8.5.1",
     "typescript": "^5.7.2",
     "vitest": "^3.0.0"
   },
@@ -54,5 +63,9 @@
     "components",
     "registry",
     "cli"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "sideEffects": false
 }

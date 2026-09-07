@@ -30,7 +30,8 @@ import { writeComponentsJson } from "../utils/components-json.js"
 export type Template = keyof typeof TEMPLATE_SOURCES
 
 // init: CREATE a new project from zero, shadcn-CLI style. Scaffolds the
-// template base (the repo's _example projects), then applies the preset on
+// template base (templates/<dir> — sparse-cloned from GitHub, or the local
+// checkout via PERSIANLABSUI_TEMPLATE_DIR), then applies the preset on
 // top: registry:base payload via the stock shadcn CLI, offline fonts, and
 // components.json wiring. Existing projects are handled by `apply`.
 //
