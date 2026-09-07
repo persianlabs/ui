@@ -31,7 +31,7 @@ const ROOT = path.dirname(path.dirname(Bun.fileURLToPath(import.meta.url)))
 const TEMPLATES_DIR = path.join(ROOT, "_templates")
 const RUN_E2E = process.argv.includes("--e2e")
 
-const TEMPLATES = ["next", "next-turborepo"] as const
+const TEMPLATES = ["next", "next-monorepo"] as const
 
 type Combo = Omit<
   PresetConfig,
@@ -308,8 +308,10 @@ async function phaseC() {
     check(`${dirName} init exit 0`, result.code === 0, result.log.slice(-500))
     if (result.code === 0) {
       const { existsSync } = await import("node:fs")
-      // Monorepo base keeps the app in apps/web; flat bases at the root.
-      const appDir = template === "next-turborepo" ? path.join(dir, "apps/web") : dir
+      // Monorepo bases keep the app in apps/web; flat bases at the root.
+      const appDir = template.endsWith("-monorepo") || template === "next-turborepo"
+        ? path.join(dir, "apps/web")
+        : dir
       check(`${dirName} app scaffolded`, existsSync(path.join(appDir, "package.json")))
       check(`${dirName} components.json`, existsSync(path.join(appDir, "components.json")))
       check(`${dirName} fonts.css`, existsSync(path.join(appDir, "public/fonts.css")))

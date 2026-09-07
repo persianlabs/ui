@@ -12,8 +12,19 @@ import path from "node:path"
 
 export const TEMPLATE_SOURCES: Record<string, string> = {
   next: "nextjs-base",
+  vite: "vite-base",
+  // Monorepo variant (Get Code "Create a monorepo" switch). The legacy
+  // next-turborepo name stays accepted for old links/commands.
+  "next-monorepo": "turbonextjs-base",
   "next-turborepo": "turbonextjs-base",
-  // vite: "vite-base", — base not finalized yet; init rejects the template.
+}
+
+// shadcn-style default project names per template.
+export const DEFAULT_PROJECT_NAMES: Record<string, string> = {
+  next: "next-project",
+  vite: "vite-project",
+  "next-monorepo": "turbo-project",
+  "next-turborepo": "turbo-project",
 }
 
 // Directories/files that must never travel with a scaffold.
@@ -33,9 +44,11 @@ const COPY_IGNORE = new Set([
 ])
 
 // Where shadcn/-file operations run inside the scaffolded project: the
-// monorepo base keeps the app in apps/web, flat bases at the root.
+// monorepo bases keep the app in apps/web, flat bases at the root.
 export function templateAppDir(template: string) {
-  return template === "next-turborepo" ? "apps/web" : "."
+  return template === "next-monorepo" || template === "next-turborepo"
+    ? "apps/web"
+    : "."
 }
 
 // Walk up from `from` looking for the repo's _example/ dir (repo-local
@@ -107,16 +120,33 @@ export async function scaffoldTemplate(options: {
   const source = resolveTemplateDir(process.cwd(), options.template)
   await copyTree(source, target)
 
-  // Rename the copied root package to the chosen project name.
-  const appDir = path.join(target, appDirRel)
+  // Normalize the copied root package: project name, pnpm-safe fields.
+  // "workspaces" breaks pnpm installs (pnpm wants pnpm-workspace.yaml) and
+  // sharp/unrs-resolver need explicit build approval on pnpm >= 10.
   const pkgFile = path.join(target, "package.json")
   try {
     const pkg = JSON.parse(await readFile(pkgFile, "utf8"))
     pkg.name = options.projectName
+    delete pkg.workspaces
+    pkg.pnpm = {
+      onlyBuiltDependencies: ["sharp", "unrs-resolver"],
+      ...(pkg.pnpm ?? {}),
+    }
     await writeFile(pkgFile, JSON.stringify(pkg, null, 2) + "\n")
   } catch {
     // Base without a root package.json — leave as-is.
   }
 
-  return { target, appDir, appDirRel }
+  // pnpm >= 11 reads build approvals from the allowBuilds map in
+  // pnpm-workspace.yaml (onlyBuiltDependencies is ignored there) — without
+  // it installs fail with ERR_PNPM_IGNORED_BUILDS.
+  const workspaceFile = path.join(target, "pnpm-workspace.yaml")
+  if (!existsSync(workspaceFile)) {
+    await writeFile(
+      workspaceFile,
+      "# pnpm build-script approvals for scaffolded persianlabsui projects\nallowBuilds:\n  sharp: true\n  unrs-resolver: true\n"
+    )
+  }
+
+  return { target, appDir: path.join(target, appDirRel), appDirRel }
 }

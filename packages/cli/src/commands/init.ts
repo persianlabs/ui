@@ -8,7 +8,12 @@ import * as p from "@clack/prompts"
 import { decodePreset, isPresetCode, type PresetConfig } from "../preset/preset.js"
 import { buildInitUrl, fetchRegistryBase, installFontsOffline } from "../registry/fetch-base.js"
 import { logger } from "../utils/logger.js"
-import { isDirEmpty, scaffoldTemplate, TEMPLATE_SOURCES } from "../utils/scaffold.js"
+import {
+  DEFAULT_PROJECT_NAMES,
+  isDirEmpty,
+  scaffoldTemplate,
+  TEMPLATE_SOURCES,
+} from "../utils/scaffold.js"
 import { runShadcnAdd } from "../utils/shadcn.js"
 import { writeComponentsJson } from "../utils/components-json.js"
 
@@ -34,8 +39,19 @@ export async function runInit(options: {
   const silent = options.silent ?? false
 
   const template = await resolveTemplate(options.template, silent)
-  const projectName = await resolveProjectName(options.name, baseCwd, silent)
+  const projectName = await resolveProjectName(
+    options.name,
+    template,
+    baseCwd,
+    silent
+  )
   const target = path.resolve(baseCwd, projectName)
+  const templateLabel =
+    template === "next"
+      ? "Next.js"
+      : template === "vite"
+        ? "Vite"
+        : "Next.js monorepo"
 
   if (!silent) {
     p.intro(`persianlabsui — creating ${projectName}`)
@@ -45,7 +61,7 @@ export async function runInit(options: {
   let appDir: string
   try {
     if (!silent) {
-      p.log.step(`Scaffolding ${template} template into ${target}`)
+      p.log.step(`Creating a new ${templateLabel} project.`)
     }
     const scaffolded = await scaffoldTemplate({
       template,
@@ -68,10 +84,16 @@ export async function runInit(options: {
     appDir = scaffolded.appDir
   }
 
+  // components.json first so `shadcn add` sees our registry namespace.
+  await writeComponentsJson(appDir, options.force)
+  if (!silent) {
+    p.log.step("Writing components.json.")
+  }
+
   // Apply the preset: registry:base payload via the stock shadcn CLI.
   const initUrl = buildInitUrl(config, { template })
   if (!silent) {
-    p.log.step("Fetching registry base from the Persian Labs registry...")
+    p.log.step("Checking registry.")
   } else {
     logger.log("  Fetching registry base from the Persian Labs registry...")
   }
@@ -83,7 +105,7 @@ export async function runInit(options: {
 
   try {
     if (!silent) {
-      p.log.step("Installing via shadcn CLI...")
+      p.log.step("Installing dependencies.")
     } else {
       logger.log("  Installing via shadcn CLI...")
     }
@@ -97,18 +119,24 @@ export async function runInit(options: {
   }
 
   if (!silent) {
-    p.log.step("Downloading fonts for offline use...")
+    p.log.step("Downloading fonts for offline use.")
   } else {
     logger.log("  Downloading fonts for offline use...")
   }
   await installFontsOffline(config, appDir, { publicDir: "public" })
 
-  await writeComponentsJson(appDir, options.force)
-
+  const rtlDoc =
+    template === "vite"
+      ? "https://ui.persian-labs.ir/docs/rtl/vite"
+      : "https://ui.persian-labs.ir/docs/rtl/next"
   const cdPath = path.relative(process.cwd(), target) || "."
   const doneLines = [
-    `Project: ${projectName}`,
-    `Preset:  ${JSON.stringify(config)}`,
+    `Preset: ${JSON.stringify(config)}`,
+    "",
+    `To learn how to set up the RTL provider and fonts for your app, see ${rtlDoc}`,
+    "",
+    "Project initialization completed.",
+    "You may now add components.",
     "",
     `Next steps:`,
     `  cd ${cdPath}`,
@@ -117,7 +145,7 @@ export async function runInit(options: {
   ]
   if (silent) {
     logger.break()
-    logger.success("Project created.")
+    logger.success("Project initialization completed.")
     for (const line of doneLines) logger.log(`  ${line}`)
     logger.break()
   } else {
@@ -125,30 +153,26 @@ export async function runInit(options: {
   }
 }
 
-// Interactive template select, skipped when the flag is present. Vite is
-// listed but disabled until its base exists.
+// Interactive template select, skipped when the flag is present. The
+// monorepo variant is a Get Code switch — reachable via --template.
 async function resolveTemplate(templateFlag: string | undefined, silent: boolean) {
   if (templateFlag) {
     if (!TEMPLATE_SOURCES[templateFlag]) {
       throw new Error(
-        `Unknown template "${templateFlag}". Available: ${Object.keys(TEMPLATE_SOURCES).join(", ")}.`
+        `Unknown template "${templateFlag}". Available: next, vite, next-monorepo.`
       )
     }
     return templateFlag
   }
   if (silent) {
-    throw new Error("--template is required in non-interactive mode (next | next-turborepo).")
+    throw new Error("--template is required in non-interactive mode (next | vite | next-monorepo).")
   }
   const selected = await p.select({
     message: "Which template?",
     initialValue: "next",
     options: [
       { value: "next", label: "Next.js", hint: "App Router with RSC" },
-      {
-        value: "next-turborepo",
-        label: "Next.js + Turborepo",
-        hint: "Monorepo starter",
-      },
+      { value: "vite", label: "Vite", hint: "React SPA, fast HMR" },
     ],
   })
   if (p.isCancel(selected)) {
@@ -158,13 +182,15 @@ async function resolveTemplate(templateFlag: string | undefined, silent: boolean
   return selected as string
 }
 
-// shadcn-style project-name prompt. Defaults to a friendly name; "." means
-// "right here" and requires an empty directory.
+// shadcn-style project-name prompt. Defaults to a per-template name
+// (next-project / vite-project / turbo-project); "." means "right here".
 async function resolveProjectName(
   nameFlag: string | undefined,
+  template: string,
   baseCwd: string,
   silent: boolean
 ) {
+  const defaultName = DEFAULT_PROJECT_NAMES[template] ?? "persianlabs-project"
   if (nameFlag) {
     return validateName(nameFlag)
   }
@@ -172,11 +198,11 @@ async function resolveProjectName(
     throw new Error("--name is required in non-interactive mode.")
   }
   const answer = await p.text({
-    message: "Project name (directory to create)",
-    placeholder: "my-persian-app",
-    defaultValue: "my-persian-app",
+    message: "What is your project named?",
+    placeholder: defaultName,
+    defaultValue: defaultName,
     validate: (value) => {
-      const v = value?.trim() || "my-persian-app"
+      const v = value?.trim() || defaultName
       if (v !== "." && !/^[^\\/]+$/.test(v)) {
         return "Use a single directory name (no path separators)."
       }
@@ -190,7 +216,7 @@ async function resolveProjectName(
     p.cancel("Cancelled.")
     process.exit(0)
   }
-  return validateName((answer as string)?.trim() || "my-persian-app")
+  return validateName((answer as string)?.trim() || defaultName)
 }
 
 function validateName(name: string) {
