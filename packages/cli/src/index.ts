@@ -18,20 +18,22 @@ const program = new Command()
 
 program
   .command("init")
-  .description("initialize your project and install dependencies")
+  .description("create a new project from zero and apply a preset")
   .option("-p, --preset [name]", "use a preset configuration")
   .option(
     "-t, --template <template>",
-    "the template to use. (next, vite, next-turborepo)"
+    "the template to use. (next, next-turborepo)"
   )
-  .option("-c, --cwd <cwd>", "the working directory. defaults to the current directory.", process.cwd())
-  .option("-f, --force", "force overwrite of existing configuration.", false)
-  .option("-s, --silent", "mute output.", false)
+  .option("-n, --name <name>", "project name — the directory to create. skips the prompt")
+  .option("-c, --cwd <cwd>", "base directory to create the project in. defaults to the current directory.", process.cwd())
+  .option("-f, --force", "overwrite the target directory if it is not empty.", false)
+  .option("-s, --silent", "mute output. requires --template and --name.", false)
   .action(async (opts) => {
     try {
       await runInit({
         preset: opts.preset === true ? undefined : opts.preset,
         template: opts.template,
+        name: opts.name,
         cwd: opts.cwd,
         force: opts.force,
         silent: opts.silent,

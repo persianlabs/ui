@@ -31,7 +31,7 @@ const ROOT = path.dirname(path.dirname(Bun.fileURLToPath(import.meta.url)))
 const TEMPLATES_DIR = path.join(ROOT, "_templates")
 const RUN_E2E = process.argv.includes("--e2e")
 
-const TEMPLATES = ["next", "vite", "next-turborepo"] as const
+const TEMPLATES = ["next", "next-turborepo"] as const
 
 type Combo = Omit<
   PresetConfig,
@@ -217,32 +217,23 @@ async function phaseA() {
       }
       const wantHeadingDep =
         preset.fontHeading !== "inherit" && preset.fontHeadingSource === "local"
-      const monoSource = preset.fontMonoSource ?? "local"
+      void wantHeadingDep
       check(
-        `${label} font deps follow sources`,
-        (preset.fontSource === "local") ===
-          item.registryDependencies.includes(`font-${preset.font}`) &&
-          (preset.faFontSource === "local") ===
-            item.registryDependencies.includes(`font-${preset.faFont}`) &&
-          wantHeadingDep ===
-            item.registryDependencies.includes(
-              `font-heading-${preset.fontHeading}`
-            ) &&
-          (monoSource === "local") ===
-            item.registryDependencies.includes(
-              `font-${preset.fontMono ?? "geist-mono"}`
-            )
+        `${label} payload carries theme + config, no deps`,
+        "cssVars" in item &&
+          item.config.style === "nova" &&
+          !("registryDependencies" in item)
       )
       // only= parts
       const themeOnly = await fetch(`${url}&only=theme`).then((r) => r.json())
       check(
-        `${label} only=theme drops fonts`,
-        !("registryDependencies" in themeOnly) && "cssVars" in themeOnly
+        `${label} only=theme keeps theme css`,
+        "cssVars" in themeOnly && "css" in themeOnly
       )
       const fontOnly = await fetch(`${url}&only=font`).then((r) => r.json())
       check(
         `${label} only=font drops theme`,
-        "registryDependencies" in fontOnly && !("cssVars" in fontOnly)
+        !("cssVars" in fontOnly) && !("css" in fontOnly)
       )
     }
   }
@@ -288,7 +279,7 @@ function runCli(args: string[], cwd: string, env: Record<string, string>) {
 }
 
 async function phaseC() {
-  console.log("Phase C: scaffold + real init in _templates/")
+  console.log("Phase C: create-from-zero init in _templates/")
   await mkdir(TEMPLATES_DIR, { recursive: true })
   // Default preset only: geist + vazirmatn are the fonts with committed
   // registry woff2 files, so only it can pass the offline font step today.
@@ -297,38 +288,33 @@ async function phaseC() {
   for (const { template, preset } of combos) {
     const dirName = `${template}--${preset.slug}`
     const dir = path.join(TEMPLATES_DIR, dirName)
-    // Fresh scaffold every run — re-running init over a configured project
-    // can prompt inside shadcn (fails under --silent with no TTY).
+    // Fresh scaffold every run (init refuses non-empty targets without --force).
     const { rm } = await import("node:fs/promises")
     await rm(dir, { recursive: true, force: true })
-    await mkdir(dir, { recursive: true })
-    await writeFile(
-      path.join(dir, "package.json"),
-      JSON.stringify(
-        {
-          name: dirName,
-          version: "0.0.1",
-          private: true,
-          type: "module",
-          scripts: { dev: "echo todo", build: "echo todo" },
-        },
-        null,
-        2
-      )
-    )
     const code = encodePreset({ style: "nova", ...preset })
     const result = await runCli(
-      [path.join(ROOT, "packages/cli/src/index.ts"), "init", "--preset", code, "--template", template, "--cwd", dir, "--silent"],
+      [
+        path.join(ROOT, "packages/cli/src/index.ts"),
+        "init",
+        "--preset", code,
+        "--template", template,
+        "--name", dirName,
+        "--cwd", TEMPLATES_DIR,
+        "--silent",
+      ],
       ROOT,
       { PERSIANLABSUI_REGISTRY_URL: BASE_URL }
     )
     check(`${dirName} init exit 0`, result.code === 0, result.log.slice(-500))
     if (result.code === 0) {
       const { existsSync } = await import("node:fs")
-      check(`${dirName} components.json`, existsSync(path.join(dir, "components.json")))
-      check(`${dirName} fonts.css`, existsSync(path.join(dir, "public/fonts.css")))
-      check(`${dirName} vazirmatn woff2`, existsSync(path.join(dir, "public/fonts/vazirmatn-variable.woff2")))
-      check(`${dirName} geist woff2`, existsSync(path.join(dir, "public/fonts/geist-variable.woff2")))
+      // Monorepo base keeps the app in apps/web; flat bases at the root.
+      const appDir = template === "next-turborepo" ? path.join(dir, "apps/web") : dir
+      check(`${dirName} app scaffolded`, existsSync(path.join(appDir, "package.json")))
+      check(`${dirName} components.json`, existsSync(path.join(appDir, "components.json")))
+      check(`${dirName} fonts.css`, existsSync(path.join(appDir, "public/fonts.css")))
+      check(`${dirName} vazirmatn woff2`, existsSync(path.join(appDir, "public/fonts/vazirmatn-variable.woff2")))
+      check(`${dirName} geist woff2`, existsSync(path.join(appDir, "public/fonts/geist-variable.woff2")))
     }
   }
 }

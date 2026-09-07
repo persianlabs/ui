@@ -13,9 +13,14 @@ import {
 // shadcn. The persianlabsui CLI fetches this and hands the payload to the
 // shadcn CLI to install.
 //
-// GET /init?baseColor=neutral&theme=violet&radius=default&font=geist
-//          &fontHeading=inherit&faFont=vazirmatn&faFontHeading=vazirmatn
-//          &rtl=true&base=base[&template=next|vite|next-turborepo][&only=theme|font]
+// GET /init?baseColor=neutral&theme=violet&radius=default
+//          &rtl=true&base=base[&only=theme|font]
+//
+// Font params (font/fontHeading/faFont/…Source) are accepted for URL
+// compatibility but intentionally unused: scaffolded templates ship the
+// fonts themselves (localFont base + fonts.css written by the CLI), and
+// registryDependencies would make shadcn resolve bare names against
+// ui.shadcn.com — which 404s and fails the install.
 
 const BASE_COLORS = [
   "neutral",
@@ -60,8 +65,6 @@ const MENU_COLORS = [
   "default-translucent",
   "inverted-translucent",
 ] as const
-const FONT_SOURCES = ["local", "next"] as const
-const MONO_FONTS = ["geist-mono"] as const
 const REGISTRY_BASE_PARTS = ["theme", "font"] as const
 
 function pick<T extends readonly string[]>(
@@ -145,46 +148,8 @@ export async function GET(request: NextRequest) {
       return merged
     }
 
-    const font = searchParams.get("font") || "geist"
-    const fontHeading = searchParams.get("fontHeading") || "inherit"
-    const faFont = searchParams.get("faFont") || "vazirmatn"
-    const faFontHeading = searchParams.get("faFontHeading") || "vazirmatn"
-    const normalizedFaFontHeading =
-      faFontHeading === faFont ? "inherit" : faFontHeading
-    // Install source per font: "local" downloads the offline woff2 from the
-    // registry, "next" scaffolds a next/font import instead (no download,
-    // no registry font item).
-    const fontSource = pick(searchParams, "fontSource", FONT_SOURCES, "local")
-    const fontHeadingSource = pick(
-      searchParams,
-      "fontHeadingSource",
-      FONT_SOURCES,
-      "local"
-    )
-    const faFontSource = pick(
-      searchParams,
-      "faFontSource",
-      FONT_SOURCES,
-      "local"
-    )
-    const faFontHeadingSource = pick(
-      searchParams,
-      "faFontHeadingSource",
-      FONT_SOURCES,
-      "local"
-    )
-    const fontMono = pick(searchParams, "fontMono", MONO_FONTS, "geist-mono")
-    const fontMonoSource = pick(
-      searchParams,
-      "fontMonoSource",
-      FONT_SOURCES,
-      "local"
-    )
-
     const wantTheme = only.parts.length === 0 || only.parts.includes("theme")
-    const wantFont = only.parts.length === 0 || only.parts.includes("font")
 
-    const registryDependencies: string[] = []
     const cssVars: Record<string, unknown> = {}
     const menuColor = pick(searchParams, "menuColor", MENU_COLORS, "default")
 
@@ -206,34 +171,16 @@ export async function GET(request: NextRequest) {
       config.tailwind = { baseColor }
     }
 
-    if (wantFont) {
-      if (fontSource === "local") {
-        registryDependencies.push(`font-${font}`)
-      }
-      if (faFontSource === "local") {
-        registryDependencies.push(`font-${faFont}`)
-      }
-      if (fontHeading !== "inherit" && fontHeadingSource === "local") {
-        registryDependencies.push(`font-heading-${fontHeading}`)
-      }
-      if (
-        normalizedFaFontHeading !== "inherit" &&
-        faFontHeadingSource === "local"
-      ) {
-        registryDependencies.push(`font-fa-heading-${normalizedFaFontHeading}`)
-      }
-      if (fontMonoSource === "local") {
-        registryDependencies.push(`font-${fontMono}`)
-      }
-    }
-
+    // NOTE: no registryDependencies in this payload. Scaffolded templates
+    // ship lib/utils and the fonts themselves (local woff2 + fonts.css via
+    // the CLI), and shadcn resolves bare dep names against the default
+    // ui.shadcn.com registry — which 404s and fails the whole install.
     const item = {
       $schema: "https://ui.persian-labs.ir/schema/registry-item.json",
       name: only.parts.length ? `nova-${only.parts.join("-")}` : "nova",
       type: "registry:base",
       extends: "none",
       config,
-      ...(registryDependencies.length > 0 && { registryDependencies }),
       ...(Object.keys(cssVars).length > 0 && { cssVars }),
       css: wantTheme
         ? {
