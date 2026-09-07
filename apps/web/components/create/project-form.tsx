@@ -24,8 +24,7 @@ const VITE_LOGO =
   '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 410 404" fill="none"><path fill="var(--foreground)" d="m399.641 59.525-183.998 329.02c-3.799 6.793-13.559 6.833-17.415.073L10.582 59.556C6.38 52.19 12.68 43.266 21.028 44.76l184.195 32.923c1.175.21 2.378.208 3.553-.006l180.343-32.87c8.32-1.517 14.649 7.337 10.522 14.719"/><path fill="var(--color-neutral-800)" d="M292.965 1.574 156.801 28.255a5 5 0 0 0-4.03 4.611l-8.376 141.464c-.197 3.332 2.863 5.918 6.115 5.168l37.91-8.749c3.547-.818 6.752 2.306 6.023 5.873l-11.263 55.153c-.758 3.712 2.727 6.886 6.352 5.785l23.415-7.114c3.63-1.102 7.118 2.081 6.35 5.796l-17.899 86.633c-1.12 5.419 6.088 8.374 9.094 3.728l2.008-3.103 110.954-221.428c1.858-3.707-1.346-7.935-5.418-7.15l-39.022 7.532c-3.667.707-6.787-2.708-5.752-6.296l25.469-88.291c1.036-3.594-2.095-7.012-5.766-6.293"/></svg>'
 
 // Two frameworks, monorepo as a switch (shadcn-style) instead of a third
-// card. The switch currently only applies to Next.js — no Vite monorepo
-// base exists yet.
+// card. Each framework has a monorepo base: turbo wrapper, app in apps/web.
 const TEMPLATES = [
   {
     value: "next",
@@ -39,7 +38,7 @@ const TEMPLATES = [
     title: "Vite",
     description: "React SPA, fast HMR",
     logo: VITE_LOGO,
-    monorepoValue: null,
+    monorepoValue: "vite-monorepo",
   },
 ] as const
 
@@ -53,10 +52,8 @@ export function ProjectForm({
   const presetCode = usePresetCode()
 
   const template = React.useMemo(() => {
-    if (framework === "next") {
-      return monorepo ? "next-monorepo" : "next"
-    }
-    return "vite"
+    const active = TEMPLATES.find((t) => t.value === framework)!
+    return monorepo ? active.monorepoValue : framework
   }, [framework, monorepo])
 
   const command = `init --preset ${presetCode} --template ${template}`
@@ -110,7 +107,6 @@ export function ProjectForm({
             <Switch
               checked={monorepo}
               onCheckedChange={(checked) => setMonorepo(checked === true)}
-              disabled={framework !== "next"}
             />
           </label>
 
