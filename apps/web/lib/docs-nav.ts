@@ -23,11 +23,7 @@ export const docsNav: DocsNavGroup[] = [
       { title: "Persian Conventions", href: "/docs/persian-conventions" },
       { title: "FAQ", href: "/docs/faq" },
       { title: "AI", href: "/docs/ai" },
-      {
-        title: "CLI",
-        href: "/docs/cli",
-        badge: "Coming soon",
-      },
+      { title: "CLI", href: "/docs/cli" },
       {
         title: "Skills",
         href: "/docs/skills",
