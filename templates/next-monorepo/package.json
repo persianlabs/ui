@@ -7,7 +7,8 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "turbo format",
-    "typecheck": "turbo typecheck"
+    "typecheck": "turbo typecheck",
+    "update": "npx npm-check-updates -u"
   },
   "devDependencies": {
     "@workspace/eslint-config": "workspace:*",
