@@ -31,4 +31,4 @@ Full reference: [ui.persian-labs.ir/docs/cli](https://ui.persian-labs.ir/docs/cl
 
 ## How it works
 
-`init` scaffolds a ready-to-run template, then fetches a registry base from `https://ui.persian-labs.ir/init` and applies it through the stock shadcn CLI. Fonts install offline: the Persian cuts are Latin-free arabic subsets bundled with the templates, and English fonts are pulled fresh from Google Fonts (with a CDN fallback). Everything it produces is a normal shadcn project you fully own.
+`init` scaffolds a ready-to-run template — sparse-cloned from the [persianlabs/ui](https://github.com/persianlabs/ui) repo's `templates/` directory (requires git; forks can override with `PERSIANLABSUI_GITHUB_URL`, and local development can point `PERSIANLABSUI_TEMPLATE_DIR` at a checkout) — then fetches a registry base from `https://ui.persian-labs.ir/init` and applies it through the stock shadcn CLI. Fonts install offline: the Persian cuts are Latin-free arabic subsets bundled with the templates, and English fonts are pulled fresh from Google Fonts (with a CDN fallback). Everything it produces is a normal shadcn project you fully own.

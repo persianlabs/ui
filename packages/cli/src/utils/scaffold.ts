@@ -106,7 +106,6 @@ export async function resolveTemplate(
   }
   const target = path.join(tmp, "template")
   await rename(extracted, target)
-  await rm(tmp, { recursive: true, force: true })
   return target
 }
 
@@ -141,9 +140,11 @@ export async function scaffoldTemplate(options: {
 
   const source = await resolveTemplate(process.cwd(), options.template)
   await copyTree(source, target)
-  // The clone/copy is scratch — remove it after use.
+  // The sparse clone is scratch — remove the whole temp dir after copying.
+  // With PERSIANLABSUI_TEMPLATE_DIR the source is the repo checkout itself,
+  // so nothing is removed.
   if (!process.env.PERSIANLABSUI_TEMPLATE_DIR) {
-    await rm(source, { recursive: true, force: true })
+    await rm(path.dirname(source), { recursive: true, force: true })
   }
 
   // Normalize the copied root package: project name, pnpm-safe fields.
