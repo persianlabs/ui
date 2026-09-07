@@ -19,6 +19,10 @@ Docs are markdown compiled by fumadocs-mdx — there are no per-page TSX files a
 
 Full English walkthroughs live in `docs/contributing/` ([adding-a-component.md](docs/contributing/adding-a-component.md), [adding-a-utility.md](docs/contributing/adding-a-utility.md), [conventions.md](docs/contributing/conventions.md)); an agent-facing handbook is at [docs/agents/README.md](docs/agents/README.md).
 
+## Adding a Farsi font to the create system
+
+New Persian fonts must be **variable** fonts, committed as a **Latin-free arabic subset** built with our fonttools script (clone `scripts/build-vazirmatn-subset.py` / `build-estedad-subset.py`; keep Arabic blocks + digits + punctuation, strip Latin letters, keep all OpenType features). Latin and ASCII digits must fall through to the English font. Wire it in: `packages/cli/src/preset/fonts.ts` + `packages/cli/src/preset/preset.ts` (`PRESET_FA_FONTS`, **append-only** — the index is bit-packed into preset codes), the woff2 into all four `_example/*-base` template font dirs, the create-page catalog `apps/web/lib/create/fonts.ts` (local-only), and `apps/web/app/layout.tsx` (preview load). If the font's Farsi digits are NOT `ss01`, set `digitsFeature` on the entry (e.g. Estedad uses `ss20`) and mirror it in the `/init` route's `FA_DIGITS_FEATURES`.
+
 ## Component and utility previews
 
 Every component page must include both a gallery preview image and an Open Graph image — installable components and guide pages alike (Charts ships one too); nothing in the Components nav group may fall back to "No preview available" in the sidebar hover. Add a themed preview to `apps/web/components/previews/<name>.tsx` and a Satori-safe (hex colors) twin to `apps/web/components/previews/og/<name>.tsx` (barrels and the slug→preview map regenerate on predev/prebuild), wire the themed name into `components/mdx/components-catalog.tsx`. OG images need no per-page route: `app/docs/og/[...slug]/route.tsx` serves a unique card for every docs page from the frontmatter title/description plus the matching `og/<name>` preview.
