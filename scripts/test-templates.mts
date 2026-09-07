@@ -31,7 +31,7 @@ const ROOT = path.dirname(path.dirname(Bun.fileURLToPath(import.meta.url)))
 const TEMPLATES_DIR = path.join(ROOT, "_templates")
 const RUN_E2E = process.argv.includes("--e2e")
 
-const TEMPLATES = ["next", "next-monorepo"] as const
+const TEMPLATES = ["next", "vite", "next-monorepo", "vite-monorepo"] as const
 
 type Combo = Omit<
   PresetConfig,

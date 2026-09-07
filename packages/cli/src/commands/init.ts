@@ -11,6 +11,7 @@ import { logger } from "../utils/logger.js"
 import {
   DEFAULT_PROJECT_NAMES,
   isDirEmpty,
+  isMonorepoTemplate,
   scaffoldTemplate,
   TEMPLATE_SOURCES,
 } from "../utils/scaffold.js"
@@ -46,12 +47,13 @@ export async function runInit(options: {
     silent
   )
   const target = path.resolve(baseCwd, projectName)
-  const templateLabel =
-    template === "next"
-      ? "Next.js"
-      : template === "vite"
-        ? "Vite"
-        : "Next.js monorepo"
+  const templateLabel = isMonorepoTemplate(template)
+    ? template === "vite-monorepo"
+      ? "Vite monorepo"
+      : "Next.js monorepo"
+    : template === "vite"
+      ? "Vite"
+      : "Next.js"
 
   if (!silent) {
     p.intro(`persianlabsui — creating ${projectName}`)
@@ -125,10 +127,9 @@ export async function runInit(options: {
   }
   await installFontsOffline(config, appDir, { publicDir: "public" })
 
-  const rtlDoc =
-    template === "vite"
-      ? "https://ui.persian-labs.ir/docs/rtl/vite"
-      : "https://ui.persian-labs.ir/docs/rtl/next"
+  const rtlDoc = template === "vite" || template === "vite-monorepo"
+    ? "https://ui.persian-labs.ir/docs/rtl/vite"
+    : "https://ui.persian-labs.ir/docs/rtl/next"
   const cdPath = path.relative(process.cwd(), target) || "."
   const doneLines = [
     `Preset: ${JSON.stringify(config)}`,
