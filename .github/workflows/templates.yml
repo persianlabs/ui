@@ -1,0 +1,129 @@
+# Template validation — adapted from shadcn's templates.yml. On PRs that
+# touch the CLI or the template bases, scaffold EVERY template with the real
+# CLI against a local registry server, install with the matrix package
+# manager, and build. The monorepo templates are the slowest, so they only
+# run with bun; flat templates run across the package-manager matrix.
+
+name: Templates
+
+on:
+  pull_request:
+    branches: ["*"]
+    paths:
+      - ".github/workflows/templates.yml"
+      - "templates/**"
+      - "packages/cli/**"
+      - "apps/web/app/init/**"
+      - "apps/web/lib/create/**"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  REGISTRY_URL: http://localhost:3000
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    name: ${{ matrix.template }} · ${{ matrix.package-manager }}
+    permissions:
+      contents: read
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        template: [next, vite, next-monorepo, vite-monorepo]
+        package-manager: [bun, npm, pnpm]
+        exclude:
+          # Monorepo bases are the slowest builds; one manager is enough.
+          - template: next-monorepo
+            package-manager: npm
+          - template: next-monorepo
+            package-manager: pnpm
+          - template: vite-monorepo
+            package-manager: npm
+          - template: vite-monorepo
+            package-manager: pnpm
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.0
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+      - name: Install pnpm
+        if: matrix.package-manager == 'pnpm'
+        run: npm install -g pnpm@10
+
+      # The CLI fetches its registry base from /init, a server route — run
+      # the dev server (predev also builds the CLI dist) and poll readiness.
+      - name: Start registry server
+        run: |
+          cd apps/web
+          bun run dev > "$RUNNER_TEMP/dev-server.log" 2>&1 &
+          ok=false
+          for i in $(seq 1 90); do
+            if curl -sf "$REGISTRY_URL/init?baseColor=neutral&theme=neutral&radius=default&rtl=true&base=base" > /dev/null; then
+              echo "registry server ready after ${i}s"
+              ok=true
+              break
+            fi
+            sleep 1
+          done
+          if [ "$ok" != "true" ]; then
+            tail -40 "$RUNNER_TEMP/dev-server.log"
+            echo "registry server did not come up within 90s"
+            exit 1
+          fi
+
+      - name: Scaffold ${{ matrix.template }}
+        working-directory: ${{ runner.temp }}
+        env:
+          PERSIANLABSUI_TEMPLATE_DIR: ${{ github.workspace }}/templates
+          PERSIANLABSUI_REGISTRY_URL: ${{ env.REGISTRY_URL }}
+        run: >
+          bun "$GITHUB_WORKSPACE/packages/cli/src/index.ts" init
+          --preset c0 --template ${{ matrix.template }}
+          --name app --cwd . --silent
+
+      - name: Install (bun)
+        if: matrix.package-manager == 'bun'
+        working-directory: ${{ runner.temp }}/app
+        run: bun install
+      - name: Install (npm)
+        if: matrix.package-manager == 'npm'
+        working-directory: ${{ runner.temp }}/app
+        run: npm install
+      - name: Install (pnpm)
+        if: matrix.package-manager == 'pnpm'
+        working-directory: ${{ runner.temp }}/app
+        run: pnpm install
+
+      - name: Build (bun)
+        if: matrix.package-manager == 'bun'
+        working-directory: ${{ runner.temp }}/app
+        run: bun run build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+      - name: Build (npm)
+        if: matrix.package-manager == 'npm'
+        working-directory: ${{ runner.temp }}/app
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+      - name: Build (pnpm)
+        if: matrix.package-manager == 'pnpm'
+        working-directory: ${{ runner.temp }}/app
+        run: pnpm build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
+
+      - name: Upload dev server log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: dev-server-${{ matrix.template }}-${{ matrix.package-manager }}
+          path: ${{ runner.temp }}/dev-server.log
+          if-no-files-found: ignore
