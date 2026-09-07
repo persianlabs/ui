@@ -43,6 +43,7 @@ import {
 import { Checkbox } from "@workspace/ui/components/checkbox"
 import { Input } from "@workspace/ui/components/input"
 import { Progress } from "@workspace/ui/components/progress"
+import { Separator } from "@workspace/ui/components/separator"
 import {
   Table,
   TableBody,
@@ -215,6 +216,8 @@ export function EnDashboard() {
             </Button>
           </div>
         </header>
+
+        <Separator />
 
         {/* Stats */}
         <section className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
