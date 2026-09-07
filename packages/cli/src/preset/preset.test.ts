@@ -16,10 +16,43 @@ describe("preset codec", () => {
     expect(PRESET_FA_FONTS).toEqual(FA_FONTS.map((f) => f.value))
   })
 
-  it("encodes the default config to a v1 code", () => {
+  it("encodes the default config to a v3 code", () => {
     const code = encodePreset({})
-    expect(code[0]).toBe("a")
+    expect(code[0]).toBe("c")
     expect(isPresetCode(code)).toBe(true)
+  })
+
+  it("decodes legacy v1 codes with local install sources and default mono", () => {
+    const decoded = decodePreset("a0")
+    expect(decoded).toMatchObject({
+      style: "nova",
+      baseColor: "neutral",
+      theme: "neutral",
+      font: "geist",
+      fontHeading: "inherit",
+      faFont: "vazirmatn",
+      faFontHeading: "vazirmatn",
+      radius: "default",
+      menuAccent: "subtle",
+      menuColor: "default",
+      fontSource: "local",
+      fontHeadingSource: "local",
+      faFontSource: "local",
+      faFontHeadingSource: "local",
+      fontMono: "geist-mono",
+      fontMonoSource: "local",
+    })
+  })
+
+  it("decodes legacy v2 codes with default mono fields", () => {
+    const decoded = decodePreset("b0")
+    expect(decoded).toMatchObject({
+      style: "nova",
+      font: "geist",
+      fontSource: "local",
+      fontMono: "geist-mono",
+      fontMonoSource: "local",
+    })
   })
 
   it("round-trips every field", () => {
@@ -34,6 +67,12 @@ describe("preset codec", () => {
       radius: "large",
       menuAccent: "bold",
       menuColor: "inverted-translucent",
+      fontSource: "local",
+      fontHeadingSource: "next",
+      faFontSource: "local",
+      faFontHeadingSource: "local",
+      fontMono: "geist-mono",
+      fontMonoSource: "next",
     } as const
 
     const code = encodePreset(config)

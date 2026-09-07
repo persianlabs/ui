@@ -21,6 +21,12 @@ const DEFAULT_PARAMS: Partial<DesignSystemSearchParams> = {
   fontHeading: "inherit",
   faFont: "vazirmatn",
   faFontHeading: "vazirmatn",
+  fontSource: "local",
+  fontHeadingSource: "local",
+  faFontSource: "local",
+  faFontHeadingSource: "local",
+  fontMono: "geist-mono",
+  fontMonoSource: "local",
 }
 
 // Tiny shared store so MainMenu and ResetDialog observe the same dialog

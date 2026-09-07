@@ -33,6 +33,12 @@ const DEFAULTS = {
   faFontHeading: "vazirmatn",
   menuAccent: "subtle",
   menuColor: "default",
+  fontSource: "local",
+  fontHeadingSource: "local",
+  faFontSource: "local",
+  faFontHeadingSource: "local",
+  fontMono: "geist-mono",
+  fontMonoSource: "local",
 } as const
 
 const DESIGN_KEYS = [
@@ -45,6 +51,12 @@ const DESIGN_KEYS = [
   "faFontHeading",
   "menuAccent",
   "menuColor",
+  "fontSource",
+  "fontHeadingSource",
+  "faFontSource",
+  "faFontHeadingSource",
+  "fontMono",
+  "fontMonoSource",
 ] as const
 
 async function CreatePreviewContent({ searchParams }: PageProps) {
@@ -65,11 +77,25 @@ async function CreatePreviewContent({ searchParams }: PageProps) {
         theme: decoded.theme as DesignSystemSearchParams["theme"],
         radius: decoded.radius as DesignSystemSearchParams["radius"],
         font: decoded.font as DesignSystemSearchParams["font"],
-        fontHeading: decoded.fontHeading as DesignSystemSearchParams["fontHeading"],
+        fontHeading:
+          decoded.fontHeading as DesignSystemSearchParams["fontHeading"],
         faFont: decoded.faFont as DesignSystemSearchParams["faFont"],
-        faFontHeading: decoded.faFontHeading as DesignSystemSearchParams["faFontHeading"],
-        menuAccent: decoded.menuAccent as DesignSystemSearchParams["menuAccent"],
+        faFontHeading:
+          decoded.faFontHeading as DesignSystemSearchParams["faFontHeading"],
+        menuAccent:
+          decoded.menuAccent as DesignSystemSearchParams["menuAccent"],
         menuColor: decoded.menuColor as DesignSystemSearchParams["menuColor"],
+        fontSource:
+          decoded.fontSource as DesignSystemSearchParams["fontSource"],
+        fontHeadingSource:
+          decoded.fontHeadingSource as DesignSystemSearchParams["fontHeadingSource"],
+        faFontSource:
+          decoded.faFontSource as DesignSystemSearchParams["faFontSource"],
+        faFontHeadingSource:
+          decoded.faFontHeadingSource as DesignSystemSearchParams["faFontHeadingSource"],
+        fontMono: decoded.fontMono as DesignSystemSearchParams["fontMono"],
+        fontMonoSource:
+          decoded.fontMonoSource as DesignSystemSearchParams["fontMonoSource"],
       }
     }
   }

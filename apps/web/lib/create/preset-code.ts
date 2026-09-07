@@ -13,6 +13,12 @@ type PresetCodeConfig = Pick<
   | "faFontHeading"
   | "menuAccent"
   | "menuColor"
+  | "fontSource"
+  | "fontHeadingSource"
+  | "faFontSource"
+  | "faFontHeadingSource"
+  | "fontMono"
+  | "fontMonoSource"
 > & { style?: "nova" }
 
 export function getPresetCode(config: PresetCodeConfig) {
@@ -27,6 +33,14 @@ export function getPresetCode(config: PresetCodeConfig) {
     faFontHeading: config.faFontHeading as PresetConfig["faFontHeading"],
     menuAccent: config.menuAccent as PresetConfig["menuAccent"],
     menuColor: config.menuColor as PresetConfig["menuColor"],
+    fontSource: config.fontSource as PresetConfig["fontSource"],
+    fontHeadingSource:
+      config.fontHeadingSource as PresetConfig["fontHeadingSource"],
+    faFontSource: config.faFontSource as PresetConfig["faFontSource"],
+    faFontHeadingSource:
+      config.faFontHeadingSource as PresetConfig["faFontHeadingSource"],
+    fontMono: config.fontMono as PresetConfig["fontMono"],
+    fontMonoSource: config.fontMonoSource as PresetConfig["fontMonoSource"],
   }
 
   return encodePreset(presetConfig)

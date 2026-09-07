@@ -81,6 +81,12 @@ export function resolveConfig(presetCode?: string): PresetConfig {
       radius: "default",
       menuAccent: "subtle",
       menuColor: "default",
+      fontSource: "local",
+      fontHeadingSource: "local",
+      faFontSource: "local",
+      faFontHeadingSource: "local",
+      fontMono: "geist-mono",
+      fontMonoSource: "local",
     }
   }
 

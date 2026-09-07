@@ -17,9 +17,23 @@ import {
 //          &fontHeading=inherit&faFont=vazirmatn&faFontHeading=vazirmatn
 //          &rtl=true&base=base[&template=next|vite|next-turborepo][&only=theme|font]
 
-const BASE_COLORS = ["neutral", "stone", "zinc", "gray"] as const
+const BASE_COLORS = [
+  "neutral",
+  "stone",
+  "zinc",
+  "mauve",
+  "olive",
+  "mist",
+  "taupe",
+] as const
 const THEMES = [
   "neutral",
+  "stone",
+  "zinc",
+  "mauve",
+  "olive",
+  "mist",
+  "taupe",
   "amber",
   "blue",
   "cyan",
@@ -46,6 +60,8 @@ const MENU_COLORS = [
   "default-translucent",
   "inverted-translucent",
 ] as const
+const FONT_SOURCES = ["local", "next"] as const
+const MONO_FONTS = ["geist-mono"] as const
 const REGISTRY_BASE_PARTS = ["theme", "font"] as const
 
 function pick<T extends readonly string[]>(
@@ -105,11 +121,22 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    // Merge base color + theme (theme wins), then apply radius.
+    const menuAccent = pick(searchParams, "menuAccent", MENU_ACCENTS, "subtle")
+
+    // Merge base color + theme (theme wins), then apply menu accent and radius.
     const buildSide = (side: "light" | "dark") => {
       const merged: Record<string, string> = {
         ...baseVars[side],
         ...themeVars[side],
+      }
+      // Bold menu accent: the accent tokens take the primary color — same
+      // transformation as buildPreviewStyle for the live preview.
+      if (menuAccent === "bold" && merged.primary && merged.accent) {
+        merged.accent = merged.primary
+        const primaryFg = merged["primary-foreground"]
+        if (primaryFg) {
+          merged["accent-foreground"] = primaryFg
+        }
       }
       const radius = RADII.find((r) => r.value === (radiusName as RadiusName))
       if (radius && radius.value !== "default" && radius.css) {
@@ -122,16 +149,49 @@ export async function GET(request: NextRequest) {
     const fontHeading = searchParams.get("fontHeading") || "inherit"
     const faFont = searchParams.get("faFont") || "vazirmatn"
     const faFontHeading = searchParams.get("faFontHeading") || "vazirmatn"
-    const normalizedFaFontHeading = faFontHeading === faFont ? "inherit" : faFontHeading
+    const normalizedFaFontHeading =
+      faFontHeading === faFont ? "inherit" : faFontHeading
+    // Install source per font: "local" downloads the offline woff2 from the
+    // registry, "next" scaffolds a next/font import instead (no download,
+    // no registry font item).
+    const fontSource = pick(searchParams, "fontSource", FONT_SOURCES, "local")
+    const fontHeadingSource = pick(
+      searchParams,
+      "fontHeadingSource",
+      FONT_SOURCES,
+      "local"
+    )
+    const faFontSource = pick(
+      searchParams,
+      "faFontSource",
+      FONT_SOURCES,
+      "local"
+    )
+    const faFontHeadingSource = pick(
+      searchParams,
+      "faFontHeadingSource",
+      FONT_SOURCES,
+      "local"
+    )
+    const fontMono = pick(searchParams, "fontMono", MONO_FONTS, "geist-mono")
+    const fontMonoSource = pick(
+      searchParams,
+      "fontMonoSource",
+      FONT_SOURCES,
+      "local"
+    )
 
     const wantTheme = only.parts.length === 0 || only.parts.includes("theme")
     const wantFont = only.parts.length === 0 || only.parts.includes("font")
 
     const registryDependencies: string[] = []
     const cssVars: Record<string, unknown> = {}
-    const menuAccent = pick(searchParams, "menuAccent", MENU_ACCENTS, "subtle")
     const menuColor = pick(searchParams, "menuColor", MENU_COLORS, "default")
 
+    // Note: font install sources (fontSource=local|next) intentionally stay
+    // out of `config` — shadcn validates registry:base config keys strictly
+    // and rejects unknown ones. The CLI already carries the sources in the
+    // preset it used to build this URL and skips "next" downloads itself.
     const config: Record<string, unknown> = {
       style: "nova",
       rtl: true,
@@ -147,12 +207,23 @@ export async function GET(request: NextRequest) {
     }
 
     if (wantFont) {
-      registryDependencies.push(`font-${font}`, `font-${faFont}`)
-      if (fontHeading !== "inherit") {
+      if (fontSource === "local") {
+        registryDependencies.push(`font-${font}`)
+      }
+      if (faFontSource === "local") {
+        registryDependencies.push(`font-${faFont}`)
+      }
+      if (fontHeading !== "inherit" && fontHeadingSource === "local") {
         registryDependencies.push(`font-heading-${fontHeading}`)
       }
-      if (normalizedFaFontHeading !== "inherit") {
+      if (
+        normalizedFaFontHeading !== "inherit" &&
+        faFontHeadingSource === "local"
+      ) {
         registryDependencies.push(`font-fa-heading-${normalizedFaFontHeading}`)
+      }
+      if (fontMonoSource === "local") {
+        registryDependencies.push(`font-${fontMono}`)
       }
     }
 

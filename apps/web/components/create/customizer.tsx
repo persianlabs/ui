@@ -31,11 +31,14 @@ import { MenuAccentPicker } from "@/components/create/accent-picker"
 import { RandomButton } from "@/components/create/random-button"
 import { ResetDialog } from "@/components/create/reset-button"
 import { ThemePicker } from "@/components/create/theme-picker"
+import { getThemesForBaseColor } from "@/lib/create/config"
+import { useDesignSystemSearchParams } from "@/lib/create/search-params"
 import {
   FA_FONTS,
   FA_FONT_HEADING_OPTIONS,
   FONTS,
   FONT_HEADING_OPTIONS,
+  MONO_FONTS,
 } from "@/lib/create/fonts"
 
 // Only visible when user clicks "Create Project". Rendered client-only to
@@ -69,8 +72,16 @@ function FieldSeparator({ className }: React.ComponentProps<"div">) {
 }
 
 export function Customizer() {
+  const [params] = useDesignSystemSearchParams()
   const isMobile = useIsMobile()
   const anchorRef = React.useRef<HTMLDivElement | null>(null)
+
+  // Shadcn-style: only the current base's own theme plus the accent themes
+  // are offered — base themes belonging to another base stay hidden.
+  const availableThemes = React.useMemo(
+    () => getThemesForBaseColor(params.baseColor),
+    [params.baseColor]
+  )
 
   return (
     <Card
@@ -85,7 +96,11 @@ export function Customizer() {
         <FieldGroup className="flex-row gap-2.5 py-px **:data-[slot=field-separator]:-mx-4 **:data-[slot=field-separator]:w-auto md:flex-col md:gap-3.25">
           <StylePicker />
           <BaseColorPicker isMobile={isMobile} anchorRef={anchorRef} />
-          <ThemePicker isMobile={isMobile} anchorRef={anchorRef} />
+          <ThemePicker
+            themes={availableThemes}
+            isMobile={isMobile}
+            anchorRef={anchorRef}
+          />
           <FieldSeparator className="hidden md:block" />
           <FontPicker
             label="Heading"
@@ -101,18 +116,25 @@ export function Customizer() {
             isMobile={isMobile}
             anchorRef={anchorRef}
           />
+          <FontPicker
+            label="Font Mono"
+            param="fontMono"
+            options={MONO_FONTS}
+            isMobile={isMobile}
+            anchorRef={anchorRef}
+          />
           <FieldSeparator className="hidden md:block" />
           <FontPicker
-            label="فونت فارسی"
-            param="faFont"
-            options={FA_FONTS}
+            label="Farsi Heading"
+            param="faFontHeading"
+            options={FA_FONT_HEADING_OPTIONS}
             isMobile={isMobile}
             anchorRef={anchorRef}
           />
           <FontPicker
-            label="تیتر فارسی"
-            param="faFontHeading"
-            options={FA_FONT_HEADING_OPTIONS}
+            label="Farsi Font"
+            param="faFont"
+            options={FA_FONTS}
             isMobile={isMobile}
             anchorRef={anchorRef}
           />
