@@ -127,14 +127,7 @@ export async function runInit(options: {
   }
   await installFontsOffline(config, appDir, { publicDir: "public" })
 
-  const rtlDoc = template === "vite" || template === "vite-monorepo"
-    ? "https://ui.persian-labs.ir/docs/rtl/vite"
-    : "https://ui.persian-labs.ir/docs/rtl/next"
   const doneLines = [
-    `Preset: ${JSON.stringify(config)}`,
-    "",
-    `To learn how to set up the RTL provider and fonts for your app, see ${rtlDoc}`,
-    "",
     "Project initialization completed.",
     "You may now add components.",
   ]
