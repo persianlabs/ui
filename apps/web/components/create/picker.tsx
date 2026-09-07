@@ -10,8 +10,53 @@ import { Menu as MenuPrimitive } from "@base-ui/react/menu"
 
 import { cn } from "@workspace/ui/lib/utils"
 
-function Picker({ ...props }: MenuPrimitive.Root.Props) {
-  return <MenuPrimitive.Root data-slot="dropdown-menu" {...props} />
+function Picker({
+  open: openProp,
+  onOpenChange,
+  ...props
+}: MenuPrimitive.Root.Props) {
+  const [internalOpen, setInternalOpen] = React.useState(false)
+  const isControlled = openProp !== undefined
+  const open = isControlled ? openProp : internalOpen
+
+  // Clicks inside the preview iframe never reach the parent document, so
+  // Base UI's outside-press dismissal can't see them. The host page closes
+  // every picker through this registry when the iframe reports a pointerdown.
+  React.useEffect(() => {
+    if (isControlled) {
+      return
+    }
+    pickerClosers.add(setInternalOpen)
+    return () => {
+      pickerClosers.delete(setInternalOpen)
+    }
+  }, [isControlled])
+
+  return (
+    <MenuPrimitive.Root
+      data-slot="dropdown-menu"
+      open={open}
+      onOpenChange={(next, eventDetails) => {
+        if (!isControlled) {
+          setInternalOpen(next)
+        }
+        onOpenChange?.(next, eventDetails)
+      }}
+      {...props}
+    />
+  )
+}
+
+// Registry of uncontrolled picker setters, so an iframe pointerdown (which
+// never hits the parent document's outside-press listener) can still close
+// every open picker. Consumer onOpenChange callbacks still fire, clearing
+// hover preview overrides.
+const pickerClosers = new Set<React.Dispatch<React.SetStateAction<boolean>>>()
+
+export function closeAllPickers() {
+  for (const setOpen of pickerClosers) {
+    setOpen(false)
+  }
 }
 
 function PickerTrigger({ className, ...props }: MenuPrimitive.Trigger.Props) {

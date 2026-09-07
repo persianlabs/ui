@@ -18,6 +18,15 @@ type ParentToIframeMessage =
       data: boolean
     }
 
+export type IframeToParentMessage =
+  | {
+      type: "preview-pointer-down"
+    }
+  | {
+      type: "preview-keydown"
+      key: string
+    }
+
 export const isInIframe = () => {
   if (typeof window === "undefined") {
     return false
@@ -75,4 +84,15 @@ export function sendToIframe<
     },
     "*"
   )
+}
+
+// Parent-document clicks never fire for interactions inside the preview
+// iframe (separate document), so the preview reports them and the host
+// closes open pickers / forwards shortcuts itself.
+export function sendToParent(message: IframeToParentMessage) {
+  if (!isInIframe()) {
+    return
+  }
+
+  window.parent.postMessage(message, window.location.origin)
 }

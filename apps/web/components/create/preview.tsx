@@ -14,6 +14,7 @@ import {
   RESET_FORWARD_TYPE,
   UNDO_FORWARD_TYPE,
 } from "@/components/create/forward-types"
+import { closeAllPickers } from "@/components/create/picker"
 import { usePreviewOverrideValue } from "@/components/create/preview-override"
 import { sendToIframe } from "@/components/create/hooks/use-iframe-sync"
 import {
@@ -90,7 +91,11 @@ export function Preview() {
       }
 
       const type = event.data.type
-      if (type === RANDOMIZE_FORWARD_TYPE) {
+      if (type === "preview-pointer-down") {
+        // The click landed inside the iframe document, invisible to Base UI's
+        // outside-press dismissal — close the host's open pickers ourselves.
+        closeAllPickers()
+      } else if (type === RANDOMIZE_FORWARD_TYPE) {
         document.dispatchEvent(
           new KeyboardEvent("keydown", {
             key: event.data.key || "r",
@@ -153,10 +158,7 @@ export function Preview() {
     // full-iframe reloads on every param change (flashes & loss of state).
     // Further updates of the search params will be sent to the iframe
     // via a postMessage channel, for it to sync its own history onto the host's.
-    return serializeDesignSystemSearchParams(
-      "/create/preview",
-      params
-    )
+    return serializeDesignSystemSearchParams("/create/preview", params)
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.item])
 
@@ -165,7 +167,6 @@ export function Preview() {
       <div className="relative z-0 mx-auto flex w-full flex-1 flex-col overflow-hidden">
         <div className="absolute inset-0 bg-muted dark:bg-muted/30" />
         <iframe
-          
           ref={iframeRef}
           src={iframeSrc}
           className="z-10 size-full flex-1"
