@@ -1,0 +1,51 @@
+# Registry health monitor — adapted from shadcn's monitor-registries.yml,
+# minus the blob-storage state: just ping the production registry endpoints
+# the persianlabsui CLI depends on and fail loudly (email/Slack can be wired
+# through GitHub notification settings) when any of them goes down.
+
+name: Monitor Registries
+
+on:
+  schedule:
+    - cron: "23 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: registry-health-monitor
+  cancel-in-progress: false
+
+env:
+  BASE_URL: https://ui.persian-labs.ir
+
+jobs:
+  health:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check registry endpoints
+        run: |
+          check() {
+            local name="$1" url="$2" expect="$3"
+            local body status
+            status=$(curl -s -o /tmp/body -w "%{http_code}" --max-time 30 "$url")
+            body=$(cat /tmp/body)
+            if [ "$status" != "200" ]; then
+              echo "::error::$name ($url) responded $status"
+              FAIL=1; return
+            fi
+            if ! echo "$body" | grep -q "$expect"; then
+              echo "::error::$name ($url) responded 200 but is missing \"$expect\" — payload shape changed?"
+              FAIL=1; return
+            fi
+            echo "ok: $name"
+          }
+          FAIL=0
+          check "site"            "$BASE_URL/"                    "<!DOCTYPE html"
+          check "create page"     "$BASE_URL/create"              "<!DOCTYPE html"
+          check "init route"      "$BASE_URL/init?baseColor=neutral&theme=neutral&radius=default&rtl=true&base=base" '"registry:base"'
+          check "registry index"  "$BASE_URL/r/registry.json"     '"items"'
+          check "component item"  "$BASE_URL/r/button.json"       '"registry:ui"'
+          if [ "$FAIL" = "1" ]; then exit 1; fi

@@ -1,0 +1,98 @@
+# Validate the registry — adapted from shadcn's validate-registries.yml.
+# 1. Registry item names must not squat on reserved @namespaces.
+# 2. Every npm dependency any registry item asks users to install must
+#    actually exist on npm — a typo or a lapsed package would poison every
+#    `persianlabsui add` that installs it.
+
+name: Validate Registries
+
+on:
+  pull_request:
+    paths:
+      - "apps/web/registry.json"
+      - "apps/web/registry/**"
+  push:
+    branches:
+      - main
+    paths:
+      - "apps/web/registry.json"
+      - "apps/web/registry/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    name: validate registry
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.0
+
+      - name: Validate registry names and npm dependencies
+        env:
+          RESERVED_NAMESPACES: >-
+            @shadcn,@ui,@blocks,@components,@block,@component,@util,@utils,@registry,@lib,@hook,@hooks,@theme,@themes,@chart,@charts
+        run: |
+          node <<'EOF'
+          const fs = require("node:fs")
+
+          const file = "apps/web/registry.json"
+          const registry = JSON.parse(fs.readFileSync(file, "utf8"))
+          const reserved = new Set(
+            process.env.RESERVED_NAMESPACES.split(",").filter(Boolean)
+          )
+
+          const violations = []
+
+          for (const item of registry.items) {
+            const name = item.name
+            // Namespaced registry names (e.g. "@persianlabsui/button") are
+            // self-owned; bare names must not squat on a reserved namespace.
+            if (!name.startsWith("@") && reserved.has(`@${name}`)) {
+              violations.push(`${file}: item "${name}" uses a reserved namespace`)
+            }
+          }
+
+          // Every npm package our items tell users to install must exist on
+          // the real registry. @persianlabsui/* are our own registry
+          // namespaces, @workspace/* are monorepo-internal — skip both.
+          const depNames = new Set()
+          for (const item of registry.items) {
+            for (const key of ["dependencies", "devDependencies"]) {
+              for (const dep of Object.keys(item[key] ?? {})) {
+                if (!dep.startsWith("@persianlabsui/") && !dep.startsWith("@workspace/")) {
+                  depNames.add(dep)
+                }
+              }
+            }
+          }
+
+          async function existsOnNpm(name) {
+            const res = await fetch(
+              `https://registry.npmjs.org/${encodeURIComponent(name).replace("%40", "@")}`,
+              { headers: { Accept: "application/vnd.npm.install-v1+json" } }
+            )
+            return res.status === 200
+          }
+
+          ;(async () => {
+            for (const dep of [...depNames].sort()) {
+              const bare = dep.startsWith("@") ? dep : dep.split(/[>@ ]/)[0]
+              const ok = await existsOnNpm(bare)
+              if (!ok) {
+                violations.push(`${file}: npm dependency "${bare}" does not exist on the npm registry`)
+              } else {
+                console.log(`ok: ${bare}`)
+              }
+            }
+            if (violations.length > 0) {
+              console.error(`\n${violations.length} registry violation(s):`)
+              for (const v of violations) console.error(`- ${v}`)
+              process.exit(1)
+            }
+          })()
+          EOF
