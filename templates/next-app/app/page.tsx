@@ -3,13 +3,13 @@ import { Button } from "@/components/ui/button"
 const scenarios: Array<{ label: string; content: React.ReactNode }> = [
   {
     label: "فارسی",
-    content: <p>متن نمونه فارسی برای نمایش وزیرمتن — 1234567890</p>,
+    content: <p>متن نمونه برای نمایش فونت فارسی — 1234567890</p>,
   },
   {
     label: "English",
     content: (
       <p dir="ltr" className="text-start">
-        Sample English text in Geist — 0123456789
+        Sample English text — 0123456789
       </p>
     ),
   },
