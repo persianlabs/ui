@@ -86,8 +86,16 @@ function resolveNpxCommand(args: string[]): {
       "npx-cli.js"
     )
     if (existsSync(npxCli)) {
-      return { command: process.execPath, commandArgs: [npxCli, ...args], shell: false }
+      return {
+        command: process.execPath,
+        commandArgs: [npxCli, ...args],
+        shell: false,
+      }
     }
   }
-  return { command: "npx", commandArgs: args, shell: process.platform === "win32" }
+  return {
+    command: "npx",
+    commandArgs: args,
+    shell: process.platform === "win32",
+  }
 }

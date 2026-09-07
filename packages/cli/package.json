@@ -32,7 +32,9 @@
     "pub:beta": "bun run build && npm publish --tag beta",
     "pub:next": "bun run build && npm publish --tag next",
     "pub:release": "bun run build && npm publish",
-    "prepack": "bun run typecheck && bun run test && bun run build"
+    "prepack": "bun run typecheck && bun run test && bun run build",
+    "format": "prettier --write \"src/**/*.{ts,tsx}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx}\""
   },
   "dependencies": {
     "@clack/prompts": "^1.7.0",
