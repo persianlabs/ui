@@ -27,14 +27,17 @@ import {
 } from "node:fs/promises"
 import path from "node:path"
 
-import { EN_FONTS, FA_FONTS, getFontEntry, type FontEntry } from "../preset/fonts.js"
+import {
+  EN_FONTS,
+  FA_FONTS,
+  getFontEntry,
+  type FontEntry,
+} from "../preset/fonts.js"
 import type { PresetConfig } from "../preset/preset.js"
 import { logger } from "../utils/logger.js"
 import { downloadVariableWoff2, isGoogleFont } from "./google-fonts.js"
 
-type Delivery =
-  | { kind: "local"; fileName: string }
-  | { kind: "google" }
+type Delivery = { kind: "local"; fileName: string } | { kind: "google" }
 
 type Slot = { entry: FontEntry; delivery: Delivery; variable: string }
 
@@ -103,7 +106,9 @@ export async function installNextFonts(config: PresetConfig, cwd: string) {
   const enMono = getFontEntry(EN_FONTS, config.fontMono)
   // The picked Persian font (Vazirmatn by default). FA cuts ship in the
   // base as <Title>Variable.woff2 and are renamed per ensureBaseAsset.
-  const fa = getFontEntry(FA_FONTS, config.faFont) ?? getFontEntry(FA_FONTS, "vazirmatn")!
+  const fa =
+    getFontEntry(FA_FONTS, config.faFont) ??
+    getFontEntry(FA_FONTS, "vazirmatn")!
 
   // Monorepo-spot the base-shipped source file for a non-Google font and
   // rename it to the no-"-variable" convention in place.
@@ -128,7 +133,10 @@ export async function installNextFonts(config: PresetConfig, cwd: string) {
 
   // local source -> download the LATEST variable woff2 from Google Fonts
   // right now; on failure message the user and fall back to next/font.
-  async function resolve(entry: FontEntry, configSource: string): Promise<Delivery> {
+  async function resolve(
+    entry: FontEntry,
+    configSource: string
+  ): Promise<Delivery> {
     if (configSource !== "local") return { kind: "google" }
     if (!isGoogleFont(entry.dir)) return ensureBaseAsset(entry)
     try {
@@ -165,21 +173,35 @@ export async function installNextFonts(config: PresetConfig, cwd: string) {
       }
     : undefined
   const bodySlot = enBody
-    ? { entry: enBody, delivery: await resolve(enBody, config.fontSource), variable: `font-${varName(enBody.title)}` }
+    ? {
+        entry: enBody,
+        delivery: await resolve(enBody, config.fontSource),
+        variable: `font-${varName(enBody.title)}`,
+      }
     : undefined
   const headingSlot =
     enHeading && enHeading.dir !== enBody?.dir
-      ? { entry: enHeading, delivery: await resolve(enHeading, config.fontHeadingSource), variable: `font-heading-${varName(enHeading.title)}` }
+      ? {
+          entry: enHeading,
+          delivery: await resolve(enHeading, config.fontHeadingSource),
+          variable: `font-heading-${varName(enHeading.title)}`,
+        }
       : undefined
   const monoSlot =
     enMono && enMono.dir !== enBody?.dir && enMono.dir !== enHeading?.dir
-      ? { entry: enMono, delivery: await resolve(enMono, config.fontMonoSource), variable: `font-mono-${varName(enMono.title)}` }
+      ? {
+          entry: enMono,
+          delivery: await resolve(enMono, config.fontMonoSource),
+          variable: `font-mono-${varName(enMono.title)}`,
+        }
       : undefined
 
   // Keep exactly the assets the generated fonts.ts references (plus the
   // picked FA fonts). The other base-shipped FA cut is removed.
   const faFileName = `${constName(fa.title)}.woff2`
-  const keep = new Set<string>(faSlot.delivery.kind === "local" ? [faFileName] : [])
+  const keep = new Set<string>(
+    faSlot.delivery.kind === "local" ? [faFileName] : []
+  )
   for (const slot of [faHeadingSlot, bodySlot, headingSlot, monoSlot]) {
     if (slot?.delivery.kind === "local") keep.add(slot.delivery.fileName)
   }

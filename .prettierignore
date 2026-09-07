@@ -10,4 +10,7 @@ pnpm-lock.yaml
 apps/web/public/r/
 
 # Vendored template bases shipped with the CLI (synced from _example).
-packages/cli/templates/
+templates/
+
+# Generated fumadocs source maps.
+apps/web/.source/

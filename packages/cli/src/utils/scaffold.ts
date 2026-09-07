@@ -61,7 +61,8 @@ export function templateAppDir(template: string) {
 // mirrors SHADCN_GITHUB_URL (forks/private mirrors), the template-dir
 // override mirrors SHADCN_TEMPLATE_DIR (repo development).
 const GITHUB_REPO_URL =
-  process.env.PERSIANLABSUI_GITHUB_URL ?? "https://github.com/persianlabs/ui.git"
+  process.env.PERSIANLABSUI_GITHUB_URL ??
+  "https://github.com/persianlabs/ui.git"
 
 // Sparse-clone templates/<dir> from GitHub (blobless, depth 1) and move it
 // into place — the same strategy the shadcn CLI uses, so the npm package
@@ -94,9 +95,7 @@ export async function resolveTemplate(
   await execAsync(
     `git clone --depth 1 --filter=blob:none --sparse "${GITHUB_REPO_URL}" "${tmp}"`
   )
-  await execAsync(
-    `git -C "${tmp}" sparse-checkout set templates/${sourceName}`
-  )
+  await execAsync(`git -C "${tmp}" sparse-checkout set templates/${sourceName}`)
   const extracted = path.join(tmp, "templates", sourceName)
   if (!existsSync(extracted)) {
     await rm(tmp, { recursive: true, force: true })

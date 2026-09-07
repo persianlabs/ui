@@ -74,12 +74,14 @@ export async function downloadVariableWoff2(dir: string): Promise<Uint8Array> {
   const cssUrl = googleFontCssUrl(dir)
   const res = await fetch(cssUrl, { headers: { "User-Agent": UA } })
   if (!res.ok) {
-    throw new Error(`Google Fonts CSS request failed (${res.status}) for ${spec.family}`)
+    throw new Error(
+      `Google Fonts CSS request failed (${res.status}) for ${spec.family}`
+    )
   }
   const css = await res.text()
-  const urls = [...css.matchAll(/url\((https:\/\/fonts\.gstatic\.com\/[^)]+\.woff2)\)/g)].map(
-    (m) => m[1]
-  )
+  const urls = [
+    ...css.matchAll(/url\((https:\/\/fonts\.gstatic\.com\/[^)]+\.woff2)\)/g),
+  ].map((m) => m[1])
   if (urls.length === 0) {
     throw new Error(`No woff2 URL found for ${spec.family}`)
   }
@@ -88,7 +90,9 @@ export async function downloadVariableWoff2(dir: string): Promise<Uint8Array> {
   const woff2Url = urls[urls.length - 1]!
   const file = await fetch(woff2Url, { headers: { "User-Agent": UA } })
   if (!file.ok) {
-    throw new Error(`Google Fonts woff2 download failed (${file.status}) for ${spec.family}`)
+    throw new Error(
+      `Google Fonts woff2 download failed (${file.status}) for ${spec.family}`
+    )
   }
   return new Uint8Array(await file.arrayBuffer())
 }

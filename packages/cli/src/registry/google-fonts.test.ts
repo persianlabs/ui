@@ -1,11 +1,17 @@
 import { describe, expect, it } from "vitest"
 
 import { EN_FONTS, FA_FONTS } from "../preset/fonts.js"
-import { GOOGLE_FONT_SPECS, googleFontCssUrl, isGoogleFont } from "./google-fonts.js"
+import {
+  GOOGLE_FONT_SPECS,
+  googleFontCssUrl,
+  isGoogleFont,
+} from "./google-fonts.js"
 
 describe("google-fonts specs", () => {
   it("covers every English font that lives on Google Fonts", () => {
-    const onGoogle = EN_FONTS.filter((f) => isGoogleFont(f.dir)).map((f) => f.dir)
+    const onGoogle = EN_FONTS.filter((f) => isGoogleFont(f.dir)).map(
+      (f) => f.dir
+    )
     expect(onGoogle.length).toBeGreaterThan(0)
     // The spec table is the source of truth — every google font must be listed.
     expect(Object.keys(GOOGLE_FONT_SPECS).sort()).toEqual(onGoogle.sort())

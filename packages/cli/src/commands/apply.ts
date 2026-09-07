@@ -1,7 +1,11 @@
 import path from "node:path"
 
 import { resolveConfig } from "./init.js"
-import { buildInitUrl, fetchRegistryBase, installFontsOffline } from "../registry/fetch-base.js"
+import {
+  buildInitUrl,
+  fetchRegistryBase,
+  installFontsOffline,
+} from "../registry/fetch-base.js"
 import { writeComponentsJson } from "../utils/components-json.js"
 import { logger } from "../utils/logger.js"
 import { runShadcnAdd } from "../utils/shadcn.js"

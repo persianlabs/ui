@@ -12,8 +12,7 @@ export const REGISTRY_URL =
   process.env.PERSIANLABSUI_REGISTRY_URL ?? "https://ui.persian-labs.ir"
 
 export const INIT_ENDPOINT = `${REGISTRY_URL}/init`
-export const registryItemUrl = (name: string) => `${REGISTRY_URL}/r/${name}.json`
+export const registryItemUrl = (name: string) =>
+  `${REGISTRY_URL}/r/${name}.json`
 export const createUrl = (preset?: string) =>
-  preset
-    ? `${REGISTRY_URL}/create?preset=${preset}`
-    : `${REGISTRY_URL}/create`
+  preset ? `${REGISTRY_URL}/create?preset=${preset}` : `${REGISTRY_URL}/create`

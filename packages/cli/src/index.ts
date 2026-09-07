@@ -24,9 +24,20 @@ program
     "-t, --template <template>",
     "the template to use. (next, next-turborepo)"
   )
-  .option("-n, --name <name>", "project name — the directory to create. skips the prompt")
-  .option("-c, --cwd <cwd>", "base directory to create the project in. defaults to the current directory.", process.cwd())
-  .option("-f, --force", "overwrite the target directory if it is not empty.", false)
+  .option(
+    "-n, --name <name>",
+    "project name — the directory to create. skips the prompt"
+  )
+  .option(
+    "-c, --cwd <cwd>",
+    "base directory to create the project in. defaults to the current directory.",
+    process.cwd()
+  )
+  .option(
+    "-f, --force",
+    "overwrite the target directory if it is not empty.",
+    false
+  )
   .option("-s, --silent", "mute output. requires --template and --name.", false)
   .action(async (opts) => {
     try {
@@ -49,7 +60,11 @@ program
   .argument("[preset]", "the preset to apply")
   .option("--preset <preset>", "preset configuration to apply")
   .option("--only [parts]", "apply only parts of a preset: theme, font")
-  .option("-c, --cwd <cwd>", "the working directory. defaults to the current directory.", process.cwd())
+  .option(
+    "-c, --cwd <cwd>",
+    "the working directory. defaults to the current directory.",
+    process.cwd()
+  )
   .option("-s, --silent", "mute output.", false)
   .action(async (presetArg, opts) => {
     try {
@@ -69,7 +84,11 @@ program
   .description("add components from the Persian Labs registry")
   .argument("<items...>", "component names, URLs or @namespaced items")
   .option("-o, --overwrite", "overwrite existing files.", false)
-  .option("-c, --cwd <cwd>", "the working directory. defaults to the current directory.", process.cwd())
+  .option(
+    "-c, --cwd <cwd>",
+    "the working directory. defaults to the current directory.",
+    process.cwd()
+  )
   .option("-s, --silent", "mute output.", false)
   .action(async (items, opts) => {
     try {

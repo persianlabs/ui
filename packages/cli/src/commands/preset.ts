@@ -14,7 +14,9 @@ export async function runPreset(
   options: { json?: boolean }
 ) {
   if (!code) {
-    throw new Error(`Missing preset code. Usage: persianlabsui preset ${action} <code>`)
+    throw new Error(
+      `Missing preset code. Usage: persianlabsui preset ${action} <code>`
+    )
   }
 
   if (!isPresetCode(code)) {

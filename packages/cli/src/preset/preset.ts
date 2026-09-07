@@ -148,8 +148,7 @@ export type PresetMenuColor = (typeof PRESET_MENU_COLORS)[number]
 export type PresetEnFont = (typeof PRESET_EN_FONTS)[number]
 export type PresetEnFontHeading = (typeof PRESET_EN_FONT_HEADINGS)[number]
 export type PresetFaFont = (typeof PRESET_FA_FONTS)[number]
-export type PresetFaFontHeading =
-  (typeof PRESET_FA_FONT_HEADINGS)[number]
+export type PresetFaFontHeading = (typeof PRESET_FA_FONT_HEADINGS)[number]
 export type PresetFontSource = (typeof PRESET_FONT_SOURCES)[number]
 
 // Mono font for code/numeric surfaces. Index 0 is the original default
