@@ -1,13 +1,11 @@
-import {
-  BASE_COLOR_VARS,
-  THEME_VARS,
-} from "@/lib/create/theme-data"
+import { BASE_COLOR_VARS, THEME_VARS } from "@/lib/create/theme-data"
 
 // Catalogs for the /create customizer. Values match the preset codec in
 // packages/cli (persianlabsui/preset) — the array orders there are
 // append-only for backward compat, so keep these in sync.
 
-export type BaseColorName = "neutral" | "stone" | "zinc" | "gray"
+export type BaseColorName =
+  "neutral" | "stone" | "zinc" | "mauve" | "olive" | "mist" | "taupe"
 
 export const BASE_COLORS: Array<{
   value: BaseColorName
@@ -16,11 +14,20 @@ export const BASE_COLORS: Array<{
   { value: "neutral", title: "Neutral" },
   { value: "stone", title: "Stone" },
   { value: "zinc", title: "Zinc" },
-  { value: "gray", title: "Gray" },
+  { value: "mauve", title: "Mauve" },
+  { value: "olive", title: "Olive" },
+  { value: "mist", title: "Mist" },
+  { value: "taupe", title: "Taupe" },
 ]
 
 export type ThemeName =
   | "neutral"
+  | "stone"
+  | "zinc"
+  | "mauve"
+  | "olive"
+  | "mist"
+  | "taupe"
   | "amber"
   | "blue"
   | "cyan"
@@ -41,6 +48,12 @@ export type ThemeName =
 
 export const THEMES: Array<{ value: ThemeName; title: string }> = [
   { value: "neutral", title: "Neutral" },
+  { value: "stone", title: "Stone" },
+  { value: "zinc", title: "Zinc" },
+  { value: "mauve", title: "Mauve" },
+  { value: "olive", title: "Olive" },
+  { value: "mist", title: "Mist" },
+  { value: "taupe", title: "Taupe" },
   { value: "amber", title: "Amber" },
   { value: "blue", title: "Blue" },
   { value: "cyan", title: "Cyan" },
@@ -59,6 +72,18 @@ export const THEMES: Array<{ value: ThemeName; title: string }> = [
   { value: "violet", title: "Violet" },
   { value: "yellow", title: "Yellow" },
 ]
+
+// Mirrors shadcn's getThemesForBaseColor: the theme matching the base color
+// plus every non-base theme. The picker renders base themes first.
+export function getThemesForBaseColor(baseColor: BaseColorName) {
+  const baseColorNames = BASE_COLORS.map((b) => b.value)
+  return THEMES.filter((theme) => {
+    if (theme.value === baseColor) {
+      return true
+    }
+    return !baseColorNames.includes(theme.value as BaseColorName)
+  })
+}
 
 export type RadiusName = "default" | "none" | "small" | "medium" | "large"
 

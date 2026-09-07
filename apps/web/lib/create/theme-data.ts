@@ -4,424 +4,696 @@ export const BASE_COLOR_VARS: Record<
   string,
   { light: Record<string, string>; dark: Record<string, string> }
 > = {
-  "neutral": {
-    "light": {
-      "background": "oklch(1 0 0)",
-      "foreground": "oklch(0.145 0 0)",
-      "card": "oklch(1 0 0)",
+  neutral: {
+    light: {
+      background: "oklch(1 0 0)",
+      foreground: "oklch(0.145 0 0)",
+      card: "oklch(1 0 0)",
       "card-foreground": "oklch(0.145 0 0)",
-      "popover": "oklch(1 0 0)",
+      popover: "oklch(1 0 0)",
       "popover-foreground": "oklch(0.145 0 0)",
-      "primary": "oklch(0.205 0 0)",
+      primary: "oklch(0.205 0 0)",
       "primary-foreground": "oklch(0.985 0 0)",
-      "secondary": "oklch(0.97 0 0)",
+      secondary: "oklch(0.97 0 0)",
       "secondary-foreground": "oklch(0.205 0 0)",
-      "muted": "oklch(0.97 0 0)",
+      muted: "oklch(0.97 0 0)",
       "muted-foreground": "oklch(0.556 0 0)",
-      "accent": "oklch(0.97 0 0)",
+      accent: "oklch(0.97 0 0)",
       "accent-foreground": "oklch(0.205 0 0)",
-      "border": "oklch(0.922 0 0)",
-      "input": "oklch(0.922 0 0)",
-      "ring": "oklch(0.708 0 0)"
+      border: "oklch(0.922 0 0)",
+      input: "oklch(0.922 0 0)",
+      ring: "oklch(0.708 0 0)",
     },
-    "dark": {
-      "background": "oklch(0.145 0 0)",
-      "foreground": "oklch(0.985 0 0)",
-      "card": "oklch(0.205 0 0)",
+    dark: {
+      background: "oklch(0.145 0 0)",
+      foreground: "oklch(0.985 0 0)",
+      card: "oklch(0.205 0 0)",
       "card-foreground": "oklch(0.985 0 0)",
-      "popover": "oklch(0.205 0 0)",
+      popover: "oklch(0.205 0 0)",
       "popover-foreground": "oklch(0.985 0 0)",
-      "primary": "oklch(0.922 0 0)",
+      primary: "oklch(0.922 0 0)",
       "primary-foreground": "oklch(0.205 0 0)",
-      "secondary": "oklch(0.269 0 0)",
+      secondary: "oklch(0.269 0 0)",
       "secondary-foreground": "oklch(0.985 0 0)",
-      "muted": "oklch(0.269 0 0)",
+      muted: "oklch(0.269 0 0)",
       "muted-foreground": "oklch(0.708 0 0)",
-      "accent": "oklch(0.269 0 0)",
+      accent: "oklch(0.269 0 0)",
       "accent-foreground": "oklch(0.985 0 0)",
-      "border": "oklch(1 0 0 / 10%)",
-      "input": "oklch(1 0 0 / 15%)",
-      "ring": "oklch(0.556 0 0)"
-    }
+      border: "oklch(1 0 0 / 10%)",
+      input: "oklch(1 0 0 / 15%)",
+      ring: "oklch(0.556 0 0)",
+    },
   },
-  "stone": {
-    "light": {
-      "background": "oklch(1 0 0)",
-      "foreground": "oklch(0.147 0.004 49.25)",
-      "card": "oklch(1 0 0)",
+  stone: {
+    light: {
+      background: "oklch(1 0 0)",
+      foreground: "oklch(0.147 0.004 49.25)",
+      card: "oklch(1 0 0)",
       "card-foreground": "oklch(0.147 0.004 49.25)",
-      "popover": "oklch(1 0 0)",
+      popover: "oklch(1 0 0)",
       "popover-foreground": "oklch(0.147 0.004 49.25)",
-      "primary": "oklch(0.216 0.006 56.043)",
+      primary: "oklch(0.216 0.006 56.043)",
       "primary-foreground": "oklch(0.985 0.001 106.423)",
-      "secondary": "oklch(0.97 0.001 106.424)",
+      secondary: "oklch(0.97 0.001 106.424)",
       "secondary-foreground": "oklch(0.216 0.006 56.043)",
-      "muted": "oklch(0.97 0.001 106.424)",
+      muted: "oklch(0.97 0.001 106.424)",
       "muted-foreground": "oklch(0.553 0.013 58.071)",
-      "accent": "oklch(0.97 0.001 106.424)",
+      accent: "oklch(0.97 0.001 106.424)",
       "accent-foreground": "oklch(0.216 0.006 56.043)",
-      "border": "oklch(0.923 0.003 48.717)",
-      "input": "oklch(0.923 0.003 48.717)",
-      "ring": "oklch(0.709 0.01 56.259)"
+      border: "oklch(0.923 0.003 48.717)",
+      input: "oklch(0.923 0.003 48.717)",
+      ring: "oklch(0.709 0.01 56.259)",
     },
-    "dark": {
-      "background": "oklch(0.147 0.004 49.25)",
-      "foreground": "oklch(0.985 0.001 106.423)",
-      "card": "oklch(0.216 0.006 56.043)",
+    dark: {
+      background: "oklch(0.147 0.004 49.25)",
+      foreground: "oklch(0.985 0.001 106.423)",
+      card: "oklch(0.216 0.006 56.043)",
       "card-foreground": "oklch(0.985 0.001 106.423)",
-      "popover": "oklch(0.216 0.006 56.043)",
+      popover: "oklch(0.216 0.006 56.043)",
       "popover-foreground": "oklch(0.985 0.001 106.423)",
-      "primary": "oklch(0.923 0.003 48.717)",
+      primary: "oklch(0.923 0.003 48.717)",
       "primary-foreground": "oklch(0.216 0.006 56.043)",
-      "secondary": "oklch(0.268 0.007 34.298)",
+      secondary: "oklch(0.268 0.007 34.298)",
       "secondary-foreground": "oklch(0.985 0.001 106.423)",
-      "muted": "oklch(0.268 0.007 34.298)",
+      muted: "oklch(0.268 0.007 34.298)",
       "muted-foreground": "oklch(0.709 0.01 56.259)",
-      "accent": "oklch(0.268 0.007 34.298)",
+      accent: "oklch(0.268 0.007 34.298)",
       "accent-foreground": "oklch(0.985 0.001 106.423)",
-      "border": "oklch(1 0 0 / 10%)",
-      "input": "oklch(1 0 0 / 15%)",
-      "ring": "oklch(0.553 0.013 58.071)"
-    }
-  },
-  "zinc": {
-    "light": {
-      "background": "oklch(1 0 0)",
-      "foreground": "oklch(0.141 0.005 285.823)",
-      "card": "oklch(1 0 0)",
-      "card-foreground": "oklch(0.141 0.005 285.823)",
-      "popover": "oklch(1 0 0)",
-      "popover-foreground": "oklch(0.141 0.005 285.823)",
-      "primary": "oklch(0.21 0.006 285.885)",
-      "primary-foreground": "oklch(0.985 0 0)",
-      "secondary": "oklch(0.967 0.001 286.375)",
-      "secondary-foreground": "oklch(0.21 0.006 285.885)",
-      "muted": "oklch(0.967 0.001 286.375)",
-      "muted-foreground": "oklch(0.552 0.016 285.938)",
-      "accent": "oklch(0.967 0.001 286.375)",
-      "accent-foreground": "oklch(0.21 0.006 285.885)",
-      "border": "oklch(0.92 0.004 286.32)",
-      "input": "oklch(0.92 0.004 286.32)",
-      "ring": "oklch(0.705 0.015 286.067)"
+      border: "oklch(1 0 0 / 10%)",
+      input: "oklch(1 0 0 / 15%)",
+      ring: "oklch(0.553 0.013 58.071)",
     },
-    "dark": {
-      "background": "oklch(0.141 0.005 285.823)",
-      "foreground": "oklch(0.985 0 0)",
-      "card": "oklch(0.21 0.006 285.885)",
-      "card-foreground": "oklch(0.985 0 0)",
-      "popover": "oklch(0.21 0.006 285.885)",
-      "popover-foreground": "oklch(0.985 0 0)",
-      "primary": "oklch(0.92 0.004 286.32)",
-      "primary-foreground": "oklch(0.21 0.006 285.885)",
-      "secondary": "oklch(0.274 0.006 286.033)",
-      "secondary-foreground": "oklch(0.985 0 0)",
-      "muted": "oklch(0.274 0.006 286.033)",
-      "muted-foreground": "oklch(0.705 0.015 286.067)",
-      "accent": "oklch(0.274 0.006 286.033)",
-      "accent-foreground": "oklch(0.985 0 0)",
-      "border": "oklch(1 0 0 / 10%)",
-      "input": "oklch(1 0 0 / 15%)",
-      "ring": "oklch(0.552 0.016 285.938)"
-    }
   },
-  "gray": {
-    "light": {
-      "background": "oklch(1 0 0)",
-      "foreground": "oklch(0.141 0.005 285.823)",
-      "card": "oklch(1 0 0)",
+  zinc: {
+    light: {
+      background: "oklch(1 0 0)",
+      foreground: "oklch(0.141 0.005 285.823)",
+      card: "oklch(1 0 0)",
       "card-foreground": "oklch(0.141 0.005 285.823)",
-      "popover": "oklch(1 0 0)",
+      popover: "oklch(1 0 0)",
       "popover-foreground": "oklch(0.141 0.005 285.823)",
-      "primary": "oklch(0.21 0.006 285.885)",
+      primary: "oklch(0.21 0.006 285.885)",
       "primary-foreground": "oklch(0.985 0 0)",
-      "secondary": "oklch(0.967 0.001 286.375)",
+      secondary: "oklch(0.967 0.001 286.375)",
       "secondary-foreground": "oklch(0.21 0.006 285.885)",
-      "muted": "oklch(0.967 0.001 286.375)",
+      muted: "oklch(0.967 0.001 286.375)",
       "muted-foreground": "oklch(0.552 0.016 285.938)",
-      "accent": "oklch(0.967 0.001 286.375)",
+      accent: "oklch(0.967 0.001 286.375)",
       "accent-foreground": "oklch(0.21 0.006 285.885)",
-      "border": "oklch(0.92 0.004 286.32)",
-      "input": "oklch(0.92 0.004 286.32)",
-      "ring": "oklch(0.705 0.015 286.067)"
+      border: "oklch(0.92 0.004 286.32)",
+      input: "oklch(0.92 0.004 286.32)",
+      ring: "oklch(0.705 0.015 286.067)",
     },
-    "dark": {
-      "background": "oklch(0.141 0.005 285.823)",
-      "foreground": "oklch(0.985 0 0)",
-      "card": "oklch(0.21 0.006 285.885)",
+    dark: {
+      background: "oklch(0.141 0.005 285.823)",
+      foreground: "oklch(0.985 0 0)",
+      card: "oklch(0.21 0.006 285.885)",
       "card-foreground": "oklch(0.985 0 0)",
-      "popover": "oklch(0.21 0.006 285.885)",
+      popover: "oklch(0.21 0.006 285.885)",
       "popover-foreground": "oklch(0.985 0 0)",
-      "primary": "oklch(0.92 0.004 286.32)",
+      primary: "oklch(0.92 0.004 286.32)",
       "primary-foreground": "oklch(0.21 0.006 285.885)",
-      "secondary": "oklch(0.274 0.006 286.033)",
+      secondary: "oklch(0.274 0.006 286.033)",
       "secondary-foreground": "oklch(0.985 0 0)",
-      "muted": "oklch(0.274 0.006 286.033)",
+      muted: "oklch(0.274 0.006 286.033)",
       "muted-foreground": "oklch(0.705 0.015 286.067)",
-      "accent": "oklch(0.274 0.006 286.033)",
+      accent: "oklch(0.274 0.006 286.033)",
       "accent-foreground": "oklch(0.985 0 0)",
-      "border": "oklch(1 0 0 / 10%)",
-      "input": "oklch(1 0 0 / 15%)",
-      "ring": "oklch(0.552 0.016 285.938)"
-    }
-  }
+      border: "oklch(1 0 0 / 10%)",
+      input: "oklch(1 0 0 / 15%)",
+      ring: "oklch(0.552 0.016 285.938)",
+    },
+  },
+  mauve: {
+    light: {
+      background: "oklch(1 0 0)",
+      foreground: "oklch(0.145 0.008 326)",
+      card: "oklch(1 0 0)",
+      "card-foreground": "oklch(0.145 0.008 326)",
+      popover: "oklch(1 0 0)",
+      "popover-foreground": "oklch(0.145 0.008 326)",
+      primary: "oklch(0.212 0.019 322.12)",
+      "primary-foreground": "oklch(0.985 0 0)",
+      secondary: "oklch(0.96 0.003 325.6)",
+      "secondary-foreground": "oklch(0.212 0.019 322.12)",
+      muted: "oklch(0.96 0.003 325.6)",
+      "muted-foreground": "oklch(0.542 0.034 322.5)",
+      accent: "oklch(0.96 0.003 325.6)",
+      "accent-foreground": "oklch(0.212 0.019 322.12)",
+      border: "oklch(0.922 0.005 325.62)",
+      input: "oklch(0.922 0.005 325.62)",
+      ring: "oklch(0.711 0.019 323.02)",
+    },
+    dark: {
+      background: "oklch(0.145 0.008 326)",
+      foreground: "oklch(0.985 0 0)",
+      card: "oklch(0.212 0.019 322.12)",
+      "card-foreground": "oklch(0.985 0 0)",
+      popover: "oklch(0.212 0.019 322.12)",
+      "popover-foreground": "oklch(0.985 0 0)",
+      primary: "oklch(0.922 0.005 325.62)",
+      "primary-foreground": "oklch(0.212 0.019 322.12)",
+      secondary: "oklch(0.263 0.024 320.12)",
+      "secondary-foreground": "oklch(0.985 0 0)",
+      muted: "oklch(0.263 0.024 320.12)",
+      "muted-foreground": "oklch(0.711 0.019 323.02)",
+      accent: "oklch(0.263 0.024 320.12)",
+      "accent-foreground": "oklch(0.985 0 0)",
+      border: "oklch(1 0 0 / 10%)",
+      input: "oklch(1 0 0 / 15%)",
+      ring: "oklch(0.542 0.034 322.5)",
+    },
+  },
+  olive: {
+    light: {
+      background: "oklch(1 0 0)",
+      foreground: "oklch(0.153 0.006 107.1)",
+      card: "oklch(1 0 0)",
+      "card-foreground": "oklch(0.153 0.006 107.1)",
+      popover: "oklch(1 0 0)",
+      "popover-foreground": "oklch(0.153 0.006 107.1)",
+      primary: "oklch(0.228 0.013 107.4)",
+      "primary-foreground": "oklch(0.988 0.003 106.5)",
+      secondary: "oklch(0.966 0.005 106.5)",
+      "secondary-foreground": "oklch(0.228 0.013 107.4)",
+      muted: "oklch(0.966 0.005 106.5)",
+      "muted-foreground": "oklch(0.58 0.031 107.3)",
+      accent: "oklch(0.966 0.005 106.5)",
+      "accent-foreground": "oklch(0.228 0.013 107.4)",
+      border: "oklch(0.93 0.007 106.5)",
+      input: "oklch(0.93 0.007 106.5)",
+      ring: "oklch(0.737 0.021 106.9)",
+    },
+    dark: {
+      background: "oklch(0.153 0.006 107.1)",
+      foreground: "oklch(0.988 0.003 106.5)",
+      card: "oklch(0.228 0.013 107.4)",
+      "card-foreground": "oklch(0.988 0.003 106.5)",
+      popover: "oklch(0.228 0.013 107.4)",
+      "popover-foreground": "oklch(0.988 0.003 106.5)",
+      primary: "oklch(0.93 0.007 106.5)",
+      "primary-foreground": "oklch(0.228 0.013 107.4)",
+      secondary: "oklch(0.286 0.016 107.4)",
+      "secondary-foreground": "oklch(0.988 0.003 106.5)",
+      muted: "oklch(0.286 0.016 107.4)",
+      "muted-foreground": "oklch(0.737 0.021 106.9)",
+      accent: "oklch(0.286 0.016 107.4)",
+      "accent-foreground": "oklch(0.988 0.003 106.5)",
+      border: "oklch(1 0 0 / 10%)",
+      input: "oklch(1 0 0 / 15%)",
+      ring: "oklch(0.58 0.031 107.3)",
+    },
+  },
+  mist: {
+    light: {
+      background: "oklch(1 0 0)",
+      foreground: "oklch(0.148 0.004 228.8)",
+      card: "oklch(1 0 0)",
+      "card-foreground": "oklch(0.148 0.004 228.8)",
+      popover: "oklch(1 0 0)",
+      "popover-foreground": "oklch(0.148 0.004 228.8)",
+      primary: "oklch(0.218 0.008 223.9)",
+      "primary-foreground": "oklch(0.987 0.002 197.1)",
+      secondary: "oklch(0.963 0.002 197.1)",
+      "secondary-foreground": "oklch(0.218 0.008 223.9)",
+      muted: "oklch(0.963 0.002 197.1)",
+      "muted-foreground": "oklch(0.56 0.021 213.5)",
+      accent: "oklch(0.963 0.002 197.1)",
+      "accent-foreground": "oklch(0.218 0.008 223.9)",
+      border: "oklch(0.925 0.005 214.3)",
+      input: "oklch(0.925 0.005 214.3)",
+      ring: "oklch(0.723 0.014 214.4)",
+    },
+    dark: {
+      background: "oklch(0.148 0.004 228.8)",
+      foreground: "oklch(0.987 0.002 197.1)",
+      card: "oklch(0.218 0.008 223.9)",
+      "card-foreground": "oklch(0.987 0.002 197.1)",
+      popover: "oklch(0.218 0.008 223.9)",
+      "popover-foreground": "oklch(0.987 0.002 197.1)",
+      primary: "oklch(0.925 0.005 214.3)",
+      "primary-foreground": "oklch(0.218 0.008 223.9)",
+      secondary: "oklch(0.275 0.011 216.9)",
+      "secondary-foreground": "oklch(0.987 0.002 197.1)",
+      muted: "oklch(0.275 0.011 216.9)",
+      "muted-foreground": "oklch(0.723 0.014 214.4)",
+      accent: "oklch(0.275 0.011 216.9)",
+      "accent-foreground": "oklch(0.987 0.002 197.1)",
+      border: "oklch(1 0 0 / 10%)",
+      input: "oklch(1 0 0 / 15%)",
+      ring: "oklch(0.56 0.021 213.5)",
+    },
+  },
+  taupe: {
+    light: {
+      background: "oklch(1 0 0)",
+      foreground: "oklch(0.147 0.004 49.3)",
+      card: "oklch(1 0 0)",
+      "card-foreground": "oklch(0.147 0.004 49.3)",
+      popover: "oklch(1 0 0)",
+      "popover-foreground": "oklch(0.147 0.004 49.3)",
+      primary: "oklch(0.214 0.009 43.1)",
+      "primary-foreground": "oklch(0.986 0.002 67.8)",
+      secondary: "oklch(0.96 0.002 17.2)",
+      "secondary-foreground": "oklch(0.214 0.009 43.1)",
+      muted: "oklch(0.96 0.002 17.2)",
+      "muted-foreground": "oklch(0.547 0.021 43.1)",
+      accent: "oklch(0.96 0.002 17.2)",
+      "accent-foreground": "oklch(0.214 0.009 43.1)",
+      border: "oklch(0.922 0.005 34.3)",
+      input: "oklch(0.922 0.005 34.3)",
+      ring: "oklch(0.714 0.014 41.2)",
+    },
+    dark: {
+      background: "oklch(0.147 0.004 49.3)",
+      foreground: "oklch(0.986 0.002 67.8)",
+      card: "oklch(0.214 0.009 43.1)",
+      "card-foreground": "oklch(0.986 0.002 67.8)",
+      popover: "oklch(0.214 0.009 43.1)",
+      "popover-foreground": "oklch(0.986 0.002 67.8)",
+      primary: "oklch(0.922 0.005 34.3)",
+      "primary-foreground": "oklch(0.214 0.009 43.1)",
+      secondary: "oklch(0.268 0.011 36.5)",
+      "secondary-foreground": "oklch(0.986 0.002 67.8)",
+      muted: "oklch(0.268 0.011 36.5)",
+      "muted-foreground": "oklch(0.714 0.014 41.2)",
+      accent: "oklch(0.268 0.011 36.5)",
+      "accent-foreground": "oklch(0.986 0.002 67.8)",
+      border: "oklch(1 0 0 / 10%)",
+      input: "oklch(1 0 0 / 15%)",
+      ring: "oklch(0.547 0.021 43.1)",
+    },
+  },
+  gray: {
+    light: {
+      background: "oklch(1 0 0)",
+      foreground: "oklch(0.141 0.005 285.823)",
+      card: "oklch(1 0 0)",
+      "card-foreground": "oklch(0.141 0.005 285.823)",
+      popover: "oklch(1 0 0)",
+      "popover-foreground": "oklch(0.141 0.005 285.823)",
+      primary: "oklch(0.21 0.006 285.885)",
+      "primary-foreground": "oklch(0.985 0 0)",
+      secondary: "oklch(0.967 0.001 286.375)",
+      "secondary-foreground": "oklch(0.21 0.006 285.885)",
+      muted: "oklch(0.967 0.001 286.375)",
+      "muted-foreground": "oklch(0.552 0.016 285.938)",
+      accent: "oklch(0.967 0.001 286.375)",
+      "accent-foreground": "oklch(0.21 0.006 285.885)",
+      border: "oklch(0.92 0.004 286.32)",
+      input: "oklch(0.92 0.004 286.32)",
+      ring: "oklch(0.705 0.015 286.067)",
+    },
+    dark: {
+      background: "oklch(0.141 0.005 285.823)",
+      foreground: "oklch(0.985 0 0)",
+      card: "oklch(0.21 0.006 285.885)",
+      "card-foreground": "oklch(0.985 0 0)",
+      popover: "oklch(0.21 0.006 285.885)",
+      "popover-foreground": "oklch(0.985 0 0)",
+      primary: "oklch(0.92 0.004 286.32)",
+      "primary-foreground": "oklch(0.21 0.006 285.885)",
+      secondary: "oklch(0.274 0.006 286.033)",
+      "secondary-foreground": "oklch(0.985 0 0)",
+      muted: "oklch(0.274 0.006 286.033)",
+      "muted-foreground": "oklch(0.705 0.015 286.067)",
+      accent: "oklch(0.274 0.006 286.033)",
+      "accent-foreground": "oklch(0.985 0 0)",
+      border: "oklch(1 0 0 / 10%)",
+      input: "oklch(1 0 0 / 15%)",
+      ring: "oklch(0.552 0.016 285.938)",
+    },
+  },
 }
 
 export const THEME_VARS: Record<
   string,
   { light: Record<string, string>; dark: Record<string, string> }
 > = {
-  "neutral": {
-    "light": {
-      "primary": "oklch(0.205 0 0)",
+  neutral: {
+    light: {
+      primary: "oklch(0.205 0 0)",
       "primary-foreground": "oklch(0.985 0 0)",
-      "secondary": "oklch(0.97 0 0)",
+      secondary: "oklch(0.97 0 0)",
       "secondary-foreground": "oklch(0.205 0 0)",
-      "ring": "oklch(0.708 0 0)"
+      ring: "oklch(0.708 0 0)",
     },
-    "dark": {
-      "primary": "oklch(0.922 0 0)",
+    dark: {
+      primary: "oklch(0.922 0 0)",
       "primary-foreground": "oklch(0.205 0 0)",
-      "secondary": "oklch(0.269 0 0)",
+      secondary: "oklch(0.269 0 0)",
       "secondary-foreground": "oklch(0.985 0 0)",
-      "ring": "oklch(0.556 0 0)"
-    }
+      ring: "oklch(0.556 0 0)",
+    },
   },
-  "amber": {
-    "light": {
-      "primary": "oklch(0.555 0.163 48.998)",
+  stone: {
+    light: {
+      primary: "oklch(0.216 0.006 56.043)",
+      "primary-foreground": "oklch(0.985 0.001 106.423)",
+      secondary: "oklch(0.97 0.001 106.424)",
+      "secondary-foreground": "oklch(0.216 0.006 56.043)",
+      ring: "oklch(0.709 0.01 56.259)",
+    },
+    dark: {
+      primary: "oklch(0.923 0.003 48.717)",
+      "primary-foreground": "oklch(0.216 0.006 56.043)",
+      secondary: "oklch(0.268 0.007 34.298)",
+      "secondary-foreground": "oklch(0.985 0.001 106.423)",
+      ring: "oklch(0.553 0.013 58.071)",
+    },
+  },
+  zinc: {
+    light: {
+      primary: "oklch(0.21 0.006 285.885)",
+      "primary-foreground": "oklch(0.985 0 0)",
+      secondary: "oklch(0.967 0.001 286.375)",
+      "secondary-foreground": "oklch(0.21 0.006 285.885)",
+      ring: "oklch(0.705 0.015 286.067)",
+    },
+    dark: {
+      primary: "oklch(0.92 0.004 286.32)",
+      "primary-foreground": "oklch(0.21 0.006 285.885)",
+      secondary: "oklch(0.274 0.006 286.033)",
+      "secondary-foreground": "oklch(0.985 0 0)",
+      ring: "oklch(0.552 0.016 285.938)",
+    },
+  },
+  mauve: {
+    light: {
+      primary: "oklch(0.212 0.019 322.12)",
+      "primary-foreground": "oklch(0.985 0 0)",
+      secondary: "oklch(0.96 0.003 325.6)",
+      "secondary-foreground": "oklch(0.212 0.019 322.12)",
+      ring: "oklch(0.711 0.019 323.02)",
+    },
+    dark: {
+      primary: "oklch(0.922 0.005 325.62)",
+      "primary-foreground": "oklch(0.212 0.019 322.12)",
+      secondary: "oklch(0.263 0.024 320.12)",
+      "secondary-foreground": "oklch(0.985 0 0)",
+      ring: "oklch(0.542 0.034 322.5)",
+    },
+  },
+  olive: {
+    light: {
+      primary: "oklch(0.228 0.013 107.4)",
+      "primary-foreground": "oklch(0.988 0.003 106.5)",
+      secondary: "oklch(0.966 0.005 106.5)",
+      "secondary-foreground": "oklch(0.228 0.013 107.4)",
+      ring: "oklch(0.737 0.021 106.9)",
+    },
+    dark: {
+      primary: "oklch(0.93 0.007 106.5)",
+      "primary-foreground": "oklch(0.228 0.013 107.4)",
+      secondary: "oklch(0.286 0.016 107.4)",
+      "secondary-foreground": "oklch(0.988 0.003 106.5)",
+      ring: "oklch(0.58 0.031 107.3)",
+    },
+  },
+  mist: {
+    light: {
+      primary: "oklch(0.218 0.008 223.9)",
+      "primary-foreground": "oklch(0.987 0.002 197.1)",
+      secondary: "oklch(0.963 0.002 197.1)",
+      "secondary-foreground": "oklch(0.218 0.008 223.9)",
+      ring: "oklch(0.723 0.014 214.4)",
+    },
+    dark: {
+      primary: "oklch(0.925 0.005 214.3)",
+      "primary-foreground": "oklch(0.218 0.008 223.9)",
+      secondary: "oklch(0.275 0.011 216.9)",
+      "secondary-foreground": "oklch(0.987 0.002 197.1)",
+      ring: "oklch(0.56 0.021 213.5)",
+    },
+  },
+  taupe: {
+    light: {
+      primary: "oklch(0.214 0.009 43.1)",
+      "primary-foreground": "oklch(0.986 0.002 67.8)",
+      secondary: "oklch(0.96 0.002 17.2)",
+      "secondary-foreground": "oklch(0.214 0.009 43.1)",
+      ring: "oklch(0.714 0.014 41.2)",
+    },
+    dark: {
+      primary: "oklch(0.922 0.005 34.3)",
+      "primary-foreground": "oklch(0.214 0.009 43.1)",
+      secondary: "oklch(0.268 0.011 36.5)",
+      "secondary-foreground": "oklch(0.986 0.002 67.8)",
+      ring: "oklch(0.547 0.021 43.1)",
+    },
+  },
+  amber: {
+    light: {
+      primary: "oklch(0.555 0.163 48.998)",
       "primary-foreground": "oklch(0.987 0.022 95.277)",
-      "secondary": "oklch(0.967 0.001 286.375)",
-      "secondary-foreground": "oklch(0.21 0.006 285.885)"
+      secondary: "oklch(0.967 0.001 286.375)",
+      "secondary-foreground": "oklch(0.21 0.006 285.885)",
     },
-    "dark": {
-      "primary": "oklch(0.473 0.137 46.201)",
+    dark: {
+      primary: "oklch(0.473 0.137 46.201)",
       "primary-foreground": "oklch(0.987 0.022 95.277)",
-      "secondary": "oklch(0.274 0.006 286.033)",
-      "secondary-foreground": "oklch(0.985 0 0)"
-    }
+      secondary: "oklch(0.274 0.006 286.033)",
+      "secondary-foreground": "oklch(0.985 0 0)",
+    },
   },
-  "blue": {
-    "light": {
-      "primary": "oklch(0.488 0.243 264.376)",
+  blue: {
+    light: {
+      primary: "oklch(0.488 0.243 264.376)",
       "primary-foreground": "oklch(0.97 0.014 254.604)",
-      "secondary": "oklch(0.967 0.001 286.375)",
-      "secondary-foreground": "oklch(0.21 0.006 285.885)"
+      secondary: "oklch(0.967 0.001 286.375)",
+      "secondary-foreground": "oklch(0.21 0.006 285.885)",
     },
-    "dark": {
-      "primary": "oklch(0.424 0.199 265.638)",
+    dark: {
+      primary: "oklch(0.424 0.199 265.638)",
       "primary-foreground": "oklch(0.97 0.014 254.604)",
-      "secondary": "oklch(0.274 0.006 286.033)",
-      "secondary-foreground": "oklch(0.985 0 0)"
-    }
+      secondary: "oklch(0.274 0.006 286.033)",
+      "secondary-foreground": "oklch(0.985 0 0)",
+    },
   },
-  "cyan": {
-    "light": {
-      "primary": "oklch(0.52 0.105 223.128)",
+  cyan: {
+    light: {
+      primary: "oklch(0.52 0.105 223.128)",
       "primary-foreground": "oklch(0.984 0.019 200.873)",
-      "secondary": "oklch(0.967 0.001 286.375)",
-      "secondary-foreground": "oklch(0.21 0.006 285.885)"
+      secondary: "oklch(0.967 0.001 286.375)",
+      "secondary-foreground": "oklch(0.21 0.006 285.885)",
     },
-    "dark": {
-      "primary": "oklch(0.45 0.085 224.283)",
+    dark: {
+      primary: "oklch(0.45 0.085 224.283)",
       "primary-foreground": "oklch(0.984 0.019 200.873)",
-      "secondary": "oklch(0.274 0.006 286.033)",
-      "secondary-foreground": "oklch(0.985 0 0)"
-    }
+      secondary: "oklch(0.274 0.006 286.033)",
+      "secondary-foreground": "oklch(0.985 0 0)",
+    },
   },
-  "emerald": {
-    "light": {
-      "primary": "oklch(0.508 0.118 165.612)",
+  emerald: {
+    light: {
+      primary: "oklch(0.508 0.118 165.612)",
       "primary-foreground": "oklch(0.979 0.021 166.113)",
-      "secondary": "oklch(0.967 0.001 286.375)",
-      "secondary-foreground": "oklch(0.21 0.006 285.885)"
+      secondary: "oklch(0.967 0.001 286.375)",
+      "secondary-foreground": "oklch(0.21 0.006 285.885)",
     },
-    "dark": {
-      "primary": "oklch(0.432 0.095 166.913)",
+    dark: {
+      primary: "oklch(0.432 0.095 166.913)",
       "primary-foreground": "oklch(0.979 0.021 166.113)",
-      "secondary": "oklch(0.274 0.006 286.033)",
-      "secondary-foreground": "oklch(0.985 0 0)"
-    }
+      secondary: "oklch(0.274 0.006 286.033)",
+      "secondary-foreground": "oklch(0.985 0 0)",
+    },
   },
-  "fuchsia": {
-    "light": {
-      "primary": "oklch(0.518 0.253 323.949)",
+  fuchsia: {
+    light: {
+      primary: "oklch(0.518 0.253 323.949)",
       "primary-foreground": "oklch(0.977 0.017 320.058)",
-      "secondary": "oklch(0.967 0.001 286.375)",
-      "secondary-foreground": "oklch(0.21 0.006 285.885)"
+      secondary: "oklch(0.967 0.001 286.375)",
+      "secondary-foreground": "oklch(0.21 0.006 285.885)",
     },
-    "dark": {
-      "primary": "oklch(0.452 0.211 324.591)",
+    dark: {
+      primary: "oklch(0.452 0.211 324.591)",
       "primary-foreground": "oklch(0.977 0.017 320.058)",
-      "secondary": "oklch(0.274 0.006 286.033)",
-      "secondary-foreground": "oklch(0.985 0 0)"
-    }
+      secondary: "oklch(0.274 0.006 286.033)",
+      "secondary-foreground": "oklch(0.985 0 0)",
+    },
   },
-  "green": {
-    "light": {
-      "primary": "oklch(0.527 0.154 150.069)",
+  green: {
+    light: {
+      primary: "oklch(0.527 0.154 150.069)",
       "primary-foreground": "oklch(0.982 0.018 155.826)",
-      "secondary": "oklch(0.967 0.001 286.375)",
-      "secondary-foreground": "oklch(0.21 0.006 285.885)"
+      secondary: "oklch(0.967 0.001 286.375)",
+      "secondary-foreground": "oklch(0.21 0.006 285.885)",
     },
-    "dark": {
-      "primary": "oklch(0.448 0.119 151.328)",
+    dark: {
+      primary: "oklch(0.448 0.119 151.328)",
       "primary-foreground": "oklch(0.982 0.018 155.826)",
-      "secondary": "oklch(0.274 0.006 286.033)",
-      "secondary-foreground": "oklch(0.985 0 0)"
-    }
+      secondary: "oklch(0.274 0.006 286.033)",
+      "secondary-foreground": "oklch(0.985 0 0)",
+    },
   },
-  "indigo": {
-    "light": {
-      "primary": "oklch(0.457 0.24 277.023)",
+  indigo: {
+    light: {
+      primary: "oklch(0.457 0.24 277.023)",
       "primary-foreground": "oklch(0.962 0.018 272.314)",
-      "secondary": "oklch(0.967 0.001 286.375)",
-      "secondary-foreground": "oklch(0.21 0.006 285.885)"
+      secondary: "oklch(0.967 0.001 286.375)",
+      "secondary-foreground": "oklch(0.21 0.006 285.885)",
     },
-    "dark": {
-      "primary": "oklch(0.398 0.195 277.366)",
+    dark: {
+      primary: "oklch(0.398 0.195 277.366)",
       "primary-foreground": "oklch(0.962 0.018 272.314)",
-      "secondary": "oklch(0.274 0.006 286.033)",
-      "secondary-foreground": "oklch(0.985 0 0)"
-    }
+      secondary: "oklch(0.274 0.006 286.033)",
+      "secondary-foreground": "oklch(0.985 0 0)",
+    },
   },
-  "lime": {
-    "light": {
-      "primary": "oklch(0.841 0.238 128.85)",
+  lime: {
+    light: {
+      primary: "oklch(0.841 0.238 128.85)",
       "primary-foreground": "oklch(0.405 0.101 131.063)",
-      "secondary": "oklch(0.967 0.001 286.375)",
-      "secondary-foreground": "oklch(0.21 0.006 285.885)"
+      secondary: "oklch(0.967 0.001 286.375)",
+      "secondary-foreground": "oklch(0.21 0.006 285.885)",
     },
-    "dark": {
-      "primary": "oklch(0.768 0.233 130.85)",
+    dark: {
+      primary: "oklch(0.768 0.233 130.85)",
       "primary-foreground": "oklch(0.405 0.101 131.063)",
-      "secondary": "oklch(0.274 0.006 286.033)",
-      "secondary-foreground": "oklch(0.985 0 0)"
-    }
+      secondary: "oklch(0.274 0.006 286.033)",
+      "secondary-foreground": "oklch(0.985 0 0)",
+    },
   },
-  "orange": {
-    "light": {
-      "primary": "oklch(0.553 0.195 38.402)",
+  orange: {
+    light: {
+      primary: "oklch(0.553 0.195 38.402)",
       "primary-foreground": "oklch(0.98 0.016 73.684)",
-      "secondary": "oklch(0.967 0.001 286.375)",
-      "secondary-foreground": "oklch(0.21 0.006 285.885)"
+      secondary: "oklch(0.967 0.001 286.375)",
+      "secondary-foreground": "oklch(0.21 0.006 285.885)",
     },
-    "dark": {
-      "primary": "oklch(0.47 0.157 37.304)",
+    dark: {
+      primary: "oklch(0.47 0.157 37.304)",
       "primary-foreground": "oklch(0.98 0.016 73.684)",
-      "secondary": "oklch(0.274 0.006 286.033)",
-      "secondary-foreground": "oklch(0.985 0 0)"
-    }
+      secondary: "oklch(0.274 0.006 286.033)",
+      "secondary-foreground": "oklch(0.985 0 0)",
+    },
   },
-  "pink": {
-    "light": {
-      "primary": "oklch(0.525 0.223 3.958)",
+  pink: {
+    light: {
+      primary: "oklch(0.525 0.223 3.958)",
       "primary-foreground": "oklch(0.971 0.014 343.198)",
-      "secondary": "oklch(0.967 0.001 286.375)",
-      "secondary-foreground": "oklch(0.21 0.006 285.885)"
+      secondary: "oklch(0.967 0.001 286.375)",
+      "secondary-foreground": "oklch(0.21 0.006 285.885)",
     },
-    "dark": {
-      "primary": "oklch(0.459 0.187 3.815)",
+    dark: {
+      primary: "oklch(0.459 0.187 3.815)",
       "primary-foreground": "oklch(0.971 0.014 343.198)",
-      "secondary": "oklch(0.274 0.006 286.033)",
-      "secondary-foreground": "oklch(0.985 0 0)"
-    }
+      secondary: "oklch(0.274 0.006 286.033)",
+      "secondary-foreground": "oklch(0.985 0 0)",
+    },
   },
-  "purple": {
-    "light": {
-      "primary": "oklch(0.496 0.265 301.924)",
+  purple: {
+    light: {
+      primary: "oklch(0.496 0.265 301.924)",
       "primary-foreground": "oklch(0.977 0.014 308.299)",
-      "secondary": "oklch(0.967 0.001 286.375)",
-      "secondary-foreground": "oklch(0.21 0.006 285.885)"
+      secondary: "oklch(0.967 0.001 286.375)",
+      "secondary-foreground": "oklch(0.21 0.006 285.885)",
     },
-    "dark": {
-      "primary": "oklch(0.438 0.218 303.724)",
+    dark: {
+      primary: "oklch(0.438 0.218 303.724)",
       "primary-foreground": "oklch(0.977 0.014 308.299)",
-      "secondary": "oklch(0.274 0.006 286.033)",
-      "secondary-foreground": "oklch(0.985 0 0)"
-    }
+      secondary: "oklch(0.274 0.006 286.033)",
+      "secondary-foreground": "oklch(0.985 0 0)",
+    },
   },
-  "red": {
-    "light": {
-      "primary": "oklch(0.505 0.213 27.518)",
+  red: {
+    light: {
+      primary: "oklch(0.505 0.213 27.518)",
       "primary-foreground": "oklch(0.971 0.013 17.38)",
-      "secondary": "oklch(0.967 0.001 286.375)",
-      "secondary-foreground": "oklch(0.21 0.006 285.885)"
+      secondary: "oklch(0.967 0.001 286.375)",
+      "secondary-foreground": "oklch(0.21 0.006 285.885)",
     },
-    "dark": {
-      "primary": "oklch(0.444 0.177 26.899)",
+    dark: {
+      primary: "oklch(0.444 0.177 26.899)",
       "primary-foreground": "oklch(0.971 0.013 17.38)",
-      "secondary": "oklch(0.274 0.006 286.033)",
-      "secondary-foreground": "oklch(0.985 0 0)"
-    }
+      secondary: "oklch(0.274 0.006 286.033)",
+      "secondary-foreground": "oklch(0.985 0 0)",
+    },
   },
-  "rose": {
-    "light": {
-      "primary": "oklch(0.514 0.222 16.935)",
+  rose: {
+    light: {
+      primary: "oklch(0.514 0.222 16.935)",
       "primary-foreground": "oklch(0.969 0.015 12.422)",
-      "secondary": "oklch(0.967 0.001 286.375)",
-      "secondary-foreground": "oklch(0.21 0.006 285.885)"
+      secondary: "oklch(0.967 0.001 286.375)",
+      "secondary-foreground": "oklch(0.21 0.006 285.885)",
     },
-    "dark": {
-      "primary": "oklch(0.455 0.188 13.697)",
+    dark: {
+      primary: "oklch(0.455 0.188 13.697)",
       "primary-foreground": "oklch(0.969 0.015 12.422)",
-      "secondary": "oklch(0.274 0.006 286.033)",
-      "secondary-foreground": "oklch(0.985 0 0)"
-    }
+      secondary: "oklch(0.274 0.006 286.033)",
+      "secondary-foreground": "oklch(0.985 0 0)",
+    },
   },
-  "sky": {
-    "light": {
-      "primary": "oklch(0.5 0.134 242.749)",
+  sky: {
+    light: {
+      primary: "oklch(0.5 0.134 242.749)",
       "primary-foreground": "oklch(0.977 0.013 236.62)",
-      "secondary": "oklch(0.967 0.001 286.375)",
-      "secondary-foreground": "oklch(0.21 0.006 285.885)"
+      secondary: "oklch(0.967 0.001 286.375)",
+      "secondary-foreground": "oklch(0.21 0.006 285.885)",
     },
-    "dark": {
-      "primary": "oklch(0.443 0.11 240.79)",
+    dark: {
+      primary: "oklch(0.443 0.11 240.79)",
       "primary-foreground": "oklch(0.977 0.013 236.62)",
-      "secondary": "oklch(0.274 0.006 286.033)",
-      "secondary-foreground": "oklch(0.985 0 0)"
-    }
+      secondary: "oklch(0.274 0.006 286.033)",
+      "secondary-foreground": "oklch(0.985 0 0)",
+    },
   },
-  "teal": {
-    "light": {
-      "primary": "oklch(0.511 0.096 186.391)",
+  teal: {
+    light: {
+      primary: "oklch(0.511 0.096 186.391)",
       "primary-foreground": "oklch(0.984 0.014 180.72)",
-      "secondary": "oklch(0.967 0.001 286.375)",
-      "secondary-foreground": "oklch(0.21 0.006 285.885)"
+      secondary: "oklch(0.967 0.001 286.375)",
+      "secondary-foreground": "oklch(0.21 0.006 285.885)",
     },
-    "dark": {
-      "primary": "oklch(0.437 0.078 188.216)",
+    dark: {
+      primary: "oklch(0.437 0.078 188.216)",
       "primary-foreground": "oklch(0.984 0.014 180.72)",
-      "secondary": "oklch(0.274 0.006 286.033)",
-      "secondary-foreground": "oklch(0.985 0 0)"
-    }
-  },
-  "violet": {
-    "light": {
-      "primary": "oklch(0.491 0.27 292.581)",
-      "primary-foreground": "oklch(0.969 0.016 293.756)",
-      "secondary": "oklch(0.967 0.001 286.375)",
-      "secondary-foreground": "oklch(0.21 0.006 285.885)"
+      secondary: "oklch(0.274 0.006 286.033)",
+      "secondary-foreground": "oklch(0.985 0 0)",
     },
-    "dark": {
-      "primary": "oklch(0.432 0.232 292.759)",
-      "primary-foreground": "oklch(0.969 0.016 293.756)",
-      "secondary": "oklch(0.274 0.006 286.033)",
-      "secondary-foreground": "oklch(0.985 0 0)"
-    }
   },
-  "yellow": {
-    "light": {
-      "primary": "oklch(0.852 0.199 91.936)",
-      "primary-foreground": "oklch(0.421 0.095 57.708)",
-      "secondary": "oklch(0.967 0.001 286.375)",
-      "secondary-foreground": "oklch(0.21 0.006 285.885)"
+  violet: {
+    light: {
+      primary: "oklch(0.491 0.27 292.581)",
+      "primary-foreground": "oklch(0.969 0.016 293.756)",
+      secondary: "oklch(0.967 0.001 286.375)",
+      "secondary-foreground": "oklch(0.21 0.006 285.885)",
     },
-    "dark": {
-      "primary": "oklch(0.795 0.184 86.047)",
+    dark: {
+      primary: "oklch(0.432 0.232 292.759)",
+      "primary-foreground": "oklch(0.969 0.016 293.756)",
+      secondary: "oklch(0.274 0.006 286.033)",
+      "secondary-foreground": "oklch(0.985 0 0)",
+    },
+  },
+  yellow: {
+    light: {
+      primary: "oklch(0.852 0.199 91.936)",
       "primary-foreground": "oklch(0.421 0.095 57.708)",
-      "secondary": "oklch(0.274 0.006 286.033)",
-      "secondary-foreground": "oklch(0.985 0 0)"
-    }
-  }
+      secondary: "oklch(0.967 0.001 286.375)",
+      "secondary-foreground": "oklch(0.21 0.006 285.885)",
+    },
+    dark: {
+      primary: "oklch(0.795 0.184 86.047)",
+      "primary-foreground": "oklch(0.421 0.095 57.708)",
+      secondary: "oklch(0.274 0.006 286.033)",
+      "secondary-foreground": "oklch(0.985 0 0)",
+    },
+  },
+  gray: {
+    light: {
+      primary: "oklch(0.21 0.006 285.885)",
+      "primary-foreground": "oklch(0.985 0 0)",
+      secondary: "oklch(0.967 0.001 286.375)",
+      "secondary-foreground": "oklch(0.21 0.006 285.885)",
+      ring: "oklch(0.705 0.015 286.067)",
+    },
+    dark: {
+      primary: "oklch(0.92 0.004 286.32)",
+      "primary-foreground": "oklch(0.21 0.006 285.885)",
+      secondary: "oklch(0.274 0.006 286.033)",
+      "secondary-foreground": "oklch(0.985 0 0)",
+      ring: "oklch(0.552 0.016 285.938)",
+    },
+  },
 }
