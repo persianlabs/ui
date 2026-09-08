@@ -48,10 +48,12 @@ jobs:
         working-directory: packages/cli
         run: bun run build
       # OIDC trusted publishing needs npm >= 11.5.1; Node 22 ships npm 10.
+      # Deliberately no registry-url here: setup-node then skips writing an
+      # .npmrc/_.authToken_ line and does not export the dummy NODE_AUTH_TOKEN
+      # placeholder, so npm falls back to the ambient OIDC credential.
       - uses: actions/setup-node@v4
         with:
           node-version: 24
-          registry-url: https://registry.npmjs.org
       - name: Upgrade npm for OIDC trusted publishing
         run: npm install -g npm@latest
       # Classic-token fallback for the E404 case (OIDC grant on the existing
