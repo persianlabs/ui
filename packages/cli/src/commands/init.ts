@@ -48,6 +48,7 @@ export async function runInit(options: {
   cwd: string
   force?: boolean
   silent?: boolean
+  packageManager?: PackageManager
 }) {
   const baseCwd = path.resolve(options.cwd)
   const config = resolveConfig(options.preset)
@@ -55,7 +56,10 @@ export async function runInit(options: {
   // The manager the user created the project with (pnpm→pnpm, npm→npm,
   // bun→bun) — scaffolding, shadcn and the final install all
   // follow it so the project never gets pinned to another manager.
-  const pm: PackageManager = resolvePackageManager()
+  // --package-manager overrides the auto-detection from npm_config_user_agent.
+  const pm: PackageManager = options.packageManager
+    ? resolvePackageManager(options.packageManager)
+    : resolvePackageManager()
 
   const template = await resolveTemplate(options.template, silent)
   const projectName = await resolveProjectName(

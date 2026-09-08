@@ -5,6 +5,11 @@ import path from "node:path"
 
 export type PackageManager = "pnpm" | "npm" | "bun"
 
+// True when the value is one of the supported managers.
+export function isPackageManager(value: string): value is PackageManager {
+  return value === "pnpm" || value === "npm" || value === "bun"
+}
+
 // The package manager the user invoked us with, parsed from
 // npm_config_user_agent ("pnpm/10.4.1 npm/? node/v22...", "npm/11 ...",
 // "bun/1.4.0"). Null when undetectable (direct node call).
