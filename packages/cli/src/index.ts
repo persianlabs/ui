@@ -22,7 +22,7 @@ program
   .option("-p, --preset [name]", "use a preset configuration")
   .option(
     "-t, --template <template>",
-    "the template to use. (next, next-turborepo)"
+    "the template to use. (next, vite, next-monorepo, vite-monorepo)"
   )
   .option(
     "-n, --name <name>",

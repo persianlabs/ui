@@ -24,7 +24,11 @@ import {
   scaffoldTemplate,
   TEMPLATE_SOURCES,
 } from "../utils/scaffold.js"
-import { runShadcnAdd } from "../utils/shadcn.js"
+import { installProjectDependencies, runShadcnAdd } from "../utils/shadcn.js"
+import {
+  resolvePackageManager,
+  type PackageManager,
+} from "../utils/package-manager.js"
 import { writeComponentsJson } from "../utils/components-json.js"
 
 export type Template = keyof typeof TEMPLATE_SOURCES
@@ -48,6 +52,10 @@ export async function runInit(options: {
   const baseCwd = path.resolve(options.cwd)
   const config = resolveConfig(options.preset)
   const silent = options.silent ?? false
+  // The manager the user created the project with (pnpm→pnpm, npm→npm,
+  // bun→bun) — scaffolding, shadcn and the final install all
+  // follow it so the project never gets pinned to another manager.
+  const pm: PackageManager = resolvePackageManager()
 
   const template = await resolveTemplate(options.template, silent)
   const projectName = await resolveProjectName(
@@ -71,6 +79,7 @@ export async function runInit(options: {
 
   // Scaffold
   let appDir: string
+  let uiDir: string
   try {
     if (!silent) {
       p.log.step(`Creating a new ${templateLabel} project.`)
@@ -80,8 +89,10 @@ export async function runInit(options: {
       target,
       projectName,
       overwrite: options.force,
+      packageManager: pm,
     })
     appDir = scaffolded.appDir
+    uiDir = scaffolded.uiDir
   } catch (error) {
     // Non-interactive contexts get a plain error; interactive ones confirm.
     if (silent || !(await confirmOverwrite(target))) {
@@ -92,12 +103,16 @@ export async function runInit(options: {
       target,
       projectName,
       overwrite: true,
+      packageManager: pm,
     })
     appDir = scaffolded.appDir
+    uiDir = scaffolded.uiDir
   }
 
   // components.json first so `shadcn add` sees our registry namespace.
-  await writeComponentsJson(appDir, options.force)
+  // Monorepo bases keep it in packages/ui (where shadcn add runs); flat
+  // bases at the app root.
+  await writeComponentsJson(uiDir, options.force)
   if (!silent) {
     p.log.step("Writing components.json.")
   }
@@ -122,9 +137,10 @@ export async function runInit(options: {
       logger.log("  Installing via shadcn CLI...")
     }
     await runShadcnAdd([tempFile], {
-      cwd: appDir,
+      cwd: uiDir,
       overwrite: true,
       silent: options.silent,
+      packageManager: pm,
     })
   } finally {
     await rm(tempDir, { recursive: true, force: true })
@@ -141,13 +157,46 @@ export async function runInit(options: {
     template === "next-turborepo"
   ) {
     // Next bases self-host fonts via next/font/local — rewrite lib/fonts.ts
-    // and globals.css for the picked fonts.
-    await installNextFonts(config, appDir)
+    // and the stylesheet for the picked fonts. In monorepos the stylesheet
+    // (and ss01 digit utility) lives in packages/ui/src/styles/globals.css,
+    // while lib/fonts.ts stays app-level (next/font must run in the app).
+    await installNextFonts(config, appDir, {
+      cssPath: isMonorepoTemplate(template)
+        ? path.join(target, "packages", "ui", "src", "styles", "globals.css")
+        : undefined,
+    })
   } else {
     // Vite has no next/font — self-host via fontsource packages and Google
-    // CDN css2 @imports, written into src/index.css.
-    await installFontsOffline(config, appDir, { publicDir: "public" })
+    // CDN css2 @imports, written into the stylesheet. In monorepos the
+    // stylesheet + font assets + fontsource deps all live in packages/ui
+    // (the app's vite processes that css via @workspace/ui/globals.css).
+    await installFontsOffline(config, appDir, {
+      publicDir: "public",
+      ...(isMonorepoTemplate(template)
+        ? {
+            // appDir is <target>/apps/web — packages/ui sits two levels up.
+            cssRel: "../../packages/ui/src/styles/globals.css",
+            fontsRel: "../../packages/ui/src/assets/fonts",
+            pkgJsonRel: "../../packages/ui/package.json",
+            assetPrefix: "../assets/fonts/",
+          }
+        : {}),
+    })
   }
+
+  // Final install with the creating manager: covers workspace links
+  // (@workspace/*) plus deps added after shadcn's own install (e.g. Vite
+  // fontsource packages), so the project typechecks straight away.
+  if (!silent) {
+    p.log.step(`Installing dependencies with ${pm}.`)
+  } else {
+    logger.log(`  Installing dependencies with ${pm}...`)
+  }
+  await installProjectDependencies({
+    cwd: target,
+    packageManager: pm,
+    silent: options.silent,
+  })
 
   const doneLines = [
     "Project initialization completed.",
@@ -172,14 +221,14 @@ async function resolveTemplate(
   if (templateFlag) {
     if (!TEMPLATE_SOURCES[templateFlag]) {
       throw new Error(
-        `Unknown template "${templateFlag}". Available: next, vite, next-monorepo.`
+        `Unknown template "${templateFlag}". Available: next, vite, next-monorepo, vite-monorepo.`
       )
     }
     return templateFlag
   }
   if (silent) {
     throw new Error(
-      "--template is required in non-interactive mode (next | vite | next-monorepo)."
+      "--template is required in non-interactive mode (next | vite | next-monorepo | vite-monorepo)."
     )
   }
   const selected = await p.select({
