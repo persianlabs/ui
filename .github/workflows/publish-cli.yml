@@ -58,8 +58,12 @@ jobs:
       # package not configured yet): inject the token only when the secret
       # exists; otherwise the OIDC path stays untouched (pure trust).
       - name: Configure npm publish token
-        if: ${{ secrets.NPM_TOKEN != '' }}
-        run: npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -n "$NPM_TOKEN" ]; then
+            npm config set //registry.npmjs.org/:_authToken="$NPM_TOKEN"
+          fi
       - name: Publish (dry run)
         if: ${{ inputs.dry-run }}
         working-directory: packages/cli
