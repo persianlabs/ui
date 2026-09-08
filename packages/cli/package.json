@@ -4,7 +4,9 @@
   "description": "Scaffold and theme RTL-first, Persian-typography shadcn projects - init from a /create preset, add components from the Persian Labs registry.",
   "license": "MIT",
   "type": "module",
-  "bin": "./dist/index.js",
+  "bin": {
+    "persianlabsui": "dist/index.js"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",

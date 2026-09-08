@@ -39,6 +39,12 @@ jobs:
       - name: Verify CLI
         working-directory: packages/cli
         run: bun run typecheck && bun run test
+      # Build dist/ before npm reads package.json — otherwise npm sees no
+      # dist/index.js in the checkout, warns "No bin file found" and strips
+      # the bin from the published metadata.
+      - name: Build CLI
+        working-directory: packages/cli
+        run: bun run build
       # OIDC trusted publishing needs npm >= 11.5.1; Node 22 ships npm 10.
       - uses: actions/setup-node@v4
         with:
