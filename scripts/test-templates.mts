@@ -33,10 +33,7 @@ const RUN_E2E = process.argv.includes("--e2e")
 
 const TEMPLATES = ["next", "vite", "next-monorepo", "vite-monorepo"] as const
 
-type Combo = Omit<
-  PresetConfig,
-  "style" | "fontMono" | "fontMonoSource"
-> & {
+type Combo = Omit<PresetConfig, "style" | "fontMono" | "fontMonoSource"> & {
   slug: string
   fontMono?: PresetConfig["fontMono"]
   fontMonoSource?: PresetConfig["fontMonoSource"]
@@ -198,10 +195,14 @@ async function phaseA() {
         registryDependencies: string[]
         cssVars: { light: Record<string, string>; dark: Record<string, string> }
       }
-      check(`${label} style nova + rtl`, item.config.style === "nova" && item.config.rtl === true)
+      check(
+        `${label} style nova + rtl`,
+        item.config.style === "nova" && item.config.rtl === true
+      )
       check(
         `${label} tailwind.baseColor`,
-        (item.config.tailwind as { baseColor: string })?.baseColor === preset.baseColor
+        (item.config.tailwind as { baseColor: string })?.baseColor ===
+          preset.baseColor
       )
       const expectedPrimary = THEME_VARS[preset.theme]?.light.primary
       check(
@@ -255,12 +256,17 @@ async function phaseB() {
     const { slug: _slug, ...want } = preset
     const same =
       decoded !== null &&
-      (Object.keys(want) as (keyof typeof want)[]).every((k) => decoded[k] === want[k])
+      (Object.keys(want) as (keyof typeof want)[]).every(
+        (k) => decoded[k] === want[k]
+      )
     check(`round-trip ${preset.slug} (${code})`, same, JSON.stringify(decoded))
   }
   // base color sanity: every base paints neutrals, themes never carry background
   for (const [name, vars] of Object.entries(BASE_COLOR_VARS)) {
-    check(`base ${name} has background+primary`, Boolean(vars.light.background && vars.light.primary))
+    check(
+      `base ${name} has background+primary`,
+      Boolean(vars.light.background && vars.light.primary)
+    )
   }
   for (const [name, vars] of Object.entries(THEME_VARS)) {
     check(`theme ${name} carries no background`, !("background" in vars.light))
@@ -269,7 +275,11 @@ async function phaseB() {
 
 function runCli(args: string[], cwd: string, env: Record<string, string>) {
   return new Promise<{ code: number; log: string }>((resolve) => {
-    const child = spawn("bun", args, { cwd, env: { ...process.env, ...env }, shell: false })
+    const child = spawn("bun", args, {
+      cwd,
+      env: { ...process.env, ...env },
+      shell: false,
+    })
     let log = ""
     child.stdout?.on("data", (d) => (log += d.toString()))
     child.stderr?.on("data", (d) => (log += d.toString()))
@@ -284,7 +294,10 @@ async function phaseC() {
   // Default preset only: geist + vazirmatn are the fonts shipped in the
   // template bases, so only it can pass the offline-font step without the
   // network. Every other combination is covered by Phases A + B.
-  const combos = TEMPLATES.map((template) => ({ template, preset: PRESETS[0]! }))
+  const combos = TEMPLATES.map((template) => ({
+    template,
+    preset: PRESETS[0]!,
+  }))
   for (const { template, preset } of combos) {
     const dirName = `${template}--${preset.slug}`
     const dir = path.join(TEMPLATES_DIR, dirName)
@@ -296,10 +309,14 @@ async function phaseC() {
       [
         path.join(ROOT, "packages/cli/src/index.ts"),
         "init",
-        "--preset", code,
-        "--template", template,
-        "--name", dirName,
-        "--cwd", TEMPLATES_DIR,
+        "--preset",
+        code,
+        "--template",
+        template,
+        "--name",
+        dirName,
+        "--cwd",
+        TEMPLATES_DIR,
         "--silent",
       ],
       ROOT,
@@ -308,24 +325,56 @@ async function phaseC() {
     check(`${dirName} init exit 0`, result.code === 0, result.log.slice(-500))
     if (result.code === 0) {
       const { existsSync } = await import("node:fs")
-      // Monorepo bases keep the app in apps/web; flat bases at the root.
-      const appDir = template.endsWith("-monorepo") || template === "next-turborepo"
-        ? path.join(dir, "apps/web")
-        : dir
-      check(`${dirName} app scaffolded`, existsSync(path.join(appDir, "package.json")))
-      check(`${dirName} components.json`, existsSync(path.join(appDir, "components.json")))
+      // Monorepo bases keep the app in apps/web and the shadcn package in
+      // packages/ui; flat bases keep both at the root.
+      const isMonorepo =
+        template.endsWith("-monorepo") || template === "next-turborepo"
+      const appDir = isMonorepo ? path.join(dir, "apps/web") : dir
+      const uiDir = isMonorepo ? path.join(dir, "packages/ui") : appDir
+      check(
+        `${dirName} app scaffolded`,
+        existsSync(path.join(appDir, "package.json"))
+      )
+      check(
+        `${dirName} components.json`,
+        existsSync(path.join(uiDir, "components.json"))
+      )
       if (template.startsWith("vite")) {
         const { readFileSync } = await import("node:fs")
-        const pkg = readFileSync(path.join(appDir, "package.json"), "utf8")
-        const indexCss = readFileSync(path.join(appDir, "src/index.css"), "utf8")
+        const cssPath = isMonorepo
+          ? path.join(uiDir, "src/styles/globals.css")
+          : path.join(appDir, "src/index.css")
+        const fontsDir = isMonorepo
+          ? path.join(uiDir, "src/assets/fonts")
+          : path.join(appDir, "src/assets/fonts")
+        const pkgPath = isMonorepo
+          ? path.join(uiDir, "package.json")
+          : path.join(appDir, "package.json")
+        const pkg = readFileSync(pkgPath, "utf8")
+        const css = readFileSync(cssPath, "utf8")
         // Vite: fonts self-host via fontsource packages (+ Vazirmatn asset).
-        check(`${dirName} no public/fonts.css`, !existsSync(path.join(appDir, "public/fonts.css")))
-        check(`${dirName} Vazirmatn asset`, existsSync(path.join(appDir, "src/assets/fonts/Vazirmatn.woff2")))
-        check(`${dirName} geist fontsource dep`, /"@fontsource-variable\/geist"/.test(pkg))
-        check(`${dirName} geist import in index.css`, /@import "@fontsource-variable\/geist";/.test(indexCss))
+        check(
+          `${dirName} no public/fonts.css`,
+          !existsSync(path.join(appDir, "public/fonts.css"))
+        )
+        check(
+          `${dirName} Vazirmatn asset`,
+          existsSync(path.join(fontsDir, "Vazirmatn.woff2"))
+        )
+        check(
+          `${dirName} geist fontsource dep`,
+          /"@fontsource-variable\/geist"/.test(pkg)
+        )
+        check(
+          `${dirName} geist import in css`,
+          /@import "@fontsource-variable\/geist";/.test(css)
+        )
       } else {
         // Next: fonts self-host via app/_assets/fonts + a generated lib/fonts.ts.
-        check(`${dirName} fonts.ts`, existsSync(path.join(appDir, "lib/fonts.ts")))
+        check(
+          `${dirName} fonts.ts`,
+          existsSync(path.join(appDir, "lib/fonts.ts"))
+        )
       }
     }
   }

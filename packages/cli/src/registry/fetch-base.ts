@@ -125,11 +125,32 @@ function slotFamily(slot: ViteFontSlot): string {
 export async function installFontsOffline(
   config: PresetConfig,
   cwd: string,
-  options?: { publicDir?: string }
+  options?: {
+    publicDir?: string
+    // Monorepo override: the stylesheet + font assets live in packages/ui
+    // (shadcn monorepo layout), not in the app. cssRel/fontsRel/pkgJsonRel
+    // are relative to cwd; assetPrefix is the url() prefix from the css
+    // file to the fonts dir.
+    cssRel?: string
+    fontsRel?: string
+    pkgJsonRel?: string
+    assetPrefix?: string
+  }
 ) {
   const appDir = path.resolve(cwd)
-  const cssPath = path.resolve(appDir, "src", "index.css")
-  const pkgJsonPath = path.resolve(appDir, "package.json")
+  const cssPath = path.resolve(
+    appDir,
+    options?.cssRel ?? path.join("src", "index.css")
+  )
+  const fontsDirPath = path.resolve(
+    appDir,
+    options?.fontsRel ?? path.join("src", "assets", "fonts")
+  )
+  const assetPrefix = options?.assetPrefix ?? "./assets/fonts/"
+  const pkgJsonPath = path.resolve(
+    appDir,
+    options?.pkgJsonRel ?? path.join("package.json")
+  )
 
   // Clean stale public/fonts.css + public/fonts from old vite bases.
   const publicDir = options?.publicDir ?? "public"
@@ -312,7 +333,7 @@ export async function installFontsOffline(
       .map(
         (s) => `@font-face {
   font-family: "${s.entry.family}";
-  src: url("./assets/fonts/${s.entry.dir}.woff2") format("woff2");
+  src: url("${assetPrefix}${s.entry.dir}.woff2") format("woff2");
   font-weight: ${s.entry.weights};
   font-style: normal;
   font-display: swap;
@@ -335,10 +356,7 @@ export async function installFontsOffline(
   const pickedFaDirs = new Set(faAssetSlots.map((s) => s.entry.dir))
   for (const fa of FA_FONTS) {
     if (!pickedFaDirs.has(fa.dir)) {
-      await rm(
-        path.resolve(appDir, "src", "assets", "fonts", `${fa.dir}.woff2`),
-        { force: true }
-      )
+      await rm(path.resolve(fontsDirPath, `${fa.dir}.woff2`), { force: true })
     }
   }
 
@@ -365,7 +383,7 @@ export async function installFontsOffline(
 
   return {
     cssPath,
-    fontsDir: path.resolve(appDir, "src", "assets", "fonts"),
+    fontsDir: fontsDirPath,
     fonts: slots.map(({ entry, role, lang, delivery }) => ({
       value: entry.value,
       family: delivery.family,

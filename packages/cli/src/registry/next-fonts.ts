@@ -91,9 +91,15 @@ ${lines.join("\n")}
 })`
 }
 
-export async function installNextFonts(config: PresetConfig, cwd: string) {
+export async function installNextFonts(
+  config: PresetConfig,
+  cwd: string,
+  options?: { cssPath?: string }
+) {
   // appDir is apps/web for monorepos or the repo root for flat bases. The
-  // paths below are relative to appDir.
+  // paths below are relative to appDir — except the globals.css rewrite,
+  // which lives in packages/ui for monorepos (the ui package owns the
+  // stylesheet there, mirroring the shadcn monorepo layout).
   const appDir = cwd
   const assetsDir = path.join(appDir, "app", "_assets", "fonts")
   await mkdir(assetsDir, { recursive: true })
@@ -221,7 +227,14 @@ export async function installNextFonts(config: PresetConfig, cwd: string) {
   const fontsTs = buildFontsTs(slots, fa)
   await writeFile(path.join(appDir, "lib", "fonts.ts"), fontsTs + "\n")
 
-  await rewriteGlobalsCss(appDir, enBody, enHeading, enMono, fa, faHeadingSlot)
+  await rewriteGlobalsCss(
+    options?.cssPath ?? path.join(appDir, "app", "globals.css"),
+    enBody,
+    enHeading,
+    enMono,
+    fa,
+    faHeadingSlot
+  )
 }
 
 function buildFontsTs(slots: Slot[], fa: FontEntry) {
@@ -262,14 +275,13 @@ ${vars.map((v) => `  ${v},`).join("\n")}
 // first (owns Persian glyphs + digits), the picked EN font second, the
 // heading/mono after.
 async function rewriteGlobalsCss(
-  appDir: string,
+  cssPath: string,
   enBody: ReturnType<typeof getFontEntry>,
   enHeading: ReturnType<typeof getFontEntry>,
   enMono: ReturnType<typeof getFontEntry>,
   fa: FontEntry,
   faHeadingSlot?: Slot
 ) {
-  const cssPath = path.join(appDir, "app", "globals.css")
   let css = await readFile(cssPath, "utf8")
 
   const bodyVar = enBody ? `var(--font-${varName(enBody.title)})` : null

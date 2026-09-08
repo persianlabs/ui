@@ -6,6 +6,7 @@ import { runApply } from "./commands/apply.js"
 import { runAdd } from "./commands/add.js"
 import { runPreset } from "./commands/preset.js"
 import { logger } from "./utils/logger.js"
+import { isPackageManager } from "./utils/package-manager.js"
 
 process.on("SIGINT", () => process.exit(0))
 
@@ -22,11 +23,15 @@ program
   .option("-p, --preset [name]", "use a preset configuration")
   .option(
     "-t, --template <template>",
-    "the template to use. (next, next-turborepo)"
+    "the template to use. (next, vite, next-monorepo, vite-monorepo)"
   )
   .option(
     "-n, --name <name>",
     "project name — the directory to create. skips the prompt"
+  )
+  .option(
+    "--package-manager <manager>",
+    "the package manager to use: pnpm, npm, bun. overrides auto-detection"
   )
   .option(
     "-c, --cwd <cwd>",
@@ -48,6 +53,7 @@ program
         cwd: opts.cwd,
         force: opts.force,
         silent: opts.silent,
+        packageManager: parsePackageManagerFlag(opts.packageManager),
       })
     } catch (error) {
       handleError(error)
@@ -123,6 +129,12 @@ function handleError(error: unknown) {
     logger.error(String(error))
   }
   process.exit(1)
+}
+
+function parsePackageManagerFlag(value: string | undefined) {
+  if (value === undefined) return undefined
+  if (isPackageManager(value)) return value
+  throw new Error(`Invalid package manager "${value}". Use pnpm, npm or bun.`)
 }
 
 program.parse()

@@ -3,6 +3,13 @@ import { existsSync } from "node:fs"
 import { copyFile, mkdir, rm } from "node:fs/promises"
 import path from "node:path"
 
+import {
+  detectProjectPackageManager,
+  quoteShellToken,
+  resolvePackageManager,
+  type PackageManager,
+} from "./package-manager.js"
+
 // Thin CLI strategy: file-writing, dependency installs, and registry item
 // resolution are delegated to the stock shadcn CLI. We only generate the
 // registry payloads (from our /init endpoint) and pass them through as
@@ -13,7 +20,12 @@ import path from "node:path"
 // "unknown scheme", and file:// URLs are not fetchable by shadcn.
 export async function runShadcnAdd(
   itemPaths: string[],
-  options: { cwd: string; overwrite?: boolean; silent?: boolean }
+  options: {
+    cwd: string
+    overwrite?: boolean
+    silent?: boolean
+    packageManager?: PackageManager | null
+  }
 ) {
   const cwd = path.resolve(options.cwd)
   const stageDir = path.join(cwd, ".persianlabsui")
@@ -32,7 +44,14 @@ export async function runShadcnAdd(
     }
   }
 
-  const args = [
+  // An existing project owns its manager (packageManager field/lockfile);
+  // fresh scaffolds pass it explicitly so shadcn installs with the same
+  // manager the user created the project with.
+  const pm =
+    options.packageManager ??
+    detectProjectPackageManager(cwd) ??
+    resolvePackageManager()
+  const command = buildDlxCommand(pm, [
     "shadcn@latest",
     "add",
     ...staged,
@@ -40,15 +59,20 @@ export async function runShadcnAdd(
     ...(options.overwrite ? ["--overwrite"] : []),
     "-c",
     cwd,
-  ]
+  ])
 
   try {
     await new Promise<void>((resolve, reject) => {
-      const { command, commandArgs, shell } = resolveNpxCommand(args)
-      const child = spawn(command, commandArgs, {
+      // Single command string with shell:true and NO args array — spawning
+      // with shell:true plus an args array trips Node's DEP0190 warning, so
+      // everything is quoted into the string up front. NODE_NO_WARNINGS
+      // silences the same warning inside the shadcn child (it spawns the
+      // package manager with shell:true internally).
+      const child = spawn(command, {
         cwd,
         stdio: options.silent ? "ignore" : "inherit",
-        shell,
+        shell: true,
+        env: { ...process.env, NODE_NO_WARNINGS: "1" },
       })
 
       child.on("error", reject)
@@ -67,35 +91,38 @@ export async function runShadcnAdd(
   }
 }
 
-// npx is a .cmd shim on Windows, and spawning a .cmd requires shell:true —
-// which trips Node's DEP0190 warning when args are passed unescaped. When
-// running under Node, spawn npm's npx-cli.js directly instead (no shell, no
-// warning); fall back to the old behavior when the shim can't be located
-// (e.g. exotic Node installs).
-function resolveNpxCommand(args: string[]): {
-  command: string
-  commandArgs: string[]
-  shell: boolean
-} {
-  if (process.platform === "win32") {
-    const npxCli = path.join(
-      path.dirname(process.execPath),
-      "node_modules",
-      "npm",
-      "bin",
-      "npx-cli.js"
-    )
-    if (existsSync(npxCli)) {
-      return {
-        command: process.execPath,
-        commandArgs: [npxCli, ...args],
-        shell: false,
+// Installs project dependencies with the given manager (used after init
+// steps that add new deps, e.g. fontsource packages on Vite).
+export async function installProjectDependencies(options: {
+  cwd: string
+  packageManager: PackageManager
+  silent?: boolean
+}) {
+  const cwd = path.resolve(options.cwd)
+  const pm = resolvePackageManager(options.packageManager)
+  const command = [pm, "install"].map(quoteShellToken).join(" ")
+  await new Promise<void>((resolve, reject) => {
+    const child = spawn(command, {
+      cwd,
+      stdio: options.silent ? "ignore" : "inherit",
+      shell: true,
+      env: { ...process.env, NODE_NO_WARNINGS: "1" },
+    })
+    child.on("error", reject)
+    child.on("close", (code) => {
+      if (code === 0) {
+        resolve()
+      } else {
+        reject(new Error(`${pm} install exited with code ${code}`))
       }
-    }
-  }
-  return {
-    command: "npx",
-    commandArgs: args,
-    shell: process.platform === "win32",
-  }
+    })
+  })
+}
+
+// The dlx runner follows the manager: pnpm dlx / npx / bunx, so a project
+// created with pnpm installs with pnpm, bun with bun, etc.
+function buildDlxCommand(pm: PackageManager, args: string[]): string {
+  const runner =
+    pm === "pnpm" ? ["pnpm", "dlx"] : pm === "bun" ? ["bunx"] : ["npx"]
+  return [...runner, ...args].map(quoteShellToken).join(" ")
 }

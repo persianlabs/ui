@@ -86,6 +86,7 @@ jobs:
         run: >
           bun "$GITHUB_WORKSPACE/packages/cli/src/index.ts" init
           --preset c0 --template ${{ matrix.template }}
+          --package-manager ${{ matrix.package-manager }}
           --name app --cwd . --silent
 
       - name: Install (bun)
