@@ -1,5 +1,6 @@
 allowBuilds:
-  sharp: set this to true or false
-  unrs-resolver: set this to true or false
+  sharp: true
+  unrs-resolver: true
+  esbuild: true
 minimumReleaseAgeExclude:
   - cn@0.2.6

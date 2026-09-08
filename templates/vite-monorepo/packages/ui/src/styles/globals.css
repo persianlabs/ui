@@ -3,6 +3,8 @@
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
 @import "@fontsource-variable/geist-mono";
+@source "../../../apps/**/*.{ts,tsx}";
+@source "../**/*.{ts,tsx}";
 
 /* Persian font — our Latin-free cut, committed in src/assets/fonts.
    English letters never resolve to it, so the EN font owns Latin; Persian
@@ -12,7 +14,7 @@
    (Vazirmatn by default, Estedad when picked). */
 @font-face {
   font-family: "Vazirmatn";
-  src: url("./assets/fonts/Vazirmatn.woff2") format("woff2");
+  src: url("../assets/fonts/Vazirmatn.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
