@@ -53,9 +53,9 @@ export async function runInit(options: {
   const baseCwd = path.resolve(options.cwd)
   const config = resolveConfig(options.preset)
   const silent = options.silent ?? false
-  // The manager the user created the project with (pnpm→pnpm, npm→npm,
-  // bun→bun) — scaffolding, shadcn and the final install all
-  // follow it so the project never gets pinned to another manager.
+  // The manager the user created the project with — bunx→bun, pnpm dlx→
+  // pnpm, npx→pnpm (falling back to npm). Scaffolding, shadcn and the
+  // final install all follow it so the project is never pinned elsewhere.
   // --package-manager overrides the auto-detection from npm_config_user_agent.
   const pm: PackageManager = options.packageManager
     ? resolvePackageManager(options.packageManager)
@@ -135,11 +135,6 @@ export async function runInit(options: {
   await writeFile(tempFile, JSON.stringify(registryBase, null, 2))
 
   try {
-    if (!silent) {
-      p.log.step("Installing dependencies.")
-    } else {
-      logger.log("  Installing via shadcn CLI...")
-    }
     await runShadcnAdd([tempFile], {
       cwd: uiDir,
       overwrite: true,

@@ -60,8 +60,10 @@ export function getPackageManagerVersion(pm: PackageManager): string | null {
   return runManagerVersion(pm)
 }
 
-// Strict mapping: pnpm→pnpm, npm→npm, bun→bun. The fallback chains only
-// kick in when the preferred binary is missing.
+// pnpm→pnpm, bun→bun. Invoked via npx/npm ("npm" agent) we still prefer
+// pnpm when it is on the machine and only fall back to npm — npx is just
+// the runner, pnpm the faster/better install for the project. The other
+// chains fall back when the preferred binary is missing.
 export function resolvePackageManager(
   preferred?: PackageManager | null
 ): PackageManager {
@@ -72,9 +74,8 @@ export function resolvePackageManager(
     case "bun":
       return isPackageManagerAvailable("bun") ? "bun" : "npm"
     case "npm":
-      if (isPackageManagerAvailable("npm")) return "npm"
       if (isPackageManagerAvailable("pnpm")) return "pnpm"
-      return "npm"
+      return isPackageManagerAvailable("npm") ? "npm" : "pnpm"
     default:
       if (isPackageManagerAvailable("pnpm")) return "pnpm"
       if (isPackageManagerAvailable("npm")) return "npm"
