@@ -15,7 +15,7 @@ const program = new Command()
   .description(
     "Add RTL-first, Persian-typography components built on Base UI to your project."
   )
-  .version("0.1.0")
+  .version("0.1.2")
 
 program
   .command("init")

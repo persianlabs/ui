@@ -1,6 +1,6 @@
 {
   "name": "persianlabsui",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Scaffold and theme RTL-first, Persian-typography shadcn projects - init from a /create preset, add components from the Persian Labs registry.",
   "license": "MIT",
   "type": "module",
