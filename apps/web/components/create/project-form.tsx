@@ -72,7 +72,7 @@ export function ProjectForm({
           </DialogDescription>
         </DialogHeader>
 
-        <div className="space-y-4 p-6">
+        <div className="space-y-4 p-6 pt-0">
           <div className="grid grid-cols-2 gap-2">
             {TEMPLATES.map((option) => (
               <button
@@ -110,11 +110,10 @@ export function ProjectForm({
             />
           </label>
 
-          {/* Same component as the docs install blocks: pnpm/yarn/npm/bun tabs
+          {/* Same component as the docs install blocks: pnpm/npm/bun tabs
             with the selected manager persisted in localStorage. */}
           <CodeBlockCommand
             pnpm={`pnpm dlx persianlabsui@latest ${command}`}
-            yarn={`yarn dlx persianlabsui@latest ${command}`}
             npm={`npx persianlabsui@latest ${command}`}
             bun={`bunx --bun persianlabsui@latest ${command}`}
           />
