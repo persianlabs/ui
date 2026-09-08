@@ -1,10 +1,12 @@
 name: Publish CLI
 
-# Manual publish for the persianlabsui npm package, via npm's GitHub
-# Actions trusted publisher (OIDC) — no NPM_TOKEN secret involved.
-#
-# The package's trusted-publisher entry on npmjs.com must point at
-# persianlabs/ui, workflow publish-cli.yml, environment "npm".
+# Manual publish for the persianlabsui npm package, in two auth modes:
+#  1. Classic npm token — NPM_TOKEN repo secret (publish right held by the
+#     npm account that owns the package). Used when the secret exists.
+#  2. Trusted publishing via OIDC — no token required once the npmjs
+#     trusted-publisher entry at persianlabs/ui (workflow publish-cli.yml,
+#     environment "npm") grants permission on the existing persianlabsui
+#     package; without that grant npm returns E404 on the PUT.
 #
 # Release ritual: bump the version in packages/cli/package.json, commit,
 # push, then dispatch this workflow (dry-run first).
@@ -52,6 +54,12 @@ jobs:
           registry-url: https://registry.npmjs.org
       - name: Upgrade npm for OIDC trusted publishing
         run: npm install -g npm@latest
+      # Classic-token fallback for the E404 case (OIDC grant on the existing
+      # package not configured yet): inject the token only when the secret
+      # exists; otherwise the OIDC path stays untouched (pure trust).
+      - name: Configure npm publish token
+        if: ${{ secrets.NPM_TOKEN != '' }}
+        run: npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
       - name: Publish (dry run)
         if: ${{ inputs.dry-run }}
         working-directory: packages/cli
