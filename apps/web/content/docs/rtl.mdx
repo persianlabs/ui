@@ -53,7 +53,19 @@ Components use logical CSS (start/end, inline/block) so they flip automatically.
 - `text-start` / `text-end` instead of `text-left` / `text-right`
 - `border-s-*` / `border-e-*` instead of `border-l-*` / `border-r-*`
 
-## 5. Verify once
+## 5. Mixed-language messages
+
+UI layout direction does not determine the language of every message. Set `dir`
+on individual prose paragraphs and isolate opposite-direction inline fragments
+with `<bdi>`. Keep message placement and text alignment separate: a Persian
+paragraph can use `dir="rtl"` and deliberately be physically left-aligned.
+
+See the [mixed-language Message example](/docs/components/message#mixed-language-content)
+for Persian prose beginning with `React`, English containing a Persian label,
+code/URL fragments, and a pure-English control. It uses native markup and the
+existing components, with no extra package or change to global defaults.
+
+## 6. Verify once
 
 Load a component page, flip the built-in direction toggle on its preview, and confirm the layout mirrors and directional icons point the right way. Every component ships with an RTL example you can inspect.
 

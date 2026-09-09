@@ -976,6 +976,10 @@ export const exampleLoaders: Record<
     import("@/components/examples/message-demo").then(
       (m) => m.MessageDemoExample
     ),
+  "message-mixed-direction": () =>
+    import("@/components/examples/message-mixed-direction").then(
+      (m) => m.MessageMixedDirectionExample
+    ),
   "message-rtl": () =>
     import("@/components/examples/message-rtl").then(
       (m) => m.MessageRtlExample
@@ -2090,6 +2094,7 @@ export type ExampleMap = {
   "menubar-demo": React.ComponentType
   "menubar-rtl": React.ComponentType
   "message-demo": React.ComponentType
+  "message-mixed-direction": React.ComponentType
   "message-rtl": React.ComponentType
   "message-scroller-demo": React.ComponentType
   "message-scroller-rtl": React.ComponentType
