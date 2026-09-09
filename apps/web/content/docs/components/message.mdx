@@ -89,7 +89,8 @@ identifier can therefore select LTR for Persian prose. Text inside `<bdi>` is
 excluded from that first-strong scan. For unknown user/AI text, offer an
 Auto/LTR/RTL override or apply
 your chosen content-direction policy at the paragraph boundary. Preserve an
-explicit caller choice. The Direction provider still controls component layout.
+explicit caller choice. Keep the surrounding UI's layout direction on the
+message row or an ancestor, separate from each paragraph's `dir`.
 
 Try the preview in both UI directions and at a narrow width. The English control
 paragraph must stay LTR, the intentionally left-aligned Persian paragraph must
