@@ -33,7 +33,7 @@
         "input-otp": "^1.5.0",
         "jotai": "^3.0.1",
         "lucide": "^1.33.0",
-        "lucide-react": "^1.33.0",
+        "lucide-react": "^1.57.0",
         "morphicons": "^1.7.0",
         "motion": "^13.1.1",
         "next": "16.3.2",
@@ -129,7 +129,7 @@
         "flubber": "^0.4.2",
         "input-otp": "^1.5.0",
         "lucide": "^1.33.0",
-        "lucide-react": "^1.33.0",
+        "lucide-react": "^1.57.0",
         "morphicons": "^1.7.0",
         "motion": "^13.1.1",
         "next-themes": "^0.4.6",
@@ -1506,7 +1506,7 @@
 
     "lucide": ["lucide@1.33.0", "", {}, "sha512-qfSZR1mmM65zfGeqonve67gtHBmyJtvlpdMuXiQLN04RaQmEvD0o85S9Gi+A6JQaQXpjKz5FIUBdAUEhb1Lj1Q=="],
 
-    "lucide-react": ["lucide-react@1.33.0", "", { "peerDependencies": { "react": "^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0" } }, "sha512-MTRwMy0ZlL8Ur/vOAiJ9XGHE+kFPC7brq6MxAm0GiGXEBj0qy0jA/pG4N675oSzciO/UCdX8T+5yUQdmDeTLxg=="],
+    "lucide-react": ["lucide-react@1.57.0", "", { "peerDependencies": { "@types/react": "*", "react": "^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0" }, "optionalPeers": ["@types/react"] }, "sha512-bXFZEucYhAzLD62Jse76AbTR6LiSLTn3Tqir2f1n8rZrWAdLodYy7jnRZSPIT89dRLk/IseMOUWG82wJtTyTTw=="],
 
     "lz-string": ["lz-string@1.5.0", "", { "bin": { "lz-string": "bin/bin.js" } }, "sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ=="],
 
