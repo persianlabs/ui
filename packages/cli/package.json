@@ -43,7 +43,7 @@
     "commander": "^12.1.0"
   },
   "devDependencies": {
-    "@types/node": "^22.10.2",
+    "@types/node": "^26.6.5",
     "cross-env": "^10.1.0",
     "tsup": "^8.5.1",
     "typescript": "^5.7.2",
